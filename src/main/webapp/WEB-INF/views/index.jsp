@@ -11,6 +11,7 @@
 	<hr>
 	<br>
 	<a href="login/login.do">로그인 하러 가기 </a>
+	<a href="jobsearch/maptest.do">지도 확인 하러 가기 </a>
 	<hr>
 
 </body>
