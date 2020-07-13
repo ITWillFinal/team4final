@@ -5718,7 +5718,7 @@ b, sup, sub, u, del {
 }
 
 .slider-height {
-	min-height: 770px;
+	min-height: 800px;
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover
