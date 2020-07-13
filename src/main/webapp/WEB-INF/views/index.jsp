@@ -11,9 +11,9 @@
             <div class="single-slider slider-height d-flex align-items-center" style="background-image: url('${pageContext.request.contextPath}/resources/images/hero/h1_hero.jpg');">
                 <div class="container">
                     <div class="row">
-                    		<a href="#" class="btn head-btn2" style="margin-left: 60px; height: 50px;">지역별</a>
-                            <a href="#" class="btn head-btn2" style="margin-left: 20px; height: 50px;">직업별</a>
-                            <a href="#" class="btn head-btn2" style="margin-left: 20px; height: 50px;">산업별</a>
+                    		<a href="#" class="btn head-btn2" style="margin-left: 60px; height: 50px; font-size: 1.1em; font-weight: bold;">지역별</a>
+                            <a href="#" class="btn head-btn2" style="margin-left: 20px; height: 50px; font-size: 1.1em; font-weight: bold;">직업별</a>
+                            <a href="#" class="btn head-btn2" style="margin-left: 20px; height: 50px; font-size: 1.1em; font-weight: bold;">산업별</a>
                             <div class="col-xl-6 col-lg-9 col-md-10">
                         <div class="col-xl-6 col-lg-9 col-md-10">
                             <div class="hero__caption">
