@@ -13,7 +13,7 @@ public class IndexController {
 	
 	@RequestMapping("/index.do")
 	public String index() {
-		logger.debug("메인화면");
+		logger.info("메인화면");
 		
 		return "index";
 	}
