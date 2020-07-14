@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	이걸 이로케
+	<h1>기업페이지</h1>
 </body>
 </html>
