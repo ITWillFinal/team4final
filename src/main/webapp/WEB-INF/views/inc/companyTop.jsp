@@ -21,6 +21,9 @@
 <body>
     <header>
         <!-- Header Start -->
+       <div style="width: 100%; background: #010b1d; height: 30px;">
+       		THE JOB
+       </div>
        <div class="header-area header-transparrent">
            <div class="headder-top header-sticky">
                 <div class="container">
