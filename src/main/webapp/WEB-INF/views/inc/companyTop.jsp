@@ -21,8 +21,10 @@
 <body>
     <header>
         <!-- Header Start -->
-       <div style="width: 100%; background: #010b1d; height: 30px;">
-       		THE JOB
+       <div style="width: 100%; background: #010b1d; height: 30px; text-align: center;">
+       		<a>
+       			<span style="font-weight: bold; color: white;">THE JOB <span style="color: #fb246a;">+</span></span>  
+       		</a>
        </div>
        <div class="header-area header-transparrent">
            <div class="headder-top header-sticky">
