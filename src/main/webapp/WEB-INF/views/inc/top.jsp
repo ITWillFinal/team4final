@@ -6,17 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>THE JOB</title>
- <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="manifest" href="site.webmanifest">
-		
+	<meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
 
-		<!-- CSS here -->
-        <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
-        <!-- 아이콘 태그 -->
-        <link rel="stylesheet" href="<c:url value='/resources/css/flaticon.css'/>">
-        <link rel="stylesheet" href="<c:url value='/resources/css/nice-select.css'/>">
-        <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
+
+	<!-- CSS here -->
+    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
+    <!-- 아이콘 태그 -->
+    <link rel="stylesheet" href="<c:url value='/resources/css/flaticon.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/css/nice-select.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
 </head>
 <body>
     <header>
@@ -40,7 +40,7 @@
                                             <li><a href="index.html">채용정보</a></li>
                                             <li><a href="job_listing.html">Top100 </a></li>
                                             <li><a href="about.html">직업검사</a></li>
-                                            <li><a href="#">Page</a>
+                                            <li><a href="<c:url value='/companypage/companyHome.do'/>">Page</a>
                                                 <ul class="submenu">
                                                     <li><a href="blog.html">Blog</a></li>
                                                     <li><a href="single-blog.html">Blog Details</a></li>
