@@ -27,7 +27,7 @@
                             <!-- form -->
                             <form action="#" class="search-box">
                                 <div class="input-form">
-                                    <input type="text" placeholder="Job Tittle or keyword">
+                                    <input type="text" placeholder="원하는 직업을 입력해주세요!" style="width: 150%">
                                 </div>
                                 
                                 <div class="search-form">
@@ -164,8 +164,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-tittle text-center">
-                        <span>Recent Job</span>
-                        <h2>Featured Jobs</h2>
+                        <span>현재 인기있는 채용공고</span>
+                        <h2>채용 TOP 10</h2>
                     </div>
                 </div>
             </div>
