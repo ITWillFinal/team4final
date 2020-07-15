@@ -42,10 +42,10 @@
     </div>
     <!-- slider Area End-->
     <!-- Our Services Start -->
-    <div class="our-services section-pad-t30">
-        <div class="container">
+    <!-- <div class="our-services section-pad-t30">
+        <div class="container"> -->
             <!-- Section Tittle -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <div class="section-tittle text-center">
                         <span>FEATURED TOURS Packages 피쳐뚜레스팤카지스</span>
@@ -142,10 +142,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- More Btn -->
             <!-- Section Button -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <div class="browse-btn2 text-center mt-50">
                         <a href="job_listing.html" class="border-btn2">Browse All Sectors</a>
@@ -153,7 +153,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Our Services End -->
    
     <!-- Featured_job_start -->
