@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/flaticon.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/css/nice-select.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
+<script type="text/javascript" 
+	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
 </head>
 <body>
     <header>
