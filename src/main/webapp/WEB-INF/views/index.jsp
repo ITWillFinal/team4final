@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-tittle text-center">
-                        <span>FEATURED TOURS Packages</span>
+                        <span>FEATURED TOURS Packages 피쳐뚜레스팤카지스</span>
                         <h2>Browse Top Categories </h2>
                     </div>
                 </div>
