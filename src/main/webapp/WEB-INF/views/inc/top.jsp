@@ -19,14 +19,8 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/js/jquery-3.5.1.min.js'/>">
 </head>
-<style>
-.popup_btn a {
-  display: inline-block;
-  padding: 20px;
-  background: darkred;
-  color: #fff;
-}
 
+<style>
 .overlay {
   position: fixed;
   top: 0;
@@ -51,7 +45,7 @@
   padding: 10px;
   max-width: 500px;
   border-radius: 10px;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, .9);
@@ -95,6 +89,20 @@
 .popup .close:hover {
   color: #00E5EE;
 }
+
+#tabs input {
+    border: 0;
+    border-bottom: 1px solid darkgray;
+    width: 250px;
+    height: 50px;
+}
+
+#tabs input[type=submit]{
+    border: 0;
+    background: #fb246a;
+    color: white;
+    
+}
 </style>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
@@ -103,29 +111,46 @@
 <script>
   $( function() {
     $( "#tabs" ).tabs();
-  } );
+    
+   	$("#tabs input[type=submit]").hover(function() {
+   		$(this).css("background", "#da2461");
+	}, function() {
+		$(this).css("background", "#fb246a");
+	});
+  });
 </script>
 
 <body>
-	<div class="popup_btn">
-        <a href="#pop01">팝업</a>
-      </div>
-      
       <div id="pop01" class="overlay">
         <div class="popup" style="text-align: center;">
-        <a href="#none" class="close">&times;</a>
+        <a href="#none" class="close">&times;</a><br>
           <div id="tabs">
-			  <ul>
-			    <li><a href="#tabs-1" style="width: 220px">일반회원</a></li>
+			  <ul style="border-radius: 0;">
+			    <li style="margin-left: 8px;"><a href="#tabs-1" style="width: 220px;">일반회원</a></li>
 			    <li><a href="#tabs-2" style="width: 220px">기업회원</a></li>
 			  </ul>
 			  <div id="tabs-1">
-			  	아이디 <input type="text"><br>
-			  	비밀번호 <input type="password">
+			  <h3>로그인</h3><br>
+			  	<form action="">
+				  	<input type="text" placeholder="아이디"><br><br>
+				  	<input type="password" placeholder="비밀번호"><br><br>
+				  	<input type="submit" value="로그인">
+				  	<br><br>
+				  	<p>ㅡㅡㅡㅡㅡㅡㅡ다른 계정으로 로그인ㅡㅡㅡㅡㅡㅡㅡ</p>
+				  	<div id="naver_id_login" style="text-align:center">
+						<a href="${url}">
+							<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+						</a>
+					</div>
+			  	</form>
 			  </div>
 			  <div id="tabs-2">
-			  	아이디 <input type="text"><br>
-			  	비밀번호 <input type="password">
+			  <h3>로그인</h3><br>
+			  	<form action="/indx">
+				  	<input type="text" placeholder="아이디"><br><br>
+				  	<input type="password" placeholder="비밀번호"><br><br>
+				  	<input type="submit" value="로그인">
+			  	</form>
 			  </div>
 		  </div>
         </div>
@@ -165,8 +190,8 @@
                                 </div>          
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1" style="font-weight: bold;">회원가입</a>
-                                    <a href="<c:url value='/login/login.do'/>" class="btn head-btn2" style="font-weight: bold;">로그인</a>
+                                    <a href="<c:url value='/login/login.do'/>" class="btn head-btn1" style="font-weight: bold;">회원가입</a>
+                                    <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">로그인</a>
                                 </div>
                             </div>
                         </div>
