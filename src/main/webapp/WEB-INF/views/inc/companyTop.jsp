@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>THE JOB</title>
+<title>THE JOB-COMPANY</title>
 	<meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -21,8 +21,12 @@
 <body>
     <header>
         <!-- Header Start -->
-       <div style="width: 100%; background: #010b1d; height: 30px;">
-       		THE JOB
+       <div style="width: 100%; background: #010b1d; height: 30px; text-align: center;">
+       		<a href="<c:url value="/index.do"/>">
+       			　　　　　
+       			<span style="font-weight: bold; color: white;">THE JOB <span style="color: #fb246a;">+</span></span>  
+       			　　　　　
+       		</a>
        </div>
        <div class="header-area header-transparrent">
            <div class="headder-top header-sticky">
@@ -31,7 +35,7 @@
                         <div class="col-lg-3 col-md-2">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="<c:url value='/index.do'/>"><img src="<c:url value='/resources/images/logo/logo.png'/>" alt=""></a>
+                                <a href="<c:url value='/companypage/companyHome.do'/>"><img src="<c:url value='/resources/images/logo/logo.png'/>" alt=""></a>
                             </div>  
                         </div>
                         <div class="col-lg-9 col-md-9">
