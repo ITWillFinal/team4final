@@ -7568,3 +7568,8 @@ form.search-box .search-form a {
 	background: #242b5e;
 	color: #fff
 }
+
+#navigation li a{
+	font-weight: bold;
+	
+}

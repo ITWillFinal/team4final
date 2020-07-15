@@ -10,6 +10,10 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +26,13 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 @RequestMapping("/login")
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+	/* GoogleLogin */
+	@Autowired
+	private GoogleConnectionFactory googleConnectionFactory;
+	@Autowired
+	private OAuth2Parameters googleOAuth2Parameters;
+
 
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
@@ -41,9 +52,16 @@ public class LoginController {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		// https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
 		// redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+		/* 구글code 발행 */
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+
 		System.out.println("네이버:" + naverAuthUrl);
+		System.out.println("구글:" + url);
+
 		// 네이버
 		model.addAttribute("url", naverAuthUrl);
+		model.addAttribute("google_url", url);
 
 		return "login/login";
 	}
@@ -54,10 +72,10 @@ public class LoginController {
 			throws IOException {
 		System.out.println("여기는 callback");
 		OAuth2AccessToken oauthToken;
-		
+
 		System.out.println("여기는 callback|| session = " + session + ", code = " + code + ", state = " + state);
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
-		
+
 		System.out.println("oauthToken = " + oauthToken);
 		// 1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginBO.getUserProfile(oauthToken); // String형식의 json데이터
@@ -86,6 +104,16 @@ public class LoginController {
 		model.addAttribute("result", apiResult);
 		return "login/login";
 	}
+
+	// 구글 Callback호출 메소드
+	@RequestMapping(value = "/oauth2callback", method = { RequestMethod.GET, RequestMethod.POST })
+	public String googleCallback(Model model, @RequestParam String code) throws IOException {
+		System.out.println("여기는 googleCallback");
+
+		return "#";
+	}
+
+
 
 	// 로그아웃
 	@RequestMapping(value = "/logout.do", method = { RequestMethod.GET, RequestMethod.POST })
