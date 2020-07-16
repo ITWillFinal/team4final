@@ -7,14 +7,14 @@
     <!-- slider Area Start-->
     <div class="slider-area ">
         <!-- Mobile Menu -->
-        <div class="slider-active">
-            <div class="single-slider slider-height d-flex align-items-center" style="background-image: url('${pageContext.request.contextPath}/resources/images/hero/h1_hero.jpg');">
-                <div class="container">
-                    <div class="row">
+      <div class="slider-active">
+          <div class="single-slider slider-height d-flex align-items-center" style="background-image: url('${pageContext.request.contextPath}/resources/images/hero/h1_hero.jpg');">
+              <div class="container">
+                  <div class="row">
                     		<a href="#" class="btn head-btn2" style="margin-left: 60px; height: 50px; font-size: 1.1em; font-weight: bold;">지역별</a>
                             <a href="#" class="btn head-btn2" style="margin-left: 20px; height: 50px; font-size: 1.1em; font-weight: bold;">직업별</a>
                             <a href="#" class="btn head-btn2" style="margin-left: 20px; height: 50px; font-size: 1.1em; font-weight: bold;">산업별</a>
-                            <div class="col-xl-6 col-lg-9 col-md-10">
+                    <div class="col-xl-6 col-lg-9 col-md-10">
                         <div class="col-xl-6 col-lg-9 col-md-10">
                             <div class="hero__caption">
                                 <h1></h1>
@@ -27,7 +27,7 @@
                             <!-- form -->
                             <form action="#" class="search-box">
                                 <div class="input-form">
-                                    <input type="text" placeholder="Job Tittle or keyword">
+                                    <input type="text" placeholder="원하는 직업을 입력해주세요!" style="width: 150%">
                                 </div>
                                 
                                 <div class="search-form">
@@ -36,10 +36,11 @@
                             </form>	
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  	</div>
     <!-- slider Area End-->
     <!-- Our Services Start -->
     <!-- <div class="our-services section-pad-t30">
@@ -163,8 +164,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-tittle text-center">
-                        <span>Recent Job</span>
-                        <h2>Featured Jobs</h2>
+                        <span>현재 인기있는 채용공고</span>
+                        <h2>채용 TOP 10</h2>
                     </div>
                 </div>
             </div>

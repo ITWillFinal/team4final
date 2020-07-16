@@ -35,13 +35,10 @@ public class LoginController {
 
 
 	/* NaverLoginBO */
+	@Autowired
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
 
-	@Autowired
-	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
-		this.naverLoginBO = naverLoginBO;
-	}
 
 	// 로그인 첫 화면 요청 메소드
 	@RequestMapping(value = "/login.do", method = { RequestMethod.GET, RequestMethod.POST })

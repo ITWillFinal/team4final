@@ -4429,7 +4429,7 @@ transition
 .overlay::before {
 	background-image: -moz-linear-gradient(170deg, rgba(34, 34, 34, 0) 0%,
 		#000 100%);
-	background-image: -webkit-linear-gradient(170deg, rgba(34, 34, 34, 0) 0%,
+	background-image: -webkit-linear-gradient(170deg, rgba(34, 34, 34, 0.) 0%,
 		#000 100%);
 	background-image: -ms-linear-gradient(170deg, rgba(34, 34, 34, 0) 0%,
 		#000 100%)
