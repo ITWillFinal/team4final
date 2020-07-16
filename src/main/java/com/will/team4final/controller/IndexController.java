@@ -10,6 +10,10 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +28,12 @@ import com.will.team4final.login.controller.NaverLoginBO;
 public class IndexController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
+	/* GoogleLogin */
+	@Autowired
+	private GoogleConnectionFactory googleConnectionFactory;
+	@Autowired
+	private OAuth2Parameters googleOAuth2Parameters;
+	
 	/* NaverLoginBO */
 	@Autowired
 	private NaverLoginBO naverLoginBO;
@@ -36,12 +46,18 @@ public class IndexController {
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		
+		/* 구글code 발행 */
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+		
 		// https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
 		// redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
 		logger.info("네이버 : {}", naverAuthUrl);
+		logger.info("구글 : {}", url);
 		
 		//네이버
 		model.addAttribute("url", naverAuthUrl);
+		model.addAttribute("google_url", url);
 		
 		return "index";
 	}
@@ -82,5 +98,13 @@ public class IndexController {
 			model.addAttribute("result", apiResult);
 			
 			return "index";
+		}
+		
+		// 구글 Callback호출 메소드
+		@RequestMapping(value = "/oauth2callback", method = { RequestMethod.GET, RequestMethod.POST })
+		public String googleCallback(Model model, @RequestParam String code) throws IOException {
+			System.out.println("여기는 googleCallback");
+
+			return "#";
 		}
 }
