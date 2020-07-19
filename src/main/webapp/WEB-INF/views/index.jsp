@@ -14,7 +14,7 @@
 	    border: 1px solid #fb246a;
 	    color: #fb246a;
 	    text-align-last: center;
-	    margin-bottom: 5px;
+	    margin-bottom: 10px;
 	}
 	
 	#inputSubmit{
