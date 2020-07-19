@@ -11,10 +11,10 @@ import com.will.team4final.login.controller.LoginController;
 public class CompanyHomeController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
-	@RequestMapping("/companypage/companyHome.do")
+	@RequestMapping("/hireinpo/hireinpo.do")
 	public String home() {
-		logger.info("기업페이지 홈");
+		logger.info("채용정보 홈");
 		
-		return "companypage/companyHome";
+		return "hireinpo/hireinpo";
 	}
 }

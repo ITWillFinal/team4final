@@ -211,7 +211,7 @@
                                                     <li><a href="job_details.html">job Details</a></li>
                                                 </ul> -->
                                         	
-                                            <li><a href="index.html">채용정보</a></li>
+                                            <li><a href=<c:url value='/hireinpo/hireinpo.do'/>>채용정보</a></li>
                                             <li><a href="job_listing.html">HOT 100</a></li>
                                             <li><a href="about.html">직업검사</a></li>
                                             <li><a href="<c:url value='/companypage/companyHome.do'/>">Page</a></li>
