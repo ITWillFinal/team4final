@@ -3,44 +3,106 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="inc/top.jsp" %>
 
+<style>
+	#searchSelect{
+		margin-left: 30px;
+	    height: 55px;
+	    font-size: 1.1em;
+	    font-weight: bold;
+	    background: #ffffff;
+	    width: 11%;
+	    border: 1px solid #fb246a;
+	    color: #fb246a;
+	    text-align-last: center;
+	    margin-bottom: 5px;
+	}
+	
+	#inputSubmit{
+            height: 60px;
+            border: 0;
+    }
+	
+</style>
+
 <main>
-    <!-- slider Area Start-->
-    <div class="slider-area ">
-        <!-- Mobile Menu -->
-      <div class="slider-active">
-          <div class="single-slider slider-height d-flex align-items-center" style="background-image: url('${pageContext.request.contextPath}/resources/images/hero/h1_hero.jpg');">
-              <div class="container">
-                  <div class="row">
-                    		<a href="#" class="btn head-btn2" style="margin-left: 60px; height: 50px; font-size: 1.1em; font-weight: bold;">지역별</a>
-                            <a href="#" class="btn head-btn2" style="margin-left: 20px; height: 50px; font-size: 1.1em; font-weight: bold;">직업별</a>
-                            <a href="#" class="btn head-btn2" style="margin-left: 20px; height: 50px; font-size: 1.1em; font-weight: bold;">산업별</a>
-                    <div class="col-xl-6 col-lg-9 col-md-10">
-                        <div class="col-xl-6 col-lg-9 col-md-10">
-                            <div class="hero__caption">
-                                <h1></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Search Box -->
-                    <div class="row" style="width: 800px; margin-left: 30px;">
-                        <div class="col-xl-8">
-                            <!-- form -->
-                            <form action="#" class="search-box">
-                                <div class="input-form">
-                                    <input type="text" placeholder="원하는 직업을 입력해주세요!" style="width: 150%">
+<!-- slider Area Start-->
+        <div class="slider-area ">
+            <!-- Mobile Menu -->
+            <div class="slider-active">
+                <div class="single-slider slider-height d-flex align-items-center"
+                    style="background-image: url('${pageContext.request.contextPath}/resources/images/hero/h1_hero.jpg');">
+                    <div class="container">
+                        <form action="">
+                            <div class="row" id="searchSelectDiv">
+                                <select id="searchSelect" style="margin-left: 70px;">
+                                    <option>지역</option>
+                                    <option>서울특별시</option>
+                                    <option>경기도</option>
+                                    <option>인천광역시</option>
+                                    <option>세종시</option>
+                                    <option>충청남도</option>
+                                    <option>충청북도</option>
+                                    <option>대전광역시</option>
+                                    <option>광주광역시</option>
+                                    <option>전라남도</option>
+                                    <option>전라북도</option>
+                                    <option>대구광역시</option>
+                                    <option>경상북도</option>
+                                    <option>경상남도</option>
+                                    <option>부산광역시</option>
+                                    <option>울산광역시</option>
+                                    <option>강원도</option>
+                                    <option>제주도</option>
+                                </select>
+                                <select id="searchSelect">
+                                    <option>직무</option>
+                                    <option>경영사무</option>
+                                    <option>마케팅-광고</option>
+                                    <option>IT-인터넷</option>
+                                    <option>디자인</option>
+                                    <option>무역유통</option>
+                                    <option>영업-고객상담</option>
+                                    <option>서비스</option>
+                                    <option>연구개발</option>
+                                    <option>생산-제조</option>
+                                    <option>교육</option>
+                                    <option>건설</option>
+                                    <option>의료</option>
+                                    <option>미디어</option>
+                                    <option>전문특수직</option>
+                                </select>
+                                <select id="searchSelect">
+                                    <option>산업</option>
+                                    <option>서비스업</option>
+                                    <option>금융업</option>
+                                    <option>IT정보통신업</option>
+                                    <option>판매유통업</option>
+                                    <option>제조업</option>
+                                    <option>화학업</option>
+                                    <option>교육업</option>
+                                    <option>건설업</option>
+                                    <option>의료제약업</option>
+                                    <option>미디어업</option>
+                                    <option>광고업</option>
+                                    <option>문화예술업</option>
+                                    <option>디자인업</option>
+                                </select><br>
                                 </div>
-                                
-                                <div class="search-form">
-                                    <a href="#">검색</a>
-                                </div>	
-                            </form>	
-                        </div>
+                                <!-- Search Box -->
+                               
+                                <div style="display: flex; margin-left: 10px;">
+                                    <div style="box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.08); padding-left: 20px; width: 400px;margin-left: 20px;">
+                                        <input type="text" placeholder="원하는 직업을 입력해주세요!"
+                                            style="width: 95%;" id="inputSubmit">
+                                    </div>
+                                    <input type="submit" value="검색" style="background: #fb246a; width: 100px; color: #ffffff; font-weight: bold;" id="inputSubmit">
+                                </div>
+                                        
+                        </form>
                     </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  	</div>
+                </div>
+            </div>
+        </div>
     <!-- slider Area End-->
     <!-- Our Services Start -->
     <!-- <div class="our-services section-pad-t30">
@@ -263,8 +325,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-tittle white-text text-center">
-                        <span>Apply process</span>
-                        <h2> How it works</h2>
+                        <span>THE JOB 이용방법</span>
+                        <h2 style="color: #28395a">검색부터 취직까지</h2>
                     </div>
                 </div>
             </div>
@@ -276,7 +338,7 @@
                             <span class="flaticon-search"></span>
                         </div>
                         <div class="process-cap">
-                           <h5>1. Search a job</h5>
+                           <h5>1. 직업 검색</h5>
                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
                         </div>
                     </div>
@@ -287,7 +349,7 @@
                             <span class="flaticon-curriculum-vitae"></span>
                         </div>
                         <div class="process-cap">
-                           <h5>2. Apply for job</h5>
+                           <h5>2. 원하는 기업에 지원</h5>
                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
                         </div>
                     </div>
@@ -298,7 +360,7 @@
                             <span class="flaticon-tour"></span>
                         </div>
                         <div class="process-cap">
-                           <h5>3. Get your job</h5>
+                           <h5>3. 취직</h5>
                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
                         </div>
                     </div>

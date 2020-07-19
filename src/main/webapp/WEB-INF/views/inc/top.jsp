@@ -212,7 +212,7 @@
                                                 </ul> -->
                                         	
                                             <li><a href="index.html">채용정보</a></li>
-                                            <li><a href="job_listing.html">Top100</a></li>
+                                            <li><a href="job_listing.html">HOT 100</a></li>
                                             <li><a href="about.html">직업검사</a></li>
                                             <li><a href="<c:url value='/companypage/companyHome.do'/>">Page</a></li>
                                             <li><a href="contact.html">고객센터</a></li>
