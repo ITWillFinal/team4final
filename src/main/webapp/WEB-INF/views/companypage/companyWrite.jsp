@@ -39,6 +39,19 @@
 		}).open();
 
 	}
+	$(function() {
+		$('#sido').click(function() {
+			var ee = $('#sido option:selected').val();
+			alert(ee);
+			
+			$('#sigugun').each(function() {
+				if($('#sigugun').val() == ee){
+					$('#sigugun').css('color', 'red');
+				}
+			});
+			
+		});
+	});
 </script>
 <style>
 
@@ -146,13 +159,19 @@
 				<tr>
 					<td>근무지역</td>
 					<td>
-						<select>
-							<option value="">선택</option>
-							<option value="">서울</option>
-							<option value="">인천</option>
-							<option value="">수원</option>
-							<option value="">부천</option>
-							<option value="">성남</option>
+						<select size="5" id="sido">
+							<c:if test="${!empty list }">
+								<c:forEach var="location" items="${list }">
+									<option value="${location }">${location }</option>
+								</c:forEach>
+							</c:if>
+						</select>
+						<select size="5">
+							<c:if test="${!empty allList }">
+								<c:forEach var="all" items="${allList }">
+									<option value="${all.sido }" id="sigugun">${all.sigugun }</option>
+								</c:forEach>
+							</c:if>
 						</select>
 						
 					</td>
