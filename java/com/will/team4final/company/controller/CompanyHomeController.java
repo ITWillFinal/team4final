@@ -12,14 +12,14 @@ public class CompanyHomeController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@RequestMapping("/hireinpo/hireinpo.do")
-	public String home() {
+	public String hireinpoHome() {
 		logger.info("채용정보 홈");
 		
 		return "hireinpo/hireinpo";
 	}
 	
 	@RequestMapping("/companypage/member/companyJoin.do")
-	public void join() {
+	public void companyJoin() {
 		logger.info("기업회원가입 페이지");
 		
 	}
