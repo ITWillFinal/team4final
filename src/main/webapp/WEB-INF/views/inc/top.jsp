@@ -104,6 +104,26 @@
     color: white;
     
 }
+.totalMenu{
+	position: absolute;
+    left: -333px;
+    width: 138%;
+    top: 90%;
+    border-top: 5px solid #fb246a;
+    display: none;
+    background: #f9f9f9;
+    z-index: 15;
+    overflow: hidden;
+}
+.totalMenu div{
+	float: left;
+	border: 1px solid silver;
+	border-collapse: collapse;
+	padding: 50px;
+}
+.totalMenu div a{
+	color: black;
+}
 </style>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
@@ -118,50 +138,54 @@
 	}, function() {
 		$(this).css("background", "#fb246a");
 	});
+   	
+   	$('#toggle').click(function() {
+	   	$('.totalMenu').slideToggle();
+	});
   });
 </script>
 
 <body>
-      <div id="pop01" class="overlay">
-        <div class="popup" style="text-align: center;">
-        <a href="#none" class="close">&times;</a><br>
-          <div id="tabs">
-			  <ul style="border-radius: 0;">
-			    <li style="margin-left: 8px;"><a href="#tabs-1" style="width: 220px;">일반회원</a></li>
-			    <li><a href="#tabs-2" style="width: 220px">기업회원</a></li>
-			  </ul>
-			  <div id="tabs-1">
-			  	<h3>로그인</h3><br>
-			  	<form action="">
-				  	<input type="text" placeholder="아이디"><br><br>
-				  	<input type="password" placeholder="비밀번호"><br><br>
-				  	<input type="submit" value="로그인">
-				  	<br><br>
-				  	<p>ㅡㅡㅡㅡㅡㅡㅡ다른 계정으로 로그인ㅡㅡㅡㅡㅡㅡㅡ</p>
-				  	<!-- 네이버 -->
-				  	<div id="naver_id_login" style="text-align:center">
-						<a href="${url}">
+	<div id="pop01" class="overlay">
+		<div class="popup" style="text-align: center;">
+		<a href="#none" class="close">&times;</a><br>
+			<div id="tabs">
+				<ul style="border-radius: 0;">
+					<li style="margin-left: 8px;"><a href="#tabs-1" style="width: 220px;">일반회원</a></li>
+					<li><a href="#tabs-2" style="width: 220px">기업회원</a></li>
+				</ul>
+				<div id="tabs-1">
+					<h3>로그인</h3><br>
+					<form action="">
+						<input type="text" placeholder="아이디"><br><br>
+						<input type="password" placeholder="비밀번호"><br><br>
+						<input type="submit" value="로그인">
+						<br><br>
+						<p>ㅡㅡㅡㅡㅡㅡㅡ다른 계정으로 로그인ㅡㅡㅡㅡㅡㅡㅡ</p>
+						<!-- 네이버 -->
+						<div id="naver_id_login" style="text-align:center">
+							<a href="${url}">
 							<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
-						</a>
-					</div>
-					<!-- 구글 -->
-					<div id="google_id_login" style="text-align: center">
-					<a href="${google_url}"><img width="230"
-						src="${pageContext.request.contextPath}/resources/images/btn_google_signin_dark_normal_web@2x.png" /></a>
+							</a>
+						</div>
+						<!-- 구글 -->
+						<div id="google_id_login" style="text-align: center">
+							<a href="${google_url}"><img width="230"
+							src="${pageContext.request.contextPath}/resources/images/btn_google_signin_dark_normal_web@2x.png" /></a>
+						</div>
+					</form>
 				</div>
-			  	 </form>
-			  </div>
-			  <div id="tabs-2">
-				  <h3>로그인</h3><br>
-				  	<form action="/indx">
-					  	<input type="text" placeholder="아이디"><br><br>
-					  	<input type="password" placeholder="비밀번호"><br><br>
-					  	<input type="submit" value="로그인">
-				  	</form>
-			  </div>
-		  </div>
-        </div>
-      </div>
+				<div id="tabs-2">
+					<h3>로그인</h3><br>
+					<form action="/indx">
+						<input type="text" placeholder="아이디"><br><br>
+						<input type="password" placeholder="비밀번호"><br><br>
+						<input type="submit" value="로그인">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
     <header>
         <!-- Header Start -->
        <div class="header-area header-transparrent">
@@ -180,19 +204,49 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-                                            <li><a href="index.html">채용정보</a></li>
-                                            <li><a href="job_listing.html">Top100 </a></li>
-                                            <li><a href="about.html">직업검사</a></li>
-                                            <li><a href="<c:url value='/companypage/companyHome.do'/>">Page</a>
-                                                <ul class="submenu">
+                                        	<li><a id="toggle"> ▤  </a></li>
+                                        		<!-- <ul class="submenu">
                                                     <li><a href="blog.html">Blog</a></li>
                                                     <li><a href="single-blog.html">Blog Details</a></li>
                                                     <li><a href="elements.html">Elements</a></li>
                                                     <li><a href="job_details.html">job Details</a></li>
-                                                </ul>
-                                            </li>
+                                                </ul> -->
+                                        	
+                                            <li><a href=<c:url value='/hireinpo/hireinpo.do'/>>채용정보</a></li>
+                                            <li><a href="job_listing.html">HOT 100</a></li>
+                                            <li><a href="about.html">직업검사</a></li>
+                                            <li><a href="<c:url value='/companypage/companyHome.do'/>">Page</a></li>
                                             <li><a href="contact.html">고객센터</a></li>
                                         </ul>
+										<div class="totalMenu">
+											<div>
+												<a href="about.html">채용정보  ></a>
+												<br>
+												<a href="about.html">상세검색</a>
+												<br>
+												<a href="about.html">지역별</a>
+												<br>
+												<a href="about.html">직무별</a>
+												<br>
+												<a href="about.html">산업별</a>
+												<br>
+												<a href="about.html">기업별</a>
+												
+											</div>
+											<div>
+												<a href="about.html">취업 성공 툴  ></a>
+												<br>
+												<a href="about.html">자소서 작성</a>
+												<br>
+												<a href="about.html">학격 자소서</a>
+												<br>
+												<a href="about.html">합격 스팩</a>
+												<br>
+												<a href="about.html">직무 인터뷰</a>
+												<br>
+												<a href="about.html">취업 후기</a>
+											</div>
+										</div>
                                     </nav>
                                 </div>          
                                 <!-- Header-btn -->

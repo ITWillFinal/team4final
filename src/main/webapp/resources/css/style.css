@@ -5994,7 +5994,7 @@ form.search-box .search-form {
 	}
 }
 
-form.search-box .search-form a {
+form.search-box .search-form input {
 	width: 100%;
 	height: 70px;
 	background: #fb246a;
