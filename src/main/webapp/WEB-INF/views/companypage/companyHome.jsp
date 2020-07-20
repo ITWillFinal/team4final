@@ -19,10 +19,10 @@
 	       		<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 	                <div class="single-services text-center mb-30">
 	                    <div class="services-ion">
-	                        <span class="flaticon-report"></span>
+	                        <a href="<c:url value='/companypage/companyWrite.do'/>"><span class="flaticon-report"></span></a>
 	                    </div>
 	                    <div class="services-cap">
-	                       <h5><a href="job_listing.html">공고등록</a></h5>
+	                       <h5><a href="<c:url value='/companypage/companyWrite.do'/>">공고등록</a></h5>
 	                        <span>(658)</span>
 	                    </div>
 	                </div>
