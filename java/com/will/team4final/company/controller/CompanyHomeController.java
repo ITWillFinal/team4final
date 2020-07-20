@@ -23,4 +23,15 @@ public class CompanyHomeController {
 		logger.info("기업회원가입 페이지");
 		
 	}
+	
+	@RequestMapping("/companypage/companyWrite.do")
+	public String write() {
+		logger.info("기업페이지 채용공고등록");
+		
+		return "companypage/companyWrite";
+	}
+	
+	
+	
+	
 }
