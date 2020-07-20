@@ -105,7 +105,7 @@
 			'width=420,height=300,left=0,top=0,location=yes,resizable=yes');
 		});
 		
-		$('#emailChk').click(function(){
+		$('input[name=email]').click(function(){
 			var email = $('#email').val();
 			window.open(
 			"<c:url value='/member/email.do?email="
@@ -163,6 +163,14 @@
 	margin-right: auto;
 	margin-left: auto;
 }
+legend{
+	text-align: center;
+}
+hr{
+height: 3px;
+    background: #da2461;
+
+}
 </style>
 <body>
 	<div class="divForm">
@@ -170,6 +178,8 @@
 			action="<c:url value='/member/register.do' /> "
 			enctype="multipart/form-data" >
 			<div class="form-group" id="divId">
+				<legend>회원 가입</legend>
+				<hr>
 				<div class="col-lg-10">
 					<label for="inputId" class="col-lg-2 control-label">*아이디</label> 
 					<input type="button" value="중복확인" id="btChk" title="새창열림"> 
@@ -253,9 +263,8 @@
 			<div class="form-group" id="divEmail">
 				<div class="col-lg-10">
 					<label for="inputEmail" class="col-lg-2 control-label">*이메일</label>
-					<input type="email" class="form-control infobox" id="email" name="email"
+					<input type="email" class="form-control" id="email" name="email"
 						data-rule-required="true" placeholder="이메일" maxlength="40" >
-					<button type="button" name="emailChk" id="emailChk">이메일 인증받기 (이메일 보내기)</button>
 				</div>
 			</div>
 			<div class="form-group" id="divph">

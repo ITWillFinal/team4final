@@ -14,7 +14,7 @@
 <script type="text/javascript">
 	$(function(){
 		$('#btUse').click(function(){
-			$(opener.document).find('#userid').val("${param.cUserid}");
+			$(opener.document).find('#cUserid').val("${param.userid}");
 			$(opener.document).find('#chkId').val("Y");
 			
 			self.close();			
@@ -25,13 +25,13 @@
 </script>
 </head>
 <body>
-	<h1>회원 아이디 중복 검사</h1>	
+	<h1>기업 회원 아이디 중복 검사</h1>	
 	<form name="frmDup" method="post" 
 		action="<c:url value='/companypage/member/checkUserid.do'/>">
 		
-		<label for="cUserid">회원 ID</label>
-		<input type="text" name="cUserid" id="cUserid" 
-			value="${param.cUserid}">
+		<label for="userid">기업 회원 ID</label>
+		<input type="text" name="userid" id="userid" 
+			value="${param.userid}">
 		<input type="submit" value="아이디 확인">
 		<c:if test="${!empty result }">
 			<c:if test="${result==EXIST_ID}">

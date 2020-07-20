@@ -3,10 +3,10 @@ package com.will.team4final.member.model;
 import java.sql.Timestamp;
 
 public class MemberVO {
-	private int memberNo;
+	private int userNo;
 	private String userid;
 	private String pwd;
-	private String name;
+	private String userName;
 	private String imageURL;
 	private String nickname;
 	private String birth;
@@ -16,13 +16,13 @@ public class MemberVO {
 	private String addressDetail;
 	private String email;
 	private String hp;
-	private Timestamp regdate;
-	private Timestamp outdate;
-	public int getMemberNo() {
-		return memberNo;
+	private String regdate;
+	private String outdate;
+	public int getUserNo() {
+		return userNo;
 	}
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 	public String getUserid() {
 		return userid;
@@ -36,11 +36,11 @@ public class MemberVO {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getImageURL() {
 		return imageURL;
@@ -96,25 +96,28 @@ public class MemberVO {
 	public void setHp(String hp) {
 		this.hp = hp;
 	}
-	public Timestamp getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Timestamp regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	public Timestamp getOutdate() {
+	public String getOutdate() {
 		return outdate;
 	}
-	public void setOutdate(Timestamp outdate) {
+	public void setOutdate(String outdate) {
 		this.outdate = outdate;
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [memberNo=" + memberNo + ", userid=" + userid + ", pwd=" + pwd + ", name=" + name
+		return "MemberVO [userNo=" + userNo + ", userid=" + userid + ", pwd=" + pwd + ", userName=" + userName
 				+ ", imageURL=" + imageURL + ", nickname=" + nickname + ", birth=" + birth + ", gender=" + gender
 				+ ", zipcode=" + zipcode + ", address=" + address + ", addressDetail=" + addressDetail + ", email="
 				+ email + ", hp=" + hp + ", regdate=" + regdate + ", outdate=" + outdate + "]";
 	}
+	
+	
+	
 	
 	
 }
