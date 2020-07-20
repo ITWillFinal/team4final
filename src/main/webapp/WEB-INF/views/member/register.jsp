@@ -34,6 +34,10 @@
 				alert('아이디 중복확인을 하셔야 합니다.');
 				$("#btnChkId").focus();
 				event.preventDefault();
+			}else if($('#chkEmail').val()!='Y'){
+				alert('이메일 인증을 하셔야합니다.');
+				$("#chkEmail").focus();
+				event.preventDefault();
 			}
 			
 			
@@ -104,7 +108,7 @@
 		$('#emailChk').click(function(){
 			var email = $('#email').val();
 			window.open(
-			"<c:url value='/email/email_injeung.do?email="
+			"<c:url value='/member/email.do?email="
 			+ email + "'/>", 'emailchk',
 			'width=420,height=300,left=0,top=0,location=yes,resizable=yes');
 		});
@@ -250,7 +254,7 @@
 				<div class="col-lg-10">
 					<label for="inputEmail" class="col-lg-2 control-label">*이메일</label>
 					<input type="email" class="form-control infobox" id="email" name="email"
-						data-rule-required="true" placeholder="이메일" maxlength="40">
+						data-rule-required="true" placeholder="이메일" maxlength="40" >
 					<button type="button" name="emailChk" id="emailChk">이메일 인증받기 (이메일 보내기)</button>
 				</div>
 			</div>
@@ -269,6 +273,7 @@
 				</div>
 			</div>
 			<input type="text" name="chkId" id="chkId">
+			<input type="text" name="chkEmail" id="chkEmail">
 		</form>
 	</div>
 </body>
