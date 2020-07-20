@@ -7,8 +7,16 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 </head>
+<script type="text/javascript"
+	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
+<style type="text/css">
+.naverApi {
+	list-style-type: none;
+}
+</style>
+
 <body>
-	<h1>로그인</h1>
+	<h1>The JOB</h1>
 	<hr>
 	<br>
 	<div>
@@ -20,8 +28,17 @@
 					<a href="<c:url value='/login/logout.do'/>">로그아웃</a>
 				</h3>
 			</c:when>
-
 			<c:otherwise>
+				<!-- 네이버 로그인 창으로 이동 -->
+				<ul class="naverApi">
+					<li ><a href="${url}"> <img width="223"
+							src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" />
+					</a></li>
+					<li><a href="${google_url}"><img width="230"
+							src="${pageContext.request.contextPath}/resources/images/btn_google_signin_dark_normal_web@2x.png" /></a>
+					</li>
+				</ul>
+
 				<form action="login.userdo" method="post" name="frm"
 					style="width: 470px;">
 					<h2>로그인</h2>
@@ -31,24 +48,7 @@
 						placeholder="비밀번호"> <br> <input type="submit"
 						value="로그인" onclick="#"> <br>
 				</form>
-				<br>
-
-				<!-- 네이버 로그인 창으로 이동 -->
-				<div id="naver_id_login" style="text-align: center">
-					<a href="${url}"> <img width="223"
-						src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" />
-					</a>
-				</div>
-				<br>
-				<br>
-				<!-- 구글 로그인 화면으로 이동 시키는 URL -->
-				<!-- 구글 로그인 화면에서 ID, PW를 올바르게 입력하면 oauth2callback 메소드 실행 요청-->
-				<div id="google_id_login" style="text-align: center">
-					<a href="${google_url}"><img width="230"
-						src="${pageContext.request.contextPath}/resources/images/btn_google_signin_dark_normal_web@2x.png" /></a>
-				</div>
 			</c:otherwise>
-
 		</c:choose>
 	</div>
 

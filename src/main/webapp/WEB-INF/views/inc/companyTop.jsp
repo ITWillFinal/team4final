@@ -193,7 +193,7 @@
                                 </div>          
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="<c:url value='/login/login.do'/>" class="btn head-btn1" style="font-weight: bold;">회원가입</a>
+                                    <a href="<c:url value='/member/register.do'/>" class="btn head-btn1" style="font-weight: bold;">회원가입</a>
                                     <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">로그인</a>
                                 </div>
                             </div>

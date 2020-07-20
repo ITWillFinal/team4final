@@ -11,11 +11,17 @@ import com.will.team4final.login.controller.LoginController;
 public class CompanyHomeController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
-	@RequestMapping("/companypage/companyHome.do")
-	public String home() {
-		logger.info("기업페이지 홈");
+	@RequestMapping("/hireinpo/hireinpo.do")
+	public String hireinpoHome() {
+		logger.info("채용정보 홈");
 		
-		return "companypage/companyHome";
+		return "hireinpo/hireinpo";
+	}
+	
+	@RequestMapping("/companypage/member/companyJoin.do")
+	public void companyJoin() {
+		logger.info("기업회원가입 페이지");
+		
 	}
 	
 	@RequestMapping("/companypage/companyWrite.do")
