@@ -4,7 +4,7 @@
 
 <main>
 	<!-- main left sidebar -->
-	<div style="float: left; width:250px; margin-left:340px; word-break:break-all; border:1px solid lightgray; font-size: 14px;">
+	<div style="float: left; width:250px; margin-left:18%; word-break:break-all; border:1px solid lightgray; font-size: 14px;">
 	
 		<div style="width:238px; height:200px; margin:5px; border: 1px solid lightgray;">
 			<br>
@@ -86,30 +86,42 @@
 					</td>
 				</tr>
 				
-				<tr>
-					<td>모집직종</td>
+				<tr style="border:1px solid lightgray;">
+					<td>1차직종명</td>
 					<td>
-						<select>
-							<option value="">선택</option>
-							<option value="">사무</option>
-							<option value="">영업</option>
-						</select>
+						<input type="text">
+					</td>
+				</tr>
+				<tr style="border:1px solid lightgray;">
+					<td>2차직종명</td>
+					<td>
+						<input type="text">
 					</td>
 				</tr>
 				
 				<tr>
-					<td>근무지역</td>
+					<td>우편번호</td>
 					<td>
-						<select>
-							<option value="">선택</option>
-							<option value="">서울</option>
-							<option value="">인천</option>
-							<option value="">수원</option>
-							<option value="">부천</option>
-							<option value="">성남</option>
-						</select>
+						<input type="text">
+						<input type="button" value="선택">
 					</td>
 				</tr>
+				
+				<tr>
+					<td>주소</td>
+					<td>
+						<input type="text">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>상세주소</td>
+					<td>
+						<input type="text">
+					</td>
+				</tr>
+								
+				
 				
 				<tr>
 					<td>담당업무</td>
@@ -120,6 +132,13 @@
 							
 				<tr>
 					<td>모집인원</td>
+					<td>
+						<input type="text">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>근무시간</td>
 					<td>
 						<input type="text">
 					</td>
@@ -181,11 +200,22 @@
 						<label><input type="checkbox">퇴직금</label>
 					</td>
 				</tr>
+				<tr>
+					<td>근무지역</td>
+					<td>
+						<select>
+							<option value="">선택</option>
+							<option value="">서울</option>
+							<option value="">인천</option>
+							<option value="">수원</option>
+							<option value="">부천</option>
+							<option value="">성남</option>
+						</select>
+						
+					</td>
+				</tr>
 			</table>
 			</div>
-			
-			
-			
 			
 			
 			<div>
@@ -211,7 +241,30 @@
 				<tr>
 					<td>나이</td>
 					<td>
-						<input type="text"> 세 이상 ~ <input type="text"> 세 이하
+						<select>
+							<option value="">선택</option>
+							<option value="">20세이하</option>
+							<option value="">21세이하</option>
+							<option value="">22세이하</option>
+							<option value="">23세이하</option>
+							<option value="">24세이하</option>
+							<option value="">25세이하</option>
+							<option value="">26세이하</option>
+							<option value="">27세이하</option>
+							<option value="">28세이하</option>
+							<option value="">29세이하</option>
+							<option value="">30세이하</option>
+							<option value="">31세이하</option>
+							<option value="">32세이하</option>
+							<option value="">33세이하</option>
+							<option value="">34세이하</option>
+							<option value="">35세이하</option>
+							<option value="">40세이하</option>
+							<option value="">45세이하</option>
+							<option value="">55세이하</option>
+							<option value="">60세이하</option>
+							<option value="">60세초과</option>
+						</select>
 						<br><label><input type="checkbox">무관</label><br>
 						모집·채용에서 합리적인 이유 없이 연령제한을 하는 경우는 연령차별금지법 위반에 따른 500만원 이하의 벌금이 부과될 수 있습니다.
 					</td>
@@ -345,28 +398,10 @@
 							<label>1차<input type="text"></label>
 							<label>2차<input type="text"></label>
 							<label>3차<input type="text"></label>
+							<label>4차<input type="text"></label>
 						</td>
 					</tr>
-					<tr>
-						<td>접수방법</td>
-						<td>
-							<label><input type="checkbox">이메일</label>
-							<label><input type="checkbox">온라인접수</label>
-							<label><input type="checkbox">직접방문</label>
-							<label><input type="checkbox">우편접수</label>
-							<label><input type="checkbox">당사홈페이지</label>				
-						</td>
-					</tr>
-					
-					<tr>
-						<td>이력서양식</td>
-						<td>
-							<label><input type="checkbox">온라인 이력서</label>
-							<label><input type="checkbox">지원자 자유 양식</label>
-							<label><input type="checkbox">자사 입사지원서 양식</label>
-						</td>
-					</tr>
-				
+
 				</table><br>
 				</div>
 				
