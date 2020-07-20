@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.member">
+	<insert id="insertMember" parameterType="memberVO" >
+		<selectKey keyProperty="memberNo" resultType="int" order="BEFORE">
+			select member_seq.nextval from dual
+		</selectKey>
+		insert into member(memberNo, userid, pwd, name, imageURL, nickname,
+		birth, gender, zipcode, address, addressDetail, email, hp)
+		values(#{memberNo},#{userid}, #{pwd}, #{name}, #{imageURL}, #{nickname},
+		 #{birth}, #{gender}, #{zipcode}, #{address}, #{addressDetail}, #{email}, #{hp})
+	</insert>
+	
+	<select id="selectMemberDup" parameterType="string" resultType="int">
+		select count(*) from member
+		where userid=#{userid}
+	</select>
+	
+	<select id="selectMemberPwd" parameterType="string" resultType="string">
+		select pwd from member
+		where userid=#{userid}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

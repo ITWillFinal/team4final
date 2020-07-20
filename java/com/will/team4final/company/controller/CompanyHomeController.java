@@ -17,4 +17,10 @@ public class CompanyHomeController {
 		
 		return "hireinpo/hireinpo";
 	}
+	
+	@RequestMapping("/companypage/member/companyJoin.do")
+	public void join() {
+		logger.info("기업회원가입 페이지");
+		
+	}
 }
