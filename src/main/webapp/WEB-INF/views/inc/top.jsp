@@ -9,6 +9,8 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="site.webmanifest">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <!-- CSS here -->
@@ -169,6 +171,9 @@
 					<form action="">
 						<input type="text" placeholder="아이디"><br>
 						<br> <input type="password" placeholder="비밀번호"><br>
+						<a href="#popId">아이디 찾기</a>/
+						<a href="#popPwd">비밀번호 찾기
+						</a>
 						<br> <input type="submit" value="로그인"> <br>
 						<br>
 						<p>ㅡㅡㅡㅡㅡㅡㅡ다른 계정으로 로그인ㅡㅡㅡㅡㅡㅡㅡ</p>
@@ -209,6 +214,25 @@
 					<a class="btn red" href="<c:url value='/companypage/member/companyJoin.do' /> ">기업회원</a>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div id="popId" class="overlay">
+		<div class="popup" style="text-align: center;">
+		<form action="/member/find_id.do" method="post">
+				<div class="w3-center w3-large w3-margin-top">
+					<h3>아이디 찾기</h3>
+				</div>
+				<div>
+					<p>
+						<label>Email</label>
+						<input type="email" class="w3-input" id="email" name="email">
+					</p>
+					<p class="w3-center">
+						<button type="submit" id=findBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">find</button>
+						<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
+					</p>
+				</div>
+			</form>
 		</div>
 	</div>
 

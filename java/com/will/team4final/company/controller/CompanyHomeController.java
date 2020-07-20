@@ -10,12 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-<<<<<<< HEAD
 import com.will.team4final.company.model.ComMemberService;
-=======
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.location.model.LocationVO;
->>>>>>> master
 import com.will.team4final.login.controller.LoginController;
 
 @Controller
@@ -39,7 +36,6 @@ public class CompanyHomeController {
 		
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping("/companypage/member/checkUserid.do")
 	public String checkcUserid(@RequestParam String cUserid, Model model) {
 		logger.info("기업회원 아이디 중복확인, 파라미터 cUserid={}", cUserid);
@@ -57,7 +53,7 @@ public class CompanyHomeController {
 		return "companypage/member/checkUserid";
 		
 	}
-=======
+	
 	@RequestMapping("/companypage/companyWrite.do")
 	public String companyWrite(Model model) {
 		logger.info("기업페이지 채용공고등록");
@@ -75,7 +71,4 @@ public class CompanyHomeController {
 	}
 	
 	
-	
-	
->>>>>>> master
 }

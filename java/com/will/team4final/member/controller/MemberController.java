@@ -193,4 +193,18 @@ public class MemberController {
 
 		return mv;
 	}
+	
+	@RequestMapping("/find_id.do")
+	public String findId(@RequestParam String email, Model model) {
+		logger.info("아이디 찾기, 파라미터 email={}", email);
+		String userid = memberService.findId(email);
+		String msg="해당 이메일 아이디가 업습니다", url="/index.do";
+		if(userid!=null && !userid.isEmpty()) {
+			model.addAttribute("userid", userid);
+			return "/inc/top.do";
+		}
+		
+		return "common/message";
+		
+	}
 }
