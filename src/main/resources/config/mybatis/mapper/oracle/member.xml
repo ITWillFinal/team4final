@@ -26,6 +26,17 @@
 	<select id="findId" parameterType="string" resultType="string">
 		select user_id from member where email = #{email}
 	</select>
+	
+	<update id="updatePwdByEmail" parameterType="memberVo">
+		update member
+		set pwd = #{pwd}
+		where user_id=#{userid}
+	</update>
+	
+	<select id="selectAll" parameterType="string" resultType="memberVo">
+		select * from member where user_id=#{userid}
+	</select>
+	
 </mapper>
 
 
