@@ -22,6 +22,16 @@ public class MemberServiceImpl implements MemberService{
 	public String findId(String email) {
 		return memberDao.findId(email);
 	}
+
+	@Override
+	public int updatePwdByEmail(MemberVO memberVo) {
+		return memberDao.updatePwdByEmail(memberVo);
+	}
+
+	@Override
+	public MemberVO selectAll(String user_id) {
+		return memberDao.selectAll(user_id);
+	}
 	
 
 }
