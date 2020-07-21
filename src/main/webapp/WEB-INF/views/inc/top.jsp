@@ -169,6 +169,9 @@
 					<form action="">
 						<input type="text" placeholder="아이디"><br>
 						<br> <input type="password" placeholder="비밀번호"><br>
+						<a href="<c:url value='/member/find_pass' /> ">
+							<p style=" color:blue; text-align: right; margin: 20px;">비밀번호를 잊어버리셨습니까?</p>
+						</a>
 						<br> <input type="submit" value="로그인"> <br>
 						<br>
 						<p>ㅡㅡㅡㅡㅡㅡㅡ다른 계정으로 로그인ㅡㅡㅡㅡㅡㅡㅡ</p>
