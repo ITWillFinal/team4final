@@ -14,6 +14,8 @@
 <!-- CSS here -->
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/bootstrap.min.css'/>">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- 아이콘 태그 -->
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/flaticon.css'/>">
@@ -169,9 +171,14 @@
 					<form action="">
 						<input type="text" placeholder="아이디"><br>
 						<br> <input type="password" placeholder="비밀번호"><br>
-						<a href="<c:url value='/member/find_pass' /> ">
-							<p style=" color:blue; text-align: right; margin: 20px;">비밀번호를 잊어버리셨습니까?</p>
+						<a href="<c:url value='#popId' /> ">
+							아이디
 						</a>
+						/
+						<a href="<c:url value='#popPwd' /> ">
+							비밀번호
+						</a>
+						찾기
 						<br> <input type="submit" value="로그인"> <br>
 						<br>
 						<p>ㅡㅡㅡㅡㅡㅡㅡ다른 계정으로 로그인ㅡㅡㅡㅡㅡㅡㅡ</p>
@@ -214,7 +221,36 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 아이디 찾기  -->
+	<div id="popId" class="overlay">
+		<div class="popup" style="text-align: center;">
+			<div class="w3-content w3-container w3-margin-top">
+				<div class="w3-container w3-card-4">
+					<form action="<c:url value='/email/find_id.do' /> " method="post">
+						<div class="w3-center w3-large w3-margin-top">
+							<h3>아이디 찾기</h3>
+						</div>
+						<div>
+							<p>
+								<label>Email</label> <input class="w3-input" type="email"
+									id="findIdByEmail" name="findIdByEmail">
+							</p>
+							<p class="w3-center">
+								<button type="submit" id=findBtn class="btn head-btn1"
+									style="font-weight: bold;">find</button>
+								<button type="button" onclick="history.go(-1);"
+									class="btn head-btn1" style="font-weight: bold;">Cancel</button>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<!-- 비밀번호 찾기  -->
+	
 	<header>
 		<!-- Header Start -->
 		<div class="header-area header-transparrent">

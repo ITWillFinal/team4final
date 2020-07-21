@@ -8,9 +8,9 @@
 			select company_member_seq.nextval from dual
 		</selectKey>
 		insert into company_member(C_MEMBER_CODE , C_USERID, C_PWD, C_NICKNAME, C_USERNAME, C_BIRTH,
-		C_GENDER, C_HP, C_EMAIL, C_JOINDATE, C_OUTDATE)
+		C_GENDER, C_HP, C_EMAIL)
 		values(#{cMemberCode},#{cUserid}, #{cPwd}, #{cNickname}, #{cUsername}, #{cBirth},
-		 #{cGender}, #{cEmail}, #{cHp}, #{cJoindate}, #{cOutdate})
+		 #{cGender}, #{cHp}, #{cEmail})
 	</insert>
 	
 	<select id="selectCMemberDup" parameterType="string" resultType="int">

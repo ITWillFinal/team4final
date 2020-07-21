@@ -7,7 +7,7 @@
 		<selectKey keyProperty="userNo" resultType="int" order="BEFORE">
 			select member_seq.nextval from dual
 		</selectKey>
-		insert into member(userNo, userid, pwd, userName, imageURL, nickname,
+		insert into member(user_no, user_id, pwd, user_name, imageURL, nickname,
 		birth, gender, zipcode, address, addressDetail, email, hp)
 		values(#{userNo},#{userid}, #{pwd}, #{userName}, #{imageURL}, #{nickname},
 		 #{birth}, #{gender}, #{zipcode}, #{address}, #{addressDetail}, #{email}, #{hp})
@@ -15,16 +15,16 @@
 	
 	<select id="selectMemberDup" parameterType="string" resultType="int">
 		select count(*) from member
-		where userid=#{userid}
+		where user_id=#{userid}
 	</select>
 	
 	<select id="selectMemberPwd" parameterType="string" resultType="string">
 		select pwd from member
-		where userid=#{userid}
+		where user_id=#{userid}
 	</select>
 	
 	<select id="findId" parameterType="string" resultType="string">
-		select userid from member where email = #{email}
+		select user_id from member where email = #{email}
 	</select>
 </mapper>
 

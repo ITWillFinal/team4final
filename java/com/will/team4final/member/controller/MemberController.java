@@ -61,18 +61,21 @@ public class MemberController {
 			msg="회원 가입 성공";
 			url="/login/login.do";
 		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 
 		return "common/message";
 	}
 
 	@RequestMapping("/checkUserid.do")
-	public String chkUserid(@RequestParam String userid, Model model) {
-		logger.info("개인회원 아이디 중복확인, 파라미터  userid={}", userid);
-		if(userid==null || userid.isEmpty()) {
+	public String chkUserid(@RequestParam String user_id, Model model) {
+		logger.info("개인회원 아이디 중복확인, 파라미터  user_id={}", user_id);
+		if(user_id==null || user_id.isEmpty()) {
 			return "member/checkUserid";
 		}
 
-		int result = memberService.selectMemberDup(userid);
+		int result = memberService.selectMemberDup(user_id);
 		logger.info("개인회원 아이디 중복확인 결과, result={}", result);
 		model.addAttribute("result", result);
 		model.addAttribute("EXIST_ID",MemberService.EXIST_ID);
@@ -194,17 +197,5 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping("/find_id.do")
-	public String findId(@RequestParam String email, Model model) {
-		logger.info("아이디 찾기, 파라미터 email={}", email);
-		String userid = memberService.findId(email);
-		String msg="해당 이메일 아이디가 업습니다", url="/index.do";
-		if(userid!=null && !userid.isEmpty()) {
-			model.addAttribute("userid", userid);
-			return "/inc/top.do";
-		}
-		
-		return "common/message";
-		
-	}
+
 }

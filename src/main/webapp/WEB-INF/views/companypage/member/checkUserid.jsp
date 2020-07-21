@@ -14,7 +14,7 @@
 <script type="text/javascript">
 	$(function(){
 		$('#btUse').click(function(){
-			$(opener.document).find('#cUserid').val("${param.userid}");
+			$(opener.document).find('#cUserid').val("${param.cUserid}");
 			$(opener.document).find('#chkId').val("Y");
 			
 			self.close();			
@@ -29,9 +29,9 @@
 	<form name="frmDup" method="post" 
 		action="<c:url value='/companypage/member/checkUserid.do'/>">
 		
-		<label for="userid">기업 회원 ID</label>
-		<input type="text" name="userid" id="userid" 
-			value="${param.userid}">
+		<label for="cUserid">기업 회원 ID</label>
+		<input type="text" name="cUserid" id="cUserid" 
+			value="${param.cUserid}">
 		<input type="submit" value="아이디 확인">
 		<c:if test="${!empty result }">
 			<c:if test="${result==EXIST_ID}">

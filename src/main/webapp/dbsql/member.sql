@@ -5,9 +5,9 @@ create table member
     user_id     varchar2(20)   unique not null,
     pwd        varchar2(15)    not null,
     user_name        varchar2(20)    not null,
-    imageURL varchar2(20) null,
+    imageURL varchar2(100) null,
     nickname varchar2(20) null,
-    birth number varchar2(20) null,
+    birth varchar2(20) null,
     gender varchar2(10) null,
     zipcode    varchar2(7)        null,
     address    varchar2(200)   null,
@@ -25,17 +25,6 @@ start with 1
 nocache;
 
 select * from member;
+commit;
 
-/*
-create table zipcode
-(
- ZIPCODE varchar2(10),
- SIDO varchar2(30),
- GUGUN varchar2(30),
- DONG varchar2(200),
- BUNJI varchar2(100),
- SEQ number
-);
-
-select * from zipcode;
-*/
+select userid from member where email = 'd';
