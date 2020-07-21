@@ -134,10 +134,16 @@
 				  	<input type="submit" value="로그인">
 				  	<br><br>
 				  	<p>ㅡㅡㅡㅡㅡㅡㅡ다른 계정으로 로그인ㅡㅡㅡㅡㅡㅡㅡ</p>
-				  	<div id="naver_id_login" style="text-align:center">
+					<!-- 네이버 -->
+					<div id="naver_id_login" style="text-align:center">
 						<a href="${url}">
-							<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+						<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
 						</a>
+					</div>
+					<!-- 구글 -->
+					<div id="google_id_login" style="text-align: center">
+						<a href="${google_url}"><img width="230"
+						src="${pageContext.request.contextPath}/resources/images/btn_google_signin_dark_normal_web@2x.png" /></a>
 					</div>
 			  	 </form>
 			  </div>
