@@ -21,6 +21,10 @@
         <property name="maxUploadSize" value="100000000" />
         <property name="maxInMemorySize" value="100000000" />
     </bean>
+    
+    <util:properties id = "fileUploadProperties"
+		location="classpath:/config/props/fileUpload.properties">
+	</util:properties>
 
     <alias name="spring.RegularCommonsMultipartResolver" alias="multipartResolver" />
 

@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.will.team4final.common.SearchVO;
+
 @Repository
 public class FaqDAOMybatis implements FaqDAO{
 	
@@ -14,8 +16,8 @@ public class FaqDAOMybatis implements FaqDAO{
 	private String namespace = "com.mybatis.mapper.oracle.faq.";
 	
 	@Override
-	public List<FaqVO> selectFaq() {
-		return sqlsesseion.selectList(namespace+"selectFaq");
+	public List<FaqVO> selectFaq(SearchVO searchVo) {
+		return sqlsesseion.selectList(namespace+"selectFaq", searchVo);
 	}
 
 	@Override
@@ -36,6 +38,11 @@ public class FaqDAOMybatis implements FaqDAO{
 	@Override
 	public int deleteFaq(int no) {
 		return sqlsesseion.delete(namespace+"deleteFaq", no);
+	}
+
+	@Override
+	public int selectTotalRecord(SearchVO vo) {
+		return sqlsesseion.selectOne(namespace+"selectTotalRecord", vo);
 	}
 	
 	
