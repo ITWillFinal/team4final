@@ -17,6 +17,11 @@ public class MemberServiceImpl implements MemberService{
 	public int selectMemberDup(String userid) {
 		return memberDao.selectMemberDup(userid);
 	}
+
+	@Override
+	public String findId(String email) {
+		return memberDao.findId(email);
+	}
 	
 
 }

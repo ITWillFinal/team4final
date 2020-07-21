@@ -1,41 +1,30 @@
-drop table personalMember   cascade constraint;
-create table personalMember
+drop table member   cascade constraint;
+create table member
 (
-    userNo        number        primary key,
-    userId     varchar2(20)   unique not null,
+    user_no        number        primary key,
+    user_id     varchar2(20)   unique not null,
     pwd        varchar2(15)    not null,
-    name        varchar2(20)    not null,
-    imageURL varchar2(20) null,
+    user_name        varchar2(20)    not null,
+    imageURL varchar2(100) null,
     nickname varchar2(20) null,
-    birth number varchar2(20) null,
+    birth varchar2(20) null,
     gender varchar2(10) null,
-zipcode    varchar2(7)        null,
+    zipcode    varchar2(7)        null,
     address    varchar2(200)   null,
     addressDetail    varchar2(50)   null,
     email     varchar2(30)    null,
     hp          varchar2(20)    null,
-    regdate     date        default sysdate,
-    outdate		date        null--Ε»ΕπΐΞ °ζΏμ Ε»ΕπΐΟ ³Φ΄Β΄Ω    
+    regdate     varchar2(30)        default sysdate,
+    outdate     varchar2(30)        null--Ε»ΕπΐΞ °ζΏμ Ε»ΕπΐΟ ³Φ΄Β΄Ω    
 );
 
---drop sequence personalMember_seq;
-create sequence personalMember_seq
+--drop sequence member_seq;
+create sequence member_seq
 increment by 1
 start with 1
 nocache;
 
-select * from personalMember;
+select * from member;
+commit;
 
-/*
-create table zipcode
-(
- ZIPCODE varchar2(10),
- SIDO varchar2(30),
- GUGUN varchar2(30),
- DONG varchar2(200),
- BUNJI varchar2(100),
- SEQ number
-);
-
-select * from zipcode;
-*/
+select userid from member where email = 'd';

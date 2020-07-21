@@ -4,4 +4,5 @@ public interface MemberDAO {
 	
 	int insertMember(MemberVO vo);
 	int selectMemberDup(String userid);
+	String findId(String email);
 }

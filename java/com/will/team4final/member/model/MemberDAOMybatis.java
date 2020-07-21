@@ -19,6 +19,11 @@ public class MemberDAOMybatis implements MemberDAO {
 	public int selectMemberDup(String userid) {
 		return sqlSession.selectOne(namespace + "selectMemberDup", userid);
 	}
+
+	@Override
+	public String findId(String email) {
+		return sqlSession.selectOne(namespace + "findId", email);
+	}
 	
 	
 

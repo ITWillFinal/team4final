@@ -20,9 +20,9 @@
 				$('#pwd2').focus();
 				event.preventDefault();
 				return false;
-			}else if($('#name').val().length<1){
+			}else if($('#userName').val().length<1){
 				alert('이름을 입력하세요');
-				$('#name').focus();
+				$('#userName').focus();
 				event.preventDefault();
 				return false;
 			}else if($('#nickname').val().length<1){
@@ -98,14 +98,14 @@
 		
 		
 		$("#btChk").click(function() {
-			var userid = $('#userid').val();
+			var user_id = $('#user_id').val();
 			window.open(
-			"<c:url value='/member/checkUserid.do?userid="
-			+ userid + "'/>", 'chk',
+			"<c:url value='/member/checkUserid.do?user_id="
+			+ user_id + "'/>", 'chk',
 			'width=420,height=300,left=0,top=0,location=yes,resizable=yes');
 		});
 		
-		$('#emailChk').click(function(){
+		$('input[name=email]').click(function(){
 			var email = $('#email').val();
 			window.open(
 			"<c:url value='/member/email.do?email="
@@ -163,6 +163,14 @@
 	margin-right: auto;
 	margin-left: auto;
 }
+legend{
+	text-align: center;
+}
+hr{
+height: 3px;
+    background: #da2461;
+
+}
 </style>
 <body>
 	<div class="divForm">
@@ -170,11 +178,13 @@
 			action="<c:url value='/member/register.do' /> "
 			enctype="multipart/form-data" >
 			<div class="form-group" id="divId">
+				<legend>회원 가입</legend>
+				<hr>
 				<div class="col-lg-10">
 					<label for="inputId" class="col-lg-2 control-label">*아이디</label> 
 					<input type="button" value="중복확인" id="btChk" title="새창열림"> 
 					<input type="text" class="form-control onlyAlphabetAndNumber"
-						id="userid" name="userid"
+						id="user_id" name="userid"
 						placeholder="10자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="10">
 				</div>
 			</div>
@@ -196,8 +206,8 @@
 			<div class="form-group" id="divName">
 				<div class="col-lg-10">
 					<label for="inputName" class="col-lg-2 control-label">*이름</label> <input
-						type="text" class="form-control onlyHangul infobox" name="name"
-						id="name" data-rule-required="true" placeholder="한글만 입력 가능합니다."
+						type="text" class="form-control onlyHangul infobox" name="userName"
+						id="userName" data-rule-required="true" placeholder="한글만 입력 가능합니다."
 						maxlength="15">
 				</div>
 			</div>
@@ -253,9 +263,8 @@
 			<div class="form-group" id="divEmail">
 				<div class="col-lg-10">
 					<label for="inputEmail" class="col-lg-2 control-label">*이메일</label>
-					<input type="email" class="form-control infobox" id="email" name="email"
+					<input type="email" class="form-control" id="email" name="email"
 						data-rule-required="true" placeholder="이메일" maxlength="40" >
-					<button type="button" name="emailChk" id="emailChk">이메일 인증받기 (이메일 보내기)</button>
 				</div>
 			</div>
 			<div class="form-group" id="divph">
