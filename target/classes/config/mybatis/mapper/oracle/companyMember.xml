@@ -22,6 +22,20 @@
 		select cPwd from company_member
 		where C_USERID=#{cUserid}
 	</select>
+	
+	<select id="findCMemberId" parameterType="string" resultType="string">
+		select C_USERID from company_member where C_EMAIL = #{cEmail}
+	</select>
+	
+	<update id="updateCMemberPwdByEmail" parameterType="companyMemberVo">
+		update company_member
+		set C_PWD = #{cPwd}
+		where C_USERID=#{cUserid}
+	</update>
+	
+	<select id="selectCMemberAll" parameterType="string" resultType="companyMemberVo">
+		select * from company_member where C_USERID=#{cUserid}
+	</select>
 </mapper>
 
 

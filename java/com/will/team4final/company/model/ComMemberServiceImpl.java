@@ -23,6 +23,21 @@ public class ComMemberServiceImpl implements ComMemberService{
 		}
 		return result;
 	}
+
+	@Override
+	public String findCMemberId(String cEmail) {
+		return comMemberDao.findCMemberId(cEmail);
+	}
+
+	@Override
+	public int updateCMemberPwdByEmail(CompanyMemberVO companyMemberVo) {
+		return comMemberDao.updateCMemberPwdByEmail(companyMemberVo);
+	}
+
+	@Override
+	public CompanyMemberVO selectCMemberAll(String cUserid) {
+		return comMemberDao.selectCMemberAll(cUserid);
+	}
 	
 	
 
