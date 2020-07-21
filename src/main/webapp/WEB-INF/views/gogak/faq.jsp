@@ -126,6 +126,7 @@ div #accordion{
 		</c:if>
 	</div>
 	<a href="<c:url value ='/gogak/faqWrite.do'/>" id = "aa">faq 쓰기</a>
+	<a href="<c:url value ='/gogak/faqList.do'/>" id = "aa">faq 목록</a>
 </div>
 
 

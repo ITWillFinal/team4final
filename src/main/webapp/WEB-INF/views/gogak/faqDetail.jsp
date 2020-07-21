@@ -56,41 +56,75 @@ input#rrr {
 input#delete {
     margin-left: 20px;
 }
+
+tr span, td, p{
+	padding-left: 30px;
+}
+
+td {
+    padding-top: 30px;
+}
+
+table{
+	
+	width: 700px;
+	border: 2px ridge lightgray;
+}
+
+h4 {
+    padding-bottom: 30px;
+    padding-top: 40px;
+}
+
+.al{
+	text-align: right;
+}
 </style>
 
 
 <div id="outDiv">
-	<table style="width: 700px; border: 1px solid lightgray;">
+	<h4>자주 찾는 질문 상세보기</h4>
+	<input type = "hidden" value = "${vo.fnqNo }" name = "no">
+	<table>
 		<colgroup>
-			<col style="width: 20%;" />
-			<col style="width: 80%;" />
+			<col style="width: 30%;" />
+			<col style="width: 70%;" />
 		</colgroup>
 		<tr>
-			<h4>자주 찾는 질문 상세보기</h4>
-			<input type = "text" value = "${vo.fnqNo }" name = "no">
-			<td>카테고리</td>
-			<hr>
+			<td>
+				<p id = "al">
+					카테고리
+				</p>
+			</td>
 			<td>
 				<span>${vo.category }</span>
-			<hr>
+			
 			</td>
 		</tr>
 
 		<tr>
-			<td>질문</td>
-			<hr>
+			<td>
+				<p id = "al">
+					질문
+				</p>
+			</td>
 			<td>
 				<span>${vo.question }</span>
-			<hr>
+			
 			</td>
 		</tr>
-
+		
 		<tr>
-			<td>답변내용</td>
-			<hr>
+			<td>
+				<p id = "al">
+					답변내용
+				</p>
+			</td>
 			<td id = "tdA">
-				<span>${fn:replace(vo.answer , newLine, '<br>')}</span>
-			<hr>
+				<p>
+					<% pageContext.setAttribute("newLine", "\r\n"); %>
+					${fn:replace(vo.answer, newLine, '<br>')}
+				</p>
 			</td>
 		</tr>
 	</table>

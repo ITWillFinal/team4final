@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.will.team4final.common.PaginationInfo;
+import com.will.team4final.common.SearchVO;
+import com.will.team4final.common.Utility;
 import com.will.team4final.gogak.model.FaqService;
 import com.will.team4final.gogak.model.FaqVO;
 
@@ -26,10 +29,10 @@ public class FaqController {
 	@Autowired private FaqService faqService;
 	
 	@RequestMapping("/faq.do")
-	public String faq_get(Model model) {
+	public String faq_get(Model model, SearchVO searchVo) {
 		logger.info("고객센터 창 보여주기");
 		
-		List<FaqVO>list = faqService.selectFaq();
+		List<FaqVO>list = faqService.selectFaq(searchVo);
 		logger.info("고객센터 창 크기 list.size = {}", list.size());
 		
 		model.addAttribute("list", list);
@@ -61,15 +64,37 @@ public class FaqController {
 		
 	}
 	
-	@RequestMapping(value = "/faqList.do", method = RequestMethod.GET)
-	public void faqList_get(Model model) {
+	
+	@RequestMapping("/faqList.do")
+	public String faqList(@ModelAttribute SearchVO searchVo,
+				Model model) {
+		//1
+		logger.info("자주찾는 질문 목록 searchVo={}", searchVo);
 		
-		logger.info("자주찾는 질문 목록");
+		//[1] PaginationInfo 생성
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
-		List<FaqVO>list = faqService.selectFaq();
+		//[2] SearchVo 에 값 셋팅
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
+		
+		//2
+		List<FaqVO>list = faqService.selectFaq(searchVo);
 		logger.info("자주찾는 질문 목록 개수 list.size={}", list.size());
 		
+		int totalRecord = faqService.selectTotalRecord(searchVo);
+		logger.info("자주찾는 질문 목록, 전체 레코드 개수 totalRecord = {}",totalRecord);
+		
+		pagingInfo.setTotalRecord(totalRecord);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "gogak/faqList";
 	}
 	
 	@RequestMapping(value = "/faqDetail.do")

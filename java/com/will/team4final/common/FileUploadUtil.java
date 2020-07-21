@@ -27,7 +27,7 @@ public class FileUploadUtil {
 		=LoggerFactory.getLogger(FileUploadUtil.class);
 	
 	public static final int PATH_PDS=1;  //자료실에 사용
-	public static final int PATH_PERSONAL_IMAGE=2; //상품업로드시 사용
+	public static final int PATH_PD_IMAGE=2; //상품업로드시 사용
 	
 	@Resource(name="fileUploadProperties")
 	Properties fileUploadProps;
@@ -90,7 +90,7 @@ public class FileUploadUtil {
 		if(type.equals("test")) { //테스트시
 			if(pathGb==PATH_PDS) {
 				key="file.upload.path.test";
-			}else if(pathGb==PATH_PERSONAL_IMAGE) {
+			}else if(pathGb==PATH_PD_IMAGE) {
 				key="imageFile.upload.path.test";
 			}
 			
@@ -98,7 +98,7 @@ public class FileUploadUtil {
 		}else { //deploy-배포시
 			if(pathGb==PATH_PDS) {
 				key="file.upload.path";
-			}else if(pathGb==PATH_PERSONAL_IMAGE) {
+			}else if(pathGb==PATH_PD_IMAGE) {
 				key="imageFile.upload.path";
 			}
 			
