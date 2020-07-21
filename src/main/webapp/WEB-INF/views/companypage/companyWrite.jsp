@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../inc/companyTop.jsp" %>
 
 <script
@@ -40,17 +41,20 @@
 
 	}
 	$(function() {
-		$('#sido').click(function() {
+		$('#sido').change(function() {
+			
 			var ee = $('#sido option:selected').val();
 			alert(ee);
 			
-			$('#sigugun').each(function() {
-				if($('#sigugun').val() == ee){
-					$('#sigugun').css('color', 'red');
-				}
-			});
+			$('#sigugunS').css('display', 'inline');
 			
+			<c:forEach var="vo" items="${allList }">
+				$('option[value='+ee+']').css('display', 'block');
+			</c:forEach>
+		
 		});
+
+		
 	});
 </script>
 <style>
@@ -59,7 +63,12 @@
 		border: 1px solid lightgray;
 	}	
 	
-
+	#sigugunS{
+		display: none;
+	}
+	#sigugun{
+		display: none;
+	}
 
 </style>
 <main>
@@ -113,18 +122,20 @@
 						<input type="text">
 					</td>
 				</tr>
+				<!-- 근무지역!!!!! -->
 				<tr>
 					<td>근무지역</td>
 					<td>
-						<select size="5" id="sido">
+						<select id="sido">
 							<c:if test="${!empty list }">
 								<c:forEach var="location" items="${list }">
 									<option value="${location }">${location }</option>
 								</c:forEach>
 							</c:if>
 						</select>
-						<div>
-						<select size="5">
+						<div id="sigugunS">
+						<select>
+							<option value="" id="sigugun"></option>
 							<c:if test="${!empty allList }">
 								<c:forEach var="all" items="${allList }">
 									<option value="${all.sido }" id="sigugun">${all.sigugun }</option>
@@ -134,6 +145,7 @@
 						</div>
 					</td>
 				</tr>
+					
 				<tr>
 					<td>우편번호</td>
 					<td>

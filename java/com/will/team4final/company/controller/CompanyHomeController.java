@@ -80,15 +80,15 @@ public class CompanyHomeController {
 	public String companyWrite(Model model) {
 		logger.info("기업페이지 채용공고등록");
 		
-		List<String> list = locaServ.sido();
-		logger.info("지역 list = {}", list.size());
-		
+
 		List<LocationVO> allList = locaServ.selectAllLocation();
 		logger.info("총 list = {}", allList.size());
 		
+		List<String> list = locaServ.sido();
+		logger.info("지역 list = {}", list.size());
+		
 		model.addAttribute("list", list);
 		model.addAttribute("allList", allList);
-		
 		return "companypage/companyWrite";
 	}
 	
@@ -98,6 +98,5 @@ public class CompanyHomeController {
 		
 		return "companypage/companyResume";
 	}
-	
 	
 }
