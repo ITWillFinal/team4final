@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/flaticon.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/css/nice-select.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
+	<link rel="stylesheet" type="text/css" 
+		href="<c:url value='/resources/css/mainstyle.css'/>"/>
+	<script type="text/javascript" 
+		src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
 <style>
 .overlay {
   position: fixed;
