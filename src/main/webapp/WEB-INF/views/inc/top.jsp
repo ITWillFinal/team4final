@@ -168,9 +168,9 @@
 				<div id="tabs-1">
 					<h3>로그인</h3>
 					<br>
-					<form action="">
-						<input type="text" placeholder="아이디"><br>
-						<br> <input type="password" placeholder="비밀번호"><br>
+					<form action="/login/userLogin.do">
+						<input type="text" placeholder="아이디" name="userid"><br>
+						<br> <input type="password" placeholder="비밀번호" name="pwd"><br>
 						<a href="<c:url value='#popId' /> ">
 							아이디
 						</a>
