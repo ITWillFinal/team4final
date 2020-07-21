@@ -156,58 +156,10 @@
 </script>
 
 <body>
-	<div id="pop01" class="overlay">
-		<div class="popup" style="text-align: center;">
-			<a href="#none" class="close">&times;</a><br>
-			<div id="tabs">
-				<ul style="border-radius: 0;">
-					<li style="margin-left: 8px;"><a href="#tabs-1"
-						style="width: 220px;">일반회원</a></li>
-					<li><a href="#tabs-2" style="width: 220px">기업회원</a></li>
-				</ul>
-				<div id="tabs-1">
-					<h3>로그인</h3>
-					<br>
-					<form action="/login/userLogin.do">
-						<input type="text" placeholder="아이디" name="userid"><br>
-						<br> <input type="password" placeholder="비밀번호" name="pwd"><br>
-						<a href="<c:url value='#popId' /> ">
-							아이디
-						</a>
-						/
-						<a href="<c:url value='#popPwd' /> ">
-							비밀번호
-						</a>
-						찾기
-						<br> <input type="submit" value="로그인"> <br>
-						<br>
-						<p>ㅡㅡㅡㅡㅡㅡㅡ다른 계정으로 로그인ㅡㅡㅡㅡㅡㅡㅡ</p>
-						<!-- 네이버 -->
-						<div id="naver_id_login" style="text-align: center">
-							<a href="${url}"> <img width="223"
-								src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" />
-							</a>
-						</div>
-						<!-- 구글 -->
-						<div id="google_id_login" style="text-align: center">
-							<a href="${google_url}"><img width="230"
-								src="${pageContext.request.contextPath}/resources/images/btn_google_signin_dark_normal_web@2x.png" /></a>
-						</div>
-					</form>
-				</div>
-				<div id="tabs-2">
-					<h3>로그인</h3>
-					<br>
-					<form action="/indx">
-						<input type="text" placeholder="아이디"><br>
-						<br> <input type="password" placeholder="비밀번호"><br>
-						<br> <input type="submit" value="로그인">
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	<!-- /import/login.jsp 파일 가져옴 -->
+	<%@include file="../import/login.jsp" %>
+	
+	<!-- 회원가입 선택 -->
 	<div id="pop02" class="overlay">
 		<div class="popup" style="text-align: center;">
 			<a href="#none" class="close">&times;</a><br>
@@ -228,6 +180,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_id.do' /> " method="post">
+					<input type="text" name="memberType" value="u">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>아이디 찾기</h3>
 						</div>
@@ -255,6 +208,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_pwd.do' /> " method="post">
+					<input type="text" name="memberType" value="u">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>비밀번호 찾기</h3>
 						</div>
@@ -314,7 +268,7 @@
 											<li><a href="about.html">직업검사</a></li>
 											<li><a
 												href="<c:url value='/companypage/companyHome.do'/>">Page</a></li>
-											<li><a href="<c:url value = '/gogak/faq.do'/>">고객센터</a></li>
+											<li><a href="contact.html">고객센터</a></li>
 										</ul>
 										<div class="totalMenu">
 											<div>
@@ -344,7 +298,7 @@
 									</c:if>
                                 	<c:if test="${!empty sessionScope.userid }">
 	                                	<a href="#" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
-	                                    <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">내정보</a>
+	                                    <a href="#" class="btn head-btn2" style="font-weight: bold;">내정보</a>
                                 	</c:if>
 								</div>
 							</div>
