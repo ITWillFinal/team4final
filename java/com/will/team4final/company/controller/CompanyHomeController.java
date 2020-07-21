@@ -49,6 +49,13 @@ public class CompanyHomeController {
 		return "companypage/companyWrite";
 	}
 	
+	@RequestMapping("/companypage/companyResume.do")
+	public String resume() {
+		logger.info("기업페이지 자사 이력서양식 제작");
+		
+		return "companypage/companyResume";
+	}
+	
 	
 	
 	
