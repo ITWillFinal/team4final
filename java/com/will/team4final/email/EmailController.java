@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,7 +22,7 @@ public class EmailController {
 	@Autowired private MemberService memberService;
 	
 	@RequestMapping("/find_id.do")
-	public String emailSend(@RequestParam String findIdByEmail) {
+	public String emailSend(@RequestParam String findIdByEmail, Model model) {
 		logger.info("아이디 찾기 메일 발송처리");
 		
 		String userid = memberService.findId(findIdByEmail);
@@ -44,6 +45,8 @@ public class EmailController {
 			e.printStackTrace();
 			logger.info("이메일 발송 실패!");
 		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 		
 		return "common/message";
 	}
