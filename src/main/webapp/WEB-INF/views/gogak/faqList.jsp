@@ -105,18 +105,20 @@ a{
 						<tr>
 							<td style="text-align: center;">${vo.fnqNo }</td>
 							<td style="text-align: center;">${vo.category }</td>
-							<td style="text-align: left;">${vo.question }</td>
-							<td style="text-align: center;">
+							<td style="text-align: left;">
 								<a href
 									="<c:url value='/gogak/faqDetail.do?no=${vo.fnqNo}'/>">
-									<!-- 제목줄이기 -->
-									<c:if test = "${fn:length(vo.answer)>=10 }">
-										${fn:substring(vo.answer,0,10)}...
-									</c:if>
-									<c:if test="${fn:length(vo.answer)<10 }">
-										${vo.answer }							
-									</c:if>
-								</a>
+											${vo.question }
+								</a>								
+							</td>
+							<td style="text-align: center;">
+								<!-- 제목줄이기 -->
+								<c:if test = "${fn:length(vo.answer)>=10 }">
+									${fn:substring(vo.answer,0,10)}...
+								</c:if>
+								<c:if test="${fn:length(vo.answer)<10 }">
+									${vo.answer }							
+								</c:if>
 							</td>
 						</tr>
 					</c:forEach>

@@ -23,7 +23,7 @@
 		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
 	
-<!-- 	<select id="showFaq" resultType="map" parameterType="importance">
+<!--<select id="showFaq" resultType="map" parameterType="importance">
 		select * from fimview
 		where overno=#{importance};
 	</select>
