@@ -166,6 +166,7 @@
 								</c:forEach>
 							</c:if>
 						</select>
+						<div>
 						<select size="5">
 							<c:if test="${!empty allList }">
 								<c:forEach var="all" items="${allList }">
@@ -173,7 +174,7 @@
 								</c:forEach>
 							</c:if>
 						</select>
-						
+						</div>
 					</td>
 				</tr>
 				<tr>
