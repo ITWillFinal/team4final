@@ -15,4 +15,5 @@ public interface MemberService {
 	String findId(String email);
 	int updatePwdByEmail(MemberVO memberVo);
 	MemberVO selectAll(String user_id);
+	int loginCheck(String userid, String pwd);
 }

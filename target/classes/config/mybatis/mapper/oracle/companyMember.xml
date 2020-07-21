@@ -19,7 +19,7 @@
 	</select>
 	
 	<select id="selectCMemberPwd" parameterType="string" resultType="string">
-		select cPwd from company_member
+		select c_Pwd from company_member
 		where C_USERID=#{cUserid}
 	</select>
 	

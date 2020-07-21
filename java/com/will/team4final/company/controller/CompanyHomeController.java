@@ -64,10 +64,10 @@ public class CompanyHomeController {
 		int cnt = cMemberSerice.insertCMember(vo);
 		logger.info("기업 회원 입력 결과 cnt={}", cnt);
 		
-		String msg="회원 가입 실패", url="/member/register.do";
+		String msg="회원 가입 실패", url="/companypage/member/companyJoin.do";
 		if(cnt>0) {
 			msg="회원 가입 성공";
-			url="/index.do";
+			url="/companypage/companyHome.do";
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);

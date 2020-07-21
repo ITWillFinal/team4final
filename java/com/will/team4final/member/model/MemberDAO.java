@@ -7,5 +7,5 @@ public interface MemberDAO {
 	String findId(String email);
 	int updatePwdByEmail(MemberVO memberVo);
 	MemberVO selectAll(String user_id);
-	
+	String selectMemberPwd(String userid);
 }
