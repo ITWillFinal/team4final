@@ -11,15 +11,16 @@
 <link rel="manifest" href="site.webmanifest">
 
 
-<!-- CSS here -->
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/bootstrap.min.css'/>">
-<!-- 아이콘 태그 -->
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/flaticon.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/nice-select.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
+	<!-- CSS here -->
+    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
+    <!-- 아이콘 태그 -->
+    <link rel="stylesheet" href="<c:url value='/resources/css/flaticon.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/css/nice-select.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
+	<link rel="stylesheet" type="text/css" 
+		href="<c:url value='/resources/css/mainstyle.css'/>"/>
+	<script type="text/javascript" 
+		src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
 <style>
 .overlay {
 	position: fixed;
