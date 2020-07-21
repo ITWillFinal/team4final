@@ -250,10 +250,18 @@
                                     </nav>
                                 </div>          
                                 <!-- Header-btn -->
-                                <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="<c:url value='/member/register.do'/>" class="btn head-btn1" style="font-weight: bold;">회원가입</a>
-                                    <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">로그인</a>
-                                </div>
+                                <c:if test="${empty sessionScope.userid }">
+	                                <div class="header-btn d-none f-right d-lg-block">
+	                                    <a href="<c:url value='/member/register.do'/>" class="btn head-btn1" style="font-weight: bold;">회원가입</a>
+	                                    <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">로그인</a>
+	                                </div>
+                                </c:if>
+                                <c:if test="${!empty sessionScope.userid }">
+	                                <div class="header-btn d-none f-right d-lg-block">
+	                                	<a href="#" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
+	                                    <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">내정보</a>
+	                                </div>
+                                </c:if>
                             </div>
                         </div>
                         <!-- Mobile Menu -->
