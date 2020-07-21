@@ -22,6 +22,10 @@
 		select pwd from member
 		where userid=#{userid}
 	</select>
+	
+	<select id="findId" parameterType="string" resultType="string">
+		select userid from member where email = #{email}
+	</select>
 </mapper>
 
 

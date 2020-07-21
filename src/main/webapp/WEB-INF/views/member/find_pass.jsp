@@ -7,8 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<form:form id="signupform" class="form-horizontal" role="form"
 		commandName="userDto" action="find_pass" method="post">
+=======
+	<form name="frm" method="post" style="margin-top: 100px;"
+		action="<c:url value='/member/find_pass.do' /> ">
+>>>>>>> c9a064a5d99602fa5467bf699c05eec7f946d8ff
 		<div class="form-group">
 			<label for="email" class="col-md-2 control-label">이메일</label>
 			<div class="col-md-10">
@@ -40,9 +45,13 @@
 					가입하신 이메일로 아이디와 비밀번호를 전송해드리겠습니다.</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 
 	</form:form>
 
 
+=======
+	</form>
+>>>>>>> c9a064a5d99602fa5467bf699c05eec7f946d8ff
 </body>
 </html>

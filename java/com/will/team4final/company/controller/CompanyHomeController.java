@@ -1,5 +1,7 @@
 package com.will.team4final.company.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.will.team4final.company.model.ComMemberService;
+import com.will.team4final.location.model.LocationService;
+import com.will.team4final.location.model.LocationVO;
 import com.will.team4final.login.controller.LoginController;
 
 @Controller
 public class CompanyHomeController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired private ComMemberService cMemberSerice;
+	
+	@Autowired
+	private LocationService locaServ;
 	
 	@RequestMapping("/hireinpo/hireinpo.do")
 	public String hireinpoHome() {
@@ -46,4 +53,22 @@ public class CompanyHomeController {
 		return "companypage/member/checkUserid";
 		
 	}
+	
+	@RequestMapping("/companypage/companyWrite.do")
+	public String companyWrite(Model model) {
+		logger.info("기업페이지 채용공고등록");
+		
+		List<String> list = locaServ.sido();
+		logger.info("지역 list = {}", list.size());
+		
+		List<LocationVO> allList = locaServ.selectAllLocation();
+		logger.info("총 list = {}", allList.size());
+		
+		model.addAttribute("list", list);
+		model.addAttribute("allList", allList);
+		
+		return "companypage/companyWrite";
+	}
+	
+	
 }
