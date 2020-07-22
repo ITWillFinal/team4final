@@ -276,7 +276,7 @@ height: 3px;
 					<label for="inputBirth" class="col-lg-2 control-label">*생년월일</label>
 					<input type="text" class="form-control onlyNumber infobox"
 						id="birth" name="birth" data-rule-required="true"
-						placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+						placeholder="-를 제외하고 숫자만 입력하세요." maxlength="6">
 				</div>
 			</div>
 			<div class="form-group">
