@@ -156,7 +156,7 @@
 </script>
 
 <body>
-<<<<<<< HEAD
+
 	<div id="pop01" class="overlay">
 		<div class="popup" style="text-align: center;">
 			<a href="#none" class="close">&times;</a><br>
@@ -209,12 +209,10 @@
 		</div>
 	</div>
 
-=======
 	<!-- /import/login.jsp 파일 가져옴 -->
 	<%@include file="../import/login.jsp" %>
 	
 	<!-- 회원가입 선택 -->
->>>>>>> master
 	<div id="pop02" class="overlay">
 		<div class="popup" style="text-align: center;">
 			<a href="#none" class="close">&times;</a><br>
@@ -350,13 +348,10 @@
 											class="btn head-btn2" style="font-weight: bold;">로그인</a>
 									</c:if>
                                 	<c:if test="${!empty sessionScope.userid }">
-<<<<<<< HEAD
 	                                	<a href="#" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
 	                                    <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">내정보</a>
-=======
 	                                	<a href="<c:url value='/login/logout.do'/>" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
 	                                    <a href="#" class="btn head-btn2" style="font-weight: bold;">내정보</a>
->>>>>>> master
                                 	</c:if>
 								</div>
 							</div>

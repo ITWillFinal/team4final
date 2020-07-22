@@ -137,7 +137,6 @@ public class LoginController {
 		return "redirect:/companypage/companyHome.do";
 	}
 	
-
 	@RequestMapping("/userLogin.do")
 	public String userLogin(@RequestParam String pwd, @RequestParam String userid, Model model,
 			HttpServletRequest request) {
