@@ -180,6 +180,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_id.do' /> " method="post">
+					<input type="text" name="memberType" value="u">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>아이디 찾기</h3>
 						</div>
@@ -207,6 +208,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_pwd.do' /> " method="post">
+					<input type="text" name="memberType" value="u">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>비밀번호 찾기</h3>
 						</div>
@@ -231,7 +233,66 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 아이디 찾기  -->
+	<div id="popId2" class="overlay">
+		<div class="popup" style="text-align: center;">
+			<div class="w3-content w3-container w3-margin-top">
+				<div class="w3-container w3-card-4">
+					<form action="<c:url value='/email/find_id.do' /> " method="post">
+						<input type="text" name="memberType" value="c">
+						<div class="w3-center w3-large w3-margin-top">
+							<h3>아이디 찾기</h3>
+						</div>
+						<div>
+							<p>
+								<label>Email</label> <input class="w3-input" type="email"
+									id="findIdByEmail" name="findIdByEmail">
+							</p>
+							<p class="w3-center">
+								<button type="submit" id=findBtn class="btn head-btn1"
+									style="font-weight: bold;">find</button>
+								<button type="button" onclick="history.go(-1);"
+									class="btn head-btn1" style="font-weight: bold;">Cancel</button>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<!-- 비밀번호 찾기  -->
+	<div id="popPwd2" class="overlay">
+		<div class="popup" style="text-align: center;">
+			<div class="w3-content w3-container w3-margin-top">
+				<div class="w3-container w3-card-4">
+					<form action="<c:url value='/email/find_pwd.do' /> " method="post">
+					<input type="text" name="memberType" value="c">
+						<div class="w3-center w3-large w3-margin-top">
+							<h3>비밀번호 찾기</h3>
+						</div>
+						<div>
+							<p>
+								<label>ID</label> <input class="w3-input" type="text" id="userid"
+									name="userid" required>
+							</p>
+							<p>
+								<label>Email</label> <input class="w3-input" type="email"
+									id="findPwdByEmail" name="findPwdByEmail">
+							</p>
+							<p class="w3-center">
+								<button type="submit" id=findBtn class="btn head-btn1"
+									style="font-weight: bold;">find</button>
+								<button type="button" onclick="history.go(-1);"
+									class="btn head-btn1" style="font-weight: bold;">Cancel</button>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<header>

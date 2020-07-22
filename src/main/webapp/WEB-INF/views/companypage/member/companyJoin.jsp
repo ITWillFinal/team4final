@@ -3,6 +3,46 @@
 <%@ include file="../../inc/companyTop.jsp"%>
 <script type="text/javascript">
 	$(function() {
+		$('#cPwd2').keyup(function(){
+			if($('#cPwd').val()!=$('#cPwd2').val()){
+				$('#chkpwd2').html("비밀번호가 같지 않습니다.").css('color', 'red');
+			}else{
+				$('#chkpwd2').html("비밀번호가 일치합니다.").css('color','green');
+			}
+		});
+		
+		$('#cUserid1').keyup(function(){
+			if($('#cUserid1').val().length < 4){
+				$('#chkId2').html("아이디는 4글자 이상부터 가능합니다").css('color', 'red')
+				$('#chkId').val("N");
+				
+			}else{
+				var cUserid1=$('#cUserid1').val();
+				console.log(cUserid1);
+				
+				$.ajax({
+					url:"<c:url value='/companypage/member/register/checkId.do' />",
+					type:"get",
+					data:"cUserid1=" +cUserid1,
+					dataType:"json",
+					success:function(data){
+						if(data>0){
+							$('#chkId2').html("중복된 아이디가 있습니다").css('color', 'red');
+							$('#chkId').val("N");
+						}else{
+							$('#chkId2').html("사용 가능한 아이디입니다").css('color','green');
+							$('#chkId').val("Y");
+						}
+						
+					},
+					error:function(xhr, status,error){
+						alert(status +", " + error);
+						
+					}
+				});
+				
+			}
+		});
 		
 		$('form[name=frm]').submit(function() {
 			if($('#cUserid').val().length<1){
@@ -133,8 +173,9 @@ height: 3px;
 					<label for="inputId" class="col-lg-2 control-label">*아이디</label> 
 					<input type="button" value="중복확인" id="btChk" title="새창열림"> 
 					<input type="text" class="form-control onlyAlphabetAndNumber"
-						id="cUserid" name="cUserid"
+						id="cUserid1" name="cUserid"
 						placeholder="10자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="10">
+					<div id="chkId2" style="font-size: 0.8em; margin-left: 10px; margin-top: 5px;"></div>
 				</div>
 			</div>
 			<div class="form-group" id="divpwd">
@@ -150,6 +191,7 @@ height: 3px;
 						확인</label> <input type="password" class="form-control" id="cPwd2"
 						name="cPwd2" data-rule-required="true" placeholder="패스워드 확인"
 						maxlength="30">
+						<div id="chkpwd2" style="font-size: 0.8em; margin-left: 10px; margin-top: 5px;"></div>
 				</div>
 			</div>
 			<div class="form-group" id="divName">

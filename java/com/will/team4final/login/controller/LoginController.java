@@ -49,28 +49,33 @@ public class LoginController {
 	private String apiResult = null;
 
 	// 로그인 첫 화면 요청 메소드
-	/*
-	 * @RequestMapping(value = "/login.do", method = { RequestMethod.GET,
-	 * RequestMethod.POST }) public String login(Model model, HttpSession session) {
-	 * logger.info("로그인 화면");
-	 * 
-	 * 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 String
-	 * naverAuthUrl = naverLoginBO.getAuthorizationUrl(session); //
-	 * https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE*****
-	 * **********& //
-	 * redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&
-	 * state=e68c269c-5ba9-4c31-85da-54c16c658125 구글code 발행 OAuth2Operations
-	 * oauthOperations = googleConnectionFactory.getOAuthOperations(); String url =
-	 * oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE,
-	 * googleOAuth2Parameters);
-	 * 
-	 * System.out.println("네이버:" + naverAuthUrl); System.out.println("구글:" + url);
-	 * 
-	 * // 네이버 model.addAttribute("url", naverAuthUrl);
-	 * model.addAttribute("google_url", url);
-	 * 
-	 * return "login/login"; }
-	 */
+	@RequestMapping(value = "/googleLogin.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String login(Model model, HttpSession session) {
+
+		/* 구글code 발행 */
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+
+		System.out.println("구글:" + url);
+
+		model.addAttribute("google_url", url);
+
+		/* 생성한 인증 URL을 View로 전달 */
+		return "login/login";
+	}
+	
+	// 구글 Callback호출 메소드
+		@RequestMapping(value = "/oauth2callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+		public String googleCallback(Model model, @RequestParam String code) throws IOException {
+			System.out.println("여기는 googleCallback");
+
+			return "googleSuccess";
+		}
+
+
+	
+	
+
 	
 	// 네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -111,13 +116,7 @@ public class LoginController {
 		return "login/login";
 	}
 
-	// 구글 Callback호출 메소드
-	@RequestMapping(value = "/oauth2callback", method = { RequestMethod.GET, RequestMethod.POST })
-	public String googleCallback(Model model, @RequestParam String code) throws IOException {
-		System.out.println("여기는 googleCallback");
-
-		return "#";
-	}
+	
 
 	// 로그아웃
 	@RequestMapping(value = "/logout.do", method = { RequestMethod.GET, RequestMethod.POST })

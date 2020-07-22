@@ -13,6 +13,7 @@
 		$('#btUse').click(function(){
 			$(opener.document).find('#email').val("${param.e_mail}");
 			$(opener.document).find('#chkEmail').val("Y");
+			$(opener.document).find('#email').attr('readonly', 'readonly');
 			
 			self.close();			
 		});
