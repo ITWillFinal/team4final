@@ -3,14 +3,56 @@
 <%@ include file="../inc/top.jsp"%>
 <script type="text/javascript">
 	$(function() {
+		$('#pwd2').keyup(function(){
+			if($('#pwd').val()!=$('#pwd2').val()){
+				$('#chkpwd2').html("비밀번호가 같지 않습니다.").css('color', 'red');
+			}else{
+				$('#chkpwd2').html("비밀번호가 일치합니다.").css('color','green');
+			}
+		});
+		
+		$('#userid1').keyup(function(){
+			if($('#userid1').val().length < 4){
+				$('#chkId2').html("아이디는 4글자 이상부터 가능합니다").css('color', 'red')
+				$('#chkId').val("N");
+				
+			}else{
+				var userid1=$('#userid1').val();
+				console.log(userid1);
+				
+				$.ajax({
+					url:"<c:url value='/member/register/checkId.do' />",
+					type:"get",
+					data:"userid1=" +userid1,
+					dataType:"json",
+					success:function(data){
+						if(data>0){
+							$('#chkId2').html("중복된 아이디가 있습니다").css('color', 'red');
+							$('#chkId').val("N");
+						}else{
+							$('#chkId2').html("사용 가능한 아이디입니다").css('color','green');
+							$('#chkId').val("Y");
+						}
+						
+					},
+					error:function(xhr, status,error){
+						alert(status +", " + error);
+						
+					}
+				});
+				
+			}
+		});
+				
+	
 		
 		$('form[name=frm]').submit(function() {
-			/* if($('#userid').val().length<1){
+			 if($('#userid1').val().length<1){
 				alert('아이디를 입력하세요!');
-				$('#userid').focus();
+				$('#userid1').focus();
 				event.preventDefault();
 				return false;
-			}else  */if($('#pwd').val().length<1){
+			}else if($('#pwd').val().length<1){
 				alert('비밀번호를 입력하세요');
 				$('#pwd').focus();
 				event.preventDefault();
@@ -98,7 +140,7 @@
 		
 		
 		$("#btChk").click(function() {
-			var user_id = $('#user_id').val();
+			var user_id = $('#userid1').val();
 			window.open(
 			"<c:url value='/member/checkUserid.do?user_id="
 			+ user_id + "'/>", 'chk',
@@ -181,11 +223,12 @@ height: 3px;
 				<legend>회원 가입</legend>
 				<hr>
 				<div class="col-lg-10">
-					<label for="userid" class="col-lg-2 control-label">*아이디</label> 
+					<label for="userid1" class="col-lg-2 control-label">*아이디</label> 
 					<input type="button" value="중복확인" id="btChk" title="새창열림"> 
 					<input type="text" class="form-control onlyAlphabetAndNumber"
-						id="userid" name="userid"
-						placeholder="10자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="10">
+						id="userid1" name="userid"
+						placeholder="10자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
+					<div id="chkId2" style="font-size: 0.8em; margin-left: 10px; margin-top: 5px;"></div>
 				</div>
 			</div>
 			<div class="form-group" id="divpwd">
@@ -201,6 +244,7 @@ height: 3px;
 						확인</label> <input type="password" class="form-control" id="pwd2"
 						name="pwd2" data-rule-required="true" placeholder="패스워드 확인"
 						maxlength="30">
+						<div id="chkpwd2" style="font-size: 0.8em; margin-left: 10px; margin-top: 5px;"></div>
 				</div>
 			</div>
 			<div class="form-group" id="divName">

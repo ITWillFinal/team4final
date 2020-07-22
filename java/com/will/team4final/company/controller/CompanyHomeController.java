@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.will.team4final.company.model.ComMemberService;
 import com.will.team4final.company.model.CompanyMemberVO;
@@ -97,6 +98,18 @@ public class CompanyHomeController {
 		logger.info("기업페이지 자사 이력서양식 제작");
 		
 		return "companypage/companyResume";
+	}
+	
+	@RequestMapping("/companypage/member/register/checkId.do")
+	@ResponseBody
+	public int cMemberCheckId(@RequestParam String cUserid1) {
+		logger.info("기업회원 아이디 체크");
+		
+		int cnt = cMemberSerice.selectCMemberDup(cUserid1);
+		logger.info("기업회원 아아디 체크 결과, cnt={}", cnt);
+		
+		return cnt;
+		
 	}
 	
 }
