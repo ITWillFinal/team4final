@@ -60,6 +60,22 @@
 				|| #{searchKeyword} || '%'
 		</if>
 	</select>
+	
+	<select id="after" parameterType="int"  resultType="faqvo">
+		select *
+		from fnq
+		where fnq_no=(select min(fnq_no)
+		                from fnq where fnq_no>#{fnqNo})
+	</select>
+	
+	<select id="before" parameterType="int"  resultType="faqvo">
+		select *
+		from fnq
+		<![CDATA[ 
+		where fnq_no=(select max(fnq_no)
+		                from fnq where fnq_no<#{fnqNo})]]>
+	</select>
+	
 </mapper>
 
 
