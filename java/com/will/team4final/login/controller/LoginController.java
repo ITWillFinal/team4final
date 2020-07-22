@@ -109,11 +109,14 @@ public class LoginController {
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
 		// response의 nickname값 파싱
 		String name = (String) response_obj.get("name");
-		System.out.println(name);
+		String userid = (String) response_obj.get("email");
+		logger.info("이름 = {}, 아이디 = {}", name, userid);
 		// 4.파싱 닉네임 세션으로 저장
-		session.setAttribute("sessionId", name); // 세션 생성
+		session.setAttribute("name", name); // 세션 생성
+		session.setAttribute("userid", userid); // 세션 생성
+		session.setAttribute("status", "U");
 		model.addAttribute("result", apiResult);
-		return "login/login";
+		return "index";
 	}
 
 	
