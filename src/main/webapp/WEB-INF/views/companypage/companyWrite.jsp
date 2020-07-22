@@ -1,57 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../inc/companyTop.jsp" %>
 
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+	function sample4_execDaumPostcode() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+				// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var roadAddr = data.roadAddress; // 도로명 주소 변수
+				var extraRoadAddr = ''; // 참고 항목 변수
+
+				// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+				// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+					extraRoadAddr += data.bname;
+				}
+				// 건물명이 있고, 공동주택일 경우 추가한다.
+				if (data.buildingName !== '' && data.apartment === 'Y') {
+					extraRoadAddr += (extraRoadAddr !== '' ? ', '
+							+ data.buildingName : data.buildingName);
+				}
+				// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+				if (extraRoadAddr !== '') {
+					extraRoadAddr = ' (' + extraRoadAddr + ')';
+				}
+
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				document.getElementById('zipcode').value = data.zonecode;
+				document.getElementById('addr1').value = roadAddr;
+
+			}
+		}).open();
+
+	}
+	$(function() {
+		$('#sido').change(function() {
+			
+			var ee = $('#sido option:selected').val();
+			alert(ee);
+			
+			$('#sigugunS').css('display', 'inline');
+			
+			<c:forEach var="vo" items="${allList }">
+				$('option[value='+ee+']').css('display', 'block');
+			</c:forEach>
+		
+		});
+
+		
+	});
+</script>
+<style>
+
+	tr {
+		border: 1px solid lightgray;
+	}	
+	
+	#sigugunS{
+		display: none;
+	}
+	#sigugun{
+		display: none;
+	}
+
+</style>
 <main>
-	<!-- main left sidebar -->
-	<div style="float: left; width:250px; margin-left:340px; word-break:break-all; border:1px solid lightgray; font-size: 14px;">
+	<%@ include file="../inc/companySidebar.jsp" %>
 	
-		<div style="width:238px; height:200px; margin:5px; border: 1px solid lightgray;">
-			<br>
-			<div style="text-align: center;">xxx 기업회원님</div>
-			<br>
-			<div style="text-align: center;">
-				<input type="button" value="로그아웃"/>
-				<input type="button" value="회원서비스"/>
-			</div><br>
-			<div style="margin-left:50px;">
-				<span>진행중 채용정보 : x건</span><br>
-				<span>마감된 채용정보 : x건</span><br>
-				<span>총 입사지원자 : x명</span>
-			</div>
-		</div>
-		<div style="width:238px; height:100px; margin:5px; border: 1px solid lightgray;">
-		기업정보관리<br><br>
-		기업정보수정<br>
-		기업로고/사진관리
-		</div>
-		<div style="width:238px; height:200px; margin:5px; border: 1px solid lightgray;">
-		채용관리<br><br>		
-		채용정보등록<br>
-		진행중인채용정보<br>
-		마감된채용정보<br>
-		받은문자관리<br>
-		보낸문자관리
-		</div>
-		<div style="width:238px; height:200px; margin:5px; border: 1px solid lightgray;">
-		인재정보검색<br><br>		
-		인재정보스크랩<br>
-		입사지원요청관리<br>
-		면접제의요청관리<br>
-		맞춤인재정보
-		</div>
-		<div style="width:238px; height:200px; margin:5px; border: 1px solid lightgray;">
-		결제관리<br><br>
-		결제내역 조회<br>
-		세금계산서 발행신청
-		</div>
-		
-		
-	</div>
-	
-	
-	<!-- main right -->
-	<div style="float: left; width:60%; margin-left:30px; font-size: 14px; border:1px solid lightgray">
+	<!-- main -->
+	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; border:1px solid lightgray">
 		
 		<div style="margin:5px; height:95px; border:1px solid lightgray">
 		위쪽 가로 긴 구역
@@ -66,20 +90,20 @@
 			<div>
 			<span>◎모집내용</span><br><br>
 			
-			<table class="" style="width: 700px;">
+			<table style="width: 700px;">
 				<colgroup>
-					<col style="width:20%; background: whitesmoke; border:1px solid lightgray;" />
+					<col style="width:20%;"/>
 					<col style="width:80%;" />
 				</colgroup>
 			
-				<tr style="border:1px solid lightgray;">
+				<tr>
 					<td>모집제목</td>
 					<td>
 						<input type="text">
 					</td>
 				</tr>
 				
-				<tr style="border:1px solid lightgray;">
+				<tr>
 					<td>회사명</td>
 					<td>
 						<input type="text">
@@ -87,39 +111,66 @@
 				</tr>
 				
 				<tr>
-					<td>모집직종</td>
-					<td>
-						<select>
-							<option value="">선택</option>
-							<option value="">사무</option>
-							<option value="">영업</option>
-						</select>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>근무지역</td>
-					<td>
-						<select>
-							<option value="">선택</option>
-							<option value="">서울</option>
-							<option value="">인천</option>
-							<option value="">수원</option>
-							<option value="">부천</option>
-							<option value="">성남</option>
-						</select>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>담당업무</td>
+					<td>1차직종명</td>
 					<td>
 						<input type="text">
 					</td>
 				</tr>
-							
 				<tr>
-					<td>모집인원</td>
+					<td>2차직종명</td>
+					<td>
+						<input type="text">
+					</td>
+				</tr>
+				<!-- 근무지역!!!!! -->
+				<tr>
+					<td>근무지역</td>
+					<td>
+						<select id="sido">
+							<c:if test="${!empty list }">
+								<c:forEach var="location" items="${list }">
+									<option value="${location }">${location }</option>
+								</c:forEach>
+							</c:if>
+						</select>
+						<div id="sigugunS">
+						<select>
+							<option value="" id="sigugun"></option>
+							<c:if test="${!empty allList }">
+								<c:forEach var="all" items="${allList }">
+									<option value="${all.sido }" id="sigugun">${all.sigugun }</option>
+								</c:forEach>
+							</c:if>
+						</select>
+						</div>
+					</td>
+				</tr>
+					
+				<tr>
+					<td>우편번호</td>
+					<td>
+						<input type="text" id="zipcode">
+						<input type="button" onclick="sample4_execDaumPostcode()" value="선택">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>주소</td>
+					<td>
+						<input type="text" id="addr1">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>상세주소</td>
+					<td>
+						<input type="text">
+					</td>
+				</tr>
+								
+		
+				<tr>
+					<td>근무시간</td>
 					<td>
 						<input type="text">
 					</td>
@@ -181,11 +232,9 @@
 						<label><input type="checkbox">퇴직금</label>
 					</td>
 				</tr>
+				
 			</table>
 			</div>
-			
-			
-			
 			
 			
 			<div>
@@ -211,7 +260,30 @@
 				<tr>
 					<td>나이</td>
 					<td>
-						<input type="text"> 세 이상 ~ <input type="text"> 세 이하
+						<select>
+							<option value="">선택</option>
+							<option value="">20세이하</option>
+							<option value="">21세이하</option>
+							<option value="">22세이하</option>
+							<option value="">23세이하</option>
+							<option value="">24세이하</option>
+							<option value="">25세이하</option>
+							<option value="">26세이하</option>
+							<option value="">27세이하</option>
+							<option value="">28세이하</option>
+							<option value="">29세이하</option>
+							<option value="">30세이하</option>
+							<option value="">31세이하</option>
+							<option value="">32세이하</option>
+							<option value="">33세이하</option>
+							<option value="">34세이하</option>
+							<option value="">35세이하</option>
+							<option value="">40세이하</option>
+							<option value="">45세이하</option>
+							<option value="">55세이하</option>
+							<option value="">60세이하</option>
+							<option value="">60세초과</option>
+						</select>
 						<br><label><input type="checkbox">무관</label><br>
 						모집·채용에서 합리적인 이유 없이 연령제한을 하는 경우는 연령차별금지법 위반에 따른 500만원 이하의 벌금이 부과될 수 있습니다.
 					</td>
@@ -314,7 +386,7 @@
 			</div>
 			
 			<div>
-			<br><span>◎접수방법 및 담당자</span><br><br>
+			<br><span>◎접수방법</span><br><br>
 				<table style="width: 700px; border:1px solid lightgray">
 					<colgroup>
 						<col style="width:20%;" />
@@ -345,28 +417,10 @@
 							<label>1차<input type="text"></label>
 							<label>2차<input type="text"></label>
 							<label>3차<input type="text"></label>
+							<label>4차<input type="text"></label>
 						</td>
 					</tr>
-					<tr>
-						<td>접수방법</td>
-						<td>
-							<label><input type="checkbox">이메일</label>
-							<label><input type="checkbox">온라인접수</label>
-							<label><input type="checkbox">직접방문</label>
-							<label><input type="checkbox">우편접수</label>
-							<label><input type="checkbox">당사홈페이지</label>				
-						</td>
-					</tr>
-					
-					<tr>
-						<td>이력서양식</td>
-						<td>
-							<label><input type="checkbox">온라인 이력서</label>
-							<label><input type="checkbox">지원자 자유 양식</label>
-							<label><input type="checkbox">자사 입사지원서 양식</label>
-						</td>
-					</tr>
-				
+
 				</table><br>
 				</div>
 				

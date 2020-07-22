@@ -15,7 +15,7 @@ $( function() {
 
 <div id="hireTabs">
 	<ul>
-		<li><a href="#hireTabs-1">Nunc tincidunt</a></li>
+		<li><a href="#hireTabs-1">지역</a></li>
 		<li><a href="#hireTabs-2">Proin dolor</a></li>
 		<li><a href="#hireTabs-3">Aenean lacinia</a></li>
 	</ul>

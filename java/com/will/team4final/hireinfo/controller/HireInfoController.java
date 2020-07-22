@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.will.team4final.login.controller.LoginController;
 
 @Controller
-@RequestMapping("/companypage")
 public class HireInfoController {
 
 private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
-	@RequestMapping("/companyHome.do")
-	public String companyHome() {
-		logger.info("기업페이지 홈");
+	
+	@RequestMapping("/hireinpo/hireinpo.do")
+	public String hireinpoHome() {
+		logger.info("채용정보 홈");
 		
-		return "companypage/companyHome";
+		return "hireinpo/hireinpo";
 	}
 }

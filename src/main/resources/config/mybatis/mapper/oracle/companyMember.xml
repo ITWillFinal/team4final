@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.cmember">
+	<insert id="insertCMember" parameterType="CompanyMemberVO" >
+		<selectKey keyProperty="cMemberCode" resultType="int" order="BEFORE">
+			select company_member_seq.nextval from dual
+		</selectKey>
+		insert into company_member(C_MEMBER_CODE , C_USERID, C_PWD, C_NICKNAME, C_USERNAME, C_BIRTH,
+		C_GENDER, C_HP, C_EMAIL)
+		values(#{cMemberCode},#{cUserid}, #{cPwd}, #{cNickname}, #{cUsername}, #{cBirth},
+		 #{cGender}, #{cHp}, #{cEmail})
+	</insert>
+	
+	<select id="selectCMemberDup" parameterType="string" resultType="int">
+		select count(*) from company_member
+		where C_USERID=#{cUserid}
+	</select>
+	
+	<select id="selectCMemberPwd" parameterType="string" resultType="string">
+		select c_Pwd from company_member
+		where C_USERID=#{cUserid}
+	</select>
+	
+	<select id="findCMemberId" parameterType="string" resultType="string">
+		select C_USERID from company_member where C_EMAIL = #{cEmail}
+	</select>
+	
+	<update id="updateCMemberPwdByEmail" parameterType="companyMemberVo">
+		update company_member
+		set C_PWD = #{cPwd}
+		where C_USERID=#{cUserid}
+	</update>
+	
+	<select id="selectCMemberAll" parameterType="string" resultType="companyMemberVo">
+		select * from company_member where C_USERID=#{cUserid}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
