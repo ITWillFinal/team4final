@@ -15,7 +15,7 @@ public class ResumeController {
 	private final static Logger logger = LoggerFactory.getLogger(ResumeController.class);
 	@Autowired private ResumeService resumeService;
 	
-	@RequestMapping(value = "/resumeWrte.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/resumeWrite.do", method = RequestMethod.GET)
 	public String resumeWrite_get() {
 		logger.info("이력서 작성 페이지");
 		return "resume/resumeWrite";
