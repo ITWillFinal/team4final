@@ -3,8 +3,6 @@ package com.will.team4final.company.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.will.team4final.member.model.MemberService;
-
 @Service
 public class ComMemberServiceImpl implements ComMemberService{
 	@Autowired private ComMemberDAO comMemberDao;

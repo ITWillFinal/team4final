@@ -1,7 +1,5 @@
 package com.will.team4final.company.model;
 
-import java.sql.Timestamp;
-
 public class CompanyMemberVO {
 	private int cMemberCode;
 	private String cUserid;
