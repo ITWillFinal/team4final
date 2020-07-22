@@ -124,9 +124,5 @@ public class LoginController {
 		return "/index.do";
 	}
 
-	@RequestMapping("/userLogin.do")
-	public String userLogin(@RequestParam String pwd, @RequestParam String userid) {
-		logger.info("로그인 처리 userid={}, pwd={}", userid, pwd);
-		
-	}
+	
 }

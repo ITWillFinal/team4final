@@ -12,7 +12,7 @@ create table company_member
     C_EMAIL varchar2(30)        null,
     C_JOINDATE varchar2(20)   default sysdate,
     C_OUTDATE varchar2(20)   null
- 
+    C_USER_STATUS varchar2(3) defalut 'C'
 );
 
 --drop sequence company_member_seq;

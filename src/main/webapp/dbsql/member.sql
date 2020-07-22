@@ -15,7 +15,9 @@ create table member
     email     varchar2(30)    null,
     hp          varchar2(20)    null,
     regdate     varchar2(30)        default sysdate,
-    outdate     varchar2(30)        null--Ε»ΕπΐΞ °ζΏμ Ε»ΕπΐΟ ³Φ΄Β΄Ω    
+    outdate     varchar2(30)        null,
+    user_status varchar2(3) defalut 'U'
+    
 );
 
 --drop sequence member_seq;
