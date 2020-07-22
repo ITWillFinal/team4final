@@ -189,6 +189,19 @@
 	    padding: 5px;
 	}
 	
+	.career-subBt{
+		width: 130px;
+	    border: 1px solid #fb246a;
+	    background-color: #fb246a;
+	    color: white;
+	    height: 40px;
+	    padding: 5px;
+	   	display: none;
+	   	position: absolute;
+    	right: 0px;
+    	top: -30px;
+	}
+	
 	.career-addDiv{
 		text-align: right;
 		margin-top: 30px;
@@ -241,6 +254,7 @@
 			$('.edu-info').find('h5').text(school+" 정보 입력");
 		});
 		
+
 		$('.startDay').datepicker({
 			dateFormat:'yy-mm-dd',
 			changeYear:true,
@@ -282,81 +296,112 @@
 			}
 		});
 		
-		$('#leave').change(function(){
+		$('.leave').change(function(){
 			if($(this).val()=="직접입력"){
-				$('#leaveEtc').slideDown();	
+				$(this).parent().find('.leaveEtc').slideDown();	
 			}else{
-				$('#leaveEtc').slideUp();					
+				$(this).parent().find('.leaveEtc').slideUp();					
 			}
 		});
 		
 		$('.rpChoice').click(function(){
-			$('.rank-position').css("display","block");
+			$(this).parent().find(".rank-position").css("display","block");
 		});
 		
 		$('input[name=etc]').change(function(){
-			$('input[name=rank]').removeAttr('checked');
-			$('input[name=position]').removeAttr('checked');
+			$(this).parent().parent().find('input[name=rank]').removeAttr('checked');
+			$(this).parent().parent().find('input[name=position]').removeAttr('checked');
 			if($(this).val()=="직접입력"){
-				$('#rankEtc').removeAttr("disabled");
-				$('#rankEtc').focus();				
+				$(this).parent().parent().find('#rankEtc').removeAttr("disabled");
+				$(this).parent().parent().find('#rankEtc').focus();				
 			}else{
-				$('#rankEtc').attr("disabled","disabled");	
-				$('#rankEtc').val("");
+				$(this).parent().parent().find('#rankEtc').attr("disabled","disabled");	
+				$(this).parent().parent().find('#rankEtc').val("");
 			}
 		});
+		
 		$('input[name=rank]').change(function(){
-			$('input[name=etc]').removeAttr('checked');
-			$('#rankEtc').attr("disabled","disabled");				
-			$('#rankEtc').val("");
+			$(this).parent().parent().parent().parent().parent().parent().find('input[name=etc]').removeAttr('checked');
+			$(this).parent().parent().parent().parent().parent().parent().find('input[name=position]').removeAttr('checked');
+			$(this).parent().parent().parent().parent().parent().parent().find('#rankEtc').attr("disabled","disabled");				
+			$(this).parent().parent().parent().parent().parent().parent().find('#rankEtc').val("");
 		});
+		
 		$('input[name=position]').change(function(){
-			$('input[name=etc]').removeAttr('checked');
-			$('#rankEtc').attr("disabled","disabled");				
-			$('#rankEtc').val("");
+			$(this).parent().parent().parent().parent().parent().parent().find('input[name=etc]').removeAttr('checked');
+			$(this).parent().parent().parent().parent().parent().parent().find('#rankEtc').attr("disabled","disabled");				
+			$(this).parent().parent().parent().parent().parent().parent().find('#rankEtc').val("");
 		});
 		
 		$('input[value=완료]').click(function(){
 			var rpValue="";
-			if($('input[name=etc]:checked').val()=='임시직/프리랜서'){
+			if($(this).parent().parent().find('input[name=etc]:checked').val()=='임시직/프리랜서'){
 				rpValue='임시직/프리랜서';
-			}else if($('input[name=etc]:checked').val()=='직접입력'){
-				if($('#rankEtc').val().length<1){
+			}else if($(this).parent().parent().find('input[name=etc]:checked').val()=='직접입력'){
+				if($(this).parent().parent().find('#rankEtc').val().length<1){
 					alert("직급을 입력해주세요.");
-					$('#rankEtc').focus();
+					$(this).parent().parent().find('#rankEtc').focus();
 					return;
 				}else{
-					rpValue=$('#rankEtc').val();					
+					rpValue=$(this).parent().parent().find('#rankEtc').val();					
 				}
 			}else{
-				if($('input[name=rank]:checked').is(':checked')==false){
+				if($(this).parent().parent().find('input[name=rank]:checked').is(':checked')==false){
 					alert("직급을 선택해주세요.");
 					return;
 				}else{
-					rpValue=$('input[name=rank]:checked').val();
-					if($('input[name=position]:checked').is(':checked')==true)
-					rpValue=rpValue+"/"+$('input[name=position]:checked').val();
+					alert($(this).parent().parent().find('input[name=rank]:checked').val());
+					rpValue=$(this).parent().parent().find('input[name=rank]:checked').val();
+					if($(this).parent().parent().find('input[name=position]:checked').is(':checked')==true)
+					rpValue=rpValue+"/"+$(this).parent().parent().find('input[name=position]:checked').val();
 				}
 			}
-			$(".rpChoice").val(rpValue);
-			$('.rank-position').css("display","none");
+			alert(rpValue);
+			$(this).parent().parent().parent().find(".rpChoice").val(rpValue);
+			$(this).parent().parent().parent().find(".rank-position").css("display","none");
 		});
 		
 		$('input[value=취소]').click(function(){
-			$('.rank-position').css("display","none");			
+			$(this).parent().parent().parent().find('.rank-position').css("display","none");			
 		});
 
 		$('input[value=초기화]').click(function(){
-			$('input[name=etc]').removeAttr('checked');
-			$('input[name=rank]').removeAttr('checked');
-			$('input[name=position]').removeAttr('checked');
-			$('#rankEtc').val("");
+			$(this).parent().parent().find('input[name=etc]').removeAttr('checked');
+			$(this).parent().parent().find('input[name=rank]').removeAttr('checked');
+			$(this).parent().parent().find('input[name=position]').removeAttr('checked');
+			$(this).parent().parent().find('#rankEtc').val("");
+			$(this).parent().parent().find('#rankEtc').attr("disabled","disabled");
 		});
 		
 		$(".career-addBt").click(function(){
-			var $addCareer = $('#career-add').clone();
+			var $addCareer = $('#career-add').clone(true);
+			$addCareer.find("input[type=text]").val("");
+			$addCareer.find("input[type=radio]").removeAttr('checked');
+			$addCareer.find('#rankEtc').attr("disabled","disabled");
+			$addCareer.find('.rank-position').css("display","none");
+			$('.career-info:not(:eq(0))').find(".career-subBt").css("display","block");
+
 			$(".career-addDiv").before($addCareer);
-			/* $(".info-box-content").append($addCareer); */
+			$(".startDay").removeAttr("id");
+			$(".endDay").removeAttr("id");
+			
+			$(".startDay").removeClass('hasDatepicker').datepicker({
+				dateFormat:'yy-mm-dd',
+				changeYear:true,
+				dayNamesMin:['일','월','화','수','목','금','토'],
+				monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+			});
+			$(".endDay").removeClass('hasDatepicker').datepicker({
+				dateFormat:'yy-mm-dd',
+				changeYear:true,
+				dayNamesMin:['일','월','화','수','목','금','토'],
+				monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+			});
+			
+		});
+		
+		$(".career-subBt").click(function(){
+			$(this).parent().parent().remove();
 		});
 	});
 </script>
@@ -406,12 +451,12 @@
 					<div class="col-lg-10">
 							<label for="shcoolName" class="col-lg-2 control-label">*학교명</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								id="shcoolName" name="schoolName"
+								name="schoolName"
 								placeholder="학교명 입력" maxlength="15">
 					</div>
 					<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">*지역</label> 
-							<select class="form-control" id="local" name="local">
+							<select class="form-control" name="local">
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
 								<option value="광주">광주</option>
@@ -435,13 +480,13 @@
 					<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">*재학기간</label>
 						<div>
-							<input type="text" class="form-control startDay" name="startDay" id="startDay" readonly="readonly"/> 
+							<input type="text" class="form-control startDay" name="startDay" readonly="readonly"/> 
 							<select class="form-control col-130px" name="">
 								<option value="입학">입학</option>
 								<option class="selectHandU" value="편입">편입</option>
 							</select>
 							<span style="margin:0 40px;">-</span>
-							<input type="text" class="form-control endDay" name="endDay" id="endDay" readonly="readonly"/>
+							<input type="text" class="form-control endDay" name="endDay" readonly="readonly"/>
 							<select class="form-control col-130px" name="">
 								<option value="졸업">졸업</option>
 								<option class="selectHandU" value="재학중">재학중</option>
@@ -532,7 +577,7 @@
 					<div class="col-lg-10 university">
 							<label for="shcoolName" class="col-lg-2 control-label">논문&졸업작품</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								id="shcoolName" name="schoolName"
+								name="schoolName"
 								placeholder="학위논문 및 졸업작품 입력" maxlength="50">
 					</div>
 				</div>
@@ -547,6 +592,9 @@
 				<input class="careerBt" type="button" value="경력"/>
 				<hr style="border-bottom-color: #fb246a; visibility: hidden;">
 				<div class="career-info" id="career-add">
+					<div class="col-lg-10">
+						<input class="career-subBt" type="button" value="경력 삭제하기"/>
+					</div>
 					<div class="col-lg-10">
 							<label for="shcoolName" class="col-lg-2 control-label">*회사명</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
@@ -567,7 +615,7 @@
 					</div>
 					<div class="col-lg-10">
 							<label for="" class="col-lg-2 control-label">퇴사사유</label> 
-							<select class="form-control" id="leave" name="">
+							<select class="form-control leave" name="">
 								<option value="">퇴사사유 선택</option>
 								<option value="업직종 전환">업직종 전환</option>
 								<option value="근무조건">근무조건</option>
@@ -579,8 +627,8 @@
 								<option value="개인사정">개인사정</option>
 								<option value="직접입력">직접입력</option>
 							</select>
-							<input type="text" class="form-control onlyAlphabetAndNumber"
-								id="leaveEtc" name=""
+							<input type="text" class="form-control onlyAlphabetAndNumber leaveEtc"
+								name=""
 								placeholder="퇴사사유 직접입력" maxlength="50" style="display:none;">
 					</div>
 					<div class="col-lg-10">
@@ -729,7 +777,7 @@
 					</div>	
 					<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">근무지역</label> 
-							<select class="form-control" id="local" name="local">
+							<select class="form-control" name="local">
 								<option value="">근무지역 선택</option>
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
