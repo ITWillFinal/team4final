@@ -20,4 +20,13 @@ public class ResumeController {
 		logger.info("이력서 작성 페이지");
 		return "resume/resumeWrite";
 	}
+	
+	@RequestMapping(value = "/resumeMain.do")
+	public String resumeMain() {
+		logger.info("이력서 메인페이지");
+		
+		return "resume/resumeMain";
+	}
+	
+	
 }
