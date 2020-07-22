@@ -6,4 +6,5 @@ public interface ComMemberDAO {
 	String findCMemberId(String cEmail);
 	int updateCMemberPwdByEmail(CompanyMemberVO companyMemberVo);
 	CompanyMemberVO selectCMemberAll(String cUserid);
+	String selectCMemberPwd(String cUserid);
 }

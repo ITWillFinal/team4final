@@ -38,6 +38,26 @@ public class ComMemberServiceImpl implements ComMemberService{
 	public CompanyMemberVO selectCMemberAll(String cUserid) {
 		return comMemberDao.selectCMemberAll(cUserid);
 	}
+
+	@Override
+	public int comLoginCheck(String userid, String pwd) {
+		int idCheck = comMemberDao.selectCMemberDup(userid);
+		
+		int result = 0;
+		
+		if(idCheck > 0) {
+			String pwdCheck = comMemberDao.selectCMemberPwd(userid);
+			if(pwd.equals(pwdCheck)) {
+				result = ComMemberService.LOGIN_OK;
+			}else {
+				result = ComMemberService.PWD_DISAGREE;
+			}
+		}else{
+			result = ComMemberService.ID_NONE;
+		}
+		
+		return result;
+	}
 	
 	
 

@@ -12,9 +12,9 @@
 			<div id="tabs-1">
 				<h3>로그인</h3>
 				<br>
-				<form action="">
-					<input type="text" placeholder="아이디"><br>
-					<br> <input type="password" placeholder="비밀번호"><br>
+				<form action="<c:url value='/login/userLogin.do'/>">
+					<input type="text" placeholder="아이디" name="userid"><br>
+					<br> <input type="password" placeholder="비밀번호" name="pwd"><br>
 					<a href="<c:url value='#popId' /> ">
 						아이디
 					</a>
@@ -42,9 +42,9 @@
 			<div id="tabs-2">
 				<h3>로그인</h3>
 				<br>
-				<form action="/indx">
-					<input type="text" placeholder="아이디"><br>
-					<br> <input type="password" placeholder="비밀번호"><br>
+				<form action="<c:url value='/login/companyLogin.do'/>">
+					<input type="text" placeholder="아이디" name="userid"><br>
+					<br> <input type="password" placeholder="비밀번호" name="pwd"><br>
 					<br> <input type="submit" value="로그인"><br>
 					<a href="<c:url value='#popId2' /> ">
 						아이디

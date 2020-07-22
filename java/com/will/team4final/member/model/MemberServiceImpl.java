@@ -32,6 +32,24 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO selectAll(String user_id) {
 		return memberDao.selectAll(user_id);
 	}
-	
 
+	@Override
+	public int loginCheck(String userid, String pwd) {
+		int result = 0;
+		int idCheck = memberDao.selectMemberDup(userid);
+		if(idCheck > 0) {
+			String pwdCheck = memberDao.selectMemberPwd(userid);
+			if(pwd.equals(pwdCheck)) {
+				result = MemberService.LOGIN_OK;
+			}else {
+				result = MemberService.PWD_DISAGREE;
+			}
+		}else{
+			result = MemberService.ID_NONE;
+		}
+		
+		return result;
+	}
+	
+	
 }

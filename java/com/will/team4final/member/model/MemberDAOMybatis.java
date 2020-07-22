@@ -35,6 +35,13 @@ public class MemberDAOMybatis implements MemberDAO {
 		return sqlSession.selectOne(namespace+"selectAll", user_id);
 	}
 
+	@Override
+	public String selectMemberPwd(String userid) {
+		return sqlSession.selectOne(namespace + "selectMemberPwd", userid);
+	}
+	
+	
+
 	
 
 }

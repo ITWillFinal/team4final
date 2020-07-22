@@ -5,12 +5,12 @@
 	$(function() {
 		
 		$('form[name=frm]').submit(function() {
-			if($('#userid').val().length<1){
-				alert('이름을 입력하세요!');
+			/* if($('#userid').val().length<1){
+				alert('아이디를 입력하세요!');
 				$('#userid').focus();
 				event.preventDefault();
 				return false;
-			}else if($('#pwd').val().length<1){
+			}else  */if($('#pwd').val().length<1){
 				alert('비밀번호를 입력하세요');
 				$('#pwd').focus();
 				event.preventDefault();
@@ -181,10 +181,10 @@ height: 3px;
 				<legend>회원 가입</legend>
 				<hr>
 				<div class="col-lg-10">
-					<label for="inputId" class="col-lg-2 control-label">*아이디</label> 
+					<label for="userid" class="col-lg-2 control-label">*아이디</label> 
 					<input type="button" value="중복확인" id="btChk" title="새창열림"> 
 					<input type="text" class="form-control onlyAlphabetAndNumber"
-						id="user_id" name="userid"
+						id="userid" name="userid"
 						placeholder="10자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="10">
 				</div>
 			</div>

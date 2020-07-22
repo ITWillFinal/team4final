@@ -11,15 +11,16 @@
 <link rel="manifest" href="site.webmanifest">
 
 
-<!-- CSS here -->
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/bootstrap.min.css'/>">
-<!-- 아이콘 태그 -->
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/flaticon.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/nice-select.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
+	<!-- CSS here -->
+    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
+    <!-- 아이콘 태그 -->
+    <link rel="stylesheet" href="<c:url value='/resources/css/flaticon.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/css/nice-select.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
+	<link rel="stylesheet" type="text/css" 
+		href="<c:url value='/resources/css/mainstyle.css'/>"/>
+	<script type="text/javascript" 
+		src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
 <style>
 .overlay {
 	position: fixed;
@@ -245,20 +246,16 @@
 								<!-- Header-btn -->
 								<div class="header-btn d-none f-right d-lg-block">
 									<c:if test="${empty sessionScope.userid }">
+									
 										<a href="#pop02" class="btn head-btn1"
-											style="font-weight: bold;">회원가입</a>
-										<a href="#pop01" class="btn head-btn2"
-											style="font-weight: bold;">로그인</a>
+											style="font-weight: bold;">회원가입</a> <a href="#pop01"
+											class="btn head-btn2" style="font-weight: bold;">로그인</a>
+									</c:if>
+                                	<c:if test="${!empty sessionScope.userid }">
+	                                	<a href="<c:url value='/login/companyLogout.do'/>" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
+	                                    <a href="#" class="btn head-btn2" style="font-weight: bold;">내정보</a>
+                                	</c:if>
 								</div>
-								</c:if>
-								<c:if test="${!empty sessionScope.userid }">
-									<div class="header-btn d-none f-right d-lg-block">
-										<a href="#"
-											style="margin-right: 20px; font-size: .8em; color: #252b60;">로그아웃</a>
-										<a href="#pop01" class="btn head-btn2"
-											style="font-weight: bold;">내정보</a>
-									</div>
-								</c:if>
 							</div>
 						</div>
 						<!-- Mobile Menu -->

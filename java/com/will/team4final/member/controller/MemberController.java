@@ -59,7 +59,7 @@ public class MemberController {
 		String msg="회원 가입 실패", url="/member/register.do";
 		if(cnt>0) {
 			msg="회원 가입 성공";
-			url="/login/login.do";
+			url="/index.do";
 		}
 		
 		model.addAttribute("msg", msg);
