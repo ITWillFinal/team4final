@@ -60,6 +60,26 @@ a{
 		$('input[name=currentPage]').val(curPage);
 		$('form[name=frmPage]').submit();
 	}
+	
+	$(function () {
+		$('input[name=chkAll]').click(function () {
+			$('tbody input[type=checkbox]')
+			.prop('checked', this.checked);			
+		});
+			
+		$('#btMultiDel').click(function() {
+			var len = $('tbody input[type=checkbox]:checked').length;
+			if(len==0){
+				alert("삭제하려는 상품을 먼저 체크하세요.");
+				return;
+			}
+			
+			$('form[name=frmList]')
+				.prop("action", "<c:url value = '/gogak/deleteMulti.do'/>");
+			
+			$('form[name=frmList]').submit();
+		});
+	});
 </script>
 
 
@@ -80,16 +100,20 @@ a{
 				value="${param.searchKeyword}">	
 		</form>
 	</div>
+<form name="frmList" method="post"
+	action="<c:url value = '/gogak/faqList.do'/>">
 	<div class = "divList">
 		<table class = "box2" style="width: 700px;">
 			<colgroup>
 			   <col style="width:10%;" />
-			   <col style="width:30%;" />
+			   <col style="width:10%;" />
+			   <col style="width:20%;" />
 			   <col style="width:30%;" />
 			   <col style="width:30%;" />
 			</colgroup>
 			<thead>
 				<tr>
+					<th><input type="checkbox" name="chkAll"></th>
 					<th>글번호</th>
 					<th>카테고리</th>
 					<th>질문</th>
@@ -101,8 +125,13 @@ a{
 					<th colspan="4">등록된 자주찾는 질문이 없습니다.</th>
 				</c:if>
 				<c:if test="${!empty list }">
+					<c:set var = "idx" value = "0"/>
 					<c:forEach var = "vo" items="${list }">
 						<tr>
+							<td style = "text-align: center">
+								<input type="checkbox" name="faqlist[${idx }].fnqNo"
+									value = "${vo.fnqNo }">
+							</td>
 							<td style="text-align: center;">${vo.fnqNo }</td>
 							<td style="text-align: center;">${vo.category }</td>
 							<td style="text-align: left;">
@@ -111,7 +140,7 @@ a{
 											${vo.question }
 								</a>								
 							</td>
-							<td style="text-align: center;">
+							<td style="text-align: left;">
 								<!-- 제목줄이기 -->
 								<c:if test = "${fn:length(vo.answer)>=10 }">
 									${fn:substring(vo.answer,0,10)}...
@@ -121,11 +150,13 @@ a{
 								</c:if>
 							</td>
 						</tr>
+					<c:set var = "idx" value = "${idx+1 }"/>
 					</c:forEach>
 				</c:if>
 			</tbody>
 		</table>
 	</div>
+</form>
 	<div class="divPage">
 		<!-- 페이지 번호 추가 -->		
 		<!-- 이전 블럭으로 이동 ◀ -->
@@ -179,6 +210,7 @@ a{
 	        <input type="text" name="searchKeyword" title="검색어 입력"
 	        	value="${param.searchKeyword}">   
 			<input type="submit" value="검색">
+			<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"><br><br>
 	    </form>
 	</div>
 </div>
