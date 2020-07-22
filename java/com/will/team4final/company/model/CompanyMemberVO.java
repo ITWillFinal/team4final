@@ -1,7 +1,5 @@
 package com.will.team4final.company.model;
 
-import java.sql.Timestamp;
-
 public class CompanyMemberVO {
 	private int cMemberCode;
 	private String cUserid;
@@ -14,11 +12,13 @@ public class CompanyMemberVO {
 	private String cHp;
 	private String cJoindate;
 	private String cOutdate;
-	public int getComMemberCode() {
+	private String cUserStatus;
+	
+	public int getcMemberCode() {
 		return cMemberCode;
 	}
-	public void setComMemberCode(int comMemberCode) {
-		this.cMemberCode = comMemberCode;
+	public void setcMemberCode(int cMemberCode) {
+		this.cMemberCode = cMemberCode;
 	}
 	public String getcUserid() {
 		return cUserid;
@@ -80,14 +80,19 @@ public class CompanyMemberVO {
 	public void setcOutdate(String cOutdate) {
 		this.cOutdate = cOutdate;
 	}
-	@Override
-	public String toString() {
-		return "CompanyMemberVO [comMemberCode=" + cMemberCode + ", cUserid=" + cUserid + ", cPwd=" + cPwd
-				+ ", cUsername=" + cUsername + ", cNickname=" + cNickname + ", cBirth=" + cBirth + ", cGender="
-				+ cGender + ", cEmail=" + cEmail + ", cHp=" + cHp + ", cJoindate=" + cJoindate + ", cOutdate="
-				+ cOutdate + "]";
+	public String getcUserStatus() {
+		return cUserStatus;
+	}
+	public void setcUserStatus(String cUserStatus) {
+		this.cUserStatus = cUserStatus;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "CompanyMemberVO [cMemberCode=" + cMemberCode + ", cUserid=" + cUserid + ", cPwd=" + cPwd
+				+ ", cUsername=" + cUsername + ", cNickname=" + cNickname + ", cBirth=" + cBirth + ", cGender="
+				+ cGender + ", cEmail=" + cEmail + ", cHp=" + cHp + ", cJoindate=" + cJoindate + ", cOutdate="
+				+ cOutdate + ", cUserStatus=" + cUserStatus + "]";
+	}
 	
 }

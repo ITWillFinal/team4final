@@ -154,6 +154,7 @@ public class LoginController {
 			HttpSession session = request.getSession();
 			session.setAttribute("userid", userid);
 			session.setAttribute("name", memVo.getUserName());
+			session.setAttribute("status", memVo.getUserStatus());
 		} else if (result == MemberService.PWD_DISAGREE) {
 			msg = "비밀번호가 다릅니다!";
 		} else if (result == MemberService.ID_NONE) {
@@ -183,6 +184,7 @@ public class LoginController {
 			HttpSession session = request.getSession();
 			session.setAttribute("userid", userid);
 			session.setAttribute("name", comVo.getcUsername());
+			session.setAttribute("status", comVo.getcUserStatus());
 		} else if (result == MemberService.PWD_DISAGREE) {
 			msg = "비밀번호가 다릅니다!";
 		} else if (result == MemberService.ID_NONE) {

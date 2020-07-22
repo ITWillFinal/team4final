@@ -297,8 +297,6 @@
                                 	<c:if test="${!empty sessionScope.userid }">
 	                                	<a href="#" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
 	                                    <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">내정보</a>
-	                                	<a href="<c:url value='/login/logout.do'/>" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
-	                                    <a href="#" class="btn head-btn2" style="font-weight: bold;">내정보</a>
                                 	</c:if>
 								</div>
 							</div>

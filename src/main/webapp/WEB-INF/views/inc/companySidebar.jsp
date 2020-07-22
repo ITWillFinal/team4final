@@ -6,7 +6,7 @@
 	
 		<div style="width:238px; height:200px; margin:5px; border: 1px solid lightgray;">
 			<br>
-			<div style="text-align: center;">${sessionScope.userid } 기업회원님</div>
+			<div style="text-align: center;">${sessionScope.name } 기업회원님</div>
 			<br>
 			<div style="text-align: center;">
 				<input type="button" value="로그아웃"/>
