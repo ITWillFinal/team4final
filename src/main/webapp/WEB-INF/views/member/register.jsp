@@ -10,7 +10,15 @@
 				$('#chkpwd2').html("비밀번호가 일치합니다.").css('color','green');
 			}
 		});
-		
+		if($('#birth').val().length < 6 || $('#birth').val().length >= 7)
+			
+			$('#birth').keyup(function(){
+				if($('#birth').val().length < 6 || $('#birth').val().length > 6){
+					$('#birthCheck').html("생년월일을 정확히 입력해주세요.").css('color', 'red');
+				}else{
+					$('#birthCheck').html("");
+				}
+			});
 		$('#userid1').keyup(function(){
 			if($('#userid1').val().length < 4){
 				$('#chkId2').html("아이디는 4글자 이상부터 가능합니다").css('color', 'red')
@@ -222,6 +230,13 @@ height: 3px;
 			<div class="form-group" id="divId">
 				<legend>회원 가입</legend>
 				<hr>
+				<div class="form-group" id="divEmail">
+				<div class="col-lg-10">
+					<label for="inputEmail" class="col-lg-2 control-label">*이메일 인증</label>
+					<input type="email" class="form-control" id="email" name="email"
+						data-rule-required="true" placeholder="이메일" maxlength="40" >
+				</div>
+			</div>
 				<div class="col-lg-10">
 					<label for="userid1" class="col-lg-2 control-label">*아이디</label> 
 					<input type="button" value="중복확인" id="btChk" title="새창열림"> 
@@ -277,6 +292,7 @@ height: 3px;
 					<input type="text" class="form-control onlyNumber infobox"
 						id="birth" name="birth" data-rule-required="true"
 						placeholder="-를 제외하고 숫자만 입력하세요." maxlength="6">
+					<div id="birthCheck" style="font-size: 0.8em; margin-left: 10px; margin-top: 5px;"></div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -302,13 +318,6 @@ height: 3px;
 				<div class="col-lg-10">
 					<input type="text" class="form-control" id="addressDetail"
 						name="addressDetail" placeholder="상세주소">
-				</div>
-			</div>
-			<div class="form-group" id="divEmail">
-				<div class="col-lg-10">
-					<label for="inputEmail" class="col-lg-2 control-label">*이메일</label>
-					<input type="email" class="form-control" id="email" name="email"
-						data-rule-required="true" placeholder="이메일" maxlength="40" >
 				</div>
 			</div>
 			<div class="form-group" id="divph">
