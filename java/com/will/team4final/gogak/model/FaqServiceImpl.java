@@ -5,14 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.will.team4final.common.SearchVO;
+
 @Service
 public class FaqServiceImpl implements FaqService{
 
 	@Autowired private FaqDAO faqDao;
 	
 	@Override
-	public List<FaqVO> selectFaq() {
-		return faqDao.selectFaq();
+	public List<FaqVO> selectFaq(SearchVO searchVo) {
+		return faqDao.selectFaq(searchVo);
 	}
 
 	@Override
@@ -33,6 +35,11 @@ public class FaqServiceImpl implements FaqService{
 	@Override
 	public int deleteFaq(int no) {
 		return faqDao.deleteFaq(no);
+	}
+
+	@Override
+	public int selectTotalRecord(SearchVO vo) {
+		return faqDao.selectTotalRecord(vo);
 	}
 	
 	

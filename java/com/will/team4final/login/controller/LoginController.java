@@ -21,12 +21,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.will.team4final.member.model.MemberService;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-
+	
+	@Autowired
+	private MemberService memServ;
+	
 	/* GoogleLogin */
 	@Autowired
 	private GoogleConnectionFactory googleConnectionFactory;
@@ -120,4 +124,9 @@ public class LoginController {
 		return "/index.do";
 	}
 
+	@RequestMapping("/userLogin.do")
+	public String userLogin(@RequestParam String pwd, @RequestParam String userid) {
+		logger.info("로그인 처리 userid={}, pwd={}", userid, pwd);
+		
+	}
 }

@@ -3,10 +3,31 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mybatis.mapper.oracle.faq">
-	<select id="selectFaq" resultType="FaqVo">
-		select * from fnq order by fnq_No desc
+	<select id="selectFaq" resultType="FaqVo" parameterType="searchvo">
+		select * 
+		from
+		(
+			select rownum as RNUM, A.*
+			from(
+				select fnq_No, category, question, answer
+				from fnq
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					where ${searchCondition} like '%'
+							|| #{searchKeyword} || '%'
+				</if>
+				order by fnq_No desc
+			)A
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
 	
+<!-- 	<select id="showFaq" resultType="map" parameterType="importance">
+		select * from fimview
+		where overno=#{importance};
+	</select>
+ -->	
 	<insert id="WriteFaq" parameterType="faqVo">
 		<selectKey keyProperty="fnqNo" resultType="int" order="BEFORE">
 			select fnq_seq.nextval from dual
@@ -28,8 +49,17 @@
 	
 	<delete id="deleteFaq" parameterType="int">
 		delete fnq
-		where fnq_no = #{fnqNo}
+		where fnq_no=#{fnqNo}
 	</delete>
+	
+	<select id="selectTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from fnq
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			where ${searchCondition} like '%'
+				|| #{searchKeyword} || '%'
+		</if>
+	</select>
 </mapper>
 
 
