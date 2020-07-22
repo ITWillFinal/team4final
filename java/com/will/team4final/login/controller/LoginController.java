@@ -138,9 +138,6 @@ public class LoginController {
 	}
 	
 
-<<<<<<< HEAD
-	
-=======
 	@RequestMapping("/userLogin.do")
 	public String userLogin(@RequestParam String pwd, @RequestParam String userid, Model model,
 			HttpServletRequest request) {
@@ -198,5 +195,4 @@ public class LoginController {
 		
 		return "common/message";
 	}
->>>>>>> master
 }
