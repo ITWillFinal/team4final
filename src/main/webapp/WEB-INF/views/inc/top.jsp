@@ -289,7 +289,6 @@
 								<!-- Header-btn -->
 								<div class="header-btn d-none f-right d-lg-block">
 									<c:if test="${empty sessionScope.userid }">
-									
 										<a href="#pop02" class="btn head-btn1"
 											style="font-weight: bold;">회원가입</a> <a href="#pop01"
 											class="btn head-btn2" style="font-weight: bold;">로그인</a>
