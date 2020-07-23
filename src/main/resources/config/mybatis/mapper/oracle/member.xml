@@ -8,7 +8,7 @@
 			select member_seq.nextval from dual
 		</selectKey>
 		insert into member(user_no, user_id, pwd, user_name, imageURL, nickname,
-		birth, gender, zipcode, address, address_Detail, email, hp)
+		birth, gender, zipcode, address, address_detail, email, hp)
 		values(#{userNo},#{userid}, #{pwd}, #{userName}, #{imageURL}, #{nickname},
 		 #{birth}, #{gender}, #{zipcode}, #{address}, #{addressDetail}, #{email}, #{hp})
 	</insert>

@@ -1,4 +1,4 @@
-package com.will.team4final.member.controller;
+	package com.will.team4final.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.will.team4final.common.FileUploadUtil;
@@ -195,6 +196,16 @@ public class MemberController {
 		}    
 
 		return mv;
+	}
+	
+	@RequestMapping("/register/checkId.do")
+	@ResponseBody
+	public int checkId(@RequestParam String userid1) {
+		logger.info("controller에서 값, userid1={}", userid1);
+		int cnt = memberService.selectMemberDup(userid1);
+		
+		logger.info("controller창에서 int={}", cnt);
+		return cnt;
 	}
 	
 

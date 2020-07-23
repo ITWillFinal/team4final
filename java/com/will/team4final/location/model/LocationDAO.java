@@ -4,5 +4,6 @@ import java.util.List;
 
 public interface LocationDAO {
 	List<String> sido();
+	List<String> selectSigugun(String sido);
 	List<LocationVO> selectAllLocation();
 }

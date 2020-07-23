@@ -55,9 +55,9 @@
 	<beans:bean id="googleConnectionFactory"
 		class="org.springframework.social.google.connect.GoogleConnectionFactory">
 		<beans:constructor-arg
-			value="150125464011-739ehmurj8nni3hsbo29e3dcr9nq96t3.apps.googleusercontent.com" />
+			value="112119730597-559f0q90dnir1vb5rr3cjot0meo1l0ju.apps.googleusercontent.com" />
 		<beans:constructor-arg
-			value="vx0Jt30WBpRS3xbWQNFQ4Gl3" />
+			value="DkwmPeEexdUt4Km9TJzbHg3Y" />
 	</beans:bean>
 	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
 	<beans:bean id="googleOAuth2Parameters"
@@ -65,7 +65,7 @@
 		<beans:property name="scope"
 			value="https://www.googleapis.com/auth/plus.login" />
 		<beans:property name="redirectUri"
-			value="http://localhost:8090/login_project/oauth2callback" />
+			value="http://localhost:9090/team4final/login/oauth2callback.do" />
 	</beans:bean>
 
 	<interceptors>

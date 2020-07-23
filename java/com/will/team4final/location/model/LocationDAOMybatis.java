@@ -22,6 +22,11 @@ public class LocationDAOMybatis implements LocationDAO{
 	public List<LocationVO> selectAllLocation() {
 		return sqlSession.selectList(namespace + "selectAllLocation");
 	}
+
+	@Override
+	public List<String> selectSigugun(String sido) {
+		return sqlSession.selectList(namespace + "selectSigugun", sido);
+	}
 	
 	
 }

@@ -11,6 +11,9 @@ public interface FaqService {
 	public int editFaq(FaqVO vo);
 	public int deleteFaq(int no);
 	public int selectTotalRecord(SearchVO vo);
+	int deleteMulti(List<FaqVO>list);
+	public FaqVO before(int fnqNo);
+	public FaqVO after(int fnqNo);
 
 
 

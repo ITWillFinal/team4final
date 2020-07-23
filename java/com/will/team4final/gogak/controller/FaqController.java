@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.will.team4final.common.PaginationInfo;
 import com.will.team4final.common.SearchVO;
 import com.will.team4final.common.Utility;
+import com.will.team4final.gogak.model.FaqListVO;
 import com.will.team4final.gogak.model.FaqService;
 import com.will.team4final.gogak.model.FaqVO;
 
@@ -105,6 +106,14 @@ public class FaqController {
 		FaqVO vo = faqService.selectByNo(no);
 		model.addAttribute("vo", vo);
 		
+		FaqVO afterVO =  faqService.after(no);
+		FaqVO beforeVO = faqService.before(no);
+		logger.info("aftervo={}", afterVO);
+		logger.info("beforeVO={}", beforeVO);
+		
+		model.addAttribute("afterVO", afterVO);
+		model.addAttribute("beforeVO", beforeVO);
+		
 		return "gogak/faqDetail";
 		
 	}
@@ -157,6 +166,38 @@ public class FaqController {
 		model.addAttribute("url", url);
 		
 		return "common/message";
+		
+	}
+	
+	@RequestMapping("/deleteMulti.do")
+	public String delMulti(@ModelAttribute FaqListVO listvo,
+			Model model) {
+		logger.info("선택 게시글 삭제, 파라미터 faqvo={}", listvo);
+		
+		List<FaqVO>list = listvo.getFaqlist();
+		
+		int cnt = faqService.deleteMulti(list);
+		logger.info("선택한 게시글 삭제 결과 cnt = {}", cnt);
+		String msg = "", url = "/gogak/faqList.do";
+		if(cnt>0) {
+			msg = "선택한 게시글을 삭제했습니다.";
+			
+			for(int i=0 ; i<list.size() ; i++) {
+				FaqVO vo = list.get(i);
+				logger.info("i={}", i);
+				logger.info("fnqNO={}", vo.getFnqNo());
+			}//for
+		}else {
+			msg = "선택한 게시글 삭제 실패! 에러 발생!";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+		
+		
+	
 		
 	}
 	
