@@ -12,6 +12,10 @@
 		overflow: auto;
 	}
 	
+	.infoinfo{
+		max-width: 80%;
+	}
+	
 	form[name=frmResume]{
 		margin-top: 20px;
 		margin-bottom: 50px;
@@ -287,6 +291,9 @@
 </style>
 <script type="text/javascript">
 	$(function(){
+		var school="";
+		var careerBt="";
+		
 		$(".info-box-head").hover(function(){
 			$(this).css("background","#ccc");
 		},function(){
@@ -302,7 +309,7 @@
 		});
 		
 		$('.nullOk-chk').change(function(){
-			if($(this).parent().parent().find(".nullOk-top").css("display")=="none"){
+			if($(this).is(":checked")){
 				$(this).parent().parent().find(".nullOk-top").slideDown();				
 				$(this).parent().parent().find(".addDiv").slideDown();				
 			}else{
@@ -337,7 +344,7 @@
 				$(".selectHandU").hide();
 			}
 					
-			var school = $(this).val().substring(0,$(this).val().indexOf(" "));
+			school = $(this).val().substring(0,$(this).val().indexOf(" "));
 			$('.edu-info').find('h5').text(school+" 정보 입력");
 		});
 		
@@ -377,6 +384,8 @@
 			$(this).css('background','#fb246a');
 			$(this).css('color','white');
 			$(this).css('border','1px solid #fb246a');
+			
+			careerBt = $(this).val();
 			
 			if($(this).val()=="경력"){
 				$(".career-info").slideDown();
@@ -443,13 +452,11 @@
 					alert("직급을 선택해주세요.");
 					return;
 				}else{
-					alert($(this).parent().parent().find('input[name=rank]:checked').val());
 					rpValue=$(this).parent().parent().find('input[name=rank]:checked').val();
 					if($(this).parent().parent().find('input[name=position]:checked').is(':checked')==true)
 					rpValue=rpValue+"/"+$(this).parent().parent().find('input[name=position]:checked').val();
 				}
 			}
-			alert(rpValue);
 			$(this).parent().parent().parent().find(".rpChoice").val(rpValue);
 			$(this).parent().parent().parent().find(".rank-position").css("display","none");
 		});
@@ -539,13 +546,120 @@
 		$(".subBt").click(function(){
 			$(this).parent().parent().remove();
 		});
+		
+		$(".bt-sub").click(function(){
+			var edu = "";
+			if(school=="고등학교"){
+						edu=school+"#"+$("input[name=schoolName]").val()+"#"+$("select[name=schoolLocal]").val()+
+						"#"+$('select[name=schoolStartDaySel]').val()+":"+$("input[name=schoolStartDay]").val()+" ~ "+
+						$('select[name=schoolEndDaySel]').val()+":"+$("input[name=schoolEndDay]").val()+"#"+
+						$("select[name=major-high]").val();
+					}else if(school=="대학·대학원"){
+						var major="";
+						var grade="";
+						
+						if($('select[name=majorSel]').val()=="직접입력"){
+							major=$("input[name=majorSelEtc]").val()+"-"+$("input[name=major]").val()
+						}else{
+							major=$("select[name=majorSel]").val()+"-"+$("input[name=major]").val()
+						}
+						
+						if($("input[name=grade]").val()=="" || $('select[name=gradeSel]').val()==""){
+							grade="";
+						}else{
+							grade=$("input[name=grade]").val()+"/"+$('select[name=gradeSel]').val();
+						}
+						
+						edu=school+"#"+$('select[name=curriculum]').val()+"#"+$("input[name=schoolName]").val()+"#"+$("select[name=schoolLocal]").val()+
+						"#"+$('select[name=schoolStartDaySel]').val()+":"+$("input[name=schoolStartDay]").val()+" ~ "+
+						$('select[name=schoolEndDaySel]').val()+":"+$("input[name=schoolEndDay]").val()+"#"+
+						major+"#"+$('select[name=day-night]').val()+"#"+grade;
+					}else{
+						edu=school+"#"+$("input[name=schoolName]").val()+"#"+$("select[name=schoolLocal]").val()+
+						"#"+$('select[name=schoolStartDaySel]').val()+":"+$("input[name=schoolStartDay]").val()+" ~ "+
+						$('select[name=schoolEndDaySel]').val()+":"+$("input[name=schoolEndDay]").val();
+					}
+			$('input[name=education]').val(edu);
+			
+			var career="";
+			
+			if(careerBt=="신입"){
+				career="신입";
+			}else{
+				$(".career-info").each(function(){
+					var leave="";
+					if($(this).find('select[name=leave]').val()=="직접입력"){
+						leave=$(this).find('input[name=leaveEtc]').val();
+					}else{
+						leave=$(this).find('select[name=leave]').val();
+					}
+					var sal="";
+					if(!$(this).find("input[name=salary]").val()==""){
+						sal = $(this).find("input[name=salary]").val()+$(this).find('select[name=salarySel]').val();
+					}
+					
+					career += $(this).find('input[name=company]').val()+"#"+
+					"입사:"+$(this).find("input[name=companyStartDay]").val()+" ~ "+
+					$(this).find('select[name=companyEndDaySel]').val()+":"+$(this).find("input[name=companyEndDay]").val()+"#"+
+					leave+"#"+$(this).find("input[name=rank-position]").val()+"/"+$(this).find("input[name=career-year]").val()+"년차"+"#"+
+					$(this).find("select[name=careerlocal]").val()+"#"+sal+"#"+$(this).find("input[name=responsibilities]").val()+"<br>";
+				});
+			}
+			
+			$('input[name=career]').val(career);
+			
+			if(!$('.hope').find('.nullOk-chk').is(":checked")){
+				$('.hope').find('select[name=sal]').val("");
+				$('.hope').find('select[name=location1]').val("");
+				$('.hope').find('select[name=location2]').val("");
+				$('.hope').find('input[name=jobType1]').val("");
+				$('.hope').find('input[name=jobType2]').val("");
+			}
+			
+			var activity = "";
+			if($(".activity").find('.nullOk-chk').is(":checked")){
+				$(".activity").find(".info-box-content").each(function(){
+					activity+=$(this).find('select[name=activitySel]').val()+"#"+
+					$(this).find("input[name=activityAgency]").val()+"#"+
+					$(this).find("input[name=activityStartDay]").val()+" ~ "+$(this).find("input[name=activityEndDay]").val()+"#"+
+					$(this).find("textarea[name=activityContent]").val()+"<br>";
+				});
+			}
+			$('input[name=activity]').val(activity);
+			
+			var special=""
+			if($(".special").find('.nullOk-chk').is(":checked")){
+				special += "보훈대상:"+$(".special").find("select[name=special1]").val()+"#"+
+				"병역대상:"+$(".special").find("select[name=special2]").val()+"#"+
+				"고용지원금 대상:"+$(".special").find("select[name=special3]").val();
+			}
+			$('input[name=special]').val(special);
+			
+			var portfolio=""
+			if($(".popol").find('.nullOk-chk').is(":checked")){
+				portfolio += $(".popol").find("input[name=popolStartDay]").val()+" ~ "+
+				$(".popol").find("input[name=popolEndDay]").val()+"#"+
+				$(".popol").find("input[name=popolTool]").val()+"#"+$(".popol").find("input[name=popolTeam]").val()+"#"+
+				$(".popol").find("textarea[name=popolInt]").val()
+			}
+			$('input[name=portfolio]').val(portfolio);
+			
+			if(!$('.self-int').find('.nullOk-chk').is(":checked")){
+				$('.self-int').find('input[name=selfIntTitle]').val("");
+				$('.self-int').find('textarea[name=selfInt]').val("");
+			}
+			
+			//event.preventDefault();
+		});
 	});
 </script>
 <body>
 	<div class="resume-main">
 		<h1 style="background: white;padding: 20px 0;font-weight: bold;">이력서 작성
 			<span style="font-size: 14px; color: #777; padding-left: 30px;">* 필수가 아닌항목은 체크해제시 적용되지 않습니다.</span></h1>
-		<form name="frmResume" method="post" action="">
+		<form name="frmResume" method="post" action="<c:url value='/resume/resumeWrite.do'/>"
+			enctype="multipart/form-data">
+		<input type="hidden" name="userNo" value="${memberVo.userNo }">
 		<div class="info-box">
 			<div class="info-box-head">
 				<h3>기본 정보 ▼</h3>
@@ -554,18 +668,26 @@
 				<div class="col-lg-10">
 					<div class="photh">
 					</div>	
-					<label class="col-lg-2 control-label">이름 : ()</label><br><br>
-					<label class="col-lg-2 control-label">생년월일 : </label><br><br>
-					<label class="col-lg-2 control-label">연락처 : </label><br><br>	
-					<label class="col-lg-2 control-label">이메일 : </label><br><br>	
-					<label class="col-lg-2 control-label">우편번호 : </label><br><br>
-					<label class="col-lg-2 control-label">주소 : </label><br><br>
-					<label class="col-lg-2 control-label">상세주소 : </label><br>
+					<label class="col-lg-2 control-label infoinfo">이름 :${memberVo.userName } (
+					<c:if test="${memberVo.gender==MALE }">
+						남
+					</c:if>
+					<c:if test="${memberVo.gender==FEMALE }">
+						여
+					</c:if>
+					)</label><br><br>
+					<label class="col-lg-2 control-label infoinfo">생년월일 : ${memberVo.birth }</label><br><br>
+					<label class="col-lg-2 control-label infoinfo">연락처 : ${memberVo.hp }</label><br><br>	
+					<label class="col-lg-2 control-label infoinfo">이메일 : ${memberVo.email }</label><br><br>	
+					<label class="col-lg-2 control-label infoinfo">우편번호 : ${memberVo.zipcode }</label><br><br>
+					<label class="col-lg-2 control-label infoinfo">주소 : ${memberVo.address }</label><br><br>
+					<label class="col-lg-2 control-label infoinfo">상세주소 : ${memberVo.addressDetail }</label><br>
 					<a href="#">기본 정보 수정하기</a> <!-- 회원정보 수정 -->
 				</div>
 			</div>
 		</div>
 		<div class="info-box">
+			<input type="hidden" name="education">
 			<div class="info-box-head">
 				<h3>*학력사항 ▼</h3>
 			</div>
@@ -579,7 +701,7 @@
 					<h5></h5>
 					<div class="col-lg-10 university">
 							<label for="local" class="col-lg-2 control-label">*대학</label> 
-							<select class="form-control" name="">
+							<select class="form-control" name="curriculum">
 								<option value="대학(2,3년)">대학(2,3년)</option>
 								<option value="대학교(4년)">대학교(4년)</option>
 								<option value="대학원(석사)">대학원(석사)</option>
@@ -594,7 +716,7 @@
 					</div>
 					<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">*지역</label> 
-							<select class="form-control" name="local">
+							<select class="form-control" name="schoolLocal">
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
 								<option value="광주">광주</option>
@@ -612,20 +734,19 @@
 								<option value="제주">제주</option>
 								<option value="전국">전국</option>
 								<option value="세종">세종</option>
-								<option value="해외">해외</option>
 							</select>
 					</div>
 					<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">*재학기간</label>
 						<div>
-							<input type="text" class="form-control startDay" name="startDay" readonly="readonly"/> 
-							<select class="form-control col-130px" name="">
+							<input type="text" class="form-control startDay" name="schoolStartDay" readonly="readonly"/> 
+							<select class="form-control col-130px" name="schoolStartDaySel">
 								<option value="입학">입학</option>
 								<option class="selectHandU" value="편입">편입</option>
 							</select>
 							<span style="margin:0 40px;">-</span>
-							<input type="text" class="form-control endDay" name="endDay" readonly="readonly"/>
-							<select class="form-control col-130px" name="">
+							<input type="text" class="form-control endDay" name="schoolEndDay" readonly="readonly"/>
+							<select class="form-control col-130px" name="schoolEndDaySel">
 								<option value="졸업">졸업</option>
 								<option class="selectHandU" value="재학중">재학중</option>
 								<option class="selectHandU" value="휴학중">휴학중</option>
@@ -638,7 +759,7 @@
 					</div>
 					<div class="col-lg-10 highschool">
 							<label for="local" class="col-lg-2 control-label">전공 계열</label> 
-							<select class="form-control" name="">
+							<select class="form-control" name="major-high">
 								<option value="">전공계열 선택</option>
 								<option value="이과계열">이과계열</option>
 								<option value="문과계열">문과계열</option>
@@ -650,7 +771,7 @@
 					</div>
 					<div class="col-lg-10 university">
 							<label for="local" class="col-lg-2 control-label">*전공</label> 
-							<select class="form-control" id="major" name="">
+							<select class="form-control" id="major" name="majorSel">
 								<option value="어문학">어문학</option>
 								<option value="영어/영문">영어/영문</option>
 								<option value="중어/중문">중어/중문</option>
@@ -686,22 +807,22 @@
 								<option value="직접입력">직접입력</option>
 							</select>
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								id="majorEtc" name=""
+								id="majorEtc" name="majorSelEtc"
 								placeholder="전공계열 직접입력" maxlength="15" style="display:none;">
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								 name=""
+								 name="major"
 								placeholder="전공학과 입력" maxlength="15">
 					</div>
 					<div class="col-lg-10 university">
 							<label for="local" class="col-lg-2 control-label">주/야간</label> 
-							<select class="form-control" name="">
+							<select class="form-control" name="day-night">
 								<option value="주간">주간</option>
 								<option value="야간">야간</option>
 							</select>
 					</div>
 					<div class="col-lg-10 university">
 							<label for="local" class="col-lg-2 control-label">학점</label> 
-							<select class="form-control col-130px" name="">
+							<select class="form-control col-130px" name="gradeSel">
 								<option value="">기준학점선택</option>
 								<option value="4.0">4.0</option>
 								<option value="4.3">4.3</option>
@@ -710,18 +831,13 @@
 								<option value="7.0">7.0</option>
 								<option value="100">100</option>
 							</select>
-							<input type="text" class="form-control" name="" placeholder="학점 입력"/> 
-					</div>
-					<div class="col-lg-10 university">
-							<label for="shcoolName" class="col-lg-2 control-label">논문&졸업작품</label> 
-							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
-								placeholder="학위논문 및 졸업작품 입력" maxlength="50">
+							<input type="text" class="form-control" name="grade" placeholder="학점 입력"/> 
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="info-box">
+			<input type="hidden" name="career">
 			<div class="info-box-head">
 				<h3>*경력사항 ▼</h3>
 			</div>
@@ -736,24 +852,24 @@
 					<div class="col-lg-10">
 							<label for="shcoolName" class="col-lg-2 control-label">*회사명</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name=""
+								name="company"
 								placeholder="회사명 입력" maxlength="15">
 					</div>
 					<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">*재직기간</label>
 						<div>
-							<input type="text" class="form-control startDay" name="" readonly="readonly"/> 
+							<input type="text" class="form-control startDay" name="companyStartDay" readonly="readonly"/> 
 							<span style="margin:0 40px;">-</span>
-							<input type="text" class="form-control endDay" name="" readonly="readonly"/>
-							<select class="form-control col-130px" name="">
-								<option value="졸업">퇴사</option>
+							<input type="text" class="form-control endDay" name="companyEndDay" readonly="readonly"/>
+							<select class="form-control col-130px" name="companyEndDaySel">
+								<option value="퇴사">퇴사</option>
 								<option value="재직중">재직중</option>
 							</select>
 						</div>
 					</div>
 					<div class="col-lg-10">
 							<label for="" class="col-lg-2 control-label">퇴사사유</label> 
-							<select class="form-control leave" name="">
+							<select class="form-control leave" name="leave">
 								<option value="">퇴사사유 선택</option>
 								<option value="업직종 전환">업직종 전환</option>
 								<option value="근무조건">근무조건</option>
@@ -766,12 +882,12 @@
 								<option value="직접입력">직접입력</option>
 							</select>
 							<input type="text" class="form-control onlyAlphabetAndNumber leaveEtc"
-								name=""
+								name="leaveEtc"
 								placeholder="퇴사사유 직접입력" maxlength="50" style="display:none;">
 					</div>
 					<div class="col-lg-10">
 							<label for="" class="col-lg-2 control-label">*직급/직책</label> 
-							<input type="text" class="form-control rpChoice" name="" readonly="readonly" 
+							<input type="text" class="form-control rpChoice" name="rank-position" readonly="readonly" 
 							placeholder="선택하기"/> 
 							<div class="rank-position">
 								<h5>직급/직책 선택하기</h5>
@@ -910,12 +1026,12 @@
 								</div>
 							</div>
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="" style="display: inline-block;"
+								name="career-year" style="display: inline-block;"
 								placeholder="년차 입력" maxlength="2">
 					</div>	
 					<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">근무지역</label> 
-							<select class="form-control" name="local">
+							<select class="form-control" name="careerlocal">
 								<option value="">근무지역 선택</option>
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
@@ -934,14 +1050,13 @@
 								<option value="제주">제주</option>
 								<option value="전국">전국</option>
 								<option value="세종">세종</option>
-								<option value="해외">해외</option>
 							</select>
 					</div>
 					<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">연봉</label>
 						<div>
-							<input type="text" class="form-control" name="" placeholder="연봉입력"/> 
-							<select class="form-control col-130px" name="">
+							<input type="text" class="form-control" name="salary" placeholder="연봉입력"/> 
+							<select class="form-control col-130px" name="salarySel">
 								<option value="만원">만원</option>
 								<option value="달러">달러</option>
 								<option value="엔">엔</option>
@@ -951,7 +1066,7 @@
 					<div class="col-lg-10">
 							<label for="shcoolName" class="col-lg-2 control-label">담당업무</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name=""
+								name="responsibilities"
 								placeholder="담당업무 입력" maxlength="15">
 					</div>	
 				</div>
@@ -960,7 +1075,103 @@
 				</div>			
 			</div>
 		</div>
-		<div class="info-box">
+		<div class="info-box hope">
+			<div class="info-box-nullOk-head">
+				<h3>희망 근무조건 </h3>
+				<input type="checkbox" class="nullOk-chk" />
+			</div>
+			<div class="info-box-content nullOk-top">
+				<div class="col-lg-10">
+							<label for="local" class="col-lg-2 control-label">연봉</label> 
+							<select class="form-control" name="sal">
+								<option value="회사내규에 따름">회사내규에 따름</option>
+								<option value="1,400 만원 이하">1,400 만원 이하</option>
+								<option value="1,400~1,600만원">1,400~1,600만원</option>
+								<option value="1,600~1,800만원">1,600~1,800만원</option>
+								<option value="1,800~2,000만원">1,800~2,000만원</option>
+								<option value="2,000~2,200만원">2,000~2,200만원</option>
+								<option value="2,200~2,400만원">2,200~2,400만원</option>
+								<option value="2,400~2,600만원">2,400~2,600만원</option>
+								<option value="2,600~2,800만원">2,600~2,800만원</option>
+								<option value="2,800~3,000만원">2,800~3,000만원</option>
+								<option value="3,000~3,200만원">3,000~3,200만원</option>
+								<option value="3,200~3,400만원">3,200~3,400만원</option>
+								<option value="3,400~3,600만원">3,400~3,600만원</option>
+								<option value="3,600~3,800만원">3,600~3,800만원</option>
+								<option value="3,800~4,000만원">3,800~4,000만원</option>
+								<option value="4,000~5,000만원">4,000~5,000만원</option>
+								<option value="5,000~6,000만원">5,000~6,000만원</option>
+								<option value="6,000~7,000만원">6,000~7,000만원</option>
+								<option value="7,000~8,000만원">7,000~8,000만원</option>
+								<option value="8,000~9,000만원">8,000~9,000만원</option>
+								<option value="9,000~1억원">9,000~1억원</option>
+								<option value="1억원 이상">1억원 이상</option>
+								<option value="면접 후 결정">면접 후 결정</option>
+							</select>
+					</div>
+
+				<div class="col-lg-10">
+							<label for="local" class="col-lg-2 control-label">근무 지역1</label> 
+							<select class="form-control" name="location1">
+								<option value="">근무 지역1 선택 안함</option>
+								<option value="서울">서울</option>
+								<option value="경기">경기</option>
+								<option value="광주">광주</option>
+								<option value="대구">대구</option>
+								<option value="대전">대전</option>
+								<option value="부산">부산</option>
+								<option value="울산">울산</option>
+								<option value="인천">인천</option>
+								<option value="강원">강원</option>
+								<option value="경남">경남</option>
+								<option value="경북">경북</option>
+								<option value="전남">전남</option>
+								<option value="전북">전북</option>
+								<option value="충남">충북</option>
+								<option value="제주">제주</option>
+								<option value="전국">전국</option>
+								<option value="세종">세종</option>
+							</select>
+					</div>
+				<div class="col-lg-10">
+							<label for="local" class="col-lg-2 control-label">근무 지역2</label> 
+							<select class="form-control" name="location2">
+								<option value="">근무 지역2 선택 안함</option>
+								<option value="서울">서울</option>
+								<option value="경기">경기</option>
+								<option value="광주">광주</option>
+								<option value="대구">대구</option>
+								<option value="대전">대전</option>
+								<option value="부산">부산</option>
+								<option value="울산">울산</option>
+								<option value="인천">인천</option>
+								<option value="강원">강원</option>
+								<option value="경남">경남</option>
+								<option value="경북">경북</option>
+								<option value="전남">전남</option>
+								<option value="전북">전북</option>
+								<option value="충남">충북</option>
+								<option value="제주">제주</option>
+								<option value="전국">전국</option>
+								<option value="세종">세종</option>
+							</select>
+					</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">직종1</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="jobType1"
+								placeholder="희망 직종을 입력하세요" maxlength="30">
+					</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">직종2</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="jobType2"
+								placeholder="희망 직종을 입력하세요" maxlength="30">
+					</div>
+			</div>
+		</div>
+		<div class="info-box activity">
+			<input type="hidden" name="activity">
 			<div class="info-box-nullOk-head">
 				<h3>대외활동 </h3>
 				<input type="checkbox" class="nullOk-chk" />
@@ -971,7 +1182,7 @@
 				</div>
 				<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">활동구분</label> 
-							<select class="form-control" name="local">
+							<select class="form-control" name="activitySel">
 								<option value="">활동구분 선택</option>
 								<option value="교내활동">교내활동</option>
 								<option value="인턴">인턴</option>
@@ -987,21 +1198,21 @@
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">기관/장소</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="activityAgency"
 								placeholder="기관/장소 입력" maxlength="30">
 					</div>
 					<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">활동기간</label>
 						<div>
-							<input type="text" class="form-control startDay" name="startDay" readonly="readonly"/> 
+							<input type="text" class="form-control startDay" name="activityStartDay" readonly="readonly"/> 
 							<span style="margin:0 40px;">-</span>
-							<input type="text" class="form-control endDay" name="endDay" readonly="readonly"/>
+							<input type="text" class="form-control endDay" name="activityEndDay" readonly="readonly"/>
 						</div>
 					</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">활동내용</label> 
 							<textarea rows="1" cols="50" class="form-control taAuto" 
-							placeholder="활동내용 입력"></textarea>
+							placeholder="활동내용 입력" name="activityContent"></textarea>
 					</div>
 			</div>
 			<div class="addDiv">
@@ -1042,7 +1253,8 @@
 					<input class="addBt" type="button" value="추가하기"/>
 			</div>		
 		</div>
-		<div class="info-box">
+		<div class="info-box special">
+			<input type="hidden" name="special"/>
 			<div class="info-box-nullOk-head">
 				<h3>취업 우대사항</h3>
 				<input type="checkbox" class="nullOk-chk" />
@@ -1050,14 +1262,14 @@
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">보훈대상</label> 
-							<select class="form-control" name="local">
+							<select class="form-control" name="special1">
 								<option value="비대상">비대상</option>
 								<option value="대상">대상</option>
 							</select>
 				</div>
 				<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">병역대상</label> 
-							<select class="form-control" name="local">
+							<select class="form-control" name="special2">
 								<option value="대상아님">대상아님</option>
 								<option value="군필">군필</option>
 								<option value="미필">미필</option>
@@ -1067,14 +1279,15 @@
 				</div>
 				<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">고용지원금 대상</label> 
-							<select class="form-control" name="local">
+							<select class="form-control" name="special3">
 								<option value="비대상">비대상</option>
 								<option value="대상">대상</option>
 							</select>
 				</div>
 			</div>	
 		</div>
-		<div class="info-box">
+		<div class="info-box popol">
+			<input type="hidden" name="portfolio"/>
 			<div class="info-box-nullOk-head">
 				<h3>포트폴리오</h3>
 				<input type="checkbox" class="nullOk-chk" />
@@ -1082,48 +1295,49 @@
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">파일찾기</label> 
-							
+							<input type="file" name="upfile"/> 
 				</div>
 				<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">작업기간</label>
 						<div>
-							<input type="text" class="form-control startDay" name="startDay" readonly="readonly"/> 
+							<input type="text" class="form-control startDay" name="popolStartDay" readonly="readonly"/> 
 							<span style="margin:0 40px;">-</span>
-							<input type="text" class="form-control endDay" name="endDay" readonly="readonly"/>
+							<input type="text" class="form-control endDay" name="popolEndDay" readonly="readonly"/>
 						</div>
 				</div>
 				<div class="col-lg-10">
 							<label class="col-lg-2 control-label">작업툴</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="popolTool"
 								placeholder="작업툴 입력" maxlength="30">
 				</div>
 				<div class="col-lg-10">
 							<label class="col-lg-2 control-label">작업인원</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="popolTeam"
 								placeholder="작업인원 입력" maxlength="3">
 				</div>	
 				<div class="col-lg-10">
 							<label class="col-lg-2 control-label">작품소개</label> 
 							<textarea rows="1" cols="50" class="form-control taAuto" 
-							placeholder="작품 소개 입력"></textarea>
+							placeholder="작품 소개 입력" name="popolInt"></textarea>
 				</div>	
 			</div>	
 		</div>
-		<div class="info-box">
-			<div class="info-box-head">
-				<h3>*자기소개서 ▼</h3>
+		<div class="info-box self-int">
+			<div class="info-box-nullOk-head">
+				<h3>자기소개서 </h3>
+				<input type="checkbox" class="nullOk-chk" />
 			</div>
-			<div class="info-box-content">
+			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="selfIntTitle"
 								placeholder="자기소개서 제목" maxlength="15">
 				</div>
 				<div class="col-lg-10">
 							<textarea rows="1" cols="50" class="form-control" 
-							placeholder="자기소개서 내용" style="height: 300px"></textarea>
+							placeholder="자기소개서 내용" style="height: 300px" name="selfInt"></textarea>
 				</div>
 			</div>
 		</div>

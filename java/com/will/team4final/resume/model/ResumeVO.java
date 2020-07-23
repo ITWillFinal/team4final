@@ -1,31 +1,46 @@
 package com.will.team4final.resume.model;
 
 public class ResumeVO {
-	private int resumeNo;
-	private int userNo;
+	private String resumeNo;
+	private String userNo;
+	private String education;
+	private String career;
 	private String location1;
 	private String location2;
-	private String location3;
 	private String jobType1;
 	private String jobType2;
-	private String jobType3;
-	private int sal;
-	private String resumeTitle;
+	private String sal;
+	private String activity;
+	private String certificate;
+	private String special;
+	private String portfolioFile;
+	private String portfolio;
+	private String selfIntTitle;
 	private String selfInt;
-	private String education;
-	private String REGDATE;
-	
-	public int getResumeNo() {
+	private String regdate;
+	public String getResumeNo() {
 		return resumeNo;
 	}
-	public void setResumeNo(int resumeNo) {
+	public void setResumeNo(String resumeNo) {
 		this.resumeNo = resumeNo;
 	}
-	public int getUserNo() {
+	public String getUserNo() {
 		return userNo;
 	}
-	public void setUserNo(int userNo) {
+	public void setUserNo(String userNo) {
 		this.userNo = userNo;
+	}
+	public String getEducation() {
+		return education;
+	}
+	public void setEducation(String education) {
+		this.education = education;
+	}
+	public String getCareer() {
+		return career;
+	}
+	public void setCareer(String career) {
+		this.career = career;
 	}
 	public String getLocation1() {
 		return location1;
@@ -39,12 +54,6 @@ public class ResumeVO {
 	public void setLocation2(String location2) {
 		this.location2 = location2;
 	}
-	public String getLocation3() {
-		return location3;
-	}
-	public void setLocation3(String location3) {
-		this.location3 = location3;
-	}
 	public String getJobType1() {
 		return jobType1;
 	}
@@ -57,23 +66,47 @@ public class ResumeVO {
 	public void setJobType2(String jobType2) {
 		this.jobType2 = jobType2;
 	}
-	public String getJobType3() {
-		return jobType3;
-	}
-	public void setJobType3(String jobType3) {
-		this.jobType3 = jobType3;
-	}
-	public int getSal() {
+	public String getSal() {
 		return sal;
 	}
-	public void setSal(int sal) {
+	public void setSal(String sal) {
 		this.sal = sal;
 	}
-	public String getResumeTitle() {
-		return resumeTitle;
+	public String getActivity() {
+		return activity;
 	}
-	public void setResumeTitle(String resumeTitle) {
-		this.resumeTitle = resumeTitle;
+	public void setActivity(String activity) {
+		this.activity = activity;
+	}
+	public String getCertificate() {
+		return certificate;
+	}
+	public void setCertificate(String certificate) {
+		this.certificate = certificate;
+	}
+	public String getSpecial() {
+		return special;
+	}
+	public void setSpecial(String special) {
+		this.special = special;
+	}
+	public String getPortfolioFile() {
+		return portfolioFile;
+	}
+	public void setPortfolioFile(String portfolioFile) {
+		this.portfolioFile = portfolioFile;
+	}
+	public String getPortfolio() {
+		return portfolio;
+	}
+	public void setPortfolio(String portfolio) {
+		this.portfolio = portfolio;
+	}
+	public String getSelfIntTitle() {
+		return selfIntTitle;
+	}
+	public void setSelfIntTitle(String selfIntTitle) {
+		this.selfIntTitle = selfIntTitle;
 	}
 	public String getSelfInt() {
 		return selfInt;
@@ -81,24 +114,20 @@ public class ResumeVO {
 	public void setSelfInt(String selfInt) {
 		this.selfInt = selfInt;
 	}
-	public String getEducation() {
-		return education;
+	public String getRegdate() {
+		return regdate;
 	}
-	public void setEducation(String education) {
-		this.education = education;
-	}
-	public String getREGDATE() {
-		return REGDATE;
-	}
-	public void setREGDATE(String rEGDATE) {
-		REGDATE = rEGDATE;
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 	
 	@Override
 	public String toString() {
-		return "ResumeVO [resumeNo=" + resumeNo + ", userNo=" + userNo + ", location1=" + location1 + ", location2="
-				+ location2 + ", location3=" + location3 + ", jobType1=" + jobType1 + ", jobType2=" + jobType2
-				+ ", jobType3=" + jobType3 + ", sal=" + sal + ", resumeTitle=" + resumeTitle + ", selfInt=" + selfInt
-				+ ", education=" + education + ", REGDATE=" + REGDATE + "]";
+		return "ResumeVO [resumeNo=" + resumeNo + ", userNo=" + userNo + ", education=" + education + ", career="
+				+ career + ", location1=" + location1 + ", location2=" + location2 + ", jobType1=" + jobType1
+				+ ", jobType2=" + jobType2 + ", sal=" + sal + ", activity=" + activity + ", certificate=" + certificate
+				+ ", special=" + special + ", portfolioFile=" + portfolioFile + ", portfolio=" + portfolio
+				+ ", selfIntTitle=" + selfIntTitle + ", selfInt=" + selfInt + ", regdate=" + regdate + "]";
 	}
+
 }
