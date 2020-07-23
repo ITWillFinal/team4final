@@ -350,16 +350,13 @@
 								<!-- Header-btn -->
 								<div class="header-btn d-none f-right d-lg-block">
 									<c:if test="${empty sessionScope.userid }">
-									
 										<a href="#pop02" class="btn head-btn1"
 											style="font-weight: bold;">회원가입</a> <a href="#pop01"
 											class="btn head-btn2" style="font-weight: bold;">로그인</a>
 									</c:if>
                                 	<c:if test="${!empty sessionScope.userid }">
-	                                	<a href="#" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
-	                                    <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">내정보</a>
 	                                	<a href="<c:url value='/login/logout.do'/>" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
-	                                    <a href="#" class="btn head-btn2" style="font-weight: bold;">내정보</a>
+	                                    <a href="<c:url value='/mypage/mypageHome.do?status=${sessionScope.status }'/>" class="btn head-btn2" style="font-weight: bold;">내정보</a>
                                 	</c:if>
 								</div>
 							</div>

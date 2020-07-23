@@ -20,6 +20,7 @@ import com.will.team4final.location.model.LocationVO;
 import com.will.team4final.login.controller.LoginController;
 
 @Controller
+@RequestMapping("/companypage")
 public class CompanyHomeController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired private ComMemberService cMemberSerice;
@@ -27,20 +28,20 @@ public class CompanyHomeController {
 	@Autowired
 	private LocationService locaServ;
 	
-	@RequestMapping("/hireinpo/hireinpo.do")
-	public String hireinpoHome() {
-		logger.info("채용정보 홈");
+	@RequestMapping("/companyHome.do")
+	public String companyHome() {
+		logger.info("기업페이지 홈");
 		
-		return "hireinpo/hireinpo";
+		return "companypage/companyHome";
 	}
 	
-	@RequestMapping("/companypage/member/companyJoin.do")
+	@RequestMapping("/member/companyJoin.do")
 	public void companyJoin() {
 		logger.info("기업회원가입 페이지");
 		
 	}
 	
-	@RequestMapping("/companypage/member/checkUserid.do")
+	@RequestMapping("/member/checkUserid.do")
 	public String checkcUserid(@RequestParam String cUserid, Model model) {
 		logger.info("기업회원 아이디 중복확인, 파라미터 cUserid={}", cUserid);
 		if(cUserid==null || cUserid.isEmpty()) {
@@ -58,7 +59,7 @@ public class CompanyHomeController {
 		
 	}
 	
-	@RequestMapping(value = "/companypage/member/register.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/register.do", method = RequestMethod.POST)
 	public String comRegister_post(@ModelAttribute CompanyMemberVO vo, Model model) {
 		logger.info("기업회원 등록, 파라미터 vo={}", vo);
 		
@@ -77,7 +78,7 @@ public class CompanyHomeController {
 		
 	}
 	
-	@RequestMapping("/companypage/companyWrite.do")
+	@RequestMapping("/companyWrite.do")
 	public String companyWrite(Model model) {
 		logger.info("기업페이지 채용공고등록");
 		
@@ -93,7 +94,7 @@ public class CompanyHomeController {
 		return "companypage/companyWrite";
 	}
 	
-	@RequestMapping("/companypage/companyResume.do")
+	@RequestMapping("/companyResume.do")
 	public String resume() {
 		logger.info("기업페이지 자사 이력서양식 제작");
 		

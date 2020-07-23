@@ -18,6 +18,8 @@ public class MemberVO {
 	private String hp;
 	private String regdate;
 	private String outdate;
+	private String userStatus;
+	
 	public int getUserNo() {
 		return userNo;
 	}
@@ -108,16 +110,20 @@ public class MemberVO {
 	public void setOutdate(String outdate) {
 		this.outdate = outdate;
 	}
+	public String getUserStatus() {
+		return userStatus;
+	}
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
+	
 	@Override
 	public String toString() {
 		return "MemberVO [userNo=" + userNo + ", userid=" + userid + ", pwd=" + pwd + ", userName=" + userName
 				+ ", imageURL=" + imageURL + ", nickname=" + nickname + ", birth=" + birth + ", gender=" + gender
 				+ ", zipcode=" + zipcode + ", address=" + address + ", addressDetail=" + addressDetail + ", email="
-				+ email + ", hp=" + hp + ", regdate=" + regdate + ", outdate=" + outdate + "]";
+				+ email + ", hp=" + hp + ", regdate=" + regdate + ", outdate=" + outdate + ", userStatus=" + userStatus
+				+ "]";
 	}
-	
-	
-	
-	
 	
 }

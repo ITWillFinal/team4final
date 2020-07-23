@@ -8,11 +8,11 @@ create table company_member
     C_USERNAME varchar2(20) null,
     C_BIRTH varchar2(20) null,
     C_GENDER  varchar2(10) null,
-    C_HP varchar2(10) null,
+    C_HP varchar2(20) null,
     C_EMAIL varchar2(30)        null,
     C_JOINDATE varchar2(20)   default sysdate,
-    C_OUTDATE varchar2(20)   null
-    C_USER_STATUS varchar2(3) defalut 'C'
+    C_OUTDATE varchar2(20)   null,
+    C_USER_STATUS varchar2(3) default 'C'
 );
 
 --drop sequence company_member_seq;
