@@ -8,6 +8,27 @@
 		box-sizing: border-box;
 	}
 	
+	body{
+		overflow: auto;
+	}
+	
+	form[name=frmResume]{
+		margin-top: 20px;
+		margin-bottom: 50px;
+	}
+	
+	textarea { 
+		overflow-y:hidden;
+		resize: none;
+	}
+	
+	.info-box-content a{
+		color: #fb246a;
+		position: absolute;
+    	top: -10px;
+    	left: 30px;
+	}
+	
 	input[type=radio]:checked {
   		background: #fb246a;
 	}
@@ -21,7 +42,7 @@
 	}
 	
 	.resume-main{
-		width: 60%;
+		width: 1200px;
 		margin: 0 auto;
 		height: auto;
 		background: #f8f8f8;
@@ -31,10 +52,6 @@
 		padding: 15px 30px;
 		background: #f8f8f8;
 		border-bottom: 1px solid #ccc;
-	}
-	
-	.info-box-content{
-		display: none;
 	}
 	
 	.photh{
@@ -207,6 +224,66 @@
 		margin-top: 30px;
 		display: none;
 	} 
+	
+	.info-box-nullOk-head h3{
+		display: inline-block;
+		margin-right: 10px;
+	}
+	
+	.nullOk-top{
+		margin-top:15px;
+		margin-bottom:20px;
+		border-top: 1px solid #fb246a;
+		padding-top: 20px;
+		display: none;
+	}
+	
+	.nullOk-chk{
+		width: 20px;
+    	height: 20px;
+	}
+
+	.addDiv{
+		text-align: right;
+		margin-top: 30px;
+		display: none;
+	} 
+	
+	.addBt{
+		width: 130px;
+	    border: 1px solid #fb246a;
+	    background-color: #fb246a;
+	    color: white;
+	    height: 40px;
+	    padding: 5px;
+	}
+	
+	.subBt{
+		width: 130px;
+	    border: 1px solid #fb246a;
+	    background-color: #fb246a;
+	    color: white;
+	    height: 40px;
+	    padding: 5px;
+	   	display: none;
+	   	position: absolute;
+    	right: 0px;
+    	top: -20px;
+	}
+	
+	.bt-sub{
+		width: 250px;
+		
+	    border: 1px solid #fb246a;
+	    background-color: #fb246a;
+	    color: white;
+	    height: 70px;
+	    padding: 5px;
+	}
+	
+	footer{
+		width: 1900px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -221,6 +298,16 @@
 				$(this).next().slideDown();				
 			}else{
 				$(this).next().slideUp();								
+			}
+		});
+		
+		$('.nullOk-chk').change(function(){
+			if($(this).parent().parent().find(".nullOk-top").css("display")=="none"){
+				$(this).parent().parent().find(".nullOk-top").slideDown();				
+				$(this).parent().parent().find(".addDiv").slideDown();				
+			}else{
+				$(this).parent().parent().find(".nullOk-top").slideUp();								
+				$(this).parent().parent().find(".addDiv").slideUp();				
 			}
 		});
 		
@@ -262,6 +349,12 @@
 			monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
 		});
 		$('.endDay').datepicker({
+			dateFormat:'yy-mm-dd',
+			changeYear:true,
+			dayNamesMin:['일','월','화','수','목','금','토'],
+			monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+		});
+		$('.passDay').datepicker({
 			dateFormat:'yy-mm-dd',
 			changeYear:true,
 			dayNamesMin:['일','월','화','수','목','금','토'],
@@ -379,9 +472,9 @@
 			$addCareer.find("input[type=radio]").removeAttr('checked');
 			$addCareer.find('#rankEtc').attr("disabled","disabled");
 			$addCareer.find('.rank-position').css("display","none");
-			$('.career-info:not(:eq(0))').find(".career-subBt").css("display","block");
-
 			$(".career-addDiv").before($addCareer);
+			$('.career-info:not(:eq(0))').find(".career-subBt").css("display","block");
+			
 			$(".startDay").removeAttr("id");
 			$(".endDay").removeAttr("id");
 			
@@ -403,14 +496,59 @@
 		$(".career-subBt").click(function(){
 			$(this).parent().parent().remove();
 		});
+		
+		$('.taAuto').keyup(function(){
+			$(this).css('height', 'auto' );
+	        $(this).height( this.scrollHeight-11 );
+		});
+		
+		$(".addBt").click(function(){
+			var $addContent = $(this).parent().parent().find('.info-box-content:eq(0)').clone(true);
+			$addContent.find("input[type=text]").val("");
+			$addContent.find("textarea").val("");
+			$addContent.find("textarea").height(35.25);
+			$addContent.find("input[type=radio]").removeAttr('checked');
+			$(this).parent().parent().find(".addDiv").before($addContent);
+			$(this).parent().parent().find('.info-box-content:not(:eq(0))').find(".subBt").css("display","block");
+			
+			$(".startDay").removeAttr("id");
+			$(".endDay").removeAttr("id");
+			$(".passDay").removeAttr("id");
+			
+			$(".startDay").removeClass('hasDatepicker').datepicker({
+				dateFormat:'yy-mm-dd',
+				changeYear:true,
+				dayNamesMin:['일','월','화','수','목','금','토'],
+				monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+			});
+			$(".endDay").removeClass('hasDatepicker').datepicker({
+				dateFormat:'yy-mm-dd',
+				changeYear:true,
+				dayNamesMin:['일','월','화','수','목','금','토'],
+				monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+			});
+			$(".passDay").removeClass('hasDatepicker').datepicker({
+				dateFormat:'yy-mm-dd',
+				changeYear:true,
+				dayNamesMin:['일','월','화','수','목','금','토'],
+				monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+			});
+			
+		});
+		
+		$(".subBt").click(function(){
+			$(this).parent().parent().remove();
+		});
 	});
 </script>
 <body>
 	<div class="resume-main">
+		<h1 style="background: white;padding: 20px 0;font-weight: bold;">이력서 작성
+			<span style="font-size: 14px; color: #777; padding-left: 30px;">* 필수가 아닌항목은 체크해제시 적용되지 않습니다.</span></h1>
 		<form name="frmResume" method="post" action="">
 		<div class="info-box">
 			<div class="info-box-head">
-				<h3>기본 정보</h3>
+				<h3>기본 정보 ▼</h3>
 			</div>
 			<div class="info-box-content">
 				<div class="col-lg-10">
@@ -429,7 +567,7 @@
 		</div>
 		<div class="info-box">
 			<div class="info-box-head">
-				<h3>학력사항</h3>
+				<h3>*학력사항 ▼</h3>
 			</div>
 			<div class="info-box-content edu">
 				<input class="educationBt" type="button" value="초등학교 졸업"/>
@@ -585,7 +723,7 @@
 		</div>
 		<div class="info-box">
 			<div class="info-box-head">
-				<h3>경력사항</h3>
+				<h3>*경력사항 ▼</h3>
 			</div>
 			<div class="info-box-content career">
 				<input class="careerBt" type="button" value="신입"/>
@@ -823,11 +961,174 @@
 			</div>
 		</div>
 		<div class="info-box">
+			<div class="info-box-nullOk-head">
+				<h3>대외활동 </h3>
+				<input type="checkbox" class="nullOk-chk" />
+			</div>
+			<div class="info-box-content nullOk-top">
+				<div class="col-lg-10">
+						<input class="subBt" type="button" value="삭제하기"/>
+				</div>
+				<div class="col-lg-10">
+							<label for="local" class="col-lg-2 control-label">활동구분</label> 
+							<select class="form-control" name="local">
+								<option value="">활동구분 선택</option>
+								<option value="교내활동">교내활동</option>
+								<option value="인턴">인턴</option>
+								<option value="자원봉사">자원봉사</option>
+								<option value="동아리">동아리</option>
+								<option value="아르바이트">아르바이트</option>
+								<option value="사회활동">사회활동</option>
+								<option value="수행과제">수행과제</option>
+								<option value="해외연수">해외연수</option>
+								<option value="교육이수내역">교육이수내역</option>
+							</select>
+					</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">기관/장소</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="기관/장소 입력" maxlength="30">
+					</div>
+					<div class="col-lg-10 term">
+						<label for="term" class="col-lg-2 control-label">활동기간</label>
+						<div>
+							<input type="text" class="form-control startDay" name="startDay" readonly="readonly"/> 
+							<span style="margin:0 40px;">-</span>
+							<input type="text" class="form-control endDay" name="endDay" readonly="readonly"/>
+						</div>
+					</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">활동내용</label> 
+							<textarea rows="1" cols="50" class="form-control taAuto" 
+							placeholder="활동내용 입력"></textarea>
+					</div>
+			</div>
+			<div class="addDiv">
+					<input class="addBt" type="button" value="추가하기"/>
+			</div>		
+		</div>
+		<div class="info-box">
+			<div class="info-box-nullOk-head">
+				<h3>자격증/어학/수상 내역(미구현)</h3>
+				<input type="checkbox" class="nullOk-chk" />
+			</div>
+			<div class="info-box-content nullOk-top">
+				<div class="col-lg-10">
+						<input class="subBt" type="button" value="삭제하기"/>
+				</div>
+				<div class="col-lg-10">
+							<label for="local" class="col-lg-2 control-label">항목선택</label> 
+							<select class="form-control" name="local">
+								<option value="자격증/면허증">자격증/면허증</option>
+								<option value="어학시험">어학시험</option>
+								<option value="공모전">공모전</option>
+							</select>
+					</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">기관/장소</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="기관/장소 입력" maxlength="30">
+					</div>
+					<div class="col-lg-10 term">
+						<label for="term" class="col-lg-2 control-label">활동기간</label>
+						<div>
+							<input type="text" class="form-control passDay" name="passDay" readonly="readonly"/> 
+						</div>
+					</div>
+			</div>
+			<div class="addDiv">
+					<input class="addBt" type="button" value="추가하기"/>
+			</div>		
+		</div>
+		<div class="info-box">
+			<div class="info-box-nullOk-head">
+				<h3>취업 우대사항</h3>
+				<input type="checkbox" class="nullOk-chk" />
+			</div>
+			<div class="info-box-content nullOk-top">
+				<div class="col-lg-10">
+							<label for="local" class="col-lg-2 control-label">보훈대상</label> 
+							<select class="form-control" name="local">
+								<option value="비대상">비대상</option>
+								<option value="대상">대상</option>
+							</select>
+				</div>
+				<div class="col-lg-10">
+							<label for="local" class="col-lg-2 control-label">병역대상</label> 
+							<select class="form-control" name="local">
+								<option value="대상아님">대상아님</option>
+								<option value="군필">군필</option>
+								<option value="미필">미필</option>
+								<option value="면제">면제</option>
+								<option value="복무중">복무중</option>
+							</select>
+				</div>
+				<div class="col-lg-10">
+							<label for="local" class="col-lg-2 control-label">고용지원금 대상</label> 
+							<select class="form-control" name="local">
+								<option value="비대상">비대상</option>
+								<option value="대상">대상</option>
+							</select>
+				</div>
+			</div>	
+		</div>
+		<div class="info-box">
+			<div class="info-box-nullOk-head">
+				<h3>포트폴리오</h3>
+				<input type="checkbox" class="nullOk-chk" />
+			</div>
+			<div class="info-box-content nullOk-top">
+				<div class="col-lg-10">
+							<label for="local" class="col-lg-2 control-label">파일찾기</label> 
+							
+				</div>
+				<div class="col-lg-10 term">
+						<label for="term" class="col-lg-2 control-label">작업기간</label>
+						<div>
+							<input type="text" class="form-control startDay" name="startDay" readonly="readonly"/> 
+							<span style="margin:0 40px;">-</span>
+							<input type="text" class="form-control endDay" name="endDay" readonly="readonly"/>
+						</div>
+				</div>
+				<div class="col-lg-10">
+							<label class="col-lg-2 control-label">작업툴</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="작업툴 입력" maxlength="30">
+				</div>
+				<div class="col-lg-10">
+							<label class="col-lg-2 control-label">작업인원</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="작업인원 입력" maxlength="3">
+				</div>	
+				<div class="col-lg-10">
+							<label class="col-lg-2 control-label">작품소개</label> 
+							<textarea rows="1" cols="50" class="form-control taAuto" 
+							placeholder="작품 소개 입력"></textarea>
+				</div>	
+			</div>	
+		</div>
+		<div class="info-box">
 			<div class="info-box-head">
-				<h3></h3>
+				<h3>*자기소개서 ▼</h3>
 			</div>
 			<div class="info-box-content">
+				<div class="col-lg-10">
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="자기소개서 제목" maxlength="15">
+				</div>
+				<div class="col-lg-10">
+							<textarea rows="1" cols="50" class="form-control" 
+							placeholder="자기소개서 내용" style="height: 300px"></textarea>
+				</div>
 			</div>
+		</div>
+		<div style="text-align:center; padding: 20px;">
+			<input class="bt-sub" type="submit"/>
 		</div>
 		</form>
 	</div>

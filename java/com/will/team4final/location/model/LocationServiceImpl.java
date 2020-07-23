@@ -20,5 +20,10 @@ public class LocationServiceImpl implements LocationService{
 	public List<LocationVO> selectAllLocation() {
 		return locaDao.selectAllLocation();
 	}
+
+	@Override
+	public List<String> selectSigugun(String sido) {
+		return locaDao.selectSigugun(sido);
+	}
 	
 }

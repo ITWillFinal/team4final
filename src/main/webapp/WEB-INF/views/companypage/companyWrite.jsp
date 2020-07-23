@@ -41,18 +41,10 @@
 
 	}
 	$(function() {
-		$('#sido').change(function() {
+		$('#sido').click(function() {
+			var sido = $('#sido').val();
+			alert(sido);
 			
-			var ee = $('#sido option:selected').val();
-			alert(ee);
-			
-			$('#sigugunS').css('display', 'inline');
-			
-			<c:forEach var="vo" items="${allList }">
-				$('option[value='+ee+']').css('display', 'block');
-			</c:forEach>
-		
-		});
 
 		
 	});
@@ -133,16 +125,7 @@
 								</c:forEach>
 							</c:if>
 						</select>
-						<div id="sigugunS">
-						<select>
-							<option value="" id="sigugun"></option>
-							<c:if test="${!empty allList }">
-								<c:forEach var="all" items="${allList }">
-									<option value="${all.sido }" id="sigugun">${all.sigugun }</option>
-								</c:forEach>
-							</c:if>
-						</select>
-						</div>
+						<div style="display: inline;" id="sigugunDiv"></div>
 					</td>
 				</tr>
 					

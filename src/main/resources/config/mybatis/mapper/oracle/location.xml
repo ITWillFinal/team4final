@@ -9,6 +9,10 @@
 	<select id="selectAllLocation" resultType="locationVo">
 		select * from location
 	</select>
+	
+	<select id="selectSigugun" parameterType="string" resultType="string">
+		select sigugun from location where sido = #{sido}
+	</select>
 </mapper>
 
 
