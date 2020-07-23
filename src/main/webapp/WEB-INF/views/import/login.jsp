@@ -35,8 +35,7 @@
 						</a>
 					</div>
 					<!-- 구글 -->
-					<div id="google_id_login" style="text-align:center"><a href="${google_url}">
-					<img width="230" src="<c:url value='/resources/images/googleLogin.png' /> "/></a></div>
+					<div id="google_id_login" style="text-align:center"><a href="${google_url}"><img width="230" src="${pageContext.request.contextPath}/resources/images/btn_google_signin_dark_normal_web@2x.png"/></a></div>
 					
 				</form>
 			</div>
