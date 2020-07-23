@@ -86,8 +86,8 @@ public class MemberController {
 	}
 
 	@RequestMapping("/email.do")
-	public String email(@RequestParam String email) {
-		logger.info("이메일 화면, 파라미터 email={}", email);
+	public String email() {
+		logger.info("이메일 화면");
 		return "member/email";
 	}
 

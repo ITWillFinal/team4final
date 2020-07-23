@@ -3,8 +3,6 @@ package com.will.team4final.company.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.will.team4final.member.model.MemberService;
-
 @Service
 public class ComMemberServiceImpl implements ComMemberService{
 	@Autowired private ComMemberDAO comMemberDao;
@@ -17,6 +15,7 @@ public class ComMemberServiceImpl implements ComMemberService{
 	@Override
 	public int selectCMemberDup(String cUserid) {
 		int cnt = comMemberDao.selectCMemberDup(cUserid);
+		System.out.println("아이디 중복 체크 결과. cnt= "+ cnt);
 		int result=0;
 		if(cnt>0) {
 			result=EXIST_ID;
