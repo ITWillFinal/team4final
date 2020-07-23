@@ -6,19 +6,19 @@
 <head>
 <meta charset="UTF-8">
 </head>
+<input type="hidden" id="return" value="${email }">
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
 <script type="text/javascript">
-	$(function(){
-		$('#btUse').click(function(){
+	window.onload = function () {
+		if($('#return').val().length >0 ){
 			$(opener.document).find('#email').val("${param.e_mail}");
 			$(opener.document).find('#chkEmail').val("Y");
 			$(opener.document).find('#email').attr('readonly', 'readonly');
+			self.close();	
+		}
 			
-			self.close();			
-		});
-		
-	});
+	};
 	
 </script>
 <body>
@@ -44,10 +44,5 @@
 			</form>
 		</div>
 	</c:if>
-	<c:if test="${!empty email }">
-		<input type="button" value="사용하기" id="btUse">
-			<p>사용가능한 이메일입니다. [사용하기]버튼을 클릭하세요</p>
-	</c:if>
-
 </body>
 </html>

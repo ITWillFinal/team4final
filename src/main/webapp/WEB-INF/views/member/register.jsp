@@ -232,9 +232,9 @@ height: 3px;
 				<hr>
 				<div class="form-group" id="divEmail">
 				<div class="col-lg-10">
-					<label for="inputEmail" class="col-lg-2 control-label">*이메일 인증</label>
-					<input type="email" class="form-control" id="email" name="email"
-						data-rule-required="true" placeholder="이메일" maxlength="40" >
+					<label for="inputEmail" class="col-lg-3 control-label">*이메일 인증</label>
+						<input type="email" class="form-control" id="email" name="email"
+							data-rule-required="true" placeholder="이메일" maxlength="40" >
 				</div>
 			</div>
 				<div class="col-lg-10">
