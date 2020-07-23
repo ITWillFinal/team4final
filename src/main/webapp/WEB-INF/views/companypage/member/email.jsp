@@ -24,7 +24,7 @@
 </script>
 <body>
 	<div style="text-align: center;">
-		<form name="frm" action="<c:url value='/member/auth.do' /> " method="post">
+		<form name="frm" action="<c:url value='/companypage/member/auth.do' /> " method="post">
 			<br>
 			<div>
 				이메일 : <input type="email" name="e_mail" value="${param.email }" id="email_id"
