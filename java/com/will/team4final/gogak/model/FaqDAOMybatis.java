@@ -46,13 +46,13 @@ public class FaqDAOMybatis implements FaqDAO{
 	}
 
 	@Override
-	public FaqVO before(int fnqNo) {
-		return sqlsesseion.selectOne(namespace+"before", fnqNo);
+	public FaqVO before(int faqNo) {
+		return sqlsesseion.selectOne(namespace+"before", faqNo);
 	}
 
 	@Override
-	public FaqVO after(int fnqNo) {
-		return sqlsesseion.selectOne(namespace+"after", fnqNo);
+	public FaqVO after(int faqNo) {
+		return sqlsesseion.selectOne(namespace+"after", faqNo);
 	}
 	
 	

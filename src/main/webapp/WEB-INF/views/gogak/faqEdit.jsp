@@ -42,7 +42,7 @@ input#rrr {
 <div id="outDiv">
 	<form name = "frmWrite" method="post" 
 		action="<c:url value = '/gogak/faqEdit.do'/>">
-		<input type = "text" value = "${vo.fnqNo }" name = "no">
+		<input type = "text" value = "${vo.faqNo }" name = "no">
 		<table style="width: 700px; border: 1px solid lightgray;">
 			<colgroup>
 				<col style="width: 20%;" />
