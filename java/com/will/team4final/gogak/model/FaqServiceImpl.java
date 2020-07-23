@@ -50,8 +50,8 @@ public class FaqServiceImpl implements FaqService{
 		int cnt = 0;
 		try {
 			for(FaqVO vo : list) {
-				if(vo.getFnqNo() != 0) {
-					cnt = faqDao.deleteFaq(vo.getFnqNo());
+				if(vo.getfaqNo() != 0) {
+					cnt = faqDao.deleteFaq(vo.getfaqNo());
 				}
 			}
 		}catch(RuntimeException e) {
@@ -63,13 +63,13 @@ public class FaqServiceImpl implements FaqService{
 	}
 
 	@Override
-	public FaqVO before(int fnqNo) {
-		return faqDao.before(fnqNo);
+	public FaqVO before(int faqNo) {
+		return faqDao.before(faqNo);
 	}
 
 	@Override
-	public FaqVO after(int fnqNo) {
-		return faqDao.after(fnqNo);
+	public FaqVO after(int faqNo) {
+		return faqDao.after(faqNo);
 	}
 	
 }

@@ -11,7 +11,7 @@ public interface FaqDAO {
 	public int editFaq(FaqVO vo);
 	public int deleteFaq(int no);
 	public int selectTotalRecord(SearchVO vo);
-	public FaqVO before(int fnqNo);
-	public FaqVO after(int fnqNo);
+	public FaqVO before(int faqNo);
+	public FaqVO after(int faqNo);
 	
 }

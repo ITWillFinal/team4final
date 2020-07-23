@@ -3,7 +3,7 @@
 
 <footer>
     <!-- Footer Start-->
-    <div class="footer-area footer-bg footer-padding">
+    <div class="footer-area footer-bg footer-padding" style="clear:both;">
         <div class="container">
           
            <!--  -->
