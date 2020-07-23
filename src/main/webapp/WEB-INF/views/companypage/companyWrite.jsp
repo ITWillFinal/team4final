@@ -129,7 +129,6 @@
 						<input type="text">
 					</td>
 				</tr>
-				
 				<tr>
 					<td>직무</td>
 					<td>
