@@ -373,10 +373,10 @@
 		transition: .4s;	
 	}
 	input:checked + .slider {
-		background-color: #2196F3;
+		background-color: #fb246a;
 	}
 	input:focus + .slider {
-		box-shadow: 0 0 1px #2196F3;
+		box-shadow: 0 0 1px #fb246a;
 	}
 	input:checked + .slider:before {
 		-webkit-transform: translateX(13px);
@@ -421,11 +421,11 @@
 		
 		$('.nullOk-chk').change(function(){
 			if($(this).is(":checked")){
-				$(this).parent().parent().find(".nullOk-top").slideDown();				
-				$(this).parent().parent().find(".addDiv").slideDown();				
+				$(this).parent().parent().parent().find(".nullOk-top").slideDown();				
+				$(this).parent().parent().parent().find(".addDiv").slideDown();				
 			}else{
-				$(this).parent().parent().find(".nullOk-top").slideUp();								
-				$(this).parent().parent().find(".addDiv").slideUp();				
+				$(this).parent().parent().parent().find(".nullOk-top").slideUp();								
+				$(this).parent().parent().parent().find(".addDiv").slideUp();				
 			}
 		});
 		
@@ -1176,7 +1176,10 @@
 		<div class="info-box hope">
 			<div class="info-box-nullOk-head">
 				<h3>희망 근무조건 </h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
@@ -1272,7 +1275,10 @@
 			<input type="hidden" name="activity">
 			<div class="info-box-nullOk-head">
 				<h3>대외활동 </h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
@@ -1320,7 +1326,10 @@
 		<div class="info-box">
 			<div class="info-box-nullOk-head">
 				<h3>자격증</h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
@@ -1352,7 +1361,10 @@
 		<div class="info-box">
 			<div class="info-box-nullOk-head">
 				<h3>어학</h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
@@ -1396,7 +1408,10 @@
 		<div class="info-box">
 			<div class="info-box-nullOk-head">
 				<h3>수상내역/공모전</h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
@@ -1429,7 +1444,10 @@
 			<input type="hidden" name="special"/>
 			<div class="info-box-nullOk-head">
 				<h3>취업 우대사항</h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
@@ -1462,7 +1480,10 @@
 			<input type="hidden" name="portfolio"/>
 			<div class="info-box-nullOk-head">
 				<h3>포트폴리오</h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
@@ -1499,7 +1520,10 @@
 		<div class="info-box self-int">
 			<div class="info-box-nullOk-head">
 				<h3>자기소개서 </h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
