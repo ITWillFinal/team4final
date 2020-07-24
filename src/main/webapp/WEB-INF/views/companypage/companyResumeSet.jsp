@@ -13,7 +13,7 @@
 		width:100%;
 	}
 	hr {
-		border:1.5px solid #FB246A;
+		border:1px solid #FB246A;
 		width:100%;
 	}
 
@@ -68,6 +68,7 @@
 	.slider.round:before {
 		border-radius: 50%;
 	}
+	/* 토글 슬라이더 끝 */
 </style>
 <script type="text/javascript">
 	
@@ -168,11 +169,13 @@
 	<%@ include file="../inc/companySidebar.jsp" %>
 	
 	<!-- main -->
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; border:1px solid lightgray">
+	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form>
+		<%--
 		<div style="margin:5px; height:95px; border:1px solid lightgray">
 		위쪽 가로 긴 구역
 		</div>
+		--%>
 		<span style="font-size: 25px; font-weight: bold;">자사 이력서 양식 설정</span>
 		<hr>
 		<div style="margin:5px;">
@@ -417,7 +420,7 @@
 					</table>
 				</div>
 			</div>
-			<br>
+			<hr>
 			<div style="text-align: center;">
 				<input type="submit" value="설정완료">
 				<input type="button" value="뒤로가기">
