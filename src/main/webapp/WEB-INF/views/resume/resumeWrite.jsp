@@ -26,7 +26,7 @@
 		resize: none;
 	}
 	
-	.info-box-content a{
+	.info-box-content .member-edit{
 		color: #fb246a;
 		position: absolute;
     	top: -10px;
@@ -65,6 +65,55 @@
 		border: 1px solid;
 		right: 30px;
     	top: 15%r;
+	}
+	
+	.month-picker, .month-picker-end{
+		width: 240px;
+		height: 150px;
+		padding: 15px;
+		border: 1px solid black;
+		text-align: center;
+		position: absolute;
+		top: -115px;
+		background: white;
+	}
+
+	.month-picker-end{
+  	  left: 475px;
+	}
+	
+	.month-picker-month{
+		padding-right: 10px;
+	}
+	
+	.year-prev,.year-next{
+		float: left;
+		color:#cacbcc;
+		margin: 0 20px;
+	}
+	.year-prev:hover,.year-next:hover{
+		color:black;
+	}
+
+	.year-prev{
+		float: left;
+	}
+
+	.year-next{
+		float: right;
+	}
+	
+	.month-picker-month a{
+		margin: 5px;
+	    width: 35px;
+	    display: inline-block;
+	    text-align: right;
+	    color:black;
+	}
+	
+	.month-picker-month a:hover{
+		background: #fb246a;
+		color: white;
 	}
 	
 	.edu{
@@ -288,11 +337,73 @@
 	footer{
 		width: 1900px;
 	}
+	
+	/* 체크박스 => 토글 슬라이더 */
+	.switch {
+	position: relative;
+	display: inline-block;
+	width: 30px;
+	height: 17px;
+	}
+	.switch input {
+		opacity: 0;
+		width: 0;
+		height: 0;	
+	}
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #ccc;
+		-webkit-transition: .4s;
+		transition: .4s;
+	}
+	.slider:before {
+		position: absolute;
+		content: "";
+		height: 13px;
+		width: 13px;
+		left:2px;
+		bottom: 2px;
+		background-color: white;
+		-webkit-transition: .4s;
+		transition: .4s;	
+	}
+	input:checked + .slider {
+		background-color: #fb246a;
+	}
+	input:focus + .slider {
+		box-shadow: 0 0 1px #fb246a;
+	}
+	input:checked + .slider:before {
+		-webkit-transform: translateX(13px);
+		-ms-transform: translateX(13px);
+		transform: translate(13px);
+	}
+	.slider.round {
+		border-radius: 17px;
+	}
+	.slider.round:before {
+		border-radius: 50%;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
 		var school="";
 		var careerBt="";
+		
+		/* $('html').click(function(e) { 
+			if(!$(e.target).hasClass("removeThis")){ 
+				if($("html").find("removeThis").val()=="undefined"){
+					$('.removeThis').remove();
+				}
+			} 
+		}); */
+
+		
 		
 		$(".info-box-head").hover(function(){
 			$(this).css("background","#ccc");
@@ -310,11 +421,11 @@
 		
 		$('.nullOk-chk').change(function(){
 			if($(this).is(":checked")){
-				$(this).parent().parent().find(".nullOk-top").slideDown();				
-				$(this).parent().parent().find(".addDiv").slideDown();				
+				$(this).parent().parent().parent().find(".nullOk-top").slideDown();				
+				$(this).parent().parent().parent().find(".addDiv").slideDown();				
 			}else{
-				$(this).parent().parent().find(".nullOk-top").slideUp();								
-				$(this).parent().parent().find(".addDiv").slideUp();				
+				$(this).parent().parent().parent().find(".nullOk-top").slideUp();								
+				$(this).parent().parent().parent().find(".addDiv").slideUp();				
 			}
 		});
 		
@@ -349,24 +460,150 @@
 		});
 		
 
-		$('.startDay').datepicker({
-			dateFormat:'yy-mm-dd',
-			changeYear:true,
-			dayNamesMin:['일','월','화','수','목','금','토'],
-			monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+		$('.startDay').click(function(){
+			var monthPicker="";
+			monthPicker +="<div class='month-picker removeThis'>";
+			monthPicker +="<div class='month-picker-year removeThis'>";
+			monthPicker +="<a href='#' class='year-prev removeThis'>◀</a>";
+			monthPicker +="<span>2020</span><span>년</span>";
+			monthPicker +="<a href='#' class='year-next removeThis'>▶</a></div>"
+			monthPicker +="<div class='month-picker-month removeThis'>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>1월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>2월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>3월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>4월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>5월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>6월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>7월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>8월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>9월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>10월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>11월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>12월</a></div></div>";
+			$(this).after(monthPicker);			
+			
+			if($(this).val().length>0){
+				var yyyy =$(this).val().substring(0,4);
+				var mm = Number($(this).val().substring(4,6));
+				$(this).next().find('span:eq(0)').text(yyyy);
+				$(this).next().find('a').each(function(){
+					var mm_check;
+					if($(this).text().length>2){
+						mm_check = Number($(this).text().substring(0,2));
+					}else{
+						mm_check = Number($(this).text().substring(0,1));						
+					}
+					if(mm==mm_check){
+						$(this).css("color","white").css("background","#fb246a");
+					}
+				});
+			}
 		});
-		$('.endDay').datepicker({
-			dateFormat:'yy-mm-dd',
-			changeYear:true,
-			dayNamesMin:['일','월','화','수','목','금','토'],
-			monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+		
+		$('.endDay').click(function(){
+			var monthPicker="";
+			monthPicker +="<div class='month-picker-end removeThis'>";
+			monthPicker +="<div class='month-picker-year removeThis'>";
+			monthPicker +="<a href='#' class='year-prev removeThis'>◀</a>";
+			monthPicker +="<span>2020</span><span>년</span>";
+			monthPicker +="<a href='#' class='year-next removeThis'>▶</a></div>"
+			monthPicker +="<div class='month-picker-month removeThis'>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>1월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>2월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>3월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>4월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>5월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>6월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>7월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>8월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>9월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>10월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>11월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>12월</a></div></div>";
+			$(this).after(monthPicker);	
+			
+			if($(this).val().length>0){
+				var yyyy =$(this).val().substring(0,4);
+				var mm = Number($(this).val().substring(4,6));
+				$(this).next().find('span:eq(0)').text(yyyy);
+				$(this).next().find('a').each(function(){
+					var mm_check;
+					if($(this).text().length>2){
+						mm_check = Number($(this).text().substring(0,2));
+					}else{
+						mm_check = Number($(this).text().substring(0,1));						
+					}
+					if(mm==mm_check){
+						$(this).css("color","white").css("background","#fb246a");
+					}
+				});
+			}
 		});
-		$('.passDay').datepicker({
-			dateFormat:'yy-mm-dd',
-			changeYear:true,
-			dayNamesMin:['일','월','화','수','목','금','토'],
-			monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+		
+		$('.passDay').click(function(){
+			var monthPicker="";
+			monthPicker +="<div class='month-picker removeThis'>";
+			monthPicker +="<div class='month-picker-year removeThis'>";
+			monthPicker +="<a href='#' class='year-prev removeThis'>◀</a>";
+			monthPicker +="<span>2020</span><span>년</span>";
+			monthPicker +="<a href='#' class='year-next removeThis'>▶</a></div>"
+			monthPicker +="<div class='month-picker-month removeThis'>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>1월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>2월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>3월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>4월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>5월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>6월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>7월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>8월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>9월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>10월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>11월</a>";
+			monthPicker +="<a href='#' class='month-choice removeThis'>12월</a></div></div>";
+			$(this).after(monthPicker);		
+			
+			if($(this).val().length>0){
+				var yyyy =$(this).val().substring(0,4);
+				var mm = Number($(this).val().substring(4,6));
+				$(this).next().find('span:eq(0)').text(yyyy);
+				$(this).next().find('a').each(function(){
+					var mm_check;
+					if($(this).text().length>2){
+						mm_check = Number($(this).text().substring(0,2));
+					}else{
+						mm_check = Number($(this).text().substring(0,1));						
+					}
+					if(mm==mm_check){
+						$(this).css("color","white").css("background","#fb246a");
+					}
+				});
+			}
 		});
+		
+		$(document).on("click",".year-prev",function(e){
+				e.preventDefault();
+				$(this).next().text(Number($(this).next().text())-1);	
+		});
+
+		$(document).on("click",".year-next",function(e){
+				e.preventDefault();
+				$(this).prev().prev().text(Number($(this).prev().prev().text())+1);	
+		});
+		
+		$(document).on("click",".month-choice",function(e){
+				e.preventDefault();
+				var yyyyMM ="";
+				yyyyMM += $(this).parent().parent().find('.month-picker-year').find('span:eq(0)').text();
+				if($(this).text().length==2){
+					yyyyMM+= "0"+$(this).text().substring(0,1);					
+				}else{
+					yyyyMM+= $(this).text().substring(0,2);										
+				}
+				$(this).parent().parent().prev().val(yyyyMM);
+				$(this).parent().parent().remove();
+				
+		});
+		
 		
 		$('#major').change(function(){
 			if($(this).val()=="직접입력"){
@@ -482,22 +719,6 @@
 			$(".career-addDiv").before($addCareer);
 			$('.career-info:not(:eq(0))').find(".career-subBt").css("display","block");
 			
-			$(".startDay").removeAttr("id");
-			$(".endDay").removeAttr("id");
-			
-			$(".startDay").removeClass('hasDatepicker').datepicker({
-				dateFormat:'yy-mm-dd',
-				changeYear:true,
-				dayNamesMin:['일','월','화','수','목','금','토'],
-				monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-			});
-			$(".endDay").removeClass('hasDatepicker').datepicker({
-				dateFormat:'yy-mm-dd',
-				changeYear:true,
-				dayNamesMin:['일','월','화','수','목','금','토'],
-				monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-			});
-			
 		});
 		
 		$(".career-subBt").click(function(){
@@ -518,29 +739,6 @@
 			$(this).parent().parent().find(".addDiv").before($addContent);
 			$(this).parent().parent().find('.info-box-content:not(:eq(0))').find(".subBt").css("display","block");
 			
-			$(".startDay").removeAttr("id");
-			$(".endDay").removeAttr("id");
-			$(".passDay").removeAttr("id");
-			
-			$(".startDay").removeClass('hasDatepicker').datepicker({
-				dateFormat:'yy-mm-dd',
-				changeYear:true,
-				dayNamesMin:['일','월','화','수','목','금','토'],
-				monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-			});
-			$(".endDay").removeClass('hasDatepicker').datepicker({
-				dateFormat:'yy-mm-dd',
-				changeYear:true,
-				dayNamesMin:['일','월','화','수','목','금','토'],
-				monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-			});
-			$(".passDay").removeClass('hasDatepicker').datepicker({
-				dateFormat:'yy-mm-dd',
-				changeYear:true,
-				dayNamesMin:['일','월','화','수','목','금','토'],
-				monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-			});
-			
 		});
 		
 		$(".subBt").click(function(){
@@ -548,108 +746,8 @@
 		});
 		
 		$(".bt-sub").click(function(){
-			var edu = "";
-			if(school=="고등학교"){
-						edu=school+"#"+$("input[name=schoolName]").val()+"#"+$("select[name=schoolLocal]").val()+
-						"#"+$('select[name=schoolStartDaySel]').val()+":"+$("input[name=schoolStartDay]").val()+" ~ "+
-						$('select[name=schoolEndDaySel]').val()+":"+$("input[name=schoolEndDay]").val()+"#"+
-						$("select[name=major-high]").val();
-					}else if(school=="대학·대학원"){
-						var major="";
-						var grade="";
-						
-						if($('select[name=majorSel]').val()=="직접입력"){
-							major=$("input[name=majorSelEtc]").val()+"-"+$("input[name=major]").val()
-						}else{
-							major=$("select[name=majorSel]").val()+"-"+$("input[name=major]").val()
-						}
-						
-						if($("input[name=grade]").val()=="" || $('select[name=gradeSel]').val()==""){
-							grade="";
-						}else{
-							grade=$("input[name=grade]").val()+"/"+$('select[name=gradeSel]').val();
-						}
-						
-						edu=school+"#"+$('select[name=curriculum]').val()+"#"+$("input[name=schoolName]").val()+"#"+$("select[name=schoolLocal]").val()+
-						"#"+$('select[name=schoolStartDaySel]').val()+":"+$("input[name=schoolStartDay]").val()+" ~ "+
-						$('select[name=schoolEndDaySel]').val()+":"+$("input[name=schoolEndDay]").val()+"#"+
-						major+"#"+$('select[name=day-night]').val()+"#"+grade;
-					}else{
-						edu=school+"#"+$("input[name=schoolName]").val()+"#"+$("select[name=schoolLocal]").val()+
-						"#"+$('select[name=schoolStartDaySel]').val()+":"+$("input[name=schoolStartDay]").val()+" ~ "+
-						$('select[name=schoolEndDaySel]').val()+":"+$("input[name=schoolEndDay]").val();
-					}
-			$('input[name=education]').val(edu);
 			
-			var career="";
-			
-			if(careerBt=="신입"){
-				career="신입";
-			}else{
-				$(".career-info").each(function(){
-					var leave="";
-					if($(this).find('select[name=leave]').val()=="직접입력"){
-						leave=$(this).find('input[name=leaveEtc]').val();
-					}else{
-						leave=$(this).find('select[name=leave]').val();
-					}
-					var sal="";
-					if(!$(this).find("input[name=salary]").val()==""){
-						sal = $(this).find("input[name=salary]").val()+$(this).find('select[name=salarySel]').val();
-					}
-					
-					career += $(this).find('input[name=company]').val()+"#"+
-					"입사:"+$(this).find("input[name=companyStartDay]").val()+" ~ "+
-					$(this).find('select[name=companyEndDaySel]').val()+":"+$(this).find("input[name=companyEndDay]").val()+"#"+
-					leave+"#"+$(this).find("input[name=rank-position]").val()+"/"+$(this).find("input[name=career-year]").val()+"년차"+"#"+
-					$(this).find("select[name=careerlocal]").val()+"#"+sal+"#"+$(this).find("input[name=responsibilities]").val()+"<br>";
-				});
-			}
-			
-			$('input[name=career]').val(career);
-			
-			if(!$('.hope').find('.nullOk-chk').is(":checked")){
-				$('.hope').find('select[name=sal]').val("");
-				$('.hope').find('select[name=location1]').val("");
-				$('.hope').find('select[name=location2]').val("");
-				$('.hope').find('input[name=jobType1]').val("");
-				$('.hope').find('input[name=jobType2]').val("");
-			}
-			
-			var activity = "";
-			if($(".activity").find('.nullOk-chk').is(":checked")){
-				$(".activity").find(".info-box-content").each(function(){
-					activity+=$(this).find('select[name=activitySel]').val()+"#"+
-					$(this).find("input[name=activityAgency]").val()+"#"+
-					$(this).find("input[name=activityStartDay]").val()+" ~ "+$(this).find("input[name=activityEndDay]").val()+"#"+
-					$(this).find("textarea[name=activityContent]").val()+"<br>";
-				});
-			}
-			$('input[name=activity]').val(activity);
-			
-			var special=""
-			if($(".special").find('.nullOk-chk').is(":checked")){
-				special += "보훈대상:"+$(".special").find("select[name=special1]").val()+"#"+
-				"병역대상:"+$(".special").find("select[name=special2]").val()+"#"+
-				"고용지원금 대상:"+$(".special").find("select[name=special3]").val();
-			}
-			$('input[name=special]').val(special);
-			
-			var portfolio=""
-			if($(".popol").find('.nullOk-chk').is(":checked")){
-				portfolio += $(".popol").find("input[name=popolStartDay]").val()+" ~ "+
-				$(".popol").find("input[name=popolEndDay]").val()+"#"+
-				$(".popol").find("input[name=popolTool]").val()+"#"+$(".popol").find("input[name=popolTeam]").val()+"#"+
-				$(".popol").find("textarea[name=popolInt]").val()
-			}
-			$('input[name=portfolio]').val(portfolio);
-			
-			if(!$('.self-int').find('.nullOk-chk').is(":checked")){
-				$('.self-int').find('input[name=selfIntTitle]').val("");
-				$('.self-int').find('textarea[name=selfInt]').val("");
-			}
-			
-			//event.preventDefault();
+			event.preventDefault();
 		});
 	});
 </script>
@@ -682,12 +780,11 @@
 					<label class="col-lg-2 control-label infoinfo">우편번호 : ${memberVo.zipcode }</label><br><br>
 					<label class="col-lg-2 control-label infoinfo">주소 : ${memberVo.address }</label><br><br>
 					<label class="col-lg-2 control-label infoinfo">상세주소 : ${memberVo.addressDetail }</label><br>
-					<a href="#">기본 정보 수정하기</a> <!-- 회원정보 수정 -->
+					<a href="#" class="member-edit">기본 정보 수정하기</a> <!-- 회원정보 수정 -->
 				</div>
 			</div>
 		</div>
 		<div class="info-box">
-			<input type="hidden" name="education">
 			<div class="info-box-head">
 				<h3>*학력사항 ▼</h3>
 			</div>
@@ -698,10 +795,11 @@
 				<input class="educationBt" type="button" value="대학·대학원 이상 졸업"/>
 				<hr style="border-bottom-color: #fb246a; visibility:hidden;" >
 				<div class="edu-info">
+					<input type="hidden" name="finalEdu">
 					<h5></h5>
 					<div class="col-lg-10 university">
 							<label for="local" class="col-lg-2 control-label">*대학</label> 
-							<select class="form-control" name="curriculum">
+							<select class="form-control" name="uni">
 								<option value="대학(2,3년)">대학(2,3년)</option>
 								<option value="대학교(4년)">대학교(4년)</option>
 								<option value="대학원(석사)">대학원(석사)</option>
@@ -711,7 +809,7 @@
 					<div class="col-lg-10">
 							<label for="shcoolName" class="col-lg-2 control-label">*학교명</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="uniName"
 								placeholder="학교명 입력" maxlength="15">
 					</div>
 					<div class="col-lg-10">
@@ -859,7 +957,7 @@
 						<label for="term" class="col-lg-2 control-label">*재직기간</label>
 						<div>
 							<input type="text" class="form-control startDay" name="companyStartDay" readonly="readonly"/> 
-							<span style="margin:0 40px;">-</span>
+							<span style="margin:0 105px;">-</span>
 							<input type="text" class="form-control endDay" name="companyEndDay" readonly="readonly"/>
 							<select class="form-control col-130px" name="companyEndDaySel">
 								<option value="퇴사">퇴사</option>
@@ -1078,7 +1176,10 @@
 		<div class="info-box hope">
 			<div class="info-box-nullOk-head">
 				<h3>희망 근무조건 </h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
@@ -1174,7 +1275,10 @@
 			<input type="hidden" name="activity">
 			<div class="info-box-nullOk-head">
 				<h3>대외활동 </h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
@@ -1205,7 +1309,7 @@
 						<label for="term" class="col-lg-2 control-label">활동기간</label>
 						<div>
 							<input type="text" class="form-control startDay" name="activityStartDay" readonly="readonly"/> 
-							<span style="margin:0 40px;">-</span>
+							<span style="margin:0 105px;">-</span>
 							<input type="text" class="form-control endDay" name="activityEndDay" readonly="readonly"/>
 						</div>
 					</div>
@@ -1221,29 +1325,112 @@
 		</div>
 		<div class="info-box">
 			<div class="info-box-nullOk-head">
-				<h3>자격증/어학/수상 내역(미구현)</h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<h3>자격증</h3>
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
 						<input class="subBt" type="button" value="삭제하기"/>
 				</div>
-				<div class="col-lg-10">
-							<label for="local" class="col-lg-2 control-label">항목선택</label> 
-							<select class="form-control" name="local">
-								<option value="자격증/면허증">자격증/면허증</option>
-								<option value="어학시험">어학시험</option>
-								<option value="공모전">공모전</option>
-							</select>
-					</div>
 					<div class="col-lg-10">
-							<label class="col-lg-2 control-label">기관/장소</label> 
+							<label class="col-lg-2 control-label">자격증명</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
 								name="schoolName"
-								placeholder="기관/장소 입력" maxlength="30">
+								placeholder="자격증명 입력" maxlength="30">
+					</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">발행처/기관</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="발행처/기관 입력" maxlength="30">
 					</div>
 					<div class="col-lg-10 term">
-						<label for="term" class="col-lg-2 control-label">활동기간</label>
+						<label for="term" class="col-lg-2 control-label">취득일</label>
+						<div>
+							<input type="text" class="form-control passDay" name="passDay" readonly="readonly"/> 
+						</div>
+					</div>
+			</div>
+			<div class="addDiv">
+					<input class="addBt" type="button" value="추가하기"/>
+			</div>		
+		</div>
+		<div class="info-box">
+			<div class="info-box-nullOk-head">
+				<h3>어학</h3>
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
+			</div>
+			<div class="info-box-content nullOk-top">
+				<div class="col-lg-10">
+						<input class="subBt" type="button" value="삭제하기"/>
+				</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">언어</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="언어 입력" maxlength="30">
+					</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">시험종류</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="시험종류 입력" maxlength="30">
+					</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">점수</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="점수 입력" maxlength="30">
+					</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">급수</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="급수 입력" maxlength="30">
+					</div>
+					<div class="col-lg-10 term">
+						<label for="term" class="col-lg-2 control-label">취득일</label>
+						<div>
+							<input type="text" class="form-control passDay" name="passDay" readonly="readonly"/> 
+						</div>
+					</div>
+			</div>
+			<div class="addDiv">
+					<input class="addBt" type="button" value="추가하기"/>
+			</div>	
+		</div>
+		<div class="info-box">
+			<div class="info-box-nullOk-head">
+				<h3>수상내역/공모전</h3>
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
+			</div>
+			<div class="info-box-content nullOk-top">
+				<div class="col-lg-10">
+						<input class="subBt" type="button" value="삭제하기"/>
+				</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">수상명</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="수상명 입력" maxlength="30">
+					</div>
+					<div class="col-lg-10">
+							<label class="col-lg-2 control-label">수여기관</label> 
+							<input type="text" class="form-control onlyAlphabetAndNumber"
+								name="schoolName"
+								placeholder="수여기관 입력" maxlength="30">
+					</div>
+					<div class="col-lg-10 term">
+						<label for="term" class="col-lg-2 control-label">수상/공모일</label>
 						<div>
 							<input type="text" class="form-control passDay" name="passDay" readonly="readonly"/> 
 						</div>
@@ -1257,7 +1444,10 @@
 			<input type="hidden" name="special"/>
 			<div class="info-box-nullOk-head">
 				<h3>취업 우대사항</h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
@@ -1290,7 +1480,10 @@
 			<input type="hidden" name="portfolio"/>
 			<div class="info-box-nullOk-head">
 				<h3>포트폴리오</h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
@@ -1301,7 +1494,7 @@
 						<label for="term" class="col-lg-2 control-label">작업기간</label>
 						<div>
 							<input type="text" class="form-control startDay" name="popolStartDay" readonly="readonly"/> 
-							<span style="margin:0 40px;">-</span>
+							<span style="margin:0 105px;">-</span>
 							<input type="text" class="form-control endDay" name="popolEndDay" readonly="readonly"/>
 						</div>
 				</div>
@@ -1327,7 +1520,10 @@
 		<div class="info-box self-int">
 			<div class="info-box-nullOk-head">
 				<h3>자기소개서 </h3>
-				<input type="checkbox" class="nullOk-chk" />
+				<label class="switch">
+					<input type="checkbox" class="nullOk-chk" />
+					<span class="slider round"></span>
+				</label>
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
