@@ -47,7 +47,6 @@
 	$(function() {
 		$('#sido').click(function() {
 			var sido = $('#sido').val();
-<<<<<<< HEAD
 			$('#sigugun').empty();
 			$('input[name=location1]').empty();
 			$.ajax({
@@ -73,8 +72,6 @@
 			$('input[name=location2]').empty();
 			$('input[name=location2]').val(sigugun);
 		});
-=======
-			alert(sido);
 			
 		
 		$('form[name=formWrite]').submit(function(){
@@ -94,8 +91,6 @@
 		});
 		
 		
-		
->>>>>>> sakura
 		
 	});
 </script>
@@ -202,17 +197,11 @@
 				<tr>
 					<td>근무지역</td>
 					<td>
-<<<<<<< HEAD
-						<select id="sido" size="5">
-							<c:if test="${!empty list }">
-								<c:forEach var="sido" items="${list }">
-									<option value="${sido }">${sido }</option>
-=======
+
 						<select id="sido">
 							<c:if test="${!empty list}">
 								<c:forEach var="location" items="${list}">
 									<option value="${location}">${location}</option>
->>>>>>> sakura
 								</c:forEach>
 							</c:if>
 						</select>
