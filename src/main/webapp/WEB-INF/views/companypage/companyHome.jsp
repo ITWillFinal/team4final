@@ -55,7 +55,7 @@
 	                        <span class="flaticon-real-estate"></span>
 	                    </div>
 	                    <div class="services-cap">
-	                       <h5><a href="job_listing.html">기업정보</a></h5>
+	                       <h5><a href="<c:url value='/companypage/companyInfoWrite.do' />">회사정보등록</a></h5>
 	                        <span>(658)</span>
 	                    </div>
 	                </div>
