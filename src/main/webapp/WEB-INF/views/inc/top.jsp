@@ -180,7 +180,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_id.do' /> " method="post">
-					<input type="text" name="memberType" value="u">
+					<input type="hidden" name="memberType" value="u">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>아이디 찾기</h3>
 						</div>
@@ -208,7 +208,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_pwd.do' /> " method="post">
-					<input type="text" name="memberType" value="u">
+					<input type="hidden" name="memberType" value="u">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>비밀번호 찾기</h3>
 						</div>
@@ -240,7 +240,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_id.do' /> " method="post">
-						<input type="text" name="memberType" value="c">
+						<input type="hidden" name="memberType" value="c">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>아이디 찾기</h3>
 						</div>
@@ -268,7 +268,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_pwd.do' /> " method="post">
-					<input type="text" name="memberType" value="c">
+					<input type="hidden" name="memberType" value="c">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>비밀번호 찾기</h3>
 						</div>
@@ -326,8 +326,8 @@
 											<li><a href="job_listing.html">HOT 100</a></li>
 											<li><a href="about.html">직업검사</a></li>
 											<li><a
-												href="<c:url value='/companypage/companyHome.do'/>">Page</a></li>
-											<li><a href="<c:url value = '/gogak/faq.do'/>">고객센터</a></li>
+												href="<c:url value='/companypage/companyHome.do'/>">기업페이지</a></li>
+											<li><a href="<c:url value = '/gogak/faqList.do'/>">고객센터</a></li>
 										</ul>
 										<div class="totalMenu">
 											<div>

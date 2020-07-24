@@ -16,7 +16,7 @@ create table member
     hp          varchar2(20)    null,
     regdate     varchar2(30)        default sysdate,
     outdate     varchar2(30)        null,
-    user_status varchar2(3) defalut 'U'
+    user_status varchar2(3) default 'U'
     
 );
 

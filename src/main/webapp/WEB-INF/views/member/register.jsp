@@ -158,8 +158,7 @@
 		$('input[name=email]').click(function(){
 			var email = $('#email').val();
 			window.open(
-			"<c:url value='/member/email.do?email="
-			+ email + "'/>", 'emailchk',
+			"<c:url value='/member/email.do'/>", 'emailchk',
 			'width=420,height=300,left=0,top=0,location=yes,resizable=yes');
 		});
 
@@ -239,7 +238,6 @@ height: 3px;
 			</div>
 				<div class="col-lg-10">
 					<label for="userid1" class="col-lg-2 control-label">*아이디</label> 
-					<input type="button" value="중복확인" id="btChk" title="새창열림"> 
 					<input type="text" class="form-control onlyAlphabetAndNumber"
 						id="userid1" name="userid"
 						placeholder="10자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
@@ -334,8 +332,8 @@ height: 3px;
 					<button type="submit" class="btn btn-primary">Sign in</button>
 				</div>
 			</div>
-			<input type="text" name="chkId" id="chkId">
-			<input type="text" name="chkEmail" id="chkEmail">
+			<input type="hidden" name="chkId" id="chkId">
+			<input type="hidden" name="chkEmail" id="chkEmail">
 		</form>
 	</div>
 </body>
