@@ -13,7 +13,7 @@
 		width:100%;
 	}
 	hr {
-		border:1.5px solid #FB246A;
+		border:1px solid #FB246A;
 		width:100%;
 	}
 
@@ -154,11 +154,13 @@
 	<%@ include file="../inc/companySidebar.jsp" %>
 	
 	<!-- main -->
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; border:1px solid lightgray">
+	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form>
+			<!-- 
 			<div style="margin:5px; height:95px; border:1px solid lightgray">
 			위쪽 가로 긴 구역
 			</div>
+			-->
 			<span style="font-size: 25px; font-weight: bold;">자사 이력서 양식 작성</span>
 			<hr>
 			<div style="margin:5px;">
@@ -187,7 +189,7 @@
 					</tr>
 					<tr>
 						<td>우편번호</td>
-						<td><a href="#"><input type="text" value="우편번호 검색" style="cursor:pointer" readonly></a></td>
+						<td><a href="#"><input type="text" value="주소 찾기" style="cursor:pointer" readonly></a></td>
 					</tr>
 					<tr>
 						<td>주소</td>
@@ -203,12 +205,12 @@
 			
 			<div id="schoolDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">학력사항</span>
-				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
+				<%-- 체크박스를 토글로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="schoolChk" checked> <!-- 체크 시 테이블 등장 -->
 					<span class="slider round"></span>
 				</label>
-				체크박스를 토글스위치로 바꾼 부분 끝 --%>
+				체크박스를 토글로 바꾼 부분 끝 --%>
 				<br><br>
 				<div id="schoolDivChk">
 					<input type="button" value="추가" id="schoolAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
@@ -428,7 +430,7 @@
 					</table>
 				</div>
 			</div>
-			<br>
+			<hr>
 			<div style="text-align: center;">
 				<input type="submit" value="작성완료">
 				<input type="button" value="뒤로가기">
