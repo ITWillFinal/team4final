@@ -43,9 +43,31 @@
 	$(function() {
 		$('#sido').click(function() {
 			var sido = $('#sido').val();
-			alert(sido);
-			
-
+			$('#sigugun').empty();
+			$('input[name=location1]').empty();
+			$.ajax({
+				url:"<c:url value='/sigugun.do'/>",
+				type:"get",
+				dataType:"json",
+				data:"sido="+sido,
+				success:function(res){
+					for(var i = 0; i< res.length; i++){
+						var option ="<option value='"+res[i]+"'>"+res[i]+"</option>";
+						$('#sigugun').append(option);
+					}
+				},
+				error:function(xhr, status, error){
+					alert(status + ", " + error);
+				}
+			});
+			$('input[name=location1]').val(sido);
+		});
+		
+		$('#sigugun').click(function() {
+			var sigugun = $('#sigugun').val();
+			$('input[name=location2]').empty();
+			$('input[name=location2]').val(sigugun);
+		});
 		
 	});
 </script>
@@ -55,11 +77,17 @@
 		border: 1px solid lightgray;
 	}	
 	
-	#sigugunS{
-		display: none;
+	select{
+		width:150px;
+		text-align: center;
+		text-align-last: center;
+		
 	}
-	#sigugun{
-		display: none;
+	select option{
+		padding: 5px;
+	}
+	#location{
+		border: 0;
 	}
 
 </style>
@@ -101,31 +129,69 @@
 						<input type="text">
 					</td>
 				</tr>
-				
 				<tr>
-					<td>1차직종명</td>
+					<td>직무</td>
 					<td>
-						<input type="text">
+						<select id="searchSelect">
+							<option>직무</option>
+							<option>경영사무</option>
+							<option>마케팅-광고</option>
+							<option>IT-인터넷</option>
+							<option>디자인</option>
+							<option>무역유통</option>
+							<option>영업-고객상담</option>
+							<option>서비스</option>
+							<option>연구개발</option>
+							<option>생산-제조</option>
+							<option>교육</option>
+							<option>건설</option>
+							<option>의료</option>
+							<option>미디어</option>
+							<option>전문특수직</option>
+                         </select>
 					</td>
 				</tr>
 				<tr>
-					<td>2차직종명</td>
+					<td>산업</td>
 					<td>
-						<input type="text">
+						<select id="searchSelect">
+							<option>산업</option>
+							<option>서비스업</option>
+							<option>금융업</option>
+							<option>IT정보통신업</option>
+							<option>판매유통업</option>
+							<option>제조업</option>
+							<option>화학업</option>
+							<option>교육업</option>
+							<option>건설업</option>
+							<option>의료제약업</option>
+							<option>미디어업</option>
+							<option>광고업</option>
+							<option>문화예술업</option>
+							<option>디자인업</option>
+						</select>
 					</td>
 				</tr>
 				<!-- 근무지역!!!!! -->
 				<tr>
 					<td>근무지역</td>
 					<td>
-						<select id="sido">
+						<select id="sido" size="5">
 							<c:if test="${!empty list }">
-								<c:forEach var="location" items="${list }">
-									<option value="${location }">${location }</option>
+								<c:forEach var="sido" items="${list }">
+									<option value="${sido }">${sido }</option>
 								</c:forEach>
 							</c:if>
 						</select>
-						<div style="display: inline;" id="sigugunDiv"></div>
+						<div style="display: inline; margin-left: 10px">
+							<select id="sigugun" name="sigugun" size="5">
+							
+							</select>
+						</div>
+						<div>
+							<input type="text" name="location1" id="location" readonly="readonly">
+							<input type="text" name="location2" id="location" readonly="readonly">
+						</div>
 					</td>
 				</tr>
 					

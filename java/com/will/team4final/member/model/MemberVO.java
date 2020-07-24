@@ -1,7 +1,5 @@
 package com.will.team4final.member.model;
 
-import java.sql.Timestamp;
-
 public class MemberVO {
 	private int userNo;
 	private String userid;

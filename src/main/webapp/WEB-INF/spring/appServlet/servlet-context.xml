@@ -67,7 +67,7 @@
 		<beans:property name="redirectUri"
 			value="http://localhost:9090/team4final/login/oauth2callback.do" />
 	</beans:bean>
-
+	<!-- 
 	<interceptors>
 		<interceptor>
 			<mapping path="/companypage/**"/>
@@ -82,5 +82,5 @@
 			<beans:ref bean="companyUseInterceptors"/>
 		</interceptor>
 	</interceptors>
-
+	 -->
 </beans:beans>

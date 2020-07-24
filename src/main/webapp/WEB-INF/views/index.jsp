@@ -339,7 +339,7 @@
                         </div>
                         <div class="process-cap">
                            <h5>1. 직업 검색</h5>
-                           <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                           <p><br>인기있는 대기업부터 매력만점 강소기업까지!<br></p>
                         </div>
                     </div>
                 </div>
@@ -350,7 +350,7 @@
                         </div>
                         <div class="process-cap">
                            <h5>2. 원하는 기업에 지원</h5>
-                           <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                           <p>이제는 찾아 가지 말고<br> 기업이 모셔가게 하는 Job Finder!</p>
                         </div>
                     </div>
                 </div>
@@ -361,7 +361,7 @@
                         </div>
                         <div class="process-cap">
                            <h5>3. 취직</h5>
-                           <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                           <p><br>Job Finder에서 Life Job으로!<br></p>
                         </div>
                     </div>
                 </div>
