@@ -136,13 +136,13 @@ public class FaqController {
 			Model model) {
 		logger.info("자주 찾는 질문 수정 post 파라미터 vo = {}", vo);
 		
-		vo.setFnqNo(no);
+		vo.setfaqNo(no);
 		
 		String msg = "자주 찾는 질문 수정 실패", url = "/gogak/faqEdit.do";
 		int cnt = faqService.editFaq(vo);
 		if(cnt>0) {
 			msg = "자주 찾는 질문 수정 성공";
-			url = "/gogak/faqDetail.do?no="+vo.getFnqNo();
+			url = "/gogak/faqDetail.do?no="+vo.getfaqNo();
 		}
 		
 		model.addAttribute("msg", msg);
@@ -185,7 +185,7 @@ public class FaqController {
 			for(int i=0 ; i<list.size() ; i++) {
 				FaqVO vo = list.get(i);
 				logger.info("i={}", i);
-				logger.info("fnqNO={}", vo.getFnqNo());
+				logger.info("fnqNO={}", vo.getfaqNo());
 			}//for
 		}else {
 			msg = "선택한 게시글 삭제 실패! 에러 발생!";
