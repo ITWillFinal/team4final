@@ -6,11 +6,17 @@
 	<select id="selectJobLarge" resultType="map">
 		select * from job_large
 	</select>
+	
 	<select id="selectInduLarge" resultType="map">
 		select * from industry_large
 	</select>
+	
 	<select id="selectJobMiddle" resultType="map">
 		select * from job_middle where large_no = #{no}
+	</select>
+	
+	<select id="selectInduMiddle" resultType="map">
+		select * from industry_middle where large_no = #{no}
 	</select>
 </mapper>
 

@@ -30,9 +30,11 @@ public class HireInfoController {
 		
 		List<String> locationList = locationServ.sido();
 		List<Map<String, Object>> jobList = jobServ.selectLarge();
+		List<Map<String, Object>> induList = jobServ.selectInduLarge();
 		
 		model.addAttribute("locationList", locationList);
 		model.addAttribute("jobList", jobList);
+		model.addAttribute("induList", induList);
 		
 		return "hireinpo/hireinpo";
 	}

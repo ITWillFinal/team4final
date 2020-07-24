@@ -33,4 +33,16 @@ public class JobController {
 		
 		return middleList;
 	}
+	
+	@RequestMapping("/induMiddle.do")
+	@ResponseBody
+	public List<Map<String, Object>> induMiddle(@RequestParam(defaultValue = "0") int no) {
+		logger.info("인더미들 에이젝스!");
+		
+		List<Map<String, Object>> middleList = jobServ.selectInduMiddle(no);
+		logger.info("인더미들 사이즈 = {}", middleList.size());
+		
+		
+		return middleList;
+	}
 }

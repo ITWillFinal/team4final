@@ -30,6 +30,11 @@ public class JobDAOMybatis implements JobDAO{
 	public List<Map<String, Object>> selectJobMiddle(int no) {
 		return sqlSession.selectList(namespace + "selectJobMiddle", no);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectInduMiddle(int no) {
+		return sqlSession.selectList(namespace + "selectInduMiddle", no);
+	}
 	
 	
 }
