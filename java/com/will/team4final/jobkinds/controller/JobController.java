@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.will.team4final.gogak.controller.FaqController;
 import com.will.team4final.jobkinds.model.JobService;
@@ -22,6 +23,7 @@ public class JobController {
 	private JobService jobServ;
 	
 	@RequestMapping("/jobMiddle.do")
+	@ResponseBody
 	public List<Map<String, Object>> jobMiddle(@RequestParam(defaultValue = "0") int no) {
 		logger.info("잡미들 에이젝스!");
 		
