@@ -44,6 +44,16 @@ public class FaqDAOMybatis implements FaqDAO{
 	public int selectTotalRecord(SearchVO vo) {
 		return sqlsesseion.selectOne(namespace+"selectTotalRecord", vo);
 	}
+
+	@Override
+	public FaqVO before(int faqNo) {
+		return sqlsesseion.selectOne(namespace+"before", faqNo);
+	}
+
+	@Override
+	public FaqVO after(int faqNo) {
+		return sqlsesseion.selectOne(namespace+"after", faqNo);
+	}
 	
 	
 

@@ -22,6 +22,15 @@ input#rrr {
     margin-left: 20px;
 }
 </style>
+<script type="text/javascript" 
+	src = "<c:url value = '/resources/js/jquery-3.5.1.min.js'/>"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#rrr').click(function() {
+			location.href = "<c:url value = '/gogak/faqList.do'/>";
+		});
+	});
+</script>
 
 
 <div id="outDiv">
@@ -54,15 +63,14 @@ input#rrr {
 			<tr>
 				<td>답변내용</td>
 				<td id = "tdA">
-					<textarea rows="7px" cols="50px" name = "answer">
-					</textarea>
+					<textarea rows="7px" cols="50px" name = "answer"></textarea>
 				</td>
 			</tr>
 		</table>
 		
 		<div>
-			<input type = "submit" value = "등록" id = "ddd">
-			<input type = "button" value = "취소" id = "rrr">
+			<input type = "submit" value = "글등록" id = "ddd">
+			<input type = "button" value = "글목록" id = "rrr">
 		</div>
 	</form>
 </div>

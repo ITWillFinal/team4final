@@ -3,7 +3,7 @@ package com.will.team4final.company.model;
 public interface ComMemberService {
 	//아이디 중복확인 관련 상수
 	public static final int EXIST_ID=1;  //해당 아이디가 이미 존재하는 경우
-	public static final int NON_EXIST_ID=0;  //아이디가 존재하지 않는 경우
+	public static final int NON_EXIST_ID=2;  //아이디가 존재하지 않는 경우
 
 	//로그인 처리 관련 상수
 	int LOGIN_OK=1; //로그인 성공

@@ -180,6 +180,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_id.do' /> " method="post">
+					<input type="hidden" name="memberType" value="u">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>아이디 찾기</h3>
 						</div>
@@ -207,6 +208,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_pwd.do' /> " method="post">
+					<input type="hidden" name="memberType" value="u">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>비밀번호 찾기</h3>
 						</div>
@@ -231,7 +233,66 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 아이디 찾기  -->
+	<div id="popId2" class="overlay">
+		<div class="popup" style="text-align: center;">
+			<div class="w3-content w3-container w3-margin-top">
+				<div class="w3-container w3-card-4">
+					<form action="<c:url value='/email/find_id.do' /> " method="post">
+						<input type="hidden" name="memberType" value="c">
+						<div class="w3-center w3-large w3-margin-top">
+							<h3>아이디 찾기</h3>
+						</div>
+						<div>
+							<p>
+								<label>Email</label> <input class="w3-input" type="email"
+									id="findIdByEmail" name="findIdByEmail">
+							</p>
+							<p class="w3-center">
+								<button type="submit" id=findBtn class="btn head-btn1"
+									style="font-weight: bold;">find</button>
+								<button type="button" onclick="history.go(-1);"
+									class="btn head-btn1" style="font-weight: bold;">Cancel</button>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<!-- 비밀번호 찾기  -->
+	<div id="popPwd2" class="overlay">
+		<div class="popup" style="text-align: center;">
+			<div class="w3-content w3-container w3-margin-top">
+				<div class="w3-container w3-card-4">
+					<form action="<c:url value='/email/find_pwd.do' /> " method="post">
+					<input type="hidden" name="memberType" value="c">
+						<div class="w3-center w3-large w3-margin-top">
+							<h3>비밀번호 찾기</h3>
+						</div>
+						<div>
+							<p>
+								<label>ID</label> <input class="w3-input" type="text" id="userid"
+									name="userid" required>
+							</p>
+							<p>
+								<label>Email</label> <input class="w3-input" type="email"
+									id="findPwdByEmail" name="findPwdByEmail">
+							</p>
+							<p class="w3-center">
+								<button type="submit" id=findBtn class="btn head-btn1"
+									style="font-weight: bold;">find</button>
+								<button type="button" onclick="history.go(-1);"
+									class="btn head-btn1" style="font-weight: bold;">Cancel</button>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<header>
@@ -265,8 +326,8 @@
 											<li><a href="job_listing.html">HOT 100</a></li>
 											<li><a href="about.html">직업검사</a></li>
 											<li><a
-												href="<c:url value='/companypage/companyHome.do'/>">Page</a></li>
-											<li><a href="<c:url value = '/gogak/faq.do'/>">고객센터</a></li>
+												href="<c:url value='/companypage/companyHome.do'/>">기업페이지</a></li>
+											<li><a href="<c:url value = '/gogak/faqList.do'/>">고객센터</a></li>
 										</ul>
 										<div class="totalMenu">
 											<div>
@@ -289,16 +350,13 @@
 								<!-- Header-btn -->
 								<div class="header-btn d-none f-right d-lg-block">
 									<c:if test="${empty sessionScope.userid }">
-									
 										<a href="#pop02" class="btn head-btn1"
 											style="font-weight: bold;">회원가입</a> <a href="#pop01"
 											class="btn head-btn2" style="font-weight: bold;">로그인</a>
 									</c:if>
                                 	<c:if test="${!empty sessionScope.userid }">
-	                                	<a href="#" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
-	                                    <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">내정보</a>
 	                                	<a href="<c:url value='/login/logout.do'/>" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
-	                                    <a href="#" class="btn head-btn2" style="font-weight: bold;">내정보</a>
+	                                    <a href="<c:url value='/mypage/mypageHome.do?status=${sessionScope.status }'/>" class="btn head-btn2" style="font-weight: bold;">내정보</a>
                                 	</c:if>
 								</div>
 							</div>

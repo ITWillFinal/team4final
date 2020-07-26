@@ -34,29 +34,45 @@
 
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
 				document.getElementById('zipcode').value = data.zonecode;
-				document.getElementById('addr1').value = roadAddr;
+				document.getElementById('address').value = roadAddr;
 
 			}
 		}).open();
-
-	}
-	$(function() {
-		$('#sido').change(function() {
-			
-			var ee = $('#sido option:selected').val();
-			alert(ee);
-			
-			$('#sigugunS').css('display', 'inline');
-			
-			<c:forEach var="vo" items="${allList }">
-				$('option[value='+ee+']').css('display', 'block');
-			</c:forEach>
+	};
 		
-		});
+	
+</script>
 
+<script type="text/javascript">
+	$(function() {
+		$('#sido').click(function() {
+			var sido = $('#sido').val();
+			alert(sido);
+			
+		
+		$('form[name=formWrite]').submit(function(){
+			if($('#title').val()==''){
+				alert('제목을 입력하세요');
+				$('#title').focus();
+				event.preventDefault();
+			}else if($('#name').val().length<1){
+				alert('이름을 입력하세요');
+				$('#name').focus();
+				event.preventDefault();
+			}else if(!$('#pwd').val()){
+				alert('비밀번호를 입력하세요');
+				$('#pwd').focus();
+				event.preventDefault();
+			}
+		});
+		
+		
+		
 		
 	});
 </script>
+
+
 <style>
 
 	tr {
@@ -69,26 +85,22 @@
 	#sigugun{
 		display: none;
 	}
+	hr {
+		border:1px solid #FB246A;
+		width:100%;
+	}
 
 </style>
 <main>
 	<%@ include file="../inc/companySidebar.jsp" %>
 	
 	<!-- main -->
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; border:1px solid lightgray">
-		
-		<div style="margin:5px; height:95px; border:1px solid lightgray">
-		위쪽 가로 긴 구역
-		</div>
-		
-		
-		<div style="margin:5px; border:1px solid lightgray">
-			<form>
-			<div>
-				<span>채용정보등록</span><br><br>
-			</div>
-			<div>
-			<span>◎모집내용</span><br><br>
+	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
+			<form name="formWrite" method="post" action="<c:url value='/member/memberOut.do'/>">	
+			<span style="font-size: 25px; font-weight: bold;">채용정보등록</span>
+			<hr>
+			<div style="margin:5px;">
+			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span><br><br>
 			
 			<table style="width: 700px;">
 				<colgroup>
@@ -99,25 +111,25 @@
 				<tr>
 					<td>모집제목</td>
 					<td>
-						<input type="text">
+						<input type="text" id="title" name="title">						
 					</td>
 				</tr>
 				
 				<tr>
 					<td>회사명</td>
 					<td>
-						<input type="text">
+						<input type="text" id="comName" name="comName">
 					</td>
 				</tr>
 				
 				<tr>
-					<td>1차직종명</td>
+					<td>직무</td>
 					<td>
 						<input type="text">
 					</td>
 				</tr>
 				<tr>
-					<td>2차직종명</td>
+					<td>산업</td>
 					<td>
 						<input type="text">
 					</td>
@@ -127,29 +139,20 @@
 					<td>근무지역</td>
 					<td>
 						<select id="sido">
-							<c:if test="${!empty list }">
-								<c:forEach var="location" items="${list }">
-									<option value="${location }">${location }</option>
+							<c:if test="${!empty list}">
+								<c:forEach var="location" items="${list}">
+									<option value="${location}">${location}</option>
 								</c:forEach>
 							</c:if>
 						</select>
-						<div id="sigugunS">
-						<select>
-							<option value="" id="sigugun"></option>
-							<c:if test="${!empty allList }">
-								<c:forEach var="all" items="${allList }">
-									<option value="${all.sido }" id="sigugun">${all.sigugun }</option>
-								</c:forEach>
-							</c:if>
-						</select>
-						</div>
+						<div style="display: inline;" id="sigugunDiv"></div>
 					</td>
 				</tr>
 					
 				<tr>
 					<td>우편번호</td>
 					<td>
-						<input type="text" id="zipcode">
+						<input type="text" id="zipcode" name="zipcode">
 						<input type="button" onclick="sample4_execDaumPostcode()" value="선택">
 					</td>
 				</tr>
@@ -157,14 +160,14 @@
 				<tr>
 					<td>주소</td>
 					<td>
-						<input type="text" id="addr1">
+						<input type="text" id="address" name="address">
 					</td>
 				</tr>
 				
 				<tr>
 					<td>상세주소</td>
 					<td>
-						<input type="text">
+						<input type="text" id="addressDetail" name="addressDetail">
 					</td>
 				</tr>
 								
@@ -172,19 +175,20 @@
 				<tr>
 					<td>근무시간</td>
 					<td>
-						<input type="text">
+						<input type="text" id="workHours" name="workHours">
 					</td>
 				</tr>
 				
 				<tr>
 					<td>근무형태</td>
 					<td>
-						<label><input type="checkbox">추후협의</label>
-						<label><input type="checkbox">인턴직</label>
-						<label><input type="checkbox">정규직</label>
-						<label><input type="checkbox">계약직</label>
-						<label><input type="checkbox">병역특례</label>
-						<label><input type="checkbox">프리랜서</label>
+						<label><input type="checkbox" value="추후협의">추후협의</label>
+						<label><input type="checkbox" value="인턴직">인턴직</label>
+						<label><input type="checkbox" value="정규직">정규직</label>
+						<label><input type="checkbox" value="계약직">계약직</label>
+						<label><input type="checkbox" value="병역특례">병역특례</label>
+						<label><input type="checkbox" value="프리랜서">프리랜서</label>
+						<input type="text" id="recType" name="recType">
 					</td>
 				</tr>
 				
@@ -210,6 +214,7 @@
 							<option value="">4600~4800만원</option>
 							<option value="">4800~5000만원</option>
 						</select>
+						<input type="text" name="pay" id="pay">
 					</td>
 				</tr>
 						
@@ -230,15 +235,16 @@
 						<label><input type="checkbox">주5일근무</label>
 						<label><input type="checkbox">중식비</label>
 						<label><input type="checkbox">퇴직금</label>
+						<input type="text" id="welfare" name="welfare">
 					</td>
 				</tr>
 				
 			</table>
 			</div>
-			
+			<hr>
 			
 			<div>
-			<br><span>◎자격요건</span><br><br>
+				<span style="font-size: 18px; font-weight: bold;">◎자격요건</span><br><br>
 			
 			<table style="width: 700px; border:1px solid lightgray; border">
 				<colgroup>
@@ -252,7 +258,9 @@
 							<option value="">무관</option>
 							<option value="">남자</option>
 							<option value="">여자</option>
-						</select><br>
+						</select>
+						<input type="text" id="gender" name="gender">
+						<br>
 						<span>채용에서 남녀를 차별하거나, 여성근로자를 채용할 경우 직무수행에 불필요한 용모, 키, 체중 등의 신체조건, 미혼조건을 제시 또는 요구하는 경우 남녀고용평등법 위반에 따른 500만원 이하의 벌금이 부과될 수 있습니다.</span>
 					</td>
 				</tr>
@@ -284,6 +292,7 @@
 							<option value="">60세이하</option>
 							<option value="">60세초과</option>
 						</select>
+						<input type="text" name="age" id="age">
 						<br><label><input type="checkbox">무관</label><br>
 						모집·채용에서 합리적인 이유 없이 연령제한을 하는 경우는 연령차별금지법 위반에 따른 500만원 이하의 벌금이 부과될 수 있습니다.
 					</td>
@@ -304,6 +313,7 @@
 							<option value="">대학원(석사) 졸업</option>
 							<option value="">대학원(박사) 졸업</option>
 						</select>
+						<input type="text" id="educationLv" name="educationLv">
 						<br><label><input type="checkbox">무관</label>
 					</td>
 				</tr>
@@ -345,6 +355,7 @@
 							<option value="">30년</option>
 							<option value="">30년 이상</option>
 						</select>
+						<input type="text" id="career" name="career">
 						<br><label><input type="checkbox">무관</label>
 					</td>
 				</tr>
@@ -375,18 +386,19 @@
 						<label><input type="checkbox">해외근무가능자</label>
 						<label><input type="checkbox">병역특례</label>
 						<label><input type="checkbox">차량소지자</label>
+						<input type="text" id="preference" name="preference">
 					</td>
 				</tr>
 				</table>
 			</div>
-			
+			<hr>
 			<div>
-			<br><span>◎상세모집내용</span><br><br>
-			<textarea rows="20" cols="97"></textarea>
+			<span style="font-size: 18px; font-weight: bold;">◎상세모집내용</span><br><br>
+			<textarea id="recDetail" name="recDetail" rows="20" cols="97"></textarea>
 			</div>
-			
+			<hr>
 			<div>
-			<br><span>◎접수방법</span><br><br>
+				<span style="font-size: 18px; font-weight: bold;">◎접수방법</span><br><br>
 				<table style="width: 700px; border:1px solid lightgray">
 					<colgroup>
 						<col style="width:20%;" />
@@ -395,7 +407,7 @@
 					<tr>
 						<td>접수기간</td>
 						<td>
-							<input type="date">까지
+							<input type="date" id="recDeadline" name="recDeadline">까지
 							<label><input type="checkbox">상시모집</label>
 							<label><input type="checkbox">채용시까지</label>
 						</td>
@@ -409,6 +421,7 @@
 							<label><input type="checkbox">주민등록등본</label>
 							<label><input type="checkbox">성적증명서</label>
 							<label><input type="checkbox">경력증명서</label>
+							<input type="text" name="document" id="document">
 						</td>
 					</tr>
 					<tr>
@@ -418,18 +431,18 @@
 							<label>2차<input type="text"></label>
 							<label>3차<input type="text"></label>
 							<label>4차<input type="text"></label>
+										
 						</td>
 					</tr>
 
-				</table><br>
+				</table>
 				</div>
-				
+				<hr>
 				<div style="width: 700px; text-align: center;">
 					<input type="submit" value="채용정보 등록하기">
 				</div><br>
 				
-			</form>
-		</div>
+		</form>
 	</div>
 </main>
 <%@ include file="../inc/companyBottom.jsp" %>

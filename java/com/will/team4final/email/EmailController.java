@@ -54,6 +54,8 @@ public class EmailController {
 					logger.info("이메일 발송 실패!");
 				}
 				
+			}else {
+				msg="귀하의 이메일 주소로 아이디를 발송 하였습니다";
 			}
 			
 		}else if(memberType.equals("c")) {

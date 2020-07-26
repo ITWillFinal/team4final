@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.will.team4final.company.model.ComMemberService;
 import com.will.team4final.company.model.CompanyMemberVO;
@@ -19,6 +20,7 @@ import com.will.team4final.location.model.LocationVO;
 import com.will.team4final.login.controller.LoginController;
 
 @Controller
+@RequestMapping("/companypage")
 public class CompanyHomeController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired private ComMemberService cMemberSerice;
@@ -26,20 +28,20 @@ public class CompanyHomeController {
 	@Autowired
 	private LocationService locaServ;
 	
-	@RequestMapping("/hireinpo/hireinpo.do")
-	public String hireinpoHome() {
-		logger.info("채용정보 홈");
+	@RequestMapping("/companyHome.do")
+	public String companyHome() {
+		logger.info("기업페이지 홈");
 		
-		return "hireinpo/hireinpo";
+		return "companypage/companyHome";
 	}
 	
-	@RequestMapping("/companypage/member/companyJoin.do")
+	@RequestMapping("/member/companyJoin.do")
 	public void companyJoin() {
 		logger.info("기업회원가입 페이지");
 		
 	}
 	
-	@RequestMapping("/companypage/member/checkUserid.do")
+	@RequestMapping("/member/checkUserid.do")
 	public String checkcUserid(@RequestParam String cUserid, Model model) {
 		logger.info("기업회원 아이디 중복확인, 파라미터 cUserid={}", cUserid);
 		if(cUserid==null || cUserid.isEmpty()) {
@@ -57,7 +59,7 @@ public class CompanyHomeController {
 		
 	}
 	
-	@RequestMapping(value = "/companypage/member/register.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/register.do", method = RequestMethod.POST)
 	public String comRegister_post(@ModelAttribute CompanyMemberVO vo, Model model) {
 		logger.info("기업회원 등록, 파라미터 vo={}", vo);
 		
@@ -76,27 +78,41 @@ public class CompanyHomeController {
 		
 	}
 	
-	@RequestMapping("/companypage/companyWrite.do")
+	@RequestMapping("/companyWrite.do")
 	public String companyWrite(Model model) {
 		logger.info("기업페이지 채용공고등록");
-		
-
-		List<LocationVO> allList = locaServ.selectAllLocation();
-		logger.info("총 list = {}", allList.size());
 		
 		List<String> list = locaServ.sido();
 		logger.info("지역 list = {}", list.size());
 		
 		model.addAttribute("list", list);
-		model.addAttribute("allList", allList);
 		return "companypage/companyWrite";
 	}
 	
-	@RequestMapping("/companypage/companyResume.do")
-	public String resume() {
+	@RequestMapping("/companyResumeSet.do")
+	public String resumeSet() {
 		logger.info("기업페이지 자사 이력서양식 제작");
 		
-		return "companypage/companyResume";
+		return "companypage/companyResumeSet";
+	}
+	
+	@RequestMapping("/companyResumeUse.do")
+	public String resumeUse() {
+		logger.info("기업페이지 자사 이력서양식 제작");
+		
+		return "companypage/companyResumeUse";
+	}
+	
+	@RequestMapping("/companypage/member/register/checkId.do")
+	@ResponseBody
+	public int cMemberCheckId(@RequestParam String cUserid1) {
+		logger.info("기업회원 아이디 체크");
+		
+		int cnt = cMemberSerice.selectCMemberDup(cUserid1);
+		logger.info("기업회원 아아디 체크 결과, cnt={}", cnt);
+		
+		return cnt;
+		
 	}
 	
 }

@@ -21,7 +21,28 @@
 		href="<c:url value='/resources/css/mainstyle.css'/>"/>
 	<script type="text/javascript" 
 		src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
+		
+		
+	<!-- 사이드바 제이쿼리 시작 -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+	  $( function() {
+	    $( "#menu" ).menu({
+	      items: "> :not(.ui-widget-header)"
+	    });
+	  } );
+	</script>
+	<!-- 사이드바 제이쿼리 끝 -->
 <style>
+/*사이드바 제이쿼리 스타일*/
+.ui-widget-header {
+	padding: 0.2em;
+}
+
+
 .overlay {
 	position: fixed;
 	top: 0;
@@ -103,6 +124,8 @@
 	background: #fb246a;
 	color: white;
 }
+
+
 </style>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -138,6 +161,65 @@
 			</div>
 		</div>
 	</div>
+	<!-- 아이디 찾기  -->
+	<div id="popId" class="overlay">
+		<div class="popup" style="text-align: center;">
+			<div class="w3-content w3-container w3-margin-top">
+				<div class="w3-container w3-card-4">
+					<form action="<c:url value='/email/find_id.do' /> " method="post">
+					<input type="hidden" name="memberType" value="u">
+						<div class="w3-center w3-large w3-margin-top">
+							<h3>아이디 찾기</h3>
+						</div>
+						<div>
+							<p>
+								<label>Email</label> <input class="w3-input" type="email"
+									id="findIdByEmail" name="findIdByEmail">
+							</p>
+							<p class="w3-center">
+								<button type="submit" id=findBtn class="btn head-btn1"
+									style="font-weight: bold;">find</button>
+								<button type="button" onclick="history.go(-1);"
+									class="btn head-btn1" style="font-weight: bold;">Cancel</button>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 비밀번호 찾기  -->
+	<div id="popPwd" class="overlay">
+		<div class="popup" style="text-align: center;">
+			<div class="w3-content w3-container w3-margin-top">
+				<div class="w3-container w3-card-4">
+					<form action="<c:url value='/email/find_pwd.do' /> " method="post">
+					<input type="hidden" name="memberType" value="u">
+						<div class="w3-center w3-large w3-margin-top">
+							<h3>비밀번호 찾기</h3>
+						</div>
+						<div>
+							<p>
+								<label>ID</label> <input class="w3-input" type="text" id="userid"
+									name="userid" required>
+							</p>
+							<p>
+								<label>Email</label> <input class="w3-input" type="email"
+									id="findPwdByEmail" name="findPwdByEmail">
+							</p>
+							<p class="w3-center">
+								<button type="submit" id=findBtn class="btn head-btn1"
+									style="font-weight: bold;">find</button>
+								<button type="button" onclick="history.go(-1);"
+									class="btn head-btn1" style="font-weight: bold;">Cancel</button>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	<!-- 아이디 찾기  -->
 	<div id="popId2" class="overlay">
@@ -145,7 +227,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_id.do' /> " method="post">
-						<input type="text" name="memberType" value="c">
+						<input type="hidden" name="memberType" value="c">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>아이디 찾기</h3>
 						</div>
@@ -173,7 +255,7 @@
 			<div class="w3-content w3-container w3-margin-top">
 				<div class="w3-container w3-card-4">
 					<form action="<c:url value='/email/find_pwd.do' /> " method="post">
-					<input type="text" name="memberType" value="c">
+					<input type="hidden" name="memberType" value="c">
 						<div class="w3-center w3-large w3-margin-top">
 							<h3>비밀번호 찾기</h3>
 						</div>
@@ -253,7 +335,7 @@
 									</c:if>
                                 	<c:if test="${!empty sessionScope.userid }">
 	                                	<a href="<c:url value='/login/companyLogout.do'/>" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
-	                                    <a href="#" class="btn head-btn2" style="font-weight: bold;">내정보</a>
+	                                    <a href="<c:url value='/mypage/mypageHome.do?status=${sessionScope.status }'/>" class="btn head-btn2" style="font-weight: bold;">내정보</a>
                                 	</c:if>
 								</div>
 							</div>

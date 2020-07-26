@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../inc/companyTop.jsp"%>
+<script type="text/javascript" 
+	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
 <script type="text/javascript">
 	$(function() {
-		
-		$('form[name=frm]').submit(function() {
-			if($('#cUserid').val().length<1){
+		$('form[name=frmCom]').submit(function() {
+			if($('#chkEmail').val()!='Y'){
+				alert('이메일 인증을 하셔야합니다.');
+				$("#chkEmail").focus();
+				event.preventDefault();
+			}else if($('#cUserid1').val().length<1){
 				alert('이름을 입력하세요!');
-				$('#cUserid').focus();
+				$('#cUserid1').focus();
 				event.preventDefault();
 				return false;
 			}else if($('#cPwd').val().length<1){
@@ -34,20 +39,70 @@
 				alert('아이디 중복확인을 하셔야 합니다.');
 				$("#btnChkId").focus();
 				event.preventDefault();
-			}else if($('#chkEmail').val()!='Y'){
-				alert('이메일 인증을 하셔야합니다.');
-				$("#chkEmail").focus();
-				event.preventDefault();
-			}
-			
-			
-			if($('#cBirth').val().length < 6 || $('#cBirth').val().length > 6){
-				alert("주민번호 앞자리를 제대로 입력해주세요");
-				$(this).focus();
+			}else if($('#cBirth').val().length<6){
+				alert('생년월일을 제대로 입력하세요');
+				$('#cBirth').focus();
 				event.preventDefault();
 				return false;
 			}
-
+		});
+		
+		$('#cPwd2').keyup(function(){
+			if($('#cPwd').val()!=$('#cPwd2').val()){
+				$('#chkpwd2').html("비밀번호가 같지 않습니다.").css('color', 'red');
+			}else{
+				$('#chkpwd2').html("비밀번호가 일치합니다.").css('color','green');
+			}
+		});
+		
+		$('#cUserid1').keyup(function(){
+			if($('#cUserid1').val().length < 4){
+				$('#chkId2').html("아이디는 4글자 이상부터 가능합니다").css('color', 'red')
+				$('#chkId').val("N");
+				
+			}else{
+				var cUserid1=$('#cUserid1').val();
+				console.log(cUserid1);
+				
+				$.ajax({
+					url:"<c:url value='/companypage/member/checkId.do' />",
+					type:"get",
+					data:"cUserid1=" +cUserid1,
+					success:function(res){
+						if(res){
+							$('#chkId2').html("사용 가능한 아이디입니다").css('color','green');
+							$('#chkId').val("Y");
+						}else{
+							$('#chkId2').html("중복된 아이디가 있습니다").css('color', 'red');
+							$('#chkId').val("N");
+						}
+						
+					},
+					error:function(xhr, status,error){
+						alert(status +", " + error);
+						
+					}
+				});
+				
+			}
+		});
+		
+		$('#cBirth').keyup(function(){
+			if($('#cBirth').val().length < 6){
+				$('#chkBirth').html("6자리 입력해주세요.").css('color', 'red');
+			}else{
+				$('#chkBirth').html("");
+				
+			}
+		});
+		//cHp
+		$('#cHp').keyup(function(){
+			if($('#cHp').val().length < 11){
+				$('#chkHp').html("전화번호 11자리가 입력되지 않았습니다.").css('color', 'red');
+			}else{
+				$('#chkHp').html("");
+				
+			}
 		});
 
 		//모달을 전역변수로 선언
@@ -84,19 +139,9 @@
 			'width=420,height=300,left=0,top=0,location=yes,resizable=yes');
 		});
 		
-		$('input[name=email]').click(function(){
-			var cEmail = $('#cEmail').val();
-			window.open(
-			"<c:url value='/member/email.do?cEmail="
-			+ cEmail + "'/>", 'emailchk',
-			'width=420,height=300,left=0,top=0,location=yes,resizable=yes');
-		});
-		
 		$('input[name=cEmail]').click(function(){
-			var email = $('#email').val();
 			window.open(
-			"<c:url value='/member/email.do?email="
-			+ email + "'/>", 'emailchk',
+			"<c:url value='/companypage/member/email.do'/> ", 'emailchk',
 			'width=420,height=300,left=0,top=0,location=yes,resizable=yes');
 		});
 
@@ -123,18 +168,25 @@ height: 3px;
 </style>
 <body>
 	<div class="divForm">
-		<form name="frm" method="post" style="margin-top: 100px;"
+		<form name="frmCom" method="post" style="margin-top: 100px;"
 			action="<c:url value='/companypage/member/register.do' /> "
 			enctype="multipart/form-data" >
 			<div class="form-group" id="divId">
 				<legend>기업 회원 가입</legend>
 				<hr>
+				<div class="form-group" id="divEmail">
+				<div class="col-lg-10">
+					<label for="inputEmail" class="col-lg-2 control-label">*이메일</label>
+					<input type="email" class="form-control" id="email" name="cEmail"
+						data-rule-required="true" placeholder="이메일" maxlength="40" >
+				</div>
+			</div>
 				<div class="col-lg-10">
 					<label for="inputId" class="col-lg-2 control-label">*아이디</label> 
-					<input type="button" value="중복확인" id="btChk" title="새창열림"> 
 					<input type="text" class="form-control onlyAlphabetAndNumber"
-						id="cUserid" name="cUserid"
+						id="cUserid1" name="cUserid"
 						placeholder="10자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="10">
+					<div id="chkId2" style="font-size: 0.8em; margin-left: 10px; margin-top: 5px;"></div>
 				</div>
 			</div>
 			<div class="form-group" id="divpwd">
@@ -150,6 +202,7 @@ height: 3px;
 						확인</label> <input type="password" class="form-control" id="cPwd2"
 						name="cPwd2" data-rule-required="true" placeholder="패스워드 확인"
 						maxlength="30">
+						<div id="chkpwd2" style="font-size: 0.8em; margin-left: 10px; margin-top: 5px;"></div>
 				</div>
 			</div>
 			<div class="form-group" id="divName">
@@ -171,9 +224,10 @@ height: 3px;
 			<div class="form-group" id="divBirth">
 				<div class="col-lg-10">
 					<label for="inputBirth" class="col-lg-2 control-label">*생년월일</label>
-					<input type="text" class="form-control onlyNumber infobox"
+					<input type="text" class="form-control onlyNumber infobox" 
 						id="cBirth" name="cBirth" data-rule-required="true"
-						placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+						placeholder="-를 제외하고 숫자만 입력하세요." maxlength="6">
+						<div id="chkBirth" style="font-size: 0.8em; margin-left: 10px; margin-top: 5px;"></div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -185,19 +239,13 @@ height: 3px;
 					</select>
 				</div>
 			</div>
-			<div class="form-group" id="divEmail">
-				<div class="col-lg-10">
-					<label for="inputEmail" class="col-lg-2 control-label">*이메일</label>
-					<input type="email" class="form-control" id="email" name="cEmail"
-						data-rule-required="true" placeholder="이메일" maxlength="40" >
-				</div>
-			</div>
 			<div class="form-group" id="divph">
 				<div class="col-lg-10">
 					<label for="inputph" class="col-lg-4 control-label">휴대폰번호</label> <input
 						type="tel" class="form-control onlyNumber infobox" id="cHp"
 						name="cHp" data-rule-required="true"
 						placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+						<div id="chkHp" style="font-size: 0.8em; margin-left: 10px; margin-top: 5px;"></div>
 				</div>
 			</div>
 
@@ -206,8 +254,8 @@ height: 3px;
 					<button type="submit" class="btn btn-primary">Sign in</button>
 				</div>
 			</div>
-			<input type="text" name="chkId" id="chkId">
-			<input type="text" name="chkEmail" id="chkEmail">
+			<input type="hidden" name="chkId" id="chkId">
+			<input type="hidden" name="chkEmail" id="chkEmail">
 		</form>
 	</div>
 </body>
