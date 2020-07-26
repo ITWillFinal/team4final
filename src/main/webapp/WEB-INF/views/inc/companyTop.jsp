@@ -298,7 +298,7 @@
 													<li><a href="elements.html">Elements</a></li>
 													<li><a href="job_details.html">job Details</a></li>
 												</ul></li>
-											<li><a href="contact.html">고객센터</a></li>
+											<li><a href="<c:url value = '/gogak/company/faqList.do'/>">고객센터</a></li>
 										</ul>
 									</nav>
 								</div>

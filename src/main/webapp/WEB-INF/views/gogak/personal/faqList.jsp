@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="../inc/top.jsp"%>
+<%@ include file="../../inc/top.jsp"%>
 
 <style>
 .divList{
@@ -46,6 +46,10 @@ a{
 	height: 250px;
 }
 
+#bt{
+	margin: 10px;
+}
+
 </style>
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
@@ -69,18 +73,18 @@ a{
 			}
 			
 			$('form[name=frmList]')
-				.prop("action", "<c:url value = '/gogak/deleteMulti.do'/>");
+				.prop("action", "<c:url value = '/gogak/personal/deleteMulti.do'/>");
 			
 			$('form[name=frmList]').submit();
 		});
 		
 		$('#fnqWrite').click(function() {
-			location.href = "<c:url value = '/gogak/faqWrite.do'/>";
+			location.href = "<c:url value = '/gogak/personal/faqWrite.do'/>";
 		});
 	});
 </script>
 <main>
-	<%@ include file="o_inc/admin_Sidebar.jsp" %>
+	<%@ include file="../side_inc/personal_Sidebar.jsp"%>
 	
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; border:1px solid lightgray;">
@@ -96,7 +100,7 @@ a{
 							 ${pagingInfo.totalRecord}건 검색되었습니다.</p>
 					</c:if>
 					<!-- 페이징 -->
-					<form action="<c:url value='/gogak/faqList.do'/>" 
+					<form action="<c:url value='/gogak/personal/faqList.do'/>" 
 						name="frmPage" method="post">
 						<input type="hidden" name="currentPage">
 						<input type="hidden" name="searchCondition" 
@@ -107,12 +111,12 @@ a{
 				</div>
 			<div>
 			<form name="frmList" method="post"
-				action="<c:url value = '/gogak/faqList.do'/>">
+				action="<c:url value = '/gogak/personal/faqList.do'/>">
 				<div class = "divList">
 					<table class = "box2" style="width: 700px;">
 						<colgroup>
-						   <col style="width:10%;" />
-						   <col style="width:10%;" />
+						   <%-- <col style="width:10%;" /> --%>
+						   <col style="width:20%;" />
 						   <col style="width:20%;" />
 						   <col style="width:30%;" />
 						   <col style="width:30%;" />
@@ -142,7 +146,7 @@ a{
 											<td style="text-align: center;">${vo.category }</td>
 											<td style="text-align: center;">
 												<a href
-													="<c:url value='/gogak/faqDetail.do?no=${vo.faqNo}'/>">
+													="<c:url value='/gogak/personal/faqDetail.do?no=${vo.faqNo}'/>">
 															${vo.question }
 												</a>								
 											</td>
@@ -196,8 +200,8 @@ a{
 				</div>
 				<div class="divSearch" style="padding-top: 10px">
 				   	<form name="frmSearch" method="post" 
-				   		action='<c:url value="/gogak/faqList.do"/>'>
-				        <select name="searchCondition">
+				   		action='<c:url value="/gogak/personal/faqList.do"/>'>
+				        <select name="searchCondition" style="height: 27px;">
 				            <option value="category" 
 				            	<c:if test="${param.searchCondition=='category' }">
 				            		selected="selected"
@@ -217,8 +221,10 @@ a{
 					        <input type="text" name="searchKeyword" title="검색어 입력"
 					        	value="${param.searchKeyword}">   
 							<input type="submit" value="검색"><br>
-							<input type="button" id = "fnqWrite" value = "게시글 등록">
-							<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"><br><br>
+							<!-- <div id = "bt">
+								<input type="button" id = "fnqWrite" value = "게시글 등록">
+								<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"><br><br>
+							</div> -->
 				    </form>
 				</div>
 			</div>
@@ -226,6 +232,6 @@ a{
 	</div>
 </main>
 
-<%@ include file="../inc/bottom.jsp"%>
+<%@ include file="../../inc/bottom.jsp"%>
 
 

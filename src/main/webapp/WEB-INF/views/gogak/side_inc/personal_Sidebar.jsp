@@ -13,7 +13,7 @@
 	
 		<div style="width:238px; height:200px; margin:5px; border: 1px solid lightgray;">
 			<br>
-			<div style="text-align: center;">${sessionScope.name } 관리자</div>
+			<div style="text-align: center;">${sessionScope.name } 구직자 회원님</div>
 			<br>
 			<div style="text-align: center;">
 				<input type="button" value="로그아웃"/>
@@ -22,19 +22,18 @@
 			<div style="margin-left:50px;">
 				<span>진행중 채용정보 : x건</span><br>
 				<span>마감된 채용정보 : x건</span><br>
-				<span>총 입사 지원 현황 : x명</span>
+				<span>채용 대기정보 : x명</span>
 			</div>
 		</div>
 		<div style="width:238px; height:100px; margin:5px; border: 1px solid lightgray;">
-		<b id = "gogo">자주찾는 질문</b><br><br>
-		<a href = "<c:url value = '/gogak/faqList.do'/>">자주찾는 질문 입력</a><br>
-		<a href = "<c:url value = '/gogak/faqList.do'/>">자주찾는 질문 수정</a><br>
+		<b id = "gogo">고객센터</b><br><br>
+		<a href = "<c:url value = '/gogak/personal/faqList.do'/>">자주찾는 질문</a><br>
 		</div>
 		<div style="width:238px; height:100px; margin:5px; border: 1px solid lightgray;">
 		<b id = "gogo">1:1 문의</b><br><br>
 		<!-- 문의게시판 연결 -->
-		<a href = "<c:url value = '/gogak/faqList.do'/>">1:1 문의 질문 입력</a><br>
-		<a href = "<c:url value = '/gogak/faqList.do'/>">1:1 문의 질문 수정</a><br>
+		<a href = "<c:url value = '/gogak/faqList.do'/>">나의 문의</a><br>
+		<a href = "<c:url value = '/gogak/faqList.do'/>">문의 게시판</a><br>
 		</div>
 		
 	</div>

@@ -16,29 +16,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.will.team4final.common.PaginationInfo;
 import com.will.team4final.common.SearchVO;
 import com.will.team4final.common.Utility;
+import com.will.team4final.gogak.model.FaqCompanyListVO;
+import com.will.team4final.gogak.model.FaqCompanyService;
+import com.will.team4final.gogak.model.FaqCompanyVO;
 import com.will.team4final.gogak.model.FaqListVO;
 import com.will.team4final.gogak.model.FaqService;
 import com.will.team4final.gogak.model.FaqVO;
 
 @Controller
-@RequestMapping("/gogak/personal")
-public class FaqController {
+@RequestMapping("/gogak/company")
+public class FaqCompanyController {
 
 	private final static Logger logger
-		= LoggerFactory.getLogger(FaqController.class);
+		= LoggerFactory.getLogger(FaqCompanyController.class);
 	
-	@Autowired private FaqService faqService;
+	@Autowired private FaqCompanyService faqService;
 	
 	@RequestMapping("/faq.do")
 	public String faq_get(Model model, SearchVO searchVo) {
 		logger.info("고객센터 창 보여주기");
 		
-		List<FaqVO>list = faqService.selectFaq(searchVo);
+		List<FaqCompanyVO>list = faqService.selectFaq(searchVo);
 		logger.info("고객센터 창 크기 list.size = {}", list.size());
 		
 		model.addAttribute("list", list);
 		
-		return "gogak/personal/faq";
+		return "gogak/company/faq";
 	}
 	
 	@RequestMapping(value = "/faqWrite.do", method = RequestMethod.GET)
@@ -47,15 +50,15 @@ public class FaqController {
 	}
 	
 	@RequestMapping(value = "/faqWrite.do", method = RequestMethod.POST)
-	public String faqWrite_post(@ModelAttribute FaqVO vo,
+	public String faqWrite_post(@ModelAttribute FaqCompanyVO vo,
 			Model model) {
 		logger.info("faq insert 화면");
 		
 		int cnt = faqService.WriteFaq(vo);
-		String msg = "자주찾는 질문 등록 실패", url = "/gogak/personal/faqWrite";
+		String msg = "자주찾는 질문 등록 실패", url = "/gogak/company/faqWrite";
 		if(cnt>0) {
 			msg = "자주찾는 질문 등록 성공";
-			url = "/gogak/personal/faqList.do";
+			url = "/gogak/company/faqList.do";
 		}
 		
 		model.addAttribute("msg", msg);
@@ -84,7 +87,7 @@ public class FaqController {
 		logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
 		
 		//2
-		List<FaqVO>list = faqService.selectFaq(searchVo);
+		List<FaqCompanyVO>list = faqService.selectFaq(searchVo);
 		logger.info("자주찾는 질문 목록 개수 list.size={}", list.size());
 		
 		int totalRecord = faqService.selectTotalRecord(searchVo);
@@ -95,7 +98,7 @@ public class FaqController {
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		
-		return "gogak/personal/faqList";
+		return "gogak/company/faqList";
 	}
 	
 	@RequestMapping(value = "/faqDetail.do")
@@ -103,18 +106,18 @@ public class FaqController {
 			Model model) {
 		logger.info("자주찾는 질문 상세보기");
 		
-		FaqVO vo = faqService.selectByNo(no);
+		FaqCompanyVO vo = faqService.selectByNo(no);
 		model.addAttribute("vo", vo);
 		
-		FaqVO afterVO =  faqService.after(no);
-		FaqVO beforeVO = faqService.before(no);
+		FaqCompanyVO afterVO =  faqService.after(no);
+		FaqCompanyVO beforeVO = faqService.before(no);
 		logger.info("aftervo={}", afterVO);
 		logger.info("beforeVO={}", beforeVO);
 		
 		model.addAttribute("afterVO", afterVO);
 		model.addAttribute("beforeVO", beforeVO);
 		
-		return "gogak/personal/faqDetail";
+		return "gogak/company/faqDetail";
 		
 	}
 	
@@ -123,26 +126,26 @@ public class FaqController {
 			Model model) {
 		logger.info("자주찾는 질문 수정 get 파라미터 vo = {}", no);
 		
-		FaqVO vo = faqService.selectByNo(no);
+		FaqCompanyVO vo = faqService.selectByNo(no);
 		model.addAttribute("vo", vo);
 		
-		return "gogak/personal/faqEdit";
+		return "gogak/company/faqEdit";
 		
 	}
 	
 	@RequestMapping(value = "/faqEdit.do", method = RequestMethod.POST)
-	public String editFaq_post(@ModelAttribute FaqVO vo,
+	public String editFaq_post(@ModelAttribute FaqCompanyVO vo,
 			@RequestParam (defaultValue = "0")int no,
 			Model model) {
 		logger.info("자주 찾는 질문 수정 post 파라미터 vo = {}", vo);
 		
 		vo.setfaqNo(no);
 		
-		String msg = "자주 찾는 질문 수정 실패", url = "/gogak/personal/faqEdit.do";
+		String msg = "자주 찾는 질문 수정 실패", url = "/gogak/company/faqEdit.do";
 		int cnt = faqService.editFaq(vo);
 		if(cnt>0) {
 			msg = "자주 찾는 질문 수정 성공";
-			url = "/gogak/personal/faqDetail.do?no="+vo.getfaqNo();
+			url = "/gogak/company/faqDetail.do?no="+vo.getfaqNo();
 		}
 		
 		model.addAttribute("msg", msg);
@@ -159,7 +162,7 @@ public class FaqController {
 		int cnt = faqService.deleteFaq(no);
 		if(cnt>0) {
 			msg = "자주 찾는 질문이 삭제되었습니다.";
-			url = "/gogak/personal/faqList.do";
+			url = "/gogak/company/faqList.do";
 		}
 		
 		model.addAttribute("msg", msg);
@@ -170,20 +173,20 @@ public class FaqController {
 	}
 	
 	@RequestMapping("/deleteMulti.do")
-	public String delMulti(@ModelAttribute FaqListVO listvo,
+	public String delMulti(@ModelAttribute FaqCompanyListVO listvo,
 			Model model) {
 		logger.info("선택 게시글 삭제, 파라미터 faqvo={}", listvo);
 		
-		List<FaqVO>list = listvo.getFaqlist();
+		List<FaqCompanyVO>list = listvo.getFaqlist();
 		
 		int cnt = faqService.deleteMulti(list);
 		logger.info("선택한 게시글 삭제 결과 cnt = {}", cnt);
-		String msg = "", url = "/gogak/personal/faqList.do";
+		String msg = "", url = "/gogak/company/faqList.do";
 		if(cnt>0) {
 			msg = "선택한 게시글을 삭제했습니다.";
 			
 			for(int i=0 ; i<list.size() ; i++) {
-				FaqVO vo = list.get(i);
+				FaqCompanyVO vo = list.get(i);
 				logger.info("i={}", i);
 				logger.info("fnqNO={}", vo.getfaqNo());
 			}//for
