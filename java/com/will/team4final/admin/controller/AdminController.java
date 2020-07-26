@@ -14,5 +14,12 @@ public class AdminController {
 	public void adminMain() {
 		logger.info("관리자 메인 홈!");
 	}
+	
+	@RequestMapping("/adminNotice.do")
+	public String adminNotice() {
+		logger.info("공지사항 관리 페이지");
+		
+		return "admin/adminNotice";
+	}
 
 }

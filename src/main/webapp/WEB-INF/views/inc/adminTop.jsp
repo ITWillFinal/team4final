@@ -55,7 +55,7 @@
 						<ul class="widget widget-menu unstyled">
 							<li class="active"><a href="index.html"><i
 									class="menu-icon icon-dashboard"></i>Dashboard </a></li>
-							<li><a href="activity.html"><i
+							<li><a href="<c:url value='/admin/adminNotice.do'/>"><i
 									class="menu-icon icon-bullhorn"></i>공지사항</a></li>
 							<li><a href="message.html"><i
 									class="menu-icon icon-group"></i>고객관리 <b
