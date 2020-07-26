@@ -9,19 +9,20 @@
 		(
 			select rownum as RNUM, A.*
 			from(
-				select fnq_No, category, question, answer
-				from fnq
+				select faq_No, category, question, answer
+				from faq
 				<if test="searchKeyword!=null and searchKeyword != ''">
 					where ${searchCondition} like '%'
 							|| #{searchKeyword} || '%'
 				</if>
-				order by fnq_No desc
+				order by faq_No desc
 			)A
 		)
 		<![CDATA[ 
 		where RNUM>#{firstRecordIndex}
 		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
+
 	
 <!--<select id="showFaq" resultType="map" parameterType="importance">
 		select * from fimview
@@ -29,32 +30,32 @@
 	</select>
  -->	
 	<insert id="WriteFaq" parameterType="faqVo">
-		<selectKey keyProperty="fnqNo" resultType="int" order="BEFORE">
-			select fnq_seq.nextval from dual
+		<selectKey keyProperty="faqNo" resultType="int" order="BEFORE">
+			select faq_seq.nextval from dual
 		</selectKey>
-		insert into fnq
-		values(#{fnqNo},#{category},#{question},#{answer})
+		insert into faq
+		values(#{faqNo},#{category},#{question},#{answer})
 	</insert>
 	
 	<select id="selectByNo" parameterType="int" resultType="faqVo">
-		select * from fnq
-		where fnq_no=#{fnqNo}
+		select * from faq
+		where faq_No=#{faqNo}
 	</select>
 	
 	<update id="editFaq" parameterType="faqVo">
-		update fnq
+		update faq
 		set category = #{category}, question = #{question}, answer = #{answer}
-		where fnq_no = #{fnqNo}
+		where faq_No = #{faqNo}
 	</update>
 	
 	<delete id="deleteFaq" parameterType="int">
-		delete fnq
-		where fnq_no=#{fnqNo}
+		delete faq
+		where faq_No=#{faqNo}
 	</delete>
 	
 	<select id="selectTotalRecord" parameterType="searchVo"
 		resultType="int">
-		select count(*) from fnq
+		select count(*) from faq
 		<if test="searchKeyword!=null and searchKeyword != ''">
 			where ${searchCondition} like '%'
 				|| #{searchKeyword} || '%'
@@ -63,17 +64,17 @@
 	
 	<select id="after" parameterType="int"  resultType="faqvo">
 		select *
-		from fnq
-		where fnq_no=(select min(fnq_no)
-		                from fnq where fnq_no>#{fnqNo})
+		from faq
+		where faq_No=(select min(faq_No)
+		                from faq where faq_No>#{faqNo})
 	</select>
 	
 	<select id="before" parameterType="int"  resultType="faqvo">
 		select *
-		from fnq
+		from faq
 		<![CDATA[ 
-		where fnq_no=(select max(fnq_no)
-		                from fnq where fnq_no<#{fnqNo})]]>
+		where faq_No=(select max(faq_No)
+		                from faq where faq_No<#{faqNo})]]>
 	</select>
 	
 </mapper>
