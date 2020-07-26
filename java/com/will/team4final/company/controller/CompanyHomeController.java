@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.will.team4final.company.model.ComMemberService;
+import com.will.team4final.company.model.ComRecruitService;
+import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.location.model.LocationVO;
@@ -23,10 +25,13 @@ import com.will.team4final.login.controller.LoginController;
 @RequestMapping("/companypage")
 public class CompanyHomeController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	@Autowired private ComMemberService cMemberSerice;
 	
+	@Autowired 
+	private ComMemberService cMemberSerice;
 	@Autowired
 	private LocationService locaServ;
+	@Autowired
+	private ComRecruitService comRecruitService;
 	
 	@RequestMapping("/companyHome.do")
 	public String companyHome() {
@@ -78,8 +83,8 @@ public class CompanyHomeController {
 		
 	}
 	
-	@RequestMapping("/companyWrite.do")
-	public String companyWrite(Model model) {
+	@RequestMapping(value = "/companyWrite.do", method = RequestMethod.GET)
+	public String companyWrite_get(Model model) {
 		logger.info("기업페이지 채용공고등록");
 		
 		List<String> list = locaServ.sido();
@@ -88,6 +93,26 @@ public class CompanyHomeController {
 		model.addAttribute("list", list);
 		return "companypage/companyWrite";
 	}
+	
+	@RequestMapping(value = "/companyWrite.do", method = RequestMethod.POST)
+	public String companyWrite_post(@ModelAttribute ComRecruitVO vo, Model model) {
+		logger.info("기업공고 등록, 파라미터 vo={}", vo);
+		
+		int cnt = comRecruitService.insertComRecruit(vo);
+		logger.info("기업공고 등록 결과 cnt={}", cnt);
+		
+		String msg = "기업공고 등록 실패", url = "/companypage/companyWrite.do";
+		if(cnt>0) {
+			msg = "기업공고 등록 성공";
+			url = "/companypage/companyHome.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
 	
 	@RequestMapping("/companyResumeSet.do")
 	public String resumeSet() {
