@@ -36,56 +36,21 @@
                             <div class="row" id="searchSelectDiv">
                                 <select id="searchSelect" style="margin-left: 70px;">
                                     <option>지역</option>
-                                    <option>서울특별시</option>
-                                    <option>경기도</option>
-                                    <option>인천광역시</option>
-                                    <option>세종시</option>
-                                    <option>충청남도</option>
-                                    <option>충청북도</option>
-                                    <option>대전광역시</option>
-                                    <option>광주광역시</option>
-                                    <option>전라남도</option>
-                                    <option>전라북도</option>
-                                    <option>대구광역시</option>
-                                    <option>경상북도</option>
-                                    <option>경상남도</option>
-                                    <option>부산광역시</option>
-                                    <option>울산광역시</option>
-                                    <option>강원도</option>
-                                    <option>제주도</option>
+                                    <c:forEach var="location" items="${locationList }">
+                                    	<option value="${location }">${location }</option>
+                                    </c:forEach>
                                 </select>
                                 <select id="searchSelect">
                                     <option>직무</option>
-                                    <option>경영사무</option>
-                                    <option>마케팅-광고</option>
-                                    <option>IT-인터넷</option>
-                                    <option>디자인</option>
-                                    <option>무역유통</option>
-                                    <option>영업-고객상담</option>
-                                    <option>서비스</option>
-                                    <option>연구개발</option>
-                                    <option>생산-제조</option>
-                                    <option>교육</option>
-                                    <option>건설</option>
-                                    <option>의료</option>
-                                    <option>미디어</option>
-                                    <option>전문특수직</option>
+                                    <c:forEach var="map" items="${jobList }">
+                                    	<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
+                                    </c:forEach>
                                 </select>
                                 <select id="searchSelect">
                                     <option>산업</option>
-                                    <option>서비스업</option>
-                                    <option>금융업</option>
-                                    <option>IT정보통신업</option>
-                                    <option>판매유통업</option>
-                                    <option>제조업</option>
-                                    <option>화학업</option>
-                                    <option>교육업</option>
-                                    <option>건설업</option>
-                                    <option>의료제약업</option>
-                                    <option>미디어업</option>
-                                    <option>광고업</option>
-                                    <option>문화예술업</option>
-                                    <option>디자인업</option>
+                                    <c:forEach var="map" items="${induList }">
+                                    	<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
+                                    </c:forEach>
                                 </select><br>
                                 </div>
                                 <!-- Search Box -->

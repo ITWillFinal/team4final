@@ -39,17 +39,41 @@
 			}
 		}).open();
 	};
-		
-	
+
+
 </script>
 
 <script type="text/javascript">
 	$(function() {
 		$('#sido').click(function() {
 			var sido = $('#sido').val();
-			alert(sido);
-			
-		
+			$('#sigugun').empty();
+			$('input[name=location1]').empty();
+			$.ajax({
+				url:"<c:url value='/sigugun.do'/>",
+				type:"get",
+				dataType:"json",
+				data:"sido="+sido,
+				success:function(res){
+					for(var i = 0; i< res.length; i++){
+						var option ="<option value='"+res[i]+"'>"+res[i]+"</option>";
+						$('#sigugun').append(option);
+					}
+				},
+				error:function(xhr, status, error){
+					alert(status + ", " + error);
+				}
+			});
+			$('input[name=location1]').val(sido);
+		});
+
+		$('#sigugun').click(function() {
+			var sigugun = $('#sigugun').val();
+			$('input[name=location2]').empty();
+			$('input[name=location2]').val(sigugun);
+		});
+
+
 		$('form[name=formWrite]').submit(function(){
 			if($('#title').val()==''){
 				alert('제목을 입력하세요');
@@ -65,10 +89,9 @@
 				event.preventDefault();
 			}
 		});
-		
-		
-		
-		
+
+
+
 	});
 </script>
 
@@ -77,8 +100,8 @@
 
 	tr {
 		border: 1px solid lightgray;
-	}	
-	
+	}
+
 	#sigugunS{
 		display: none;
 	}
@@ -93,35 +116,35 @@
 </style>
 <main>
 	<%@ include file="../inc/companySidebar.jsp" %>
-	
+
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
-			<form name="formWrite" method="post" action="<c:url value='/member/memberOut.do'/>">	
+			<form name="formWrite" method="post" action="<c:url value='/member/memberOut.do'/>">
 			<span style="font-size: 25px; font-weight: bold;">채용정보등록</span>
 			<hr>
 			<div style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span><br><br>
-			
+
 			<table style="width: 700px;">
 				<colgroup>
 					<col style="width:20%;"/>
 					<col style="width:80%;" />
 				</colgroup>
-			
+
 				<tr>
 					<td>모집제목</td>
 					<td>
-						<input type="text" id="title" name="title">						
+						<input type="text" id="title" name="title">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>회사명</td>
 					<td>
 						<input type="text" id="comName" name="comName">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>직무</td>
 					<td>
@@ -138,6 +161,7 @@
 				<tr>
 					<td>근무지역</td>
 					<td>
+
 						<select id="sido">
 							<c:if test="${!empty list}">
 								<c:forEach var="location" items="${list}">
@@ -148,7 +172,7 @@
 						<div style="display: inline;" id="sigugunDiv"></div>
 					</td>
 				</tr>
-					
+
 				<tr>
 					<td>우편번호</td>
 					<td>
@@ -156,29 +180,29 @@
 						<input type="button" onclick="sample4_execDaumPostcode()" value="선택">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>주소</td>
 					<td>
 						<input type="text" id="address" name="address">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>상세주소</td>
 					<td>
 						<input type="text" id="addressDetail" name="addressDetail">
 					</td>
 				</tr>
-								
-		
+
+
 				<tr>
 					<td>근무시간</td>
 					<td>
 						<input type="text" id="workHours" name="workHours">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>근무형태</td>
 					<td>
@@ -191,7 +215,7 @@
 						<input type="text" id="recType" name="recType">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>급여사항</td>
 					<td>
@@ -217,7 +241,7 @@
 						<input type="text" name="pay" id="pay">
 					</td>
 				</tr>
-						
+
 				<tr>
 					<td>복리후생</td>
 					<td>
@@ -238,14 +262,14 @@
 						<input type="text" id="welfare" name="welfare">
 					</td>
 				</tr>
-				
+
 			</table>
 			</div>
 			<hr>
-			
+
 			<div>
 				<span style="font-size: 18px; font-weight: bold;">◎자격요건</span><br><br>
-			
+
 			<table style="width: 700px; border:1px solid lightgray; border">
 				<colgroup>
 					<col style="width:20%;" />
@@ -264,7 +288,7 @@
 						<span>채용에서 남녀를 차별하거나, 여성근로자를 채용할 경우 직무수행에 불필요한 용모, 키, 체중 등의 신체조건, 미혼조건을 제시 또는 요구하는 경우 남녀고용평등법 위반에 따른 500만원 이하의 벌금이 부과될 수 있습니다.</span>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>나이</td>
 					<td>
@@ -297,7 +321,7 @@
 						모집·채용에서 합리적인 이유 없이 연령제한을 하는 경우는 연령차별금지법 위반에 따른 500만원 이하의 벌금이 부과될 수 있습니다.
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>학력</td>
 					<td>
@@ -317,7 +341,7 @@
 						<br><label><input type="checkbox">무관</label>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>경력</td>
 					<td>
@@ -359,7 +383,7 @@
 						<br><label><input type="checkbox">무관</label>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>우대조건</td>
 					<td>
@@ -431,7 +455,7 @@
 							<label>2차<input type="text"></label>
 							<label>3차<input type="text"></label>
 							<label>4차<input type="text"></label>
-										
+
 						</td>
 					</tr>
 
@@ -441,7 +465,7 @@
 				<div style="width: 700px; text-align: center;">
 					<input type="submit" value="채용정보 등록하기">
 				</div><br>
-				
+
 		</form>
 	</div>
 </main>
