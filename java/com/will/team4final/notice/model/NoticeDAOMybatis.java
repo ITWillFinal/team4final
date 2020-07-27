@@ -18,6 +18,11 @@ public class NoticeDAOMybatis implements NoticeDAO{
 	public int insertNotice(NoticeVO vo) {
 		return sqlSession.insert(namespace + "insertNotice", vo);
 	}
+
+	@Override
+	public List<NoticeVO> selectAllNotice() {
+		return sqlSession.selectList(namespace + "selectAllNotice");
+	}
 	
 
 }

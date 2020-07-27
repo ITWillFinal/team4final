@@ -4,12 +4,16 @@
 
 <mapper namespace="com.will.team4final.notice">
 	<insert id="insertNotice" parameterType="noticeVo">
-		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+		<selectKey keyProperty="noticeNo" resultType="int" order="BEFORE">
 			select notice_seq.nextval from dual
 		</selectKey>
 		insert into notice(notice_no, title, type, content, filename, filesize, originfilename)
-		values(#{no}, #{title}, #{type}, #{content}, #{filename}, #{filesize}, #{originfilename})
+		values(#{noticeNo}, #{title}, #{type}, #{content}, #{filename}, #{filesize}, #{originfilename})
 	</insert>
+	
+	<select id="selectAllNotice" resultType="noticeVo">
+		select * from notice order by notice_no desc
+	</select>
 </mapper>
 
 
