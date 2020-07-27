@@ -36,7 +36,7 @@ a {
 }
 
 h4{
-	margin-top: 25px; 
+	margin-top: 5px; 
 	font-weight: 800;
 }
 
@@ -60,7 +60,6 @@ h3{
 #divH4{
 	border-bottom: 2px solid #d1d1d1;
 	padding-bottom: 20px;
-	margin-bottom: 15px;
 }
 
 #ab{
@@ -99,6 +98,7 @@ h3{
 					<div id = "divH4">
 						<h4>질문 답변</h4>
 					</div>
+					<br>
 					<div>
 						<% pageContext.setAttribute("newLine", "\r\n"); %>
 						${fn:replace(vo.answer, newLine, '<br>')}
