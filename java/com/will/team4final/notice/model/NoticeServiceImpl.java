@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.will.team4final.common.SearchVO;
 
@@ -36,6 +38,26 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int deleteNotice(int noticeNo) {
 		return noticeDao.deleteNotice(noticeNo);
+	}
+
+	@Override
+	@Transactional
+	public int deleteMultiNotice(List<NoticeVO> list) {
+		int cnt = 0;
+		
+		try {
+			for(NoticeVO vo : list) {
+				if(vo.getNoticeNo() != 0) {
+					cnt = noticeDao.deleteNotice(vo.getNoticeNo());
+				}
+			}
+		}catch (RuntimeException e) {
+			cnt=-1;
+			e.printStackTrace();
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
+		
+		return cnt;
 	}
 	
 

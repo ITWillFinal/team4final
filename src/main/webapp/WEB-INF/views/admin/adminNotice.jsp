@@ -11,12 +11,13 @@ $(function() {
 		location.href="<c:url value='/admin/adminAddNotice.do'/>";
 	});
 	$('#btDel').click(function() {
-		if($('input[type=checkbox]:checked').val() == ''){
-			
-		}else{
-			var notice_no = $('td input[type=checkbox]:checked').val();
-			location.href="<c:url value='/admin/adminNoticeDelete.do?noticeNo="+notice_no+"'/>";
+		var len = $('input[type=checkbox]:checked').length;
+		if(len == 0){
+			alert("삭제하려는 게시글을 먼저 체크하세요.");
+			return;
 		}
+			
+		
 	});
 	
 });

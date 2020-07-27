@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.will.team4final.common.PaginationInfo;
 import com.will.team4final.common.SearchVO;
 import com.will.team4final.common.Utility;
+import com.will.team4final.gogak.model.FaqVO;
+import com.will.team4final.notice.model.NoticeListVO;
 import com.will.team4final.notice.model.NoticeService;
 import com.will.team4final.notice.model.NoticeVO;
 
@@ -110,6 +112,34 @@ public class AdminController {
 		
 		model.addAttribute("url", url);
 		model.addAttribute("msg", msg);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping("")
+	public String multiDeleteNotice(@ModelAttribute NoticeListVO listNotice, Model model) {
+		logger.info("공지사항 다중 삭제, 파라미터 listNotice = {}", listNotice);
+		
+		List<NoticeVO> list = listNotice.getListNotice();
+		
+		int cnt = noticeServ.deleteMultiNotice(list);
+		logger.info("선택한 게시글 삭제 결과 cnt = {}", cnt);
+		
+		String msg = "", url = "/admin/adminNotice.do";
+		if(cnt>0) {
+			msg = "선택한 공지사항을 삭제했습니다.";
+			
+			for(int i=0 ; i<list.size() ; i++) {
+				NoticeVO vo = list.get(i);
+				logger.info("i={}", i);
+				logger.info("noticeNO={}", vo.getNoticeNo());
+			}//for
+		}else {
+			msg = "선택한 공지사항 삭제 실패! 에러 발생!";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 		
 		return "common/message";
 	}
