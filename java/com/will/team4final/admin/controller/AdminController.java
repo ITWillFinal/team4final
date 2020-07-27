@@ -21,5 +21,12 @@ public class AdminController {
 		
 		return "admin/adminNotice";
 	}
+	
+	@RequestMapping("/adminAddNotice.do")
+	public String adminAddNotice() {
+		logger.info("공지사항 등록 페이지");
+		
+		return "admin/adminAddNotice";
+	}
 
 }
