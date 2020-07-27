@@ -11,8 +11,12 @@ $(function() {
 		location.href="<c:url value='/admin/adminAddNotice.do'/>";
 	});
 	$('#btDel').click(function() {
-		var notice_no = $('td input[type=checkbox]:checked').val();
-		location.href="<c:url value='/admin/adminNoticeDelete.do?noticeNo="+notice_no+"'/>";
+		if($('input[type=checkbox]:checked').val() == ''){
+			
+		}else{
+			var notice_no = $('td input[type=checkbox]:checked').val();
+			location.href="<c:url value='/admin/adminNoticeDelete.do?noticeNo="+notice_no+"'/>";
+		}
 	});
 	
 });
