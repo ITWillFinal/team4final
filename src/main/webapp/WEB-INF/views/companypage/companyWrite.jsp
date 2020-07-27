@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../inc/companyTop.jsp" %>
-
+<script src="<c:url value='/editor/ckeditor/ckeditor.js'/>"></script>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -39,6 +39,7 @@
 			}
 		}).open();
 	};
+	
 </script>
 
 <script type="text/javascript">
@@ -137,6 +138,11 @@
 					strDoc += $(this).val() + " ";  // str에 저장한다.
 			});			
 			$("#document").val(strDoc);			
+		});
+		
+		
+		CKEDITOR.replace('recDetail',{
+			filebrowserUploadUrl:"<c:url value=''/>"
 		});
 		
 		$('form[name=frmWrite]').submit(function(){
@@ -345,7 +351,7 @@
 						<label><input type="checkbox" class="recTypeChk" value="계약직">계약직</label>
 						<label><input type="checkbox" class="recTypeChk" value="병역특례">병역특례</label>
 						<label><input type="checkbox" class="recTypeChk" value="프리랜서">프리랜서</label>
-						<input type="text" id="recType" name="recType">
+						<input type="hidden" id="recType" name="recType">
 					</td>
 				</tr>
 				
@@ -566,7 +572,7 @@
 						<label><input type="checkbox" class="preferChk" value="해외근무가능자">해외근무가능자</label>
 						<label><input type="checkbox" class="preferChk" value="병역특례">병역특례</label>
 						<label><input type="checkbox" class="preferChk" value="차량소지자">차량소지자</label>
-						<input type="text" id="preference" name="preference">
+						<input type="hidden" id="preference" name="preference">
 					</td>
 				</tr>
 				

@@ -41,7 +41,7 @@
 .ui-widget-header {
 	padding: 0.2em;
 }
-
+/*사이드바 제이쿼리 스타일 끝*/
 
 .overlay {
 	position: fixed;
