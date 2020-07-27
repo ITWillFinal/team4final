@@ -68,6 +68,9 @@ public class ResumeController {
 		logger.info("이력서 등록, 파라미터 careerListVo={}",addInfoVo);
 		logger.info("이력서 등록, 파라미터 careerListVo={}",potfolioVo);
 		
+		int cnt = resumeService.insertResume(resumeVo);
+		logger.info("이력서 등록 결과 cnt={}",cnt);
+		
 		return "";
 	}
 	
