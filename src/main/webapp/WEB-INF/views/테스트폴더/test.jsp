@@ -111,7 +111,58 @@ $(function(){
 		$('.self-int').find('input[name=selfIntTitle]').val("");
 		$('.self-int').find('textarea[name=selfInt]').val("");
 	}
+	///////
 	
+	$('.educationBt').click(function(){
+		$('input[name=finalEdu]').val($(this).val());
+	})
+
+	if($('input[name=finalEdu]').val()=="대학·대학원 이상 졸업"){
+		$('input[name=uni]').val($('select[name=unisel]').val());
+		$('input[name=major]').val($('input[name=major-uni]').val());
+		$('input[name=eduScore]').val($("input[name=grade]").val()+"/"+$('select[name=gradeSel]').val());
+		
+		
+	}else if($('input[name=finalEdu]').val()=="고등학교 졸업"){
+		$('input[name=major]').val($('input[name=major-high]').val());
+		
+	}
+	
+	$('input[name=eduPeriod]').val($('select[name=schoolStartDaySel]').val()+":"+$("input[name=schoolStartDay]").val()+" ~ "+
+			$('select[name=schoolEndDaySel]').val()+":"+$("input[name=schoolEndDay]").val());
+	
+	
+	$(this).find(".careerPeriod").val("입사:"+$(this).find("input[name=companyStartDay]").val()+" ~ "+
+			$(this).find('select[name=companyEndDaySel]').val()+":"+$(this).find("input[name=companyEndDay]").val());
+	
+	if($(this).find("select[name=reasonSel]").val()=="직접입력"){
+		$(this).find(".careerReason").val($(this).find('input[name=leaveEtc]').val());		
+	}else{
+		$(this).find(".careerReason").val($(this).find('select[name=reasonSel]').val());				
+	}
+	
+	$(this).find(".careerSal").val($(this).find('input[name=salary]').val()+$(this).find('select[name=salarySel]').val());
+	
+	
+	$addCareer.find(".careerCompany").removeAttr("name").attr("name","careerItems["+careerCount+"].careerCompany");
+	$addCareer.find(".careerPeriod").removeAttr("name").attr("name","careerItems["+careerCount+"].careerPeriod");
+	$addCareer.find(".careerReason").removeAttr("name").attr("name","careerItems["+careerCount+"].careerReason");
+	$addCareer.find(".careerRank").removeAttr("name").attr("name","careerItems["+careerCount+"].careerRank");
+	$addCareer.find(".careerYear").removeAttr("name").attr("name","careerItems["+careerCount+"].careerYear");
+	$addCareer.find(".careerLocation").removeAttr("name").attr("name","careerItems["+careerCount+"].careerLocation");
+	$addCareer.find(".careerSal").removeAttr("name").attr("name","careerItems["+careerCount+"].careerSal");
+	
+	$(this).find('input').each(function(){
+		if($(this).attr("name").indexOf("[")>0){
+			var name = $(this).attr("name");
+			name=name.substring(0,name.indexOf("["))+careerCount+name.substring(name.indexOf("["));
+			console.log(name);
+		}
+	})
+	
+	$('.activity').find('.nullOk-top').each(function(){
+		$(this).find('.actPeriod').val($(this).find("input[name=activityStartDay]").val()+" ~ "+$(this).find("input[name=activityEndDay]").val());
+	});
 });
 </script>
 <div class="month-picker">
