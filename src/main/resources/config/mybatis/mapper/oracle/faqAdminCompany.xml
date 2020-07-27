@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.mapper.oracle.faqAdminCompany">
+	<select id="selectFaq" resultType="faqcompanyvo" parameterType="searchvo">
+		select * 
+		from
+		(
+			select rownum as RNUM, A.*
+			from(
+				select faq_No, category, question, answer
+				from faqc
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					where ${searchCondition} like '%'
+							|| #{searchKeyword} || '%'
+				</if>
+				order by faq_No desc
+			)A
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
+	</select>
+
+	
+<!--<select id="showFaq" resultType="map" parameterType="importance">
+		select * from fimview
+		where overno=#{importance}
+	</select>
+ -->	
+	<insert id="WriteFaq" parameterType="faqcompanyvo">
+		<selectKey keyProperty="faqNo" resultType="int" order="BEFORE">
+			select faqc_seq.nextval from dual
+		</selectKey>
+		insert into faqc
+		values(#{faqNo},#{category},#{question},#{answer})
+	</insert>
+	
+	<select id="selectByNo" parameterType="int" resultType="faqcompanyvo">
+		select * from faqc
+		where faq_No=#{faqNo}
+	</select>
+	
+	<update id="editFaq" parameterType="faqcompanyvo">
+		update faqc
+		set category = #{category}, question = #{question}, answer = #{answer}
+		where faq_No = #{faqNo}
+	</update>
+	
+	<delete id="deleteFaq" parameterType="int">
+		delete faqc
+		where faq_No=#{faqNo}
+	</delete>
+	
+	<select id="selectTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from faqc
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			where ${searchCondition} like '%'
+				|| #{searchKeyword} || '%'
+		</if>
+	</select>
+	
+	<select id="after" parameterType="int"  resultType="faqcompanyvo">
+		select *
+		from faqc
+		where faq_No=(select min(faq_No)
+		                from faq where faq_No>#{faqNo})
+	</select>
+	
+	<select id="before" parameterType="int"  resultType="faqcompanyvo">
+		select *
+		from faqc
+		<![CDATA[ 
+		where faq_No=(select max(faq_No)
+		                from faq where faq_No<#{faqNo})]]>
+	</select>
+	
+</mapper>
+
+
+

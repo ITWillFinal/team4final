@@ -39,8 +39,6 @@
 			}
 		}).open();
 	};
-		
-	
 </script>
 
 <script type="text/javascript">
@@ -66,32 +64,12 @@
 			});
 			$('input[name=location1]').val(sido);
 		});
-		
+
 		$('#sigugun').click(function() {
 			var sigugun = $('#sigugun').val();
 			$('input[name=location2]').empty();
 			$('input[name=location2]').val(sigugun);
 		});
-			
-		
-		$('form[name=formWrite]').submit(function(){
-			if($('#title').val()==''){
-				alert('제목을 입력하세요');
-				$('#title').focus();
-				event.preventDefault();
-			}else if($('#name').val().length<1){
-				alert('이름을 입력하세요');
-				$('#name').focus();
-				event.preventDefault();
-			}else if(!$('#pwd').val()){
-				alert('비밀번호를 입력하세요');
-				$('#pwd').focus();
-				event.preventDefault();
-			}
-		});
-		
-		
-		
 	});
 </script>
 
@@ -100,19 +78,13 @@
 
 	tr {
 		border: 1px solid lightgray;
-	}	
-	
-	select{
-		width:150px;
-		text-align: center;
-		text-align-last: center;
-		
 	}
-	select option{
-		padding: 5px;
+
+	#sigugunS{
+		display: none;
 	}
-	#location{
-		border: 0;
+	#sigugun{
+		display: none;
 	}
 	hr {
 		border:1px solid #FB246A;
@@ -122,78 +94,60 @@
 </style>
 <main>
 	<%@ include file="../inc/companySidebar.jsp" %>
-	
+
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
-			<form name="formWrite" method="post" action="<c:url value='/member/memberOut.do'/>">	
+		<form name="frmWrite" method="post" action="<c:url value='/companypage/companyWrite.do'/>">
 			<span style="font-size: 25px; font-weight: bold;">채용정보등록</span>
 			<hr>
 			<div style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span><br><br>
-			
+
 			<table style="width: 700px;">
 				<colgroup>
 					<col style="width:20%;"/>
 					<col style="width:80%;" />
 				</colgroup>
-			
+
 				<tr>
 					<td>모집제목</td>
 					<td>
-						<input type="text" id="title" name="title">						
+						<input type="text" id="title" name="title">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>회사명</td>
 					<td>
 						<input type="text" id="comName" name="comName">
 					</td>
 				</tr>
+<!--
 				<tr>
-					<td>직무</td>
+					<td>직무1</td>
 					<td>
-						<select id="searchSelect">
-							<option>직무</option>
-							<option>경영사무</option>
-							<option>마케팅-광고</option>
-							<option>IT-인터넷</option>
-							<option>디자인</option>
-							<option>무역유통</option>
-							<option>영업-고객상담</option>
-							<option>서비스</option>
-							<option>연구개발</option>
-							<option>생산-제조</option>
-							<option>교육</option>
-							<option>건설</option>
-							<option>의료</option>
-							<option>미디어</option>
-							<option>전문특수직</option>
-                         </select>
+						<input type="text" id="jobType1" name="jobType1">
 					</td>
 				</tr>
 				<tr>
-					<td>산업</td>
+					<td>직무2</td>
 					<td>
-						<select id="searchSelect">
-							<option>산업</option>
-							<option>서비스업</option>
-							<option>금융업</option>
-							<option>IT정보통신업</option>
-							<option>판매유통업</option>
-							<option>제조업</option>
-							<option>화학업</option>
-							<option>교육업</option>
-							<option>건설업</option>
-							<option>의료제약업</option>
-							<option>미디어업</option>
-							<option>광고업</option>
-							<option>문화예술업</option>
-							<option>디자인업</option>
-						</select>
+						<input type="text" id="jobType2" name="jobType2">
 					</td>
 				</tr>
-				<!-- 근무지역!!!!! -->
+				<tr>
+					<td>산업1</td>
+					<td>
+						<input type="text" id="induType1" name="induType1">
+					</td>
+				</tr>
+				<tr>
+					<td>산업2</td>
+					<td>
+						<input type="text" id="induType2" name="induType2">
+					</td>
+				</tr>
+				 근무지역!!!!! 
 				<tr>
 					<td>근무지역</td>
 					<td>
@@ -205,18 +159,10 @@
 								</c:forEach>
 							</c:if>
 						</select>
-						<div style="display: inline; margin-left: 10px">
-							<select id="sigugun" name="sigugun" size="5">
-							
-							</select>
-						</div>
-						<div>
-							<input type="text" name="location1" id="location" readonly="readonly">
-							<input type="text" name="location2" id="location" readonly="readonly">
-						</div>
+						<div style="display: inline;" id="sigugunDiv"></div>
 					</td>
 				</tr>
-					
+
 				<tr>
 					<td>우편번호</td>
 					<td>
@@ -224,29 +170,29 @@
 						<input type="button" onclick="sample4_execDaumPostcode()" value="선택">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>주소</td>
 					<td>
 						<input type="text" id="address" name="address">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>상세주소</td>
 					<td>
 						<input type="text" id="addressDetail" name="addressDetail">
 					</td>
 				</tr>
-								
-		
+
+
 				<tr>
 					<td>근무시간</td>
 					<td>
 						<input type="text" id="workHours" name="workHours">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>근무형태</td>
 					<td>
@@ -259,33 +205,49 @@
 						<input type="text" id="recType" name="recType">
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>급여사항</td>
 					<td>
 						<select>
 							<option value="">선택하세요</option>
 							<option value="">추후협의</option>
-							<option value="">2000~2200만원</option>
-							<option value="">2200~2400만원</option>
-							<option value="">2400~2600만원</option>
-							<option value="">2600~2800만원</option>
-							<option value="">2800~3000만원</option>
-							<option value="">3000~3200만원</option>
-							<option value="">3200~3400만원</option>
-							<option value="">3400~3600만원</option>
-							<option value="">3600~3800만원</option>
-							<option value="">3800~4000만원</option>
-							<option value="">4000~4200만원</option>
-							<option value="">4200~4400만원</option>
-							<option value="">4400~4600만원</option>
-							<option value="">4600~4800만원</option>
-							<option value="">4800~5000만원</option>
+							<option value="2100">2100만원</option>
+							<option value="2200">2200만원</option>
+							<option value="2300">2300만원</option>
+							<option value="2400">2400만원</option>
+							<option value="2500">2500만원</option>
+							<option value="2600">2600만원</option>
+							<option value="2700">2700만원</option>
+							<option value="2800">2800만원</option>
+							<option value="2900">2900만원</option>
+							<option value="3000">3000만원</option>
+							<option value="3100">3100만원</option>
+							<option value="3200">3200만원</option>
+							<option value="3300">3300만원</option>
+							<option value="3400">3400만원</option>
+							<option value="3500">3500만원</option>
+							<option value="3600">3600만원</option>
+							<option value="3700">3700만원</option>
+							<option value="3800">3800만원</option>
+							<option value="3900">3900만원</option>
+							<option value="4000">4000만원</option>
+							<option value="4100">4100만원</option>
+							<option value="4200">4200만원</option>
+							<option value="4300">4300만원</option>
+							<option value="4400">4400만원</option>
+							<option value="4500">4500만원</option>
+							<option value="4600">4600만원</option>
+							<option value="4700">4700만원</option>
+							<option value="4800">4800만원</option>
+							<option value="4900">4900만원</option>
+							<option value="5000">5000만원</option>
+							<option value="">5000만원 초과</option>
 						</select>
 						<input type="text" name="pay" id="pay">
 					</td>
 				</tr>
-						
+
 				<tr>
 					<td>복리후생</td>
 					<td>
@@ -306,14 +268,20 @@
 						<input type="text" id="welfare" name="welfare">
 					</td>
 				</tr>
-				
+				<tr>
+					<td>모집인원</td>
+					<td>
+						<input type="text" id="recNumber" name="recNumber">
+					</td>
+				</tr>
+-->
 			</table>
 			</div>
 			<hr>
-			
+<!-- 
 			<div>
 				<span style="font-size: 18px; font-weight: bold;">◎자격요건</span><br><br>
-			
+
 			<table style="width: 700px; border:1px solid lightgray; border">
 				<colgroup>
 					<col style="width:20%;" />
@@ -332,32 +300,32 @@
 						<span>채용에서 남녀를 차별하거나, 여성근로자를 채용할 경우 직무수행에 불필요한 용모, 키, 체중 등의 신체조건, 미혼조건을 제시 또는 요구하는 경우 남녀고용평등법 위반에 따른 500만원 이하의 벌금이 부과될 수 있습니다.</span>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>나이</td>
 					<td>
 						<select>
 							<option value="">선택</option>
-							<option value="">20세이하</option>
-							<option value="">21세이하</option>
-							<option value="">22세이하</option>
-							<option value="">23세이하</option>
-							<option value="">24세이하</option>
-							<option value="">25세이하</option>
-							<option value="">26세이하</option>
-							<option value="">27세이하</option>
-							<option value="">28세이하</option>
-							<option value="">29세이하</option>
-							<option value="">30세이하</option>
-							<option value="">31세이하</option>
-							<option value="">32세이하</option>
-							<option value="">33세이하</option>
-							<option value="">34세이하</option>
-							<option value="">35세이하</option>
-							<option value="">40세이하</option>
-							<option value="">45세이하</option>
-							<option value="">55세이하</option>
-							<option value="">60세이하</option>
+							<option value="20">20세이하</option>
+							<option value="21">21세이하</option>
+							<option value="22">22세이하</option>
+							<option value="23">23세이하</option>
+							<option value="24">24세이하</option>
+							<option value="25">25세이하</option>
+							<option value="26">26세이하</option>
+							<option value="27">27세이하</option>
+							<option value="28">28세이하</option>
+							<option value="29">29세이하</option>
+							<option value="30">30세이하</option>
+							<option value="31">31세이하</option>
+							<option value="32">32세이하</option>
+							<option value="33">33세이하</option>
+							<option value="34">34세이하</option>
+							<option value="35">35세이하</option>
+							<option value="40">40세이하</option>
+							<option value="45">45세이하</option>
+							<option value="55">55세이하</option>
+							<option value="60">60세이하</option>
 							<option value="">60세초과</option>
 						</select>
 						<input type="text" name="age" id="age">
@@ -365,69 +333,69 @@
 						모집·채용에서 합리적인 이유 없이 연령제한을 하는 경우는 연령차별금지법 위반에 따른 500만원 이하의 벌금이 부과될 수 있습니다.
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>학력</td>
 					<td>
 						<select>
 							<option value="">선택</option>
-							<option value="">초등학교</option>
-							<option value="">중학교</option>
-							<option value="">고등학교</option>
-							<option value="">대학(2~3년) 재학</option>
-							<option value="">대학(2~3년) 졸업</option>
-							<option value="">대학(4년) 재학</option>
-							<option value="">대학(4년) 졸업</option>
-							<option value="">대학원(석사) 졸업</option>
-							<option value="">대학원(박사) 졸업</option>
+							<option value="초등학교">초등학교</option>
+							<option value="중학교">중학교</option>
+							<option value="고등학교">고등학교</option>
+							<option value="대학(2~3년) 재학">대학(2~3년) 재학</option>
+							<option value="대학(2~3년) 졸업">대학(2~3년) 졸업</option>
+							<option value="대학(4년) 재학">대학(4년) 재학</option>
+							<option value="대학(4년) 졸업">대학(4년) 졸업</option>
+							<option value="대학원(석사) 졸업">대학원(석사) 졸업</option>
+							<option value="대학원(박사) 졸업">대학원(박사) 졸업</option>
 						</select>
 						<input type="text" id="educationLv" name="educationLv">
 						<br><label><input type="checkbox">무관</label>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>경력</td>
 					<td>
 						<select>
 							<option value="">선택</option>
-							<option value="">1년</option>
-							<option value="">2년</option>
-							<option value="">3년</option>
-							<option value="">4년</option>
-							<option value="">5년</option>
-							<option value="">6년</option>
-							<option value="">7년</option>
-							<option value="">8년</option>
-							<option value="">9년</option>
-							<option value="">10년</option>
-							<option value="">11년</option>
-							<option value="">12년</option>
-							<option value="">13년</option>
-							<option value="">14년</option>
-							<option value="">15년</option>
-							<option value="">16년</option>
-							<option value="">17년</option>
-							<option value="">18년</option>
-							<option value="">19년</option>
-							<option value="">20년</option>
-							<option value="">21년</option>
-							<option value="">22년</option>
-							<option value="">23년</option>
-							<option value="">24년</option>
-							<option value="">25년</option>
-							<option value="">26년</option>
-							<option value="">27년</option>
-							<option value="">28년</option>
-							<option value="">29년</option>
-							<option value="">30년</option>
+							<option value="1">1년</option>
+							<option value="2">2년</option>
+							<option value="3">3년</option>
+							<option value="4">4년</option>
+							<option value="5">5년</option>
+							<option value="6">6년</option>
+							<option value="7">7년</option>
+							<option value="8">8년</option>
+							<option value="9">9년</option>
+							<option value="10">10년</option>
+							<option value="11">11년</option>
+							<option value="12">12년</option>
+							<option value="13">13년</option>
+							<option value="14">14년</option>
+							<option value="15">15년</option>
+							<option value="16">16년</option>
+							<option value="17">17년</option>
+							<option value="18">18년</option>
+							<option value="19">19년</option>
+							<option value="20">20년</option>
+							<option value="21">21년</option>
+							<option value="22">22년</option>
+							<option value="23">23년</option>
+							<option value="24">24년</option>
+							<option value="25">25년</option>
+							<option value="26">26년</option>
+							<option value="27">27년</option>
+							<option value="28">28년</option>
+							<option value="29">29년</option>
+							<option value="30">30년</option>
 							<option value="">30년 이상</option>
 						</select>
 						<input type="text" id="career" name="career">
 						<br><label><input type="checkbox">무관</label>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td>우대조건</td>
 					<td>
@@ -499,17 +467,16 @@
 							<label>2차<input type="text"></label>
 							<label>3차<input type="text"></label>
 							<label>4차<input type="text"></label>
-										
+
 						</td>
 					</tr>
 
 				</table>
 				</div>
-				<hr>
-				<div style="width: 700px; text-align: center;">
-					<input type="submit" value="채용정보 등록하기">
-				</div><br>
-				
+				<hr>--> 
+			<div style="width: 700px; text-align: center;">
+				<input type="submit" value="채용공고 등록하기"/>
+			</div><br>
 		</form>
 	</div>
 </main>

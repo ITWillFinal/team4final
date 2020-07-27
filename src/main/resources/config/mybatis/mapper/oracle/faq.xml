@@ -26,7 +26,7 @@
 	
 <!--<select id="showFaq" resultType="map" parameterType="importance">
 		select * from fimview
-		where overno=#{importance};
+		where overno=#{importance}
 	</select>
  -->	
 	<insert id="WriteFaq" parameterType="faqVo">

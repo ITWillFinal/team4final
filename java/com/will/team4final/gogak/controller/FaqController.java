@@ -21,7 +21,7 @@ import com.will.team4final.gogak.model.FaqService;
 import com.will.team4final.gogak.model.FaqVO;
 
 @Controller
-@RequestMapping("/gogak")
+@RequestMapping("/gogak/personal")
 public class FaqController {
 
 	private final static Logger logger
@@ -38,7 +38,7 @@ public class FaqController {
 		
 		model.addAttribute("list", list);
 		
-		return "gogak/faq";
+		return "gogak/personal/faq";
 	}
 	
 	@RequestMapping(value = "/faqWrite.do", method = RequestMethod.GET)
@@ -52,10 +52,10 @@ public class FaqController {
 		logger.info("faq insert 화면");
 		
 		int cnt = faqService.WriteFaq(vo);
-		String msg = "자주찾는 질문 등록 실패", url = "/gogak/faqWrite";
+		String msg = "자주찾는 질문 등록 실패", url = "/gogak/personal/faqWrite";
 		if(cnt>0) {
 			msg = "자주찾는 질문 등록 성공";
-			url = "/gogak/faqList.do";
+			url = "/gogak/personal/faqList.do";
 		}
 		
 		model.addAttribute("msg", msg);
@@ -95,7 +95,7 @@ public class FaqController {
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		
-		return "gogak/faqList";
+		return "gogak/personal/faqList";
 	}
 	
 	@RequestMapping(value = "/faqDetail.do")
@@ -114,7 +114,7 @@ public class FaqController {
 		model.addAttribute("afterVO", afterVO);
 		model.addAttribute("beforeVO", beforeVO);
 		
-		return "gogak/faqDetail";
+		return "gogak/personal/faqDetail";
 		
 	}
 	
@@ -126,7 +126,7 @@ public class FaqController {
 		FaqVO vo = faqService.selectByNo(no);
 		model.addAttribute("vo", vo);
 		
-		return "gogak/faqEdit";
+		return "gogak/personal/faqEdit";
 		
 	}
 	
@@ -138,11 +138,11 @@ public class FaqController {
 		
 		vo.setfaqNo(no);
 		
-		String msg = "자주 찾는 질문 수정 실패", url = "/gogak/faqEdit.do";
+		String msg = "자주 찾는 질문 수정 실패", url = "/gogak/personal/faqEdit.do";
 		int cnt = faqService.editFaq(vo);
 		if(cnt>0) {
 			msg = "자주 찾는 질문 수정 성공";
-			url = "/gogak/faqDetail.do?no="+vo.getfaqNo();
+			url = "/gogak/personal/faqDetail.do?no="+vo.getfaqNo();
 		}
 		
 		model.addAttribute("msg", msg);
@@ -159,7 +159,7 @@ public class FaqController {
 		int cnt = faqService.deleteFaq(no);
 		if(cnt>0) {
 			msg = "자주 찾는 질문이 삭제되었습니다.";
-			url = "/gogak/faqList.do";
+			url = "/gogak/personal/faqList.do";
 		}
 		
 		model.addAttribute("msg", msg);
@@ -178,7 +178,7 @@ public class FaqController {
 		
 		int cnt = faqService.deleteMulti(list);
 		logger.info("선택한 게시글 삭제 결과 cnt = {}", cnt);
-		String msg = "", url = "/gogak/faqList.do";
+		String msg = "", url = "/gogak/personal/faqList.do";
 		if(cnt>0) {
 			msg = "선택한 게시글을 삭제했습니다.";
 			
