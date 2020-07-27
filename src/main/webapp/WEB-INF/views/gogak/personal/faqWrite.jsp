@@ -35,8 +35,8 @@ input#rrr {
 	<%@ include file="../side_inc/personal_Sidebar.jsp"%>
 	
 	<!-- main -->
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; border:1px solid lightgray;">
-		<div style="margin:5px; height:95px; border:1px solid lightgray;">
+	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
+		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
 		<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문 등록하기</h2>
 		</div>
 		<div style="margin:5px;">

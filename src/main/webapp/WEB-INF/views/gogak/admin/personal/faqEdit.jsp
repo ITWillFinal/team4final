@@ -36,6 +36,9 @@ input#ddd {
 input#rrr {
     margin-left: 20px;
 }
+a{
+	color: black;
+}
 </style>
 
 
@@ -43,17 +46,17 @@ input#rrr {
 
 <main>
 	<!-- main -->
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; border:1px solid lightgray;">
-		<div style="margin:5px; height:95px; border:1px solid lightgray;">
+	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
+		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
 		<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문 등록하기(개인)</h2>
 		</div>
-		<div style="margin:5px; border:1px solid lightgray;">
+		<div style="margin:5px; /* border:1px solid lightgray; */">
 
 			<div id="outDiv">
 				<form name = "frmWrite" method="post" 
 					action="<c:url value = '/gogak/admin/personal/faqEdit.do'/>">
 					<input type = "hidden" value = "${vo.faqNo }" name = "no">
-					<table style="width: 700px; border: 1px solid lightgray;">
+					<table style="width: 700px; /* border: 1px solid lightgray; */">
 						<colgroup>
 							<col style="width: 20%;" />
 							<col style="width: 80%;" />

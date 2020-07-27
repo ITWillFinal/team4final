@@ -6,7 +6,7 @@
 <style>
 	#searchSelect{
 		margin-left: 30px;
-	    height: 55px;
+	    height:. 55px;
 	    font-size: 1.1em;
 	    font-weight: bold;
 	    background: #ffffff;
