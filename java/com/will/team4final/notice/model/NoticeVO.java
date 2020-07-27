@@ -12,6 +12,8 @@ public class NoticeVO {
 	private String filename;
 	private long filesize;
 	private String originfilename;
+	private String memberType;
+	
 	public int getNoticeNo() {
 		return noticeNo;
 	}
@@ -66,11 +68,19 @@ public class NoticeVO {
 	public void setOriginfilename(String originfilename) {
 		this.originfilename = originfilename;
 	}
+	public String getMemberType() {
+		return memberType;
+	}
+	public void setMemberType(String memberType) {
+		this.memberType = memberType;
+	}
 	@Override
 	public String toString() {
 		return "NoticeVO [noticeNo=" + noticeNo + ", title=" + title + ", type=" + type + ", content=" + content
 				+ ", readcount=" + readcount + ", regdate=" + regdate + ", filename=" + filename + ", filesize="
-				+ filesize + ", originfilename=" + originfilename + "]";
+				+ filesize + ", originfilename=" + originfilename + ", memberType=" + memberType + "]";
 	}
+	
+	
 	
 }

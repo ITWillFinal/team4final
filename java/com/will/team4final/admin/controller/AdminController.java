@@ -95,4 +95,22 @@ public class AdminController {
 		
 		return "admin/adminNoticeDetail";
 	}
+	
+	@RequestMapping("/adminNoticeDelete.do")
+	public String adminNoticeDelete(@RequestParam(defaultValue = "0")int noticeNo, Model model) {
+		logger.info("공지사항 삭제, 파라미터 noticeNo = {}", noticeNo);
+		
+		int cnt = noticeServ.deleteNotice(noticeNo);
+		
+		String url = "/admin/adminNotice.do", msg = "삭제오류입니다.";
+		if(cnt > 0) {
+			url = "/admin/adminNotice.do";
+			msg = "삭제 완료되었습니다.";
+		}
+		
+		model.addAttribute("url", url);
+		model.addAttribute("msg", msg);
+		
+		return "common/message";
+	}
 }

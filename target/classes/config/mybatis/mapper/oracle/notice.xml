@@ -7,8 +7,8 @@
 		<selectKey keyProperty="noticeNo" resultType="int" order="BEFORE">
 			select notice_seq.nextval from dual
 		</selectKey>
-		insert into notice(notice_no, title, type, content, filename, filesize, originfilename)
-		values(#{noticeNo}, #{title}, #{type}, #{content}, #{filename}, #{filesize}, #{originfilename})
+		insert into notice(notice_no, title, type, content, filename, filesize, originfilename, member_type)
+		values(#{noticeNo}, #{title}, #{type}, #{content}, #{filename}, #{filesize}, #{originfilename}, #{memberType})
 	</insert>
 	
 	<select id="selectAllNotice" resultType="noticeVo" parameterType="searchVo">
@@ -41,6 +41,10 @@
 	<select id="selectNoticeByNo" resultType="noticeVo" parameterType="int">
 		select * from notice where notice_no = #{noticeNo}
 	</select>
+	
+	<delete id="deleteNotice" parameterType="int">
+		delete from notice where notice_no = #{noticeNo}
+	</delete>
 	
 </mapper>
 

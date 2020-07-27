@@ -9,4 +9,5 @@ public interface NoticeDAO {
 	List<NoticeVO> selectAllNotice(SearchVO searchVo);
 	NoticeVO selectNoticeByNo(int noticeNo);
 	int totalNotice(SearchVO searchVo);
+	int deleteNotice(int noticeNo);
 }
