@@ -7,9 +7,10 @@
 <style>
 .divList{
 /*     padding-left: 300px; */
-    padding-top: 30px;
-    padding-left: 50px;
+    padding-top: 80px;
+    padding-left: 80px;
     padding-bottom: 50px;
+    padding-right: 80px;
 }
 table{
 	border-bottom: 1px solid lightgray;
@@ -21,7 +22,7 @@ th{
 td{
 	border-bottom: 1px solid #FB246A;
 	padding: 5px;
-}
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 a{
 	color: black;
 }
@@ -35,14 +36,10 @@ a{
 	 padding-left: 300px;
 }
 
-/* .divSearch{
-	padding-left: 450px;
-} */
-
 .divPage{
-/* 	padding-left: 450px; */
 	text-align:center;
-/* 	padding:5px 0 10px 450px; */
+    padding-top: 40px;
+    padding-bottom: 10px;
 }
 
 .divList{
@@ -108,6 +105,7 @@ a{
 							value="${param.searchKeyword}">	
 					</form>
 				</div>
+			<div>
 			<form name="frmList" method="post"
 				action="<c:url value = '/gogak/faqList.do'/>">
 				<div class = "divList">
@@ -165,6 +163,7 @@ a{
 					</table>
 				</div>
 			</form>
+			</div>
 				<div class="divPage">
 					<!-- 페이지 번호 추가 -->		
 					<!-- 이전 블럭으로 이동 ◀ -->
@@ -182,7 +181,7 @@ a{
 							<a href="#" onclick="pageProc(${i})">[${i}]</a>
 						</c:if>
 						<c:if test="${i==pagingInfo.currentPage }">
-							<span style="color:blue;font-weight:bold">${i}</span>			
+							<span style="color:blue;font-weight:bold; font-size: 12px;">${i}</span>			
 						</c:if>		
 					</c:forEach>
 						
@@ -218,8 +217,8 @@ a{
 					        <input type="text" name="searchKeyword" title="검색어 입력"
 					        	value="${param.searchKeyword}">   
 							<input type="submit" value="검색"><br>
-							<!-- <input type="button" id = "fnqWrite" value = "게시글 등록">
-							<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"> --><br><br>
+							<input type="button" id = "fnqWrite" value = "게시글 등록">
+							<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"><br><br>
 				    </form>
 				</div>
 			</div>

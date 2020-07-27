@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.jobkinds">
+	<select id="selectJobLarge" resultType="map">
+		select * from job_large
+	</select>
+	
+	<select id="selectInduLarge" resultType="map">
+		select * from industry_large
+	</select>
+	
+	<select id="selectJobMiddle" resultType="map">
+		select * from job_middle where large_no = #{no}
+	</select>
+	
+	<select id="selectInduMiddle" resultType="map">
+		select * from industry_middle where large_no = #{no}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

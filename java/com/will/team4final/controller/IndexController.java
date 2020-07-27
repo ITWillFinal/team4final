@@ -1,6 +1,8 @@
 package com.will.team4final.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.will.team4final.jobkinds.model.JobService;
+import com.will.team4final.location.model.LocationService;
+import com.will.team4final.location.model.LocationVO;
 import com.will.team4final.login.controller.LoginController;
 import com.will.team4final.login.controller.NaverLoginBO;
 
@@ -33,6 +38,12 @@ public class IndexController {
 	private GoogleConnectionFactory googleConnectionFactory;
 	@Autowired
 	private OAuth2Parameters googleOAuth2Parameters;
+	
+	@Autowired
+	private LocationService locationServ;
+	
+	@Autowired
+	private JobService jobServ;
 	
 	/* NaverLoginBO */
 	@Autowired
@@ -55,9 +66,17 @@ public class IndexController {
 		logger.info("네이버 : {}", naverAuthUrl);
 		logger.info("구글 : {}", url);
 		
+		//지역나오게하기
+		List<String> locationList = locationServ.sido();
+		List<Map<String, Object>> jobList = jobServ.selectLarge();
+		List<Map<String, Object>> induList = jobServ.selectInduLarge();
+		
 		//네이버
 		model.addAttribute("url", naverAuthUrl);
 		model.addAttribute("google_url", url);
+		model.addAttribute("locationList", locationList);
+		model.addAttribute("jobList", jobList);
+		model.addAttribute("induList", induList);
 		
 		return "index";
 	}
