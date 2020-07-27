@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.will.team4final.common.SearchVO;
+
 @Service
 public class NoticeServiceImpl implements NoticeService {
 
@@ -17,8 +19,18 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVO> selectAllNotice() {
-		return noticeDao.selectAllNotice();
+	public List<NoticeVO> selectAllNotice(SearchVO searchVo) {
+		return noticeDao.selectAllNotice(searchVo);
+	}
+
+	@Override
+	public NoticeVO selectNoticeByNo(int noticeNo) {
+		return noticeDao.selectNoticeByNo(noticeNo);
+	}
+
+	@Override
+	public int totalNotice(SearchVO searchVo) {
+		return noticeDao.totalNotice(searchVo);
 	}
 	
 

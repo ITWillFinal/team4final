@@ -10,7 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.will.team4final.common.PaginationInfo;
+import com.will.team4final.common.SearchVO;
+import com.will.team4final.common.Utility;
 import com.will.team4final.notice.model.NoticeService;
 import com.will.team4final.notice.model.NoticeVO;
 
@@ -28,12 +32,27 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/adminNotice.do")
-	public String adminNotice(Model model) {
+	public String adminNotice(Model model, @ModelAttribute SearchVO searchVo) {
 		logger.info("공지사항 관리 페이지");
 		
-		List<NoticeVO> list = noticeServ.selectAllNotice();
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
+		
+		List<NoticeVO> list = noticeServ.selectAllNotice(searchVo);
 		logger.info("공지사항 목록 개수 = {}", list.size());
 		
+		int totalRecord = noticeServ.totalNotice(searchVo);
+		logger.info("totalRecord 개수 = {}", totalRecord);
+		
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
 		
 		return "admin/adminNotice";
@@ -63,5 +82,17 @@ public class AdminController {
 		model.addAttribute("msg", msg);
 		
 		return "common/message";
+	}
+	
+	@RequestMapping("/adminNoticeDetail.do")
+	public String adminNoticeDetail(@RequestParam(defaultValue = "0")int noticeNo, Model model) {
+		logger.info("공지사항 디테일, 파라미터 noticeNo = {}", noticeNo);
+		
+		NoticeVO vo = noticeServ.selectNoticeByNo(noticeNo);
+		logger.info("공지사항 vo = {}", vo);
+		
+		model.addAttribute("vo", vo);
+		
+		return "admin/adminNoticeDetail";
 	}
 }

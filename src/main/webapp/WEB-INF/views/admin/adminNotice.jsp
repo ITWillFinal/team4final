@@ -1,12 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/adminTop.jsp"%>
+<script type="text/javascript">
+function pageProc(curPage){
+	location.href="<c:url value='/admin/adminNotice.do?currentPage="+curPage+"'/>";
+}
+</script>
 <style>
 	table{
 		color: black;
 		font-size: 1.2em;
-		border-bottom: 1px solid gray;
-	}	
+	}
+	td{
+	}
+	tr{
+		border-bottom: 1px solid #9a9a9a5e;
+		height: 50px;
+	}
+	#pagingDiv{
+	    text-align: center;
+	    margin: 20px 0px;
+	    font-size: 1.1em;
+	}
+	#pagingDiv span{
+		border: 1px solid;
+		padding: 2px 6px;
+	}
+	#pagingDiv span a{
+		color: #444;
+	}
 </style>
 <div>
 	<h1>공지사항</h1>
@@ -21,18 +43,35 @@
 			<th>제목</th>
 			<th>등록일</th>
 		</tr>
-		<tr>
 			<c:if test="${empty list }">
-				<td colspan="3">등록된 공지사항이 없습니다.</td>
+				<tr>
+					<td colspan="3">등록된 공지사항이 없습니다.</td>
+				</tr>
 			</c:if>
 			<c:if test="${!empty list }">
+				<c:set var="idx" value="0"/>
 				<c:forEach var="vo" items="${list }">
-					<td style="text-align: center;">${vo.type }</td>
-					<td>${vo.title }</td>
-					<td style="text-align: center;"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
+					<tr>
+						<td style="text-align: center; color:#3b38ff; font-weight: bold;">${vo.type }</td>
+						<td><a href="<c:url value='/admin/adminNoticeDetail.do?noticeNo=${vo.noticeNo }'/>">${vo.title }</a></td>
+						<td style="text-align: center;"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
+					</tr>
+					<c:set var = "idx" value = "${idx+1 }"/>
 				</c:forEach>
 			</c:if>
-		</tr>
 	</table>
+	<div id="pagingDiv">
+	<c:forEach var="i" begin="${pagingInfo.firstPage }" 
+		end="${pagingInfo.lastPage }">		
+		<c:if test="${i!=pagingInfo.currentPage }">
+			<span><a href="#" onclick="pageProc(${i})">${i}</a></span>
+		</c:if>
+		<c:if test="${i==pagingInfo.currentPage }">
+			<span style="color:blue;font-weight:bold;">${i}</span>
+		</c:if>		
+	</c:forEach>
+	</div>
+	<button><a href="<c:url value='/admin/adminAddNotice.do'/>">글등록</a></button>
+	
 </div>
 <%@ include file="../inc/adminBottom.jsp"%>

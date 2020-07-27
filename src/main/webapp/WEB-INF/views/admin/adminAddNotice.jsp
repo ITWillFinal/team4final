@@ -7,13 +7,25 @@
 		CKEDITOR.replace('content',{
 			filebrowserUploadUrl:"<c:url value=''/>"
 		});
+		
+		$('form[name=frm]').submit(function() {
+			if($('#title').val().length < 1){
+				alert('제목을 입력해주세요.');
+				$('#title').focus();
+				event.preventDefault();
+			}else if($('#type').val() == '0'){
+				alert('유형을 선택해주세요.');
+				$('#type').focus();
+				event.preventDefault();
+			}
+		});
 	})
-	
 </script>
 <div>
 	<h1>공지사항</h1>
-	<form action="<c:url value='/admin/adminAddNotice.do'/>" method="post">
+	<form action="<c:url value='/admin/adminAddNotice.do'/>" method="post" name="frm" style="margin-top: 30px;">
 		<select style="width: 12%" id="type" name="type">
+			<option value="0">유형 </option>
 			<option value="안내">안내 </option>
 			<option value="오픈">오픈 </option>
 			<option value="이벤트">이벤트 </option>

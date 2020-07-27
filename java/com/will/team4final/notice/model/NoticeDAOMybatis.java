@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.will.team4final.common.SearchVO;
+
 
 @Repository
 public class NoticeDAOMybatis implements NoticeDAO{
@@ -20,8 +22,18 @@ public class NoticeDAOMybatis implements NoticeDAO{
 	}
 
 	@Override
-	public List<NoticeVO> selectAllNotice() {
-		return sqlSession.selectList(namespace + "selectAllNotice");
+	public List<NoticeVO> selectAllNotice(SearchVO searchVo) {
+		return sqlSession.selectList(namespace + "selectAllNotice", searchVo);
+	}
+
+	@Override
+	public NoticeVO selectNoticeByNo(int noticeNo) {
+		return sqlSession.selectOne(namespace + "selectNoticeByNo", noticeNo);
+	}
+
+	@Override
+	public int totalNotice(SearchVO searchVo) {
+		return sqlSession.selectOne(namespace + "totalNotice", searchVo);
 	}
 	
 

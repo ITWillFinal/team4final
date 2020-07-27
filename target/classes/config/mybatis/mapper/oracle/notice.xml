@@ -11,9 +11,37 @@
 		values(#{noticeNo}, #{title}, #{type}, #{content}, #{filename}, #{filesize}, #{originfilename})
 	</insert>
 	
-	<select id="selectAllNotice" resultType="noticeVo">
-		select * from notice order by notice_no desc
+	<select id="selectAllNotice" resultType="noticeVo" parameterType="searchVo">
+		select * 
+		from 
+		(
+			select rownum as RNUM, A.*
+			from(
+				select notice_no, title, type, regdate from notice
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					where ${searchCondition} like '%'
+							|| #{searchKeyword} || '%'
+				</if>
+				order by notice_no desc
+			)A
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
+	
+	<select id="totalNotice" parameterType="searchVo" resultType="int">
+		select count(*) from notice
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			where ${searchCondition} like '%'
+				|| #{searchKeyword} || '%'
+		</if>
+	</select>
+	
+	<select id="selectNoticeByNo" resultType="noticeVo" parameterType="int">
+		select * from notice where notice_no = #{noticeNo}
+	</select>
+	
 </mapper>
 
 
