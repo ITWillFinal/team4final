@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.companyRecruit">
+	<insert id="insertComRecruit" parameterType="comRecruitVo" >
+		<selectKey keyProperty="recruitmentCode" resultType="int" order="BEFORE">
+			select RECRUITMENT_SEQ.nextval from dual
+		</selectKey>
+		insert into recruitment(
+		RECRUITMENT_CODE, COM_NAME, TITLE, JOB_TYPE1, JOB_TYPE2,
+		INDU_TYPE1, INDU_TYPE2,	ZIPCODE, ADDRESS, ADDRESSDETAIL,
+		LOCATION1, LOCATION2, WORKHOURS, PAY, REC_TYPE, WELFARE, GENDER,
+		AGE, EDUCATION_LV, CAREER, PREFERENCE, REC_NUMBER, REC_DEADLINE,
+		DOCUMENT, REC_DETAIL)
+		
+		values(
+		#{recruitmentCode}, #{comName}, #{title}, #{jobType1}, #{jobType2},
+		#{induType1}, #{induType2}, #{zipcode}, #{address}, #{addressDetail},
+		#{location1}, #{location2}, #{workHours}, #{pay}, #{recType}, #{welfare}, #{gender},
+		#{age},	#{educationLv}, #{career}, #{preference}, #{recNumber}, #{recDeadline},
+		#{document}, #{recDetail})
+		
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
