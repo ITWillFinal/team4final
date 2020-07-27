@@ -9,4 +9,9 @@ public class CompanyInfoDAOMybatis implements CompanyInfoDAO {
 	@Autowired private SqlSessionTemplate sqlSession;
 	
 	private String namespace="com.will.team4final.companyInfo.";
+
+	@Override
+	public int insertCompanyInfo(CompanyInfoVO vo) {
+		return sqlSession.insert(namespace+"insertCompanyInfo", vo);
+	}
 }

@@ -169,7 +169,7 @@ hr{
 <main>
 	<%@ include file="../inc/companySidebar.jsp"%>
 	<div
-		style="float: left; width: 49%; margin-left: 30px; font-size: 14px; border: 1px solid lightgray">
+		style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
 		<!-- main -->
 		<div style="margin: 5px; height: 95px;"><br>
 			<h1 style="background: white; padding: 20px; font-weight: bold;">
@@ -180,7 +180,7 @@ hr{
 		</div>
 		<br>
 		<hr>
-		<form name="frm" method="post" style="margin-top: 100px;"
+		<form name="frm" method="post" style="margin-top: 50px;"
 			action="<c:url value='#' /> "
 			enctype="multipart/form-data" >
 		<div class="form-horizontal">
@@ -210,7 +210,8 @@ hr{
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="zipcode" class="col-sm-3 control-label">주소</label> 
+				<label for="zipcode" class="col-sm-3 control-label">주소<span>*</span>
+				</label>
 				<div class="col-sm-9 form-input">
 					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 					<br><br>
@@ -240,7 +241,7 @@ hr{
 				</div>
 			</div>
 			<div class="form-group">
-					<label for="inputUser" class="col-sm-3 control-label">회사 내부 전화 번호 <span>*</span>
+					<label for="inputUser" class="col-sm-4 control-label">회사 내부 전화 번호 <span>*</span>
 					</label>
 					<div class="col-sm-9 form-input">
 						<input type="text" class="form-control onlyNumber" id="comHp"
@@ -334,13 +335,6 @@ hr{
 				<div class="col-sm-9 form-input">
 					<input type="email" class="form-control" id="homepage"
 						name="homepage">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputUser" class="col-sm-3 control-label onlyHangul">리뷰
-				</label>
-				<div class="col-sm-9 form-input">
-					<textarea class="form-control" rows="8" id="review" name="review"></textarea>
 				</div>
 			</div>
 		<!-- main end -->

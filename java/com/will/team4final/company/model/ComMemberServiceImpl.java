@@ -36,8 +36,8 @@ public class ComMemberServiceImpl implements ComMemberService{
 	}
 
 	@Override
-	public CompanyMemberVO selectCMemberAll(String cUserid) {
-		return comMemberDao.selectCMemberAll(cUserid);
+	public CompanyMemberVO selectCMemberInfoByUserid(String cUserid) {
+		return comMemberDao.selectCMemberInfoByUserid(cUserid);
 	}
 
 	@Override

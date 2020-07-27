@@ -6,4 +6,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CompanyInfoServiceImpl implements CompanyInfoService {
 	@Autowired private CompanyInfoDAO companyInfoDao;
+
+	@Override
+	public int insertCompanyInfo(CompanyInfoVO vo) {
+		return companyInfoDao.insertCompanyInfo(vo);
+	}
 }

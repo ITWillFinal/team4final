@@ -14,6 +14,6 @@ public interface ComMemberService {
 	int selectCMemberDup(String cUserid);
 	String findCMemberId(String cEmail);
 	int updateCMemberPwdByEmail(CompanyMemberVO companyMemberVo);
-	CompanyMemberVO selectCMemberAll(String cUserid);
+	CompanyMemberVO selectCMemberInfoByUserid(String cUserid);
 	int comLoginCheck(String userid, String pwd);
 }
