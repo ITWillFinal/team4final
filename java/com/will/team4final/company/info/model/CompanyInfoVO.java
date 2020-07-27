@@ -15,8 +15,7 @@ public class CompanyInfoVO {
 	private String content;
 	private String homepage;
 	private String review;
-	
-	
+	private int cMemberCode;
 	public int getComCode() {
 		return comCode;
 	}
@@ -101,13 +100,20 @@ public class CompanyInfoVO {
 	public void setReview(String review) {
 		this.review = review;
 	}
+	public int getcMemberCode() {
+		return cMemberCode;
+	}
+	public void setcMemberCode(int cMemberCode) {
+		this.cMemberCode = cMemberCode;
+	}
 	@Override
 	public String toString() {
 		return "CompanyInfoVO [comCode=" + comCode + ", comName=" + comName + ", ceo=" + ceo + ", comNum=" + comNum
 				+ ", zipcode=" + zipcode + ", address=" + address + ", addressDetail=" + addressDetail + ", imageURL="
 				+ imageURL + ", comHp=" + comHp + ", comType=" + comType + ", comIndustry=" + comIndustry + ", content="
-				+ content + ", homepage=" + homepage + ", review=" + review + "]";
+				+ content + ", homepage=" + homepage + ", review=" + review + ", cMemberCode=" + cMemberCode + "]";
 	}
+	
 	
 	
 

@@ -27,6 +27,7 @@ public class FileUploadUtil {
 
 	public static final int PATH_PDS = 1; // 자료실에 사용
 	public static final int PATH_PERSONAL_IMAGE = 2; // 상품업로드시 사용
+	public static final int PATH_COMPANYINFO_IMAGE = 3; // 회사 사진 업로드시 사용
 
 	@Resource(name = "fileUploadProperties")
 	Properties fileUploadProps;

@@ -33,7 +33,7 @@
 		where C_USERID=#{cUserid}
 	</update>
 	
-	<select id="selectCMemberAll" parameterType="string" resultType="companyMemberVo">
+	<select id="selectCMemberInfoByUserid" parameterType="string" resultType="companyMemberVo">
 		select * from company_member where C_USERID=#{cUserid}
 	</select>
 </mapper>
