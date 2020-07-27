@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.will.team4final.common.DateSearchVO;
 import com.will.team4final.common.PaginationInfo;
 import com.will.team4final.common.SearchVO;
 import com.will.team4final.common.Utility;
 import com.will.team4final.gogak.model.FaqVO;
+import com.will.team4final.member.model.MemberService;
+import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.notice.model.NoticeListVO;
 import com.will.team4final.notice.model.NoticeService;
 import com.will.team4final.notice.model.NoticeVO;
@@ -26,7 +29,9 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@Autowired
-	NoticeService noticeServ;
+	private NoticeService noticeServ;
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping("/adminMain.do")
 	public void adminMain() {
@@ -142,5 +147,17 @@ public class AdminController {
 		model.addAttribute("url", url);
 		
 		return "common/message";
+	}
+	
+	@RequestMapping("/adminMemberManagement.do")
+	public String adminMemberManagement(@ModelAttribute DateSearchVO dateSearchVo, Model model) {
+		logger.info("공지사항 등록 페이지");
+		
+		List<MemberVO> memberList = memberService.showAllMemberUser();
+		
+		
+		model.addAttribute("memberList", memberList);
+		
+		return "admin/adminMemberManagement";
 	}
 }
