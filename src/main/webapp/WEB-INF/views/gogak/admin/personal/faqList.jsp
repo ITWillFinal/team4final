@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ include file="../../../inc/top.jsp"%>
 <style>
 .divList{
 /*     padding-left: 300px; */
@@ -66,7 +67,7 @@ a{
 		$('#btMultiDel').click(function() {
 			var len = $('tbody input[type=checkbox]:checked').length;
 			if(len==0){
-				alert("삭제하려는 상품을 먼저 체크하세요.");
+				alert("삭제하려는 게시글을 먼저 체크하세요.");
 				return;
 			}
 			
@@ -82,7 +83,6 @@ a{
 	});
 </script>
 <main>
-	<%@ include file="../../side_inc/admin_Sidebar.jsp"%>
 	
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
@@ -169,12 +169,11 @@ a{
 				<div class="divPage">
 					<!-- 페이지 번호 추가 -->		
 					<!-- 이전 블럭으로 이동 ◀ -->
-					<%-- <c:if test="${pagingInfo.firstPage>1 }">
+					<c:if test="${pagingInfo.firstPage>1 }">
 						<a href="#" onclick="pageProc(${pagingInfo.firstPage-1})">
-							<img src="<c:url value='/resources/images/first.JPG'/>" 
-								alt="이전 블럭으로 이동">
+							◁
 						</a>
-					</c:if>  --%>
+					</c:if>
 					
 					<!-- 페이지 번호 1~10 -->
 					<c:forEach var="i" begin="${pagingInfo.firstPage }" 
@@ -188,12 +187,11 @@ a{
 					</c:forEach>
 						
 					<!-- 다음 블럭으로 이동 ▶ -->
-					<%-- <c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+					<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
 						<a href="#" onclick="pageProc(${pagingInfo.lastPage+1})">
-							<img src="<c:url value='/resources/images/last.JPG'/>" 
-								alt="다음 블럭으로 이동">
+							▷
 						</a>
-					</c:if> --%>
+					</c:if>
 					<!--  페이지 번호 끝 -->
 				</div>
 				<div class="divSearch" style="padding-top: 10px">

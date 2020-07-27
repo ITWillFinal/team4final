@@ -42,7 +42,6 @@ a{
 </style>
 
 
-<%@ include file="../../side_inc/admin_Sidebar.jsp"%>
 
 <main>
 	<!-- main -->
