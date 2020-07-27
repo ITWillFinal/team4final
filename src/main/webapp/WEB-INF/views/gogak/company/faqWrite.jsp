@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../../inc/top.jsp"%>
+<%@ include file="../../inc/adminTop.jsp"%>
 
 <style>
 div#outDiv {
@@ -85,4 +85,4 @@ input#rrr {
 	</div>
 </main>
 
-<%@ include file="../../inc/bottom.jsp"%>
+<%@ include file="../../inc/adminBottom.jsp"%>

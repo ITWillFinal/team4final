@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="../../inc/top.jsp"%>
+<%@ include file="../../inc/adminTop.jsp"%>
 
 <style>
 .divList{
@@ -115,7 +115,6 @@ a{
 				<div class = "divList">
 					<table class = "box2" style="width: 700px;">
 						<colgroup>
-						   <%-- <col style="width:10%;" /> --%>
 						   <col style="width:20%;" />
 						   <col style="width:20%;" />
 						   <col style="width:30%;" />
@@ -138,10 +137,6 @@ a{
 								<c:set var = "idx" value = "0"/>
 									<c:forEach var = "vo" items="${list }">
 										<tr>
-											<%-- <td style = "text-align: center">
-												<input type="checkbox" name="faqlist[${idx }].faqNo"
-													value = "${vo.faqNo }">
-											</td> --%>
 											<td style="text-align: center;">${vo.faqNo }</td>
 											<td style="text-align: center;">${vo.category }</td>
 											<td style="text-align: center;">
@@ -171,12 +166,11 @@ a{
 				<div class="divPage">
 					<!-- 페이지 번호 추가 -->		
 					<!-- 이전 블럭으로 이동 ◀ -->
-					<%-- <c:if test="${pagingInfo.firstPage>1 }">
+					<c:if test="${pagingInfo.firstPage>1 }">
 						<a href="#" onclick="pageProc(${pagingInfo.firstPage-1})">
-							<img src="<c:url value='/resources/images/first.JPG'/>" 
-								alt="이전 블럭으로 이동">
+							◁
 						</a>
-					</c:if>  --%>
+					</c:if>
 					
 					<!-- 페이지 번호 1~10 -->
 					<c:forEach var="i" begin="${pagingInfo.firstPage }" 
@@ -190,12 +184,11 @@ a{
 					</c:forEach>
 						
 					<!-- 다음 블럭으로 이동 ▶ -->
-					<%-- <c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+					<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
 						<a href="#" onclick="pageProc(${pagingInfo.lastPage+1})">
-							<img src="<c:url value='/resources/images/last.JPG'/>" 
-								alt="다음 블럭으로 이동">
+							▷
 						</a>
-					</c:if> --%>
+					</c:if>
 					<!--  페이지 번호 끝 -->
 				</div>
 				<div class="divSearch" style="padding-top: 10px">
@@ -232,6 +225,6 @@ a{
 	</div>
 </main>
 
-<%@ include file="../../inc/bottom.jsp"%>
+<%@ include file="../../inc/adminBottom.jsp"%>
 
 
