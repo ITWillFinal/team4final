@@ -27,7 +27,7 @@
 		</div>
 		<div style="width:238px; height:100px; margin:5px; border: 1px solid lightgray;">
 		<b id = "gogo">고객센터</b><br><br>
-		<a href = "<c:url value = '/gogak/faqList.do'/>">자주찾는 질문</a><br>
+		<a href = "<c:url value = '/gogak/company/faqList.do'/>">자주찾는 질문</a><br>
 		</div>
 		<div style="width:238px; height:100px; margin:5px; border: 1px solid lightgray;">
 		<b id = "gogo">1:1 문의</b><br><br>
