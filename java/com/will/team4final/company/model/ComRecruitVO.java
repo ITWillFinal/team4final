@@ -3,7 +3,7 @@ package com.will.team4final.company.model;
 import java.sql.Timestamp;
 
 public class ComRecruitVO {
-	int recruitmentCode;
+	String recruitmentCode;
 	String comName;
 	String title; 
 	String jobType1;
@@ -16,7 +16,7 @@ public class ComRecruitVO {
 	String location1;
 	String location2;
 	String workHours;
-	int pay;
+	String pay;
 	String recType;
 	String welfare;
 	String gender;
@@ -26,7 +26,7 @@ public class ComRecruitVO {
 	String preference;
 	int recNumber;
 	Timestamp regdate;
-	Timestamp recDeadline;
+	String recDeadline;
 	String document;
 	String recDetail;
 	int readCount;
@@ -36,18 +36,17 @@ public class ComRecruitVO {
 	String fileName;
 	String fileSize;
 	String comCode;
-	
-	public int getRecruitmentCode() {
+	public String getRecruitmentCode() {
 		return recruitmentCode;
 	}
-	public void setRecruitmentCode(int recruitmentCode) {
+	public void setRecruitmentCode(String recruitmentCode) {
 		this.recruitmentCode = recruitmentCode;
 	}
-	public String getConName() {
+	public String getComName() {
 		return comName;
 	}
-	public void setConName(String conName) {
-		this.comName = conName;
+	public void setComName(String comName) {
+		this.comName = comName;
 	}
 	public String getTitle() {
 		return title;
@@ -115,10 +114,10 @@ public class ComRecruitVO {
 	public void setWorkHours(String workHours) {
 		this.workHours = workHours;
 	}
-	public int getPay() {
+	public String getPay() {
 		return pay;
 	}
-	public void setPay(int pay) {
+	public void setPay(String pay) {
 		this.pay = pay;
 	}
 	public String getRecType() {
@@ -175,10 +174,10 @@ public class ComRecruitVO {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	public Timestamp getRecDeadline() {
+	public String getRecDeadline() {
 		return recDeadline;
 	}
-	public void setRecDeadline(Timestamp recDeadline) {
+	public void setRecDeadline(String recDeadline) {
 		this.recDeadline = recDeadline;
 	}
 	public String getDocument() {
@@ -235,7 +234,6 @@ public class ComRecruitVO {
 	public void setComCode(String comCode) {
 		this.comCode = comCode;
 	}
-	
 	@Override
 	public String toString() {
 		return "ComRecruitVO [recruitmentCode=" + recruitmentCode + ", comName=" + comName + ", title=" + title
@@ -248,6 +246,7 @@ public class ComRecruitVO {
 				+ ", recDetail=" + recDetail + ", readCount=" + readCount + ", accuse=" + accuse + ", category="
 				+ category + ", imgUrl=" + imgUrl + ", fileName=" + fileName + ", fileSize=" + fileSize + ", comCode="
 				+ comCode + "]";
-	}	
+	}
+
 	
 }
