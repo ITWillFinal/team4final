@@ -13,6 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;
+import com.will.team4final.resume.model.ActiveListVO;
+import com.will.team4final.resume.model.AddinfoVO;
+import com.will.team4final.resume.model.AwardListVO;
+import com.will.team4final.resume.model.CareerListVO;
+import com.will.team4final.resume.model.CertifyListVO;
+import com.will.team4final.resume.model.EducationVO;
+import com.will.team4final.resume.model.LanguageListVO;
+import com.will.team4final.resume.model.PotfolioVO;
 import com.will.team4final.resume.model.ResumeService;
 import com.will.team4final.resume.model.ResumeVO;
 
@@ -40,8 +48,25 @@ public class ResumeController {
 	}
 	
 	@RequestMapping(value = "/resumeWrite.do", method = RequestMethod.POST)
-	public String resumeWrite_post(@ModelAttribute ResumeVO resumeVo) {
+	public String resumeWrite_post(@ModelAttribute ResumeVO resumeVo,
+			@ModelAttribute EducationVO educationVo,
+			@ModelAttribute CareerListVO careerListVo,
+			@ModelAttribute ActiveListVO activeListVo,
+			@ModelAttribute CertifyListVO certifyListVo,
+			@ModelAttribute LanguageListVO languageListVo,
+			@ModelAttribute AwardListVO awardListVo,
+			@ModelAttribute AddinfoVO addInfoVo,
+			@ModelAttribute PotfolioVO potfolioVo) {
+		
 		logger.info("이력서 등록, 파라미터 resumeVo={}",resumeVo);
+		logger.info("이력서 등록, 파라미터 educationVo={}",educationVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",careerListVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",activeListVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",certifyListVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",languageListVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",awardListVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",addInfoVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",potfolioVo);
 		
 		return "";
 	}

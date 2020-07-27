@@ -394,6 +394,7 @@
 	$(function(){
 		var school="";
 		var careerBt="";
+		//var careerCount=0;
 		
 		/* $('html').click(function(e) { 
 			if(!$(e.target).hasClass("removeThis")){ 
@@ -430,6 +431,7 @@
 		});
 		
 		$('.educationBt').click(function(){
+			$('input[name=finalEdu]').val($(this).val());
 			$('.educationBt').css('background','rgba(0,0,0,0)');
 			$('.educationBt').css('color','#ccc');
 			$('.educationBt').css('border','1px solid #ccc');
@@ -716,6 +718,7 @@
 			$addCareer.find("input[type=radio]").removeAttr('checked');
 			$addCareer.find('#rankEtc').attr("disabled","disabled");
 			$addCareer.find('.rank-position').css("display","none");
+			
 			$(".career-addDiv").before($addCareer);
 			$('.career-info:not(:eq(0))').find(".career-subBt").css("display","block");
 			
@@ -746,8 +749,106 @@
 		});
 		
 		$(".bt-sub").click(function(){
+			//event.preventDefault();
 			
-			event.preventDefault();
+			if($('input[name=finalEdu]').val()=="대학·대학원 이상 졸업"){
+				$('input[name=uni]').val($('select[name=unisel]').val());
+				$('input[name=major]').val($('input[name=major-uni]').val());
+				$('input[name=eduScore]').val($("input[name=grade]").val()+"/"+$('select[name=gradeSel]').val());				
+			}else if($('input[name=finalEdu]').val()=="고등학교 졸업"){
+				$('input[name=major]').val($('select[name=major-high]').val());
+			}
+			
+			
+			$('input[name=eduPeriod]').val($('select[name=schoolStartDaySel]').val()+":"+$("input[name=schoolStartDay]").val()+" ~ "+
+					$('select[name=schoolEndDaySel]').val()+":"+$("input[name=schoolEndDay]").val());
+			
+			var careerCount=0;
+			$(".career-info").each(function(){
+				$(this).find('input[name]').each(function(){
+					var name = $(this).attr("name");
+					
+					if(name.indexOf("[")>0){
+						name=name.substring(0,name.indexOf("[")+1)+careerCount+name.substring(name.indexOf("[")+1);
+						$(this).removeAttr("name").attr("name",name);
+					}
+				});
+				$(this).find('select[name]').each(function(){
+					var name = $(this).attr("name");
+					
+					if(name.indexOf("[")>0){
+						name=name.substring(0,name.indexOf("[")+1)+careerCount+name.substring(name.indexOf("[")+1);
+						$(this).removeAttr("name").attr("name",name);
+					}
+				});
+				
+				careerCount = careerCount +1;
+				$(this).find(".careerPeriod").val("입사:"+$(this).find("input[name=companyStartDay]").val()+" ~ "+
+						$(this).find('select[name=companyEndDaySel]').val()+":"+$(this).find("input[name=companyEndDay]").val());
+				
+				if($(this).find("select[name=reasonSel]").val()=="직접입력"){
+					$(this).find(".careerReason").val($(this).find('input[name=leaveEtc]').val());		
+				}else{
+					$(this).find(".careerReason").val($(this).find('select[name=reasonSel]').val());				
+				}
+				
+				$(this).find(".careerSal").val($(this).find('input[name=salary]').val()+$(this).find('select[name=salarySel]').val());	
+				
+				if(careerBt=="신입"){
+					$(".career-info:not(:eq(0))").remove();
+					$(this).find('input[name]').each(function(){
+						var name = $(this).attr("name");
+						
+						if(name.indexOf("[")>0){
+							$(this).val("");
+						}
+					});
+					$(this).find('select[name]').each(function(){
+						var name = $(this).attr("name");
+							
+						if(name.indexOf("[")>0){
+							$(this).val("");
+						}
+					});		
+					$(".career-info").find(".careerCompany").val("신입");
+				}
+			});
+			
+			$('.activity').find('.nullOk-top').each(function(){
+				$(this).find('.actPeriod').val($(this).find("input[name=activityStartDay]").val()+" ~ "+$(this).find("input[name=activityEndDay]").val());
+			});
+			
+			$('.popol').find('input[name=potPeriod]').val($(".popol").find("input[name=popolStartDay]").val()+" ~ "+
+					$(".popol").find("input[name=popolEndDay]").val());
+			
+			$(".info-box-nullOk-head").each(function(){
+				if($(this).find('.nullOk-chk').is(':checked')){
+					var count=0;
+					$(this).parent().find(".isListVo").each(function(){
+						$(this).find('input[name]').each(function(){
+							var name = $(this).attr("name");
+							
+							if(name.indexOf("[")>0){
+								name=name.substring(0,name.indexOf("[")+1)+count+name.substring(name.indexOf("[")+1);
+								$(this).removeAttr("name").attr("name",name);
+							}
+						});
+						$(this).find('select[name]').each(function(){
+							var name = $(this).attr("name");
+							
+							if(name.indexOf("[")>0){
+								name=name.substring(0,name.indexOf("[")+1)+count+name.substring(name.indexOf("[")+1);
+								$(this).removeAttr("name").attr("name",name);
+							}
+						});
+						
+						count = count+1;
+					});					
+				}else{
+					$(this).parent().find('.nullOk-top').remove();
+				}
+			});
+			
 		});
 	});
 </script>
@@ -798,8 +899,9 @@
 					<input type="hidden" name="finalEdu">
 					<h5></h5>
 					<div class="col-lg-10 university">
+							<input type="hidden" name="uni"/>
 							<label for="local" class="col-lg-2 control-label">*대학</label> 
-							<select class="form-control" name="uni">
+							<select class="form-control" name="unisel">
 								<option value="대학(2,3년)">대학(2,3년)</option>
 								<option value="대학교(4년)">대학교(4년)</option>
 								<option value="대학원(석사)">대학원(석사)</option>
@@ -814,7 +916,7 @@
 					</div>
 					<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">*지역</label> 
-							<select class="form-control" name="schoolLocal">
+							<select class="form-control" name="eduLocation">
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
 								<option value="광주">광주</option>
@@ -837,6 +939,7 @@
 					<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">*재학기간</label>
 						<div>
+							<input type="hidden" name="eduPeriod"/>
 							<input type="text" class="form-control startDay" name="schoolStartDay" readonly="readonly"/> 
 							<select class="form-control col-130px" name="schoolStartDaySel">
 								<option value="입학">입학</option>
@@ -855,6 +958,7 @@
 							</select>
 						</div>
 					</div>
+					<input type="hidden" name="major"/>
 					<div class="col-lg-10 highschool">
 							<label for="local" class="col-lg-2 control-label">전공 계열</label> 
 							<select class="form-control" name="major-high">
@@ -908,17 +1012,10 @@
 								id="majorEtc" name="majorSelEtc"
 								placeholder="전공계열 직접입력" maxlength="15" style="display:none;">
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								 name="major"
-								placeholder="전공학과 입력" maxlength="15">
+								placeholder="전공학과 입력" maxlength="15" name="major-uni">
 					</div>
 					<div class="col-lg-10 university">
-							<label for="local" class="col-lg-2 control-label">주/야간</label> 
-							<select class="form-control" name="day-night">
-								<option value="주간">주간</option>
-								<option value="야간">야간</option>
-							</select>
-					</div>
-					<div class="col-lg-10 university">
+							<input type="hidden" name="eduScore"/>
 							<label for="local" class="col-lg-2 control-label">학점</label> 
 							<select class="form-control col-130px" name="gradeSel">
 								<option value="">기준학점선택</option>
@@ -935,7 +1032,6 @@
 			</div>
 		</div>
 		<div class="info-box">
-			<input type="hidden" name="career">
 			<div class="info-box-head">
 				<h3>*경력사항 ▼</h3>
 			</div>
@@ -949,12 +1045,13 @@
 					</div>
 					<div class="col-lg-10">
 							<label for="shcoolName" class="col-lg-2 control-label">*회사명</label> 
-							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="company"
+							<input type="text" class="form-control onlyAlphabetAndNumber careerCompany"
+								name="careerItems[].careerCompany"
 								placeholder="회사명 입력" maxlength="15">
 					</div>
 					<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">*재직기간</label>
+						<input type="hidden" name="careerItems[].careerPeriod" class="careerPeriod"/>
 						<div>
 							<input type="text" class="form-control startDay" name="companyStartDay" readonly="readonly"/> 
 							<span style="margin:0 105px;">-</span>
@@ -966,8 +1063,9 @@
 						</div>
 					</div>
 					<div class="col-lg-10">
+							<input type="hidden" name="careerItems[].careerReason" class="careerReason"/>
 							<label for="" class="col-lg-2 control-label">퇴사사유</label> 
-							<select class="form-control leave" name="leave">
+							<select class="form-control leave" name="reasonSel">
 								<option value="">퇴사사유 선택</option>
 								<option value="업직종 전환">업직종 전환</option>
 								<option value="근무조건">근무조건</option>
@@ -985,7 +1083,7 @@
 					</div>
 					<div class="col-lg-10">
 							<label for="" class="col-lg-2 control-label">*직급/직책</label> 
-							<input type="text" class="form-control rpChoice" name="rank-position" readonly="readonly" 
+							<input type="text" class="form-control rpChoice careerRank" name="careerItems[].careerRank" readonly="readonly" 
 							placeholder="선택하기"/> 
 							<div class="rank-position">
 								<h5>직급/직책 선택하기</h5>
@@ -1123,13 +1221,13 @@
 									<input type="button" class="btRp" value="초기화"/>								
 								</div>
 							</div>
-							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="career-year" style="display: inline-block;"
+							<input type="text" class="form-control onlyAlphabetAndNumber careerYear"
+								name="careerItems[].careerYear" style="display: inline-block;"
 								placeholder="년차 입력" maxlength="2">
 					</div>	
 					<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">근무지역</label> 
-							<select class="form-control" name="careerlocal">
+							<select class="form-control careerLocation" name="careerItems[].careerLocation">
 								<option value="">근무지역 선택</option>
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
@@ -1153,6 +1251,7 @@
 					<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">연봉</label>
 						<div>
+							<input type="hidden" name="careerItems[].careerSal" class="careerSal"/>
 							<input type="text" class="form-control" name="salary" placeholder="연봉입력"/> 
 							<select class="form-control col-130px" name="salarySel">
 								<option value="만원">만원</option>
@@ -1163,8 +1262,8 @@
 					</div>
 					<div class="col-lg-10">
 							<label for="shcoolName" class="col-lg-2 control-label">담당업무</label> 
-							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="responsibilities"
+							<input type="text" class="form-control onlyAlphabetAndNumber tesk"
+								name="careerItems[].tesk"
 								placeholder="담당업무 입력" maxlength="15">
 					</div>	
 				</div>
@@ -1280,13 +1379,13 @@
 					<span class="slider round"></span>
 				</label>
 			</div>
-			<div class="info-box-content nullOk-top">
+			<div class="info-box-content nullOk-top isListVo">
 				<div class="col-lg-10">
 						<input class="subBt" type="button" value="삭제하기"/>
 				</div>
 				<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">활동구분</label> 
-							<select class="form-control" name="activitySel">
+							<select class="form-control" name="activeItems[].activity">
 								<option value="">활동구분 선택</option>
 								<option value="교내활동">교내활동</option>
 								<option value="인턴">인턴</option>
@@ -1302,10 +1401,11 @@
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">기관/장소</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="activityAgency"
+								name="activeItems[].actPlace"
 								placeholder="기관/장소 입력" maxlength="30">
 					</div>
 					<div class="col-lg-10 term">
+						<input type="text" class="actPeriod" name="activeItems[].actPeriod"/>
 						<label for="term" class="col-lg-2 control-label">활동기간</label>
 						<div>
 							<input type="text" class="form-control startDay" name="activityStartDay" readonly="readonly"/> 
@@ -1316,7 +1416,7 @@
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">활동내용</label> 
 							<textarea rows="1" cols="50" class="form-control taAuto" 
-							placeholder="활동내용 입력" name="activityContent"></textarea>
+							placeholder="활동내용 입력" name="activeItems[].actContent"></textarea>
 					</div>
 			</div>
 			<div class="addDiv">
@@ -1331,26 +1431,26 @@
 					<span class="slider round"></span>
 				</label>
 			</div>
-			<div class="info-box-content nullOk-top">
+			<div class="info-box-content nullOk-top isListVo">
 				<div class="col-lg-10">
 						<input class="subBt" type="button" value="삭제하기"/>
 				</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">자격증명</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="certifyItems[].certifyName"
 								placeholder="자격증명 입력" maxlength="30">
 					</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">발행처/기관</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="certifyItems[].certifyPlace"
 								placeholder="발행처/기관 입력" maxlength="30">
 					</div>
 					<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">취득일</label>
 						<div>
-							<input type="text" class="form-control passDay" name="passDay" readonly="readonly"/> 
+							<input type="text" class="form-control passDay" name="certifyItems[].certifyGetDate" readonly="readonly"/> 
 						</div>
 					</div>
 			</div>
@@ -1366,38 +1466,38 @@
 					<span class="slider round"></span>
 				</label>
 			</div>
-			<div class="info-box-content nullOk-top">
+			<div class="info-box-content nullOk-top isListVo">
 				<div class="col-lg-10">
 						<input class="subBt" type="button" value="삭제하기"/>
 				</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">언어</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="languageItems[].kinds"
 								placeholder="언어 입력" maxlength="30">
 					</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">시험종류</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="languageItems[].testName"
 								placeholder="시험종류 입력" maxlength="30">
 					</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">점수</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="languageItems[].langScore"
 								placeholder="점수 입력" maxlength="30">
 					</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">급수</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="languageItems[].rating"
 								placeholder="급수 입력" maxlength="30">
 					</div>
 					<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">취득일</label>
 						<div>
-							<input type="text" class="form-control passDay" name="passDay" readonly="readonly"/> 
+							<input type="text" class="form-control passDay" name="languageItems[].langGetDate" readonly="readonly"/> 
 						</div>
 					</div>
 			</div>
@@ -1413,26 +1513,26 @@
 					<span class="slider round"></span>
 				</label>
 			</div>
-			<div class="info-box-content nullOk-top">
+			<div class="info-box-content nullOk-top isListVo">
 				<div class="col-lg-10">
 						<input class="subBt" type="button" value="삭제하기"/>
 				</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">수상명</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="awardItems[].awardName"
 								placeholder="수상명 입력" maxlength="30">
 					</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">수여기관</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="schoolName"
+								name="awardItems[].awardCom"
 								placeholder="수여기관 입력" maxlength="30">
 					</div>
 					<div class="col-lg-10 term">
 						<label for="term" class="col-lg-2 control-label">수상/공모일</label>
 						<div>
-							<input type="text" class="form-control passDay" name="passDay" readonly="readonly"/> 
+							<input type="text" class="form-control passDay" name="awardItems[].awardGetDate" readonly="readonly"/> 
 						</div>
 					</div>
 			</div>
@@ -1451,15 +1551,22 @@
 			</div>
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
+							<label for="local" class="col-lg-2 control-label">장애여부</label> 
+							<select class="form-control" name="disable">
+								<option value="비대상">비대상</option>
+								<option value="대상">대상</option>
+							</select>
+				</div>
+				<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">보훈대상</label> 
-							<select class="form-control" name="special1">
+							<select class="form-control" name="affair">
 								<option value="비대상">비대상</option>
 								<option value="대상">대상</option>
 							</select>
 				</div>
 				<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">병역대상</label> 
-							<select class="form-control" name="special2">
+							<select class="form-control" name="military">
 								<option value="대상아님">대상아님</option>
 								<option value="군필">군필</option>
 								<option value="미필">미필</option>
@@ -1469,7 +1576,7 @@
 				</div>
 				<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">고용지원금 대상</label> 
-							<select class="form-control" name="special3">
+							<select class="form-control" name="sFund">
 								<option value="비대상">비대상</option>
 								<option value="대상">대상</option>
 							</select>
@@ -1491,6 +1598,7 @@
 							<input type="file" name="upfile"/> 
 				</div>
 				<div class="col-lg-10 term">
+						<input type="text" name="potPeriod"/>
 						<label for="term" class="col-lg-2 control-label">작업기간</label>
 						<div>
 							<input type="text" class="form-control startDay" name="popolStartDay" readonly="readonly"/> 
@@ -1501,19 +1609,19 @@
 				<div class="col-lg-10">
 							<label class="col-lg-2 control-label">작업툴</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="popolTool"
+								name="potTools"
 								placeholder="작업툴 입력" maxlength="30">
 				</div>
 				<div class="col-lg-10">
 							<label class="col-lg-2 control-label">작업인원</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="popolTeam"
+								name="workers"
 								placeholder="작업인원 입력" maxlength="3">
 				</div>	
 				<div class="col-lg-10">
 							<label class="col-lg-2 control-label">작품소개</label> 
 							<textarea rows="1" cols="50" class="form-control taAuto" 
-							placeholder="작품 소개 입력" name="popolInt"></textarea>
+							placeholder="작품 소개 입력" name="intro n"></textarea>
 				</div>	
 			</div>	
 		</div>
