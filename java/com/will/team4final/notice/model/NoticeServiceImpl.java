@@ -59,6 +59,11 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		return cnt;
 	}
+
+	@Override
+	public int updateNotice(NoticeVO vo) {
+		return noticeDao.updateNotice(vo);
+	}
 	
 
 }
