@@ -1,11 +1,15 @@
 package com.will.team4final.member.model;
 
+import java.util.List;
+
 public interface MemberDAO {
 	
 	int insertMember(MemberVO vo);
 	int selectMemberDup(String userid);
 	String findId(String email);
 	int updatePwdByEmail(MemberVO memberVo);
-	MemberVO selectAll(String user_id);
+	MemberVO selectByUserid(String user_id);
 	String selectMemberPwd(String userid);
+	List<MemberVO> showAllMemberUser();
+	int deleteUser(int userNo);
 }

@@ -1,5 +1,7 @@
 package com.will.team4final.member.model;
 
+import java.util.List;
+
 public interface MemberService {
 	//아이디 중복확인 관련 상수
 	public static final int EXIST_ID=1;  //해당 아이디가 이미 존재하는 경우
@@ -18,6 +20,8 @@ public interface MemberService {
 	int selectMemberDup(String userid);
 	String findId(String email);
 	int updatePwdByEmail(MemberVO memberVo);
-	MemberVO selectAll(String user_id);
+	MemberVO selectByUserid(String user_id);
 	int loginCheck(String userid, String pwd);
+	List<MemberVO> showAllMemberUser();
+	int deleteUser(int userNo);
 }

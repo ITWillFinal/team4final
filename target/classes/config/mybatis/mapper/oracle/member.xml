@@ -33,9 +33,20 @@
 		where user_id=#{userid}
 	</update>
 	
-	<select id="selectAll" parameterType="string" resultType="memberVo">
+	<select id="selectByUserid" parameterType="string" resultType="memberVo">
 		select * from member where user_id=#{userid}
 	</select>
+	
+	<select id="showAllMemberUser" resultType="memberVo">
+		select * from member order by regdate
+	</select>
+	
+
+	<update id="deleteUser" parameterType="int">
+		update member
+		set outdate=sysdate 
+		where user_no=#{userNo}
+	</update>
 </mapper>
 
 
