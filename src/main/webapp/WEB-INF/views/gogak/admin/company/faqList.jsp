@@ -7,13 +7,13 @@
 <style>
 .divList{
 /*     padding-left: 300px; */
-    padding-top: 80px;
+    padding-top: 40px;
     padding-left: 80px;
     padding-bottom: 50px;
     padding-right: 80px;
 }
 table{
-	border-bottom: 1px solid lightgray;
+	/* border-bottom: 1px solid lightgray; */
 }
 th{
 	border-bottom: 3px solid #FB246A;;
@@ -87,11 +87,11 @@ a{
 	<%@ include file="../../side_inc/admin_Sidebar.jsp"%>
 	
 	<!-- main -->
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; border:1px solid lightgray;">
-		<div style="margin:5px; height:95px; border:1px solid lightgray;">
+	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
+		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
 		<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문(기업)</h2>
 		</div>
-		<div style="text-align: center; margin:5px; border:1px solid lightgray;">
+		<div style="text-align: center; margin:5px; /* border:1px solid lightgray; */">
 		
 			<div id = "list">
 				<div id = "upList">
