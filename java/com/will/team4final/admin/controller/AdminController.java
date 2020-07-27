@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin")
@@ -22,8 +23,8 @@ public class AdminController {
 		return "admin/adminNotice";
 	}
 	
-	@RequestMapping("/adminAddNotice.do")
-	public String adminAddNotice() {
+	@RequestMapping(value = "/adminAddNotice.do", method = RequestMethod.GET)
+	public String adminAddNotice_get() {
 		logger.info("공지사항 등록 페이지");
 		
 		return "admin/adminAddNotice";
