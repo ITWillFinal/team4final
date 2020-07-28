@@ -54,6 +54,7 @@ a{
 			<div id="outDiv">
 				<form name = "frmWrite" method="post" 
 					action="<c:url value = '/gogak/admin/company/faqEdit.do'/>">
+					<label for ="no">no</label>
 					<input type = "hidden" value = "${vo.faqNo }" name = "no">
 					<table style="width: 700px; /* border: 1px solid lightgray; */">
 						<colgroup>
