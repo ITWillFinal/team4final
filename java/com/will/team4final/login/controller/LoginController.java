@@ -149,7 +149,7 @@ public class LoginController {
 
 		String url = "/index.do", msg = "로그인시 오류!";
 		if (result == MemberService.LOGIN_OK) {
-			MemberVO memVo = memServ.selectAll(userid);
+			MemberVO memVo = memServ.selectByUserid(userid);
 
 			msg = memVo.getUserName() + "님 취뽀하세요!";
 
@@ -179,7 +179,7 @@ public class LoginController {
 		
 		String url = "/companypage/companyHome.do", msg = "기업 로그인시 오류!";
 		if (result == MemberService.LOGIN_OK) {
-			CompanyMemberVO comVo = comServ.selectCMemberAll(userid);
+			CompanyMemberVO comVo = comServ.selectCMemberInfoByUserid(userid);
 			
 			msg = comVo.getcUsername() + "님 안녕하세요!";
 			

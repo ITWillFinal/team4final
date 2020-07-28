@@ -1,5 +1,7 @@
 package com.will.team4final.member.model;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +31,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO selectAll(String user_id) {
-		return memberDao.selectAll(user_id);
+	public MemberVO selectByUserid(String user_id) {
+		return memberDao.selectByUserid(user_id);
 	}
 
 	@Override
@@ -49,6 +51,16 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 		return result;
+	}
+
+	@Override
+	public List<MemberVO> showAllMemberUser() {
+		return memberDao.showAllMemberUser();
+	}
+
+	@Override
+	public int deleteUser(int userNo) {
+		return memberDao.deleteUser(userNo);
 	}
 	
 	

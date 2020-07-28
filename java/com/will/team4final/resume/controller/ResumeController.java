@@ -36,7 +36,7 @@ public class ResumeController {
 		logger.info("이력서 작성 페이지");
 		
 		String userid = (String)session.getAttribute("userid");
-		MemberVO memberVo = memberService.selectAll(userid);
+		MemberVO memberVo = memberService.selectByUserid(userid);
 		
 		logger.info("memberVo={}",memberVo);
 		
@@ -67,6 +67,9 @@ public class ResumeController {
 		logger.info("이력서 등록, 파라미터 careerListVo={}",awardListVo);
 		logger.info("이력서 등록, 파라미터 careerListVo={}",addInfoVo);
 		logger.info("이력서 등록, 파라미터 careerListVo={}",potfolioVo);
+		
+		int cnt = resumeService.insertResume(resumeVo);
+		logger.info("이력서 등록 결과 cnt={}",cnt);
 		
 		return "";
 	}

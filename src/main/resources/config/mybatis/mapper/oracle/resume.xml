@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.resume">
+	<insert id="insertResume" parameterType="resumeVo">
+		<selectKey keyProperty="resumeNo" order="BEFORE" resultType="string">
+			select resume_seq.nextval from dual
+		</selectKey>
+		insert into resume
+		values(#{resumeNo},#{userNo},#{location1},#{location1},
+		#{jobType1},#{jobType2},#{sal},#{selfIntTitle},#{selfInt},sysdate)
+	</insert>
+	
+	<insert id="insertEducation" parameterType="educationVo">
+		<selectKey keyProperty="eduCode" order="BEFORE" resultType="string">
+			select EDUCATION_seq.nextval from dual
+		</selectKey>
+		insert into education
+		values(#{eduCode},#{finalEdu},#{uni},#{uniName},#{eduLocation},
+		#{eduPeriod},#{major},#{eduScore},#{resumeNo})
+	</insert>
+	
+	<insert id="insertCareer" parameterType="careerVo" >
+		<selectKey keyProperty="careerCode" order="BEFORE" resultType="string">
+			select career_seq.nextval from dual
+		</selectKey>
+		insert into career
+		values(#{careerCode},#{careerCompany},#{careerPeriod},#{careerReason},#{task},
+		#{resumeNo},#{careerRank},#{careerYear},#{careerLocation},#{careerSal})
+	</insert>
+	
+	<insert id="insertLanguage" parameterType="languageVo">
+		<selectKey keyProperty="languageCode" order="BEFORE" resultType="string">
+			select LANGUAGE_seq.nextval from dual
+		</selectKey>
+		insert into LANGUAGE
+		values(#{languageCode},#{kinds},#{testName},#{langScore},#{rating},#{langGetDate},#{resumeNo})
+	</insert>
+
+	<insert id="insertAddinfo" parameterType="addinfoVo">
+		<selectKey keyProperty="infoCode" order="BEFORE" resultType="string">
+			select addinfo_seq.nextval from dual
+		</selectKey>
+		insert into addinfo
+		values(#{infoCode},#{disable},#{military},#{affair},#{sFund},#{resumeNo})
+	</insert>
+
+	<insert id="insertActive" parameterType="activeVo">
+		<selectKey keyProperty="actCode" order="BEFORE" resultType="string">
+			select active_seq.nextval from dual
+		</selectKey>
+		insert into active
+		values(#{actCode},#{activity},#{actPlace},#{actPeriod},#{actContent},#{resumeNo})
+	</insert>
+	
+	<insert id="insertAward" parameterType="awardVo">
+		<selectKey keyProperty="awardCode" order="BEFORE" resultType="string">
+			select award_seq.nextval from dual
+		</selectKey>
+		insert into active
+		values(#{awardCode},#{awardName},#{awardCom},#{awardGetDate},#{resumeNo})
+	</insert>
+	
+	<insert id="insertPotfolio" parameterType="potfolioVo">
+		<selectKey keyProperty="potCode" order="BEFORE" resultType="string">
+			select potfolio_seq.nextval from dual
+		</selectKey>
+		insert into active
+		values(#{potCode},#{potFile},#{potPeriod},#{workers},#{intro},#{resumeNo})
+	</insert>
+
+	<insert id="insertCertify" parameterType="certifyVo">
+		<selectKey keyProperty="certifyCode" order="BEFORE" resultType="string">
+			select Certify_seq.nextval from dual
+		</selectKey>
+		insert into active
+		values(#{certifyCode},#{certifyName},#{certifyPlace},#{certifyGetDate},#{resumeNo})
+	</insert>
+
+</mapper>

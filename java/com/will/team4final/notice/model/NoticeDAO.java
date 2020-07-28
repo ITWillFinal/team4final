@@ -10,4 +10,5 @@ public interface NoticeDAO {
 	NoticeVO selectNoticeByNo(int noticeNo);
 	int totalNotice(SearchVO searchVo);
 	int deleteNotice(int noticeNo);
+	int updateNotice(NoticeVO vo);
 }

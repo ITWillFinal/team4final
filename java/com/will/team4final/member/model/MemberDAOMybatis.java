@@ -1,5 +1,7 @@
 package com.will.team4final.member.model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,13 +33,23 @@ public class MemberDAOMybatis implements MemberDAO {
 	}
 
 	@Override
-	public MemberVO selectAll(String user_id) {
-		return sqlSession.selectOne(namespace+"selectAll", user_id);
+	public MemberVO selectByUserid(String user_id) {
+		return sqlSession.selectOne(namespace+"selectByUserid", user_id);
 	}
 
 	@Override
 	public String selectMemberPwd(String userid) {
 		return sqlSession.selectOne(namespace + "selectMemberPwd", userid);
+	}
+
+	@Override
+	public List<MemberVO> showAllMemberUser() {
+		return sqlSession.selectList(namespace + "showAllMemberUser");
+	}
+
+	@Override
+	public int deleteUser(int userNo) {
+		return sqlSession.delete(namespace+"deleteUser", userNo);
 	}
 	
 	
