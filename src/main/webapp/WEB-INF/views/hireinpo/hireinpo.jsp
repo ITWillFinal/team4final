@@ -70,7 +70,7 @@ $(function() {
 </script>
 <style>
 	#hireTabs{
-		width: 40%;
+		width: 95%%;
     	margin: 50px auto;
 	}
 	select option{
@@ -80,18 +80,19 @@ $(function() {
 	}
 	select{
 		border: 0;
-	    width: 200px;
+	    width: 230px;
 	    text-align: center;
 	    background: #f3f3f3;
 	}
 	
 	#locationLi{
 		width: 200px;
+		margin-left: 30px;
 	}
 	
 </style>
 <%@ include file="../inc/sidebar.jsp"%>
-<div style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
+<div style="float: left; width: 55%; margin-left: 30px; font-size: 14px;">
 <!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
 
 <div id="hireTabs">
