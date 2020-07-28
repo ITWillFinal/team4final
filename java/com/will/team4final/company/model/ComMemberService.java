@@ -15,5 +15,6 @@ public interface ComMemberService {
 	String findCMemberId(String cEmail);
 	int updateCMemberPwdByEmail(CompanyMemberVO companyMemberVo);
 	CompanyMemberVO selectCMemberInfoByUserid(String cUserid);
+	CompanyMemberVO selectCMemberByUserCode(int userNo);
 	int comLoginCheck(String userid, String pwd);
 }

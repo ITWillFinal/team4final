@@ -15,9 +15,10 @@
 		
 		$("tbody #btUpdate").click(function() {
 			var userNo = $(this).val();
+			var userStatus = $('.userStatusForUpdate').val();
 			window.open(
-			"<c:url value='/member/updateUser.do?userNo="
-			+ userNo + "'/>", 'chk',
+			"<c:url value='/admin/adminMemberUpdate.do?userNo="
+			+ userNo + "&userStatus="+ userStatus +"'/>", 'chk',
 			'width=500,height=400,left=0,top=0,location=yes,resizable=yes');
 		});
 		
@@ -110,7 +111,9 @@ td{
 					</td>
 					<td>${vo.userStatus }</td>
 					<td>
-						<button id="btUpdate" value="${vo.userNo }">수정</button>
+						<button id="btUpdate" value="${vo.userNo }">수정
+						<input type="hidden" class="userStatusForUpdate" value="${vo.userStatus }">
+						</button>
 					</td>
 				</tr>
 			</c:forEach>

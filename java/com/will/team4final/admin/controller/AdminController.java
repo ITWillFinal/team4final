@@ -16,7 +16,8 @@ import com.will.team4final.common.DateSearchVO;
 import com.will.team4final.common.PaginationInfo;
 import com.will.team4final.common.SearchVO;
 import com.will.team4final.common.Utility;
-import com.will.team4final.gogak.model.FaqVO;
+import com.will.team4final.company.model.ComMemberService;
+import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.notice.model.NoticeListVO;
@@ -32,6 +33,8 @@ public class AdminController {
 	private NoticeService noticeServ;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ComMemberService comMemberService;
 
 	@RequestMapping("/adminMain.do")
 	public void adminMain() {
@@ -186,4 +189,23 @@ public class AdminController {
 
 		return "common/message";
 	}
+	
+	@RequestMapping("/adminMemberUpdate.do")
+	public String adminUpdateMemberUpdate(@RequestParam(defaultValue = "0") int userNo,
+			@RequestParam String userStatus, Model model) {
+		logger.info("관리자에서 회원정보 수정 화면, 파라미터 userNo={}, userStatus={}", userNo, userStatus );
+		
+		if(userStatus=="U") {
+			MemberVO memVo=memberService.selectByUerNo(userNo);
+			logger.info("개인 회원 유저 넘버로 조회 결과, memVo={}", memVo);
+			model.addAttribute("memVo", memVo);
+		}else if(userStatus=="C") {
+			CompanyMemberVO comVo = comMemberService.selectCMemberByUserCode(userNo);
+			logger.info("회사 회원 유저 넘버로 조회 결과, comVo={}", comVo);
+			model.addAttribute("comVo", comVo);
+		}
+		
+		return "admin/adminMemberUpdate";
+	}
+	
 }

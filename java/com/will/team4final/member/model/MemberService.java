@@ -21,6 +21,7 @@ public interface MemberService {
 	String findId(String email);
 	int updatePwdByEmail(MemberVO memberVo);
 	MemberVO selectByUserid(String user_id);
+	MemberVO selectByUerNo(int userNo);
 	int loginCheck(String userid, String pwd);
 	List<MemberVO> showAllMemberUser();
 	int deleteUser(int userNo);

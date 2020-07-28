@@ -51,6 +51,11 @@ public class MemberDAOMybatis implements MemberDAO {
 	public int deleteUser(int userNo) {
 		return sqlSession.delete(namespace+"deleteUser", userNo);
 	}
+
+	@Override
+	public MemberVO selectByUerNo(int userNo) {
+		return sqlSession.selectOne(namespace+"selectByUerNo", userNo);
+	}
 	
 	
 
