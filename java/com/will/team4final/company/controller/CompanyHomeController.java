@@ -46,6 +46,11 @@ public class CompanyHomeController {
 		
 	}
 	
+	@RequestMapping("/serviceInfo.do")
+	public void serviceInfo() {
+		logger.info("기업회원 서비스안내");
+	}
+	
 	@RequestMapping("/member/checkUserid.do")
 	public String checkcUserid(@RequestParam String cUserid, Model model) {
 		logger.info("기업회원 아이디 중복확인, 파라미터 cUserid={}", cUserid);
