@@ -99,7 +99,7 @@ public class EmailController {
 			String dbUserid = memberService.findId(findPwdByEmail);
 			logger.info("dbUserid={}", dbUserid);
 
-			MemberVO userVo = memberService.selectAll(dbUserid);
+			MemberVO userVo = memberService.selectByUserid(dbUserid);
 			logger.info("userVo={}", userVo);
 
 			if(dbUserid!=null) {
