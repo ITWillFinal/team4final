@@ -19,7 +19,9 @@
 		#{location1}, #{location2}, #{recType}, #{pay}, #{recNumber}, #{welfare},
 		#{gender}, #{age}, #{educationLv}, #{career}, #{preference}, #{document}, #{recDetail})
 		
-		
-		
 	</insert>
+	
+	<select id="selectMost5" resultType="comRecruitVo">
+		select * from recruitment order by readcount desc
+	</select>
 </mapper>
