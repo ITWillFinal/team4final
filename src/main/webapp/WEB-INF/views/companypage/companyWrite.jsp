@@ -65,13 +65,52 @@
 			});
 			$('input[name=location1]').val(sido);
 		});
-
+		
 		$('#sigugun').click(function() {
 			var sigugun = $('#sigugun').val();
 			$('input[name=location2]').empty();
 			$('input[name=location2]').val(sigugun);
 		});
 		
+		$('#jobLarge').click(function() {
+			var num = $('#jobLarge').val();
+			$('#jobMiddle').empty();
+			$.ajax({
+				url:"<c:url value='/job/jobMiddle.do'/>",
+				type:"get",
+				dataType:"json",
+				data:"no="+num,
+				success:function(res){
+					for(var i = 0; i< res.length; i++){
+						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						$('#jobMiddle').append(option);
+					}
+				},
+				error:function(xhr, status, error){
+					alert(status + ", " + error);
+				}
+			});
+		});
+		
+		$('#induLarge').click(function() {
+			var num = $('#induLarge').val();
+			$('#induMiddle').empty();
+			$.ajax({
+				url:"<c:url value='/job/induMiddle.do'/>",
+				type:"get",
+				dataType:"json",
+				data:"no="+num,
+				success:function(res){
+					for(var i = 0; i< res.length; i++){
+						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						$('#induMiddle').append(option);
+					}
+				},
+				error:function(xhr, status, error){
+					alert(status + ", " + error);
+				}
+			});
+		});
 		
 		$("#paySelect").change(function(){
 			var paySel = $("#paySelect option:selected").val();
@@ -268,7 +307,14 @@
 				<tr>
 					<td>직무1</td>
 					<td>
-						<input type="text" id="jobType1" name="jobType1">
+						<select size="5" id="jobLarge">
+							<c:forEach var="map" items="${jobList }">
+			               		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
+			                </c:forEach>
+						</select>
+						<select id="jobMiddle" size="5">
+				
+						</select>	
 					</td>
 				</tr>
 				<tr>
@@ -280,13 +326,20 @@
 				<tr>
 					<td>산업1</td>
 					<td>
-						<input type="text" id="induType1" name="induType1">
+						<select size="5" id="induLarge">
+							<c:forEach var="map" items="${induList }">
+			               		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
+			                </c:forEach>
+						</select>
+						<select id="induMiddle" size="5">
+				
+						</select>	
 					</td>
 				</tr>
 				<tr>
 					<td>산업2</td>
 					<td>
-						<input type="text" id="induType2" name="induType2">
+						
 					</td>
 				</tr>
 				

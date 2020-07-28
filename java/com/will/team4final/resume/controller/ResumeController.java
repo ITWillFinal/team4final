@@ -36,7 +36,7 @@ public class ResumeController {
 		logger.info("이력서 작성 페이지");
 		
 		String userid = (String)session.getAttribute("userid");
-		MemberVO memberVo = memberService.selectAll(userid);
+		MemberVO memberVo = memberService.selectByUserid(userid);
 		
 		logger.info("memberVo={}",memberVo);
 		
