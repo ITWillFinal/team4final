@@ -3,7 +3,8 @@
 <%@ include file="../inc/top.jsp" %>
 <style>
 	#testDiv{
-		margin-top: 150px;
+		margin: 100px 0;
+		
 	}
 	#aTag{
 		background: #252b60;
@@ -18,27 +19,36 @@
 	#aTag span{
 		font-size: 0.7em;
 	}
-	#boatImg{
-		width: 80px;
-	    height: 80px;
-	    position: absolute;
-	    margin-top: -30px;
-	    margin-left: 50px;
+	
+	#vacationImg{
+		width: 30%;
+		height: auto;
 	}
 </style>
+<script type="text/javascript">
+	$(function() {
+	})
+	
+	function openNew() {
+		window.open("<c:url value='/vocation/vocationalCounsel.do'/>", 'code', 'width=940, height=660, left=250, top=100, location=no, resizable=yse');
+	}
+	function openJobInfo() {
+		window.open("<c:url value='/vocation/vocationalInfo.do'/>", 'code', 'width=1100, height=900, left=250, top=50, menubar=yes, location=no, resizable=yse, toolbar=yes');
+	}
+	
+</script>
+<%@ include file="../inc/sidebar.jsp"%>
+<div style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
+<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
 	<div style="text-align: center;" id="testDiv">
-		
-		<a id="aTag" href="#">직업상담<span>(진로탐험대)</span><img id="boatImg" src="<c:url value='/resources/images/boat.png'/>"><br></a><br><br>
+		<img alt="searchImg" src="<c:url value='/resources/images/jobsearch.PNG'/>" id="vacationImg"><br>
+		<a id="aTag" href="#" onclick="javascript:openNew()">직업상담<span>(진로탐험대)</span></a><br><br>
 		<span>많은 취준생들이 궁금해 하는 진로, 진학, 학습/적응, 직업 관련 상담사례를 확인할 수 있습니다.</span><br>
 		<br><br>
-		<a id="aTag" href="#">직업정보탐색</a><br><br>
+		<img alt="searchImg" src="<c:url value='/resources/images/search.PNG'/>" id="vacationImg"><br>
+		<a id="aTag" href="#" onclick="javascript:openJobInfo()">직업정보탐색</a><br><br>
 		<span>500여개 직업에 대한 유용한 정보! 관심 있는 직업에 대한 다양한 정보를확인하세요.</span>
 	</div>
-	<div style="text-align: center;" id="testDiv">
-		<iframe src="//www.career.go.kr/cnet/iframe/CounselExam.do?apiKey=5b3d6fa311bebd2bbca3b56b98e59c75" scrolling="no" name="ce" width="917" height="637" frameborder="0" style="border-width:0px;border-color:white; border-style:solid;"> </iframe>
-	</div>
-	<div style="text-align: center;" id="testDiv">
-		<iframe src="//www.career.go.kr/cnet/iframe/JobDic.do?apiKey=5b3d6fa311bebd2bbca3b56b98e59c75#tab2" scrolling="yes" name="ce" width="1000" height="1080" frameborder="0" style="border-width:0px;border-color:white; border-style:solid;"> </iframe>
-	</div>
-
+	
+</div>
 <%@ include file="../inc/bottom.jsp" %>
