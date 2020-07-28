@@ -6,8 +6,11 @@
 	<%@ include file="../inc/companySidebar.jsp" %>
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
-	
-	
+		THE JOB 솔루션 소개
+		기업정보관리
+		채용관리
+		헤드헌팅
+		
 	
 	
 	
