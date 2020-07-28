@@ -31,11 +31,11 @@
 	</insert>
 	
 	<insert id="insertLanguage" parameterType="languageVo">
-		<selectKey keyProperty="languageCode" order="BEFORE" resultType="string">
+		<selectKey keyProperty="langCode" order="BEFORE" resultType="string">
 			select LANGUAGE_seq.nextval from dual
 		</selectKey>
 		insert into LANGUAGE
-		values(#{languageCode},#{kinds},#{testName},#{langScore},#{rating},#{langGetDate},#{resumeNo})
+		values(#{langCode},#{kinds},#{testName},#{langScore},#{rating},#{langGetDate},#{resumeNo})
 	</insert>
 
 	<insert id="insertAddinfo" parameterType="addinfoVo">
@@ -58,7 +58,7 @@
 		<selectKey keyProperty="awardCode" order="BEFORE" resultType="string">
 			select award_seq.nextval from dual
 		</selectKey>
-		insert into active
+		insert into award
 		values(#{awardCode},#{awardName},#{awardCom},#{awardGetDate},#{resumeNo})
 	</insert>
 	
@@ -66,15 +66,15 @@
 		<selectKey keyProperty="potCode" order="BEFORE" resultType="string">
 			select potfolio_seq.nextval from dual
 		</selectKey>
-		insert into active
-		values(#{potCode},#{potFile},#{potPeriod},#{workers},#{intro},#{resumeNo})
+		insert into potfolio
+		values(#{potCode},#{potFile},#{potPeriod},#{potTools},#{workers},#{intro},#{resumeNo})
 	</insert>
 
 	<insert id="insertCertify" parameterType="certifyVo">
 		<selectKey keyProperty="certifyCode" order="BEFORE" resultType="string">
 			select Certify_seq.nextval from dual
 		</selectKey>
-		insert into active
+		insert into certify
 		values(#{certifyCode},#{certifyName},#{certifyPlace},#{certifyGetDate},#{resumeNo})
 	</insert>
 

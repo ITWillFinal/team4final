@@ -7,7 +7,7 @@ public class LanguageVO {
 	private String langScore;
 	private String rating;
 	private String langGetDate;
-	private String resumeName;
+	private String resumeNo;
 	
 	public String getLangCode() {
 		return langCode;
@@ -45,16 +45,16 @@ public class LanguageVO {
 	public void setLangGetDate(String langGetDate) {
 		this.langGetDate = langGetDate;
 	}
-	public String getResumeName() {
-		return resumeName;
+	public String getResumeNo() {
+		return resumeNo;
 	}
-	public void setResumeName(String resumeName) {
-		this.resumeName = resumeName;
+	public void setResumeNo(String resumeNo) {
+		this.resumeNo = resumeNo;
 	}
 	@Override
 	public String toString() {
 		return "LanguageVO [langCode=" + langCode + ", kinds=" + kinds + ", testName=" + testName + ", langScore="
-				+ langScore + ", rating=" + rating + ", langGetDate=" + langGetDate + ", resumeName=" + resumeName
+				+ langScore + ", rating=" + rating + ", langGetDate=" + langGetDate + ", resumeNo=" + resumeNo
 				+ "]";
 	}
 	

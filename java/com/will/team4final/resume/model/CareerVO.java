@@ -6,7 +6,7 @@ public class CareerVO {
 	private String careerCompany;
 	private String careerPeriod;
 	private String careerReason;
-	private String tesk;
+	private String task;
 	private String resumeNo;
 	private String careerRank;
 	private String careerYear;
@@ -37,11 +37,11 @@ public class CareerVO {
 	public void setCareerReason(String careerReason) {
 		this.careerReason = careerReason;
 	}
-	public String getTesk() {
-		return tesk;
+	public String getTask() {
+		return task;
 	}
-	public void setTesk(String tesk) {
-		this.tesk = tesk;
+	public void setTask(String task) {
+		this.task = task;
 	}
 	public String getResumeNo() {
 		return resumeNo;
@@ -77,7 +77,7 @@ public class CareerVO {
 	@Override
 	public String toString() {
 		return "CareerVO [careerCode=" + careerCode + ", careerCompany=" + careerCompany + ", careerPeriod="
-				+ careerPeriod + ", careerReason=" + careerReason + ", tesk=" + tesk + ", resumeNo=" + resumeNo
+				+ careerPeriod + ", careerReason=" + careerReason + ", task=" + task + ", resumeNo=" + resumeNo
 				+ ", careerRank=" + careerRank + ", careerYear=" + careerYear + ", careerLocation=" + careerLocation
 				+ ", careerSal=" + careerSal + "]";
 	}

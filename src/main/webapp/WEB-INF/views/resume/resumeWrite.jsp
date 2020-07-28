@@ -897,7 +897,9 @@
 						count = count+1;
 					});					
 				}else{
-					$(this).parent().find('.nullOk-top').remove();
+					if(!$(this).hasClass("no-remove")){
+						$(this).parent().find('.nullOk-top').remove();						
+					}
 				}
 			});
 			
@@ -1314,8 +1316,8 @@
 					</div>
 					<div class="col-lg-10">
 							<label for="shcoolName" class="col-lg-2 control-label">담당업무</label> 
-							<input type="text" class="form-control onlyAlphabetAndNumber tesk"
-								name="careerItems[].tesk"
+							<input type="text" class="form-control onlyAlphabetAndNumber task"
+								name="careerItems[].task"
 								placeholder="담당업무 입력" maxlength="15">
 					</div>	
 				</div>
@@ -1325,7 +1327,7 @@
 			</div>
 		</div>
 		<div class="info-box hope">
-			<div class="info-box-nullOk-head">
+			<div class="info-box-nullOk-head no-remove">
 				<h3>희망 근무조건</h3>
 				<label class="switch">
 					<input type="checkbox" class="nullOk-chk" />
@@ -1673,12 +1675,12 @@
 				<div class="col-lg-10">
 							<label class="col-lg-2 control-label">작품소개</label> 
 							<textarea rows="1" cols="50" class="form-control taAuto" 
-							placeholder="작품 소개 입력" name="intro n"></textarea>
+							placeholder="작품 소개 입력" name="intro"></textarea>
 				</div>	
 			</div>	
 		</div>
 		<div class="info-box self-int">
-			<div class="info-box-nullOk-head">
+			<div class="info-box-nullOk-head no-remove">
 				<h3>자기소개서</h3>
 				<label class="switch">
 					<input type="checkbox" class="nullOk-chk" />
