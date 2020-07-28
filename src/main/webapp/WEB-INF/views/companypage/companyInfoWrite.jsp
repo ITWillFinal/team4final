@@ -170,6 +170,8 @@ hr{
 	<%@ include file="../inc/companySidebar.jsp"%>
 	<div
 		style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
+		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
+		
 		<!-- main -->
 		<div style="margin: 5px; height: 95px;"><br>
 			<h1 style="background: white; padding: 20px; font-weight: bold;">

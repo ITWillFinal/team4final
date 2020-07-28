@@ -72,6 +72,7 @@
 			$('input[name=location2]').val(sigugun);
 		});
 		
+		
 		$('#jobLarge').click(function() {
 			var num = $('#jobLarge').val();
 			$('#jobMiddle').empty();
@@ -90,6 +91,13 @@
 					alert(status + ", " + error);
 				}
 			});
+			$('input[name=jobType1]').val(num);
+		});
+		
+		$('#jobMiddle').click(function() {
+			var numMiddle = $('#jobMiddle').val();
+			$('input[name=jobType2]').empty();
+			$('input[name=jobType2]').val(numMiddle);
 		});
 		
 		$('#induLarge').click(function() {
@@ -110,6 +118,14 @@
 					alert(status + ", " + error);
 				}
 			});
+			
+			$('input[name=induType1]').val(num);
+		});
+		
+		$('#induMiddle').click(function() {
+			var numMiddle = $('#induMiddle').val();
+			$('input[name=induType2]').empty();
+			$('input[name=induType2]').val(numMiddle);
 		});
 		
 		$("#paySelect").change(function(){
@@ -305,7 +321,7 @@
 				</tr>
 
 				<tr>
-					<td>직무1</td>
+					<td>직무</td>
 					<td>
 						<select size="5" id="jobLarge">
 							<c:forEach var="map" items="${jobList }">
@@ -317,14 +333,9 @@
 						</select>	
 					</td>
 				</tr>
+				
 				<tr>
-					<td>직무2</td>
-					<td>
-						<input type="text" id="jobType2" name="jobType2">
-					</td>
-				</tr>
-				<tr>
-					<td>산업1</td>
+					<td>산업</td>
 					<td>
 						<select size="5" id="induLarge">
 							<c:forEach var="map" items="${induList }">
@@ -336,12 +347,11 @@
 						</select>	
 					</td>
 				</tr>
-				<tr>
-					<td>산업2</td>
-					<td>
-						
-					</td>
-				</tr>
+				<input type="hidden" id="jobType1" name="jobType1">
+				<input type="hidden" id="jobType2" name="jobType2">
+				
+				<input type="hidden" id="induType1" name="induType1">
+				<input type="hidden" id="induType2" name="induType2">
 				
 				<input type="hidden" id="location1" name="location1">
 				<input type="hidden" id="location2" name="location2">

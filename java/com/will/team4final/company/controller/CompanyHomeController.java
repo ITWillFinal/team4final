@@ -101,6 +101,7 @@ public class CompanyHomeController {
 		
 		List<Map<String, Object>> induList = jobServ.selectInduLarge();
 		List<Map<String, Object>> jobList = jobServ.selectLarge();
+		logger.info("직무, 산업 list = {}, {}", jobList.size(), induList.size());
 		
 		model.addAttribute("list", list);
 		model.addAttribute("induList", induList);
