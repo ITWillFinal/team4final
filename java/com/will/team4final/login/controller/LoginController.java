@@ -179,7 +179,7 @@ public class LoginController {
 		
 		String url = "/companypage/companyHome.do", msg = "기업 로그인시 오류!";
 		if (result == MemberService.LOGIN_OK) {
-			CompanyMemberVO comVo = comServ.selectCMemberAll(userid);
+			CompanyMemberVO comVo = comServ.selectCMemberAll(userid;
 			
 			msg = comVo.getcUsername() + "님 안녕하세요!";
 			

@@ -46,7 +46,7 @@
 		values(#{infoCode},#{disable},#{military},#{affair},#{sFund},#{resumeNo})
 	</insert>
 
-	<insert id="insertActive" parameterType="acriveVo">
+	<insert id="insertActive" parameterType="activeVo">
 		<selectKey keyProperty="actCode" order="BEFORE" resultType="string">
 			select active_seq.nextval from dual
 		</selectKey>
