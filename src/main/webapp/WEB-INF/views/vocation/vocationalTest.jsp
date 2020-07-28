@@ -31,7 +31,7 @@
 		<a id="aTag" href="#">직업상담<span>(진로탐험대)</span><img id="boatImg" src="<c:url value='/resources/images/boat.png'/>"><br></a><br><br>
 		<span>많은 취준생들이 궁금해 하는 진로, 진학, 학습/적응, 직업 관련 상담사례를 확인할 수 있습니다.</span><br>
 		<br><br>
-		<a id="aTag" href="#">직업정보</a><br><br>
+		<a id="aTag" href="#">직업정보탐색</a><br><br>
 		<span>500여개 직업에 대한 유용한 정보! 관심 있는 직업에 대한 다양한 정보를확인하세요.</span>
 	</div>
 	<div style="text-align: center;" id="testDiv">
