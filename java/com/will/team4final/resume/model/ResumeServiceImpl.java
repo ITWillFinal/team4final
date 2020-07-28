@@ -114,4 +114,10 @@ public class ResumeServiceImpl implements ResumeService{
 		return cnt;
 	}
 
+
+	@Override
+	public List<ResumeVO> selectResumeByUserNo(String userNo) {
+		return resumeDao.selectResumeByUserNo(userNo);
+	}
+
 }

@@ -77,6 +77,10 @@
 		insert into certify
 		values(#{certifyCode},#{certifyName},#{certifyPlace},#{certifyGetDate},#{resumeNo})
 	</insert>
+	
+	<select id="selectResumeByUserNo" parameterType="string" resultType="resumeVo">
+		select * from resume where user_no=#{userNo}
+	</select>
 
 </mapper>
 

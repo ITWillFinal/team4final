@@ -1,5 +1,7 @@
 package com.will.team4final.resume.model;
 
+import java.util.List;
+
 public interface ResumeDAO {
 
 	int insertResume(ResumeVO resumeVo);
@@ -11,4 +13,5 @@ public interface ResumeDAO {
 	int insertAward(AwardVO awardVo);
 	int insertPotfolio(PotfolioVO potfolioVo);
 	int insertCertify(CertifyVO certifyVo);
+	List<ResumeVO> selectResumeByUserNo(String userNo);
 }
