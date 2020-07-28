@@ -210,7 +210,7 @@
 		                                <a href="job_details.html"><h4>${vo.title }</h4></a>
 		                                <ul>
 		                                    <li>${vo.comName }</li>
-		                                    <li><i class="fas fa-map-marker-alt"></i>${vo.jobType1 }, ${vo.jobType2 }</li>
+		                                    <li><i class="fas fa-map-marker-alt"></i>${vo.jobType2 }</li>
 		                                    <li>${vo.pay }</li>
 		                                </ul>
 		                            </div>

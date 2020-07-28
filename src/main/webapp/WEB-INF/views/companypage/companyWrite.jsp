@@ -83,7 +83,7 @@
 				data:"no="+num,
 				success:function(res){
 					for(var i = 0; i< res.length; i++){
-						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						var option ="<option value='"+res[i].MIDDLE_GROUP+"'>"+res[i].MIDDLE_GROUP+"</option>";
 						$('#jobMiddle').append(option);
 					}
 				},
@@ -110,7 +110,7 @@
 				data:"no="+num,
 				success:function(res){
 					for(var i = 0; i< res.length; i++){
-						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						var option ="<option value='"+res[i].MIDDLE_GROUP+"'>"+res[i].MIDDLE_GROUP+"</option>";
 						$('#induMiddle').append(option);
 					}
 				},
@@ -412,7 +412,6 @@
 						<label><input type="checkbox" class="recTypeChk" value="인턴직">인턴직</label>
 						<label><input type="checkbox" class="recTypeChk" value="정규직">정규직</label>
 						<label><input type="checkbox" class="recTypeChk" value="계약직">계약직</label>
-						<label><input type="checkbox" class="recTypeChk" value="병역특례">병역특례</label>
 						<label><input type="checkbox" class="recTypeChk" value="프리랜서">프리랜서</label>
 						<input type="hidden" id="recType" name="recType">
 					</td>
