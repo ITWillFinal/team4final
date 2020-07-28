@@ -14,7 +14,7 @@
 		};
 		
 		$("tbody #btUpdate").click(function() {
-			var userNo = $(this).html();
+			var userNo = $(this).val();
 			window.open(
 			"<c:url value='/member/updateUser.do?userNo="
 			+ userNo + "'/>", 'chk',
@@ -59,13 +59,14 @@ td{
 <div class="divList">
 <table class="box2">
 	<colgroup>
-		<col style="width:8%" /> 
+		<col style="width:8%" />
 		<col style="width:5%" />
 		<col style="width:5%" />
-		<col style="width:20%" />	
+		<col style="width:17%" />	
+		<col style="width:18%" />	
 		<col style="width:15%" />	
-		<col style="width:21%" />	
-		<col style="width:21%" />	
+		<col style="width:15%" />	
+		<col style="width:10%" />	
 		<col style="width:%" />	
 	</colgroup>
 	<thead>
@@ -78,6 +79,7 @@ td{
 		<th scope="col">가입일  </th>
 		<th scope="col">탈퇴일  </th>
 		<th scope="col">유저상태   </th>
+		<th scope="col">수정   </th>
 	  </tr>
 	</thead> 
 	<tbody>
@@ -91,7 +93,7 @@ td{
 		  	<!--게시판 내용 반복문 시작  -->
 		  	<c:forEach var="vo" items="${memberList }">		  			  	
 				<tr class="align_center">
-					<td id="btUpdate">${vo.userNo }</td>
+					<td>${vo.userNo }</td>
 					<td>${vo.userid }</td>
 					<td>${vo.userName }</td>
 					<td>${vo.email }</td>
@@ -100,13 +102,16 @@ td{
 						${vo.regdate }</td>
 					<td>
 						<c:if test="${!empty vo.outdate }">
-							<span style="color:gray">탈퇴한 회원입니다.</span>
+							<span style="color:gray">탈퇴한 회 원입니다.</span>
 						</c:if>
 						<c:if test="${empty vo.outdate }">
 							<a href="<c:url value='/member/deleteUser.do?userNo=${vo.userNo }'/>">삭제</a>
 						</c:if>
 					</td>
 					<td>${vo.userStatus }</td>
+					<td>
+						<button id="btUpdate" value="${vo.userNo }">수정</button>
+					</td>
 				</tr>
 			</c:forEach>
 		  	<!--반복처리 끝  -->

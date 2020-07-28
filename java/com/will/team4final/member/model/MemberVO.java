@@ -8,7 +8,7 @@ public class MemberVO {
 	private String imageURL;
 	private String nickname;
 	private String birth;
-	private int gender;
+	private String gender;
 	private String zipcode;
 	private String address;
 	private String addressDetail;
@@ -17,7 +17,6 @@ public class MemberVO {
 	private String regdate;
 	private String outdate;
 	private String userStatus;
-	
 	public int getUserNo() {
 		return userNo;
 	}
@@ -60,10 +59,10 @@ public class MemberVO {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	public int getGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(int gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	public String getZipcode() {
@@ -114,7 +113,6 @@ public class MemberVO {
 	public void setUserStatus(String userStatus) {
 		this.userStatus = userStatus;
 	}
-	
 	@Override
 	public String toString() {
 		return "MemberVO [userNo=" + userNo + ", userid=" + userid + ", pwd=" + pwd + ", userName=" + userName
@@ -123,5 +121,7 @@ public class MemberVO {
 				+ email + ", hp=" + hp + ", regdate=" + regdate + ", outdate=" + outdate + ", userStatus=" + userStatus
 				+ "]";
 	}
+	
+		
 	
 }
