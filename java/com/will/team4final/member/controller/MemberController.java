@@ -220,12 +220,25 @@ public class MemberController {
 		model.addAttribute("url", url);
 		return "common/message";
 	}
+	
 	@RequestMapping("/updateUser.do")
 	public String updateUser(@RequestParam(defaultValue = "0") int userNo, Model model) {
 		logger.info("관리자에서 회원 정보 변경 창 열기, 파라미터 userNo={}", userNo);
 			
-		return "";
+		return "member/updateUser";
 	}
 	
+	@RequestMapping("/agreement/personTerm.do")
+	public String personTerm() {
+		logger.info("개인 회원 약관 동의서 페이지");
+			
+		return "agreement/personTerm";
+	}
 	
+	@RequestMapping("/agreement/personInfo.do")
+	public String personInfo() {
+		logger.info("개인 회원 정보 수집  동의서 페이지");
+			
+		return "agreement/personInfoCollaction";
+	}
 }
