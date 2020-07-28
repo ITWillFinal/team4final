@@ -31,20 +31,95 @@
 				$(this).val(inputVal.replace(/[^0-9]/gi, ''));
 			}
 		});
-		
-		$('#select_industry').change(function(){
-			if($(this).val()=='기타'){
-				$('#select_industry2').val("");
-				$('#select_industry2').css('visibility','visible');
-				$('#select_industry2').focus();				
-			}else{
-				$('#select_industry2').css('visibility','hidden');
+		$(".onlyHangulEnglish").keyup(function(event) {
+			if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+				var inputVal = $(this).val();
+				$(this).val(inputVal.replace(/[!@#$%^&*()-_+=~;?0-9]/gi, ''));
 			}
+		});
+		$(".onlyHangul").keyup(function(event) {
+			if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+				var inputVal = $(this).val();
+				$(this).val(inputVal.replace(/[a-z0-9]/gi, ''));
+			}
+		});
+		$('.onlyAlphabet').keyup(function(event) {
+			if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+				var inputVal = $(this).val();
+				$(this).val($(this).val().replace(/[^_a-zA-Z]/gi, '')); //_(underscore), 영어, 숫자만 가능
+			}
+		});
+		$('#comIndustry').change(function(){
+			if($(this).val()=='etc'){
+				$('#comIndustry2').val("");
+				$('#comIndustry2').show();
+				$('#comIndustry2').focus();				
+			}else{
+				$('#comIndustry2').hide();
+			}
+		});
+		
+		$('form[name=frm]').submit(function() {
+			if($('#comName').val().length<1){
+				alert('회사명을 입력하세요!');
+				$('#comName').focus();
+				event.preventDefault();
+				return false;
+			}else if($('#ceo').val().length<1){
+				alert('대표자명을 입력하세요!');
+				$('#ceo').focus();
+				event.preventDefault();
+				return false;
+			}else if($('#comNum').val().length<1){
+				alert('사업자등록번호를 입력하세요!');
+				$('#comNum').focus();
+				event.preventDefault();
+				return false;
+			}else if($('#zipcode').val().length<1){
+				alert('우편번호를 입력하세요!');
+				$('#zipcode').focus();
+				event.preventDefault();
+				return false;
+			}else if($('#comHp').val().length<1){
+				alert('회사 내부 전화를 입력하세요!');
+				$('#comHp').focus();
+				event.preventDefault();
+				return false;
+			}else if($('#comType').val() == "0"){
+				alert('회사 형태를 입력하세요!');
+				$('#comType').focus();
+				event.preventDefault();
+				return false;comHp
+			}else if($('#comIndustry').val() == "0"){
+				alert('회사 업종을 입력하세요!');
+				$('#comIndustry').focus();
+				event.preventDefault();
+				return false;comHp
+			}else if($('#content').val().length<1){
+				alert('주요 사업 내용을  입력하세요!');
+				$('#content').focus();
+				event.preventDefault();
+				return false;comHp
+			}
+			 
+			 
 		});
 		
 	});//function
 </script>
+<style type="text/css">
+hr{
+height: 3px;
+    background: #da2461;
 
+}
+.btSubmit{
+	text-align: center;
+	padding: 30px;
+}
+
+
+</style>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -94,28 +169,32 @@ hr{
 <main>
 	<%@ include file="../inc/companySidebar.jsp"%>
 	<div
-		style="float: left; width: 49%; margin-left: 30px; font-size: 14px; border: 1px solid lightgray">
+		style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
 		<!-- main -->
-		<div style="margin: 5px; height: 95px;">
-			<h1 style="background: white; padding: 20px 0; font-weight: bold;">
+		<div style="margin: 5px; height: 95px;"><br>
+			<h1 style="background: white; padding: 20px; font-weight: bold;">
 				회사 정보 입력 <span
 					style="font-size: 14px; color: red; padding-left: 30px;">*
 					필수가 아닌항목은 체크해제시 적용되지 않습니다.</span>
 			</h1>
 		</div>
 		<br>
+		<hr>
+		<form name="frm" method="post" style="margin-top: 50px;"
+			action="<c:url value='#' /> "
+			enctype="multipart/form-data" >
 		<div class="form-horizontal">
 			<div class="form-group">
 				<label for="inputUser" class="col-sm-3 control-label">회사명 <span>*</span>
 				</label>
 				<div class="col-sm-9 form-input">
-					<input type="text" class="form-control" id="comName"
+					<input type="text" class="form-control onlyHangulEnglish" id="comName"
 						name="comName"
 						placeholder="회사명 입력 부탁드립니다.">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputUser" class="col-sm-3 control-label">대표자명 <span>*</span>
+				<label for="inputUser" class="col-sm-3 control-label onlyHangul">대표자명 <span>*</span>
 				</label>
 				<div class="col-sm-9 form-input">
 					<input type="text" class="form-control" id="ceo"
@@ -131,15 +210,8 @@ hr{
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputUser" class="col-sm-3 control-label">사업자등록번호 <span>*</span>
+				<label for="zipcode" class="col-sm-3 control-label">주소<span>*</span>
 				</label>
-				<div class="col-sm-9 form-input">
-					<input type="text" class="form-control" id="comNum"
-						name="comNum" >
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="zipcode" class="col-sm-3 control-label">주소</label> 
 				<div class="col-sm-9 form-input">
 					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 					<br><br>
@@ -158,7 +230,7 @@ hr{
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputUser" class="col-sm-3 control-label">회사 사진 <span>*</span>
+				<label for="inputUser" class="col-sm-3 control-label">회사 사진 
 				</label>
 				<div class="col-sm-9 form-input">
 					<input type="file" name="imageUpload" id="imageUpload" class="infobox"
@@ -169,7 +241,7 @@ hr{
 				</div>
 			</div>
 			<div class="form-group">
-					<label for="inputUser" class="col-sm-3 control-label">회사 내부 전화 번호 <span>*</span>
+					<label for="inputUser" class="col-sm-4 control-label">회사 내부 전화 번호 <span>*</span>
 					</label>
 					<div class="col-sm-9 form-input">
 						<input type="text" class="form-control onlyNumber" id="comHp"
@@ -179,8 +251,8 @@ hr{
 			<div class="form-group">
 	        	<label for="select_type" class="col-sm-3 control-label">회사 형태 <span>*</span></label>
 	            	<div class="col-sm-9 form-input">
-	                <select name="select_type" id="select_type" class="form-control">
-	                	<option value="0">회사형태를 선택하세요</option>
+	                <select name="comType" id="comType" class="form-control">
+	                	<option value="0">회사 형태를 선택하세요</option>
                  			<option value="소기업" >소기업</option>
 						   	<option value="중소기업" >중소기업</option>
 			                <option value="중견기업" >중견기업</option>
@@ -195,7 +267,7 @@ hr{
 			<div class="form-group">
 	        	<label for="select_type" class="col-sm-3 control-label">회사 업종  <span>*</span></label>
 	            	<div class="col-sm-9 form-input">
-	                <select name="select_industry" id="select_industry" class="form-control">
+	                <select name="comIndustry" id="comIndustry" class="form-control">
 	                	<option value="0">회사 업종을 선택하세요</option>
 			                <option value="정보보안" >정보보안</option>
 			                <option value="AS/카센터/주유" >AS/카센터/주유</option>
@@ -240,21 +312,40 @@ hr{
 			                <option value="화장품/뷰티" >화장품/뷰티</option>
 			                <option value="인테리어/조경" >인테리어/조경</option>
 			                <option value="농업/어업/광업" >농업/어업/광업</option>
-			                <option value="기타" >기타</option>
+			                <option value="etc" >기타</option>
                       </select>
 	                  </div>
 					<div class="form-group">
 						<div class="col-sm-9 form-input">
-							<input type="text" class="form-control" name="select_industry2" id="select_industry2" title="기타 입력란"
-							 style="visibility: hidden;">
+							<input type="text" class="form-control" name="comIndustry2" id="comIndustry2" title="기타 입력란"
+							 style="display: none;">
 						</div>
 					</div>
-					
  	        </div>
-						
-			
+			<div class="form-group">
+				<label for="inputUser" class="col-sm-3 control-label onlyHangul">주요 사업 내용 <span>*</span>
+				</label>
+				<div class="col-sm-9 form-input">
+					<textarea class="form-control" rows="8" id="content" name="content"></textarea>
+				</div>
+			</div>	
+			<div class="form-group">
+				<label for="inputUser" class="col-sm-3 control-label onlyAlphabet ">홈페이지
+				</label>
+				<div class="col-sm-9 form-input">
+					<input type="email" class="form-control" id="homepage"
+						name="homepage">
+				</div>
+			</div>
 		<!-- main end -->
 		</div>
+		<div class="btSubmit">
+			<div class="col-lg-offset-2 col-lg-10">
+				<button type="submit" class="btn btn-primary">입력</button>
+			</div>
+		</div>
+		</form>
+		<!-- submit button -->
 	</div>
 </main>
 <%@ include file="../inc/companyBottom.jsp"%>

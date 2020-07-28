@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
 			<div class="container">
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".navbar-inverse-collapse"> <i
-					class="icon-reorder shaded"></i></a><a class="brand" href="index.html">THE JOB
+					class="icon-reorder shaded"></i></a><a class="brand" href="<c:url value='/admin/adminMain.do'/>">THE JOB
 				</a>
 				<div class="nav-collapse collapse navbar-inverse-collapse">
 					<ul class="nav nav-icons">
@@ -67,8 +68,8 @@
 
 
 						<ul class="widget widget-menu unstyled">
-							<li><a href="ui-button-icon.html"><i
-									class="menu-icon icon-bold"></i> Buttons </a></li>
+							<li><a href="<c:url value = '/gogak/admin/company/faqList.do'/>"><i
+									class="menu-icon icon-bold"></i> 고객센터 </a></li>
 							<li><a href="ui-typography.html"><i
 									class="menu-icon icon-book"></i>Typography </a></li>
 							<li><a href="form.html"><i class="menu-icon icon-paste"></i>Forms

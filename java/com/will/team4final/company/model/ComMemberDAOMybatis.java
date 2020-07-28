@@ -31,8 +31,8 @@ public class ComMemberDAOMybatis implements ComMemberDAO {
 	}
 
 	@Override
-	public CompanyMemberVO selectCMemberAll(String cUserid) {
-		return sqlSession.selectOne(namespace + "selectCMemberAll", cUserid);
+	public CompanyMemberVO selectCMemberInfoByUserid(String cUserid) {
+		return sqlSession.selectOne(namespace + "selectCMemberInfoByUserid", cUserid);
 	}
 
 	@Override
