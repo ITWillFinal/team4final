@@ -324,7 +324,7 @@
 
 											<li><a href=<c:url value='/hireinpo/hireinpo.do'/>>채용정보</a></li>
 											<li><a href="job_listing.html">HOT 100</a></li>
-											<li><a href="about.html">직업검사</a></li>
+											<li><a href="<c:url value='/vocation/vocationalTest.do'/>">직업탐색</a></li>
 											<li><a
 												href="<c:url value='/companypage/companyHome.do'/>">기업페이지</a></li>
 											<li><a href="<c:url value = '/gogak/personal/faqList.do'/>">고객센터</a></li>
