@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
     <!-- main left sidebar -->
-	<div style="float: left; width:250px; margin-left:18%; word-break:break-all; border:1px solid lightgray; font-size: 14px;">
+	<div style="float: left; width:250px; margin-left:16%; word-break:break-all; border:1px solid lightgray; font-size: 14px;">
 		
 		<div style="width:238px; height:200px; margin:5px;">
 			<br>

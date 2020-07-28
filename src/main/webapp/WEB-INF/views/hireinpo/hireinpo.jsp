@@ -90,6 +90,9 @@ $(function() {
 	}
 	
 </style>
+<%@ include file="../inc/sidebar.jsp"%>
+<div style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
+<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
 
 <div id="hireTabs">
 	<ul>
@@ -142,5 +145,6 @@ $(function() {
 			</select>			
 		</div>
 	</div>
+</div>
 </div>
 <%@ include file="../inc/bottom.jsp" %>

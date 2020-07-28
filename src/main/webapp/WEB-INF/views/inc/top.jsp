@@ -25,9 +25,29 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/js/jquery-3.5.1.min.js'/>">
 
+<!-- 사이드바 제이쿼리 시작 -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+    $( "#menu" ).menu({
+      items: "> :not(.ui-widget-header)"
+    });
+  } );
+</script>
+<!-- 사이드바 제이쿼리 끝 -->
+
 </head>
 
 <style>
+/*사이드바 제이쿼리 스타일*/
+.ui-widget-header {
+	padding: 0.2em;
+}
+/*사이드바 제이쿼리 스타일 끝*/
+
 .overlay {
 	position: fixed;
 	top: 0;

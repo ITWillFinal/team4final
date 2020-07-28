@@ -50,6 +50,11 @@ public class CompanyHomeController {
 		
 	}
 	
+	@RequestMapping("/serviceInfo.do")
+	public void serviceInfo() {
+		logger.info("기업회원 서비스안내");
+	}
+	
 	@RequestMapping("/member/checkUserid.do")
 	public String checkcUserid(@RequestParam String cUserid, Model model) {
 		logger.info("기업회원 아이디 중복확인, 파라미터 cUserid={}", cUserid);
@@ -96,6 +101,7 @@ public class CompanyHomeController {
 		
 		List<Map<String, Object>> induList = jobServ.selectInduLarge();
 		List<Map<String, Object>> jobList = jobServ.selectLarge();
+		logger.info("직무, 산업 list = {}, {}", jobList.size(), induList.size());
 		
 		model.addAttribute("list", list);
 		model.addAttribute("induList", induList);
