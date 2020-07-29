@@ -9,7 +9,9 @@ public interface MemberDAO {
 	String findId(String email);
 	int updatePwdByEmail(MemberVO memberVo);
 	MemberVO selectByUserid(String user_id);
+	MemberVO selectByUerNo(int userNo);
 	String selectMemberPwd(String userid);
 	List<MemberVO> showAllMemberUser();
 	int deleteUser(int userNo);
+	
 }

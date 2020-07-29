@@ -62,6 +62,11 @@ public class MemberServiceImpl implements MemberService{
 	public int deleteUser(int userNo) {
 		return memberDao.deleteUser(userNo);
 	}
+
+	@Override
+	public MemberVO selectByUerNo(int userNo) {
+		return memberDao.selectByUerNo(userNo);
+	}
 	
 	
 }

@@ -59,6 +59,11 @@ public class ComMemberServiceImpl implements ComMemberService{
 		
 		return result;
 	}
+
+	@Override
+	public CompanyMemberVO selectCMemberByUserCode(int userNo) {
+		return comMemberDao.selectCMemberByUserCode(userNo);
+	}
 	
 	
 

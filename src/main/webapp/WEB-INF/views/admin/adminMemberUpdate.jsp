@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="../inc/top.jsp"%>
+    pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/resources/js/jquery-3.5.1.min.js'/>">
 <style type="text/css">
 .resume_basic .area_title h3.title {
 	color: #222;
@@ -177,5 +179,3 @@
 			</div>
 	</section>
 </div>
-
-<%@ include file="../inc/bottom.jsp"%>

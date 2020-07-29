@@ -36,6 +36,9 @@
 	<select id="selectCMemberInfoByUserid" parameterType="string" resultType="companyMemberVo">
 		select * from company_member where C_USERID=#{cUserid}
 	</select>
+	<select id="selectCMemberByUserCode" parameterType="int" resultType="companyMemberVo">
+		select * from company_member where C_MEMBER_CODE=#{cMemberCode}
+	</select>
 </mapper>
 
 
