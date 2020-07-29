@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="../../inc/adminTop.jsp"%>
 <script type="text/javascript" 
 	src = "<c:url value = '/resources/js/jquery-3.5.1.min.js'/>"></script>
 <script type="text/javascript">
@@ -43,9 +42,11 @@ a{
 </style>
 
 
-<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
+	<!-- Id에 따라 top, sidebar, bottom 변경 -->
+	<%@ include file="../../inc/adminTop.jsp"%>
 
 <main>
+	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
 		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">

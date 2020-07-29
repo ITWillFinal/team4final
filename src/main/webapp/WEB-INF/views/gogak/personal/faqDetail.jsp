@@ -80,7 +80,7 @@ h3{
 
 </style>
 <main>
-	<%@ include file="../side_inc/personal_Sidebar.jsp"%>
+	<%@ include file="../../inc/companySidebar.jsp"%>
 
 	<!-- main -->
 	<div

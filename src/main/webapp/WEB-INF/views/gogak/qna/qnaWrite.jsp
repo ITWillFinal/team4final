@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../../inc/adminTop.jsp"%>
 
 <style>
 div#outDiv {
@@ -31,6 +30,9 @@ input#rrr {
 		});
 	});
 </script>
+
+	<!-- Id에 따라 top, sidebar, bottom 변경 -->
+	<%@ include file="../../inc/adminTop.jsp"%>
 <main>
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	
@@ -42,7 +44,7 @@ input#rrr {
 		<div style="margin:5px;">
 			<div id="outDiv">
 				<form name = "frmWrite" method="post" 
-					action="<c:url value = '/gogak/qna/qnaWrite.do'/>">
+					action="<c:url value = '/gogak/qna/qnaWrite.do'/>"enctype="multipart/form-data">
 					<!-- 조정필요 -->
 					<label for="status">기업/일반</label>
 					<input type="text" name = "status" >
@@ -50,6 +52,7 @@ input#rrr {
 					<input type="text" name = "userId" >
 					<label for="userNo">유저번호</label>
 					<input type="text" name = "userNo" >
+					
 					<table style="width: 700px;">
 						<colgroup>
 							<col style="width: 20%;" />
@@ -72,7 +75,14 @@ input#rrr {
 							<td>문의 제목</td>
 							<td><input type="text" name = "title"></td>
 						</tr>
-				
+						
+						<tr>
+							<td>파일 업로드</td>
+							<td><input multiple="multiple" type="file" name="file" /></td>
+						</tr>
+						<tr>
+							<td><input type="text" name="src" /></td>
+						</tr>
 						<tr>
 							<td>문의 내용</td>
 							<td id = "tdA">

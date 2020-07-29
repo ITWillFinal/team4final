@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="../../inc/adminTop.jsp"%>
+<%@ include file="../../inc/companyTop.jsp"%>
 
 <style>
 .divList{
@@ -84,7 +84,7 @@ a{
 	});
 </script>
 <main>
-	<%@ include file="../side_inc/company_Sidebar.jsp"%>
+	<%@ include file="../../inc/companySidebar.jsp"%>
 	
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
@@ -214,10 +214,6 @@ a{
 					        <input type="text" name="searchKeyword" title="검색어 입력"
 					        	value="${param.searchKeyword}">   
 							<input type="submit" value="검색"><br>
-							<!-- <div id = "bt">
-								<input type="button" id = "fnqWrite" value = "게시글 등록">
-								<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"><br><br>
-							</div> -->
 				    </form>
 				</div>
 			</div>
@@ -225,6 +221,6 @@ a{
 	</div>
 </main>
 
-<%@ include file="../../inc/adminBottom.jsp"%>
+<%@ include file="../../inc/companyBottom.jsp"%>
 
 

@@ -8,11 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.will.team4final.common.SearchVO;
+import com.will.team4final.qnare.model.QnareDAO;
 
 @Service
 public class QnaServiceImpl implements QnaService{
 	
 	@Autowired private QnaDAO qnaDao;
+	@Autowired private QnareDAO qnareDao;
 
 	@Override
 	public List<QnaVO> selectQna(SearchVO searchVo) {
@@ -43,13 +45,16 @@ public class QnaServiceImpl implements QnaService{
 	@Transactional
 	public int deleteMulti(List<QnaVO> list) {
 		int cnt = 0;
+		int cntre = 0;
 		try {
 			for(QnaVO vo : list) {
 				if(vo.getQnaNo() != 0) {
+					cntre = qnareDao.replyDel(vo.getQnaNo());
 					cnt = qnaDao.deleteQna(vo.getQnaNo());
 				}
 			}
 		}catch(RuntimeException e) {
+			cntre=-1;
 			cnt=-1;
 			e.printStackTrace();
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();

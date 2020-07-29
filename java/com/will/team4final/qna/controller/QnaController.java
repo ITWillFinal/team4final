@@ -18,6 +18,8 @@ import com.will.team4final.common.Utility;
 import com.will.team4final.qna.model.QnaListVO;
 import com.will.team4final.qna.model.QnaService;
 import com.will.team4final.qna.model.QnaVO;
+import com.will.team4final.qnare.model.QnareService;
+import com.will.team4final.qnare.model.QnareVO;
 
 @Controller
 @RequestMapping("/gogak/qna")
@@ -27,6 +29,7 @@ public class QnaController {
 		= LoggerFactory.getLogger(QnaController.class);
 	
 	@Autowired private QnaService qnaService;
+	@Autowired private QnareService qnareService;
 	
 	@RequestMapping("/qnaList.do")
 	public String qnaList(@ModelAttribute SearchVO searchVo,
@@ -88,17 +91,30 @@ public class QnaController {
 	public String selectByNo(@RequestParam(defaultValue = "0") int no,
 			Model model) {
 		logger.info("1:1 문의게시판 상세보기");
-		
+
+		//상세보기
 		QnaVO vo = qnaService.selectByNo(no);
-		model.addAttribute("vo", vo);
+		logger.info("1:1 문의게시판 파라미터 = {}",vo);
 		
+		//이전글, 다음글
 		QnaVO afterVO =  qnaService.after(no);
 		QnaVO beforeVO = qnaService.before(no);
 		logger.info("aftervo={}", afterVO);
 		logger.info("beforeVO={}", beforeVO);
 		
+		//댓글 db처리
+		int rst = qnareService.reCount(vo.getQnaNo());
+		logger.info("{}번 글 답변 개수={}", vo.getQnaNo(), rst);
+		
+		//답변 보여주기
+		QnareVO revo = qnareService.selectRe(no);
+		
+		model.addAttribute("vo", vo);
 		model.addAttribute("afterVO", afterVO);
 		model.addAttribute("beforeVO", beforeVO);
+		model.addAttribute("rst", rst);
+		model.addAttribute("revo", revo);
+		
 		
 		return "gogak/qna/qnaDetail";
 		
@@ -141,10 +157,17 @@ public class QnaController {
 	@RequestMapping("/qnaDelete.do")
 	public String qnaEdit(@RequestParam (defaultValue = "0")int no,
 			Model model) {
+		
+		int recnt = qnareService.replyDel(no);
 		String msg = "", url = "";
+		if(recnt<1) {
+			msg = "1:1 문의게시판"+no+"번 게시글의 답변을 삭제하는데 오류가 있습니다.";
+			url = "/gogak/qna/qnaList.do";
+		}
+		
 		int cnt = qnaService.deleteQna(no);
 		if(cnt>0) {
-			msg = "1:1 문의게시판 게시글이 삭제되었습니다.";
+			msg = "1:1 문의게시판"+no+"번 게시글이 삭제되었습니다.";
 			url = "/gogak/qna/qnaList.do";
 		}
 		

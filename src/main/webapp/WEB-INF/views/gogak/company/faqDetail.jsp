@@ -80,7 +80,7 @@ h3{
 
 </style>
 <main>
-	<%@ include file="../side_inc/company_Sidebar.jsp"%>
+	<%@ include file="../../inc/companySidebar.jsp"%>
 
 	<!-- main -->
 	<div
@@ -107,8 +107,6 @@ h3{
 				</div>								
 			</div>
 			<div style="text-align: center; padding: 20px 0 10px 0;">
-					<!-- <input type="submit" value="글수정" id="ddd"> 
-					<input type="button" value="글삭제" id="delete"> -->
 					<input type="button" value="글목록" id="rrr">
 			</div>
 			<div id = "ab">
@@ -149,4 +147,4 @@ h3{
 	</div>
 </main>
 
-<%@ include file="../../inc/bottom.jsp"%>
+<%@ include file="../../inc/companyBottom.jsp"%>
