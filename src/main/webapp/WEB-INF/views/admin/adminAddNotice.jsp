@@ -29,9 +29,20 @@
 		});
 	})
 </script>
+<style>
+	input[type=button], input[type=submit]{
+		width: 90px;
+	    height: 40px;
+	    background: #f7f7f7;
+	    border: 0;
+	    font-weight: bold;
+	    color: black;
+	    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+	}
+</style>
 <div>
 	<h1>공지사항</h1>
-	<form action="<c:url value='/admin/adminAddNotice.do'/>" method="post" name="frm" style="margin-top: 30px;">
+	<form action="<c:url value='/admin/adminAddNotice.do'/>" method="post" name="frm" style="margin-top: 30px; text-align: center;">
 		<select style="width: 10%" id="type" name="type">
 			<option value="0">유형 </option>
 			<option value="안내">안내 </option>
@@ -46,8 +57,9 @@
 		</select>
 		<input type="text" style="width: 77%;" id="title" name="title">
 		<textarea id="content" name="content"></textarea>
+		<br>
 		<input type="submit" value="글 등록">
+		<input type="button" value="글 목록" id="btList">
 	</form>
-	<input type="button" value="글 목록" id="btList">
 </div>
 <%@ include file="../inc/adminBottom.jsp"%>

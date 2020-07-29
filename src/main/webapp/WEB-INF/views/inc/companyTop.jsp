@@ -41,7 +41,7 @@
 .ui-widget-header {
 	padding: 0.2em;
 }
-
+/*사이드바 제이쿼리 스타일 끝*/
 
 .overlay {
 	position: fixed;
@@ -310,7 +310,7 @@
 								<div class="main-menu">
 									<nav class="d-none d-lg-block">
 										<ul id="navigation">
-											<li><a href="index.html">서비스안내</a></li>
+											<li><a href="<c:url value='/companypage/serviceInfo.do'/>">서비스안내</a></li>
 											<li><a href="about.html">유료이용내역</a></li>
 											<li><a
 												href="<c:url value='/companypage/companyHome.do'/>">해드헌팅

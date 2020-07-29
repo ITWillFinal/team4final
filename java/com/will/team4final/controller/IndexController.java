@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.will.team4final.company.model.ComRecruitService;
+import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.location.model.LocationVO;
@@ -44,6 +46,9 @@ public class IndexController {
 	
 	@Autowired
 	private JobService jobServ;
+	
+	@Autowired
+	private ComRecruitService comRecruitServ;
 	
 	/* NaverLoginBO */
 	@Autowired
@@ -70,6 +75,8 @@ public class IndexController {
 		List<String> locationList = locationServ.sido();
 		List<Map<String, Object>> jobList = jobServ.selectLarge();
 		List<Map<String, Object>> induList = jobServ.selectInduLarge();
+		List<ComRecruitVO> reVo = comRecruitServ.selectMost5();
+		logger.info("모스트 5 공고 = {}", reVo.size());
 		
 		//네이버
 		model.addAttribute("url", naverAuthUrl);
@@ -77,6 +84,7 @@ public class IndexController {
 		model.addAttribute("locationList", locationList);
 		model.addAttribute("jobList", jobList);
 		model.addAttribute("induList", induList);
+		model.addAttribute("reVo", reVo);
 		
 		return "index";
 	}

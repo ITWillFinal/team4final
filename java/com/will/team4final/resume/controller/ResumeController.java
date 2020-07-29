@@ -1,5 +1,9 @@
 package com.will.team4final.resume.controller;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,16 +15,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.will.team4final.common.FileUploadUtil;
 import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.resume.model.ActiveListVO;
 import com.will.team4final.resume.model.AddinfoVO;
 import com.will.team4final.resume.model.AwardListVO;
 import com.will.team4final.resume.model.CareerListVO;
+import com.will.team4final.resume.model.CareerVO;
 import com.will.team4final.resume.model.CertifyListVO;
 import com.will.team4final.resume.model.EducationVO;
 import com.will.team4final.resume.model.LanguageListVO;
 import com.will.team4final.resume.model.PotfolioVO;
+import com.will.team4final.resume.model.ResumeAllVO;
 import com.will.team4final.resume.model.ResumeService;
 import com.will.team4final.resume.model.ResumeVO;
 
@@ -28,6 +35,7 @@ import com.will.team4final.resume.model.ResumeVO;
 @RequestMapping("/resume")
 public class ResumeController {
 	private final static Logger logger = LoggerFactory.getLogger(ResumeController.class);
+	@Autowired private FileUploadUtil fileUploadUtil;
 	@Autowired private ResumeService resumeService;
 	@Autowired private MemberService memberService;
 	
@@ -36,7 +44,7 @@ public class ResumeController {
 		logger.info("이력서 작성 페이지");
 		
 		String userid = (String)session.getAttribute("userid");
-		MemberVO memberVo = memberService.selectAll(userid);
+		MemberVO memberVo = memberService.selectByUserid(userid);
 		
 		logger.info("memberVo={}",memberVo);
 		
@@ -56,7 +64,8 @@ public class ResumeController {
 			@ModelAttribute LanguageListVO languageListVo,
 			@ModelAttribute AwardListVO awardListVo,
 			@ModelAttribute AddinfoVO addInfoVo,
-			@ModelAttribute PotfolioVO potfolioVo) {
+			@ModelAttribute PotfolioVO potfolioVo,
+			HttpServletRequest request) {
 		
 		logger.info("이력서 등록, 파라미터 resumeVo={}",resumeVo);
 		logger.info("이력서 등록, 파라미터 educationVo={}",educationVo);
@@ -67,6 +76,58 @@ public class ResumeController {
 		logger.info("이력서 등록, 파라미터 careerListVo={}",awardListVo);
 		logger.info("이력서 등록, 파라미터 careerListVo={}",addInfoVo);
 		logger.info("이력서 등록, 파라미터 careerListVo={}",potfolioVo);
+		
+		ResumeAllVO resumeAllVo = new ResumeAllVO();
+		
+		if(resumeVo !=null) {
+			resumeAllVo.setResumeVo(resumeVo);
+		}
+		
+		if(educationVo!=null) {
+			resumeAllVo.setEducationVo(educationVo);
+		}
+		
+		if(careerListVo!=null) {
+			resumeAllVo.setCareerVoList(careerListVo.getCareerItems());
+		}
+		
+		if(activeListVo!=null) {
+			resumeAllVo.setActiveVoList(activeListVo.getActiveItems());
+		}
+
+		if(certifyListVo!=null) {
+			resumeAllVo.setCertifyVoList(certifyListVo.getCertifyItems());
+		}
+		
+		if(languageListVo!=null) {
+			resumeAllVo.setLanguageVoList(languageListVo.getLanguageItems());
+		}
+		
+		if(awardListVo!=null) {
+			resumeAllVo.setAwardVoList(awardListVo.getAwardItems());
+		}
+		
+		if(addInfoVo!=null) {
+			resumeAllVo.setAddInfoVo(addInfoVo);
+		}
+		
+		if(potfolioVo!=null) {
+			
+			List<Map<String, Object>> fileList
+			=fileUploadUtil.fileUpload(request, FileUploadUtil.PATH_PDS);
+			
+			String potFile = "";
+			
+			for(Map<String, Object> map : fileList) {
+				potFile=(String) map.get("fileName");
+			}
+			
+			potfolioVo.setPotFile(potFile);
+			resumeAllVo.setPotfolioVo(potfolioVo);
+		}
+		
+		int cnt = resumeService.insertResume(resumeAllVo);
+		logger.info("이력서 등록 결과 cnt={}",cnt);
 		
 		return "";
 	}

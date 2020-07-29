@@ -3,3 +3,8 @@ increment by 1
 start with 1
 nocache;
 
+
+create sequence RECRUITMENT_SEQ
+increment by 1
+start with 1
+nocache;

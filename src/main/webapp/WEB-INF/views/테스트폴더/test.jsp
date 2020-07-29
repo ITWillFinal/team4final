@@ -160,9 +160,8 @@ $(function(){
 		}
 	})
 	
-	$('.activity').find('.nullOk-top').each(function(){
-		$(this).find('.actPeriod').val($(this).find("input[name=activityStartDay]").val()+" ~ "+$(this).find("input[name=activityEndDay]").val());
-	});
+	$('.popol').find('input[name=potPeriod]').val($(".popol").find("input[name=popolStartDay]").val()+" ~ "+
+			$(".popol").find("input[name=popolEndDay]").val());
 });
 </script>
 <div class="month-picker">

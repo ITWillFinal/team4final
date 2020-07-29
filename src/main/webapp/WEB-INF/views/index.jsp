@@ -6,7 +6,7 @@
 <style>
 	#searchSelect{
 		margin-left: 30px;
-	    height:. 55px;
+	    height: 55px;
 	    font-size: 1.1em;
 	    font-weight: bold;
 	    background: #ffffff;
@@ -192,92 +192,36 @@
                 <div class="col-lg-12">
                     <div class="section-tittle text-center">
                         <span>현재 인기있는 채용공고</span>
-                        <h2>채용 TOP 10</h2>
+                        <h2>채용 TOP 5</h2>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-xl-10">
                     <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="job_details.html"></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="items-link f-right">
-                            <a href="job_details.html">Full Time</a>
-                            <span>7 hours ago</span>
-                        </div>
-                    </div>
-                    <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="job_details.html"></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="items-link f-right">
-                            <a href="job_details.html">Full Time</a>
-                            <span>7 hours ago</span>
-                        </div>
-                    </div>
-                     <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="job_details.html"></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="items-link f-right">
-                            <a href="job_details.html">Full Time</a>
-                            <span>7 hours ago</span>
-                        </div>
-                    </div>
-                     <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="job_details.html"></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                <ul>
-                                    <li>Creative Agency</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                    <li>$3500 - $4000</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="items-link f-right">
-                            <a href="job_details.html">Full Time</a>
-                            <span>7 hours ago</span>
-                        </div>
-                    </div>
+                    <c:if test="${!empty reVo }">
+	                    <c:forEach var="vo" items="${reVo }">
+		                    <div class="single-job-items mb-30">
+		                        <div class="job-items">
+		                            <div class="company-img">
+		                                <a href="job_details.html"></a>
+		                            </div>
+		                            <div class="job-tittle">
+		                                <a href="job_details.html"><h4>${vo.title }</h4></a>
+		                                <ul>
+		                                    <li>${vo.comName }</li>
+		                                    <li><i class="fas fa-map-marker-alt"></i>${vo.jobType2 }</li>
+		                                    <li>${vo.pay }</li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                        <div class="items-link f-right">
+		                            <a href="job_details.html">${vo.recType }</a>
+		                            <span>7 hours ago</span>
+		                        </div>
+		                    </div>
+	                    </c:forEach>
+                    </c:if>
                 </div>
             </div>
         </div>

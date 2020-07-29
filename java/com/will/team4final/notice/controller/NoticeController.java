@@ -14,7 +14,7 @@ public class NoticeController {
 	@Autowired
 	NoticeService noticeServ;
 	
-	public String noticeDetail() {
+	public void noticeDetail() {
 		
 	}
 }

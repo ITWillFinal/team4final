@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../inc/companyTop.jsp" %>
-
+<script src="<c:url value='/editor/ckeditor/ckeditor.js'/>"></script>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -39,6 +39,7 @@
 			}
 		}).open();
 	};
+	
 </script>
 
 <script type="text/javascript">
@@ -64,28 +65,225 @@
 			});
 			$('input[name=location1]').val(sido);
 		});
-
+		
 		$('#sigugun').click(function() {
 			var sigugun = $('#sigugun').val();
 			$('input[name=location2]').empty();
 			$('input[name=location2]').val(sigugun);
 		});
+		
+		
+		$('#jobLarge').click(function() {
+			var num = $('#jobLarge').val();
+			$('#jobMiddle').empty();
+			$.ajax({
+				url:"<c:url value='/job/jobMiddle.do'/>",
+				type:"get",
+				dataType:"json",
+				data:"no="+num,
+				success:function(res){
+					for(var i = 0; i< res.length; i++){
+						var option ="<option value='"+res[i].MIDDLE_GROUP+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						$('#jobMiddle').append(option);
+					}
+				},
+				error:function(xhr, status, error){
+					alert(status + ", " + error);
+				}
+			});
+			$('input[name=jobType1]').val(num);
+		});
+		
+		$('#jobMiddle').click(function() {
+			var numMiddle = $('#jobMiddle').val();
+			$('input[name=jobType2]').empty();
+			$('input[name=jobType2]').val(numMiddle);
+		});
+		
+		$('#induLarge').click(function() {
+			var num = $('#induLarge').val();
+			$('#induMiddle').empty();
+			$.ajax({
+				url:"<c:url value='/job/induMiddle.do'/>",
+				type:"get",
+				dataType:"json",
+				data:"no="+num,
+				success:function(res){
+					for(var i = 0; i< res.length; i++){
+						var option ="<option value='"+res[i].MIDDLE_GROUP+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						$('#induMiddle').append(option);
+					}
+				},
+				error:function(xhr, status, error){
+					alert(status + ", " + error);
+				}
+			});
+			
+			$('input[name=induType1]').val(num);
+		});
+		
+		$('#induMiddle').click(function() {
+			var numMiddle = $('#induMiddle').val();
+			$('input[name=induType2]').empty();
+			$('input[name=induType2]').val(numMiddle);
+		});
+		
+		$("#paySelect").change(function(){
+			var paySel = $("#paySelect option:selected").val();
+			$("#pay").val(paySel);
+		});
+		
+		$("#recNumSelect").change(function(){
+			var recNumSel = $("#recNumSelect option:selected").val();
+			$("#recNumber").val(recNumSel);
+		});
+		
+		$("#genderSelect").change(function(){
+			var genderSel = $("#genderSelect option:selected").val();
+			$("#gender").val(genderSel);
+		});
+		
+		$("#ageSelect").change(function(){
+			var ageSel = $("#ageSelect option:selected").val();
+			$("#age").val(ageSel);
+		});
+		
+		$("#eduSelect").change(function(){
+			var eduSel = $("#eduSelect option:selected").val();
+			$("#educationLv").val(eduSel);
+		});
+		
+		$("#careerSelect").change(function(){
+			var careerSel = $("#careerSelect option:selected").val();
+			$("#career").val(careerSel);
+		});
+		
+		
+		$(".welfareChk").click(function(){
+			var strWel = "";
+			$(".welfareChk").each(function(){
+				if($(this).is(":checked"))
+					strWel += $(this).val() + " ";  // str에 저장한다.
+			});			
+			$("#welfare").val(strWel);			
+		});
+		
+		$(".recTypeChk").click(function(){
+			var strRec = "";
+			$(".recTypeChk").each(function(){
+				if($(this).is(":checked"))
+					strRec += $(this).val() + " ";  // str에 저장한다.
+			});			
+			$("#recType").val(strRec);			
+		});
+		
+		$(".preferChk").click(function(){
+			var strPrefer = "";
+			$(".preferChk").each(function(){
+				if($(this).is(":checked"))
+					strPrefer += $(this).val() + " ";  // str에 저장한다.
+			});			
+			$("#preference").val(strPrefer);			
+		});
+		
+		$(".docChk").click(function(){
+			var strDoc = "";
+			$(".docChk").each(function(){
+				if($(this).is(":checked"))
+					strDoc += $(this).val() + " ";  // str에 저장한다.
+			});			
+			$("#document").val(strDoc);			
+		});
+		
+		
+		CKEDITOR.replace('recDetail',{
+			filebrowserUploadUrl:"<c:url value=''/>"
+		});
+		
+		$('form[name=frmWrite]').submit(function(){
+			if($('#title').val()==''){
+				alert('제목을 입력하세요');
+				event.preventDefault();
+			}else if($('#comName').val()==''){
+				alert('회사명을 입력하세요');
+				event.preventDefault();
+			}else if($('#jobType1').val()==''){
+				alert('직무1을 입력하세요');
+				event.preventDefault();
+			}else if($('#jobType2').val()==''){
+				alert('직무2를 입력하세요');
+				event.preventDefault();
+			}else if($('#induType1').val()==''){
+				alert('산업1을 입력하세요');
+				event.preventDefault();
+			}else if($('#induType2').val()==''){
+				alert('산업2를 입력하세요');
+				event.preventDefault();
+			}else if($('#location1').val()==''){
+				alert('지역1을 입력하세요');
+				event.preventDefault();
+			}else if($('#location2').val()==''){
+				alert('지역2를 입력하세요');
+				event.preventDefault();
+			}else if($('#zipcode').val()==''){
+				alert('우편번호를 입력하세요');
+				event.preventDefault();
+			}else if($('#address').val()==''){
+				alert('주소를 입력하세요');
+				event.preventDefault();
+			}else if($('#addressDetail').val()==''){
+				alert('상세주소를 입력하세요');
+				event.preventDefault();
+			}else if($('#workHours').val()==''){
+				alert('근무시간을 입력하세요');
+				event.preventDefault();
+			}else if($('#recType').val()==''){
+				alert('근무형태를 입력하세요');
+				event.preventDefault();
+			}else if($('#pay').val()==''){
+				alert('급여를 입력하세요');
+				event.preventDefault();
+			}else if($('#welfare').val()==''){
+				alert('복리후생을 입력하세요');
+				event.preventDefault();
+			}else if($('#recNumber').val()==''){
+				alert('모집인원을 입력하세요');
+				event.preventDefault();
+			}else if($('#gender').val()==''){
+				alert('성별을 입력하세요');
+				event.preventDefault();
+			}else if($('#age').val()==''){
+				alert('나이를 입력하세요');
+				event.preventDefault();
+			}else if($('#educationLv').val()==''){
+				alert('학력을 입력하세요');
+				event.preventDefault();
+			}else if($('#career').val()==''){
+				alert('경력을 입력하세요');
+				event.preventDefault();
+			}else if($('#preference').val()==''){
+				alert('우대사항을 입력하세요');
+				event.preventDefault();
+			}else if($('#document').val()==''){
+				alert('제출서류를 입력하세요');
+				event.preventDefault();
+			}else if($('#recDetail').val()==''){
+				alert('상세모집내용을 입력하세요');
+				event.preventDefault();
+			}
+			
+		});
+		
 	});
+	
+	
 </script>
-
-
 <style>
-
 	tr {
 		border: 1px solid lightgray;
 	}
 
-	#sigugunS{
-		display: none;
-	}
-	#sigugun{
-		display: none;
-	}
+	
 	hr {
 		border:1px solid #FB246A;
 		width:100%;
@@ -108,7 +306,6 @@
 					<col style="width:20%;"/>
 					<col style="width:80%;" />
 				</colgroup>
-
 				<tr>
 					<td>모집제목</td>
 					<td>
@@ -122,32 +319,43 @@
 						<input type="text" id="comName" name="comName">
 					</td>
 				</tr>
-<!--
+
 				<tr>
-					<td>직무1</td>
+					<td>직무</td>
 					<td>
-						<input type="text" id="jobType1" name="jobType1">
+						<select size="5" id="jobLarge">
+							<c:forEach var="map" items="${jobList }">
+			               		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
+			                </c:forEach>
+						</select>
+						<select id="jobMiddle" size="5">
+				
+						</select>	
 					</td>
 				</tr>
+				
 				<tr>
-					<td>직무2</td>
+					<td>산업</td>
 					<td>
-						<input type="text" id="jobType2" name="jobType2">
+						<select size="5" id="induLarge">
+							<c:forEach var="map" items="${induList }">
+			               		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
+			                </c:forEach>
+						</select>
+						<select id="induMiddle" size="5">
+				
+						</select>	
 					</td>
 				</tr>
-				<tr>
-					<td>산업1</td>
-					<td>
-						<input type="text" id="induType1" name="induType1">
-					</td>
-				</tr>
-				<tr>
-					<td>산업2</td>
-					<td>
-						<input type="text" id="induType2" name="induType2">
-					</td>
-				</tr>
-				 근무지역!!!!! 
+				<input type="hidden" id="jobType1" name="jobType1">
+				<input type="hidden" id="jobType2" name="jobType2">
+				
+				<input type="hidden" id="induType1" name="induType1">
+				<input type="hidden" id="induType2" name="induType2">
+				
+				<input type="hidden" id="location1" name="location1">
+				<input type="hidden" id="location2" name="location2">
+				
 				<tr>
 					<td>근무지역</td>
 					<td>
@@ -159,22 +367,26 @@
 								</c:forEach>
 							</c:if>
 						</select>
-						<div style="display: inline;" id="sigugunDiv"></div>
+						<div style="display: inline;" id="sigugunDiv">
+							<select id="sigugun">
+							
+							</select>
+						</div>
 					</td>
 				</tr>
-
+										
 				<tr>
 					<td>우편번호</td>
 					<td>
-						<input type="text" id="zipcode" name="zipcode">
-						<input type="button" onclick="sample4_execDaumPostcode()" value="선택">
+						<input type="text" id="zipcode" name="zipcode" readonly>
+					 	<input type="button" onclick="sample4_execDaumPostcode()" value="선택"> 
 					</td>
 				</tr>
 
 				<tr>
 					<td>주소</td>
 					<td>
-						<input type="text" id="address" name="address">
+						<input type="text" id="address" name="address" readonly>
 					</td>
 				</tr>
 
@@ -192,93 +404,98 @@
 						<input type="text" id="workHours" name="workHours">
 					</td>
 				</tr>
-
+				
 				<tr>
 					<td>근무형태</td>
 					<td>
-						<label><input type="checkbox" value="추후협의">추후협의</label>
-						<label><input type="checkbox" value="인턴직">인턴직</label>
-						<label><input type="checkbox" value="정규직">정규직</label>
-						<label><input type="checkbox" value="계약직">계약직</label>
-						<label><input type="checkbox" value="병역특례">병역특례</label>
-						<label><input type="checkbox" value="프리랜서">프리랜서</label>
-						<input type="text" id="recType" name="recType">
+					 	<label><input type="checkbox" class="recTypeChk" value="추후협의">추후협의</label>
+						<label><input type="checkbox" class="recTypeChk" value="인턴직">인턴직</label>
+						<label><input type="checkbox" class="recTypeChk" value="정규직">정규직</label>
+						<label><input type="checkbox" class="recTypeChk" value="계약직">계약직</label>
+						<label><input type="checkbox" class="recTypeChk" value="프리랜서">프리랜서</label>
+						<input type="hidden" id="recType" name="recType">
 					</td>
 				</tr>
-
+				
 				<tr>
 					<td>급여사항</td>
 					<td>
-						<select>
-							<option value="">선택하세요</option>
-							<option value="">추후협의</option>
-							<option value="2100">2100만원</option>
-							<option value="2200">2200만원</option>
-							<option value="2300">2300만원</option>
-							<option value="2400">2400만원</option>
-							<option value="2500">2500만원</option>
-							<option value="2600">2600만원</option>
-							<option value="2700">2700만원</option>
-							<option value="2800">2800만원</option>
-							<option value="2900">2900만원</option>
-							<option value="3000">3000만원</option>
-							<option value="3100">3100만원</option>
-							<option value="3200">3200만원</option>
-							<option value="3300">3300만원</option>
-							<option value="3400">3400만원</option>
-							<option value="3500">3500만원</option>
-							<option value="3600">3600만원</option>
-							<option value="3700">3700만원</option>
-							<option value="3800">3800만원</option>
-							<option value="3900">3900만원</option>
-							<option value="4000">4000만원</option>
-							<option value="4100">4100만원</option>
-							<option value="4200">4200만원</option>
-							<option value="4300">4300만원</option>
-							<option value="4400">4400만원</option>
-							<option value="4500">4500만원</option>
-							<option value="4600">4600만원</option>
-							<option value="4700">4700만원</option>
-							<option value="4800">4800만원</option>
-							<option value="4900">4900만원</option>
-							<option value="5000">5000만원</option>
-							<option value="">5000만원 초과</option>
+						<select id="paySelect" name="paySelect">
+							<option value="추후협의">추후협의</option>
+							<option value="2000만원~2100만원">2000만원~2100만원</option>
+							<option value="2100만원~2200만원">2100만원~2200만원</option>
+							<option value="2200만원~2300만원">2200만원~2300만원</option>
+							<option value="2300만원~2400만원">2300만원~2400만원</option>
+							<option value="2400만원~2500만원">2400만원~2500만원</option>
+							<option value="2500만원~2600만원">2500만원~2600만원</option>
+							<option value="2600만원~2700만원">2600만원~2700만원</option>
+							<option value="2700만원~2800만원">2700만원~2800만원</option>
+							<option value="2800만원~2900만원">2800만원~2900만원</option>
+							<option value="2900만원~3000만원">2900만원~3000만원</option>
+							<option value="3000만원~3100만원">3000만원~3100만원</option>
+							<option value="3100만원~3200만원">3100만원~3200만원</option>
+							<option value="3200만원~3300만원">3200만원~3300만원</option>
+							<option value="3300만원~3400만원">3300만원~3400만원</option>
+							<option value="3400만원~3500만원">3400만원~3500만원</option>
+							<option value="3500만원~3600만원">3500만원~3600만원</option>
+							<option value="3600만원~3700만원">3600만원~3700만원</option>
+							<option value="3700만원~3800만원">3700만원~3800만원</option>
+							<option value="3800만원~3900만원">3800만원~3900만원</option>
+							<option value="3900만원~4000만원">3900만원~4000만원</option>
+							<option value="4000만원~4100만원">4000만원~4100만원</option>
+							<option value="4100만원~4200만원">4100만원~4200만원</option>
+							<option value="4200만원~4300만원">4200만원~4300만원</option>
+							<option value="4300만원~4400만원">4300만원~4400만원</option>
+							<option value="4400만원~4500만원">4400만원~4500만원</option>
+							<option value="4500만원~4600만원">4500만원~4600만원</option>
+							<option value="4600만원~4700만원">4600만원~4700만원</option>
+							<option value="4700만원~4800만원">4700만원~4800만원</option>
+							<option value="4800만원~4900만원">4800만원~4900만원</option>
+							<option value="4900만원~5000만원">4900만원~5000만원</option>
+							<option value="5000만원 초과">5000만원 초과</option>
 						</select>
-						<input type="text" name="pay" id="pay">
+						<input type="hidden" id="pay" name="pay" value="추후협의">
 					</td>
 				</tr>
-
+				
 				<tr>
 					<td>복리후생</td>
 					<td>
-						<label><input type="checkbox">4대보험</label>
-						<label><input type="checkbox">격주휴무</label>
-						<label><input type="checkbox">경조금</label>
-						<label><input type="checkbox">기숙사</label>
-						<label><input type="checkbox">석식제공</label>
-						<label><input type="checkbox">셔틀버스</label>
-						<label><input type="checkbox">식당운영</label>
-						<label><input type="checkbox">연차</label>
-						<label><input type="checkbox">월차</label>
-						<label><input type="checkbox">자녀학자금</label>
-						<label><input type="checkbox">장애인우대</label>
-						<label><input type="checkbox">주5일근무</label>
-						<label><input type="checkbox">중식비</label>
-						<label><input type="checkbox">퇴직금</label>
-						<input type="text" id="welfare" name="welfare">
+						<label><input type="checkbox" class="welfareChk" value="4대보험">4대보험</label>
+						<label><input type="checkbox" class="welfareChk" value="격주휴무">격주휴무</label>
+						<label><input type="checkbox" class="welfareChk" value="경조금">경조금</label>
+						<label><input type="checkbox" class="welfareChk" value="기숙사">기숙사</label>
+						<label><input type="checkbox" class="welfareChk" value="석식제공">석식제공</label>
+						<label><input type="checkbox" class="welfareChk" value="셔틀버스">셔틀버스</label>
+						<label><input type="checkbox" class="welfareChk" value="식당운영">식당운영</label>
+						<label><input type="checkbox" class="welfareChk" value="연차">연차</label>
+						<label><input type="checkbox" class="welfareChk" value="월차">월차</label>
+						<label><input type="checkbox" class="welfareChk" value="자녀학자금">자녀학자금</label>
+						<label><input type="checkbox" class="welfareChk" value="장애인우대">장애인우대</label>
+						<label><input type="checkbox" class="welfareChk" value="주5일근무">주5일근무</label>
+						<label><input type="checkbox" class="welfareChk" value="중식비">중식비</label>
+						<label><input type="checkbox" class="welfareChk" value="퇴직금">퇴직금</label>
+						<input type="hidden" id="welfare" name="welfare">
 					</td>
 				</tr>
 				<tr>
 					<td>모집인원</td>
 					<td>
-						<input type="text" id="recNumber" name="recNumber">
+						<select id="recNumSelect" name="recNumSelect">
+							<option value="0">0명</option>
+							<option value="1">1명</option>
+							<option value="2">2명</option>
+							<option value="3">3명</option>
+							<option value="4">4명</option>
+							<option value="5">5명</option>
+						</select>
+						<input type="hidden" id="recNumber" name="recNumber" value="0">
 					</td>
-				</tr>
--->
+				</tr>				
 			</table>
 			</div>
 			<hr>
-<!-- 
+			
 			<div>
 				<span style="font-size: 18px; font-weight: bold;">◎자격요건</span><br><br>
 
@@ -289,13 +506,13 @@
 				</colgroup>
 				<tr>
 					<td>성별</td>
-					<td>
-						<select>
-							<option value="">무관</option>
-							<option value="">남자</option>
-							<option value="">여자</option>
-						</select>
-						<input type="text" id="gender" name="gender">
+					<td>						 
+						<select id="genderSelect" name="genderSelect">
+							<option value="무관">무관</option>
+							<option value="남자">남자</option>
+							<option value="여자">여자</option>
+						</select> 
+						<input type="hidden" id="gender" name="gender" value="무관">
 						<br>
 						<span>채용에서 남녀를 차별하거나, 여성근로자를 채용할 경우 직무수행에 불필요한 용모, 키, 체중 등의 신체조건, 미혼조건을 제시 또는 요구하는 경우 남녀고용평등법 위반에 따른 500만원 이하의 벌금이 부과될 수 있습니다.</span>
 					</td>
@@ -304,8 +521,8 @@
 				<tr>
 					<td>나이</td>
 					<td>
-						<select>
-							<option value="">선택</option>
+						<select id="ageSelect" name="ageSelect">
+							<option value="0">제한없음</option>
 							<option value="20">20세이하</option>
 							<option value="21">21세이하</option>
 							<option value="22">22세이하</option>
@@ -325,20 +542,18 @@
 							<option value="40">40세이하</option>
 							<option value="45">45세이하</option>
 							<option value="55">55세이하</option>
-							<option value="60">60세이하</option>
-							<option value="">60세초과</option>
-						</select>
-						<input type="text" name="age" id="age">
-						<br><label><input type="checkbox">무관</label><br>
+							<option value="60">60세이하</option>							
+						</select>  
+						<input type="hidden" name="age" id="age" value="0">
 						모집·채용에서 합리적인 이유 없이 연령제한을 하는 경우는 연령차별금지법 위반에 따른 500만원 이하의 벌금이 부과될 수 있습니다.
 					</td>
 				</tr>
 
 				<tr>
 					<td>학력</td>
-					<td>
-						<select>
-							<option value="">선택</option>
+					<td> 
+						<select id="eduSelect" name="eduSelect">
+							<option value="무관">무관</option>
 							<option value="초등학교">초등학교</option>
 							<option value="중학교">중학교</option>
 							<option value="고등학교">고등학교</option>
@@ -348,17 +563,16 @@
 							<option value="대학(4년) 졸업">대학(4년) 졸업</option>
 							<option value="대학원(석사) 졸업">대학원(석사) 졸업</option>
 							<option value="대학원(박사) 졸업">대학원(박사) 졸업</option>
-						</select>
-						<input type="text" id="educationLv" name="educationLv">
-						<br><label><input type="checkbox">무관</label>
+						</select> 
+						<input type="hidden" id="educationLv" name="educationLv" value="무관">
 					</td>
 				</tr>
 
 				<tr>
 					<td>경력</td>
-					<td>
-						<select>
-							<option value="">선택</option>
+					<td> 
+						<select id="careerSelect" name="careerSelect">
+							<option value="0">무관</option>
 							<option value="1">1년</option>
 							<option value="2">2년</option>
 							<option value="3">3년</option>
@@ -389,91 +603,61 @@
 							<option value="28">28년</option>
 							<option value="29">29년</option>
 							<option value="30">30년</option>
-							<option value="">30년 이상</option>
-						</select>
-						<input type="text" id="career" name="career">
-						<br><label><input type="checkbox">무관</label>
+						</select> 
+						<input type="hidden" id="career" name="career" value="무관">
 					</td>
 				</tr>
 
 				<tr>
 					<td>우대조건</td>
-					<td>
-						<label><input type="checkbox">국가유공자</label>
-						<label><input type="checkbox">보훈대상자</label>
-						<label><input type="checkbox">고용촉진장려금대상자</label>
-						<label><input type="checkbox">장애인</label>
-						<label><input type="checkbox">취업보호대상자</label>
-						<label><input type="checkbox">영어가능자</label>
-						<label><input type="checkbox">일본어가능자</label>
-						<label><input type="checkbox">중국어가능자</label>
-						<label><input type="checkbox">독일어가능자</label>
-						<label><input type="checkbox">프랑스어가능자</label>
-						<label><input type="checkbox">스페인어가능자</label>
-						<label><input type="checkbox">러시아어가능자</label>
-						<label><input type="checkbox">컴퓨터활용능력우수자</label>
-						<label><input type="checkbox">엑셀고급능력보유자</label>
-						<label><input type="checkbox">CAD능숙자</label>
-						<label><input type="checkbox">MAC능숙자</label>
-						<label><input type="checkbox">학점우수</label>
-						<label><input type="checkbox">MBA</label>
-						<label><input type="checkbox">2교대근무가능자</label>
-						<label><input type="checkbox">3교대근무가능자</label>
-						<label><input type="checkbox">해외근무가능자</label>
-						<label><input type="checkbox">병역특례</label>
-						<label><input type="checkbox">차량소지자</label>
-						<input type="text" id="preference" name="preference">
+					<td> 
+						<label><input type="checkbox" class="preferChk" value="국가유공자">국가유공자</label>
+						<label><input type="checkbox" class="preferChk" value="보훈대상자">보훈대상자</label>
+						<label><input type="checkbox" class="preferChk" value="고용촉진장려금대상자">고용촉진장려금대상자</label>
+						<label><input type="checkbox" class="preferChk" value="장애인">장애인</label>
+						<label><input type="checkbox" class="preferChk" value="취업보호대상자">취업보호대상자</label>
+						<label><input type="checkbox" class="preferChk" value="영어가능자">영어가능자</label>
+						<label><input type="checkbox" class="preferChk" value="일본어가능자">일본어가능자</label>
+						<label><input type="checkbox" class="preferChk" value="중국어가능자">중국어가능자</label>
+						<label><input type="checkbox" class="preferChk" value="독일어가능자">독일어가능자</label>
+						<label><input type="checkbox" class="preferChk" value="프랑스어가능자">프랑스어가능자</label>
+						<label><input type="checkbox" class="preferChk" value="스페인어가능자">스페인어가능자</label>
+						<label><input type="checkbox" class="preferChk" value="러시아어가능자">러시아어가능자</label>
+						<label><input type="checkbox" class="preferChk" value="컴퓨터활용능력우수자">컴퓨터활용능력우수자</label>
+						<label><input type="checkbox" class="preferChk" value="엑셀고급능력보유자">엑셀고급능력보유자</label>
+						<label><input type="checkbox" class="preferChk" value="CAD능숙자">CAD능숙자</label>
+						<label><input type="checkbox" class="preferChk" value="MAC능숙자">MAC능숙자</label>
+						<label><input type="checkbox" class="preferChk" value="학점우수">학점우수</label>
+						<label><input type="checkbox" class="preferChk" value="MBA">MBA</label>
+						<label><input type="checkbox" class="preferChk" value="2교대근무가능자">2교대근무가능자</label>
+						<label><input type="checkbox" class="preferChk" value="3교대근무가능자">3교대근무가능자</label>
+						<label><input type="checkbox" class="preferChk" value="해외근무가능자">해외근무가능자</label>
+						<label><input type="checkbox" class="preferChk" value="병역특례">병역특례</label>
+						<label><input type="checkbox" class="preferChk" value="차량소지자">차량소지자</label>
+						<input type="hidden" id="preference" name="preference">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>제출서류</td>
+					<td>	 
+						<label><input type="checkbox" class="docChk" value="이력서">이력서</label>
+						<label><input type="checkbox" class="docChk" value="자기소개서">자기소개서</label>
+						<label><input type="checkbox" class="docChk" value="졸업증명서">졸업증명서</label>
+						<label><input type="checkbox" class="docChk" value="주민등록등본">주민등록등본</label>
+						<label><input type="checkbox" class="docChk" value="성적증명서">성적증명서</label>
+						<label><input type="checkbox" class="docChk" value="경력증명서">경력증명서</label>
+						<input type="hidden" name="document" id="document">
 					</td>
 				</tr>
 				</table>
 			</div>
 			<hr>
 			<div>
-			<span style="font-size: 18px; font-weight: bold;">◎상세모집내용</span><br><br>
-			<textarea id="recDetail" name="recDetail" rows="20" cols="97"></textarea>
+				<span style="font-size: 18px; font-weight: bold;">◎상세모집내용</span><br><br>
+				<textarea id="recDetail" name="recDetail" rows="20" cols="97"></textarea>
 			</div>
-			<hr>
-			<div>
-				<span style="font-size: 18px; font-weight: bold;">◎접수방법</span><br><br>
-				<table style="width: 700px; border:1px solid lightgray">
-					<colgroup>
-						<col style="width:20%;" />
-						<col style="width:80%;" />
-					</colgroup>
-					<tr>
-						<td>접수기간</td>
-						<td>
-							<input type="date" id="recDeadline" name="recDeadline">까지
-							<label><input type="checkbox">상시모집</label>
-							<label><input type="checkbox">채용시까지</label>
-						</td>
-					</tr>
-					<tr>
-						<td>제출서류</td>
-						<td>
-							<label><input type="checkbox">이력서</label>
-							<label><input type="checkbox">자기소개서</label>
-							<label><input type="checkbox">졸업증명서</label>
-							<label><input type="checkbox">주민등록등본</label>
-							<label><input type="checkbox">성적증명서</label>
-							<label><input type="checkbox">경력증명서</label>
-							<input type="text" name="document" id="document">
-						</td>
-					</tr>
-					<tr>
-						<td>전형방법</td>
-						<td>
-							<label>1차<input type="text"></label>
-							<label>2차<input type="text"></label>
-							<label>3차<input type="text"></label>
-							<label>4차<input type="text"></label>
-
-						</td>
-					</tr>
-
-				</table>
-				</div>
-				<hr>--> 
+			<br>
 			<div style="width: 700px; text-align: center;">
 				<input type="submit" value="채용공고 등록하기"/>
 			</div><br>

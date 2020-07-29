@@ -17,7 +17,7 @@
 		(
 			select rownum as RNUM, A.*
 			from(
-				select notice_no, title, type, regdate from notice
+				select notice_no, title, type, regdate, member_type from notice
 				<if test="searchKeyword!=null and searchKeyword != ''">
 					where ${searchCondition} like '%'
 							|| #{searchKeyword} || '%'
@@ -45,6 +45,11 @@
 	<delete id="deleteNotice" parameterType="int">
 		delete from notice where notice_no = #{noticeNo}
 	</delete>
+	
+	<update id="updateNotice" parameterType="noticeVo">
+		update notice set type=#{type}, member_type=#{memberType}, title=#{title}, content=#{content}
+		where notice_no = #{noticeNo}
+	</update>
 	
 </mapper>
 

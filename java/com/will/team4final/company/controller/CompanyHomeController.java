@@ -1,6 +1,7 @@
 package com.will.team4final.company.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import com.will.team4final.company.model.ComMemberService;
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
+import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.location.model.LocationVO;
 import com.will.team4final.login.controller.LoginController;
@@ -32,6 +34,8 @@ public class CompanyHomeController {
 	private LocationService locaServ;
 	@Autowired
 	private ComRecruitService comRecruitService;
+	@Autowired
+	private JobService jobServ;
 	
 	@RequestMapping("/companyHome.do")
 	public String companyHome() {
@@ -44,6 +48,11 @@ public class CompanyHomeController {
 	public void companyJoin() {
 		logger.info("기업회원가입 페이지");
 		
+	}
+	
+	@RequestMapping("/serviceInfo.do")
+	public void serviceInfo() {
+		logger.info("기업회원 서비스안내");
 	}
 	
 	@RequestMapping("/member/checkUserid.do")
@@ -90,7 +99,14 @@ public class CompanyHomeController {
 		List<String> list = locaServ.sido();
 		logger.info("지역 list = {}", list.size());
 		
+		List<Map<String, Object>> induList = jobServ.selectInduLarge();
+		List<Map<String, Object>> jobList = jobServ.selectLarge();
+		logger.info("직무, 산업 list = {}, {}", jobList.size(), induList.size());
+		
 		model.addAttribute("list", list);
+		model.addAttribute("induList", induList);
+		model.addAttribute("jobList", jobList);
+		
 		return "companypage/companyWrite";
 	}
 	

@@ -10,4 +10,6 @@ public interface NoticeService {
 	NoticeVO selectNoticeByNo(int noticeNo);
 	public int totalNotice(SearchVO searchVo);
 	int deleteNotice(int noticeNo);
+	int deleteMultiNotice(List<NoticeVO> list);
+	int updateNotice(NoticeVO vo);
 }

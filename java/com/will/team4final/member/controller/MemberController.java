@@ -208,5 +208,37 @@ public class MemberController {
 		return cnt;
 	}
 	
-
+	@RequestMapping("/deleteUser.do")
+	public String deleteUser(@RequestParam(defaultValue = "0") int userNo, Model model) {
+		logger.info("관리자 페이지에서 회원 삭제, 파라미터 userNo={}", userNo);
+		int cnt = memberService.deleteUser(userNo);
+		String msg="회원 삭제 실패했습니다", url="/admin/adminMemberManagement.do";
+		if(cnt>0) {
+			msg="회원 삭제 성공했습니다";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
+	}
+	
+	@RequestMapping("/updateUser.do")
+	public String updateUser(@RequestParam(defaultValue = "0") int userNo, Model model) {
+		logger.info("관리자에서 회원 정보 변경 창 열기, 파라미터 userNo={}", userNo);
+			
+		return "member/updateUser";
+	}
+	
+	@RequestMapping("/agreement/personTerm.do")
+	public String personTerm() {
+		logger.info("개인 회원 약관 동의서 페이지");
+			
+		return "agreement/personTerm";
+	}
+	
+	@RequestMapping("/agreement/personInfo.do")
+	public String personInfo() {
+		logger.info("개인 회원 정보 수집  동의서 페이지");
+			
+		return "agreement/personInfoCollaction";
+	}
 }
