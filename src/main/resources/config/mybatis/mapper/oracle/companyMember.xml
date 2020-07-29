@@ -27,6 +27,26 @@
 		select C_USERID from company_member where C_EMAIL = #{cEmail}
 	</select>
 	
+	<select id="showAllCMember" parameterType="searchvo" resultType="companyMemberVo">
+		select *
+		from
+		(
+		    select rownum as RNUM, A.*
+		    from(
+		        select C_MEMBER_CODE, C_USERID, C_USERNAME, C_EMAIL, C_HP, C_JOINDATE, C_OUTDATE, C_USER_STATUS
+			    from company_member
+		        <if test="searchKeyword!=null and searchKeyword !=''">
+		        	where ${searchCondition} like '%' 
+		        			|| #{searchKeyword} || '%'
+		        </if>
+		        order by C_JOINDATE
+		    )A    
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
+	</select>
+	
 	<update id="updateCMemberPwdByEmail" parameterType="companyMemberVo">
 		update company_member
 		set C_PWD = #{cPwd}
@@ -38,6 +58,15 @@
 	</select>
 	<select id="selectCMemberByUserCode" parameterType="int" resultType="companyMemberVo">
 		select * from company_member where C_MEMBER_CODE=#{cMemberCode}
+	</select>
+	
+	<select id="selectTotalRecordOfCMember" parameterType="searchVo"
+		resultType="int">
+		select count(*) from company_member
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			where ${searchCondition} like '%'
+				|| #{searchKeyword} || '%'
+		</if>
 	</select>
 </mapper>
 

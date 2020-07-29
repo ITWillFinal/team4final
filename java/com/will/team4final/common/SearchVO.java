@@ -19,6 +19,9 @@ public class SearchVO {
 	/** 현재 페이지 */
 	private int currentPage = 1;
 	
+	/** 현재 페이지 */
+	private String userStatus = "";
+	
     
     /**블럭당 보여질 페이지 수,  페이지 사이즈 */
     private int blockSize; // properties에서 설정
