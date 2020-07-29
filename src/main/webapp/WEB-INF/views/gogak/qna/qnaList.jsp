@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../../inc/adminTop.jsp"%>
 
 <style>
 .divList{
@@ -84,6 +83,9 @@ a{
 		});
 	});
 </script>
+
+	<!-- Id에 따라 top, sidebar, bottom 변경 -->
+	<%@ include file="../../inc/adminTop.jsp"%>
 <main>
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	

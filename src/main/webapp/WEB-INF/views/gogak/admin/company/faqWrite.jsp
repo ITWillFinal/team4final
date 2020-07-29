@@ -35,7 +35,6 @@ a{
 	});
 </script>
 <main>
-	<%@ include file="../../side_inc/admin_Sidebar.jsp"%>
 	
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">

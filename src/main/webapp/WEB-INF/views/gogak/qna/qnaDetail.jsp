@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="../../inc/adminTop.jsp"%>
 <script type="text/javascript"
 	src="<c:url value = '/resources/js/jquery-3.5.1.min.js'/>"></script>
 <script type="text/javascript">
@@ -26,6 +25,23 @@
 				location.href = "<c:url value='/gogak/qna/qnaDetail.do?no=${vo.qnaNo}'/>";
 			}
 		});
+		
+		$('#reEdit').click(function() {
+			location.href = "<c:url value='/gogak/qnare/replyEdit.do?no=${vo.qnaNo}'/>";
+		});
+
+		$('#reDel').click(function() {
+			var str = confirm('${revo.no}번 글을 삭제하시겠습니까?');
+
+			if (str) {
+				//true
+				location.href = "<c:url value = '/gogak/qnare/replyDelete.do?no=${vo.qnaNo}'/>";
+			} else {
+				event.preventDefault;
+				/* location.href = "<c:url value='/gogak/qnare/qnaDetail.do?no=${revo.no}'/>"; */
+			}
+		});
+		
 	})
 </script>
 
@@ -82,6 +98,8 @@ h3{
 
 
 </style>
+	<!-- Id에 따라 top, sidebar, bottom 변경 -->
+	<%@ include file="../../inc/adminTop.jsp"%>
 <main>
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 
@@ -99,7 +117,7 @@ h3{
 				<h4>― 1:1 문의게시판 ―</h4>
 				<h3>${vo.title}</h3>
 				<div style= "text-align: center; color: lightgray;">
-					<p>작성자: ${vo.userId }&nbsp;카테고리: ${vo.categoryNO}&nbsp;작성일:${vo.regDate }</p>
+					<p>작성자: ${vo.userId }&nbsp;카테고리: ${vo.categoryNO}&nbsp;작성일:<fmt:formatDate value="${vo.regDate}" pattern="yyyy-MM-dd HH:mm"/></p>
 				</div>
 				<div style="text-align: left;">
 					<div id = "divH4">
@@ -111,7 +129,53 @@ h3{
 						${fn:replace(vo.content, newLine, '<br>')}
 					</div>
 				</div>								
+				<!-- 댓글(문의 답변) -->
+				<div>
+					<c:if test="${rst==1}">
+						<p>답변 내용</p>
+							<input type="hidden" name = "qnaNo" value = "${vo.qnaNo }">
+							<table>
+								<tr>
+									<td>작성자</td>
+									<td>${revo.name}</td>
+								</tr>
+								<tr>
+									<td>등록일</td>
+									<td><fmt:formatDate value="${revo.regDate}"
+										pattern="yyyy-MM-dd HH:mm"/></td>
+								</tr>
+								<tr>
+									<td>내용</td>
+									<td><% pageContext.setAttribute("newLine", "\r\n"); %>
+										${fn:replace(revo.content, newLine, '<br>')}
+									</td>
+								</tr>
+							</table>
+						<input type="button" id="reEdit" value="답변수정">
+						<input type="button" id="reDel" value="답변삭제">
+					</c:if>
+					<c:if test="${rst==0}">
+						<p>답변 등록</p>
+						<form name="rere" method="post" action="<c:url value = '/gogak/qnare/replyWrite.do'/>">
+							<input type="text" name = "no" value = "${vo.qnaNo }">
+							<fieldset>
+								<b>댓글</b>
+								<div>
+									<label for = "rename">이름</label>
+									<input type = "text" name = "name">
+								</div>
+								<div>
+									<textarea name="content" cols="40" rows="8" ></textarea>
+									<input type="submit" id="resubmit" value="답변등록">
+									<input type="reset" value = "취소">
+								</div>
+							</fieldset>
+						</form>
+					</c:if>
+				</div>
 			</div>
+			
+			
 			<div style="text-align: center; padding: 20px 0 10px 0;">
 					<input type="submit" value="글수정" id="ddd"> 
 					<input type="button" value="글삭제" id="delete">
