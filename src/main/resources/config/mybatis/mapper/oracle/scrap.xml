@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.scrap">
+	<insert id="insertComScrap" parameterType="comScrapVo">
+		<selectKey keyProperty="scrapNo" resultType="int" order="BEFORE">
+			select COMSCRAP_SEQ.nextval from dual
+		</selectKey>
+		insert into comscrap
+		values(#{scrapNo}, #{userNo}, #{recruitmentCode})
+	</insert>
+	
+	<select id="selectComScrapById" parameterType="comScrapVo" resultType="int">
+		select count(*) from comscrap where user_no = #{userNo} and recruitment_code = #{recruitmentCode}
+	</select>
+	
+	<delete id="deleteScrap" parameterType="comScrapVo">
+		delete from comscrap where user_no = #{userNo} and recruitment_code = #{recruitmentCode}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+

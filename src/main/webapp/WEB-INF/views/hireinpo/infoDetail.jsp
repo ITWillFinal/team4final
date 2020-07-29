@@ -16,7 +16,14 @@
 	    float: left;
 	    padding-left: 30px;
 	}
-	#headAddDiv{
+	#headAddDiv1{
+	    margin-top: 40px;
+	    border: 1px solid #cecece;
+	    float: right;
+	    padding: 4px 5px;
+	    text-align: center;
+	}
+	#headAddDiv2{
 	    margin-top: 40px;
 	    border: 1px solid #cecece;
 	    float: right;
@@ -58,6 +65,51 @@
 	}
 	
 </style>
+<script type="text/javascript">
+	$(function() {
+	});
+	function scrapSave() {
+		$.ajax({
+			url:"<c:url value='/scrap/recruitScrap.do'/>",
+			type:"get",
+			dataType:"text",
+			data:"recruitmentCode=${vo.recruitmentCode}",
+			success:function(res){
+				var io = res;
+				if(res == 2){
+					$('#headAddDiv2').attr('style','display:none;');
+					$('#headAddDiv1').attr('style','display:bolck;');
+				}
+			},
+			error:function(xhr, status, error){
+				alert(status + ", " + error);
+			}
+		});
+	}
+	
+	function scrapDel() {
+		$.ajax({
+			url:"<c:url value='/scrap/delRecruitScrap.do'/>",
+			type:"get",
+			dataType:"text",
+			data:"recruitmentCode=${vo.recruitmentCode}",
+			success:function(res){
+				var io = res;
+				if(res == 2){
+					$('#headAddDiv1').attr('style','display:none;');
+					$('#headAddDiv2').attr('style','display:bolck;');
+				}
+			},
+			error:function(xhr, status, error){
+				alert(status + ", " + error);
+			}
+		});
+	}
+	
+	function nomember() {
+		alert("로그인 이후에 이용 가능합니다.");
+	}
+</script>
 <div id="contentDiv">
 	<div id="headDiv">
 		<p>${vo.comName }</p>
@@ -67,10 +119,30 @@
 	<div id="headAdd2">
 		<a href="#" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
 	</div>
-	<div id="headAddDiv">
-		<a href="#" style="font-size: 0.9em;"><i class="fa fa-star-o fa-2x" style="color: #ffd91f; display: block;" aria-hidden="true"></i>
-		스크랩</a>
-	</div>
+	<c:if test="${sessionScope.userid != null }">
+		<div id="headAddDiv1" 
+			<c:if test="${result == 0 }">
+				style="display: none"
+			</c:if>
+		>
+				<a href="#" onclick="javascript:scrapDel()" style="font-size: 0.9em;"><i class="fa fa-star fa-2x" style="color: #ffd91f; display: block;" aria-hidden="true" id="fullStar"></i>
+				스크랩</a>
+		</div>
+		<div id="headAddDiv2" 
+			<c:if test="${result > 0 }">
+				style="display: none"
+			</c:if>
+		>
+				<a href="#" onclick="javascript:scrapSave()" style="font-size: 0.9em;"><i class="fa fa-star-o fa-2x" style="color: #ffd91f; display: block;" aria-hidden="true" id="fullStar"></i>
+				스크랩</a>
+		</div>
+	</c:if>
+	<c:if test="${sessionScope.userid == null }">
+		<div id="headAddDiv2">
+				<a href="#" onclick="javascript:nomember()" style="font-size: 0.9em;"><i class="fa fa-star-o fa-2x" style="color: #ffd91f; display: block;" aria-hidden="true" id="fullStar"></i>
+				스크랩</a>
+		</div>
+	</c:if>
 	<hr>
 	<div id="infoDiv1">
 		<table>
@@ -81,6 +153,10 @@
 			<tr>
 				<th>학력</th>
 				<td>${vo.educationLv }</td>
+			<tr>
+			<tr>
+				<th>성별</th>
+				<td>${vo.gender }</td>
 			<tr>
 			<tr>
 				<th>근무형태</th>

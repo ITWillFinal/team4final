@@ -157,6 +157,7 @@ public class LoginController {
 			session.setAttribute("userid", userid);
 			session.setAttribute("name", memVo.getUserName());
 			session.setAttribute("status", memVo.getUserStatus());
+			session.setAttribute("userNo", memVo.getUserNo());
 		} else if (result == MemberService.PWD_DISAGREE) {
 			msg = "비밀번호가 다릅니다!";
 		} else if (result == MemberService.ID_NONE) {
