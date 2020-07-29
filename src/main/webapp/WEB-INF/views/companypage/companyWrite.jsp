@@ -655,7 +655,10 @@
 			<hr>
 			<div>
 				<span style="font-size: 18px; font-weight: bold;">◎상세모집내용</span><br><br>
-				<textarea id="recDetail" name="recDetail" rows="20" cols="97"></textarea>
+				<textarea id="recDetail" name="recDetail" rows="20" cols="97">
+				#모집부문 및 상세 내용을 입력해주세요.<br>
+				복리후생 ,제출서류, 우대조건 등의 내용은 자동으로 입력됩니다.
+				</textarea>
 			</div>
 			<br>
 			<div style="width: 700px; text-align: center;">
