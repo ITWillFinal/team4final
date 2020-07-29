@@ -1,7 +1,7 @@
 package com.will.team4final.member.model;
 
 public class MemberVO {
-	private String userNo;
+	private int userNo;
 	private String userid;
 	private String pwd;
 	private String userName;
@@ -17,10 +17,13 @@ public class MemberVO {
 	private String regdate;
 	private String outdate;
 	private String userStatus;
-	public String getUserNo() {
+	private String resumeNo;
+	private String yorn;
+	
+	public int getUserNo() {
 		return userNo;
 	}
-	public void setUserNo(String userNo) {
+	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
 	public String getUserid() {
@@ -113,15 +116,26 @@ public class MemberVO {
 	public void setUserStatus(String userStatus) {
 		this.userStatus = userStatus;
 	}
+	public String getResumeNo() {
+		return resumeNo;
+	}
+	public void setResumeNo(String resumeNo) {
+		this.resumeNo = resumeNo;
+	}
+	public String getYorn() {
+		return yorn;
+	}
+	public void setYorn(String yorn) {
+		this.yorn = yorn;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [userNo=" + userNo + ", userid=" + userid + ", pwd=" + pwd + ", userName=" + userName
 				+ ", imageURL=" + imageURL + ", nickname=" + nickname + ", birth=" + birth + ", gender=" + gender
 				+ ", zipcode=" + zipcode + ", address=" + address + ", addressDetail=" + addressDetail + ", email="
 				+ email + ", hp=" + hp + ", regdate=" + regdate + ", outdate=" + outdate + ", userStatus=" + userStatus
-				+ "]";
+				+ ", resumeNo=" + resumeNo + ", yorn=" + yorn + "]";
 	}
 	
-		
 	
 }

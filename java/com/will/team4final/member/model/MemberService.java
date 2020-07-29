@@ -2,9 +2,6 @@ package com.will.team4final.member.model;
 
 import java.util.List;
 
-import com.will.team4final.common.DateSearchVO;
-import com.will.team4final.common.SearchVO;
-
 public interface MemberService {
 	//아이디 중복확인 관련 상수
 	public static final int EXIST_ID=1;  //해당 아이디가 이미 존재하는 경우
@@ -26,8 +23,8 @@ public interface MemberService {
 	MemberVO selectByUserid(String user_id);
 	MemberVO selectByUerNo(int userNo);
 	int loginCheck(String userid, String pwd);
-	List<MemberVO> showAllMemberUser(SearchVO searchvo);
-	List<MemberVO> showMemberListByDate(DateSearchVO dateSearchVo);
+	List<MemberVO> showAllMemberUser();
 	int deleteUser(int userNo);
-	int selectTotalRecordOfMember(SearchVO searchVo);
+	int changeResumeNo(MemberVO memberVo);
+	int changeYorn(MemberVO memberVo);
 }

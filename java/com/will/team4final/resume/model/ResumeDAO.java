@@ -1,6 +1,7 @@
 package com.will.team4final.resume.model;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ResumeDAO {
 
@@ -14,4 +15,7 @@ public interface ResumeDAO {
 	int insertPotfolio(PotfolioVO potfolioVo);
 	int insertCertify(CertifyVO certifyVo);
 	List<ResumeVO> selectResumeByUserNo(String userNo);
+	List<Map<String, Object>> selectResumeCareerViewByUserNo(String userNo);
+	int deleteResume(int resumeNo);
+
 }

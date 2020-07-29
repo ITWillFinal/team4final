@@ -5,9 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.will.team4final.common.DateSearchVO;
-import com.will.team4final.common.SearchVO;
-
 @Service
 public class MemberServiceImpl implements MemberService{
 	@Autowired
@@ -57,8 +54,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberVO> showAllMemberUser(SearchVO searchvo) {
-		return memberDao.showAllMemberUser(searchvo);
+	public List<MemberVO> showAllMemberUser() {
+		return memberDao.showAllMemberUser();
 	}
 
 	@Override
@@ -72,13 +69,13 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int selectTotalRecordOfMember(SearchVO searchVo) {
-		return memberDao.selectTotalRecordOfMember(searchVo);
+	public int changeResumeNo(MemberVO memberVo) {
+		return memberDao.changeResumeNo(memberVo);
 	}
 
 	@Override
-	public List<MemberVO> showMemberListByDate(DateSearchVO dateSearchVo) {
-		return memberDao.showAllMemberUser(dateSearchVo);
+	public int changeYorn(MemberVO memberVo) {
+		return memberDao.changeYorn(memberVo);
 	}
 	
 	

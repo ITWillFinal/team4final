@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.will.team4final.common.FileUploadUtil;
 import com.will.team4final.member.model.MemberService;
@@ -138,19 +140,75 @@ public class ResumeController {
 		return "common/message";
 	}
 	
-	@RequestMapping(value = "/resumeMain.do")
+	@RequestMapping("/resumeMain.do")
 	public String resumeMain(HttpSession session, Model model) {
 		logger.info("이력서 메인페이지");
 		String userid = (String)session.getAttribute("userid");
-		MemberVO memberVo = memberService.selectAll(userid);
+		MemberVO memberVo = memberService.selectByUserid(userid);
 		logger.info("memberVo={}",memberVo);
 		
-		List<ResumeVO> resumeList = resumeService.selectResumeByUserNo(Integer.toString(memberVo.getUserNo()));
+		List<Map<String, Object>> resumeList = resumeService.selectResumeCareerViewByUserNo(Integer.toString(memberVo.getUserNo()));
 		logger.info("{}이력서 조회 결과 list.size={}",userid,resumeList.size());
+		logger.info("대표이력서={}, 공개여부={}",memberVo.getResumeNo(),memberVo.getYorn());
 		
+		model.addAttribute("resumeNo",memberVo.getResumeNo());
+		model.addAttribute("yorn",memberVo.getYorn());
 		model.addAttribute("resumeList",resumeList);
 		
 		return "resume/resumeMain";
+	}
+	
+	@RequestMapping("/setRepResume.do")
+	public String setRepResume(HttpSession session, @RequestParam(defaultValue = "-1") int resumeNo) {
+		logger.info("대표이력서 설정, 파라미터 resumeNo={}",resumeNo);
+		
+		String userid = (String)session.getAttribute("userid");
+		MemberVO memberVo = memberService.selectByUserid(userid);
+		memberVo.setResumeNo(Integer.toString(resumeNo));			
+		
+		int cnt = memberService.changeResumeNo(memberVo);
+		logger.info("대표이력서 설정 결과 cnt={}",cnt);
+		
+		return "redirect:/resume/resumeMain.do";
+	}
+
+	@ResponseBody
+	@RequestMapping("/resumeYorn.do")
+	public String resumeYorn(HttpSession session, @RequestParam String yorn) {
+		logger.info("대표이력서 공개 설정, 파라미터 yorn={}",yorn);
+		
+		String userid = (String)session.getAttribute("userid");
+		MemberVO memberVo = memberService.selectByUserid(userid);
+		
+		if(yorn.equals("true")) {
+			memberVo.setYorn("Y");
+		}else {
+			memberVo.setYorn("N");			
+		}
+		logger.info("공개여부 : {}",memberVo.getYorn());
+		
+		int cnt = memberService.changeYorn(memberVo);
+		logger.info("대표이력서 공개 설정 결과 cnt={}",cnt);
+		
+		return memberVo.getYorn();
+	}
+
+	@RequestMapping("/resumeDelete.do")
+	public String resumeDelete(@RequestParam int resumeNo) {
+		logger.info("이력서 삭제, 파라미터 resumeNo={}",resumeNo);
+		
+		int cnt = resumeService.deleteResume(resumeNo);
+		logger.info("이력서 삭제, 결과 cnt={}",cnt);
+		
+		return "redirect:/resume/resumeMain.do";
+	}
+
+	@RequestMapping("/resumeDetail.do")
+	public String resumeDetail(@RequestParam int resumeNo) {
+		logger.info("이력서 상세보기, 파라미터 resumeNo={}",resumeNo);
+		
+		
+		return "resume/resumeDetail";
 	}
 	
 	

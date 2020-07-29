@@ -41,34 +41,10 @@
 		select * from member where user_no=#{userNo}
 	</select>
 	
-	<select id="showAllMemberUser" resultType="memberVo" parameterType="searchvo">
-		select *
-		from
-		(
-		    select rownum as RNUM, A.*
-		    from(
-		        select USER_NO, user_id, user_name, email, hp, regdate, outdate, user_status
-			    from member
-		        <if test="searchKeyword!=null and searchKeyword !=''">
-		        	where ${searchCondition} like '%' 
-		        			|| #{searchKeyword} || '%'
-		        </if>
-		        order by regdate
-		    )A    
-		)
-		<![CDATA[ 
-		where RNUM>#{firstRecordIndex}
-		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
+	<select id="showAllMemberUser" resultType="memberVo">
+		select * from member order by regdate
 	</select>
 	
-	<select id="selectTotalRecordOfMember" parameterType="searchVo"
-		resultType="int">
-		select count(*) from member
-		<if test="searchKeyword!=null and searchKeyword != ''">
-			where ${searchCondition} like '%'
-				|| #{searchKeyword} || '%'
-		</if>
-	</select>
 
 	<update id="deleteUser" parameterType="int">
 		update member
@@ -76,28 +52,22 @@
 		where user_no=#{userNo}
 	</update>
 	
-	<select id="showMemberListByDate" parameterType="DateSearchVO" resultType="memberVo">
-		select *
-		from
-		(
-		    select rownum as RNUM, A.*
-		    from(
-			    select * from member
-				<where>
-					<if test="userNo!=null and userNo!=''">
-						user_no=#{userNo} 
-					</if>
-					and regdate >= #{startDay}
-					<![CDATA[
-					and regdate < to_date(#{endDay})+1]]>	
-				</where> 
-		        order by regdate desc
-		    )A    
-		)
-		<![CDATA[ 
-		where RNUM>#{firstRecordIndex}
-		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
-	</select>
+	<update id="changeResumeNo" parameterType="memberVo">
+		update member
+		<if test="resumeNo==-1">
+			set resume_no=null, yorn='N'
+		</if>
+		<if test="resumeNo!=-1">
+			set resume_no=#{resumeNo}
+		</if>
+		where user_no=#{userNo}
+	</update>
+	
+	<update id="changeYorn" parameterType="memberVo">
+		update member
+		set yorn=#{yorn}
+		where user_no=#{userNo}
+	</update>
 </mapper>
 
 
