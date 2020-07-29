@@ -27,7 +27,7 @@
 		  <li><div>채용정보등록</div></li>
 		  <li><div>진행중인채용정보</div></li>
 		  <li><div>마감된채용정보</div></li>
-		  <li class="ui-widget-header"><div>인재정보검색</div></li>
+		  <li class="ui-widget-header"><div>인재정보</div></li>
 		  <li><div>입사지원요청관리</div></li>
 		  <li><div>면접제의요청관리</div></li>
 		  <li><div>맞춤인재정보</div></li>

@@ -270,6 +270,9 @@
 			}else if($('#recDetail').val()==''){
 				alert('상세모집내용을 입력하세요');
 				event.preventDefault();
+			}else if($('#comCode').val()==''){
+				alert('회사코드를 입력하세요');
+				event.preventDefault();
 			}
 			
 		});
@@ -280,7 +283,13 @@
 </script>
 <style>
 	tr {
-		border: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
+		border-top: 1px solid lightgray;
+	}
+	
+	td {
+		padding-top: 5px;
+		padding-bottom: 5px;
 	}
 
 	
@@ -288,8 +297,49 @@
 		border:1px solid #FB246A;
 		width:100%;
 	}
+	
+	input[type=text]:hover {
+	    background : #E9E9E9;
+	}
+	
+	input[type=text] {
+		background : whitesmoke;
+		width:350px;
+		height:35px;
+		border:none;
+		border-radius: 30px;
+	}
+	
+	label {
+		margin-top:10px;
+		margin-right: 5px;
+	}
+	
+	.recTypeChk {
+		margin-right: 3px;
+		
+	}
+	
+	.welfareChk {
+		margin-right: 3px;
+	}
+	
+	.docChk {
+		margin-right: 3px;
+	}
+	
+	.preferChk {
+		margin-right: 3px;
+	}
+	
+	<%--
+	input[type=text]:focus {
+    	border: 2px solid #FB246A;
+    }
+	--%>
 
 </style>
+
 <main>
 	<%@ include file="../inc/companySidebar.jsp" %>
 
@@ -301,7 +351,7 @@
 			<div style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span><br><br>
 
-			<table style="width: 700px;">
+			<table style="width: 900px;">
 				<colgroup>
 					<col style="width:20%;"/>
 					<col style="width:80%;" />
@@ -356,6 +406,7 @@
 				<input type="hidden" id="location1" name="location1">
 				<input type="hidden" id="location2" name="location2">
 				
+				<input type="hidden" id="comCode" name="comCode">
 				<tr>
 					<td>근무지역</td>
 					<td>
@@ -408,7 +459,7 @@
 				<tr>
 					<td>근무형태</td>
 					<td>
-					 	<label><input type="checkbox" class="recTypeChk" value="추후협의">추후협의</label>
+						<label><input type="checkbox" class="recTypeChk" value="추후협의">추후협의</label>
 						<label><input type="checkbox" class="recTypeChk" value="인턴직">인턴직</label>
 						<label><input type="checkbox" class="recTypeChk" value="정규직">정규직</label>
 						<label><input type="checkbox" class="recTypeChk" value="계약직">계약직</label>
@@ -499,8 +550,7 @@
 			
 			<div>
 				<span style="font-size: 18px; font-weight: bold;">◎자격요건</span><br><br>
-
-			<table style="width: 700px; border:1px solid lightgray; border">
+			<table style="width: 900px;">
 				<colgroup>
 					<col style="width:20%;" />
 					<col style="width:80%;" />
@@ -656,10 +706,10 @@
 			<hr>
 			<div>
 				<span style="font-size: 18px; font-weight: bold;">◎상세모집내용</span><br><br>
-				<textarea id="recDetail" name="recDetail" rows="20" cols="97"></textarea>
+				<textarea id="recDetail" name="recDetail" rows="20" cols="93"></textarea>
 			</div>
 			<br>
-			<div style="width: 700px; text-align: center;">
+			<div style="width: 900px; text-align: center;">
 				<input type="submit" value="채용공고 등록하기"/>
 			</div><br>
 		</form>
