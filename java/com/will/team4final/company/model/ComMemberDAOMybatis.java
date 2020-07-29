@@ -1,8 +1,12 @@
 package com.will.team4final.company.model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.will.team4final.common.SearchVO;
 
 @Repository
 public class ComMemberDAOMybatis implements ComMemberDAO {
@@ -43,5 +47,15 @@ public class ComMemberDAOMybatis implements ComMemberDAO {
 	@Override
 	public CompanyMemberVO selectCMemberByUserCode(int userNo) {
 		return sqlSession.selectOne(namespace+"selectCMemberByUserCode", userNo);
+	}
+
+	@Override
+	public List<CompanyMemberVO> showAllCMember(SearchVO searchVo) {
+		return sqlSession.selectList(namespace+"showAllCMember", searchVo );
+	}
+
+	@Override
+	public int selectTotalRecordOfCMember(SearchVO searchVo) {
+		return sqlSession.selectOne(namespace+"selectTotalRecordOfCMember", searchVo);
 	}
 }

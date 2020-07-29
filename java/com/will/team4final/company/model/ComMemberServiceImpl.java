@@ -1,7 +1,11 @@
 package com.will.team4final.company.model;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.will.team4final.common.SearchVO;
 
 @Service
 public class ComMemberServiceImpl implements ComMemberService{
@@ -63,6 +67,16 @@ public class ComMemberServiceImpl implements ComMemberService{
 	@Override
 	public CompanyMemberVO selectCMemberByUserCode(int userNo) {
 		return comMemberDao.selectCMemberByUserCode(userNo);
+	}
+
+	@Override
+	public List<CompanyMemberVO> showAllCMember(SearchVO searchVo) {
+		return comMemberDao.showAllCMember(searchVo);
+	}
+
+	@Override
+	public int selectTotalRecordOfCMember(SearchVO searchVo) {
+		return comMemberDao.selectTotalRecordOfCMember(searchVo);
 	}
 	
 	

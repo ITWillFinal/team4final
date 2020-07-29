@@ -1,5 +1,9 @@
 package com.will.team4final.company.model;
 
+import java.util.List;
+
+import com.will.team4final.common.SearchVO;
+
 public interface ComMemberService {
 	//아이디 중복확인 관련 상수
 	public static final int EXIST_ID=1;  //해당 아이디가 이미 존재하는 경우
@@ -17,4 +21,6 @@ public interface ComMemberService {
 	CompanyMemberVO selectCMemberInfoByUserid(String cUserid);
 	CompanyMemberVO selectCMemberByUserCode(int userNo);
 	int comLoginCheck(String userid, String pwd);
+	List<CompanyMemberVO> showAllCMember(SearchVO searchVo);
+	int selectTotalRecordOfCMember(SearchVO searchVo);
 }

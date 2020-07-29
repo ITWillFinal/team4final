@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.admin">
+	<select id="adminShowAllMember" parameterType="searchvo" resultType="memberVo">
+		select *
+		from
+		(
+		    select rownum as RNUM, A.*
+		    from(
+		        select user_no, user_id, user_name,email, hp, regdate, outdate,user_status
+				from member
+				union 
+				select c_member_code, c_userid, c_username, C_EMAIL, C_HP, C_JOINDATE, C_OUTDATE, C_USER_STATUS
+				from COMPANY_member
+		        <if test="searchKeyword!=null and searchKeyword !=''">
+		        	where ${searchCondition} like '%' 
+		        			|| #{searchKeyword} || '%'
+		        </if>
+		     	  order by regdate desc
+		    )A    
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
+	</select>
+	
+	<select id="selectTotalRecordOfAdmin" parameterType="searchVo"
+		resultType="int">
+		select count(*) from
+		(
+			select user_no, user_id, user_name,email, hp, regdate, outdate,user_status
+			from member
+			union 
+			select c_member_code, c_userid, c_username, C_EMAIL, C_HP, C_JOINDATE, C_OUTDATE, C_USER_STATUS
+			from COMPANY_member
+			order by regdate desc
+		)
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			where ${searchCondition} like '%'
+				|| #{searchKeyword} || '%'
+		</if>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

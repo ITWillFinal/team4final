@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/resources/js/jquery-3.5.1.min.js'/>">
@@ -30,20 +31,21 @@
 	padding: 50px 0 25px;
 	background-color: #fff;
 }
-.info_row{
+
+.info_row {
 	margin-left: 50px;
 }
 
 .point {
 	margin-left: 5px;
-    color: #fc0038;
-    font-size: 12px;
-    letter-spacing: -1px;
-}
-.basic{
-	margin-bottom: 15px;
+	color: #fc0038;
+	font-size: 12px;
+	letter-spacing: -1px;
 }
 
+.basic {
+	margin-bottom: 15px;
+}
 </style>
 
 <script
@@ -84,98 +86,203 @@
 
 	}
 </script>
-
-<div id="container">
-	<section id="pm_contents" >
+<c:if test="${!empty memVo }">
+	<div id="container">
+		<section id="pm_contents">
 			<div class="area_title">
 				<h3 class="title" style="text-align: center;">기본정보</h3>
 			</div>
 			<div class="resume_write resume_basic">
 				<div class="basic">
-					  <div class="row info_row">
-					    <div class="col-xs-6 col-md-2" style="margin-top: 7px;">
-								<span>이름</span>						    	
-					    		<span class="point">필수</span>
-					    </div>
-					    <div class="col-xs-6 col-md-3">
-					      <input type="text" name="lastname" class="form-control input-lg" placeholder="이름"  />
-					    </div>
-					  </div>	
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2" style="margin-top: 7px;">
+							<span>이름</span> <span class="point">필수</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="text" name="lastname" class="form-control input-lg" value="${memVo.userName }"
+								placeholder="이름" />
+						</div>
+					</div>
 				</div>
 				<div class="basic">
-					  <div class="row info_row">
-					    <div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
-								<span>이메일</span>						    	
-					    		<span class="point">필수</span>
-					    </div>
-					    <div class="col-xs-6 col-md-3">
-					      <input type="email" name="email" class="form-control input-lg" placeholder="이메일"  />
-					    </div>
-					  </div>	
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
+							<span>이메일</span> <span class="point">필수</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="email" name="email" class="form-control input-lg" value="${memVo.email }
+								placeholder="이메일" />
+						</div>
+					</div>
 				</div>
 				<div class="basic">
-					  <div class="row info_row">
-					    <div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
-								<span>별명</span>						    	
-					    		<span class="point">필수</span>
-					    </div>
-					    <div class="col-xs-6 col-md-3">
-					      <input type="nickname" name="nickname" class="form-control input-lg" placeholder="별명"  />
-					    </div>
-					  </div>	
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
+							<span>별명</span> <span class="point">필수</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="text" name="nickname" value="${memVo.nickname} 
+								class="form-control input-lg" placeholder="별명"   />
+						</div>
+					</div>
 				</div>
 				<div class="basic">
-					  <div class="row info_row">
-					    <div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
-								<span>생년월일</span>						    	
-					    		<span class="point">필수</span>
-					    </div>
-					    <div class="col-xs-6 col-md-3">
-					      <input type="birth" name="birth" class="form-control input-lg" placeholder="생년월일"  />
-					    </div>
-					  </div>	
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
+							<span>생년월일</span> <span class="point">필수</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="text" name="birth" class="form-control input-lg" value="${memVo.birth} 
+								placeholder="생년월일" />
+						</div>
+					</div>
 				</div>
 				<div class="basica">
-					  <div class="row info_row">
-					    <div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
-								<span>주소</span>						    	
-					    		<span class="point">필수</span>
-					    </div>
-					    <div class="col-xs-6 col-md-3">
-					      <input type="zipcode" name="zipcode" id="zipcode" onclick="sample4_execDaumPostcode()" class="form-control input-lg" placeholder="우편번호" readonly="readonly"  />
-					    </div>
-					  </div>	
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
+							<span>주소</span> <span class="point">필수</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="text" name="zipcode" id="zipcode" value="${memVo.zipcode}
+								onclick="sample4_execDaumPostcode()"
+								class="form-control input-lg" placeholder="우편번호"
+								readonly="readonly" />
+						</div>
+					</div>
 				</div>
 				<div class="basica">
-					  <div class="row info_row">
-					    <div class="col-xs-6 col-md-2 ">
-					    </div>
-					    <div class="col-xs-6 col-md-3">
-					      <input type="address" name="address" id="address" class="form-control input-lg" placeholder="주소" readonly="readonly"  />
-					    </div>
-					  </div>	
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 "></div>
+						<div class="col-xs-6 col-md-3">
+							<input type="text" name="address" id="address" value="${memVo.address}
+								class="form-control input-lg" placeholder="주소"
+								readonly="readonly" />
+						</div>
+					</div>
 				</div>
 				<div class="basic">
-					  <div class="row info_row">
-					    <div class="col-xs-6 col-md-2 ">
-					    </div>
-					    <div class="col-xs-6 col-md-3">
-					      <input type="addressDetail" name="addressDetail" class="form-control input-lg" placeholder="상세주소"  />
-					    </div>
-					  </div>	
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 "></div>
+						<div class="col-xs-6 col-md-3">
+							<input type="text" name="addressDetail" value="${memVo.addressDetail}
+								class="form-control input-lg" placeholder="상세주소" />
+						</div>
+					</div>
 				</div>
 				<div class="basic">
-					  <div class="row info_row">
-					    <div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
-								<span>휴대폰</span>						    	
-					    		<span class="point">필수</span>
-					    </div>
-					    <div class="col-xs-6 col-md-3">
-					      <input type="hp" name="hp" class="form-control input-lg" placeholder="휴대폰"  />
-					    </div>
-					  </div>	
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
+							<span>휴대폰</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="number" name="hp" class="form-control input-lg" value="${memVo.hp}
+								placeholder="휴대폰" />
+						</div>
+					</div>
 				</div>
-				
+
 			</div>
-	</section>
-</div>
+		</section>
+	</div>
+</c:if>
+<c:if test="${!empty comVo }">
+	<div id="container">
+		<section id="pm_contents">
+			<div class="area_title">
+				<h3 class="title" style="text-align: center;">기본정보</h3>
+			</div>
+			<div class="resume_write resume_basic">
+				<div class="basic">
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2" style="margin-top: 7px;">
+							<span>이름</span> <span class="point">필수</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="text" name="lastname" class="form-control input-lg"
+								placeholder="이름" />
+						</div>
+					</div>
+				</div>
+				<div class="basic">
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
+							<span>이메일</span> <span class="point">필수</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="email" name="email" class="form-control input-lg"
+								placeholder="이메일" />
+						</div>
+					</div>
+				</div>
+				<div class="basic">
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
+							<span>별명</span> <span class="point">필수</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="nickname" name="nickname"
+								class="form-control input-lg" placeholder="별명" />
+						</div>
+					</div>
+				</div>
+				<div class="basic">
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
+							<span>생년월일</span> <span class="point">필수</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="birth" name="birth" class="form-control input-lg"
+								placeholder="생년월일" />
+						</div>
+					</div>
+				</div>
+				<div class="basica">
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
+							<span>주소</span> <span class="point">필수</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="zipcode" name="zipcode" id="zipcode"
+								onclick="sample4_execDaumPostcode()"
+								class="form-control input-lg" placeholder="우편번호"
+								readonly="readonly" />
+						</div>
+					</div>
+				</div>
+				<div class="basica">
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 "></div>
+						<div class="col-xs-6 col-md-3">
+							<input type="address" name="address" id="address"
+								class="form-control input-lg" placeholder="주소"
+								readonly="readonly" />
+						</div>
+					</div>
+				</div>
+				<div class="basic">
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 "></div>
+						<div class="col-xs-6 col-md-3">
+							<input type="addressDetail" name="addressDetail"
+								class="form-control input-lg" placeholder="상세주소" />
+						</div>
+					</div>
+				</div>
+				<div class="basic">
+					<div class="row info_row">
+						<div class="col-xs-6 col-md-2 " style="margin-top: 7px;">
+							<span>휴대폰</span> <span class="point">필수</span>
+						</div>
+						<div class="col-xs-6 col-md-3">
+							<input type="hp" name="hp" class="form-control input-lg"
+								placeholder="휴대폰" />
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+	</div>
+</c:if>
+
+
