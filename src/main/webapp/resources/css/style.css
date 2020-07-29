@@ -6653,7 +6653,7 @@ form.search-box .search-form input {
 }
 
 .single-job-items:hover {
-	box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.05)
+	box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.25)
 }
 
 .single-job-items .job-items {

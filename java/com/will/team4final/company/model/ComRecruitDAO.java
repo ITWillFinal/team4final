@@ -6,5 +6,5 @@ public interface ComRecruitDAO {
 	
 	int insertComRecruit(ComRecruitVO comRecruitVo);
 	List<ComRecruitVO> selectMost5();
-	ComRecruitVO selectOneCom();
+	ComRecruitVO selectOneCom(String recruitmentCode);
 }

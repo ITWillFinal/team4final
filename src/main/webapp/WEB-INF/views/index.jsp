@@ -207,7 +207,7 @@
 		                                <a href="job_details.html"></a>
 		                            </div>
 		                            <div class="job-tittle">
-		                                <a href="job_details.html"><h4>${vo.title }</h4></a>
+		                                <a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h4>${vo.title }</h4></a>
 		                                <ul>
 		                                    <li>${vo.comName }</li>
 		                                    <li><i class="fas fa-map-marker-alt"></i>${vo.jobType2 }</li>
@@ -216,7 +216,7 @@
 		                            </div>
 		                        </div>
 		                        <div class="items-link f-right">
-		                            <a href="job_details.html">${vo.recType }</a>
+		                            <a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.recType }</a>
 		                            <span>7 hours ago</span>
 		                        </div>
 		                    </div>
