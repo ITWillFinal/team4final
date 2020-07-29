@@ -9,7 +9,7 @@
 	$(function(){
 		$('#rrr').click(function(){
 			location.href 
-				= "<c:url value='/gogak/company/faqList.do'/>";	
+				= "<c:url value='/gogak/qna/qnaList.do'/>";	
 		});
 		
 		
@@ -43,20 +43,23 @@ a{
 </style>
 
 
-<%@ include file="../side_inc/company_Sidebar.jsp"%>
+<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 
 <main>
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
 		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
-		<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문 수정하기</h2>
+		<h2 style = "padding-left: 50px; padding-top: 30px; ">1:1 문의 수정하기</h2>
 		</div>
 		<div style="margin:5px; /* border:1px solid lightgray; */">
 
 			<div id="outDiv">
 				<form name = "frmWrite" method="post" 
-					action="<c:url value = '/gogak/company/faqEdit.do'/>">
-					<input type = "hidden" value = "${vo.faqNo }" name = "no">
+					action="<c:url value = '/gogak/qna/qnaEdit.do'/>">
+					<label for ="no">no</label>
+					<input type = "text" value = "${vo.qnaNo }" name = "no">
+					<label for ="status">status</label>
+					<input type = "text" value = "${vo.status }" name = "status">
 					<table style="width: 700px; /* border: 1px solid lightgray; */">
 						<colgroup>
 							<col style="width: 20%;" />
@@ -71,28 +74,28 @@ a{
 									<option value="b">B</option>
 									<option value="c">C</option>
 								</select><br> -->
-								<input type="text" name = "category" class = "tb1"
-									value = "${vo.category }">
+								<input type="text" name = "categoryNO" class = "tb1"
+									value = "${vo.categoryNO }">
 							</td>
 						</tr>
 				
 						<tr>
-							<td>질문</td>
-							<td><input type="text" name = "question" class = "tb2"
-							value = "${vo.question }"></td>
+							<td>문의 제목</td>
+							<td><input type="text" name = "title" class = "tb2"
+							value = "${vo.title }"></td>
 						</tr>
 				
 						<tr>
-							<td>답변내용</td>
+							<td>문의 내용</td>
 							<td id = "tdA">
-								<textarea rows="7px" cols="50px" name = "answer">${fn:replace(vo.answer , newLine, '<br>')}</textarea>
+								<textarea rows="7px" cols="50px" name = "content">${fn:replace(vo.content , newLine, '<br>')}</textarea>
 							</td>
 						</tr>
 					</table>
 					
 					<div>
-						<input type = "submit" value = "글수정" id = "ddd">
-						<input type = "button" value = "글목록" id = "rrr">
+						<input type = "submit" value = "문의수정" id = "ddd">
+						<input type = "button" value = "문의목록" id = "rrr">
 					</div>
 				</form>
 			</div>

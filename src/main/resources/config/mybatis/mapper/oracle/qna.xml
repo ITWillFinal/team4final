@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.mapper.oracle.qna">
+	<select id="selectQna" resultType="QnaVo" parameterType="searchvo">
+		select * 
+		from
+		(
+			select rownum as RNUM, A.*
+			from(
+				select qna_no, user_no, user_id, title, category_no, content, fileName, fileSize, originFileName, status, regDate
+				from qna
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					where ${searchCondition} like '%'
+							|| #{searchKeyword} || '%'
+				</if>
+				order by qna_No desc
+			)A
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
+	</select>
+	
+	<insert id="WriteQna" parameterType="qnaVo">
+		<selectKey keyProperty="qnaNo" resultType="int" order="BEFORE">
+			select qna_seq.nextval from dual
+		</selectKey>
+		insert into qna(qna_no, user_no, user_id, title, category_no, content, status)
+		values(#{qnaNo}, #{userNo}, #{userId}, #{title}, #{categoryNO}, #{content}, #{status})
+	</insert>
+
+	<select id="selectTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from qna
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			where ${searchCondition} like '%'
+				|| #{searchKeyword} || '%'
+		</if>
+	</select>
+	
+	<select id="selectByNo" parameterType="int" resultType="QnaVo">
+		select * from qna
+		where qna_No=#{qnaNo}
+	</select>
+	
+	<update id="editQna" parameterType="QnaVo">
+		update qna
+		set title = #{title}, category_no=#{categoryNO}, content=#{content}, status=#{status}<!-- , filename=#{filename}, filesize=#{filesize}, originfilename=#{originfilename} -->
+		where qna_no=#{qnaNo}
+	</update>
+	
+	<delete id="deleteQna" parameterType="int">
+		delete qna
+		where qna_No=#{qnaNo}
+	</delete>
+	
+	<select id="after" parameterType="int"  resultType="QnaVo">
+		select *
+		from qna
+		where qna_No=(select min(qna_No)
+		                from qna where qna_No>#{qnaNo})
+	</select>
+	
+	<select id="before" parameterType="int"  resultType="QnaVo">
+		select *
+		from qna
+		<![CDATA[ 
+		where qna_No=(select max(qna_No)
+		                from qna where qna_No<#{qnaNo})]]>
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+

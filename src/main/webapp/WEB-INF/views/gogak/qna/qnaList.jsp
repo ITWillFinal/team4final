@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../../inc/adminTop.jsp"%>
 
 <style>
@@ -68,28 +69,28 @@ a{
 		$('#btMultiDel').click(function() {
 			var len = $('tbody input[type=checkbox]:checked').length;
 			if(len==0){
-				alert("삭제하려는 상품을 먼저 체크하세요.");
+				alert("삭제하려는 게시글을 먼저 체크하세요.");
 				return;
 			}
 			
 			$('form[name=frmList]')
-				.prop("action", "<c:url value = '/gogak/company/deleteMulti.do'/>");
+				.prop("action", "<c:url value = '/gogak/qna/deleteMulti.do'/>");
 			
 			$('form[name=frmList]').submit();
 		});
 		
-		$('#fnqWrite').click(function() {
-			location.href = "<c:url value = '/gogak/company/faqWrite.do'/>";
+		$('#qnaWrite').click(function() {
+			location.href = "<c:url value = '/gogak/qna/qnaWrite.do'/>";
 		});
 	});
 </script>
 <main>
-	<%@ include file="../side_inc/company_Sidebar.jsp"%>
+	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
 		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
-		<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문</h2>
+		<h2 style = "padding-left: 50px; padding-top: 30px; ">1:1 문의</h2>
 		</div>
 		<div style="text-align: center; margin:5px; /* border:1px solid lightgray; */">
 		
@@ -100,7 +101,7 @@ a{
 							 ${pagingInfo.totalRecord}건 검색되었습니다.</p>
 					</c:if>
 					<!-- 페이징 -->
-					<form action="<c:url value='/gogak/company/faqList.do'/>" 
+					<form action="<c:url value='/gogak/qna/qnaList.do'/>" 
 						name="frmPage" method="post">
 						<input type="hidden" name="currentPage">
 						<input type="hidden" name="searchCondition" 
@@ -111,48 +112,58 @@ a{
 				</div>
 			<div>
 			<form name="frmList" method="post"
-				action="<c:url value = '/gogak/company/faqList.do'/>">
+				action="<c:url value = '/gogak/qna/qnaList.do'/>">
 				<div class = "divList">
 					<table class = "box2" style="width: 700px;">
 						<colgroup>
+						   <col style="width:10%;" />
+						   <col style="width:10%;" />
+						   <col style="width:10%;" />
+						   <col style="width:10%;" />
 						   <col style="width:20%;" />
 						   <col style="width:20%;" />
-						   <col style="width:30%;" />
-						   <col style="width:30%;" />
+						   <col style="width:20%;" />
 						</colgroup>
 						<thead>
 							<tr>
-								<!-- <th><input type="checkbox" name="chkAll"></th> -->
+								<th><input type="checkbox" name="chkAll"></th>
 								<th>글번호</th>
+								<th>구분</th>
 								<th>카테고리</th>
-								<th>질문</th>
-								<th>답변</th>
+								<th>제목</th>
+								<th>아이디</th>
+								<th>작성일</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:if test="${empty list }">
-								<th colspan="4">등록된 자주찾는 질문이 없습니다.</th>
+								<th colspan="4">등록된 1:1 문의가 없습니다.</th>
 							</c:if>
 							<c:if test="${!empty list }">
 								<c:set var = "idx" value = "0"/>
 									<c:forEach var = "vo" items="${list }">
 										<tr>
-											<td style="text-align: center;">${vo.faqNo }</td>
-											<td style="text-align: center;">${vo.category }</td>
-											<td style="text-align: center;">
-												<a href
-													="<c:url value='/gogak/company/faqDetail.do?no=${vo.faqNo}'/>">
-															${vo.question }
-												</a>								
+											<td style = "text-align: center">
+												<input type="checkbox" name="qnaList[${idx }].qnaNo"
+													value = "${vo.qnaNo }">
 											</td>
+											<td style="text-align: center;">${vo.qnaNo }</td>
+											<td style="text-align: center;">${vo.status }</td>
+											<td style="text-align: center;">${vo.categoryNO }</td>
 											<td style="text-align: center;">
-												<!-- 제목줄이기 -->
-												<c:if test = "${fn:length(vo.answer)>=10 }">
-													${fn:substring(vo.answer,0,10)}...
-												</c:if>
-												<c:if test="${fn:length(vo.answer)<10 }">
-													${vo.answer }							
-												</c:if>
+												<a href = "<c:url value = '/gogak/qna/qnaDetail.do?no=${vo.qnaNo }'/>">
+													<c:if test = "${fn:length(vo.title)>=10 }">
+														${fn:substring(vo.title,0,10)}...
+													</c:if>
+													<c:if test="${fn:length(vo.title)<10 }">
+														${vo.title }							
+													</c:if>
+												</a>
+											</td>
+											<td style="text-align: center;">${vo.userId }</td>
+											<td style="text-align: center;">
+												<fmt:formatDate value="${vo.regDate}"
+													pattern="yyyy-MM-dd"/>
 											</td>
 										</tr>
 										<c:set var = "idx" value = "${idx+1 }"/>
@@ -193,7 +204,7 @@ a{
 				</div>
 				<div class="divSearch" style="padding-top: 10px">
 				   	<form name="frmSearch" method="post" 
-				   		action='<c:url value="/gogak/company/faqList.do"/>'>
+				   		action='<c:url value="/gogak/qna/qnaList.do"/>'>
 				        <select name="searchCondition" style="height: 27px;">
 				            <option value="category" 
 				            	<c:if test="${param.searchCondition=='category' }">
@@ -214,10 +225,8 @@ a{
 					        <input type="text" name="searchKeyword" title="검색어 입력"
 					        	value="${param.searchKeyword}">   
 							<input type="submit" value="검색"><br>
-							<!-- <div id = "bt">
-								<input type="button" id = "fnqWrite" value = "게시글 등록">
-								<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"><br><br>
-							</div> -->
+							<input type="button" id = "qnaWrite" value = "게시글 등록">
+							<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"><br><br>
 				    </form>
 				</div>
 			</div>

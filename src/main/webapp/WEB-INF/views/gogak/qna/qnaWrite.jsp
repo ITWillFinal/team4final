@@ -27,33 +27,39 @@ input#rrr {
 <script type="text/javascript">
 	$(function(){
 		$('#rrr').click(function() {
-			location.href = "<c:url value = '/gogak/company/faqList.do'/>";
+			location.href = "<c:url value = '/gogak/qna/qnaList.do'/>";
 		});
 	});
 </script>
 <main>
-	<%@ include file="../side_inc/company_Sidebar.jsp"%>
+	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
 		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
-		<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문 등록하기</h2>
+		<h2 style = "padding-left: 50px; padding-top: 30px; ">1:1 문의 등록하기</h2>
 		</div>
 		<div style="margin:5px;">
-
 			<div id="outDiv">
 				<form name = "frmWrite" method="post" 
-					action="<c:url value = '/gogak/company/faqWrite.do'/>">
+					action="<c:url value = '/gogak/qna/qnaWrite.do'/>">
+					<!-- 조정필요 -->
+					<label for="status">기업/일반</label>
+					<input type="text" name = "status" >
+					<label for="userId">아이디</label>
+					<input type="text" name = "userId" >
+					<label for="userNo">유저번호</label>
+					<input type="text" name = "userNo" >
 					<table style="width: 700px;">
 						<colgroup>
 							<col style="width: 20%;" />
 							<col style="width: 80%;" />
 						</colgroup>
 						<tr>
-							<td>카테고리</td>
+							<td>카테고리(숫자)</td>
 							<td>
 							<!-- vo에서 읽어와서 for돌리기 -->
-								<input type="text" name = "category">
+								<input type="text" name = "categoryNO">
 								<!-- <select name = "category">
 									<option value="a">A</option>
 									<option value="b">B</option>
@@ -63,14 +69,14 @@ input#rrr {
 						</tr>
 				
 						<tr>
-							<td>질문</td>
-							<td><input type="text" name = "question"></td>
+							<td>문의 제목</td>
+							<td><input type="text" name = "title"></td>
 						</tr>
 				
 						<tr>
-							<td>답변내용</td>
+							<td>문의 내용</td>
 							<td id = "tdA">
-								<textarea rows="7px" cols="50px" name = "answer"></textarea>
+								<textarea rows="7px" cols="50px" name = "content"></textarea>
 							</td>
 						</tr>
 					</table>

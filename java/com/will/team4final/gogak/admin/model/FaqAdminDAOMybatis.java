@@ -11,48 +11,48 @@ import com.will.team4final.common.SearchVO;
 @Repository
 public class FaqAdminDAOMybatis implements FaqAdminDAO{
 	
-	@Autowired private SqlSessionTemplate sqlsesseion;
+	@Autowired private SqlSessionTemplate sqlsession;
 
 	private String namespace = "com.mybatis.mapper.oracle.faqAdmin.";
 	
 	@Override
 	public List<FaqAdminVO> selectFaq(SearchVO searchVo) {
-		return sqlsesseion.selectList(namespace+"selectFaq", searchVo);
+		return sqlsession.selectList(namespace+"selectFaq", searchVo);
 	}
 
 	@Override
 	public int WriteFaq(FaqAdminVO vo) {
-		return sqlsesseion.insert(namespace+"WriteFaq", vo);
+		return sqlsession.insert(namespace+"WriteFaq", vo);
 	}
 
 	@Override
 	public FaqAdminVO selectByNo(int no) {
-		return sqlsesseion.selectOne(namespace+"selectByNo", no);
+		return sqlsession.selectOne(namespace+"selectByNo", no);
 	}
 
 	@Override
 	public int editFaq(FaqAdminVO vo) {
-		return sqlsesseion.update(namespace+"editFaq", vo);
+		return sqlsession.update(namespace+"editFaq", vo);
 	}
 
 	@Override
 	public int deleteFaq(int no) {
-		return sqlsesseion.delete(namespace+"deleteFaq", no);
+		return sqlsession.delete(namespace+"deleteFaq", no);
 	}
 
 	@Override
 	public int selectTotalRecord(SearchVO vo) {
-		return sqlsesseion.selectOne(namespace+"selectTotalRecord", vo);
+		return sqlsession.selectOne(namespace+"selectTotalRecord", vo);
 	}
 
 	@Override
 	public FaqAdminVO before(int faqNo) {
-		return sqlsesseion.selectOne(namespace+"before", faqNo);
+		return sqlsession.selectOne(namespace+"before", faqNo);
 	}
 
 	@Override
 	public FaqAdminVO after(int faqNo) {
-		return sqlsesseion.selectOne(namespace+"after", faqNo);
+		return sqlsession.selectOne(namespace+"after", faqNo);
 	}
 	
 	
