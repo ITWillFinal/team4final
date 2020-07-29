@@ -21,6 +21,11 @@ public class ComRecruitDAOMybatis implements ComRecruitDAO {
 	public List<ComRecruitVO> selectMost5() {
 		return sqlSession.selectList(namespace + "selectMost5");
 	}
+
+	@Override
+	public ComRecruitVO selectOneCom() {
+		return sqlSession.selectOne(namespace + "selectOneCom");
+	}
 	
 	
 }

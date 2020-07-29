@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.login.controller.LoginController;
@@ -23,6 +24,8 @@ public class HireInfoController {
 	private LocationService locationServ;
 	@Autowired
 	private JobService jobServ;
+	@Autowired
+	private ComRecruitService comRecuritServ;
 	
 	@RequestMapping("/hireinpo/hireinpo.do")
 	public String hireinpoHome(Model model) {

@@ -5,4 +5,5 @@ import java.util.List;
 public interface ComRecruitService {
 	int insertComRecruit(ComRecruitVO comRecruitVo);
 	List<ComRecruitVO> selectMost5();
+	ComRecruitVO selectOneCom();
 }

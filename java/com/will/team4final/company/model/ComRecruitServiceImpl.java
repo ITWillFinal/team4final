@@ -20,5 +20,10 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 		return comRecruitDao.selectMost5();
 	}
 
+	@Override
+	public ComRecruitVO selectOneCom() {
+		return comRecruitDao.selectOneCom();
+	}
+
 	
 }
