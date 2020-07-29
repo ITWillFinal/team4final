@@ -13,5 +13,7 @@ public interface MemberDAO {
 	String selectMemberPwd(String userid);
 	List<MemberVO> showAllMemberUser();
 	int deleteUser(int userNo);
+	int changeResumeNo(MemberVO memberVo);
+	int changeYorn(MemberVO memberVo);
 	
 }

@@ -1,6 +1,7 @@
 package com.will.team4final.resume.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,16 @@ public class ResumeDAOMabatis implements ResumeDAO{
 	@Override
 	public List<ResumeVO> selectResumeByUserNo(String userNo) {
 		return sqlSession.selectList(namespace+"selectResumeByUserNo",userNo);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectResumeCareerViewByUserNo(String userNo) {
+		return sqlSession.selectList(namespace+"selectResumeCareerViewByUserNo",userNo);
+	}
+
+	@Override
+	public int deleteResume(int resumeNo) {
+		return sqlSession.delete(namespace+"deleteResume",resumeNo);
 	}
 	
 	

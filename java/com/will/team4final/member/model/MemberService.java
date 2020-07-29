@@ -25,4 +25,6 @@ public interface MemberService {
 	int loginCheck(String userid, String pwd);
 	List<MemberVO> showAllMemberUser();
 	int deleteUser(int userNo);
+	int changeResumeNo(MemberVO memberVo);
+	int changeYorn(MemberVO memberVo);
 }

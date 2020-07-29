@@ -1,6 +1,7 @@
 package com.will.team4final.resume.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,6 +119,18 @@ public class ResumeServiceImpl implements ResumeService{
 	@Override
 	public List<ResumeVO> selectResumeByUserNo(String userNo) {
 		return resumeDao.selectResumeByUserNo(userNo);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> selectResumeCareerViewByUserNo(String userNo) {
+		return resumeDao.selectResumeCareerViewByUserNo(userNo);
+	}
+
+
+	@Override
+	public int deleteResume(int resumeNo) {
+		return resumeDao.deleteResume(resumeNo);
 	}
 
 }

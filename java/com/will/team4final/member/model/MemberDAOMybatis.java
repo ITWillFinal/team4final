@@ -56,6 +56,16 @@ public class MemberDAOMybatis implements MemberDAO {
 	public MemberVO selectByUerNo(int userNo) {
 		return sqlSession.selectOne(namespace+"selectByUerNo", userNo);
 	}
+
+	@Override
+	public int changeResumeNo(MemberVO memberVo) {
+		return sqlSession.update(namespace+"changeResumeNo",memberVo);
+	}
+
+	@Override
+	public int changeYorn(MemberVO memberVo) {
+		return sqlSession.update(namespace+"changeYorn",memberVo);
+	}
 	
 	
 

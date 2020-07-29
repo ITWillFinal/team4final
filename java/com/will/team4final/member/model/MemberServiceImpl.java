@@ -67,6 +67,16 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO selectByUerNo(int userNo) {
 		return memberDao.selectByUerNo(userNo);
 	}
+
+	@Override
+	public int changeResumeNo(MemberVO memberVo) {
+		return memberDao.changeResumeNo(memberVo);
+	}
+
+	@Override
+	public int changeYorn(MemberVO memberVo) {
+		return memberDao.changeYorn(memberVo);
+	}
 	
 	
 }

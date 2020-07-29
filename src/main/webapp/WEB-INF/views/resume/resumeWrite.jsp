@@ -324,7 +324,7 @@
     	top: -20px;
 	}
 	
-	.bt-sub{
+	.bt-sub, .bt-return{
 		width: 250px;
 		
 	    border: 1px solid #fb246a;
@@ -903,6 +903,10 @@
 				}
 			});
 			
+		});
+		
+		$('.bt-return').click(function(){
+			location.href="<c:url value='/resume/resumeMain.do'/>"
 		});
 	});
 </script>
@@ -1700,6 +1704,7 @@
 			</div>
 		</div>
 		<div style="text-align:center; padding: 20px;">
+			<input class="bt-return" type="button" value="돌아가기"/>
 			<input class="bt-sub" type="submit"/>
 		</div>
 		</form>

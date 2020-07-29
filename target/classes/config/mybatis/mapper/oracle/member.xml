@@ -51,6 +51,23 @@
 		set outdate=sysdate 
 		where user_no=#{userNo}
 	</update>
+	
+	<update id="changeResumeNo" parameterType="memberVo">
+		update member
+		<if test="resumeNo==-1">
+			set resume_no=null, yorn='N'
+		</if>
+		<if test="resumeNo!=-1">
+			set resume_no=#{resumeNo}
+		</if>
+		where user_no=#{userNo}
+	</update>
+	
+	<update id="changeYorn" parameterType="memberVo">
+		update member
+		set yorn=#{yorn}
+		where user_no=#{userNo}
+	</update>
 </mapper>
 
 

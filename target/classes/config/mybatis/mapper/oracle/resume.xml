@@ -82,4 +82,13 @@
 		select * from resume where user_no=#{userNo}
 	</select>
 
+	<select id="selectResumeCareerViewByUserNo" parameterType="string" resultType="map">
+		select * from resume_career_one_view
+		where user_no = #{userNo}
+	</select>
+	
+	<delete id="deleteResume" parameterType="int">
+		delete resume
+		where resume_no=#{resumeNo}
+	</delete>
 </mapper>
