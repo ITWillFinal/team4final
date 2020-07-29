@@ -22,7 +22,6 @@ import com.will.team4final.resume.model.ActiveListVO;
 import com.will.team4final.resume.model.AddinfoVO;
 import com.will.team4final.resume.model.AwardListVO;
 import com.will.team4final.resume.model.CareerListVO;
-import com.will.team4final.resume.model.CareerVO;
 import com.will.team4final.resume.model.CertifyListVO;
 import com.will.team4final.resume.model.EducationVO;
 import com.will.team4final.resume.model.LanguageListVO;
@@ -40,7 +39,7 @@ public class ResumeController {
 	@Autowired private MemberService memberService;
 	
 	@RequestMapping(value = "/resumeWrite.do", method = RequestMethod.GET)
-	public String resumeWrite_get(HttpSession session,Model model) {
+	public String resumeWrite_get(HttpSession session, Model model) {
 		logger.info("이력서 작성 페이지");
 		
 		String userid = (String)session.getAttribute("userid");
@@ -65,7 +64,7 @@ public class ResumeController {
 			@ModelAttribute AwardListVO awardListVo,
 			@ModelAttribute AddinfoVO addInfoVo,
 			@ModelAttribute PotfolioVO potfolioVo,
-			HttpServletRequest request) {
+			HttpServletRequest request, Model model) {
 		
 		logger.info("이력서 등록, 파라미터 resumeVo={}",resumeVo);
 		logger.info("이력서 등록, 파라미터 educationVo={}",educationVo);
@@ -128,13 +127,28 @@ public class ResumeController {
 		
 		int cnt = resumeService.insertResume(resumeAllVo);
 		logger.info("이력서 등록 결과 cnt={}",cnt);
+		String msg="이력서 등록에 실패하였습니다." , url ="/resume/resumeMain.do";
+		if(cnt>0) {
+			msg="이력서가 등록되었습니다.";
+		}
 		
-		return "";
+		model.addAttribute("url",url);
+		model.addAttribute("msg",msg);		
+		
+		return "common/message";
 	}
 	
 	@RequestMapping(value = "/resumeMain.do")
-	public String resumeMain() {
+	public String resumeMain(HttpSession session, Model model) {
 		logger.info("이력서 메인페이지");
+		String userid = (String)session.getAttribute("userid");
+		MemberVO memberVo = memberService.selectAll(userid);
+		logger.info("memberVo={}",memberVo);
+		
+		List<ResumeVO> resumeList = resumeService.selectResumeByUserNo(Integer.toString(memberVo.getUserNo()));
+		logger.info("{}이력서 조회 결과 list.size={}",userid,resumeList.size());
+		
+		model.addAttribute("resumeList",resumeList);
 		
 		return "resume/resumeMain";
 	}

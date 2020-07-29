@@ -1,5 +1,7 @@
 package com.will.team4final.resume.model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -52,6 +54,11 @@ public class ResumeDAOMabatis implements ResumeDAO{
 	@Override
 	public int insertCertify(CertifyVO certifyVo) {
 		return sqlSession.insert(namespace+"insertCertify",certifyVo);
+	}
+
+	@Override
+	public List<ResumeVO> selectResumeByUserNo(String userNo) {
+		return sqlSession.selectList(namespace+"selectResumeByUserNo",userNo);
 	}
 	
 	
