@@ -44,7 +44,6 @@
 	<select id="showAllMemberUser" resultType="memberVo">
 		select * from member order by regdate
 	</select>
-	
 
 	<update id="deleteUser" parameterType="int">
 		update member

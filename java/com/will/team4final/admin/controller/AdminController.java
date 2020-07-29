@@ -168,7 +168,7 @@ public class AdminController {
 			searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
 			logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
 
-			List<MemberVO> memberList = memberService.showAllMemberUser(searchVo);
+			List<MemberVO> memberList = memberService.showAllMemberUser();
 			
 			//totalRecord
 			int totalRecord = memberService.selectTotalRecordOfMember(searchVo);

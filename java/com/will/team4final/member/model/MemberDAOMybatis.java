@@ -6,6 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.will.team4final.common.DateSearchVO;
+import com.will.team4final.common.SearchVO;
+
 @Repository
 public class MemberDAOMybatis implements MemberDAO {
 	@Autowired private SqlSessionTemplate sqlSession;
@@ -67,8 +70,8 @@ public class MemberDAOMybatis implements MemberDAO {
 		return sqlSession.update(namespace+"changeYorn",memberVo);
 	}
 	
-	
-
-	
+	public int selectTotalRecordOfMember(SearchVO searchVo) {
+		return sqlSession.selectOne(namespace+"selectTotalRecordOfMember", searchVo);
+	}
 
 }

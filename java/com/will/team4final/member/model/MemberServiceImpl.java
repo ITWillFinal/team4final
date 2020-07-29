@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.will.team4final.common.SearchVO;
+
 @Service
 public class MemberServiceImpl implements MemberService{
 	@Autowired
@@ -78,5 +80,7 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.changeYorn(memberVo);
 	}
 	
-	
+	public int selectTotalRecordOfMember(SearchVO searchVo) {
+		return memberDao.selectTotalRecordOfMember(searchVo);
+	}
 }

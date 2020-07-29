@@ -2,6 +2,9 @@ package com.will.team4final.member.model;
 
 import java.util.List;
 
+import com.will.team4final.common.DateSearchVO;
+import com.will.team4final.common.SearchVO;
+
 public interface MemberDAO {
 	
 	int insertMember(MemberVO vo);
@@ -15,5 +18,5 @@ public interface MemberDAO {
 	int deleteUser(int userNo);
 	int changeResumeNo(MemberVO memberVo);
 	int changeYorn(MemberVO memberVo);
-	
+	int selectTotalRecordOfMember(SearchVO searchVo);
 }

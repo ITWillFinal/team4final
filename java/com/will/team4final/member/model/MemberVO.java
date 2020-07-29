@@ -1,7 +1,7 @@
 package com.will.team4final.member.model;
 
 public class MemberVO {
-	private int userNo;
+	private String userNo;
 	private String userid;
 	private String pwd;
 	private String userName;
@@ -20,10 +20,10 @@ public class MemberVO {
 	private String resumeNo;
 	private String yorn;
 	
-	public int getUserNo() {
+	public String getUserNo() {
 		return userNo;
 	}
-	public void setUserNo(int userNo) {
+	public void setUserNo(String userNo) {
 		this.userNo = userNo;
 	}
 	public String getUserid() {
