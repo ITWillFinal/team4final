@@ -37,3 +37,15 @@ ALTER TABLE LANGUAGE DROP CONSTRAINT FK_RESUME_TO_LANGUAGE;
 
 ALTER TABLE LANGUAGE ADD CONSTRAINT FK_RESUME_TO_LANGUAGE
 FOREIGN KEY(resume_no) REFERENCES resume(resume_no) ON DELETE CASCADE;
+
+create or replace view resume_career_view
+as
+select r.*, c.career_company
+from resume r inner join career c
+on r.resume_no = c.resume_no;
+
+create or replace view resume_career_one_view
+as
+SELECT * FROM resume_career_view 
+WHERE ROWID IN 
+(SELECT MAX(ROWID) FROM resume_career_view GROUP BY resume_no);
