@@ -173,7 +173,7 @@
 			window.open(
 				"<c:url value='/member/checkUserid.do?user_id="
 				+ user_id + "'/>", 'chk',
-				'width=420,height=300,left=0,top=0,location=yes,resizable=yes');
+				'width=420,height=300,left=500px,top=500px,location=yes,resizable=yes');
 		});
 
 		$('input[name=email]')
@@ -183,7 +183,7 @@
 							window
 									.open("<c:url value='/member/email.do'/>",
 											'emailchk',
-											'width=420,height=300,left=0,top=0,location=yes,resizable=yes');
+											'width=460,height=400,left=0,top=0,location=yes,resizable=yes');
 						});
 
 		$('.checkAll').change(function() {
