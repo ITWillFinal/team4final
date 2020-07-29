@@ -147,7 +147,7 @@ public class ResumeController {
 		MemberVO memberVo = memberService.selectByUserid(userid);
 		logger.info("memberVo={}",memberVo);
 		
-		List<Map<String, Object>> resumeList = resumeService.selectResumeCareerViewByUserNo(Integer.toString(memberVo.getUserNo()));
+		List<Map<String, Object>> resumeList = resumeService.selectResumeCareerViewByUserNo(memberVo.getUserNo());
 		logger.info("{}이력서 조회 결과 list.size={}",userid,resumeList.size());
 		logger.info("대표이력서={}, 공개여부={}",memberVo.getResumeNo(),memberVo.getYorn());
 		
