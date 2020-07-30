@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.will.team4final.common.DateSearchVO;
+import com.will.team4final.admin.model.AdminService;
 import com.will.team4final.common.PaginationInfo;
 import com.will.team4final.common.SearchVO;
 import com.will.team4final.common.Utility;
-import com.will.team4final.gogak.model.FaqVO;
+import com.will.team4final.company.model.ComMemberService;
+import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.notice.model.NoticeListVO;
@@ -32,7 +33,11 @@ public class AdminController {
 	@Autowired
 	private NoticeService noticeServ;
 	@Autowired
-	private MemberService memberServ7ice;
+	private MemberService memberService;
+	@Autowired
+	private ComMemberService comMemberService;
+	@Autowired 
+	private AdminService adminService;
 	@Autowired
 	private QnaService qnaService;
 
@@ -154,13 +159,75 @@ public class AdminController {
 	}
 
 	@RequestMapping("/adminMemberManagement.do")
-	public String adminMemberManagement(@ModelAttribute DateSearchVO dateSearchVo, Model model) {
-		logger.info("공지사항 등록 페이지");
+	public String adminMemberManagement(@ModelAttribute SearchVO searchVo, Model model, @RequestParam(required = false) String adminStatus) {
+		
+		logger.info("관리자 회원 관리 페이지, adminStatus={}, 파라미터 searchVo={}", adminStatus, searchVo);
+		if(adminStatus==null || adminStatus.isEmpty()) {
+			adminStatus="A";
+		}
+		if(adminStatus.equals("U")) {
+			//[1] PaginationInfo 생성
+			PaginationInfo pagingInfo = new PaginationInfo();
+			pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+			pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+			
+			//[2] SearchVo 에 값 셋팅
+			searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+			searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
 
-		List<MemberVO> memberList = memberService.showAllMemberUser();
-
-		model.addAttribute("memberList", memberList);
-
+			List<MemberVO> memberList = memberService.showAllMemberUser();
+			
+			//totalRecord
+			int totalRecord = memberService.selectTotalRecordOfMember(searchVo);
+			logger.info("member, 전체 레코드 개수 totalRecord = {}",totalRecord);
+			pagingInfo.setTotalRecord(totalRecord);
+			model.addAttribute("memberList", memberList);
+			model.addAttribute("pagingInfo", pagingInfo);
+			
+			return "admin/adminMemberManagement";
+		}else if(adminStatus.equals("C")) {
+			//[1] PaginationInfo 생성
+			PaginationInfo pagingInfo = new PaginationInfo();
+			pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+			pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+			
+			//[2] SearchVo 에 값 셋팅
+			searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+			searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
+			
+			List<CompanyMemberVO> comList = comMemberService.showAllCMember(searchVo);
+			logger.info("회사 회원 조회 결과, comList={}", comList);
+			int totalRecord = comMemberService.selectTotalRecordOfCMember(searchVo);
+			logger.info("comList, 전체 레코드 개수 totalRecord = {}",totalRecord);
+			pagingInfo.setTotalRecord(totalRecord);
+			model.addAttribute("comList", comList);
+			model.addAttribute("pagingInfo", pagingInfo);
+			
+			return "admin/adminMemberManagement";
+		}else if(adminStatus.equals("A")) {
+			//[1] PaginationInfo 생성
+			PaginationInfo pagingInfo = new PaginationInfo();
+			pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+			pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+			
+			//[2] SearchVo 에 값 셋팅
+			searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+			searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
+			List<MemberVO> adminList = adminService.adminShowAllMember(searchVo);
+			int totalRecord = adminService.selectTotalRecordOfAdmin(searchVo);
+			logger.info("adminList, 전체 레코드 개수 totalRecord = {}",totalRecord);
+			pagingInfo.setTotalRecord(totalRecord);
+			model.addAttribute("adminList", adminList);
+			model.addAttribute("pagingInfo", pagingInfo);
+			
+			return "admin/adminMemberManagement";
+		}
 		return "admin/adminMemberManagement";
 	}
 
@@ -192,5 +259,23 @@ public class AdminController {
 		model.addAttribute("msg", msg);
 
 		return "common/message";
+	}
+	
+	@RequestMapping("/adminMemberUpdate.do")
+	public String adminUpdateMemberUpdate(@RequestParam(defaultValue = "0") int userNo,
+			@RequestParam String userStatus, Model model) {
+		logger.info("관리자에서 회원정보 수정 화면, 파라미터 userNo={}, userStatus={}", userNo, userStatus );
+
+		if(userStatus.equals("U")) {
+			MemberVO memVo=memberService.selectByUerNo(userNo);
+			logger.info("개인 회원 유저 넘버로 조회 결과, memVo={}", memVo);
+			model.addAttribute("memVo", memVo);
+		}else if(userStatus.equals("C")) {
+			CompanyMemberVO comVo = comMemberService.selectCMemberByUserCode(userNo);
+			logger.info("회사 회원 유저 넘버로 조회 결과, comVo={}", comVo);
+			model.addAttribute("comVo", comVo);
+		}
+
+		return "admin/adminMemberUpdate";
 	}
 }

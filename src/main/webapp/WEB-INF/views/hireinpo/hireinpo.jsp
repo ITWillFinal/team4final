@@ -101,7 +101,8 @@ $(function() {
 <style>
 	#hireTabs{
 		float: left;
-		width: 55%
+		width: 55%;
+		height: 370px;
 	}
 	#hireSearch{
 		float: right;
@@ -175,13 +176,13 @@ $(function() {
 <%@ include file="../inc/sidebar.jsp"%>
 <div style="overflow: hidden; width: 1055px; padding-left: 25px; font-size: 14px; margin-top: 10px;">
 <!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
-
+<h2 style="margin-bottom: 22px;">채용정보 상세검색</h2>
 <div id="hireTabs">
 	<ul>
 		<li><a href="#hireTabs-1"><i class="fa fa-map-marker" aria-hidden="true"></i>　지역</a></li>
 		<li><a href="#hireTabs-2"><i class="fa fa-briefcase" aria-hidden="true"></i>　직무</a></li>
 		<li><a href="#hireTabs-3"><i class="fa fa-industry" aria-hidden="true"></i>　산업</a></li>
-		<li><a href="#hireTabs-4"><i class="fa fa-industry" aria-hidden="true"></i>　기업형태 /고용형태/학력</a></li>
+		<li><a href="#hireTabs-4"><i class="fa fa-building-o" aria-hidden="true"></i>　기업형태/고용형태/학력</a></li>
 		
 	</ul>
 	
