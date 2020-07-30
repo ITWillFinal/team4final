@@ -56,7 +56,7 @@
 	<select id="selectCMemberInfoByUserid" parameterType="string" resultType="companyMemberVo">
 		select * from company_member where C_USERID=#{cUserid}
 	</select>
-	<select id="selectCMemberByUserCode" parameterType="int" resultType="companyMemberVo">
+	<select id="selectCMemberByUserCode" parameterType="string" resultType="companyMemberVo">
 		select * from company_member where C_MEMBER_CODE=#{cMemberCode}
 	</select>
 	
@@ -68,6 +68,20 @@
 				|| #{searchKeyword} || '%'
 		</if>
 	</select>
+	
+	<delete id="deleteCMember" parameterType="string">
+		update company_member
+		set C_OUTDATE=sysdate 
+		where C_MEMBER_CODE=#{cMemberCode}
+	</delete>
+	
+	<update id="updateCMember" parameterType="companyMemberVo">
+		update company_member
+		set  C_USERNAME = #{cUsername}, C_EMAIL=#{cEmail}, C_NICKNAME=#{cNickname},
+				C_BIRTH=#{cBirth}, C_HP=#{cHp}
+		where C_MEMBER_CODE=#{cMemberCode}
+	</update>
+	
 </mapper>
 
 

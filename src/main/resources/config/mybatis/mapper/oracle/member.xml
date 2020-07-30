@@ -37,15 +37,31 @@
 		select * from member where user_id=#{userid}
 	</select>
 	
-	<select id="selectByUerNo" parameterType="int" resultType="memberVo">
+	<select id="selectByUerNo" parameterType="string" resultType="memberVo">
 		select * from member where user_no=#{userNo}
 	</select>
 	
-	<select id="showAllMemberUser" resultType="memberVo">
-		select * from member order by regdate
+	<select id="showAllMemberUser" parameterType="searchvo" resultType="memberVo">
+	select *
+		from
+		(
+		    select rownum as RNUM, A.*
+		    from(
+		        select user_no, user_id, user_name, email, HP, regdate, outdate , user_status 
+			    from member
+		        <if test="searchKeyword!=null and searchKeyword !=''">
+		        	where ${searchCondition} like '%' 
+		        			|| #{searchKeyword} || '%'
+		        </if>
+		        order by regdate
+		    )A    
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
 
-	<update id="deleteUser" parameterType="int">
+	<update id="deleteUser" parameterType="string">
 		update member
 		set outdate=sysdate 
 		where user_no=#{userNo}
@@ -67,13 +83,21 @@
 		set yorn=#{yorn}
 		where user_no=#{userNo}
 	</update>
+	
+	<select id="selectTotalRecordOfMember" parameterType="searchVo"
+		resultType="int">
+		select count(*) from member
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			where ${searchCondition} like '%'
+				|| #{searchKeyword} || '%'
+		</if>
+	</select>
+	
+	<update id="updateMember" parameterType="memberVo">
+		update member
+		set user_name=#{userName}, email=#{email}, nickname=#{nickname}, birth=#{birth},
+			zipcode=#{zipcode}, address=#{address}, address_Detail=#{addressDetail}, hp=#{hp}
+		where user_no=#{userNo}
+	</update>
 </mapper>
-
-
-
-
-
-
-
-
 

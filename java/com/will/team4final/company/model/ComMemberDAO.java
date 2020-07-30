@@ -10,8 +10,10 @@ public interface ComMemberDAO {
 	String findCMemberId(String cEmail);
 	int updateCMemberPwdByEmail(CompanyMemberVO companyMemberVo);
 	CompanyMemberVO selectCMemberInfoByUserid(String cUserid);
-	CompanyMemberVO selectCMemberByUserCode(int userNo);
+	CompanyMemberVO selectCMemberByUserCode(String userNo);
 	String selectCMemberPwd(String cUserid);
 	List<CompanyMemberVO> showAllCMember(SearchVO searchVo);
 	int selectTotalRecordOfCMember(SearchVO searchVo);
+	int deleteCMember(String cMemberCode);
+	int updateCMember(CompanyMemberVO companyMemberVo);
 }

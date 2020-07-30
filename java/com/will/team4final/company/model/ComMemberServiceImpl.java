@@ -65,7 +65,7 @@ public class ComMemberServiceImpl implements ComMemberService{
 	}
 
 	@Override
-	public CompanyMemberVO selectCMemberByUserCode(int userNo) {
+	public CompanyMemberVO selectCMemberByUserCode(String userNo) {
 		return comMemberDao.selectCMemberByUserCode(userNo);
 	}
 
@@ -77,6 +77,16 @@ public class ComMemberServiceImpl implements ComMemberService{
 	@Override
 	public int selectTotalRecordOfCMember(SearchVO searchVo) {
 		return comMemberDao.selectTotalRecordOfCMember(searchVo);
+	}
+
+	@Override
+	public int deleteCMember(String cMemberCode) {
+		return comMemberDao.deleteCMember(cMemberCode);
+	}
+
+	@Override
+	public int updateCMember(CompanyMemberVO companyMemberVo) {
+		return comMemberDao.updateCMember(companyMemberVo);
 	}
 	
 	

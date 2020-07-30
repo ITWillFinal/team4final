@@ -234,8 +234,8 @@ height: 3px;
 				<div class="col-lg-10">
 					<label for="inputph" class="col-lg-2 control-label">성별</label> <select
 						class="form-control" id="cGender" name="cGender">
-						<option value="1">남</option>
-						<option value="2">여</option>
+						<option value="남자">남</option>
+						<option value="여자">여</option>
 					</select>
 				</div>
 			</div>

@@ -1,7 +1,7 @@
 package com.will.team4final.company.model;
 
 public class CompanyMemberVO {
-	private int cMemberCode;
+	private String cMemberCode;
 	private String cUserid;
 	private String cPwd;
 	private String cUsername;
@@ -14,10 +14,10 @@ public class CompanyMemberVO {
 	private String cOutdate;
 	private String cUserStatus;
 	
-	public int getcMemberCode() {
+	public String getcMemberCode() {
 		return cMemberCode;
 	}
-	public void setcMemberCode(int cMemberCode) {
+	public void setcMemberCode(String cMemberCode) {
 		this.cMemberCode = cMemberCode;
 	}
 	public String getcUserid() {

@@ -45,7 +45,7 @@ public class ComMemberDAOMybatis implements ComMemberDAO {
 	}
 
 	@Override
-	public CompanyMemberVO selectCMemberByUserCode(int userNo) {
+	public CompanyMemberVO selectCMemberByUserCode(String userNo) {
 		return sqlSession.selectOne(namespace+"selectCMemberByUserCode", userNo);
 	}
 
@@ -57,5 +57,15 @@ public class ComMemberDAOMybatis implements ComMemberDAO {
 	@Override
 	public int selectTotalRecordOfCMember(SearchVO searchVo) {
 		return sqlSession.selectOne(namespace+"selectTotalRecordOfCMember", searchVo);
+	}
+
+	@Override
+	public int deleteCMember(String cMemberCode) {
+		return sqlSession.delete(namespace + "deleteCMember", cMemberCode);
+	}
+
+	@Override
+	public int updateCMember(CompanyMemberVO companyMemberVo) {
+		return sqlSession.update(namespace+"updateCMember", companyMemberVo);
 	}
 }
