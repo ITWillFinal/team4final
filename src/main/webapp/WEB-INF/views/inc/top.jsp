@@ -321,9 +321,9 @@
 					<div class="row align-items-center">
 						<div class="col-lg-3 col-md-2">
 							<!-- Logo -->
-							<div class="logo">
+							<div class="logo" style="width: 250px;">
 								<a href="<c:url value='/index.do'/>"><img
-									src="<c:url value='/resources/images/logo/logo.png'/>" alt=""></a>
+									src="<c:url value='/resources/images/logo/logo.png'/>" alt="" style="width: 90%; margin-bottom: 15px;"></a>
 							</div>
 						</div>
 						<div class="col-lg-9 col-md-9">

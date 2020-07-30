@@ -35,8 +35,7 @@
 						</button>
 					</form>
 					<ul class="nav pull-right">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Dropdown</a></li>
+						<li><a href="<c:url value='/index.do'/>" >THE JOB HOME</a></li>
 						<li><a href="#">Support </a></li>
 						<li><a href="#">Support </a></li>
 						

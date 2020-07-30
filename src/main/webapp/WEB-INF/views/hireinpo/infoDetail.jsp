@@ -9,6 +9,7 @@
 	    background: #ececec61;
 	    width: 1100px;
 		overflow: hidden;
+		box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
 	}
 	
 	#headDiv{
