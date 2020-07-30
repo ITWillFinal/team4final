@@ -14,10 +14,10 @@
 		<div class="span8">
 			<div class="row-fluid">
 				<div class="span12">
-					<a href="#" class="btn-box small span4"><i
-						class="icon-envelope"></i><b>Messages</b> </a><a href="#"
+					<a href="<c:url value = '/gogak/qna/qnaList.do'/>" class="btn-box small span4"><i
+						class="icon-envelope"></i><p style="color: red;">${cnt }</p><b>1:1 문의사항</b> </a><a href="<c:url value = '/gogak/qna/qnaList.do'/>"
 						class="btn-box small span4"><i class="icon-group"></i><b>Clients</b>
-					</a><a href="#" class="btn-box small span4"><i
+					</a><a href="<c:url value = '/gogak/qna/qnaList.do'/>" class="btn-box small span4"><i
 						class="icon-exchange"></i><b>Expenses</b> </a>
 				</div>
 			</div>

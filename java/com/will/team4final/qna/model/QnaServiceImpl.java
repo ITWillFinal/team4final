@@ -76,6 +76,16 @@ public class QnaServiceImpl implements QnaService{
 	public QnaVO selectByNo(int no) {
 		return qnaDao.selectByNo(no);
 	}
+
+	@Override
+	public int noRe() {
+		int qna = qnaDao.countQna();
+		int join = qnaDao.countJoin();
+		
+		int rst = qna-join;
+		
+		return rst;
+	}
 	
 	
 

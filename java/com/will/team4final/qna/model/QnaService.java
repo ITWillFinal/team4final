@@ -14,6 +14,7 @@ public interface QnaService {
 	int deleteMulti(List<QnaVO>list);
 	public QnaVO before(int qnaNo);
 	public QnaVO after(int qnaNo);
+	public int noRe();
 	
 
 }
