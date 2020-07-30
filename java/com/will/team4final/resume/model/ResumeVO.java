@@ -5,8 +5,8 @@ public class ResumeVO {
 	private String userNo;
 	private String location1;
 	private String location2;
-	private String jobType1;
-	private String jobType2;
+	private String jobtype1;
+	private String jobtype2;
 	private String sal;
 	private String selfIntTitle;
 	private String selfInt;
@@ -36,17 +36,17 @@ public class ResumeVO {
 	public void setLocation2(String location2) {
 		this.location2 = location2;
 	}
-	public String getJobType1() {
-		return jobType1;
+	public String getJobtype1() {
+		return jobtype1;
 	}
-	public void setJobType1(String jobType1) {
-		this.jobType1 = jobType1;
+	public void setJobtype1(String jobtype1) {
+		this.jobtype1 = jobtype1;
 	}
-	public String getJobType2() {
-		return jobType2;
+	public String getJobtype2() {
+		return jobtype2;
 	}
-	public void setJobType2(String jobType2) {
-		this.jobType2 = jobType2;
+	public void setJobtype2(String jobtype2) {
+		this.jobtype2 = jobtype2;
 	}
 	public String getSal() {
 		return sal;
@@ -75,7 +75,7 @@ public class ResumeVO {
 	@Override
 	public String toString() {
 		return "ResumeVO [resumeNo=" + resumeNo + ", userNo=" + userNo + ", location1=" + location1 + ", location2="
-				+ location2 + ", jobType1=" + jobType1 + ", jobType2=" + jobType2 + ", sal=" + sal + ", selfIntTitle="
+				+ location2 + ", jobtype1=" + jobtype1 + ", jobtype2=" + jobtype2 + ", sal=" + sal + ", selfIntTitle="
 				+ selfIntTitle + ", selfInt=" + selfInt + ", regdate=" + regdate + "]";
 	}
 

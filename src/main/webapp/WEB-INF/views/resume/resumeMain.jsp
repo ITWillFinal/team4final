@@ -11,8 +11,10 @@
 	.resumeMain{
 		width: 1020px;
 		margin: 0 auto;
-		background: #f7f7f7;
-		padding: 50px;
+		background: #f7f7f79e;
+   		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
+		padding: 50px; 
+		margin-bottom: 70px;
 	}
 	
 	.resume-desc{

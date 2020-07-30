@@ -17,8 +17,9 @@
 	}
 	
 	form[name=frmResume]{
-		margin-top: 20px;
 		margin-bottom: 50px;
+		background: #f7f7f79e;
+   		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 	}
 	
 	textarea { 
@@ -59,10 +60,12 @@
 	}
 	
 	.photh{
+		background-image:url("<c:url value='/resources/images/${memberVo.imageURL}'/>");
+		background-repeat:no-repeat;
+		background-size:100% 100%;
 		width: 130px;
 		height: 180px;
 		position: absolute;
-		border: 1px solid;
 		right: 30px;
     	top: 15%r;
 	}
@@ -1417,13 +1420,13 @@
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">직종1</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="jobType1"
+								name="jobtype1"
 								placeholder="희망 직종을 입력하세요" maxlength="30">
 					</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">직종2</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="jobType2"
+								name="jobtype2"
 								placeholder="희망 직종을 입력하세요" maxlength="30">
 					</div>
 			</div>
