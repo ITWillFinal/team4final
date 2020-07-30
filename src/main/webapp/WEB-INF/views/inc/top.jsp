@@ -142,6 +142,7 @@
 	background: #f9f9f9;
 	z-index: 15;
 	overflow: hidden;
+	
 }
 
 .totalMenu div {
@@ -153,6 +154,7 @@
 
 .totalMenu div a {
 	color: black;
+	cursor: pointer;
 }
 
 </style>
@@ -335,7 +337,7 @@
 								<div class="main-menu">
 									<nav class="d-none d-lg-block">
 										<ul id="navigation">
-											<li><a id="toggle"> ▤ </a></li>
+											<li><a id="toggle" style="cursor: pointer;"> ▤ </a></li>
 											<!-- <ul class="submenu">
                                                     <li><a href="blog.html">Blog</a></li>
                                                     <li><a href="single-blog.html">Blog Details</a></li>

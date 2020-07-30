@@ -12,7 +12,7 @@
 </style>
 
     <!-- main left sidebar -->
-	<div style="float: left; width:250px; margin-left:15%; word-break:break-all; border:1px solid lightgray; font-size: 14px;">
+	<div style="float: left; width:250px; margin-left:15%; word-break:break-all; border:1px solid lightgray; font-size: 14px; margin-top: 10px; margin-bottom: 50px;">
 		
 		<ul id="menu">
 		  <li class="ui-widget-header"><div id="topList" style="padding: 0.2em;">채용정보</div></li>
