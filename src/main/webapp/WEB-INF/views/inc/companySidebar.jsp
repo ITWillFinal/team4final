@@ -18,7 +18,17 @@
 				<span>총 입사지원자 : x명</span>
 			</div>
 		</div>
-		
+		<style>
+			.ui-widget-header{
+				background-color: #2e3752;	
+				color: white;
+				border-top: 3px solid #fd5a77;
+				border-right: 3px solid #13193e;
+				border-left: 3px solid #fd5a77;
+				border-bottom: 3px solid #13193e;
+			}
+			
+		</style>
 		<ul id="menu">
 		  <li class="ui-widget-header"><div>기업정보관리</div></li>
 		  <li><div>기업정보수정</div></li>

@@ -303,11 +303,13 @@
 	}
 	
 	input[type=text] {
+		padding-left: 15px;
+		padding-right: 15px;
 		background : whitesmoke;
 		width:350px;
 		height:35px;
 		border:none;
-		border-radius: 30px;
+		border-radius: 10px;
 	}
 	
 	label {
@@ -397,16 +399,7 @@
 						</select>	
 					</td>
 				</tr>
-				<input type="hidden" id="jobType1" name="jobType1">
-				<input type="hidden" id="jobType2" name="jobType2">
 				
-				<input type="hidden" id="induType1" name="induType1">
-				<input type="hidden" id="induType2" name="induType2">
-				
-				<input type="hidden" id="location1" name="location1">
-				<input type="hidden" id="location2" name="location2">
-				
-				<input type="hidden" id="comCode" name="comCode">
 				<tr>
 					<td>근무지역</td>
 					<td>
@@ -712,6 +705,15 @@
 			<div style="width: 900px; text-align: center;">
 				<input type="submit" value="채용공고 등록하기"/>
 			</div><br>
+			
+			<input type="hidden" id="jobType1" name="jobType1">
+			<input type="hidden" id="jobType2" name="jobType2">			
+			<input type="hidden" id="induType1" name="induType1">
+			<input type="hidden" id="induType2" name="induType2">			
+			<input type="hidden" id="location1" name="location1">
+			<input type="hidden" id="location2" name="location2">			
+			<input type="hidden" id="comCode" name="comCode">
+			
 		</form>
 	</div>
 </main>
