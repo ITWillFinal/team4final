@@ -43,6 +43,7 @@
 
 </script>
 
+
 <script type="text/javascript">
 	$(function() {
 		$('#sido').click(function() {
@@ -129,36 +130,79 @@
 			$('input[name=induType2]').val(numMiddle);
 		});
 		
+		var timeSel1="";
+		var timeSel2="";
+		var timeSel3="";
+		var timeSel4="";		
+		var timeSel = timeSel1 + " " + timeSel2 + " " + timeSel3 + " " + timeSel4;
+		
+		$("#timeSelect3").attr("disabled", true);
+	    $("#timeChk").on('click',function(){
+	        var chk = $('#timeChk').is(":checked");
+	        if(chk==true){
+	            $("#timeSelect3").removeAttr('disabled');
+	        }else{
+	            $("#timeSelect3").attr("disabled", true);
+	            timeSel3="";
+	            timeSel = timeSel1 + " " + timeSel2 + " " + timeSel3 + " " + timeSel4;
+				$("#workHours").val(timeSel);	
+	        }
+	    });
+	    
+	    $("#timeSelect4").attr("disabled", true);
+	    $("#timeChk").on('click',function(){
+	        var chk = $('#timeChk').is(":checked");
+	        if(chk==true){
+	            $("#timeSelect4").removeAttr('disabled');
+	        }else{
+	            $("#timeSelect4").attr("disabled", true);
+	            timeSel4="";
+	            timeSel = timeSel1 + " " + timeSel2 + " " + timeSel3 + " " + timeSel4;
+				$("#workHours").val(timeSel);	
+	        }
+	    });
+		
 		$("#timeSelect1").change(function(){
-			var timeSel1 = $("#timeSelect1 option:selected").val();
-			$("#workHours").val(timeSel1);
+			timeSel1 = $("#timeSelect1 option:selected").val();
+			$("#workHours1").val(timeSel1);
+			timeSel = timeSel1 + " " + timeSel2 + " " + timeSel3 + " " + timeSel4;
+			$("#workHours").val(timeSel);	
 		});
 		
 		$("#timeSelect2").change(function(){
-			var timeSel2 = $("#timeSelect2 option:selected").val();
-			$("#workHours").val(timeSel2);
+			timeSel2 = $("#timeSelect2 option:selected").val();
+			$("#workHours2").val(timeSel2);
+			timeSel = timeSel1 + " " + timeSel2 + " " + timeSel3 + " " + timeSel4;
+			$("#workHours").val(timeSel);
 		});
 		
 		$("#timeSelect3").click(function(){
-			var timeSel3 = $("#timeSelect3").val();
-			$("#workHours").val(timeSel3);
+			timeSel3 = $("#timeSelect3").val();
+			$("#workHours3").val(timeSel3);
+			timeSel = timeSel1 + " " + timeSel2 + " " + timeSel3 + " " + timeSel4;
+			$("#workHours").val(timeSel);
 		});
 		
 		$("#timeSelect4").click(function(){
-			var timeSel4 = $("#timeSelect4").val();
-			$("#workHours").val(timeSel4);
+			timeSel4 = $("#timeSelect4").val();
+			$("#workHours4").val(timeSel4);
+			timeSel = timeSel1 + " " + timeSel2 + " " + timeSel3 + " " + timeSel4;
+			$("#workHours").val(timeSel);
 		});
 		
 		$("#timeSelect3").change(function(){
-			var timeSel3 = $("#timeSelect3").val();
-			$("#workHours").val(timeSel3);
+			timeSel3 = $("#timeSelect3").val();
+			$("#workHours3").val(timeSel3);
+			timeSel = timeSel1 + " " + timeSel2 + " " + timeSel3 + " " + timeSel4;
+			$("#workHours").val(timeSel);
 		});
 		
 		$("#timeSelect4").change(function(){
-			var timeSel4 = $("#timeSelect4").val();
-			$("#workHours").val(timeSel4);
+			timeSel4 = $("#timeSelect4").val();
+			$("#workHours4").val(timeSel4);
+			timeSel = timeSel1 + " " + timeSel2 + " " + timeSel3 + " " + timeSel4;
+			$("#workHours").val(timeSel);
 		});
-		
 		
 		$("#paySelect").change(function(){
 			var paySel = $("#paySelect option:selected").val();
@@ -339,7 +383,7 @@
 	}
 	
 	input[type=text]:hover {
-	    background : #E9E9E9;
+	    background : #dcdcdc;
 	}
 	
 	input[type=text] {
@@ -374,11 +418,23 @@
 		margin-right: 3px;
 	}
 	
-	<%--
-	input[type=text]:focus {
-    	border: 2px solid #FB246A;
-    }
-	--%>
+	.sel{
+		width:150px;
+		display: inline-block;
+	
+	}
+	
+	.bttn{
+		width:75px;
+		display: inline-block;
+		margin-top: -3.5px;
+	}	
+	
+	.cat{
+		width:200px;
+		display: inline-block;
+	}
+
 
 </style>
 
@@ -414,8 +470,8 @@
 				<tr>
 					<td>기업형태</td>
 					<td>
-						<select id="comTypeSelect" name="comTypeSelect">
-							<option value="선택">선택</option>
+						<select id="comTypeSelect" name="comTypeSelect" class="form-control sel">
+							<option value="">선택</option>
 							<option value="대기업">대기업</option>
 							<option value="공기업">공사/공기업</option>
 							<option value="중견기업">중견기업</option>
@@ -423,19 +479,19 @@
 							<option value="스타트업">스타트업</option>
 							<option value="외국계기업">외국계기업</option>
 						</select>
-						<input type="text" id="companyType" name="companyType">
+						<input type="hidden" id="companyType" name="companyType">
 					</td>
 				</tr>	
 
 				<tr>
 					<td>직무</td>
 					<td>
-						<select size="5" id="jobLarge">
+						<select size="5" id="jobLarge" class="form-control cat">
 							<c:forEach var="map" items="${jobList }">
 			               		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
 			                </c:forEach>
 						</select>
-						<select id="jobMiddle" size="5">
+						<select id="jobMiddle" size="5" class="form-control cat">
 				
 						</select>	
 					</td>
@@ -444,12 +500,12 @@
 				<tr>
 					<td>산업</td>
 					<td>
-						<select size="5" id="induLarge">
+						<select size="5" id="induLarge" class="form-control cat">
 							<c:forEach var="map" items="${induList }">
 			               		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
 			                </c:forEach>
 						</select>
-						<select id="induMiddle" size="5">
+						<select id="induMiddle" size="5" class="form-control cat">
 				
 						</select>	
 					</td>
@@ -459,7 +515,7 @@
 					<td>근무지역</td>
 					<td>
 
-						<select id="sido">
+						<select id="sido" class="form-control sel">
 							<c:if test="${!empty list}">
 								<c:forEach var="location" items="${list}">
 									<option value="${location}">${location}</option>
@@ -467,7 +523,7 @@
 							</c:if>
 						</select>
 						<div style="display: inline;" id="sigugunDiv">
-							<select id="sigugun">
+							<select id="sigugun" class="form-control sel">
 							
 							</select>
 						</div>
@@ -478,7 +534,7 @@
 					<td>우편번호</td>
 					<td>
 						<input type="text" id="zipcode" name="zipcode" readonly>
-					 	<input type="button" onclick="sample4_execDaumPostcode()" value="선택"> 
+					 	<input type="button" onclick="sample4_execDaumPostcode()" value="선택" class="form-control bttn"> 
 					</td>
 				</tr>
 
@@ -500,26 +556,34 @@
 				<tr>
 					<td>근무시간</td>
 					<td>
-						<select id="timeSelect1" name="timeSelect1">
+						<select id="timeSelect1" name="timeSelect1" class="form-control sel">
 							<option value="">선택</option>
 							<option value="주 5일">주 5일</option>
 							<option value="주 6일">주 6일</option>
 						</select>
-						<select id="timeSelect2" name="timeSelect2">
+						<select id="timeSelect2" name="timeSelect2" class="form-control sel">
 							<option value="">선택</option>
 							<option value="월~금">월~금</option>
 							<option value="월~토">월~토</option>
 							<option value="2교대">2교대</option>
 							<option value="3교대">3교대</option>
 							<option value="탄력근무제">탄력근무제</option>
-						</select>
-						<br>
-						<span>근무시간</span>
-						<input type="checkbox" id="timeChk" name="timeChk">
-						<input type="time" value="09:00" id="timeSelect3" name="timeSelect3">
-						<input type="time" value="18:00" id="timeSelect4" name="timeSelect4">
-																	
+						</select><br>
+												
+						<div style="margin:5px 0px 5px 0px;">
+							<input type="time" value="09:00" id="timeSelect3" name="timeSelect3" class="form-control sel">
+							<input type="time" value="18:00" id="timeSelect4" name="timeSelect4" class="form-control sel">
+							<span>시간설정</span>
+							<input type="checkbox" id="timeChk" name="timeChk">
+						</div>
+																
+						<input type="hidden" id="workHours1" name="workHours1">
+						<input type="hidden" id="workHours2" name="workHours2">
+						<input type="hidden" id="workHours3" name="workHours3">
+						<input type="hidden" id="workHours4" name="workHours4">
+						
 						<input type="text" id="workHours" name="workHours">
+						
 					</td>
 				</tr>
 				
@@ -538,7 +602,7 @@
 				<tr>
 					<td>급여사항</td>
 					<td>
-						<select id="paySelect" name="paySelect">
+						<select id="paySelect" name="paySelect" class="form-control cat">
 							<option value="추후협의">추후협의</option>
 							<option value="2000만원~2100만원">2000만원~2100만원</option>
 							<option value="2100만원~2200만원">2100만원~2200만원</option>
@@ -599,15 +663,15 @@
 				<tr>
 					<td>모집인원</td>
 					<td>
-						<select id="recNumSelect" name="recNumSelect">
-							<option value="0">0명</option>
-							<option value="1">1명</option>
-							<option value="2">2명</option>
-							<option value="3">3명</option>
-							<option value="4">4명</option>
-							<option value="5">5명</option>
+						<select id="recNumSelect" name="recNumSelect" class="form-control sel">
+							<option value="0명">0명</option>
+							<option value="1명">1명</option>
+							<option value="2명">2명</option>
+							<option value="3명">3명</option>
+							<option value="4명">4명</option>
+							<option value="5명">5명</option>
 						</select>
-						<input type="hidden" id="recNumber" name="recNumber" value="0">
+						<input type="hidden" id="recNumber" name="recNumber" value="0명">
 					</td>
 				</tr>				
 			</table>
@@ -624,7 +688,7 @@
 				<tr>
 					<td>성별</td>
 					<td>						 
-						<select id="genderSelect" name="genderSelect">
+						<select id="genderSelect" name="genderSelect" class="form-control sel">
 							<option value="무관">무관</option>
 							<option value="남자">남자</option>
 							<option value="여자">여자</option>
@@ -638,30 +702,31 @@
 				<tr>
 					<td>나이</td>
 					<td>
-						<select id="ageSelect" name="ageSelect">
-							<option value="0">제한없음</option>
-							<option value="20">20세이하</option>
-							<option value="21">21세이하</option>
-							<option value="22">22세이하</option>
-							<option value="23">23세이하</option>
-							<option value="24">24세이하</option>
-							<option value="25">25세이하</option>
-							<option value="26">26세이하</option>
-							<option value="27">27세이하</option>
-							<option value="28">28세이하</option>
-							<option value="29">29세이하</option>
-							<option value="30">30세이하</option>
-							<option value="31">31세이하</option>
-							<option value="32">32세이하</option>
-							<option value="33">33세이하</option>
-							<option value="34">34세이하</option>
-							<option value="35">35세이하</option>
-							<option value="40">40세이하</option>
-							<option value="45">45세이하</option>
-							<option value="55">55세이하</option>
-							<option value="60">60세이하</option>							
+						<select id="ageSelect" name="ageSelect" class="form-control sel">
+							<option value="제한없음">제한없음</option>
+							<option value="20세 이하">20세 이하</option>
+							<option value="21세 이하">21세 이하</option>
+							<option value="22세 이하">22세 이하</option>
+							<option value="23세 이하">23세 이하</option>
+							<option value="24세 이하">24세 이하</option>
+							<option value="25세 이하">25세 이하</option>
+							<option value="26세 이하">26세 이하</option>
+							<option value="27세 이하">27세 이하</option>
+							<option value="28세 이하">28세 이하</option>
+							<option value="29세 이하">29세 이하</option>
+							<option value="30세 이하">30세 이하</option>
+							<option value="31세 이하">31세 이하</option>
+							<option value="32세 이하">32세 이하</option>
+							<option value="33세 이하">33세 이하</option>
+							<option value="34세 이하">34세 이하</option>
+							<option value="35세 이하">35세 이하</option>
+							<option value="40세 이하">40세 이하</option>
+							<option value="45세 이하">45세 이하</option>
+							<option value="55세 이하">55세 이하</option>
+							<option value="60세 이하">60세 이하</option>							
 						</select>  
-						<input type="hidden" name="age" id="age" value="0">
+						<input type="hidden" name="age" id="age" value="제한없음">
+						<br>
 						모집·채용에서 합리적인 이유 없이 연령제한을 하는 경우는 연령차별금지법 위반에 따른 500만원 이하의 벌금이 부과될 수 있습니다.
 					</td>
 				</tr>
@@ -669,7 +734,7 @@
 				<tr>
 					<td>학력</td>
 					<td> 
-						<select id="eduSelect" name="eduSelect">
+						<select id="eduSelect" name="eduSelect" class="form-control sel">
 							<option value="무관">무관</option>
 							<option value="초등학교">초등학교</option>
 							<option value="중학교">중학교</option>
@@ -686,38 +751,39 @@
 				<tr>
 					<td>경력</td>
 					<td> 
-						<select id="careerSelect" name="careerSelect">
-							<option value="0">무관</option>
-							<option value="1">1년</option>
-							<option value="2">2년</option>
-							<option value="3">3년</option>
-							<option value="4">4년</option>
-							<option value="5">5년</option>
-							<option value="6">6년</option>
-							<option value="7">7년</option>
-							<option value="8">8년</option>
-							<option value="9">9년</option>
-							<option value="10">10년</option>
-							<option value="11">11년</option>
-							<option value="12">12년</option>
-							<option value="13">13년</option>
-							<option value="14">14년</option>
-							<option value="15">15년</option>
-							<option value="16">16년</option>
-							<option value="17">17년</option>
-							<option value="18">18년</option>
-							<option value="19">19년</option>
-							<option value="20">20년</option>
-							<option value="21">21년</option>
-							<option value="22">22년</option>
-							<option value="23">23년</option>
-							<option value="24">24년</option>
-							<option value="25">25년</option>
-							<option value="26">26년</option>
-							<option value="27">27년</option>
-							<option value="28">28년</option>
-							<option value="29">29년</option>
-							<option value="30">30년</option>
+						<select id="careerSelect" name="careerSelect" class="form-control sel">
+							<option value="무관">무관</option>
+							<option value="1년">1년</option>
+							<option value="2년">2년</option>
+							<option value="3년">3년</option>
+							<option value="4년">4년</option>
+							<option value="5년">5년</option>
+							<option value="6년">6년</option>
+							<option value="7년">7년</option>
+							<option value="8년">8년</option>
+							<option value="9년">9년</option>
+							<option value="10년">10년</option>
+							<option value="11년">11년</option>
+							<option value="12년">12년</option>
+							<option value="13년">13년</option>
+							<option value="14년">14년</option>
+							<option value="15년">15년</option>
+							<option value="16년">16년</option>
+							<option value="17년">17년</option>
+							<option value="18년">18년</option>
+							<option value="19년">19년</option>
+							<option value="20년">20년</option>
+							<option value="21년">21년</option>
+							<option value="22년">22년</option>
+							<option value="23년">23년</option>
+							<option value="24년">24년</option>
+							<option value="25년">25년</option>
+							<option value="26년">26년</option>
+							<option value="27년">27년</option>
+							<option value="28년">28년</option>
+							<option value="29년">29년</option>
+							<option value="30년">30년</option>
+							<option value="30년 초과">30년 초과</option>
 						</select> 
 						<input type="hidden" id="career" name="career" value="무관">
 					</td>
