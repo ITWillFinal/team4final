@@ -22,6 +22,15 @@ $(function(){
 	$('#induMiddle').click(function() {
 		$('#tdIndu2').val($('#induMiddle option:selected').text());
 	});
+	$('#recType').click(function() {
+		$('#tdHireType').val($('#recType').val());
+	});
+	$('#comty').click(function() {
+		$('#tdComType').val($('#comty').val());
+	});
+	$('#eduLv').click(function() {
+		$('#tdEdu').val($('#eduLv').val());
+	});
 });
 
 $(function() {
@@ -117,6 +126,12 @@ $(function() {
 		width: 200px;
 		margin-left: 30px;
 	}
+	#locationLi2{
+		width: 161px;
+    	margin-left: 6px;
+    	text-align: center;
+    	float: left;
+	}
 	
 	#searchTable th{
 		padding-top: 20px;
@@ -166,6 +181,8 @@ $(function() {
 		<li><a href="#hireTabs-1"><i class="fa fa-map-marker" aria-hidden="true"></i>　지역</a></li>
 		<li><a href="#hireTabs-2"><i class="fa fa-briefcase" aria-hidden="true"></i>　직무</a></li>
 		<li><a href="#hireTabs-3"><i class="fa fa-industry" aria-hidden="true"></i>　산업</a></li>
+		<li><a href="#hireTabs-4"><i class="fa fa-industry" aria-hidden="true"></i>　기업형태 /고용형태/학력</a></li>
+		
 	</ul>
 	
 	<div id="hireTabs-1">
@@ -213,6 +230,43 @@ $(function() {
 			<select id="induMiddle" size="10">
 				
 			</select>			
+		</div>
+	</div>
+	
+	<div id="hireTabs-4">
+		<div id="locationLi2" style="display: inline-block">
+			<h5>고용형태</h5>
+			<select id="recType" name="recType" size="7" style="width: 160px">
+				<option value="추후협의">추후협의</option>
+				<option value="인턴직">인턴직</option>
+				<option value="정규직">정규직</option>
+				<option value="계약직">계약직</option>
+				<option value="프리랜서">프리랜서</option>
+			</select>
+		</div>
+		<div style="display: inline" id="locationLi2">
+			<h5>기업형태</h5>
+			<select id="comty" name="comty" size="7" style="width: 160px">
+				<option value="무관">무관</option>
+				<option value="초등학교">초등학교</option>
+				<option value="중학교">중학교</option>
+				<option value="고등학교">고등학교</option>
+				<option value="대학(2~3년) 졸업">대학(2~3년) 졸업</option>
+				<option value="대학(4년) 졸업">대학(4년) 졸업</option>
+				<option value="대학원(박사) 졸업">대학원(박사) 졸업</option>
+			</select> 
+		</div>
+		<div style="display: inline" id="locationLi2">
+			<h5>학력</h5>
+			<select id="eduLv" name="eduLv" size="7" style="width: 160px">
+				<option value="무관">무관</option>
+				<option value="초등학교">초등학교</option>
+				<option value="중학교">중학교</option>
+				<option value="고등학교">고등학교</option>
+				<option value="대학(2~3년) 졸업">대학(2~3년) 졸업</option>
+				<option value="대학(4년) 졸업">대학(4년) 졸업</option>
+				<option value="대학원(박사) 졸업">대학원(박사) 졸업</option>
+			</select> 
 		</div>
 	</div>
 </div>
