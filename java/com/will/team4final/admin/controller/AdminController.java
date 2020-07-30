@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,6 @@ import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.notice.model.NoticeListVO;
 import com.will.team4final.notice.model.NoticeService;
 import com.will.team4final.notice.model.NoticeVO;
-import com.will.team4final.qna.model.QnaService;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,18 +36,11 @@ public class AdminController {
 	private MemberService memberService;
 	@Autowired
 	private ComMemberService comMemberService;
-	@Autowired 
-	private AdminService adminService;
-	@Autowired
-	private QnaService qnaService;
-
+	@Autowired private AdminService adminService;
+	
 	@RequestMapping("/adminMain.do")
-	public void adminMain(Model model) {
+	public void adminMain() {
 		logger.info("관리자 메인 홈!");
-		
-		int cnt = qnaService.noRe();
-		model.addAttribute("cnt", cnt);
-		
 	}
 
 	@RequestMapping("/adminNotice.do")
@@ -160,7 +153,6 @@ public class AdminController {
 
 	@RequestMapping("/adminMemberManagement.do")
 	public String adminMemberManagement(@ModelAttribute SearchVO searchVo, Model model, @RequestParam(required = false) String adminStatus) {
-		
 		logger.info("관리자 회원 관리 페이지, adminStatus={}, 파라미터 searchVo={}", adminStatus, searchVo);
 		if(adminStatus==null || adminStatus.isEmpty()) {
 			adminStatus="A";
@@ -177,7 +169,7 @@ public class AdminController {
 			searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
 			logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
 
-			List<MemberVO> memberList = memberService.showAllMemberUser();
+			List<MemberVO> memberList = memberService.showAllMemberUser(searchVo);
 			
 			//totalRecord
 			int totalRecord = memberService.selectTotalRecordOfMember(searchVo);
@@ -228,7 +220,9 @@ public class AdminController {
 			
 			return "admin/adminMemberManagement";
 		}
+		
 		return "admin/adminMemberManagement";
+		
 	}
 
 	@RequestMapping(value = "/adminEditNotice.do", method = RequestMethod.GET)
@@ -260,22 +254,95 @@ public class AdminController {
 
 		return "common/message";
 	}
-	
-	@RequestMapping("/adminMemberUpdate.do")
-	public String adminUpdateMemberUpdate(@RequestParam(defaultValue = "0") int userNo,
-			@RequestParam String userStatus, Model model) {
-		logger.info("관리자에서 회원정보 수정 화면, 파라미터 userNo={}, userStatus={}", userNo, userStatus );
 
+	
+	
+	@RequestMapping("/deleteComUser.do")
+	public String deleteComUser(@RequestParam(defaultValue = "0") String cMemberCode, Model model) {
+		logger.info("관리자 페이지에서 회사 회원 삭제, 파라미터 cMemberCode={}", cMemberCode );
+		
+		String msg="삭제 실패 했습니다", url="/admin/adminMemberManagement.do?adminStatus=C";
+		int cnt = comMemberService.deleteCMember(cMemberCode);
+		logger.info("회사 회원 삭제 결과, cnt={}", cnt);
+		if(cnt>0) {
+			msg="회원 삭제 성공했습니다";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
+		
+	}
+	@RequestMapping(value = "/adminMemberUpdate.do", method = RequestMethod.GET)
+	public String adminUpdateMemberUpdate(@RequestParam(required = false) String userNo,
+			@RequestParam(required = false) String userStatus,
+			@RequestParam(required = false) String update,
+			Model model) {
+		logger.info("관리자에서 회원정보 수정 화면, 파라미터 userNo={}, userStatus={}", userNo, userStatus );
+		logger.info("관리자에서 회원정보 수정 화면, 파라미터 update={}", update);
+		if(userNo==null || userNo.isEmpty()) {
+			userNo="";
+		}
+		if(userStatus==null || userStatus.isEmpty()) {
+			userStatus="";
+		}
+		if(update==null || update.isEmpty()){
+			update="";
+		}
+		
 		if(userStatus.equals("U")) {
 			MemberVO memVo=memberService.selectByUerNo(userNo);
 			logger.info("개인 회원 유저 넘버로 조회 결과, memVo={}", memVo);
 			model.addAttribute("memVo", memVo);
+			return "admin/adminMemberUpdate";
 		}else if(userStatus.equals("C")) {
 			CompanyMemberVO comVo = comMemberService.selectCMemberByUserCode(userNo);
 			logger.info("회사 회원 유저 넘버로 조회 결과, comVo={}", comVo);
 			model.addAttribute("comVo", comVo);
+			return "admin/adminCMemberUpdate";
 		}
 
 		return "admin/adminMemberUpdate";
 	}
+	
+	@RequestMapping(value = "/adminMemberUpdate.do", method = RequestMethod.POST)
+	public String adminMemberUpdate(@ModelAttribute MemberVO memberVo, Model model) {
+		logger.info("회원 수정 값, 파라미터 memberVo={}", memberVo);
+		
+		String msg="회원 정보 수정 실패 했습니다", url="/admin/adminMemberUpdate.do";
+		int cnt = memberService.updateMember(memberVo);
+		logger.info("회원정보 수정 결과, cnt={}", cnt);
+		if(cnt>0) {
+			msg="회원 정보 수정 성공했습니다.";
+			url="/admin/adminMemberUpdate.do?update=true";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
+	}
+							
+	@RequestMapping(value = "/adminCMemberUpdate.do", method = RequestMethod.GET)
+	public String adminCMemberUpdate(@RequestParam(required = false) String update,Model model) {
+		if(update==null || update.isEmpty()){
+			update="";
+		}
+		return "admin/adminCMemberUpdate";
+	}
+	
+	@RequestMapping(value = "/adminCMemberUpdate.do", method = RequestMethod.POST)
+	public String adminCMemberUpdate_post(@ModelAttribute CompanyMemberVO companyMemberVo, Model model) {
+		logger.info("회사 회원 정보 수정 과정, 파라미터 companyMemberVo={}", companyMemberVo);
+		
+		String msg="회사 회원 정보 수정 실패 했습니다", url="/admin/adminCMemberUpdate.do?update=true";
+		int cnt = comMemberService.updateCMember(companyMemberVo);
+		logger.info("회사 회원 정보 수정 결과, cnt={}", cnt);
+		if(cnt>0) {
+			msg="회원 정보 수정 성공했습니다.";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	
 }

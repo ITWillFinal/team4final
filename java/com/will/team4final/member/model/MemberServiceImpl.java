@@ -56,17 +56,17 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberVO> showAllMemberUser() {
-		return memberDao.showAllMemberUser();
+	public List<MemberVO> showAllMemberUser(SearchVO searchVo) {
+		return memberDao.showAllMemberUser(searchVo);
 	}
 
 	@Override
-	public int deleteUser(int userNo) {
+	public int deleteUser(String userNo) {
 		return memberDao.deleteUser(userNo);
 	}
 
 	@Override
-	public MemberVO selectByUerNo(int userNo) {
+	public MemberVO selectByUerNo(String userNo) {
 		return memberDao.selectByUerNo(userNo);
 	}
 
@@ -82,5 +82,10 @@ public class MemberServiceImpl implements MemberService{
 	
 	public int selectTotalRecordOfMember(SearchVO searchVo) {
 		return memberDao.selectTotalRecordOfMember(searchVo);
+	}
+
+	@Override
+	public int updateMember(MemberVO memberVo) {
+		return memberDao.updateMember(memberVo);
 	}
 }
