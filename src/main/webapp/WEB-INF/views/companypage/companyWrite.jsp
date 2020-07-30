@@ -40,6 +40,7 @@
 		}).open();
 	};
 	
+
 </script>
 
 <script type="text/javascript">
@@ -128,6 +129,37 @@
 			$('input[name=induType2]').val(numMiddle);
 		});
 		
+		$("#timeSelect1").change(function(){
+			var timeSel1 = $("#timeSelect1 option:selected").val();
+			$("#workHours").val(timeSel1);
+		});
+		
+		$("#timeSelect2").change(function(){
+			var timeSel2 = $("#timeSelect2 option:selected").val();
+			$("#workHours").val(timeSel2);
+		});
+		
+		$("#timeSelect3").click(function(){
+			var timeSel3 = $("#timeSelect3").val();
+			$("#workHours").val(timeSel3);
+		});
+		
+		$("#timeSelect4").click(function(){
+			var timeSel4 = $("#timeSelect4").val();
+			$("#workHours").val(timeSel4);
+		});
+		
+		$("#timeSelect3").change(function(){
+			var timeSel3 = $("#timeSelect3").val();
+			$("#workHours").val(timeSel3);
+		});
+		
+		$("#timeSelect4").change(function(){
+			var timeSel4 = $("#timeSelect4").val();
+			$("#workHours").val(timeSel4);
+		});
+		
+		
 		$("#paySelect").change(function(){
 			var paySel = $("#paySelect option:selected").val();
 			$("#pay").val(paySel);
@@ -156,6 +188,11 @@
 		$("#careerSelect").change(function(){
 			var careerSel = $("#careerSelect option:selected").val();
 			$("#career").val(careerSel);
+		});
+		
+		$("#comTypeSelect").change(function(){
+			var comTypeSel = $("#comTypeSelect option:selected").val();
+			$("#companyType").val(comTypeSel);
 		});
 		
 		
@@ -273,6 +310,9 @@
 			}else if($('#comCode').val()==''){
 				alert('회사코드를 입력하세요');
 				event.preventDefault();
+			}else if($('#companyType').val()==''){
+				alert('기업형태를 입력하세요');
+				event.preventDefault();
 			}
 			
 		});
@@ -371,6 +411,21 @@
 						<input type="text" id="comName" name="comName">
 					</td>
 				</tr>
+				<tr>
+					<td>기업형태</td>
+					<td>
+						<select id="comTypeSelect" name="comTypeSelect">
+							<option value="선택">선택</option>
+							<option value="대기업">대기업</option>
+							<option value="공기업">공사/공기업</option>
+							<option value="중견기업">중견기업</option>
+							<option value="중소기업">중소기업</option>
+							<option value="스타트업">스타트업</option>
+							<option value="외국계기업">외국계기업</option>
+						</select>
+						<input type="text" id="companyType" name="companyType">
+					</td>
+				</tr>	
 
 				<tr>
 					<td>직무</td>
@@ -445,6 +500,25 @@
 				<tr>
 					<td>근무시간</td>
 					<td>
+						<select id="timeSelect1" name="timeSelect1">
+							<option value="">선택</option>
+							<option value="주 5일">주 5일</option>
+							<option value="주 6일">주 6일</option>
+						</select>
+						<select id="timeSelect2" name="timeSelect2">
+							<option value="">선택</option>
+							<option value="월~금">월~금</option>
+							<option value="월~토">월~토</option>
+							<option value="2교대">2교대</option>
+							<option value="3교대">3교대</option>
+							<option value="탄력근무제">탄력근무제</option>
+						</select>
+						<br>
+						<span>근무시간</span>
+						<input type="checkbox" id="timeChk" name="timeChk">
+						<input type="time" value="09:00" id="timeSelect3" name="timeSelect3">
+						<input type="time" value="18:00" id="timeSelect4" name="timeSelect4">
+																	
 						<input type="text" id="workHours" name="workHours">
 					</td>
 				</tr>
@@ -456,7 +530,6 @@
 						<label><input type="checkbox" class="recTypeChk" value="인턴직">인턴직</label>
 						<label><input type="checkbox" class="recTypeChk" value="정규직">정규직</label>
 						<label><input type="checkbox" class="recTypeChk" value="계약직">계약직</label>
-						<label><input type="checkbox" class="recTypeChk" value="병역특례">병역특례</label>
 						<label><input type="checkbox" class="recTypeChk" value="프리랜서">프리랜서</label>
 						<input type="hidden" id="recType" name="recType">
 					</td>
@@ -601,9 +674,7 @@
 							<option value="초등학교">초등학교</option>
 							<option value="중학교">중학교</option>
 							<option value="고등학교">고등학교</option>
-							<option value="대학(2~3년) 재학">대학(2~3년) 재학</option>
 							<option value="대학(2~3년) 졸업">대학(2~3년) 졸업</option>
-							<option value="대학(4년) 재학">대학(4년) 재학</option>
 							<option value="대학(4년) 졸업">대학(4년) 졸업</option>
 							<option value="대학원(석사) 졸업">대학원(석사) 졸업</option>
 							<option value="대학원(박사) 졸업">대학원(박사) 졸업</option>
@@ -712,7 +783,7 @@
 			<input type="hidden" id="induType2" name="induType2">			
 			<input type="hidden" id="location1" name="location1">
 			<input type="hidden" id="location2" name="location2">			
-			<input type="hidden" id="comCode" name="comCode">
+			<input type="text" id="comCode" name="comCode">
 			
 		</form>
 	</div>
