@@ -2,26 +2,24 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="../../../inc/top.jsp"%>
+<%@ include file="../../../inc/adminTop.jsp"%>
 <style>
 .divList{
-/*     padding-left: 300px; */
     padding-top: 40px;
     padding-left: 80px;
     padding-bottom: 50px;
     padding-right: 80px;
 }
-table{
-	/* border-bottom: 1px solid lightgray; */
-}
 th{
 	border-bottom: 3px solid #FB246A;;
 	text-align: center;
+    padding: 14px;
 }
 td{
 	border-bottom: 1px solid #FB246A;
-	padding: 5px;
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+	padding: 13px;
+}
+
 a{
 	color: black;
 }
@@ -34,19 +32,57 @@ a{
 #upList{
 	 padding-left: 300px;
 }
-
-.divPage{
-	text-align:center;
-    padding-top: 40px;
-    padding-bottom: 10px;
+/* 페이징 */
+.divPage {
+	text-align:center;     
+	margin-top: 70px;
+    margin-bottom: 25px;
 }
 
-.divList{
-	height: 250px;
+/* 목록 */
+.divList{height: 250px;}
+
+/* 등록삭제 버튼 */
+#bt{    
+	margin-top: 20px;
 }
 
-#bt{
-	margin: 10px;
+/* 리스트 상단 탭 */
+ul, li{list-style: none;}
+.tabList>li .inTab:hover,
+.tabList>li .inTab:focus {text-decoration:underline}
+
+li.select {
+    float: left;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 15pt;
+}
+#fst{
+	border-bottom: 1px solid lightgray;
+
+}
+
+#mid{
+	border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+}
+#btm{
+	border-bottom: 1px solid lightgray;
+}
+input[type="submit"] {
+    width: 63px;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+input[type="text"] {
+    margin-left: 10px;
+    height: 17px;
+}
+input#btMultiDel {
+    margin-left: 5px;
 }
 
 </style>
@@ -85,10 +121,19 @@ a{
 <main>
 	
 	<!-- main -->
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
-		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
-		<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문(개인)</h2>
-		</div>
+	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
+		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
+			<li class = "select" style="width: 33%;" id = "fst">
+				<a href = <c:url value='/gogak/admin/company/faqList.do'/>>FaQ - 기업</a>
+			</li>
+			<li class = "select" style="width: 33%;" id = "mid">
+				<a href = <c:url value='/gogak/admin/personal/faqList.do'/>>FaQ - 일반</a>
+			</li>
+			<li class = "select" style="width: 33%;" id = "btm">
+				<a href = <c:url value='/gogak/qna/qnaList.do'/>>Q&A</a>
+			</li>
+			
+		</ul>
 		<div style="text-align: center; margin:5px; /* border:1px solid lightgray; */">
 		
 			<div id = "list">
@@ -111,7 +156,7 @@ a{
 			<form name="frmList" method="post"
 				action="<c:url value = '/gogak/admin/personal/faqList.do'/>">
 				<div class = "divList">
-					<table class = "box2" style="width: 700px;">
+					<table class = "box2" style="width: 700px; margin-top: 45px;">
 						<colgroup>
 						   <col style="width:10%;" />
 						   <col style="width:10%;" />
@@ -197,7 +242,7 @@ a{
 				<div class="divSearch" style="padding-top: 10px">
 				   	<form name="frmSearch" method="post" 
 				   		action='<c:url value="/gogak/admin/personal/faqList.do"/>'>
-				        <select name="searchCondition" style="height: 27px;">
+				        <select name="searchCondition" style="height: 27px; width: 98px;">
 				            <option value="category" 
 				            	<c:if test="${param.searchCondition=='category' }">
 				            		selected="selected"
@@ -228,6 +273,6 @@ a{
 	</div>
 </main>
 
-<%@ include file="../../../inc/bottom.jsp"%>
+<%@ include file="../../../inc/adminBottom.jsp"%>
 
 

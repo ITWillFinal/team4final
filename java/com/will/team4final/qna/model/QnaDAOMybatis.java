@@ -54,6 +54,16 @@ public class QnaDAOMybatis implements QnaDAO{
 	public QnaVO selectByNo(int no) {
 		return sqlsession.selectOne(namespace+"selectByNo", no);
 	}
+
+	@Override
+	public int countJoin() {
+		return sqlsession.selectOne(namespace+"countJoin");
+	}
+
+	@Override
+	public int countQna() {
+		return sqlsession.selectOne(namespace+"countQna");
+	}
 	
 	
 
