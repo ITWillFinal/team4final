@@ -79,8 +79,9 @@ button {
   padding: 10px 20px;
 }
 .button-five{
-  background-color: #50d8d7;
+  background-color: #FB246A;
   border-radius: 20px;
+  color: white;
 } 
 </style>
 
@@ -149,9 +150,10 @@ button {
 				<input type="text" name="cBirth" class="form-control input-lg"
 								value="${comVo.cBirth}" placeholder=" 생년월일" /><br><br>
 				<input type="number" name="cHp" class="form-control input-lg"
-								value="${comVo.cHp}" placeholder=" 휴대폰" />			
-			</div>
+								value="${comVo.cHp}" placeholder=" 휴대폰" />
+				<br><br><br>		
 				<button type="submit" id="btSubmit" class="button-five">수정하기</button>
+			</div>
 		</section>
 	</div>
 </form>
