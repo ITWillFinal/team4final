@@ -8,7 +8,6 @@
 <title>THE JOB-COMPANY</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="manifest" href="site.webmanifest">
 
 
 	<!-- CSS here -->
@@ -21,7 +20,10 @@
 		href="<c:url value='/resources/css/mainstyle.css'/>"/>
 	<script type="text/javascript" 
 		src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
-		
+	
+	<!-- 파비콘 -->
+	<link rel="shortcut icon" href="<c:url value='/resources/images/favicon.ico'/>">
+	<link rel="icon" href="<c:url value='/resources/images/favicon.ico'/>">
 		
 	<!-- 사이드바 제이쿼리 시작 -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
