@@ -58,10 +58,8 @@
 							<li><a href="<c:url value='/admin/adminNotice.do'/>"><i
 									class="menu-icon icon-bullhorn"></i>공지사항</a></li>
 							<li><a href="message.html"><i
-									class="menu-icon icon-group"></i>고객관리 <b
-									class="label green pull-right"> 11</b> </a></li>
-							<li><a href="task.html"><i class="menu-icon icon-tasks"></i>Tasks
-									<b class="label orange pull-right"> 19</b> </a></li>
+									class="menu-icon icon-group"></i>고객관리 </a></li>
+							<li><a href="task.html"><i class="menu-icon icon-tasks"></i>Tasks </a></li>
 						</ul>
 						<!--/.widget-nav-->
 

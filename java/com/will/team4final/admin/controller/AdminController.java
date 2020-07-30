@@ -24,6 +24,7 @@ import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.notice.model.NoticeListVO;
 import com.will.team4final.notice.model.NoticeService;
 import com.will.team4final.notice.model.NoticeVO;
+import com.will.team4final.qna.model.QnaService;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,11 +37,17 @@ public class AdminController {
 	private MemberService memberService;
 	@Autowired
 	private ComMemberService comMemberService;
-	@Autowired private AdminService adminService;
+	@Autowired 
+	private AdminService adminService;
+	@Autowired
+	private QnaService qnaService;
 	
 	@RequestMapping("/adminMain.do")
-	public void adminMain() {
+	public void adminMain(Model model) {
 		logger.info("관리자 메인 홈!");
+		
+		int cnt = qnaService.noRe();
+	    model.addAttribute("cnt", cnt);
 	}
 
 	@RequestMapping("/adminNotice.do")
