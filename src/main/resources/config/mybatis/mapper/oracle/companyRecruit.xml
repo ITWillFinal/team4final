@@ -11,13 +11,13 @@
 		RECRUITMENT_CODE, COM_NAME, TITLE, JOB_TYPE1, JOB_TYPE2,
 		INDU_TYPE1, INDU_TYPE2,	ZIPCODE, ADDRESS, ADDRESSDETAIL, WORKHOURS,
 		LOCATION1, LOCATION2, REC_TYPE, PAY, REC_NUMBER, WELFARE,
-		GENDER, AGE, EDUCATION_LV, CAREER, PREFERENCE, DOCUMENT, REC_DETAIL)
+		GENDER, AGE, EDUCATION_LV, CAREER, PREFERENCE, DOCUMENT, REC_DETAIL, COM_CODE)
 		
 		values(
 		#{recruitmentCode}, #{comName}, #{title}, #{jobType1}, #{jobType2},
 		#{induType1}, #{induType2}, #{zipcode}, #{address}, #{addressDetail}, #{workHours},
 		#{location1}, #{location2}, #{recType}, #{pay}, #{recNumber}, #{welfare},
-		#{gender}, #{age}, #{educationLv}, #{career}, #{preference}, #{document}, #{recDetail})
+		#{gender}, #{age}, #{educationLv}, #{career}, #{preference}, #{document}, #{recDetail}, #{comCode})
 		
 	</insert>
 	

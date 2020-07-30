@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../inc/companyTop.jsp" %>
 <style>
 
@@ -27,43 +28,28 @@
 			
 		</div>
 		<br>
-		<!-- 
-		<div style="height:100px; border: 1px solid lightgray;">
-			<span style="font-size: 18px; font-weight: bold;">기업정보관리</span><br>			
+		<img src="<c:url value='/resources/images/example.png'/>">
+		<br><br>				
+		<div>
+			<span style="font-weight: bold; font-size: 25px;">기업정보관리</span>
+			<hr>
 		</div>
-		<div style="height:100px; border: 1px solid lightgray;">
-			<span style="font-size: 18px; font-weight: bold;">채용관리</span><br>
-		</div>
-		<div style="height:100px; border: 1px solid lightgray;">
-			<span style="font-size: 18px; font-weight: bold;">헤드헌팅</span><br>
-		</div>
-		<div style="height:100px; border: 1px solid lightgray;">
-			<span style="font-size: 18px; font-weight: bold;">결제관리</span><br>
-		</div>		
-		<div style="height:100px; border: 1px solid lightgray;">
-			<span style="font-size: 18px; font-weight: bold;">채용공고등록</span><br>
-		</div>
-		<div style="height:100px; border: 1px solid lightgray;">
-			<span style="font-size: 18px; font-weight: bold;">채용광고</span><br>
-		</div>
-		<div style="height:100px; border: 1px solid lightgray;">
-			<span style="font-size: 18px; font-weight: bold;">연간패키지</span><br>
-		</div>
-		<div style="height:100px; border: 1px solid lightgray;">
-			<span style="font-size: 18px; font-weight: bold;">결제관리</span>
-		</div>
-		
-		<span>1. 인재정보에서 이력서 검색</span>
-		<span>2. 이력서 확인</span>
-		<span>3. 구직자에게 입사제의</span>
-		-->
 		
 		<div>
-			<span style="font-weight: bold; font-size: 25px;">인재검색</span>
+			<span style="font-weight: bold; font-size: 25px;">채용관리</span>
 			<hr>
-		
 		</div>
-
+		
+		<div>
+			<span style="font-weight: bold; font-size: 25px;">인재정보</span>
+			<hr>
+		</div>
+		
+		<div>
+			<span style="font-weight: bold; font-size: 25px;">결제관리</span>
+			<hr>
+		</div>
+		
 		
 	</div>
 </main>
