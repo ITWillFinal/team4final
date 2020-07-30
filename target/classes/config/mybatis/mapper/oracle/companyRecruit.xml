@@ -23,4 +23,12 @@
 		
 		
 	</insert>
+	
+	<select id="selectMost5" resultType="comRecruitVo">
+		select * from recruitment order by readcount desc
+	</select>
+	
+	<select id="selectOneCom" resultType="comRecruitVo" parameterType="string">
+		select * from recruitment where recruitment_code = #{recruitmentCode}
+	</select>
 </mapper>
