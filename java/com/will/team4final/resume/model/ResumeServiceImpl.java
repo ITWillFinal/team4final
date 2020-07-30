@@ -133,4 +133,22 @@ public class ResumeServiceImpl implements ResumeService{
 		return resumeDao.deleteResume(resumeNo);
 	}
 
+
+	@Override
+	public ResumeAllVO selectResumeByResumNo(int resumeNo) {
+		ResumeAllVO resumeAllVo = new ResumeAllVO();
+		
+		resumeAllVo.setResumeVo(resumeDao.selectResumeByResumeNo(resumeNo));
+		resumeAllVo.setEducationVo(resumeDao.selectEducationByResumeNo(resumeNo));
+		resumeAllVo.setCareerVoList(resumeDao.selectCareerByResumeNo(resumeNo));
+		resumeAllVo.setActiveVoList(resumeDao.selectActiveByResumeNo(resumeNo));
+		resumeAllVo.setCertifyVoList(resumeDao.selectCertifyByResumeNo(resumeNo));
+		resumeAllVo.setLanguageVoList(resumeDao.selectLanguageByResumeNo(resumeNo));
+		resumeAllVo.setAwardVoList(resumeDao.selectAwardByResumeNo(resumeNo));
+		resumeAllVo.setAddInfoVo(resumeDao.selectAddInfoByResumeNo(resumeNo));
+		resumeAllVo.setPotfolioVo(resumeDao.selectPotfolioByResumeNo(resumeNo));
+		
+		return resumeAllVo;
+	}
+
 }

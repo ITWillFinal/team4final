@@ -9,7 +9,7 @@
 		</selectKey>
 		insert into resume
 		values(#{resumeNo},#{userNo},#{location1},#{location1},
-		#{jobType1},#{jobType2},#{sal},#{selfIntTitle},#{selfInt},sysdate)
+		#{jobtype1},#{jobtype2},#{sal},#{selfIntTitle},#{selfInt},sysdate)
 	</insert>
 	
 	<insert id="insertEducation" parameterType="educationVo">
@@ -91,4 +91,41 @@
 		delete resume
 		where resume_no=#{resumeNo}
 	</delete>
+	
+	<select id="selectResumeByResumeNo" resultType="resumeVo" parameterType="int">
+		select * from resume where resume_no=#{resumeNo}
+	</select>
+
+	<select id="selectEducationByResumeNo" resultType="educationVo" parameterType="int">
+		select * from education where resume_no=#{resumeNo}
+	</select>
+
+	<select id="selectCareerByResumeNo" resultType="careerVo" parameterType="int">
+		select * from career where resume_no=#{resumeNo}
+	</select>
+	
+	<select id="selectActiveByResumeNo" resultType="activeVo" parameterType="int">
+		select * from active where resume_no=#{resumeNo}
+	</select>
+	
+	<select id="selectCertifyByResumeNo" resultType="certifyVo" parameterType="int">
+		select * from certify where resume_no=#{resumeNo}
+	</select>
+	
+	<select id="selectLanguageByResumeNo" resultType="languageVo" parameterType="int">
+		select * from language where resume_no=#{resumeNo}
+	</select>
+	
+	<select id="selectAwardByResumeNo" resultType="awardVo" parameterType="int">
+		select * from award where resume_no=#{resumeNo}
+	</select>
+	
+	<select id="selectAddInfoByResumeNo" resultType="addInfoVo" parameterType="int">
+		select * from addInfo where resume_no=#{resumeNo}
+	</select>
+	
+	<select id="selectPotfolioByResumeNo" resultType="potfolioVo" parameterType="int">
+		select * from potfolio where resume_no=#{resumeNo}
+	</select>
+	
 </mapper>

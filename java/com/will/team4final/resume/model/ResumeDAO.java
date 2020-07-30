@@ -17,5 +17,13 @@ public interface ResumeDAO {
 	List<ResumeVO> selectResumeByUserNo(String userNo);
 	List<Map<String, Object>> selectResumeCareerViewByUserNo(String userNo);
 	int deleteResume(int resumeNo);
-
+	ResumeVO selectResumeByResumeNo(int resumeNo);
+	EducationVO selectEducationByResumeNo(int resumeNo);
+	List<CareerVO> selectCareerByResumeNo(int resumeNo);
+	List<ActiveVO> selectActiveByResumeNo(int resumeNo);
+	List<CertifyVO> selectCertifyByResumeNo(int resumeNo);
+	List<LanguageVO> selectLanguageByResumeNo(int resumeNo);
+	List<AwardVO> selectAwardByResumeNo(int resumeNo);
+	AddinfoVO selectAddInfoByResumeNo(int resumeNo);
+	PotfolioVO selectPotfolioByResumeNo(int resumeNo);
 }

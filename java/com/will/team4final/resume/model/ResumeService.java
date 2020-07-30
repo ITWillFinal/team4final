@@ -9,4 +9,5 @@ public interface ResumeService {
 	List<ResumeVO> selectResumeByUserNo(String userNo);
 	List<Map<String, Object>> selectResumeCareerViewByUserNo(String userNo);
 	int deleteResume(int resumeNo);
+	ResumeAllVO selectResumeByResumNo(int resumeNo);
 }
