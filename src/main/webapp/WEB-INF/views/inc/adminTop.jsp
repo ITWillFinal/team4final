@@ -58,7 +58,7 @@
 									class="menu-icon icon-dashboard"></i>Dashboard </a></li>
 							<li><a href="<c:url value='/admin/adminNotice.do'/>"><i
 									class="menu-icon icon-bullhorn"></i>공지사항</a></li>
-							<li><a href="message.html"><i
+							<li><a href="<c:url value='/admin/adminMemberManagement.do' />"><i
 									class="menu-icon icon-group"></i>고객관리 <b
 									class="label green pull-right"> 11</b> </a></li>
 							<li><a href="task.html"><i class="menu-icon icon-tasks"></i>Tasks

@@ -13,7 +13,7 @@
 	
 	$(function(){
 		$("tbody #btUpdate").click(function() {
-			var userNo = $(this).val();
+			var userNo = $(this).find('.btupdate').val();
 			var userStatus = $(this).next().val();
 			window.open(
 			"<c:url value='/admin/adminMemberUpdate.do?userNo="
@@ -68,10 +68,10 @@ td {
 				<col style="width: 8%" />
 				<col style="width: 5%" />
 				<col style="width: 5%" />
-				<col style="width: 17%" />
-				<col style="width: 18%" />
 				<col style="width: 15%" />
-				<col style="width: 15%" />
+				<col style="width: 13%" />
+				<col style="width: 13%" />
+				<col style="width: 13%" />
 				<col style="width: 8%" />
 				<col style="width: %" />
 			</colgroup>
@@ -105,7 +105,7 @@ td {
 							<td>${vo.hp }</td>
 							<td>${vo.regdate }</td>
 							<td><c:if test="${!empty vo.outdate }">
-									<span style="color: gray">탈퇴한 회 원입니다.</span>
+									<span style="color: gray">탈퇴한 회원입니다.</span>
 								</c:if> 
 								<c:if test="${empty vo.outdate }">
 									<c:if test="${vo.userStatus == 'U' }">
@@ -117,9 +117,9 @@ td {
 								</c:if></td>
 							<td>${vo.userStatus }</td>
 							<td>
-								<button id="btUpdate" value="${vo.userNo }">
-									수정 
-								</button>
+							<a href="#" id="btUpdate">수정
+								<input type="hidden" class="btupdate" value="${vo.userNo }">
+							</a>
 								<c:if test="${vo.userStatus == 'U' }">
 									<input type="hidden" id="userStatusForUpdate" value="${vo.userStatus }">
 								</c:if>
@@ -191,10 +191,10 @@ td {
 				<col style="width: 8%" />
 				<col style="width: 5%" />
 				<col style="width: 5%" />
-				<col style="width: 17%" />
-				<col style="width: 18%" />
 				<col style="width: 15%" />
-				<col style="width: 15%" />
+				<col style="width: 13%" />
+				<col style="width: 13%" />
+				<col style="width: 13%" />
 				<col style="width: 8%" />
 				<col style="width: %" />
 			</colgroup>
@@ -228,16 +228,16 @@ td {
 							<td>${vo.hp }</td>
 							<td>${vo.regdate }</td>
 							<td><c:if test="${!empty vo.outdate }">
-									<span style="color: gray">탈퇴한 회 원입니다.</span>
+									<span style="color: gray">탈퇴한 회원입니다.</span>
 								</c:if> <c:if test="${empty vo.outdate }">
 									<a
 										href="<c:url value='/member/deleteUser.do?userNo=${vo.userNo }'/>">삭제</a>
 								</c:if></td>
 							<td>${vo.userStatus }</td>
 							<td>
-								<button id="btUpdate" value="${vo.userNo }">
-									수정 
-								</button>
+							<a href="#" id="btUpdate">수정
+								<input type="hidden" class="btupdate" value="${vo.userNo }">
+							</a>
 								<input type="hidden" id="userStatusForUpdate" value="${vo.userStatus }">
 							</td>
 						</tr>
@@ -306,10 +306,10 @@ td {
 				<col style="width: 8%" />
 				<col style="width: 5%" />
 				<col style="width: 5%" />
-				<col style="width: 17%" />
-				<col style="width: 18%" />
 				<col style="width: 15%" />
-				<col style="width: 15%" />
+				<col style="width: 13%" />
+				<col style="width: 13%" />
+				<col style="width: 13%" />
 				<col style="width: 8%" />
 				<col style="width: %" />
 			</colgroup>
@@ -343,15 +343,15 @@ td {
 							<td>${vo.cHp }</td>
 							<td>${vo.cJoindate }</td>
 							<td><c:if test="${!empty vo.cOutdate }">
-									<span style="color: gray">탈퇴한 회 원입니다.</span>
+									<span style="color: gray">탈퇴한 회원입니다.</span>
 								</c:if> <c:if test="${empty vo.cOutdate }">
 									<a href="<c:url value='/admin/deleteComUser.do?cMemberCode=${vo.cMemberCode }'/>">삭제</a>
 								</c:if></td>
 							<td>${vo.cUserStatus }</td>
 							<td>
-								<button id="btUpdate" value="${vo.cMemberCode }">
-									수정 
-								</button>
+							<a href="#" id="btUpdate">수정
+								<input type="hidden" class="btupdate" value="${vo.cMemberCode }">
+							</a>
 								<input type="hidden" id="userStatusForUpdate" value="${vo.cUserStatus }">
 							</td>
 						</tr>

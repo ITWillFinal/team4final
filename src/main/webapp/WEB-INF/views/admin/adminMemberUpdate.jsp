@@ -30,17 +30,18 @@
 }
 
 #pm_contents {
-	margin: 0 auto;
 	padding: 20px 0 60px;
 	width: 1260px;
 	letter-spacing: -1px;
 	z-index: 20;
+	margin-left: 10px;
 }
 
 #container {
 	width: auto;
 	min-height: 100%;
 	background-color: #f8f8f8;
+	
 }
 
 .resume_write {
@@ -79,8 +80,9 @@ button {
   padding: 10px 20px;
 }
 .button-five{
-  background-color: #50d8d7;
+  background-color: #FB246A;
   border-radius: 20px;
+  color: white;
 } 
 </style>
 
@@ -127,9 +129,9 @@ button {
 	<input type="hidden" name="userNo" value="${memVo.userNo }">
 	<div id="container">
 		<section id="pm_contents">
-			<div class="area_title">
-				<h3 class="title">${memVo.userName }님기본정보</h3>
-			</div>
+				<div class="area_title">
+					<h3 class="title">${memVo.userName }님기본정보</h3>
+				</div>
 				<div style="width:150; height:150px; float:left;">
 							<span>이름</span><span class="point">필수</span><br><br>
 							<span>이메일</span> <span class="point">필수</span><br><br>
@@ -167,9 +169,10 @@ button {
 							<input type="number" name="hp" class="form-control input-lg"
 								value="${memVo.hp}
 								placeholder=" 휴대폰" />
+							<br><br><br>
+						<button type="submit" id="btSubmit" class="button-five">수정하기</button>
 				</div>
-							
-					<button type="submit" id="btSubmit" class="button-five">수정하기</button>
 		</section>
 	</div>
+	
 </form>
