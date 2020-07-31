@@ -35,8 +35,7 @@
 						</button>
 					</form>
 					<ul class="nav pull-right">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Dropdown</a></li>
+						<li><a href="<c:url value='/index.do'/>" >THE JOB HOME</a></li>
 						<li><a href="#">Support </a></li>
 						<li><a href="#">Support </a></li>
 						
@@ -58,11 +57,9 @@
 									class="menu-icon icon-dashboard"></i>Dashboard </a></li>
 							<li><a href="<c:url value='/admin/adminNotice.do'/>"><i
 									class="menu-icon icon-bullhorn"></i>공지사항</a></li>
-							<li><a href="message.html"><i
-									class="menu-icon icon-group"></i>고객관리 <b
-									class="label green pull-right"> 11</b> </a></li>
-							<li><a href="task.html"><i class="menu-icon icon-tasks"></i>Tasks
-									<b class="label orange pull-right"> 19</b> </a></li>
+							<li><a href="<c:url value='/admin/adminMemberManagement.do' />"><i
+									class="menu-icon icon-group"></i>고객관리 </a></li>
+							<li><a href="task.html"><i class="menu-icon icon-tasks"></i>Tasks </a></li>
 						</ul>
 						<!--/.widget-nav-->
 

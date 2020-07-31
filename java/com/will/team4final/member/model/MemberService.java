@@ -23,11 +23,12 @@ public interface MemberService {
 	String findId(String email);
 	int updatePwdByEmail(MemberVO memberVo);
 	MemberVO selectByUserid(String user_id);
-	MemberVO selectByUerNo(int userNo);
+	MemberVO selectByUerNo(String userNo);
 	int loginCheck(String userid, String pwd);
-	List<MemberVO> showAllMemberUser();
-	int deleteUser(int userNo);
+	List<MemberVO> showAllMemberUser(SearchVO searchVo);
+	int deleteUser(String userNo);
 	int changeResumeNo(MemberVO memberVo);
 	int changeYorn(MemberVO memberVo);
 	int selectTotalRecordOfMember(SearchVO searchVo);
+	int updateMember(MemberVO memberVo);
 }

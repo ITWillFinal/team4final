@@ -30,18 +30,17 @@
 }
 
 #pm_contents {
+	margin: 0 auto;
 	padding: 20px 0 60px;
 	width: 1260px;
 	letter-spacing: -1px;
 	z-index: 20;
-	margin-left: 10px;
 }
 
 #container {
 	width: auto;
 	min-height: 100%;
 	background-color: #f8f8f8;
-	
 }
 
 .resume_write {
@@ -117,62 +116,44 @@ button {
 
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
 				document.getElementById('zipcode').value = data.zonecode;
-				document.getElementById('address').value = roadAddr;
+				document.getElementById('addrress').value = roadAddr;
 
 			}
 		}).open();
 
 	}
 </script>
-<form action="<c:url value='/admin/adminMemberUpdate.do'/>"
-	name="frmPage" method="post">
-	<input type="hidden" name="userNo" value="${memVo.userNo }">
+<form action="<c:url value='/admin/adminCMemberUpdate.do'/>"
+	name="frm" method="post">
+	<input type="hidden" name="cMemberCode" value="${comVo.cMemberCode }">
 	<div id="container">
 		<section id="pm_contents">
-				<div class="area_title">
-					<h3 class="title">${memVo.userName }님기본정보</h3>
-				</div>
-				<div style="width:150; height:150px; float:left;">
-							<span>이름</span><span class="point">필수</span><br><br>
+			<div class="area_title">
+				<h3 class="title">${comVo.cUserid }님의 기본정보</h3>
+			</div>
+			<div style="width:150; height:150px; float:left;">
+							<span>이름</span> <span class="point">필수</span><br><br>
 							<span>이메일</span> <span class="point">필수</span><br><br>
 							<span>별명</span> <span class="point">필수</span><br><br>
 							<span>생년월일</span> <span class="point">필수</span><br><br>
-							<span>주소</span> <span class="point">필수</span><br><br><br><br>
-							<span>휴대폰</span>
-				</div>
-				
-				<div style="width:200px; height:150px; float:left;">
-							<input type="text" name="userName" class="form-control input-lg"
-								value="${memVo.userName }" placeholder="이름" /><br><br>
-							<input type="email" name="email" class="form-control input-lg"
-							value="${memVo.email }"
-							placeholder=" 이메일" /><br><br>
-							<input type="text" name="nickname"
-							value="${memVo.nickname}"
-							class="" placeholder="별명" /><br><br>
-							<input type="text" name="birth" class="form-control input-lg"
-							value="${memVo.birth}"
-							placeholder=" 생년월일" /><br><br>
-							<input type="text" name="zipcode" id="zipcode"
-								value="${memVo.zipcode}"
-								onclick="
-								sample4_execDaumPostcode()"
-								class="form-control input-lg"
-								placeholder="우편번호" readonly="readonly" /><br>
-							<input type="text" name="address" id="address"
-								value="${memVo.address}"
-								class=" form-control input-lg" placeholder="주소" readonly="readonly" /><br>
-							<input type="text" name="addressDetail"
-								value="${memVo.addressDetail}"
+							<span>휴대폰</span>	<br><br>
+									
+			</div>
+			<div style="width:200px; height:150px; float:left;">
+				<input type="text" name="cUsername" class="form-control input-lg"
+								value="${comVo.cUsername }" placeholder="이름" /><br><br>
+				<input type="email" name="cEmail" class="form-control input-lg"
+								value="${comVo.cEmail }" placeholder=" 이메일" /><br><br>
+				<input type="text" name="cNickname" value="${comVo.cNickname}"
 								class=" form-control
-								input-lg" placeholder="상세주소" /><br><br>
-							<input type="number" name="hp" class="form-control input-lg"
-								value="${memVo.hp}
-								placeholder=" 휴대폰" />
-							<br><br><br>
-						<button type="submit" id="btSubmit" class="button-five">수정하기</button>
-				</div>
+								input-lg" placeholder="별명" /><br><br>
+				<input type="text" name="cBirth" class="form-control input-lg"
+								value="${comVo.cBirth}" placeholder=" 생년월일" /><br><br>
+				<input type="number" name="cHp" class="form-control input-lg"
+								value="${comVo.cHp}" placeholder=" 휴대폰" />
+				<br><br><br>		
+				<button type="submit" id="btSubmit" class="button-five">수정하기</button>
+			</div>
 		</section>
 	</div>
-	
 </form>

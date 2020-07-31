@@ -204,10 +204,6 @@ public class QnaController {
 		model.addAttribute("url", url);
 		
 		return "common/message";
-		
-		
-	
-		
 	}
 	
 

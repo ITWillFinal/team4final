@@ -46,17 +46,17 @@ public class MemberDAOMybatis implements MemberDAO {
 	}
 
 	@Override
-	public List<MemberVO> showAllMemberUser() {
-		return sqlSession.selectList(namespace + "showAllMemberUser");
+	public List<MemberVO> showAllMemberUser(SearchVO searchVo) {
+		return sqlSession.selectList(namespace + "showAllMemberUser", searchVo);
 	}
 
 	@Override
-	public int deleteUser(int userNo) {
+	public int deleteUser(String userNo) {
 		return sqlSession.delete(namespace+"deleteUser", userNo);
 	}
 
 	@Override
-	public MemberVO selectByUerNo(int userNo) {
+	public MemberVO selectByUerNo(String userNo) {
 		return sqlSession.selectOne(namespace+"selectByUerNo", userNo);
 	}
 
@@ -72,6 +72,11 @@ public class MemberDAOMybatis implements MemberDAO {
 	
 	public int selectTotalRecordOfMember(SearchVO searchVo) {
 		return sqlSession.selectOne(namespace+"selectTotalRecordOfMember", searchVo);
+	}
+
+	@Override
+	public int updateMember(MemberVO memberVo) {
+		return sqlSession.update(namespace+"updateMember", memberVo);
 	}
 
 }

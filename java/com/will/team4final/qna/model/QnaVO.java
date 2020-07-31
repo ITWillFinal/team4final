@@ -14,12 +14,19 @@ public class QnaVO {
 	private int fileSize;
 	private String originFileName;
 	private String status; 
+	private int no;
 	
 	public int getQnaNo() {
 		return qnaNo;
 	}
 	public void setQnaNo(int qnaNo) {
 		this.qnaNo = qnaNo;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
 	}
 	public String getUserNo() {
 		return userNo;
@@ -87,7 +94,7 @@ public class QnaVO {
 	public String toString() {
 		return "qnaVO [qnaNo=" + qnaNo + ", userNo=" + userNo + ", userId=" + userId + ", title=" + title
 				+ ", categoryNO=" + categoryNO + ", content=" + content + ", regDate=" + regDate + ", fileName="
-				+ fileName + ", fileSize=" + fileSize + ", originFileName=" + originFileName + ", status=" + status + "]";
+				+ fileName + ", fileSize=" + fileSize + ", originFileName=" + originFileName + ", status=" + status + ", no=" + no + "]";
 	}
 	
 }

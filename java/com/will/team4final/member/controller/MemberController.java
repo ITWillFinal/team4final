@@ -209,7 +209,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/deleteUser.do")
-	public String deleteUser(@RequestParam(defaultValue = "0") int userNo, Model model) {
+	public String deleteUser(@RequestParam String userNo, Model model) {
 		logger.info("관리자 페이지에서 회원 삭제, 파라미터 userNo={}", userNo);
 		int cnt = memberService.deleteUser(userNo);
 		String msg="회원 삭제 실패했습니다", url="/admin/adminMemberManagement.do";

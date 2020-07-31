@@ -12,21 +12,15 @@
     padding-bottom: 50px;
     padding-right: 80px;
 }
-table{
-	/* border-bottom: 1px solid lightgray; */
-}
 th{
 	border-bottom: 3px solid #FB246A;;
 	text-align: center;
+    padding: 14px;
 }
 td{
 	border-bottom: 1px solid #FB246A;
-	padding: 5px;
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-a{
-	color: black;
-}
-
+	padding: 13px;
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 #list{
 	width: 800px;
 	height: 700px;
@@ -36,10 +30,10 @@ a{
 	 padding-left: 300px;
 }
 
-.divPage{
-	text-align:center;
-    padding-top: 40px;
-    padding-bottom: 10px;
+.divPage {
+	text-align:center;     
+	margin-top: 70px;
+    margin-bottom: 25px;
 }
 
 .divList{
@@ -47,9 +41,50 @@ a{
 }
 
 #bt{
-	margin: 10px;
+	margin: 20px;
 }
 
+input[type="submit"] {
+    width: 63px;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+input[type="text"] {
+    margin-left: 10px;
+}
+input#btMultiDel {
+    margin-left: 5px;
+}
+
+
+/* 리스트 상단 탭 */
+ul, li{list-style: none;}
+.tabList>li .inTab:hover,
+.tabList>li .inTab:focus {text-decoration:underline}
+
+li.select {
+    float: left;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 15pt;
+}
+#fst{
+	border-bottom: 1px solid lightgray;
+
+}
+#mid{
+	border-left: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+}
+tbody {
+    font-size: 12px;
+}
+p#info {
+    margin-top: 30px;
+}
 </style>
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
@@ -90,10 +125,19 @@ a{
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	
 	<!-- main -->
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
-		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
-		<h2 style = "padding-left: 50px; padding-top: 30px; ">1:1 문의</h2>
-		</div>
+	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
+		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
+			<li class = "select" style="width: 33%;" id = "fst">
+				<a href = <c:url value='/gogak/admin/company/faqList.do'/> style="color: black;">FaQ - 기업</a>
+			</li>
+			<li class = "select" style="width: 33%;" id = "mid">
+				<a href = <c:url value='/gogak/admin/personal/faqList.do'/> style="color: black;">FaQ - 일반</a>
+			</li>
+			<li class = "select" style="width: 33%;" id = "btm">
+				<a href = <c:url value='/gogak/qna/qnaList.do'/> style="color: black;">Q&A</a>
+			</li>
+			
+		</ul>
 		<div style="text-align: center; margin:5px; /* border:1px solid lightgray; */">
 		
 			<div id = "list">
@@ -116,44 +160,42 @@ a{
 			<form name="frmList" method="post"
 				action="<c:url value = '/gogak/qna/qnaList.do'/>">
 				<div class = "divList">
-					<table class = "box2" style="width: 700px;">
+					<table class = "box2" style="width: 700px; margin-top: 45px;">
 						<colgroup>
 						   <col style="width:10%;" />
 						   <col style="width:10%;" />
 						   <col style="width:10%;" />
-						   <col style="width:10%;" />
+						   <col style="width:15%;" />
 						   <col style="width:20%;" />
-						   <col style="width:20%;" />
+						   <col style="width:15%;" />
 						   <col style="width:20%;" />
 						</colgroup>
-						<thead>
-							<tr>
-								<th><input type="checkbox" name="chkAll"></th>
-								<th>글번호</th>
-								<th>구분</th>
-								<th>카테고리</th>
-								<th>제목</th>
-								<th>아이디</th>
-								<th>작성일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:if test="${empty list }">
-								<th colspan="4">등록된 1:1 문의가 없습니다.</th>
-							</c:if>
-							<c:if test="${!empty list }">
-								<c:set var = "idx" value = "0"/>
-									<c:forEach var = "vo" items="${list }">
-										<tr>
-											<td style = "text-align: center">
-												<input type="checkbox" name="qnaList[${idx }].qnaNo"
-													value = "${vo.qnaNo }">
-											</td>
-											<td style="text-align: center;">${vo.qnaNo }</td>
-											<td style="text-align: center;">${vo.status }</td>
-											<td style="text-align: center;">${vo.categoryNO }</td>
-											<td style="text-align: center;">
-												<a href = "<c:url value = '/gogak/qna/qnaDetail.do?no=${vo.qnaNo }'/>">
+						<tr>
+							<th><input type="checkbox" name="chkAll"></th>
+							<th>글번호</th>
+							<th>구분</th>
+							<th>카테고리</th>
+							<th>제목</th>
+							<th>아이디</th>
+							<th>작성일</th>
+						</tr>
+						<c:if test="${empty list }">
+							<th colspan="4">등록된 1:1 문의가 없습니다.</th>
+						</c:if>
+						<c:if test="${!empty list }">
+							<c:set var = "idx" value = "0"/>
+								<c:forEach var = "vo" items="${list }">
+									<tr>
+										<td style = "text-align: center">
+											<input type="checkbox" name="qnaList[${idx }].qnaNo"
+												value = "${vo.qnaNo }">
+										</td>
+										<td style="text-align: center;">${vo.qnaNo }</td>
+										<td style="text-align: center;">${vo.status }</td>
+										<td style="text-align: center;">${vo.categoryNO }</td>
+										<td style="text-align: center;">
+											<c:if test="${vo.no != 0 }">
+												<a href = "<c:url value = '/gogak/qna/qnaDetail.do?no=${vo.qnaNo }'/>" style="color: black;">
 													<c:if test = "${fn:length(vo.title)>=10 }">
 														${fn:substring(vo.title,0,10)}...
 													</c:if>
@@ -161,18 +203,29 @@ a{
 														${vo.title }							
 													</c:if>
 												</a>
-											</td>
-											<td style="text-align: center;">${vo.userId }</td>
-											<td style="text-align: center;">
-												<fmt:formatDate value="${vo.regDate}"
-													pattern="yyyy-MM-dd"/>
-											</td>
-										</tr>
-										<c:set var = "idx" value = "${idx+1 }"/>
-									</c:forEach>
-							</c:if>
-						</tbody>
+											</c:if>
+											<c:if test="${vo.no == 0 }">
+												<a href = "<c:url value = '/gogak/qna/qnaDetail.do?no=${vo.qnaNo }'/>" style="color: red;">
+													<c:if test = "${fn:length(vo.title)>=10 }">
+														${fn:substring(vo.title,0,10)}...
+													</c:if>
+													<c:if test="${fn:length(vo.title)<10 }">
+														${vo.title }							
+													</c:if>
+												</a>
+											</c:if>
+										</td>
+										<td style="text-align: center;">${vo.userId }</td>
+										<td style="text-align: center;">
+											<fmt:formatDate value="${vo.regDate}"
+												pattern="yyyy-MM-dd"/>
+										</td>
+									</tr>
+									<c:set var = "idx" value = "${idx+1 }"/>
+								</c:forEach>
+						</c:if>
 					</table>
+					<p id = "info">※ 답변하지 않은 문의는 빨간색 제목으로 표시됩니다.</p>
 				</div>
 			</form>
 			</div>
@@ -207,7 +260,7 @@ a{
 				<div class="divSearch" style="padding-top: 10px">
 				   	<form name="frmSearch" method="post" 
 				   		action='<c:url value="/gogak/qna/qnaList.do"/>'>
-				        <select name="searchCondition" style="height: 27px;">
+				        <select name="searchCondition" style="height: 27px; width: 98px;">
 				            <option value="category" 
 				            	<c:if test="${param.searchCondition=='category' }">
 				            		selected="selected"
@@ -225,7 +278,7 @@ a{
 				            >답변</option>
 				        </select>
 					        <input type="text" name="searchKeyword" title="검색어 입력"
-					        	value="${param.searchKeyword}">   
+					        	value="${param.searchKeyword}"style="height: 27px;">   
 							<input type="submit" value="검색"><br>
 							<input type="button" id = "qnaWrite" value = "게시글 등록">
 							<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"><br><br>

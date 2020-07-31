@@ -18,7 +18,17 @@
 				<span>총 입사지원자 : x명</span>
 			</div>
 		</div>
-		
+		<style>
+			.ui-widget-header{
+				background-color: #2e3752;	
+				color: white;
+				border-top: 3px solid #fd5a77;
+				border-right: 3px solid #13193e;
+				border-left: 3px solid #fd5a77;
+				border-bottom: 3px solid #13193e;
+			}
+			
+		</style>
 		<ul id="menu">
 		  <li class="ui-widget-header"><div>기업정보관리</div></li>
 		  <li><div>기업정보수정</div></li>
@@ -27,7 +37,7 @@
 		  <li><div>채용정보등록</div></li>
 		  <li><div>진행중인채용정보</div></li>
 		  <li><div>마감된채용정보</div></li>
-		  <li class="ui-widget-header"><div>인재정보검색</div></li>
+		  <li class="ui-widget-header"><div>인재정보</div></li>
 		  <li><div>입사지원요청관리</div></li>
 		  <li><div>면접제의요청관리</div></li>
 		  <li><div>맞춤인재정보</div></li>
