@@ -177,21 +177,11 @@
 						<fmt:formatDate value="${currTime}" var="sysYear" pattern="yy" />
 						<c:if test="${birthYear>sysYear }">
 							19${birthYear }년 (${101+sysYear-birthYear }세) | 
-							<c:if test="${memberVo.gender==MALE }">
-								남
-							</c:if>
-							<c:if test="${memberVo.gender==FEMALE }">
-								여
-							</c:if>
+							${memberVo.gender}
 						</c:if>
 						<c:if test="${birthYear<=sysYear }">
 							20${birthYear }년 (${sysYear-birthYear+1 }세) | 
-							<c:if test="${memberVo.gender==MALE }">
-								남
-							</c:if>
-							<c:if test="${memberVo.gender==FEMALE }">
-								여
-							</c:if>
+							${memberVo.gender}
 						</c:if>
 					</span>
 				</p>
