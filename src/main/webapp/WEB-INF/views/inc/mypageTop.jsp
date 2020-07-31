@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 	#navigation li:nth-child(n+2){
-		margin-left: 100px;
+		margin-left: 80px;
 	}
 </style>
 
@@ -44,7 +44,7 @@
 		<div class="header-area header-transparrent">
 			<div class="headder-top header-sticky">
 				<div class="container">
-					<div class="row align-items-center">
+					<div class="row align-items-center" style="margin-left: 100px;">
 							<div class="menu-wrapper" style="position: relative;margin: 0 auto;">
 								<!-- Main-menu -->
 								<div class="main-menu">
@@ -53,11 +53,15 @@
 											<li><a href="<c:url value='/mypage/mypageHome.do?status=${sessionScope.status }'/>">MY 홈</a></li>
 											<li><a href="<c:url value='/resume/resumeMain.do'/>">이력서관리</a></li>
 											<li><a href="contact.html">입사지원/요청관리</a></li>
-											<li><a href="contact.html">관심기업</a></li>
+											<li><a href="contact.html">스크랩</a></li>
 										</ul>
 									</nav>
 								</div>
-
+								<!-- Header-btn -->
+								<div class="header-btn d-none f-right d-lg-block" style="margin-left: 100px;">
+                                	<a href="<c:url value='/login/logout.do'/>" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
+                                    <a href="<c:url value='/mypage/mypageHome.do?status=${sessionScope.status }'/>" class="btn head-btn2" style="font-weight: bold;">고객센터</a>
+								</div>
 							</div>
 						<!-- Mobile Menu -->
 						<div class="col-12">

@@ -1,5 +1,7 @@
 package com.will.team4final.scrip.model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,6 +28,16 @@ public class ComScrapDAOMybatis implements ComScrapDAO{
 	@Override
 	public int deleteScrap(ComScrapVO comVo) {
 		return sqlSession.delete(namespace + "deleteScrap", comVo);
+	}
+
+	@Override
+	public int selectComScrapNum(String userNo) {
+		return sqlSession.selectOne(namespace + "selectComScrapNum", userNo);
+	}
+
+	@Override
+	public List<ComScrapVO> selectComScrapInfo(String userNo) {
+		return sqlSession.selectList(namespace + "selectComScrapInfo", userNo);
 	}
 	
 

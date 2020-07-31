@@ -18,6 +18,13 @@
 	<delete id="deleteScrap" parameterType="comScrapVo">
 		delete from comscrap where user_no = #{userNo} and recruitment_code = #{recruitmentCode}
 	</delete>
+	
+	<select id="selectComScrapNum" parameterType="string" resultType="int">
+		select count(*) from comscrap where user_no = #{userNo}
+	</select>
+	<select id="selectComScrapInfo" parameterType="string" resultType="comScrapVo">
+		select * from comscrap where user_no = #{userNo}
+	</select>
 </mapper>
 
 

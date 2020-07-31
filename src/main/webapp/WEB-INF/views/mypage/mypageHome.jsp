@@ -2,37 +2,56 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../inc/mypageTop.jsp" %>
+<script type="text/javascript">
+	$(function() {
+		$('#addHeadMenu div').hover(function() {
+			$(this).css('background', 'skyblue');
+		}, function() {
+			$(this).css('background', 'white');
+		});
+	});
+</script>
 <style>
 	#addHeadMenu{
 		overflow: hidden;
 		margin-top: 50px;
-		margin-left: 400px;
+		margin-left: 340px;
+		margin-bottom: 100px;
 	}
 	#headMenu{
 		float: left;
 	    width: 150px;
 	    height: 150px;
-	    background: ;
-	    border: 1px solid;
-	    margin-left: 95px;
+	    margin-left: 126px;
 	    text-align: center;
-	    border-radius: 80px;
-	    padding-top: 28px;
+	    border-radius: 80px / 80px;
+	    padding-top: 25px;
+	}
+	#headMenu a{
+		color: #010b1d;
 	}
 </style>
 <div>
 	<div id="addHeadMenu">
 		<div id="headMenu">
-			<i class="far fa-address-card fa-4x"></i></i><br>이력서
+			<a href="#"><i class="far fa-address-card fa-4x"></i></i><br>
+			<span>/10</span><br>
+			<span>이력서</span></a>
 		</div>
 		<div id="headMenu">
-			<i class="far fa-calendar-check fa-4x"></i><br>입사지원
+			<a href="#"><i class="far fa-calendar-check fa-4x"></i><br>
+			<span></span><br>
+			<span>입사지원</span></a>
 		</div>
 		<div id="headMenu">
-			<i class="fas fa-hand-holding-usd fa-4x"></i><br>입사지원요청
+			<a href="#"><i class="fas fa-hand-holding-usd fa-4x"></i><br>
+			<span></span><br>
+			<span>입사요청</span></a>
 		</div>
 		<div id="headMenu">
-			<i class="far fa-star fa-4x"></i></i><br>스크랩
+			<a href="#"><i class="far fa-star fa-4x"></i></i><br>
+			<span>${scrap }</span><br>
+			<span>스크랩</span></a>
 		</div>
 	</div>
 </div>
