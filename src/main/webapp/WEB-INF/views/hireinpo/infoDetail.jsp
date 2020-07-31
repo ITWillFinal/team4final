@@ -66,6 +66,7 @@
 	}
 	
 </style>
+
 <script type="text/javascript">
 	$(function() {
 	});
@@ -110,6 +111,8 @@
 	function nomember() {
 		alert("로그인 이후에 이용 가능합니다.");
 	}
+	
+	
 </script>
 <div id="contentDiv">
 	<div id="headDiv">
@@ -178,6 +181,7 @@
 			<tr>
 				<th>근무지역</th>
 				<td>${vo.location1 } ${vo.location2 }</td>
+				
 			<tr>
 		</table>
 	</div>
@@ -207,11 +211,33 @@
 		<i class="fa fa-map-marker" aria-hidden="true"></i>
 		 (${vo.zipcode }) ${vo.address } ${vo.addressDetail }
 		</p>
+		<div id="map" style="width:600px;height:350px;"></div>
 	</div>
 	<div id="moreDiv">
 		<h5>접수기간 및 지원</h5>
 		<p>필수 제출 서류 : ${vo.document }</p>
 	</div>
 </div>
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f5a970707d8d0e271a8262251139638&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript">
+	//이미지 지도에서 마커가 표시될 위치입니다 
+	var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+	
+	//이미지 지도에 표시할 마커입니다
+	//이미지 지도에 표시할 마커는 Object 형태입니다
+	var marker = {
+	 position: markerPosition
+	};
+	
+	var staticMapContainer  = document.getElementById('map'), // 이미지 지도를 표시할 div  
+	 staticMapOption = { 
+	     center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
+	     level: 3, // 이미지 지도의 확대 레벨
+	     marker: marker // 이미지 지도에 표시할 마커 
+	 };    
+	
+	//이미지 지도를 생성합니다
+	var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+	
+</script>
 <%@ include file="../inc/bottom.jsp" %>
