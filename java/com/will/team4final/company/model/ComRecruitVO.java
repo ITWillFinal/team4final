@@ -20,11 +20,11 @@ public class ComRecruitVO {
 	String recType;
 	String welfare;
 	String gender;
-	int age;
+	String age;
 	String educationLv;
 	String career;
 	String preference;
-	int recNumber;
+	String recNumber;
 	Timestamp regdate;
 	String recDeadline;
 	String document;
@@ -37,6 +37,7 @@ public class ComRecruitVO {
 	String fileSize;
 	String comCode;
 	String companyType;
+	
 	public String getRecruitmentCode() {
 		return recruitmentCode;
 	}
@@ -139,10 +140,10 @@ public class ComRecruitVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	public String getEducationLv() {
@@ -163,10 +164,10 @@ public class ComRecruitVO {
 	public void setPreference(String preference) {
 		this.preference = preference;
 	}
-	public int getRecNumber() {
+	public String getRecNumber() {
 		return recNumber;
 	}
-	public void setRecNumber(int recNumber) {
+	public void setRecNumber(String recNumber) {
 		this.recNumber = recNumber;
 	}
 	public Timestamp getRegdate() {
@@ -255,7 +256,5 @@ public class ComRecruitVO {
 				+ category + ", imgUrl=" + imgUrl + ", fileName=" + fileName + ", fileSize=" + fileSize + ", comCode="
 				+ comCode + ", companyType=" + companyType + "]";
 	}
-	
-	
-	
+		
 }
