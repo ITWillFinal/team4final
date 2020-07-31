@@ -31,4 +31,8 @@
 	<select id="selectOneCom" resultType="comRecruitVo" parameterType="string">
 		select * from recruitment where recruitment_code = #{recruitmentCode}
 	</select>
+	
+	<select id="selectSearchInfo" resultType="comRecruitVo" parameterType="comRecruitVo">
+		select * from recruitment
+	</select>
 </mapper>

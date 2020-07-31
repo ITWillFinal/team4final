@@ -361,7 +361,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 										</ul>
 										<div class="totalMenu">
 											<div>
-												<a href="about.html">채용정보 ></a> <br> <a
+												<span>채용정보 ></span> <br> <a
 													href="about.html">상세검색</a> <br> <a href="about.html">지역별</a>
 												<br> <a href="about.html">직무별</a> <br> <a
 													href="about.html">산업별</a> <br> <a href="about.html">기업별</a>
