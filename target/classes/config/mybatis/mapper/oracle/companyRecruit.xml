@@ -33,6 +33,6 @@
 	</select>
 	
 	<select id="selectSearchInfo" resultType="comRecruitVo" parameterType="comRecruitVo">
-	
+		select * from recruitment
 	</select>
 </mapper>
