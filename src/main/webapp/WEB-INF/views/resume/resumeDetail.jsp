@@ -196,17 +196,38 @@
     	top: -100px;
     	left: -324px;
 	}
+	
+	.isSaving{
+		width: 100%;
+	    height: 1100px;
+	    background: #fb246a;
+	    position: fixed;
+	    text-align: center;
+	    padding-top: 30%;
+	    display: none;
+	    z-index: 1000;
+	    top:-100px;
+	}
+	
+	.isSaving em{
+		color: white;
+		font-size: xxx-large;
+	}
+	.saving{
+		display: block;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){		
 		$('.pdf-down').click(function() { // pdf저장 button id
+			$('.isSaving').toggleClass('saving');
 		   var scrollValue = $(document).scrollTop();
 		    $('html').scrollTop(0);
 		    $('#resumeDetail').toggleClass('pdf-save');
 			html2canvas($('#resumeDetail')[0]).then(function(canvas) { //저장 영역 div id
 	
 			$('html').scrollTop(scrollValue);
-					
+			
 		    // 캔버스를 이미지로 변환
 		    var imgData = canvas.toDataURL('image/png');
 		    $('#resumeDetail').toggleClass('pdf-save');
@@ -236,7 +257,7 @@
 		 	}
 		    // 파일 저장
 		    doc.save("THE_JOB_이력서_"+fileName+'.pdf');  
-
+			$('.isSaving').toggleClass('saving');
 		});
 
 		});
@@ -644,5 +665,8 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div class="isSaving">
+	<em>pdf파일을 저장중입니다...</em>
 </div>
 <%@ include file="../inc/bottom.jsp" %>
