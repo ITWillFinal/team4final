@@ -204,10 +204,18 @@ public class ResumeController {
 	}
 
 	@RequestMapping("/resumeDetail.do")
-	public String resumeDetail(@RequestParam int resumeNo) {
+	public String resumeDetail(@RequestParam int resumeNo,
+			HttpSession session, Model model) {
 		logger.info("이력서 상세보기, 파라미터 resumeNo={}",resumeNo);
+		String userid = (String)session.getAttribute("userid");
+		MemberVO memberVo = memberService.selectByUserid(userid);
 		
+		ResumeAllVO resumeAllVo = resumeService.selectResumeByResumNo(resumeNo);
 		
+		model.addAttribute("memberVo", memberVo);
+		model.addAttribute("MALE",MemberService.MALE);
+		model.addAttribute("FEMALE",MemberService.FEMALE);
+		model.addAttribute("resumeAllVo",resumeAllVo);
 		return "resume/resumeDetail";
 	}
 	

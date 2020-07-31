@@ -40,6 +40,7 @@
 		}).open();
 	};
 	
+
 </script>
 
 <script type="text/javascript">
@@ -83,7 +84,7 @@
 				data:"no="+num,
 				success:function(res){
 					for(var i = 0; i< res.length; i++){
-						var option ="<option value='"+res[i].MIDDLE_GROUP+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
 						$('#jobMiddle').append(option);
 					}
 				},
@@ -110,7 +111,7 @@
 				data:"no="+num,
 				success:function(res){
 					for(var i = 0; i< res.length; i++){
-						var option ="<option value='"+res[i].MIDDLE_GROUP+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
 						$('#induMiddle').append(option);
 					}
 				},
@@ -127,6 +128,37 @@
 			$('input[name=induType2]').empty();
 			$('input[name=induType2]').val(numMiddle);
 		});
+		
+		$("#timeSelect1").change(function(){
+			var timeSel1 = $("#timeSelect1 option:selected").val();
+			$("#workHours").val(timeSel1);
+		});
+		
+		$("#timeSelect2").change(function(){
+			var timeSel2 = $("#timeSelect2 option:selected").val();
+			$("#workHours").val(timeSel2);
+		});
+		
+		$("#timeSelect3").click(function(){
+			var timeSel3 = $("#timeSelect3").val();
+			$("#workHours").val(timeSel3);
+		});
+		
+		$("#timeSelect4").click(function(){
+			var timeSel4 = $("#timeSelect4").val();
+			$("#workHours").val(timeSel4);
+		});
+		
+		$("#timeSelect3").change(function(){
+			var timeSel3 = $("#timeSelect3").val();
+			$("#workHours").val(timeSel3);
+		});
+		
+		$("#timeSelect4").change(function(){
+			var timeSel4 = $("#timeSelect4").val();
+			$("#workHours").val(timeSel4);
+		});
+		
 		
 		$("#paySelect").change(function(){
 			var paySel = $("#paySelect option:selected").val();
@@ -156,6 +188,11 @@
 		$("#careerSelect").change(function(){
 			var careerSel = $("#careerSelect option:selected").val();
 			$("#career").val(careerSel);
+		});
+		
+		$("#comTypeSelect").change(function(){
+			var comTypeSel = $("#comTypeSelect option:selected").val();
+			$("#companyType").val(comTypeSel);
 		});
 		
 		
@@ -270,6 +307,12 @@
 			}else if($('#recDetail').val()==''){
 				alert('상세모집내용을 입력하세요');
 				event.preventDefault();
+			}else if($('#comCode').val()==''){
+				alert('회사코드를 입력하세요');
+				event.preventDefault();
+			}else if($('#companyType').val()==''){
+				alert('기업형태를 입력하세요');
+				event.preventDefault();
 			}
 			
 		});
@@ -280,7 +323,13 @@
 </script>
 <style>
 	tr {
-		border: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
+		border-top: 1px solid lightgray;
+	}
+	
+	td {
+		padding-top: 5px;
+		padding-bottom: 5px;
 	}
 
 	
@@ -288,8 +337,51 @@
 		border:1px solid #FB246A;
 		width:100%;
 	}
+	
+	input[type=text]:hover {
+	    background : #E9E9E9;
+	}
+	
+	input[type=text] {
+		padding-left: 15px;
+		padding-right: 15px;
+		background : whitesmoke;
+		width:350px;
+		height:35px;
+		border:none;
+		border-radius: 10px;
+	}
+	
+	label {
+		margin-top:10px;
+		margin-right: 5px;
+	}
+	
+	.recTypeChk {
+		margin-right: 3px;
+		
+	}
+	
+	.welfareChk {
+		margin-right: 3px;
+	}
+	
+	.docChk {
+		margin-right: 3px;
+	}
+	
+	.preferChk {
+		margin-right: 3px;
+	}
+	
+	<%--
+	input[type=text]:focus {
+    	border: 2px solid #FB246A;
+    }
+	--%>
 
 </style>
+
 <main>
 	<%@ include file="../inc/companySidebar.jsp" %>
 
@@ -301,7 +393,7 @@
 			<div style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span><br><br>
 
-			<table style="width: 700px;">
+			<table style="width: 900px;">
 				<colgroup>
 					<col style="width:20%;"/>
 					<col style="width:80%;" />
@@ -319,6 +411,21 @@
 						<input type="text" id="comName" name="comName">
 					</td>
 				</tr>
+				<tr>
+					<td>기업형태</td>
+					<td>
+						<select id="comTypeSelect" name="comTypeSelect">
+							<option value="선택">선택</option>
+							<option value="대기업">대기업</option>
+							<option value="공기업">공사/공기업</option>
+							<option value="중견기업">중견기업</option>
+							<option value="중소기업">중소기업</option>
+							<option value="스타트업">스타트업</option>
+							<option value="외국계기업">외국계기업</option>
+						</select>
+						<input type="text" id="companyType" name="companyType">
+					</td>
+				</tr>	
 
 				<tr>
 					<td>직무</td>
@@ -347,14 +454,6 @@
 						</select>	
 					</td>
 				</tr>
-				<input type="hidden" id="jobType1" name="jobType1">
-				<input type="hidden" id="jobType2" name="jobType2">
-				
-				<input type="hidden" id="induType1" name="induType1">
-				<input type="hidden" id="induType2" name="induType2">
-				
-				<input type="hidden" id="location1" name="location1">
-				<input type="hidden" id="location2" name="location2">
 				
 				<tr>
 					<td>근무지역</td>
@@ -401,6 +500,25 @@
 				<tr>
 					<td>근무시간</td>
 					<td>
+						<select id="timeSelect1" name="timeSelect1">
+							<option value="">선택</option>
+							<option value="주 5일">주 5일</option>
+							<option value="주 6일">주 6일</option>
+						</select>
+						<select id="timeSelect2" name="timeSelect2">
+							<option value="">선택</option>
+							<option value="월~금">월~금</option>
+							<option value="월~토">월~토</option>
+							<option value="2교대">2교대</option>
+							<option value="3교대">3교대</option>
+							<option value="탄력근무제">탄력근무제</option>
+						</select>
+						<br>
+						<span>근무시간</span>
+						<input type="checkbox" id="timeChk" name="timeChk">
+						<input type="time" value="09:00" id="timeSelect3" name="timeSelect3">
+						<input type="time" value="18:00" id="timeSelect4" name="timeSelect4">
+																	
 						<input type="text" id="workHours" name="workHours">
 					</td>
 				</tr>
@@ -408,7 +526,7 @@
 				<tr>
 					<td>근무형태</td>
 					<td>
-					 	<label><input type="checkbox" class="recTypeChk" value="추후협의">추후협의</label>
+						<label><input type="checkbox" class="recTypeChk" value="추후협의">추후협의</label>
 						<label><input type="checkbox" class="recTypeChk" value="인턴직">인턴직</label>
 						<label><input type="checkbox" class="recTypeChk" value="정규직">정규직</label>
 						<label><input type="checkbox" class="recTypeChk" value="계약직">계약직</label>
@@ -498,8 +616,7 @@
 			
 			<div>
 				<span style="font-size: 18px; font-weight: bold;">◎자격요건</span><br><br>
-
-			<table style="width: 700px; border:1px solid lightgray; border">
+			<table style="width: 900px;">
 				<colgroup>
 					<col style="width:20%;" />
 					<col style="width:80%;" />
@@ -557,9 +674,7 @@
 							<option value="초등학교">초등학교</option>
 							<option value="중학교">중학교</option>
 							<option value="고등학교">고등학교</option>
-							<option value="대학(2~3년) 재학">대학(2~3년) 재학</option>
 							<option value="대학(2~3년) 졸업">대학(2~3년) 졸업</option>
-							<option value="대학(4년) 재학">대학(4년) 재학</option>
 							<option value="대학(4년) 졸업">대학(4년) 졸업</option>
 							<option value="대학원(석사) 졸업">대학원(석사) 졸업</option>
 							<option value="대학원(박사) 졸업">대학원(박사) 졸업</option>
@@ -655,15 +770,21 @@
 			<hr>
 			<div>
 				<span style="font-size: 18px; font-weight: bold;">◎상세모집내용</span><br><br>
-				<textarea id="recDetail" name="recDetail" rows="20" cols="97">
-				#모집부문 및 상세 내용을 입력해주세요.<br>
-				복리후생 ,제출서류, 우대조건 등의 내용은 자동으로 입력됩니다.
-				</textarea>
+				<textarea id="recDetail" name="recDetail" rows="20" cols="93"></textarea>
 			</div>
 			<br>
-			<div style="width: 700px; text-align: center;">
+			<div style="width: 900px; text-align: center;">
 				<input type="submit" value="채용공고 등록하기"/>
 			</div><br>
+			
+			<input type="hidden" id="jobType1" name="jobType1">
+			<input type="hidden" id="jobType2" name="jobType2">			
+			<input type="hidden" id="induType1" name="induType1">
+			<input type="hidden" id="induType2" name="induType2">			
+			<input type="hidden" id="location1" name="location1">
+			<input type="hidden" id="location2" name="location2">			
+			<input type="text" id="comCode" name="comCode">
+			
 		</form>
 	</div>
 </main>

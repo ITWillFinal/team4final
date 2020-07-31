@@ -9,8 +9,8 @@
 		(
 			select rownum as RNUM, A.*
 			from(
-				select qna_no, user_no, user_id, title, category_no, content, fileName, fileSize, originFileName, status, regDate
-				from qna
+				select qna_no, user_no, user_id, title, category_no, content, fileName, fileSize, originFileName, status, regDate, no
+				from qnarere
 				<if test="searchKeyword!=null and searchKeyword != ''">
 					where ${searchCondition} like '%'
 							|| #{searchKeyword} || '%'
@@ -70,7 +70,19 @@
 		where qna_No=(select max(qna_No)
 		                from qna where qna_No<#{qnaNo})]]>
 	</select>
-
+	
+	<!-- 답변 안달은 게시글 개수 표시 -->
+	<select id="countJoin" resultType="int">
+		select count(*)
+		from qna q join qnare r
+		on q.QNA_NO = r.QNA_NO
+	</select>
+	
+	<select id="countQna" resultType="int">
+		select count(*)
+		from qna
+	</select>
+	
 </mapper>
 
 

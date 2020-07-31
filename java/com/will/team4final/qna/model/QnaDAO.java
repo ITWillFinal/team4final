@@ -13,5 +13,7 @@ public interface QnaDAO {
 	public int deleteQna(int no);
 	public QnaVO before(int qnaNo);
 	public QnaVO after(int qnaNo);
+	public int countJoin();
+	public int countQna();
 
 }

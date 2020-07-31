@@ -71,6 +71,51 @@ public class ResumeDAOMabatis implements ResumeDAO{
 	public int deleteResume(int resumeNo) {
 		return sqlSession.delete(namespace+"deleteResume",resumeNo);
 	}
+
+	@Override
+	public ResumeVO selectResumeByResumeNo(int resumeNo) {
+		return sqlSession.selectOne(namespace+"selectResumeByResumeNo",resumeNo);
+	}
+
+	@Override
+	public EducationVO selectEducationByResumeNo(int resumeNo) {
+		return sqlSession.selectOne(namespace+"selectEducationByResumeNo",resumeNo);
+	}
+
+	@Override
+	public List<CareerVO> selectCareerByResumeNo(int resumeNo) {
+		return sqlSession.selectList(namespace+"selectCareerByResumeNo",resumeNo);
+	}
+
+	@Override
+	public List<ActiveVO> selectActiveByResumeNo(int resumeNo) {
+		return sqlSession.selectList(namespace+"selectActiveByResumeNo",resumeNo);
+	}
+
+	@Override
+	public List<CertifyVO> selectCertifyByResumeNo(int resumeNo) {
+		return sqlSession.selectList(namespace+"selectCertifyByResumeNo",resumeNo);
+	}
+
+	@Override
+	public List<LanguageVO> selectLanguageByResumeNo(int resumeNo) {
+		return sqlSession.selectList(namespace+"selectLanguageByResumeNo",resumeNo);
+	}
+
+	@Override
+	public List<AwardVO> selectAwardByResumeNo(int resumeNo) {
+		return sqlSession.selectList(namespace+"selectAwardByResumeNo",resumeNo);
+	}
+
+	@Override
+	public AddinfoVO selectAddInfoByResumeNo(int resumeNo) {
+		return sqlSession.selectOne(namespace+"selectAddInfoByResumeNo",resumeNo);
+	}
+
+	@Override
+	public PotfolioVO selectPotfolioByResumeNo(int resumeNo) {
+		return sqlSession.selectOne(namespace+"selectPotfolioByResumeNo",resumeNo);
+	}
 	
 	
 }

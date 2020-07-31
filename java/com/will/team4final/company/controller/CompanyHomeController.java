@@ -94,7 +94,7 @@ public class CompanyHomeController {
 	
 	@RequestMapping(value = "/companyWrite.do", method = RequestMethod.GET)
 	public String companyWrite_get(Model model) {
-		logger.info("기업페이지 채용공고등록");
+		logger.info("기업페이지 채용공고 등록 페이지");
 		
 		List<String> list = locaServ.sido();
 		logger.info("지역 list = {}", list.size());
@@ -108,7 +108,7 @@ public class CompanyHomeController {
 		model.addAttribute("jobList", jobList);
 		
 		return "companypage/companyWrite";
-	}
+	}	
 	
 	@RequestMapping(value = "/companyWrite.do", method = RequestMethod.POST)
 	public String companyWrite_post(@ModelAttribute ComRecruitVO vo, Model model) {
@@ -120,13 +120,18 @@ public class CompanyHomeController {
 		String msg = "기업공고 등록 실패", url = "/companypage/companyWrite.do";
 		if(cnt>0) {
 			msg = "기업공고 등록 성공";
-			url = "/companypage/companyHome.do";
+			url = "/companypage/companyWritePeriod.do";
 		}
 		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		
 		return "common/message";
+	}
+	
+	@RequestMapping(value = "/companyWritePeriod.do", method = RequestMethod.GET)
+	public void companyWritePeriod_get() {
+		logger.info("기업회원 채용공고 기간 페이지");
 	}
 	
 	

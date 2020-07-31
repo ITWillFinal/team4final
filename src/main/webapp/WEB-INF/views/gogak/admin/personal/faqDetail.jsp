@@ -46,8 +46,9 @@ h3{
 }
 
 #outDiv{
+	margin-top: 35px;
     padding: 75px 35px 90px 35px;
-    border: 1px solid lightgray;
+    width: 750px;
 }
 
 /* 글내용 */
@@ -77,17 +78,53 @@ h3{
 .font-color{
 	color: gray;
 }
+input#delete {
+    margin-left: 5px;
+    margin-right: 5px;
+}
 
 
+/* 리스트 상단 탭 */
+ul, li{list-style: none;}
+.tabList>li .inTab:hover,
+.tabList>li .inTab:focus {text-decoration:underline}
+
+li.select {
+    float: left;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 15pt;
+}
+#fst{
+	border-bottom: 1px solid lightgray;
+
+}
+
+#mid{
+	border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+}
+#btm{
+	border-bottom: 1px solid lightgray;
+}
 </style>
 <main>
 
 	<!-- main -->
-	<div
-		style="float: left; width: 49%; margin-left: 30px; font-size: 14px; /* border: 1px solid lightgray; */">
-		<div style="margin: 5px; height: 95px; /* border: 1px solid lightgray; */">
-			<h2 style="padding-left: 50px; padding-top: 30px;">자주찾는 질문 상세보기(개인)</h2>
-		</div>
+	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
+		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
+			<li class = "select" style="width: 33%;" id = "fst">
+				<a href = <c:url value='/gogak/admin/company/faqList.do'/>>FaQ - 기업</a>
+			</li>
+			<li class = "select" style="width: 33%;" id = "mid">
+				<a href = <c:url value='/gogak/admin/personal/faqList.do'/>>FaQ - 일반</a>
+			</li>
+			<li class = "select" style="width: 33%;" id = "btm">
+				<a href = <c:url value='/gogak/qna/qnaList.do'/>>Q&A</a>
+			</li>
+			
+		</ul>
 		<!-- 본문 -->
 		<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */">
 			<div id="outDiv">
