@@ -13,10 +13,6 @@ public interface MemberService {
 	public static final int LOGIN_OK=1; //로그인 성공
 	public static final int PWD_DISAGREE=2; //비밀번호 불일치
 	public static final int ID_NONE=3; //아이디 존재하지 않음
-
-	//남녀구분
-	public static final int MALE=1; //비밀번호 불일치
-	public static final int FEMALE=2; //아이디 존재하지 않음
 	
 	int insertMember(MemberVO vo);
 	int selectMemberDup(String userid);
