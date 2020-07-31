@@ -52,8 +52,7 @@
 								<div class="main-menu">
 									<nav class="d-none d-lg-block">
 										<ul id="navigation">
-											<li><a href="index.html">MY 홈</a></li>
-											<li><a href="about.html">나의 Profile</a></li>
+											<li><a href="<c:url value='/mypage/mypageHome.do?status=${sessionScope.status }'/>">MY 홈</a></li>
 											<li><a href="<c:url value='/resume/resumeMain.do'/>">이력서관리</a></li>
 											<li><a href="contact.html">입사지원/요청관리</a></li>
 											<li><a href="contact.html">관심기업</a></li>
