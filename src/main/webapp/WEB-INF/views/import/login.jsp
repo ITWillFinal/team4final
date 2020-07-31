@@ -4,7 +4,7 @@
 	<div class="popup" style="text-align: center;">
 		<a href="#none" class="close">&times;</a><br>
 		<div id="tabs">
-			<ul style="border-radius: 0;">
+			<ul style="border-radius: 0; border: 1px solid #dddddd; background: #e9e9e9; color: #333333; font-weight: bold;">
 				<li style="margin-left: 8px;"><a href="#tabs-1"
 					style="width: 220px;">일반회원</a></li>
 				<li><a href="#tabs-2" style="width: 220px">기업회원</a></li>

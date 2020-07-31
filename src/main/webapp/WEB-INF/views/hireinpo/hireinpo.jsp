@@ -179,7 +179,7 @@ $(function() {
 <!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
 <h2 style="margin-bottom: 22px;">채용정보 상세검색</h2>
 <div id="hireTabs">
-	<ul>
+	<ul style="border: 1px solid #dddddd; background: #e9e9e9; color: #333333; font-weight: bold;">
 		<li><a href="#hireTabs-1"><i class="fa fa-map-marker" aria-hidden="true"></i>　지역</a></li>
 		<li><a href="#hireTabs-2"><i class="fa fa-briefcase" aria-hidden="true"></i>　직무</a></li>
 		<li><a href="#hireTabs-3"><i class="fa fa-industry" aria-hidden="true"></i>　산업</a></li>
