@@ -39,8 +39,23 @@ public class AdminController {
 	@Autowired private AdminService adminService;
 	
 	@RequestMapping("/adminMain.do")
-	public void adminMain() {
+	public void adminMain(Model model) {
 		logger.info("관리자 메인 홈!");
+		SearchVO searchVo = new SearchVO();
+		
+		//회원 가입된 인원 수 구하기
+		int totalRecordOfAdmin =adminService.selectTotalRecordOfAdmin(searchVo);
+		
+		//new user 구하기
+		int todayMember = adminService.selectTodayRegisterMember();
+		int todayCMember = adminService.selectTodayRegisterCMember();
+		int totalToday = todayMember + todayCMember;
+		
+		
+		
+		model.addAttribute("totalRecordOfAdmin", totalRecordOfAdmin);
+		model.addAttribute("totalToday", totalToday);
+		
 	}
 
 	@RequestMapping("/adminNotice.do")
@@ -339,7 +354,6 @@ public class AdminController {
 			msg="회원 정보 수정 성공했습니다.";
 		}
 		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
 		
 		return "common/message";
 	}

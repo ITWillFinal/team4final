@@ -24,5 +24,15 @@ public class AdminDAOMybatis implements AdminDAO{
 	public int selectTotalRecordOfAdmin(SearchVO searchVo) {
 		return sqlSession.selectOne(namespace+"selectTotalRecordOfAdmin", searchVo );
 	}
+
+	@Override
+	public int selectTodayRegisterMember() {
+		return sqlSession.selectOne(namespace+"selectTodayRegisterMember");
+	}
+
+	@Override
+	public int selectTodayRegisterCMember() {
+		return sqlSession.selectOne(namespace+"selectTodayRegisterCMember");
+	}
 	
 }
