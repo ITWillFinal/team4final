@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
-<script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-<script type = "text/javascript" src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script src="<c:url value='/resources/js/html2canvas.js'/>"></script>
 <script src="<c:url value='/resources/js/jspdf.min.js'/>"></script>
 <jsp:useBean id="currTime" class="java.util.Date" />
@@ -17,7 +15,7 @@
 	
 	.resume-detail{
 		margin-left : 17%;
-		background: #f7f7f79e;
+		background: #fafafa;
    		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 		width: 980px;
 		float: left;
@@ -193,32 +191,26 @@
 		color: white;
 	}
 
+	.pdf-save{
+		position: absolute;
+    	top: -100px;
+    	left: -324px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){		
-		$('.pdf-down').hover(function(){
-			$('html').css({'cursor':'cursor'});
-		},function(){
-			$('html').css({'cursor':'default'});		
-		});
-		
-		/* $('.pdf-down').click(function() {
-		  //pdf_wrap을 canvas객체로 변환
-		  html2canvas($('.resume-detail')[0]).then(function(canvas) {
-		    var doc = new jsPDF('p', 'mm', 'a4'); //jspdf객체 생성
-		    var imgData = canvas.toDataURL('image/png'); //캔버스를 이미지로 변환
-		    doc.addImage(imgData, 'PNG', 0, 0); //이미지를 기반으로 pdf생성
-		    doc.save('sample-file.pdf'); //pdf저장
-		  });
-		}); */
-		
 		$('.pdf-down').click(function() { // pdf저장 button id
-			
-		    html2canvas($('.resume-detail')[0]).then(function(canvas) { //저장 영역 div id
-			
+		   var scrollValue = $(document).scrollTop();
+		    $('html').scrollTop(0);
+		    $('#resumeDetail').toggleClass('pdf-save');
+			html2canvas($('#resumeDetail')[0]).then(function(canvas) { //저장 영역 div id
+	
+			$('html').scrollTop(scrollValue);
+					
 		    // 캔버스를 이미지로 변환
 		    var imgData = canvas.toDataURL('image/png');
-			     
+		    $('#resumeDetail').toggleClass('pdf-save');
+            
 		    var imgWidth = 210; // 이미지 가로 길이(mm) / A4 기준 210mm
 		    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
 		    var imgHeight = canvas.height * imgWidth / canvas.width;
@@ -238,24 +230,30 @@
 		        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
 		        heightLeft -= pageHeight;
 		    }
-		 
+		 	var fileName="THE_JOB_이력서_no_title";
+		 	if("${resumeAllVo.resumeVo.selfIntTitle }"!=""){
+		 		fileName="${resumeAllVo.resumeVo.selfIntTitle }";
+		 	}
 		    // 파일 저장
-		    doc.save('file-name.pdf');
-
-			  
-		});
+		    doc.save("THE_JOB_이력서_"+fileName+'.pdf');  
 
 		});
-	})
+
+		});
+	}) 
+
 </script>
 <div class="resume-detail-main">
+	<form name="pf">
+ 		<input type=hidden name="printzone">
+	</form>
 	<div class="remoteController">
 		<div class="remoteContent">
 			<p>최근 수정일 : ${fn:substring(resumeAllVo.resumeVo.regdate,0,10) }</p>
 		</div>
 		<button class="remoteContent pdf-down"><p>PDF파일로 받기</p></button>
 	</div>
-	<div class="resume-detail">
+	<div class="resume-detail" id="resumeDetail">
 		<div class="profile">
 			<h1 class="resume-title">
 			<c:if test="${empty resumeAllVo.resumeVo.selfIntTitle or resumeAllVo.resumeVo.selfIntTitle==''}">
