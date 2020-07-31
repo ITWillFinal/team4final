@@ -32,7 +32,7 @@ public class AdminController {
 	@Autowired
 	private NoticeService noticeServ;
 	@Autowired
-	private MemberService memberServ7ice;
+	private MemberService memberService;
 	@Autowired
 	private QnaService qnaService;
 
