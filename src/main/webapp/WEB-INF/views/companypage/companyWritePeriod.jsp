@@ -28,6 +28,12 @@
 			서브밋하면 DB 저장되며 companyHome으로
 			
 			
+			<!-- 결제 시작 -->
+			<%@ include file="../import/import.jsp" %>
+			
+			
+			<!-- 결제 끝 -->
+			
 		</form>
 	</div>
 </main>
