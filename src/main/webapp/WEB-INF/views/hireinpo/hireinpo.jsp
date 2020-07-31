@@ -99,9 +99,6 @@ $(function() {
 });
 </script>
 <style>
-	.ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active{
-		
-	}
 
 	#hireTabs{
 		float: left;

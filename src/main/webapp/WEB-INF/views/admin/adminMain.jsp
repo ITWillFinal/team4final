@@ -15,9 +15,9 @@
 		<div class="span8">
 			<div class="row-fluid">
 				<div class="span12">
-					<a href="#" class="btn-box small span4"><i
-						class="icon-envelope"></i><b>Messages</b> </a><a href="#"
-						class="btn-box small span4"><i class="icon-group"></i><b>${totalRecordOfAdmin }Clients</b>
+					<a href="<c:url value = '/gogak/qna/qnaList.do'/>" class="btn-box small span4">
+					<i class="icon-envelope"></i><b>1:1 문의사항<br><span style="color: red; font-size: bold">${cnt }</span> </b> </a><a href="#"
+						class="btn-box small span4"><i class="icon-group"></i><b>고객<br><span style="color: blue; font-size: bold">${totalRecordOfAdmin }</span></b>
 					</a><a href="#" class="btn-box small span4"><i
 						class="icon-exchange"></i><b>Expenses</b> </a>
 				</div>
