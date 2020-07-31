@@ -7,7 +7,8 @@
 		<selectKey keyProperty="resumeNo" order="BEFORE" resultType="string">
 			select resume_seq.nextval from dual
 		</selectKey>
-		insert into resume
+		insert into resume(resume_no,user_no,location1,location2,jobtype1,jobtype2,
+			sal,self_int_title,self_int,regdate)
 		values(#{resumeNo},#{userNo},#{location1},#{location1},
 		#{jobtype1},#{jobtype2},#{sal},#{selfIntTitle},#{selfInt},sysdate)
 	</insert>
@@ -16,7 +17,8 @@
 		<selectKey keyProperty="eduCode" order="BEFORE" resultType="string">
 			select EDUCATION_seq.nextval from dual
 		</selectKey>
-		insert into education
+		insert into education(edu_code,final_edu,uni,uni_name,edu_location,
+			edu_period,major,edu_score,resume_no)
 		values(#{eduCode},#{finalEdu},#{uni},#{uniName},#{eduLocation},
 		#{eduPeriod},#{major},#{eduScore},#{resumeNo})
 	</insert>
@@ -25,7 +27,8 @@
 		<selectKey keyProperty="careerCode" order="BEFORE" resultType="string">
 			select career_seq.nextval from dual
 		</selectKey>
-		insert into career
+		insert into career(career_code,career_company,career_period,career_reason,
+			task,resume_no,career_rank,career_year,career_location,career_sal)
 		values(#{careerCode},#{careerCompany},#{careerPeriod},#{careerReason},#{task},
 		#{resumeNo},#{careerRank},#{careerYear},#{careerLocation},#{careerSal})
 	</insert>
@@ -34,7 +37,7 @@
 		<selectKey keyProperty="langCode" order="BEFORE" resultType="string">
 			select LANGUAGE_seq.nextval from dual
 		</selectKey>
-		insert into LANGUAGE
+		insert into LANGUAGE(lang_code,kinds,test_name,lang_score,rating,lang_get_date,resume_no)
 		values(#{langCode},#{kinds},#{testName},#{langScore},#{rating},#{langGetDate},#{resumeNo})
 	</insert>
 
@@ -42,7 +45,7 @@
 		<selectKey keyProperty="infoCode" order="BEFORE" resultType="string">
 			select addinfo_seq.nextval from dual
 		</selectKey>
-		insert into addinfo
+		insert into addinfo(info_code,disable,military,affair,s_fund,resume_no)
 		values(#{infoCode},#{disable},#{military},#{affair},#{sFund},#{resumeNo})
 	</insert>
 
@@ -50,7 +53,7 @@
 		<selectKey keyProperty="actCode" order="BEFORE" resultType="string">
 			select active_seq.nextval from dual
 		</selectKey>
-		insert into active
+		insert into active(act_code,activity,act_place,act_period,act_content,resume_no)
 		values(#{actCode},#{activity},#{actPlace},#{actPeriod},#{actContent},#{resumeNo})
 	</insert>
 	
@@ -58,7 +61,7 @@
 		<selectKey keyProperty="awardCode" order="BEFORE" resultType="string">
 			select award_seq.nextval from dual
 		</selectKey>
-		insert into award
+		insert into award(award_code,award_name,award_com,award_get_date,resume_no)
 		values(#{awardCode},#{awardName},#{awardCom},#{awardGetDate},#{resumeNo})
 	</insert>
 	
@@ -66,7 +69,7 @@
 		<selectKey keyProperty="potCode" order="BEFORE" resultType="string">
 			select potfolio_seq.nextval from dual
 		</selectKey>
-		insert into potfolio
+		insert into potfolio(pot_code,pot_file,pot_period,pot_tools,workers,intro,resume_no)
 		values(#{potCode},#{potFile},#{potPeriod},#{potTools},#{workers},#{intro},#{resumeNo})
 	</insert>
 
@@ -74,7 +77,7 @@
 		<selectKey keyProperty="certifyCode" order="BEFORE" resultType="string">
 			select Certify_seq.nextval from dual
 		</selectKey>
-		insert into certify
+		insert into certify(certify_code,certify_name,certify_place,certify_get_date,resume_no)
 		values(#{certifyCode},#{certifyName},#{certifyPlace},#{certifyGetDate},#{resumeNo})
 	</insert>
 	
