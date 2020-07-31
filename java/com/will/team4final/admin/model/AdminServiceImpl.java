@@ -21,6 +21,16 @@ public class AdminServiceImpl implements AdminService {
 	public int selectTotalRecordOfAdmin(SearchVO searchVo) {
 		return adminDao.selectTotalRecordOfAdmin(searchVo);
 	}
+
+	@Override
+	public int selectTodayRegisterMember() {
+		return adminDao.selectTodayRegisterMember();
+	}
+
+	@Override
+	public int selectTodayRegisterCMember() {
+		return adminDao.selectTodayRegisterCMember();
+	}
 	
 	
 }

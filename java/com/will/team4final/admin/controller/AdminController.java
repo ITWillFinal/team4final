@@ -24,7 +24,6 @@ import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.notice.model.NoticeListVO;
 import com.will.team4final.notice.model.NoticeService;
 import com.will.team4final.notice.model.NoticeVO;
-import com.will.team4final.qna.model.QnaService;
 
 @Controller
 @RequestMapping("/admin")
@@ -37,17 +36,26 @@ public class AdminController {
 	private MemberService memberService;
 	@Autowired
 	private ComMemberService comMemberService;
-	@Autowired 
-	private AdminService adminService;
-	@Autowired
-	private QnaService qnaService;
+	@Autowired private AdminService adminService;
 	
 	@RequestMapping("/adminMain.do")
 	public void adminMain(Model model) {
 		logger.info("관리자 메인 홈!");
+		SearchVO searchVo = new SearchVO();
 		
-		int cnt = qnaService.noRe();
-	    model.addAttribute("cnt", cnt);
+		//회원 가입된 인원 수 구하기
+		int totalRecordOfAdmin =adminService.selectTotalRecordOfAdmin(searchVo);
+		
+		//new user 구하기
+		int todayMember = adminService.selectTodayRegisterMember();
+		int todayCMember = adminService.selectTodayRegisterCMember();
+		int totalToday = todayMember + todayCMember;
+		
+		
+		
+		model.addAttribute("totalRecordOfAdmin", totalRecordOfAdmin);
+		model.addAttribute("totalToday", totalToday);
+		
 	}
 
 	@RequestMapping("/adminNotice.do")
@@ -346,7 +354,6 @@ public class AdminController {
 			msg="회원 정보 수정 성공했습니다.";
 		}
 		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
 		
 		return "common/message";
 	}

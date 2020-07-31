@@ -6,9 +6,7 @@
 	<div class="btn-box-row row-fluid">
 		<a href="#" class="btn-box big span4"><i class=" icon-random"></i><b>65%</b>
 			<p class="text-muted">Growth</p> </a><a href="#"
-			class="btn-box big span4"><i class="icon-user"></i><b>
-			<div></div>
-			</b>
+			class="btn-box big span4"><i class="icon-user"></i><b>${totalToday }</b>
 			<p class="text-muted">New Users</p> </a><a href="#"
 			class="btn-box big span4"><i class="icon-money"></i><b>15,152</b>
 			<p class="text-muted">Profit</p> </a>
@@ -17,10 +15,10 @@
 		<div class="span8">
 			<div class="row-fluid">
 				<div class="span12">
-					<a href="<c:url value = '/gogak/qna/qnaList.do'/>" class="btn-box small span4"><i
-						class="icon-envelope"></i><p style="color: red;">${cnt }</p><b>1:1 문의사항</b> </a><a href="<c:url value = '/gogak/qna/qnaList.do'/>"
-						class="btn-box small span4"><i class="icon-group"></i><b>Clients</b>
-					</a><a href="<c:url value = '/gogak/qna/qnaList.do'/>" class="btn-box small span4"><i
+					<a href="#" class="btn-box small span4"><i
+						class="icon-envelope"></i><b>Messages</b> </a><a href="#"
+						class="btn-box small span4"><i class="icon-group"></i><b>${totalRecordOfAdmin }Clients</b>
+					</a><a href="#" class="btn-box small span4"><i
 						class="icon-exchange"></i><b>Expenses</b> </a>
 				</div>
 			</div>

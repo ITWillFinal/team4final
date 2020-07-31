@@ -8,4 +8,6 @@ import com.will.team4final.member.model.MemberVO;
 public interface AdminService {
 	List<MemberVO> adminShowAllMember(SearchVO searchVo);
 	int selectTotalRecordOfAdmin(SearchVO searchVo);
+	int selectTodayRegisterMember();
+	int selectTodayRegisterCMember();
 }
