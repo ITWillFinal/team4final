@@ -43,11 +43,33 @@ td {
 .divPage {
 	text-align: center;
 }
-a:link {text-decoration: none; color: #333333;}
-a:visited {text-decoration: none; color: #333333;}
-a:active {text-decoration: none; color: #333333;}
-a:hover {text-decoration: underline; color: red;}
 
+
+/* 리스트 상단 탭 */
+ul, li{list-style: none;}
+.tabList>li .inTab:hover,
+.tabList>li .inTab:focus {text-decoration:underline}
+
+li.select {
+    float: left;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 15pt;
+}
+#fst{
+	border-bottom: 1px solid lightgray;
+	border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+}
+#mid{
+	border-left: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+}
+#btm{
+	 /* border-bottom: 1px solid lightgray */; 
+}
 </style>
 <!-- 페이징 -->
 <form action="<c:url value='/admin/adminMemberManagement.do'/>"
@@ -59,10 +81,45 @@ a:hover {text-decoration: underline; color: red;}
 </form>
 <!-- 페이징 처리 form 끝 -->
 <!-- main top end-->
-
-    <a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=U'/>">개인</a>
-    <a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=C'/>">회사</a>
-    <a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=A'/>">전체</a>
+	<!-- main -->
+	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
+		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
+			<c:if test="${!empty adminList}">
+				<li class = "select" style="width: 33%;" id = "btm">
+					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=A'/>">전체</a>
+				</li>
+				<li class = "select" style="width: 33%;" id = "mid">
+					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=U'/>">개인</a>
+				</li>
+				<li class = "select" style="width: 33%;" id = "fst">
+					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=C'/>">회사</a>
+				</li>
+			</c:if>
+			<c:if test="${!empty memberList}">
+				<li class = "select" style="width: 33%;" id = "fst">
+					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=A'/>">전체</a>
+				</li>
+				<li class = "select" style="width: 33%;" id = "btm">
+					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=U'/>">개인</a>
+				</li>
+				<li class = "select" style="width: 33%;" id = "mid">
+					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=C'/>">회사</a>
+				</li>
+			</c:if>
+			<c:if test="${!empty comList}">
+				<li class = "select" style="width: 33%;" id = "fst">
+					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=A'/>">전체</a>
+				</li>
+				<li class = "select" style="width: 33%;" id = "mid">
+					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=U'/>">개인</a>
+				</li>
+				<li class = "select" style="width: 33%;" id = "btm">
+					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=C'/>">회사</a>
+				</li>
+			</c:if>
+			
+			
+		</ul>
 	<div class="divList" style="margin-top: 100px;">
 		<table class="box2">
 			<colgroup>
@@ -241,7 +298,7 @@ a:hover {text-decoration: underline; color: red;}
 				type="submit" value="검색">
 		</form>
 	</div>
-
+</div>
 <!-- main bottom -->
 <!-- bottom -->
 <%@ include file="../inc/adminBottom.jsp"%>

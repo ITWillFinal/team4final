@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<style>
-			.ui-widget-header{
+			.ui-widget-header:hover{
 				background-color: #2e3752;	
 				color: white;
 				border-top: 3px solid #fd5a77;
@@ -35,7 +35,7 @@
 				border-bottom: 3px solid #13193e;
 				
 			}
-			
+		
 		</style>
 		<ul id="menu">
 		  <li class="ui-widget-header"><div>기업정보관리</div></li>
