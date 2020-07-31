@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <script>
+	  $( function() {
+	    $( "#menu" ).menu({
+	      items: "> :not(.ui-widget-header)"
+	    });
+	  } );
+	</script>
 
     <!-- main left sidebar -->
 	<div style="float: left; width:250px; margin-left:16%; word-break:break-all; border:1px solid lightgray; font-size: 14px;">
