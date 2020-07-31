@@ -154,9 +154,16 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 
 .totalMenu div {
 	float: left;
-	border: 1px solid silver;
 	border-collapse: collapse;
-	padding: 50px;
+	padding: 40px;
+    padding-left: 80px;
+	height: 220px;
+}
+
+.totalMenu div span{
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-bottom: 10px;
 }
 
 .totalMenu div a {
@@ -361,18 +368,60 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 										</ul>
 										<div class="totalMenu">
 											<div>
-												<span>채용정보 ></span> <br> <a
-													href="about.html">상세검색</a> <br> <a href="about.html">지역별</a>
-												<br> <a href="about.html">직무별</a> <br> <a
-													href="about.html">산업별</a> <br> <a href="about.html">기업별</a>
+												<span>THE JOB+ <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
+												<br><br> 
+												<a href="about.html">회사소개</a> 
+												<br>
+												<a href="about.html">회사 CI</a>
+												<br>
+												<a href="about.html">회사위치</a> 
+												<br>
+												<a href="about.html">인재채용</a>
 
 											</div>
 											<div>
-												<a href="about.html">취업 성공 툴 ></a> <br> <a
-													href="about.html">자소서 작성</a> <br> <a href="about.html">학격
-													자소서</a> <br> <a href="about.html">합격 스팩</a> <br> <a
-													href="about.html">직무 인터뷰</a> <br> <a href="about.html">취업
-													후기</a>
+												<span>채용정보 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
+												<br><br> 
+												<a href="about.html">상세검색</a> 
+												<br>
+												<a href="about.html">지역별</a>
+												<br>
+												<a href="about.html">직무별</a> 
+												<br>
+												<a href="about.html">산업별</a>
+
+											</div>
+											<div>
+												<span>취업성공 툴 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
+												<br><br> 
+												<a href="about.html">자소서 작성</a> 
+												<br>
+												<a href="about.html">학격자소서</a> 
+												<br>
+												<a href="about.html">합격 스팩</a> 
+												<br>
+												<a href="about.html">취업후기</a>
+											</div>
+											<div>
+												<span>직업탐색 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
+												<br><br>
+												<a href="about.html">진로상담</a> 
+												<br>
+												<a href="about.html">직업정보탐색</a> 
+											</div>
+											<div>
+												<span>고객센터 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
+												<br><br>
+												<a href="about.html">공지사항</a> 
+												<br>
+												<a href="about.html">자주찾는질문</a> 
+												<br>
+												<a href="about.html">1:1문의사항</a> 
+											</div>
+											<div>
+												<span>기업서비스 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
+												<br><br>
+												<a href="<c:url value='/companypage/companyHome.do'/>" style=""><i class="fa fa-building" aria-hidden="true"></i> 기업서비스 홈</a> 
 											</div>
 										</div>
 									</nav>
