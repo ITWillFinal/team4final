@@ -15,6 +15,7 @@
    		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 		padding: 50px; 
 		margin-bottom: 70px;
+		margin-top: 50px;
 	}
 	
 	.resume-desc{

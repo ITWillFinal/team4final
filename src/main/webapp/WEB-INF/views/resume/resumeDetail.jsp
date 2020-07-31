@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
+<script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script type = "text/javascript" src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <jsp:useBean id="currTime" class="java.util.Date" />
 <style type="text/css">
 	*{
@@ -19,6 +21,7 @@
 		float: left;
 		padding: 35px 30px 80px;
 		margin-bottom: 70px;
+		margin-top: 100px;
 	}
 	
 	.resume-title{
@@ -70,9 +73,9 @@
 		width:702px;
 		height: 90px;
 		background: #f7f7f7;
-		padding-top: 5px;
 		border: 1px solid #e3e3e3;
 		padding-top:12px; 
+		margin-top: 10px;
 	}
 	
 	.add-info-div{
@@ -159,7 +162,6 @@
 	
 </style>
 <div class="resume-detail-main">
-	<h1 style="margin:20px 0 15px 15%;font-weight: bold">내 이력서</h1>
 	<div class="resume-detail">
 		<div class="profile">
 			<h1 class="resume-title">
