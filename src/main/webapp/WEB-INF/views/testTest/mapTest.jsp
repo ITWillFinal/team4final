@@ -8,14 +8,14 @@
 </head>
 <body>
 
-<div id="map" style="width:600px;height:350px;"></div>
+<div id="map" style="width:600px;height:600px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f5a970707d8d0e271a8262251139638&libraries=services,clusterer"></script>
 <script type="text/javascript">
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = {
 	    center: new kakao.maps.LatLng(37.394921, 127.111282), // 지도의 중심좌표
-	    level: 4 // 지도의 확대 레벨
+	    level: 7 // 지도의 확대 레벨
 	};  
 	
 	//지도를 생성합니다    
@@ -56,16 +56,31 @@
 			    var infowindow = new kakao.maps.InfoWindow({
 			        content: '<div style="width:150px;text-align:center;padding:6px 0;">자자</div>'
 			    });
-			    infowindow.open(map, marker);
 			    
 			    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 			    //map.setCenter(coords);
 				markers.push(marker);
+				kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+			    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+				// 클러스터러에 마커들을 추가합니다
+				clusterer.addMarkers(markers);
 			}
 		});    
-		// 클러스터러에 마커들을 추가합니다
 	}
-	clusterer.addMarkers(markers);
+	
+	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+	function makeOverListener(map, marker, infowindow) {
+	    return function() {
+	        infowindow.open(map, marker);
+	    };
+	}
+
+	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+	function makeOutListener(infowindow) {
+	    return function() {
+	        infowindow.close();
+	    };
+	}
 </script>
 </body>
 </html>
