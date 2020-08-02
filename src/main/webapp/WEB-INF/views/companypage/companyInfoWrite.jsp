@@ -183,7 +183,7 @@ hr{
 		<br>
 		<hr>
 		<form name="frm" method="post" style="margin-top: 50px;"
-			action="<c:url value='#' /> "
+			action="<c:url value='/companypage/companyInfoWrite.do' /> "
 			enctype="multipart/form-data" >
 		<div class="form-horizontal">
 			<div class="form-group">

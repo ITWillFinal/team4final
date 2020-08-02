@@ -53,14 +53,13 @@
 		]]>
 	</select>
 	
-	<select id="selectTodayRegisterCMember" resultType="int">
+	<select id="selectTodayRegisterCMember"  resultType="int">
 		select count(*)
 		from(
-		
-		select (sysdate-to_date(C_JOINDATE))*24 as dt from COMPANY_member where C_OUTDATE is null
+		select (sysdate-to_date(C_JOINDATE))*24 as newMember from COMPANY_member where C_OUTDATE is null
 		)a
 		<![CDATA[ 
-		where dt < 24
+		where newMember < 24
 		]]>
 	</select>
 	

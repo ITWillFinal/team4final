@@ -161,7 +161,7 @@ public class MemberController {
 		System.out.println("마지막 : email_injeung : "+email_injeung);
 		System.out.println("마지막 : dice : "+dice);
 		System.out.println("마지막 : e_mail : "+e_mail);
-
+			
 		//페이지이동과 자료를 동시에 하기위해 ModelAndView를 사용해서 이동할 페이지와 자료를 담음
 		ModelAndView mv = new ModelAndView();
 
