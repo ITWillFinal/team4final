@@ -136,7 +136,7 @@ input#btMultiDel {
 					<p>검색어 : ${param.searchKeyword },
 						 ${pagingInfo.totalRecord}건 검색되었습니다.</p>
 				</c:if>
-				<!-- 페이징 -->
+				<!-- 페이징 => 관리자에 페이지가 필요한지 확인!-->
 				<form action="<c:url value='/gogak/admin/company/faqList.do'/>" 
 					name="frmPage" method="post">
 					<input type="hidden" name="currentPage">
