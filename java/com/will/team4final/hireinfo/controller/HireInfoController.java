@@ -84,4 +84,9 @@ public class HireInfoController {
 		
 		return "hi";
 	}
+	
+	@RequestMapping("/infoSearchByLocation.do")
+	public void infoSearchByLocation() {
+		
+	}
 }
