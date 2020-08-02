@@ -384,7 +384,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 												<br><br> 
 												<a href="about.html">상세검색</a> 
 												<br>
-												<a href="about.html">지역별</a>
+												<a href="<c:url value='/hireinpo/infoSearchByLocation.do'/>">지역별</a>
 												<br>
 												<a href="about.html">직무별</a> 
 												<br>
