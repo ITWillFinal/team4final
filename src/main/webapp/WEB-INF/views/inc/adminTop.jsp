@@ -67,7 +67,7 @@
 						<ul class="widget widget-menu unstyled">
 							<li><a href="<c:url value = '/gogak/admin/company/faqList.do'/>"><i
 									class="menu-icon icon-bold"></i> 고객센터 </a></li>
-							<li><a href="<c:url value = '/gogak/admin/company/faqList.do'/>"><i
+							<li><a href="<c:url value = '/memberAdmin/adminInfo.do'/>"><i
 									class="menu-icon icon-book"></i>관리자 관리 </a></li>
 							<li><a href="form.html"><i class="menu-icon icon-paste"></i>Forms
 							</a></li>

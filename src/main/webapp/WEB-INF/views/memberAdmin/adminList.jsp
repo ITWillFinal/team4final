@@ -97,21 +97,21 @@ input#btMultiDel {
 			.prop('checked', this.checked);			
 		});
 			
-		$('#btMultiDel').click(function() {
+		$('#setLevel').click(function() {
 			var len = $('tbody input[type=checkbox]:checked').length;
 			if(len==0){
-				alert("삭제하려는 게시글을 먼저 체크하세요.");
+				alert("관리등급을 변경할 관리자를 먼저 체크하세요.");
 				return;
 			}
 			
 			$('form[name=frmList]')
-				.prop("action", "<c:url value = '/gogak/admin/company/deleteMulti.do'/>");
+				.prop("action", "<c:url value = '/memberAdmin/setLevel.do'/>");
 			
 			$('form[name=frmList]').submit();
 		});
 		
-		$('#fnqWrite').click(function() {
-			location.href = "<c:url value = '/gogak/admin/company/faqWrite.do'/>";
+		$('#setLevel').click(function() {
+			location.href = "<c:url value = '/memberAdmin/setLevel.do'/>";
 		});
 	});
 </script>
@@ -132,7 +132,7 @@ input#btMultiDel {
 		</ul>
 		<div id = "list">
 			<div id = "upList">
-				<c:if test="${!empty param.searchKeyword }">
+				<%-- <c:if test="${!empty param.searchKeyword }">
 					<p>검색어 : ${param.searchKeyword },
 						 ${pagingInfo.totalRecord}건 검색되었습니다.</p>
 				</c:if>
@@ -144,7 +144,7 @@ input#btMultiDel {
 						value="${param.searchCondition}">
 					<input type="hidden" name="searchKeyword" 
 						value="${param.searchKeyword}">	
-				</form>
+				</form> --%>
 			</div>
 		<div>
 		<form name="frmList" method="post"
@@ -152,50 +152,41 @@ input#btMultiDel {
 			<div class = "divList">
 				<table class = "box2" style="width: 700px; margin-top: 45px;">
 					<colgroup>
-					   <col style="width:10%;" />
-					   <col style="width:10%;" />
-					   <col style="width:20%;" />
-					   <col style="width:30%;" />
-					   <col style="width:30%;" />
+					   <col style="width:10%;" /><!-- 체크박스 -->
+					   <col style="width:10%;" /><!-- 번호 -->
+					   <col style="width:20%;" /><!-- ID -->
+					   <col style="width:30%;" /><!-- 이름 -->
+					   <col style="width:15%;" /><!-- 등급 -->
+					   <col style="width:15%;" /><!-- 연락처 -->
 					</colgroup>
 					<thead>
 						<tr>
 							<th><input type="checkbox" name="chkAll"></th>
-							<th>글번호</th>
-							<th>카테고리</th>
-							<th>질문</th>
-							<th>답변</th>
+							<th>번호</th>
+							<th>ID</th>
+							<th>이름</th>
+							<th>관리자 등급</th>
+							<th>관리자 연락처</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:if test="${empty list }">
-							<th colspan="5">등록된 자주찾는 질문이 없습니다.</th>
+							<th colspan="6">등록된 관리자가 없습니다.</th>
 						</c:if>
 						<c:if test="${!empty list }">
 							<c:set var = "idx" value = "0"/>
-								<c:forEach var = "vo" items="${list }">
+								<c:forEach var = "map" items="${list }">
 									<tr>
 										<td style = "text-align: center">
-											<input type="checkbox" name="faqlist[${idx }].faqNo"
-												value = "${vo.faqNo }">
+											<input type="checkbox" name="adminlist[${idx }].adminNo"
+												value = "${map['ADMIN_NO'] }">
+											<input type="hidden" value = "${map['ADMIN_NO'] }">
 										</td>
-										<td style="text-align: center;">${vo.faqNo }</td>
-										<td style="text-align: center;">${vo.category }</td>
-										<td style="text-align: center;">
-											<a href
-												="<c:url value='/gogak/admin/company/faqDetail.do?no=${vo.faqNo}'/>">
-														${vo.question }
-											</a>								
-										</td>
-										<td style="text-align: center;">
-											<!-- 제목줄이기 -->
-											<c:if test = "${fn:length(vo.answer)>=10 }">
-												${fn:substring(vo.answer,0,10)}...
-											</c:if>
-											<c:if test="${fn:length(vo.answer)<10 }">
-												${vo.answer }							
-											</c:if>
-										</td>
+										<td style="text-align: center;">${map['ADMIN_NO'] }</td>
+										<td style="text-align: center;">${map['ADMIN_ID'] }</td>
+										<td style="text-align: center;">${map['ADMIN_NAME'] }</td>
+										<td style="text-align: center;">${map['LEVEL_NAME'] }</td>
+										<td style="text-align: center;">${map['TEL'] }</td>
 									</tr>
 									<c:set var = "idx" value = "${idx+1 }"/>
 								</c:forEach>
@@ -257,8 +248,8 @@ input#btMultiDel {
 				        	value="${param.searchKeyword}">   
 						<input type="submit" value="검색"><br>
 						<div id = "bt">
-							<input type="button" id = "fnqWrite" value = "게시글 등록">
-							<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"><br><br>
+							<input type="button" id = "setLevel" value = "관리자 등급 설정">
+							<input type="button" id = "btMultiDel" value="선택한 관리자 삭제"><br><br>
 						</div>
 			    </form>
 			</div>
