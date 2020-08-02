@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="../../../inc/adminTop.jsp"%>
+<%@ include file="../inc/adminTop.jsp"%>
 
 <style>
 .divList{
@@ -129,7 +129,6 @@ input#btMultiDel {
 			<li class = "select" style="width: 33%;" id = "btm">
 				<a href = <c:url value='/gogak/qna/qnaList.do'/>>Q&A</a>
 			</li>
-			
 		</ul>
 		<div id = "list">
 			<div id = "upList">
@@ -267,6 +266,6 @@ input#btMultiDel {
 	</div>
 </main>
 
-<%@ include file="../../../inc/adminBottom.jsp"%>
+<%@ include file="../inc/adminBottom.jsp"%>
 
 

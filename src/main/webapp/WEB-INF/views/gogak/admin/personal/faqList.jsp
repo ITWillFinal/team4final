@@ -175,7 +175,7 @@ input#btMultiDel {
 						</thead>
 						<tbody>
 							<c:if test="${empty list }">
-								<th colspan="4">등록된 자주찾는 질문이 없습니다.</th>
+								<th colspan="5">등록된 자주찾는 질문이 없습니다.</th>
 							</c:if>
 							<c:if test="${!empty list }">
 								<c:set var = "idx" value = "0"/>

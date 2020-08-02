@@ -30,6 +30,11 @@
 		select levels from admin
 		where admin_id = #{adminId}
 	</select>
+	
+	<select id="selectInfo" resultType="map">
+		select * from admininfo
+		order by admin_no
+	</select>
 </mapper>
 
 
