@@ -3,10 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.will.team4final.companyRecruit">
+	<select id="selectrecruitmentCode" resultType="string">
+      select RECRUITMENT_SEQ.nextval from dual
+   </select>
 	<insert id="insertComRecruit" parameterType="comRecruitVo" >
-		<selectKey keyProperty="recruitmentCode" resultType="String" order="BEFORE">
-			select RECRUITMENT_SEQ.nextval from dual
-		</selectKey>
 		insert into recruitment(
 		RECRUITMENT_CODE, COM_NAME, TITLE, JOB_TYPE1, JOB_TYPE2,
 		INDU_TYPE1, INDU_TYPE2,	ZIPCODE, ADDRESS, ADDRESSDETAIL, WORKHOURS,
