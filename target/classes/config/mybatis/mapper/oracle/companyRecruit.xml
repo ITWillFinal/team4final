@@ -19,10 +19,14 @@
 		#{induType1}, #{induType2}, #{zipcode}, #{address}, #{addressDetail}, #{workHours},
 		#{location1}, #{location2}, #{recType}, #{pay}, #{recNumber}, #{welfare},
 		#{gender}, #{age}, #{educationLv}, #{career}, #{preference}, 
-		#{document}, #{recDetail}, #{comCode}, #{companyType})
-		
-		
+		#{document}, #{recDetail}, #{comCode}, #{comType})
 	</insert>
+	
+	<update id="editFaq" parameterType="faqVo">
+		update faq
+		set category = #{category}, question = #{question}, answer = #{answer}
+		where faq_No = #{faqNo}
+	</update>
 	
 	<select id="selectMost5" resultType="comRecruitVo">
 		select * from recruitment order by readcount desc
