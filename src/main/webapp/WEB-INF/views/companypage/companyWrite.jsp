@@ -236,7 +236,7 @@
 		
 		$("#comTypeSelect").change(function(){
 			var comTypeSel = $("#comTypeSelect option:selected").val();
-			$("#companyType").val(comTypeSel);
+			$("#comType").val(comTypeSel);
 		});
 		
 		
@@ -375,10 +375,14 @@
 				$('#recDetail').focus();
 				event.preventDefault();
 			}else if($('#comCode').val()==''){
+<<<<<<< HEAD
 				alert('회사코드를 입력하세요');
 				$('#comCode').focus();
+=======
+				alert('회사코드가 존재하지 않습니다! 기업정보입력 페이지로 이동합니다');
+>>>>>>> 46972ea06982451532a9e9de09173f8692a476f7
 				event.preventDefault();
-			}else if($('#companyType').val()==''){
+			}else if($('#comType').val()==''){
 				alert('기업형태를 입력하세요');
 				$('#companyType').focus();
 				event.preventDefault();
@@ -503,7 +507,7 @@
 							<option value="스타트업">스타트업</option>
 							<option value="외국계기업">외국계기업</option>
 						</select>
-						<input type="hidden" id="companyType" name="companyType">
+						<input type="hidden" id="comType" name="comType">
 					</td>
 				</tr>	
 

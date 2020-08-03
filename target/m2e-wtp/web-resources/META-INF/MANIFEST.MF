@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: jseun
 Build-Jdk: 1.8.0_241
+=======
+Built-By: STU-20
+Build-Jdk: 1.8.0_251
+>>>>>>> 46972ea06982451532a9e9de09173f8692a476f7
 Created-By: Maven Integration for Eclipse
 

@@ -1,5 +1,8 @@
 package com.will.team4final.memberAdmin.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -104,5 +107,20 @@ public class MemberAdminController {
 		
 		return "common/message";
 	}
+	
+	
+	@RequestMapping("/adminInfo.do")
+	public String selectInfo(Model model) {
+		logger.info("관리자 목록 보여주기!");
+		
+		List<Map<String, Object>> list = memberAdminService.selectInfo();
+		logger.info("관리자 목록 list.size={}", list.size());
+		
+		model.addAttribute("list", list);
+		
+		return "memberAdmin/adminList";
+		
+	}
+	
 	
 }

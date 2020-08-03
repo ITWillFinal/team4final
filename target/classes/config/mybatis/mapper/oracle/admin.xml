@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.will.team4final.admin">
+<<<<<<< HEAD
 	<select id="adminShowAllMember" parameterType="searchvo" resultType="memberVo">
 		select *
 		from
@@ -63,8 +64,69 @@
 		]]>
 	</select>
 	
+=======
+   <select id="adminShowAllMember" parameterType="searchvo" resultType="memberVo">
+      select *
+      from
+      (
+          select rownum as RNUM, A.*
+          from(
+              select user_no, user_id, user_name,email, hp, regdate, outdate,user_status
+            from member
+            union 
+            select c_member_code, c_userid, c_username, C_EMAIL, C_HP, C_JOINDATE, C_OUTDATE, C_USER_STATUS
+            from COMPANY_member
+              <if test="searchKeyword!=null and searchKeyword !=''">
+                 where ${searchCondition} like '%' 
+                       || #{searchKeyword} || '%'
+              </if>
+                order by regdate desc
+          )A    
+      )
+      <![CDATA[ 
+      where RNUM>#{firstRecordIndex}
+        and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
+   </select>
+   
+   <select id="selectTotalRecordOfAdmin" parameterType="searchVo"
+      resultType="int">
+      select count(*) from
+      (
+         select user_no, user_id, user_name,email, hp, regdate, outdate,user_status
+         from member where outdate is null
+         union 
+         select c_member_code, c_userid, c_username, C_EMAIL, C_HP, C_JOINDATE, C_OUTDATE, C_USER_STATUS
+         from COMPANY_member where C_OUTDATE is null
+         order by regdate desc
+      )
+      <if test="searchKeyword!=null and searchKeyword != ''">
+         where ${searchCondition} like '%'
+            || #{searchKeyword} || '%'
+      </if>
+   </select>
+   
+   <select id="selectTodayRegisterMember"  resultType="int">
+      select count(*)
+      from(
+         select (sysdate-to_date(regdate))*24 as newMember from member where outdate is null
+      )a
+      <![CDATA[ 
+      where newMember < 24
+      ]]>
+   </select>
+   
+   <select id="selectTodayRegisterCMember"  resultType="int">
+      select count(*)
+      from(
+      select (sysdate-to_date(C_JOINDATE))*24 as newMember from COMPANY_member where C_OUTDATE is null
+      )a
+      <![CDATA[ 
+      where newMember < 24
+      ]]>
+   </select>
+   
+>>>>>>> 46972ea06982451532a9e9de09173f8692a476f7
 </mapper>
-
 
 
 
