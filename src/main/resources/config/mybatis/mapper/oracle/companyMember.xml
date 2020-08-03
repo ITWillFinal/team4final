@@ -4,7 +4,7 @@
 
 <mapper namespace="com.will.team4final.cmember">
 	<insert id="insertCMember" parameterType="companyMemberVo" >
-		<selectKey keyProperty="cMemberCode" resultType="int" order="BEFORE">
+		<selectKey keyProperty="cMemberCode" resultType="string" order="BEFORE">
 			select company_member_seq.nextval from dual
 		</selectKey>
 		insert into company_member(C_MEMBER_CODE , C_USERID, C_PWD, C_NICKNAME, C_USERNAME, C_BIRTH,

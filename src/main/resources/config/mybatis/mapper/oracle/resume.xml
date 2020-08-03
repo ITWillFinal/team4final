@@ -96,7 +96,7 @@
 	</delete>
 	
 	<select id="selectResumeByResumeNo" resultType="resumeVo" parameterType="int">
-		select * from resume where resume_no=#{resumeNo}
+		select * from resume where resume_no=#{resumeNo} order by regdate desc
 	</select>
 
 	<select id="selectEducationByResumeNo" resultType="educationVo" parameterType="int">

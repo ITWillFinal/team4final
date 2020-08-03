@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>진로탐험대</title>
 </head>
 <body>
 	<div style="text-align: center;" id="testDiv">

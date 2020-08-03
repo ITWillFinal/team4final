@@ -209,11 +209,112 @@ public class ResumeController {
 		MemberVO memberVo = memberService.selectByUserid(userid);
 		
 		ResumeAllVO resumeAllVo = resumeService.selectResumeByResumNo(resumeNo);
+		logger.info("이력서 조회결과 resumeAllVo={}",resumeAllVo);
 		
 		model.addAttribute("memberVo", memberVo);
 		model.addAttribute("resumeAllVo",resumeAllVo);
 		return "resume/resumeDetail";
 	}
 	
+	@RequestMapping(value = "/resumeEdit.do", method = RequestMethod.GET)
+	public String resumeEdit_get(HttpSession session, Model model, @RequestParam int resumeNo) {
+		logger.info("이력서 수정 페이지, 파라미터 resumeNo={}",resumeNo);
+		
+		String userid = (String)session.getAttribute("userid");
+		MemberVO memberVo = memberService.selectByUserid(userid);
+		ResumeAllVO resumeAllVo = resumeService.selectResumeByResumNo(resumeNo);
+		
+		logger.info("memberVo={}",memberVo);
+		logger.info("이력서 조회결과 resumeAllVo={}",resumeAllVo);
+		
+		model.addAttribute("memberVo",memberVo);
+		model.addAttribute("resumeAllVo",resumeAllVo);
+		
+		return "resume/resumeEdit";
+	}
+	
+	@RequestMapping(value = "/resumeEdit.do", method = RequestMethod.POST)
+	public String resumeEdit_post(@ModelAttribute ResumeVO resumeVo,
+			@ModelAttribute EducationVO educationVo,
+			@ModelAttribute CareerListVO careerListVo,
+			@ModelAttribute ActiveListVO activeListVo,
+			@ModelAttribute CertifyListVO certifyListVo,
+			@ModelAttribute LanguageListVO languageListVo,
+			@ModelAttribute AwardListVO awardListVo,
+			@ModelAttribute AddinfoVO addInfoVo,
+			@ModelAttribute PotfolioVO potfolioVo,
+			HttpServletRequest request, Model model) {
+		
+		logger.info("이력서 등록, 파라미터 resumeVo={}",resumeVo);
+		logger.info("이력서 등록, 파라미터 educationVo={}",educationVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",careerListVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",activeListVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",certifyListVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",languageListVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",awardListVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",addInfoVo);
+		logger.info("이력서 등록, 파라미터 careerListVo={}",potfolioVo);
+		
+		ResumeAllVO resumeAllVo = new ResumeAllVO();
+		
+		if(resumeVo !=null) {
+			resumeAllVo.setResumeVo(resumeVo);
+		}
+		
+		if(educationVo!=null) {
+			resumeAllVo.setEducationVo(educationVo);
+		}
+		
+		if(careerListVo!=null) {
+			resumeAllVo.setCareerVoList(careerListVo.getCareerItems());
+		}
+		
+		if(activeListVo!=null) {
+			resumeAllVo.setActiveVoList(activeListVo.getActiveItems());
+		}
+
+		if(certifyListVo!=null) {
+			resumeAllVo.setCertifyVoList(certifyListVo.getCertifyItems());
+		}
+		
+		if(languageListVo!=null) {
+			resumeAllVo.setLanguageVoList(languageListVo.getLanguageItems());
+		}
+		
+		if(awardListVo!=null) {
+			resumeAllVo.setAwardVoList(awardListVo.getAwardItems());
+		}
+		
+		if(addInfoVo!=null) {
+			resumeAllVo.setAddInfoVo(addInfoVo);
+		}
+		
+		if(potfolioVo!=null) {
+			
+			List<Map<String, Object>> fileList
+			=fileUploadUtil.fileUpload(request, FileUploadUtil.PATH_PDS);
+			
+			String potFile = "";
+			
+			for(Map<String, Object> map : fileList) {
+				potFile=(String) map.get("fileName");
+			}
+			
+			potfolioVo.setPotFile(potFile);
+			resumeAllVo.setPotfolioVo(potfolioVo);
+		}
+		
+		int cnt = resumeService.insertResume(resumeAllVo);
+		logger.info("이력서 등록 결과 cnt={}",cnt);
+		String msg="이력서 등록에 실패하였습니다." , url ="/resume/resumeMain.do";
+		if(cnt>0) {
+			msg="이력서가 등록되었습니다.";
+		}
+		
+		model.addAttribute("url",url);
+		model.addAttribute("msg",msg);		
+		
+		return "common/message";
+	}
 	
 }

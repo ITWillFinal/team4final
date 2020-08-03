@@ -351,7 +351,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 								<div class="main-menu">
 									<nav class="d-none d-lg-block">
 										<ul id="navigation">
-											<li><a id="toggle" style="cursor: pointer;"> ▤ </a></li>
+											<li><a id="toggle" style="cursor: pointer;"> <i class="fa fa-list" aria-hidden="true"></i> </a></li>
 											<!-- <ul class="submenu">
                                                     <li><a href="blog.html">Blog</a></li>
                                                     <li><a href="single-blog.html">Blog Details</a></li>
@@ -370,13 +370,13 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 											<div>
 												<span>THE JOB+ <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
 												<br><br> 
-												<a href="about.html">회사소개</a> 
+												<a href="<c:url value=''/>">회사소개</a> 
 												<br>
-												<a href="about.html">회사 CI</a>
+												<a href="<c:url value=''/>">회사 CI</a>
 												<br>
-												<a href="about.html">회사위치</a> 
+												<a href="<c:url value='/about/thejobLocation.do'/>">회사위치</a> 
 												<br>
-												<a href="about.html">인재채용</a>
+												<a href="<c:url value=''/>">인재채용</a>
 
 											</div>
 											<div>
@@ -394,7 +394,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 											<div>
 												<span>취업성공 툴 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
 												<br><br> 
-												<a href="about.html">자소서 작성</a> 
+												<a href="about.html">이력서 작성</a> 
 												<br>
 												<a href="about.html">학격자소서</a> 
 												<br>
@@ -405,9 +405,9 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 											<div>
 												<span>직업탐색 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
 												<br><br>
-												<a href="about.html">진로상담</a> 
+												<a href="<c:url value='/vocation/vocationalTest.do'/>">진로상담</a> 
 												<br>
-												<a href="about.html">직업정보탐색</a> 
+												<a href="<c:url value='/vocation/vocationalTest.do'/>">직업정보탐색</a> 
 											</div>
 											<div>
 												<span>고객센터 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
