@@ -1,5 +1,8 @@
 package com.will.team4final.memberAdmin.model;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,6 +37,11 @@ public class MemberAdminDAOMybatis implements MemberAdminDAO{
 	@Override
 	public String selectLevel(String adminId) {
 		return sqlsession.selectOne(namespace+"selectLevel", adminId);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectInfo() {
+		return sqlsession.selectList(namespace+"selectInfo");
 	}
 
 }
