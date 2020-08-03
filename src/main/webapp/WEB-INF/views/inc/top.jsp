@@ -370,13 +370,13 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 											<div>
 												<span>THE JOB+ <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
 												<br><br> 
-												<a href="about.html">회사소개</a> 
+												<a href="<c:url value=''/>">회사소개</a> 
 												<br>
-												<a href="about.html">회사 CI</a>
+												<a href="<c:url value=''/>">회사 CI</a>
 												<br>
-												<a href="about.html">회사위치</a> 
+												<a href="<c:url value='/about/thejobLocation.do'/>">회사위치</a> 
 												<br>
-												<a href="about.html">인재채용</a>
+												<a href="<c:url value=''/>">인재채용</a>
 
 											</div>
 											<div>
