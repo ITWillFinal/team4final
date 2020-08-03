@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/companyTop.jsp" %>
+
+ 
+<script>
+document.getElementById('now_date').valueAsDate = new Date();
+</script>
+
+
+
+
 <style>
 	hr {
 		border:1px solid #FB246A;
@@ -15,16 +24,6 @@
 	
 <script type="text/javascript">
 	$(function(){
-		function getDate(){
-			var date = new Date();
-			var yyyy = date.getFullYear();
-			var mm = date.getMonth()+1 > 9 ? date.getMonth()+1 : '0' + date.getMonth()+1;
-			var dd = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-			 
-			 $('#now_date').value = yyyy+"-"+mm+"-"+dd;
-		};
-		getDate();
-		
 		$("#radioResumeTJ").click(function(){
 			$("#resumeType").val($("#radioResumeTJ").val());
 		});
@@ -68,6 +67,7 @@
 	
 </script>
 
+
 <main>
 	<%@ include file="../inc/companySidebar.jsp" %>
 
@@ -98,7 +98,7 @@
 			<input type="submit" value="결제하기"><br>
 			상품명<input type="text" name="productName" id="productName"><br>
 			끝나는날<input type="text" name="endDate" id="endDate"><br>
-			기업정보코드<input type="text" name="comCode" id="comCode" value="${comCode }">
+			기업정보코드<input type="text" name="comCode" id="comCode">
 		</form>
 	</div>
 </main>
