@@ -15,7 +15,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                     <!-- logo -->
                     <div class="footer-logo mb-20">
-                    <a href="<c:url value='/admin/adminMain.do'/>"><img src="<c:url value='/resources/images/logo/bottomLogo.png'/>" alt="" style="width: 80%"></a>
+                    <a href="<c:url value='/memberAdmin/login.do'/>"><img src="<c:url value='/resources/images/logo/bottomLogo.png'/>" alt="" style="width: 80%"></a>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
