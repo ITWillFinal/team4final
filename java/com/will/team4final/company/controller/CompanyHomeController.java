@@ -210,6 +210,7 @@ public class CompanyHomeController {
 		logger.info("기업페이지 채용공고 등록 페이지");
 		//회사 정보 미 입력시 채용 정보 등록 못하게 하기
 		String cUserid = (String)session.getAttribute("userid");
+		logger.info("cUserid={}", cUserid);
 		CompanyMemberVO comMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
 		logger.info("기업공고 페이지 회원 정보 조회, comMemberVo={}",comMemberVo);
 		CompanyInfoVO comInfoVo=comInfoService.selectComInfoBycUserid(comMemberVo.getcMemberCode());
@@ -218,9 +219,18 @@ public class CompanyHomeController {
 		String comCode = comInfoVo.getComCode();
 		String msg="먼저 회사 정보 입력 부탁드립니다", url="/companypage/companyInfoWrite.do";
 
-		 if(comCode==null || comCode.isEmpty()) { model.addAttribute("msg", msg);
-		 model.addAttribute("url", url); return "common/message"; }
-
+		if(comCode==null || comCode.isEmpty()) { model.addAttribute("msg", msg);
+		model.addAttribute("url", url); return "common/message"; }
+		
+		//회사정보 불러와서 출력할 값 받아오기		
+		String comName = comInfoVo.getComName();
+		String zipcode = comInfoVo.getZipcode();
+		String address = comInfoVo.getAddress();
+		String addressDetail = comInfoVo.getAddressDetail();
+		logger.info("comName={}", comName);
+		logger.info("zipcode={}", zipcode);
+		logger.info("address={}", address);
+		logger.info("addressDetail={}", addressDetail);
 		
 		List<String> list = locaServ.sido();
 		logger.info("지역 list = {}", list.size());
@@ -234,7 +244,15 @@ public class CompanyHomeController {
 		model.addAttribute("induList", induList);
 		model.addAttribute("jobList", jobList);
 		
+		//회사정보 불러와서 출력해주기 => jsp에서는 해당 태그에 value=${} 로 넣어준다
+		model.addAttribute("comName", comName);
+		model.addAttribute("zipcode", zipcode);
+		model.addAttribute("address", address);
+		model.addAttribute("addressDetail", addressDetail);
+		
 		return "companypage/companyWrite";
+		
+		
 	}	
 	
 	@RequestMapping(value = "/companyWrite.do", method = RequestMethod.POST)

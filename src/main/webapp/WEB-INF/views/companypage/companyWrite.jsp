@@ -489,20 +489,22 @@
 				<tr>
 					<td>회사명</td>
 					<td>
-						<input type="text" id="comName" name="comName">
+						<input type="text" id="comName" name="comName" value="${comName}">
 					</td>
 				</tr>
 				<tr>
 					<td>기업형태</td>
 					<td>
 						<select id="comTypeSelect" name="comTypeSelect" class="form-control sel">
-							<option value="">선택</option>
-							<option value="대기업">대기업</option>
-							<option value="공기업">공사/공기업</option>
-							<option value="중견기업">중견기업</option>
-							<option value="중소기업">중소기업</option>
-							<option value="스타트업">스타트업</option>
-							<option value="외국계기업">외국계기업</option>
+							<option value="0">선택</option>
+							<option value="소기업">소기업</option>
+						   	<option value="중소기업">중소기업</option>
+			                <option value="중견기업">중견기업</option>
+			                <option value="대기업">대기업</option>
+			                <option value="상장기업">상장기업</option>
+			                <option value="공공기업">공공기업</option>
+			                <option value="외국기업">외국기업</option>
+			                <option value="기타">기타</option>
 						</select>
 						<input type="hidden" id="comType" name="comType">
 					</td>
@@ -558,7 +560,7 @@
 				<tr>
 					<td>우편번호</td>
 					<td>
-						<input type="text" id="zipcode" name="zipcode" readonly>
+						<input type="text" id="zipcode" name="zipcode" readonly value="${zipcode}">
 					 	<input type="button" onclick="sample4_execDaumPostcode()" value="선택" class="form-control bttn"> 
 					</td>
 				</tr>
@@ -566,14 +568,14 @@
 				<tr>
 					<td>주소</td>
 					<td>
-						<input type="text" id="address" name="address" readonly>
+						<input type="text" id="address" name="address" readonly value="${address}">
 					</td>
 				</tr>
 
 				<tr>
 					<td>상세주소</td>
 					<td>
-						<input type="text" id="addressDetail" name="addressDetail">
+						<input type="text" id="addressDetail" name="addressDetail" value="${addressDetail}">
 					</td>
 				</tr>
 
