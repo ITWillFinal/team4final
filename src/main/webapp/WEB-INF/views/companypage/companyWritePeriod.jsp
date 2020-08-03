@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/companyTop.jsp" %>
-
-
 <style>
 	hr {
 		border:1px solid #FB246A;
@@ -36,7 +34,6 @@
 	
 	
 </script>
-
 
 <main>
 	<%@ include file="../inc/companySidebar.jsp" %>
