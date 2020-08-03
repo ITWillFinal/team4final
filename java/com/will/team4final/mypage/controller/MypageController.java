@@ -1,5 +1,7 @@
 package com.will.team4final.mypage.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.will.team4final.resume.model.ResumeService;
+import com.will.team4final.resume.model.ResumeVO;
 import com.will.team4final.scrip.model.ComScrapService;
 
 @Controller
@@ -19,7 +23,9 @@ public class MypageController {
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
 	@Autowired
-	ComScrapService comScrapServ;
+	private ComScrapService comScrapServ;
+	@Autowired
+	private ResumeService resumeService;
 	
 	@RequestMapping("/mypageHome.do")
 	public String mypage(@RequestParam String status, HttpSession session, Model model) {
@@ -30,8 +36,11 @@ public class MypageController {
 			String userNo = (String)session.getAttribute("userNo");
 			int scrap = comScrapServ.selectComScrapNum(userNo);
 			
-			model.addAttribute("scrap", scrap);
+			List<ResumeVO> list = resumeService.selectResumeByUserNo(userNo);
 			
+			model.addAttribute("scrap", scrap);
+			model.addAttribute("resumeCount", list.size());
+						
 			return "mypage/mypageHome";
 			
 		}else if(status.equals("C")) {
