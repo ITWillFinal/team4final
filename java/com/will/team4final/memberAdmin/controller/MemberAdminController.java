@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.will.team4final.common.PaginationInfo;
+import com.will.team4final.common.SearchVO;
+import com.will.team4final.common.Utility;
 import com.will.team4final.memberAdmin.model.MemberAdminService;
 import com.will.team4final.memberAdmin.model.MemberAdminVO;
+import com.will.team4final.memberAdmin.model.memberAdminListVO;
 
 @Controller
 @RequestMapping("/memberAdmin")
@@ -108,19 +112,118 @@ public class MemberAdminController {
 		return "common/message";
 	}
 	
-	
-	@RequestMapping("/adminInfo.do")
-	public String selectInfo(Model model) {
-		logger.info("관리자 목록 보여주기!");
+	@RequestMapping("/setLevel.do")
+	public void setlevel(@RequestParam (defaultValue = "0") int adminNo, 
+			@RequestParam (defaultValue = "0") int levels) {
+		logger.info("adminNo={}, levels={}", adminNo, levels);
 		
-		List<Map<String, Object>> list = memberAdminService.selectInfo();
-		logger.info("관리자 목록 list.size={}", list.size());
-		
-		model.addAttribute("list", list);
-		
-		return "memberAdmin/adminList";
 		
 	}
 	
+	@RequestMapping("/adminInfo.do")
+	public String pdList(@ModelAttribute SearchVO searchVo,
+			Model model) {
+		//1
+		logger.info("관리자 목록 목록, 파라미터 searchVo={}", searchVo);
+		
+		//[1] PaginationInfo 생성
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+
+		//[2] SearchVo 에 값 셋팅
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
+		
+		//2
+		List<Map<String, Object>> list = memberAdminService.selectInfo(searchVo);
+		logger.info("관리자 목록 개수, list.size={}", list.size());
+		
+		int totalRecord = memberAdminService.selectTotalRecord(searchVo);
+		logger.info("관리자 목록, 전체 레코드 개수 totalRecord = {}",totalRecord);
+		
+		pagingInfo.setTotalRecord(totalRecord);
+
+		model.addAttribute("list", list);
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "memberAdmin/adminList";
+	}
+	
+	@RequestMapping("/deleteMulti.do")
+	public String delMulti(@ModelAttribute memberAdminListVO listvo,
+			Model model) {
+		logger.info("선택 게시글 삭제, 파라미터 faqvo={}", listvo);
+		
+		List<MemberAdminVO>list = listvo.getMalist();
+		
+		int cnt = memberAdminService.deleteMulti(list);
+		logger.info("선택한 관리자 삭제 결과 cnt = {}", cnt);
+		String msg = "", url = "/memberAdmin/adminInfo.do";
+		if(cnt>0) {
+			msg = "선택한 관리자를 삭제했습니다.";
+			
+			for(int i=0 ; i<list.size() ; i++) {
+				MemberAdminVO vo = list.get(i);
+				logger.info("i={}", i);
+				logger.info("fnqNO={}", vo.getAdminNo());
+			}//for
+		}else {
+			msg = "선택한 관리자 삭제 실패! 에러 발생!";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+		
+	}
+	
+	@RequestMapping("updateMulti.do")
+	public String updateMulti(@RequestParam (defaultValue = "0") int adminNo,
+			@RequestParam (defaultValue = "0") int level, Model model) {
+		logger.info("파라미터 adminNo={}, level = {}", adminNo, level);
+		
+		MemberAdminVO vo = memberAdminService.selectByNO(adminNo);
+		logger.info("vo={}", vo);
+		
+		vo.setLevels(level);
+		int cnt = memberAdminService.updateLevel(vo);
+		logger.info("cnt={}", cnt);
+		
+		String msg = "선택한 관리자의 권한을 변경하는 중 에러 발생", 
+				url = "/memberAdmin/adminInfo.do";
+		if(cnt>0) {
+			msg = "선택한 관리자의 권한을 병경했습니다..";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

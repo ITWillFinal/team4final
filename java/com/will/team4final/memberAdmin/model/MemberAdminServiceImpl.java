@@ -5,6 +5,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+
+import com.will.team4final.common.SearchVO;
 
 @Service
 public class MemberAdminServiceImpl implements MemberAdminService{
@@ -49,8 +53,71 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 	}
 
 	@Override
-	public List<Map<String, Object>> selectInfo() {
-		return memberAdminDao.selectInfo();
+	public List<MemberLevelVO> levels() {
+		return memberAdminDao.levels();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectInfo(SearchVO searchVo) {
+		return memberAdminDao.selectInfo(searchVo);
+	}
+
+	@Override
+	public int selectTotalRecord(SearchVO searchVo) {
+		return memberAdminDao.selectTotalRecord(searchVo);
+	}
+
+	
+	@Override
+	@Transactional
+	public int deleteMulti(List<MemberAdminVO> list) {
+		int cnt = 0;
+		try {
+			for(MemberAdminVO vo : list) {
+				if(vo.getAdminNo() != 0) {
+					cnt = memberAdminDao.deleteAdmin(vo.getAdminNo());
+				}
+			}
+		}catch (RuntimeException e) {
+			cnt = -1;
+			e.printStackTrace();
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
+		return cnt;
+		
+	}
+
+	@Override
+	public int deleteAdmin(int adminNo) {
+		return memberAdminDao.deleteAdmin(adminNo);
+	}
+
+	@Override
+	@Transactional
+	public int updateLevelMulti(List<MemberAdminVO> list, int level) {
+		int cnt = 0;
+		try {
+			for(MemberAdminVO vo : list) {
+				if(vo.getAdminNo() != 0) {
+					cnt = memberAdminDao.updateLevel(vo);
+				}
+			}
+		}catch (RuntimeException e) {
+			cnt = -1;
+			e.printStackTrace();
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
+		return cnt;
+	}
+
+	@Override
+	public int updateLevel(MemberAdminVO vo) {
+		return memberAdminDao.updateLevel(vo);
+	}
+
+	@Override
+	public MemberAdminVO selectByNO(int adminNo) {
+		return memberAdminDao.selectByNO(adminNo);
 	}
 
 
