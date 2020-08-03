@@ -23,10 +23,14 @@ input#rrr {
 </style>
 <script type="text/javascript" 
 	src = "<c:url value = '/resources/js/jquery-3.5.1.min.js'/>"></script>
+<script src="<c:url value='/editor/ckeditor/ckeditor.js'/>"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#rrr').click(function() {
 			location.href = "<c:url value = '/gogak/qna/qnaList.do'/>";
+		});
+		CKEDITOR.replace('content',{
+			filebrowserUploadUrl:"<c:url value=''/>"
 		});
 	});
 </script>
@@ -37,59 +41,56 @@ input#rrr {
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	
 	<!-- main -->
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
-		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
-		<h2 style = "padding-left: 50px; padding-top: 30px; ">1:1 문의 등록하기</h2>
-		</div>
+	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
 		<div style="margin:5px;">
 			<div id="outDiv">
 				<form name = "frmWrite" method="post" 
 					action="<c:url value = '/gogak/qna/qnaWrite.do'/>"enctype="multipart/form-data">
 					<!-- 조정필요 -->
-					<label for="status">기업/일반</label>
-					<input type="text" name = "status" >
-					<label for="userId">아이디</label>
-					<input type="text" name = "userId" >
-					<label for="userNo">유저번호</label>
-					<input type="text" name = "userNo" >
-					
-					<table style="width: 700px;">
-						<colgroup>
-							<col style="width: 20%;" />
-							<col style="width: 80%;" />
-						</colgroup>
-						<tr>
-							<td>카테고리(숫자)</td>
-							<td>
-							<!-- vo에서 읽어와서 for돌리기 -->
+					<!-- <div id = "divH">
+						<label for="status">기업/일반</label>
+						<input type="text" name = "status" >
+						<label for="userId">아이디</label>
+						<input type="text" name = "userId" >
+						<label for="userNo">유저번호</label>
+						<input type="text" name = "userNo" >
+					</div> -->
+					<div id = "idx" style="border: 1px solid lightgray">
+						<h4>― 1:1 문의 하기 ―</h4>
+						<div class = "notice" style="border: 1px solid lightgray">
+							<p>1:1 문의 게시판 운영 원칙</p>
+							<ul>
+								<li>1:1 문의 게시판은 표현의 자유와 표현의 다양성을 존중합니다. 동시에 타인의 권리를 침해하거나 명예를 훼손하는 내용은 제한합니다. 방송통신심의위원회의 '정보통신에 관한 심의 규정', 한국인터넷자율정책기구의 '정책규정' 등을 기반으로 문제 게시물은 삭제될 수 있습니다. 자극적이고 혐오스러운 내용, 비속어, 폭력적 내용, 특정 대상을 비하하거나 차별을 조장하는 내용, 개인정보 유출을 비롯해 타인의 권리를 침해하는 내용, 반복되는 내용, 허위사실 등은 삭제나 숨김 처리될 수 있습니다.</li>
+								<li>문의글 게시 후 법정공휴일을 제외한 운영업일 기준 1~3일 내에 관리자의 답변이 등록됩니다.</li>
+								<li>답변이 완료된 문의는  수정 및 삭제가 불가능합니다. 최초 문의 취지와 다른 내용으로 변경되는 것을 방지하여 작성자의 의견을 보호하기 위한 조치이니 신중하게 작성하여 주시기 바랍니다.</li>
+							</ul>
+						</div>
+						<div class = "notice" style="border: 1px solid lightgray">
+							<p>1:1 문의 게시판 작성 요령 안내</p>
+							<ul>
+								<li>새 문의글 작성 시, 내용을 대표하는 제목 및 관련 분야를 선택하신 후 내용을 입력해주시면 됩니다.</li>
+								<li>문의 내용의 주요 키워드가 포함된 카테고리를 선택하시면 정확한 답변을 드리는데에 도움이 됩니다.</li>
+							</ul>
+						</div>
+						<div>
+							<div>
+								<p>문의제목</p>
+								<input type="text" name = "title">
+							</div>
+							<div>
+								<p>카테고리</p>
 								<input type="text" name = "categoryNO">
-								<!-- <select name = "category">
-									<option value="a">A</option>
-									<option value="b">B</option>
-									<option value="c">C</option>
-								</select><br> -->
-							</td>
-						</tr>
-				
-						<tr>
-							<td>문의 제목</td>
-							<td><input type="text" name = "title"></td>
-						</tr>
-						
-						<tr>
-							<td>파일 업로드</td>
-							<td><input multiple="multiple" type="file" name="file" /></td>
-						</tr>
-						<tr>
-							<td><input type="text" name="src" /></td>
-						</tr>
-						<tr>
-							<td>문의 내용</td>
-							<td id = "tdA">
+							</div>
+							<div>
+								<p>문의내용</p>
 								<textarea rows="7px" cols="50px" name = "content"></textarea>
-							</td>
-						</tr>
-					</table>
+							</div>
+							<div>
+								<p>파일업로드</p>
+								<input multiple="multiple" type="file" name="file" />
+							</div>
+						</div>
+					</div>
 					
 					<div>
 						<input type = "submit" value = "글등록" id = "ddd">
