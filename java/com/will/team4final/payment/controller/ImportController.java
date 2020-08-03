@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.will.team4final.company.model.ComMemberService;
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
+import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.payment.model.PaymentService;
 import com.will.team4final.payment.model.PaymentVO;
 
@@ -25,16 +27,11 @@ public class ImportController {
 		
 		@Autowired private ComRecruitService comRecruitService;
 		@Autowired private PaymentService paymentService;
-		
-		@RequestMapping("/import/import.do")
-		public void import_get() {
-			
-			
-		}
+		@Autowired private ComMemberService cMemberSerice;
 		
 		@RequestMapping(value = "/companyWritePeriod/payment.do", method = RequestMethod.POST)
 		public String companyWritePeriod_post(@ModelAttribute ComRecruitVO comRecruitVo , @ModelAttribute PaymentVO paymentVo,
-				Model model) {
+				Model model, HttpSession session) {
 			logger.info("기업회원 채용공고 기간 저장, 파라미터 comRecruitVo={}", comRecruitVo);
 			logger.info("기업회원 채용공고 기간 저장, 파라미터 paymentVo={}",paymentVo);
 			
@@ -48,24 +45,28 @@ public class ImportController {
 			}
 			logger.info("기업회원 채용공고 기간 저장 이력서 입력 성공");
 			
+			String cUserid = (String)session.getAttribute("userid");
+			CompanyMemberVO comMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
+			String cMemberCode = comMemberVo.getcMemberCode();
+			
 			//기업 채용 정보에 입력된 정보 가져오기
 			String recruitmentCode = comRecruitVo.getRecruitmentCode();
 			comRecruitVo = comRecruitService.selectOneCom(recruitmentCode);
+			logger.info("기업회원 채용공고 comRecruitVo={}", comRecruitVo);
 			
 			
-			model.addAttribute("comRecruitVo", comRecruitVo);
+			model.addAttribute("cMemberCode", cMemberCode);
 			model.addAttribute("paymentVo", paymentVo);
+			model.addAttribute("comRecruitVo", comRecruitVo);
 			return "import/import";
 		}
 		
 		
 		@RequestMapping("/import/payment.do")
 		@ResponseBody
-		public int payment_post(HttpSession session,Model model,@ModelAttribute PaymentVO paymentVo,
-			@RequestParam String cMemberCode) {
-			 logger.info("결제 창 db 저장 화면 cMemberCode, paymentVo={}",cMemberCode, paymentVo);
+		public int payment_post(HttpSession session,Model model,@ModelAttribute PaymentVO paymentVo) {
+			 logger.info("결제 창 db 저장 화면, paymentVo={}", paymentVo);
 			 
-			 paymentVo.setcMemberCode(cMemberCode);
 			 int cnt = paymentService.insertPayment(paymentVo);
 			return cnt;
 		}

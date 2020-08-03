@@ -7,7 +7,7 @@
 		<selectKey keyProperty="comCode" resultType="string" order="BEFORE">
 			select companyInfo_seq.nextval from dual
 		</selectKey>
-		insert into COMPANY_INFO(COM_CODE, COM_NAME, CEO, COM_NUM, ZIPCODE, ADDRESS, ADDRESSDETAIL, IMAGEURL
+		insert into COMPANY_INFO(COM_CODE, COM_NAME, CEO, COM_NUM, ZIPCODE, ADDRESS, ADDRESSDETAIL, IMAGE_URL
 		, COM_HP, COM_TYPE, COM_INDUSTRY, CONTENT, HOMEPAGE, C_MEMBER_CODE)
 		values(#{comCode}, #{comName}, #{ceo}, #{comNum}, #{zipcode}, 
 		#{address}, #{addressDetail}, #{imageURL}, #{comHp}, #{comType}, 

@@ -4,8 +4,9 @@
 
 <mapper namespace="com.will.team4final.companyRecruit">
 	<select id="selectrecruitmentCode" resultType="string">
-      select RECRUITMENT_SEQ.nextval from dual
-   </select>
+		select RECRUITMENT_SEQ.nextval from dual
+	</select>
+	
 	<insert id="insertComRecruit" parameterType="comRecruitVo" >
 		insert into recruitment(
 		RECRUITMENT_CODE, COM_NAME, TITLE, JOB_TYPE1, JOB_TYPE2,
@@ -39,4 +40,11 @@
 	<select id="selectSearchInfo" resultType="comRecruitVo" parameterType="comRecruitVo">
 		select * from recruitment
 	</select>
+	
+	<update id="updateResumeType" parameterType="comRecruitVo">
+		update recruitment
+		set RESUME_TYPE = ${resumeType}
+		where recruitment_code = #{recruitmentCode}
+	</update>
+	
 </mapper>

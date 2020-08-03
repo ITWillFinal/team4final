@@ -40,6 +40,7 @@ public class ComRecruitVO {
 	String companyType;
 	String comType;
 	
+	
 	public String getRecruitmentCode() {
 		return recruitmentCode;
 	}
@@ -244,17 +245,17 @@ public class ComRecruitVO {
 	public void setComCode(String comCode) {
 		this.comCode = comCode;
 	}
-	public String getComType() {
-		return comType;
-	}
-	public void setComType(String comType) {
-		this.comType = comType;
-	}
 	public String getCompanyType() {
 		return companyType;
 	}
 	public void setCompanyType(String companyType) {
 		this.companyType = companyType;
+	}
+	public String getComType() {
+		return comType;
+	}
+	public void setComType(String comType) {
+		this.comType = comType;
 	}
 	@Override
 	public String toString() {
@@ -270,6 +271,7 @@ public class ComRecruitVO {
 				+ ", resumeType=" + resumeType + ", comCode=" + comCode + ", companyType=" + companyType + ", comType="
 				+ comType + "]";
 	}
+	
 	
 	
 }
