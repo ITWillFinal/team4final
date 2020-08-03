@@ -26,6 +26,21 @@ public class ComRecruitDAOMybatis implements ComRecruitDAO {
 	public ComRecruitVO selectOneCom(String recruitmentCode) {
 		return sqlSession.selectOne(namespace + "selectOneCom", recruitmentCode);
 	}
+
+	@Override
+	public String selectrecruitmentCode() {
+		return sqlSession.selectOne(namespace+"selectrecruitmentCode");
+	}
+
+	@Override
+	public ComRecruitVO checkRecruitmentCode(String comCode) {
+		return sqlSession.selectOne(namespace +"checkRecruitmentCode", comCode);
+	}
+
+	@Override
+	public int updateResumeType(ComRecruitVO comRecruitVo) {
+		return sqlSession.update(namespace+"updateResumeType", comRecruitVo);
+	}
 	
 	
 }

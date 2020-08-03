@@ -35,9 +35,14 @@ public class ComRecruitVO {
 	String imgUrl;
 	String fileName;
 	String fileSize;
+	int resumeType;
 	String comCode;
+<<<<<<< HEAD
+	String companyType;
+=======
 	String comType;
 	String resumeType;
+>>>>>>> 46972ea06982451532a9e9de09173f8692a476f7
 	public String getRecruitmentCode() {
 		return recruitmentCode;
 	}
@@ -230,6 +235,12 @@ public class ComRecruitVO {
 	public void setFileSize(String fileSize) {
 		this.fileSize = fileSize;
 	}
+	public int getResumeType() {
+		return resumeType;
+	}
+	public void setResumeType(int resumeType) {
+		this.resumeType = resumeType;
+	}
 	public String getComCode() {
 		return comCode;
 	}
@@ -258,10 +269,18 @@ public class ComRecruitVO {
 				+ ", educationLv=" + educationLv + ", career=" + career + ", preference=" + preference + ", recNumber="
 				+ recNumber + ", regdate=" + regdate + ", recDeadline=" + recDeadline + ", document=" + document
 				+ ", recDetail=" + recDetail + ", readCount=" + readCount + ", accuse=" + accuse + ", category="
+<<<<<<< HEAD
+				+ category + ", imgUrl=" + imgUrl + ", fileName=" + fileName + ", fileSize=" + fileSize
+				+ ", resumeType=" + resumeType + ", comCode=" + comCode + ", companyType=" + companyType + "]";
+	}
+	
+	
+=======
 				+ category + ", imgUrl=" + imgUrl + ", fileName=" + fileName + ", fileSize=" + fileSize + ", comCode="
 				+ comCode + ", comType=" + comType + ", resumeType=" + resumeType + "]";
 	}
 	
 	
 		
+>>>>>>> 46972ea06982451532a9e9de09173f8692a476f7
 }

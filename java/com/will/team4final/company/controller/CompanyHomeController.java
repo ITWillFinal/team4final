@@ -9,6 +9,7 @@ import java.util.Random;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.will.team4final.company.info.model.CompanyInfoService;
+import com.will.team4final.company.info.model.CompanyInfoVO;
 import com.will.team4final.company.model.ComMemberService;
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
@@ -32,6 +36,7 @@ import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.location.model.LocationVO;
 import com.will.team4final.login.controller.LoginController;
+import com.will.team4final.payment.model.PaymentVO;
 
 @Controller
 @RequestMapping("/companypage")
@@ -47,6 +52,7 @@ public class CompanyHomeController {
 	@Autowired
 	private JobService jobServ;
 	@Autowired private JavaMailSender mailSender;
+	@Autowired private CompanyInfoService comInfoService;
 	
 	@RequestMapping("/companyHome.do")
 	public String companyHome() {
@@ -149,7 +155,7 @@ public class CompanyHomeController {
 			if (email_injeung.equals(dice)) {
 
 				//인증번호가 일치할 경우 인증번호가 맞다는 창을 출력하고 회원가입창으로 이동함
-				mv.setViewName("/companypagemember/member/email_injeung");
+				mv.setViewName("/companypage/member/email_injeung");
 				mv.addObject("email",e_mail);
 
 				//만약 인증번호가 같다면 이메일을 회원가입 페이지로 같이 넘겨서 이메일을
@@ -165,7 +171,7 @@ public class CompanyHomeController {
 
 			}else if (email_injeung != dice) {
 				ModelAndView mv2 = new ModelAndView(); 
-				mv2.setViewName("/companypagemember/member/email_injeung");
+				mv2.setViewName("/companypage/member/email_injeung");
 				response_equals.setContentType("text/html; charset=UTF-8");
 				PrintWriter out_equals = response_equals.getWriter();
 				out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.'); history.go(-1);</script>");
@@ -179,26 +185,6 @@ public class CompanyHomeController {
 			return mv;
 		}
 		
-	
-	
-	
-	@RequestMapping("/member/checkUserid.do")
-	public String checkcUserid(@RequestParam String cUserid, Model model) {
-		logger.info("기업회원 아이디 중복확인, 파라미터 cUserid={}", cUserid);
-		if(cUserid==null || cUserid.isEmpty()) {
-			return "companypage/member/checkUserid";
-		}
-		
-		int result = cMemberSerice.selectCMemberDup(cUserid);
-		
-		logger.info("기업회원 아이디 중복확인 결과, result={}", result);
-		model.addAttribute("result", result);
-		model.addAttribute("EXIST_ID",ComMemberService.EXIST_ID);
-		model.addAttribute("NON_EXIST_ID",ComMemberService.NON_EXIST_ID);
-
-		return "companypage/member/checkUserid";
-		
-	}
 	
 	@RequestMapping(value = "/member/register.do", method = RequestMethod.POST)
 	public String comRegister_post(@ModelAttribute CompanyMemberVO vo, Model model) {
@@ -220,8 +206,22 @@ public class CompanyHomeController {
 	}
 	
 	@RequestMapping(value = "/companyWrite.do", method = RequestMethod.GET)
-	public String companyWrite_get(Model model) {
+	public String companyWrite_get(Model model, HttpSession session) {
 		logger.info("기업페이지 채용공고 등록 페이지");
+		//회사 정보 미 입력시 채용 정보 등록 못하게 하기
+		String cUserid = (String)session.getAttribute("userid");
+		CompanyMemberVO comMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
+		logger.info("기업공고 페이지 회원 정보 조회, comMemberVo={}",comMemberVo);
+		
+		CompanyInfoVO comInfoVo=comInfoService.selectComInfoBycUserid(comMemberVo.getcMemberCode());
+		logger.info("기업공고 페이지 회사 정보 입력 값 확인, comInfoVo={}", comInfoVo);
+		
+		String comCode = comInfoVo.getComCode();
+		String msg="먼저 회사 정보 입력 부탁드립니다", url="/companypage/companyInfoWrite.do";
+
+		 if(comCode==null || comCode.isEmpty()) { model.addAttribute("msg", msg);
+		 model.addAttribute("url", url); return "common/message"; }
+
 		
 		List<String> list = locaServ.sido();
 		logger.info("지역 list = {}", list.size());
@@ -230,6 +230,7 @@ public class CompanyHomeController {
 		List<Map<String, Object>> jobList = jobServ.selectLarge();
 		logger.info("직무, 산업 list = {}, {}", jobList.size(), induList.size());
 		
+		model.addAttribute("comCode", comCode);
 		model.addAttribute("list", list);
 		model.addAttribute("induList", induList);
 		model.addAttribute("jobList", jobList);
@@ -238,16 +239,20 @@ public class CompanyHomeController {
 	}	
 	
 	@RequestMapping(value = "/companyWrite.do", method = RequestMethod.POST)
-	public String companyWrite_post(@ModelAttribute ComRecruitVO vo, Model model) {
-		logger.info("기업공고 등록, 파라미터 vo={}", vo);
+	public String companyWrite_post(@ModelAttribute ComRecruitVO vo, Model model, HttpSession session) {
+		logger.info("기업 채용 등록, 파라미터 vo={}", vo);
+		//시퀀스 값 미리 가져오기
+		String recruitmentCode = comRecruitService.selectrecruitmentCode();
+		vo.setRecruitmentCode(recruitmentCode);
 		
+		//기업 채용 공고 등록
 		int cnt = comRecruitService.insertComRecruit(vo);
-		logger.info("기업공고 등록 결과 cnt={}", cnt);
+		logger.info("기업 채용 공고 결과 cnt={}", cnt);
 		
-		String msg = "기업공고 등록 실패", url = "/companypage/companyWrite.do";
+		String msg = "기업 채용 공고 실패", url = "/companypage/companyWrite.do";
 		if(cnt>0) {
-			msg = "기업공고 등록 성공";
-			url = "/companypage/companyWritePeriod.do";
+			msg = "기업 채용 공고 성공";
+			url = "/companypage/companyWritePeriod.do?recruitmentCode="+recruitmentCode;
 		}
 		
 		model.addAttribute("msg", msg);
@@ -257,8 +262,35 @@ public class CompanyHomeController {
 	}
 	
 	@RequestMapping(value = "/companyWritePeriod.do", method = RequestMethod.GET)
-	public void companyWritePeriod_get() {
+	public String companyWritePeriod_get(Model model, @RequestParam(required = false) String recruitmentCode,
+			HttpSession session) {
 		logger.info("기업회원 채용공고 기간 페이지");
+		
+		//회사 정보 미 입력시 채용 정보 등록 못하게 하기
+		
+		 if(recruitmentCode==null || recruitmentCode.isEmpty()) { String cUserid =
+		 (String)session.getAttribute("userid"); CompanyMemberVO
+		 comMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
+		 logger.info("기업회원 채용공고 기간 페이지 회원 정보 조회, comMemberVo={}",comMemberVo);
+		 CompanyInfoVO
+		 comInfoVo=comInfoService.selectComInfoBycUserid(comMemberVo.getcMemberCode());
+		 logger.info("기업회원 채용공고 기간 페이지 회사 정보 입력 값 확인, comInfoVo={}", comInfoVo);
+		 String comCode = comInfoVo.getComCode(); 
+		 //comCode에 맞는 RecruitmenetCode가 있는지확인 
+		 ComRecruitVO comRecruitVo =  comRecruitService.checkRecruitmentCode(comCode); 
+		 recruitmentCode = comRecruitVo.getRecruitmentCode(); 
+		 String msg="먼저 채용 정보 입력 부탁드립니다",
+		 url="/companypage/companyWrite.do"; if(recruitmentCode==null ||
+		 recruitmentCode.isEmpty()) { 
+			 model.addAttribute("msg", msg);
+			 model.addAttribute("url", url); 
+			 return "common/message"; 
+			 } 
+		 }
+		 
+		
+		model.addAttribute("recruitmentCode", recruitmentCode);
+		return "companypage/companyWritePeriod";
 	}
 	
 	
@@ -276,7 +308,7 @@ public class CompanyHomeController {
 		return "companypage/companyResumeUse";
 	}
 	
-	@RequestMapping("/companypage/member/register/checkId.do")
+	@RequestMapping("/member/checkId.do")
 	@ResponseBody
 	public int cMemberCheckId(@RequestParam String cUserid1) {
 		logger.info("기업회원 아이디 체크");

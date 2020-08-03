@@ -3,18 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
-    /* String name = (String)request.getAttribute("name");
-    String email = (String)request.getAttribute("email");
-    String phone = (String)request.getAttribute("phone");
-    String address = (String)request.getAttribute("address");
-    int totalPrice = (Integer)request.getAttribute("totalPrice"); */
-    String name= "홍길동";
-    String email="team4final@gmail.com";
-    String phone="010-2222-1313";
-    String address = "서울시";
-    int totalPrice = 5000;
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,12 +23,10 @@
             pg : 'kakaopay',
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
-            name : 'KH Books 도서 결제',
-            amount : <%=totalPrice%>,
-            buyer_name : '<%=name%>',
-            buyer_tel : '<%=phone%>',
-            buyer_addr : '<%=address%>',
-            buyer_postcode : '123-456',
+            name : 'The JOB 채용 정보 결제',
+            amount : '1000',
+            buyer_name : '${comRecruitVo.comName}',
+            title : '${comRecruitVo.title}',
         }, function(rsp) {
             if ( rsp.success ) {
                 //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
@@ -60,10 +47,23 @@
                         msg += '\결제 금액 : ' + rsp.paid_amount;
                         msg += '카드 승인번호 : ' + rsp.apply_num;
                         alert(msg);
+                        $.ajax({
+                        	url:"/import/payment.do",
+                        	type: 'POST',
+                            dataType: 'json',
+                            data:{ max : max},
+                            success : function(data) {
+                            	alert(sucess);
+                            	
+        					},
+        					error : function(xhr, status, error) {
+        						alert(status + ", " + error);
+        					}
+                        });
                     }
                 });
                 //성공시 이동할 페이지 companyHome
-                location.href="<c:url value='/import/payment.do?price="+ ${price}+"' />";
+                location.href="<c:url value='/import/payment.do' />";
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
