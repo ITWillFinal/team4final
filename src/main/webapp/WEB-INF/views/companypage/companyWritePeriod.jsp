@@ -2,6 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/companyTop.jsp" %>
 
+ 
+<script>
+document.getElementById('now_date').valueAsDate = new Date();
+</script>
+
+
+
 
 <style>
 	hr {
@@ -60,6 +67,8 @@
 			<input type="radio" name="radioPeriod" id="radioPeriodDate"> 날짜지정 : 결제일로부터 지정일 까지 이용가능
 					
 			<input type="date" name="datePick" id="datePick" disabled>
+			
+			<input type="date" id="now_date"> // 여기서 중요한건 input type을 date로 해줘야합니다.
 			
 			<br>
 			<input type="button" id="btn" value="결제하기">
