@@ -163,7 +163,7 @@
 	.remoteController{
 		position: fixed;
 	    width: 270px;
-	    height: 500px;
+	    height: 405px;
 	    top: 180px;
 	    left: 1320px;
 		background: #eaeaea;
@@ -177,17 +177,18 @@
 		width: 100%;
     	height: 50px;
     	margin-bottom: 10px;
+    	
 	}
 	.remoteContent p{
 		font-weight: bold;
     	font-size: large;
 	}
-	.pdf-down{
+	.pdf-down, .resume-edit{
 		background: #fb236a;
 		border:1px solid #fb236a; 
 	}
 	
-	.pdf-down p{
+	.pdf-down p, .resume-edit p{
 		color: white;
 	}
 
@@ -286,7 +287,9 @@
 		<div class="remoteContent">
 			<p>최근 수정일 : ${fn:substring(resumeAllVo.resumeVo.regdate,0,10) }</p>
 		</div>
+		<button class="remoteContent resume-edit" onclick='location.href="<c:url value='/resume/resumeEdit.do?resumeNo=${param.resumeNo }'/>"'><p>이력서 수정하기</p></button>
 		<button class="remoteContent pdf-down"><p>PDF파일로 받기</p></button>
+		<button class="remoteContent resume-edit" onclick='location.href="<c:url value='/resume/resumeMain.do'/>"'><p>돌아가기</p></button>
 	</div>
 	<div class="resume-detail" id="resumeDetail">
 		<div class="profile">
@@ -385,9 +388,9 @@
 						<tbody>
 							<tr>
 								<c:set var="eduPeriod" value="${fn:split(resumeAllVo.educationVo.eduPeriod,':') }"/>
-								<c:set var="eduState" value="${fn:substring(eduPeriod[1],8,fn:length(eduPeriod[1])) }"/>
-								<td>${fn:substring(resumeAllVo.educationVo.eduPeriod,3,8) }
-								~ ${fn:substring(resumeAllVo.educationVo.eduPeriod,12+fn:length(eduState),18+fn:length(eduState)) }</td>
+								<c:set var="eduState" value="${fn:substring(eduPeriod[1],9,fn:length(eduPeriod[1])) }"/>
+								<td>${fn:substring(eduPeriod[1],0,6) }
+								~ ${eduPeriod[2] }</td>
 								<td>${eduState }</td>
 								<td>${resumeAllVo.educationVo.uniName }</td>
 								<td>${resumeAllVo.educationVo.major }
@@ -441,10 +444,9 @@
 									<c:forEach var="careerVo" items="${resumeAllVo.careerVoList }">
 										<tr>
 											<c:set var="careerPeriod" value="${fn:split(careerVo.careerPeriod,':') }"/>
-											<c:set var="careerState" value="${fn:substring(careerPeriod[1],8,fn:length(careerPeriod[1])) }"/>
-											<td>${fn:substring(careerVo.careerPeriod,3,8) }
-											~ ${fn:substring(careerVo.careerPeriod,15,20) }</td>
-											<td>${careerState }</td>
+											<td>${fn:substring(careerPeriod[1],0,6) }
+											~ ${careerPeriod[2] }</td>
+											<td>${careerPeriod[0] }</td>
 											<td>${careerVo.careerCompany }</td>
 											<td>${careerVo.careerRank }/${careerVo.careerYear }년</td>
 											<td>
@@ -484,8 +486,8 @@
 							<tbody>
 								<c:forEach var="activeVo" items="${resumeAllVo.activeVoList }">
 									<tr>
-										<td>${fn:substring(activeVo.actPeriod,3,8) }
-										~ ${fn:substring(activeVo.actPeriod,15,20) }</td>
+										<td>${fn:substring(activeVo.actPeriod,0,6) }
+										~ ${fn:substring(activeVo.actPeriod,9,15) }</td>
 										<td>${activeVo.activity }</td>
 										<td>${activeVo.actPlace}</td>
 										<td>${activeVo.actContent }</td>
@@ -653,11 +655,11 @@
 							</thead>
 							<tbody>
 									<tr>
-										<td>${fn:substring(potfolioVo.potPeriod,3,8) }
-										~ ${fn:substring(potfolioVo.potPeriod,15,20) }</td>
-										<td>${potfolioVo.potTool }</td>
-										<td>${potfolioVo.workers}</td>
-										<td>${potfolioVo.intro }</td>
+										<td>${fn:substring(resumeAllVo.potfolioVo.potPeriod,0,6) }
+										~ ${fn:substring(resumeAllVo.potfolioVo.potPeriod,9,15) }</td>
+										<td>${resumeAllVo.potfolioVo.potTools }</td>
+										<td>${resumeAllVo.potfolioVo.workers}</td>
+										<td>${resumeAllVo.potfolioVo.intro }</td>
 									</tr>
 							</tbody>
 						</table>

@@ -392,9 +392,307 @@
 	.slider.round:before {
 		border-radius: 50%;
 	}
+	
 </style>
 <script type="text/javascript">
 	$(function(){
+		$('.educationBt').each(function(){
+			if($(this).val()=="${resumeAllVo.educationVo.finalEdu}"){
+				$(this).css('background','#fb246a');
+				$(this).css('color','white');
+				$(this).css('border','1px solid #fb246a');
+				
+				$(".edu").find("hr").css("visibility","visible");
+				$('.edu-info').slideDown();
+				
+				if($(this).val()=="고등학교 졸업"){
+					$(".highschool").slideDown();
+					$(".university").slideUp();
+					$(".selectHandU").show();
+					$('input[name=major-uni]').removeClass('not-null-input');
+					$("select[name=major-high]").val("${resumeAllVo.educationVo.major}").prop('selected', true);
+				}else if($(this).val()=="대학·대학원 이상 졸업"){				
+					$(".highschool").slideUp();
+					$(".university").slideDown();
+					$(".selectHandU").show();
+					$('input[name=major-uni]').addClass('not-null-input');
+					$("select[name=unisel]").val("${resumeAllVo.educationVo.uni}").prop('selected', true);
+					
+					var eduMajorList = "${resumeAllVo.educationVo.major}".split(":");
+					$('input[name=major-uni]').val(eduMajorList[1]);
+					$("select[name=majorSel]").val(eduMajorList[0]).prop('selected', true);
+					if($("select[name=majorSel]").val()==null){
+						$("select[name=majorSel]").val("직접입력").prop('selected', true);											
+						$('#majorEtc').slideDown();	
+						$('#majorEtc').val(eduMajorList[0]);
+					}
+					
+					var eduScoreList = "${resumeAllVo.educationVo.eduScore}".split("/");
+					$('input[name=grade]').val(eduScoreList[0]);
+					$("select[name=gradeSel]").val(eduScoreList[1]).prop('selected', true);
+				}else{
+					$(".highschool").slideUp();
+					$(".university").slideUp();				
+					$(".selectHandU").hide();
+					$('input[name=major-uni]').removeClass('not-null-input');
+				}
+				$("select[name=eduLocation]").val("${resumeAllVo.educationVo.eduLocation}").prop('selected', true);
+				
+				var eduPeriod = "${resumeAllVo.educationVo.eduPeriod}";
+				var eduPeriodList = eduPeriod.split(":");
+
+				$('input[name=schoolStartDay]').val(eduPeriodList[1].substring(0,6));
+				$("select[name=schoolStartDaySel]").val(eduPeriodList[0]).prop('selected', true);
+				$('input[name=schoolEndDay]').val(eduPeriodList[2]);
+				$("select[name=schoolEndDaySel]").val(eduPeriodList[1].substring(eduPeriodList[1].indexOf("~")+2)).prop('selected', true);
+				
+				
+				school = $(this).val().substring(0,$(this).val().indexOf(" "));
+				$('.edu-info').find('h5').text(school+" 정보 입력");
+			}
+		});
+		if(${resumeAllVo.careerVoList.size()}>1||"${resumeAllVo.careerVoList[0].careerCompany}"!="신입"){
+			$('.careerBt').eq(1).css('background','#fb246a');
+			$('.careerBt').eq(1).css('color','white');
+			$('.careerBt').eq(1).css('border','1px solid #fb246a');
+			
+			careerBt = "경력";
+			
+			$(".career-info").slideDown();
+			$(".career-addDiv").slideDown();
+			$(".career").find("hr").css("visibility","visible");
+			
+			
+			for(var i=0; i<${resumeAllVo.careerVoList.size()}; i++){
+				if(i!=0){
+					var $addCareerInit = $('#career-add').clone(true);
+					$addCareerInit.removeAttr('id');
+					$addCareerInit.removeAttr('style');
+					$addCareerInit.css('display','block');
+					$addCareerInit.find("input[type=text]").val("");
+					$addCareerInit.find("input[type=radio]").removeAttr('checked');
+					$addCareerInit.find('#rankEtc').attr("disabled","disabled");
+					$addCareerInit.find('.rank-position').css("display","none");
+					
+					$(".career-addDiv").before($addCareerInit);
+					$('.career-info:not(:eq(0))').find(".career-subBt").css("display","block");					
+				}
+
+			}
+			
+			var j = 0;
+			<c:forEach var="careerVo" items="${resumeAllVo.careerVoList}">
+				$('.career-info').eq(j).find('.careerCompany').val("${careerVo.careerCompany}");
+				
+				var careerPeriod = "${careerVo.careerPeriod}";
+				var careerPeriodList = careerPeriod.split(":");
+
+				$('.career-info').eq(j).find('input[name=companyStartDay]').val(careerPeriodList[1].substring(0,6));
+				$('.career-info').eq(j).find('input[name=companyEndDay]').val(careerPeriodList[2]);
+				$('.career-info').eq(j).find("select[name=companyEndDaySel]").val(careerPeriodList[1].substring(careerPeriodList[1].indexOf("~")+2)).prop('selected', true);
+
+				$('.career-info').eq(j).find("select[name=reasonSel]").val("${careerVo.careerReason}");
+				if($('.career-info').eq(j).find("select[name=reasonSel]").val()==null){
+					$('.career-info').eq(j).find("select[name=reasonSel]").val("직접입력").prop('selected', true);											
+					$('.career-info').eq(j).find('select[name=leaveEtc]').slideDown();	
+					$('.career-info').eq(j).find('select[name=leaveEtc]').val("${careerVo.careerReason}");
+				}
+				
+				$('.career-info').eq(j).find('.careerRank').val("${careerVo.careerRank}");
+				$('.career-info').eq(j).find('.careerYear').val("${careerVo.careerYear}");
+				
+				$('.career-info').eq(j).find(".careerLocation").val("${careerVo.careerLocation}").prop('selected', true);
+				
+				var careerSal = "${careerVo.careerSal}";
+				if(!$.isNumeric(careerSal.substring(0,careerSal.length-1))){
+					$('.career-info').eq(j).find('input[name=salary]').val(careerSal.substring(0,careerSal.length-2));
+					$('.career-info').eq(j).find("select[name=salarySel]").val(careerSal.substring(careerSal.length,careerSal.length-2)).prop('selected', true);											
+				}else{
+					$('.career-info').eq(j).find('input[name=salary]').val(careerSal.substring(0,careerSal.length-1));
+					$('.career-info').eq(j).find("select[name=salarySel]").val(careerSal.substring(careerSal.length,careerSal.length-1)).prop('selected', true);											
+				}
+			
+				$('.career-info').eq(j).find('.task').val("${careerVo.task}");
+				
+				j+=1;
+			</c:forEach>
+			
+		}else{
+			$('.careerBt').eq(0).css('background','#fb246a');
+			$('.careerBt').eq(0).css('color','white');
+			$('.careerBt').eq(0).css('border','1px solid #fb246a');
+			
+			careerBt = "신입";
+			
+		}
+		
+		$('.switch:eq(0) input[type=checkbox]').prop("checked",true);
+		$('.hope').find(".nullOk-top").slideDown();
+		$('.hope').find("select[name=sal]").val("${resumeAllVo.resumeVo.sal}").prop("selected",true);
+		$('.hope').find("select[name=location1]").val("${resumeAllVo.resumeVo.location1}").prop("selected",true);
+		$('.hope').find("select[name=location2]").val("${resumeAllVo.resumeVo.location2}").prop("selected",true);
+		$('.hope').find("input[name=jobtype1]").val("${resumeAllVo.resumeVo.jobtype1}");
+		$('.hope').find("input[name=jobtype2]").val("${resumeAllVo.resumeVo.jobtype2}");
+		
+		if("${resumeAllVo.resumeVo.selfIntTitle}"!=""){
+			$('.switch:eq(7) input[type=checkbox]').prop("checked",true);		
+			$('.self-int').find(".nullOk-top").slideDown();
+			$('.self-int').find("input[name=selfIntTitle]").val("${resumeAllVo.resumeVo.selfIntTitle}");
+			$('.self-int').find("textarea[name=selfInt]").val("${resumeAllVo.resumeVo.selfInt}");
+		}
+		
+		if(${resumeAllVo.activeVoList.size()}!=0){
+			$(".activity .nullOk-top").slideDown();
+			$(".activity .addDiv").slideDown();
+			$('.switch:eq(1) input[type=checkbox]').prop("checked",true);
+			
+			for(var i=0; i<${resumeAllVo.activeVoList.size()}; i++){
+				if(i!=0){
+					var $addContent = $('.activity .info-box-content:eq(0)').clone(true);
+					$addContent.find("input[type=text]").val("");
+					$addContent.find("textarea").val("");
+					$addContent.find("textarea").height(35.25);
+					$addContent.find("input[type=radio]").removeAttr('checked');
+					$addContent.removeAttr('style');
+					$addContent.css('display','block');
+					$(".activity .addDiv").before($addContent);
+					$('.activity .info-box-content:not(:eq(0))').find(".subBt").css("display","block");		
+				}
+			}
+			
+			j = 0;
+			<c:forEach var="activeVo" items="${resumeAllVo.activeVoList}">
+				$('.activity .info-box-content').eq(j).find('select').eq(0).val("${activeVo.activity}").prop('selected', true);
+				$('.activity .info-box-content').eq(j).find('input[type=text]').eq(0).val("${activeVo.actPlace}");
+				$('.activity .info-box-content').eq(j).find('input[type=text]').eq(1).val("${activeVo.actPeriod}".substring(0,6));
+				$('.activity .info-box-content').eq(j).find('input[type=text]').eq(2).val("${activeVo.actPeriod}".substring(9,15));
+				$('.activity .info-box-content').eq(j).find('textarea').eq(0).val("${activeVo.actContent}");
+				
+				j+=1;
+			</c:forEach>
+		}
+		
+		if(${resumeAllVo.certifyVoList.size()}!=0){
+			$(".certify .nullOk-top").slideDown();
+			$(".certify .addDiv").slideDown();
+			$('.switch:eq(2) input[type=checkbox]').prop("checked",true);
+			
+			for(var i=0; i<${resumeAllVo.certifyVoList.size()}; i++){
+				if(i!=0){
+					var $addContent = $('.certify .info-box-content:eq(0)').clone(true);
+					$addContent.find("input[type=text]").val("");
+					$addContent.find("textarea").val("");
+					$addContent.find("textarea").height(35.25);
+					$addContent.find("input[type=radio]").removeAttr('checked');
+					$addContent.removeAttr('style');
+					$addContent.css('display','block');
+					$(".certify .addDiv").before($addContent);
+					$('.certify .info-box-content:not(:eq(0))').find(".subBt").css("display","block");		
+				}
+			}
+			
+			j = 0;
+			<c:forEach var="certifyVo" items="${resumeAllVo.certifyVoList}">
+				$('.certify .info-box-content').eq(j).find('input[type=text]').eq(0).val("${certifyVo.certifyName}");
+				$('.certify .info-box-content').eq(j).find('input[type=text]').eq(1).val("${certifyVo.certifyPlace}");
+				$('.certify .info-box-content').eq(j).find('input[type=text]').eq(2).val("${certifyVo.certifyGetDate}");
+				
+				j+=1;
+			</c:forEach>
+		}
+
+		if(${resumeAllVo.languageVoList.size()}!=0){
+			$(".language .nullOk-top").slideDown();
+			$(".language .addDiv").slideDown();
+			$('.switch:eq(3) input[type=checkbox]').prop("checked",true);
+			
+			for(var i=0; i<${resumeAllVo.languageVoList.size()}; i++){
+				if(i!=0){
+					var $addContent = $('.language .info-box-content:eq(0)').clone(true);
+					$addContent.find("input[type=text]").val("");
+					$addContent.find("textarea").val("");
+					$addContent.find("textarea").height(35.25);
+					$addContent.find("input[type=radio]").removeAttr('checked');
+					$addContent.removeAttr('style');
+					$addContent.css('display','block');
+					$(".language .addDiv").before($addContent);
+					$('.language .info-box-content:not(:eq(0))').find(".subBt").css("display","block");		
+				}
+			}
+			
+			j = 0;
+			<c:forEach var="languageVo" items="${resumeAllVo.languageVoList}">
+				$('.language .info-box-content').eq(j).find('input[type=text]').eq(0).val("${languageVo.kinds}");
+				$('.language .info-box-content').eq(j).find('input[type=text]').eq(1).val("${languageVo.testName}");
+				$('.language .info-box-content').eq(j).find('input[type=text]').eq(2).val("${languageVo.langScore}");
+				$('.language .info-box-content').eq(j).find('input[type=text]').eq(3).val("${languageVo.rating}");
+				$('.language .info-box-content').eq(j).find('input[type=text]').eq(4).val("${languageVo.langGetDate}");
+				
+				j+=1;
+			</c:forEach>
+		}
+
+		if(${resumeAllVo.awardVoList.size()}!=0){
+			$(".award .nullOk-top").slideDown();
+			$(".award .addDiv").slideDown();
+			$('.switch:eq(4) input[type=checkbox]').prop("checked",true);
+			
+			for(var i=0; i<${resumeAllVo.awardVoList.size()}; i++){
+				if(i!=0){
+					var $addContent = $('.award .info-box-content:eq(0)').clone(true);
+					$addContent.find("input[type=text]").val("");
+					$addContent.find("textarea").val("");
+					$addContent.find("textarea").height(35.25);
+					$addContent.find("input[type=radio]").removeAttr('checked');
+					$addContent.removeAttr('style');
+					$addContent.css('display','block');
+					$(".award .addDiv").before($addContent);
+					$('.award .info-box-content:not(:eq(0))').find(".subBt").css("display","block");		
+				}
+			}
+			
+			j = 0;
+			<c:forEach var="awardVo" items="${resumeAllVo.awardVoList}">
+				$('.award .info-box-content').eq(j).find('input[type=text]').eq(0).val("${awardVo.awardName}");
+				$('.award .info-box-content').eq(j).find('input[type=text]').eq(1).val("${awardVo.awardCom}");
+				$('.award .info-box-content').eq(j).find('input[type=text]').eq(2).val("${awardVo.awardGetDate}");
+				
+				j+=1;
+			</c:forEach>
+		}
+				
+		if("${resumeAllVo.addInfoVo}"!=""){
+			$('.switch:eq(5) input[type=checkbox]').prop("checked",true);
+			$(".special .nullOk-top").slideDown();
+			
+			$('.special').find("select[name=disable]").val("${resumeAllVo.addInfoVo.disable}").prop('selected', true);
+			$('.special').find("select[name=military]").val("${resumeAllVo.addInfoVo.military}").prop('selected', true);
+			$('.special').find("select[name=affair]").val("${resumeAllVo.addInfoVo.affair}").prop('selected', true);
+			$('.special').find("select[name=sFund]").val("${resumeAllVo.addInfoVo.sFund}").prop('selected', true);
+		}
+		
+		if("${resumeAllVo.potfolioVo}"!=""){
+			$('.switch:eq(6) input[type=checkbox]').prop("checked",true);
+			$(".popol .nullOk-top").slideDown();
+			
+			if("${resumeAllVo.potfolioVo.potFile}"!=""){
+				
+				var fileName="";
+				fileName += '<div class="col-lg-10">';
+				fileName += '<label class="col-lg-2 control-label">기존 파일</label>';
+				fileName += '<input type="text" class="form-control not-null-input" value="${resumeAllVo.potfolioVo.potFile}" readonly="readonly"/>';
+				fileName += '</div>';
+
+				$('.popol').find("input[type=file]").parent().before(fileName);
+			}
+			
+			$('.popol').find("input[name=popolStartDay]").val("${resumeAllVo.potfolioVo.potPeriod}".substring(0,6));
+			$('.popol').find("input[name=popolEndDay]").val("${resumeAllVo.potfolioVo.potPeriod}".substring(9,15));
+			$('.popol').find("input[name=potTools]").val("${resumeAllVo.potfolioVo.potTools}");
+			$('.popol').find("input[name=workers]").val("${resumeAllVo.potfolioVo.workers}");
+			$('.popol').find("textarea[name=intro]").val("${resumeAllVo.potfolioVo.intro}");
+		}
+		
 		var school="";
 		var careerBt="";
 
@@ -750,12 +1048,8 @@
 			
 			if($('input[name=finalEdu]').val()=="대학·대학원 이상 졸업"){
 				$('input[name=uni]').val($('select[name=unisel]').val());
+				$('input[name=major]').val($('input[name=major-uni]').val());
 				$('input[name=eduScore]').val($("input[name=grade]").val()+"/"+$('select[name=gradeSel]').val());				
-				if($("select[name=majorSel]").val()=="직접입력"){
-					$('input[name=major]').val($('input[name=majorSelEtc]').val()+":"+$('input[name=major-uni]').val());					
-				}else{
-					$('input[name=major]').val($("select[name=majorSel]").val()+":"+$('input[name=major-uni]').val());										
-				}
 			}else if($('input[name=finalEdu]').val()=="고등학교 졸업"){
 				$('input[name=major]').val($('select[name=major-high]').val());
 			}
@@ -914,7 +1208,7 @@
 		});
 		
 		$('.bt-return').click(function(){
-			location.href="<c:url value='/resume/resumeMain.do'/>"
+			location.href="<c:url value='/resume/resumeDetail.do?resumeNo=${param.resumeNo}'/>"
 		});
 	});
 </script>
@@ -950,10 +1244,10 @@
 				<h3>*학력사항 ▼</h3>
 			</div>
 			<div class="info-box-content edu">
-				<input class="educationBt" type="button" value="초등학교 졸업"/>
-				<input class="educationBt" type="button" value="중학교 졸업"/>
-				<input class="educationBt" type="button" value="고등학교 졸업"/>
-				<input class="educationBt" type="button" value="대학·대학원 이상 졸업"/>
+				<input class="educationBt" type="button" id="eduBt1" value="초등학교 졸업"/>
+				<input class="educationBt" type="button" id="eduBt2" value="중학교 졸업"/>
+				<input class="educationBt" type="button" id="eduBt3" value="고등학교 졸업"/>
+				<input class="educationBt" type="button" id="eduBt4" value="대학·대학원 이상 졸업"/>
 				<hr style="border-bottom-color: #fb246a; visibility:hidden;" >
 				<div class="edu-info">
 					<input type="hidden" name="finalEdu">
@@ -971,7 +1265,7 @@
 					<div class="col-lg-10">
 							<label for="shcoolName" class="col-lg-2 control-label">*학교명</label> 
 							<input type="text" class="form-control onlyAlphabetAndNumber not-null-input"
-								name="uniName"
+								name="uniName" value="${resumeAllVo.educationVo.uniName}"
 								placeholder="학교명 입력" maxlength="15">
 					</div>
 					<div class="col-lg-10">
@@ -1072,7 +1366,7 @@
 								id="majorEtc" name="majorSelEtc"
 								placeholder="전공계열 직접입력" maxlength="15" style="display:none;">
 							<input type="text" class="form-control onlyAlphabetAndNumber"
-								placeholder="전공학과 입력" maxlength="15" name="major-uni">
+								placeholder="전공학과 입력" maxlength="15" name="major-uni" value="${resumeAllVo.educationVo.major}">
 					</div>
 					<div class="col-lg-10 university">
 							<input type="hidden" name="eduScore"/>
@@ -1483,7 +1777,7 @@
 					<input class="addBt" type="button" value="추가하기"/>
 			</div>		
 		</div>
-		<div class="info-box">
+		<div class="info-box certify">
 			<div class="info-box-nullOk-head">
 				<h3>자격증</h3>
 				<label class="switch">
@@ -1518,7 +1812,7 @@
 					<input class="addBt" type="button" value="추가하기"/>
 			</div>		
 		</div>
-		<div class="info-box">
+		<div class="info-box language">
 			<div class="info-box-nullOk-head">
 				<h3>어학</h3>
 				<label class="switch">
@@ -1565,7 +1859,7 @@
 					<input class="addBt" type="button" value="추가하기"/>
 			</div>	
 		</div>
-		<div class="info-box">
+		<div class="info-box award">
 			<div class="info-box-nullOk-head">
 				<h3>수상내역/공모전</h3>
 				<label class="switch">
@@ -1655,7 +1949,7 @@
 			<div class="info-box-content nullOk-top">
 				<div class="col-lg-10">
 							<label for="local" class="col-lg-2 control-label">파일찾기</label> 
-							<input type="file" name="upfile"/> 
+							<input type="file" name="upfile" /> 
 				</div>
 				<div class="col-lg-10 term">
 						<input type="hidden" name="potPeriod"/>
