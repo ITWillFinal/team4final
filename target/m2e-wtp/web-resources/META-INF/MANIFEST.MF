@@ -1,5 +1,4 @@
 Manifest-Version: 1.0
-Built-By: STU-20
-Build-Jdk: 1.8.0_251
+Built-By: STU-15
+Build-Jdk: 1.8.0_241
 Created-By: Maven Integration for Eclipse
-
