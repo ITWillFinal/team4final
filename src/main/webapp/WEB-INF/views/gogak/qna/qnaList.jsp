@@ -180,7 +180,7 @@ p#info {
 							<th>작성일</th>
 						</tr>
 						<c:if test="${empty list }">
-							<th colspan="4">등록된 1:1 문의가 없습니다.</th>
+							<th colspan="7">등록된 1:1 문의가 없습니다.</th>
 						</c:if>
 						<c:if test="${!empty list }">
 							<c:set var = "idx" value = "0"/>

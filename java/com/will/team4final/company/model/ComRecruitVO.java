@@ -36,8 +36,8 @@ public class ComRecruitVO {
 	String fileName;
 	String fileSize;
 	String comCode;
-	String companyType;
-	
+	String comType;
+	String resumeType;
 	public String getRecruitmentCode() {
 		return recruitmentCode;
 	}
@@ -236,13 +236,18 @@ public class ComRecruitVO {
 	public void setComCode(String comCode) {
 		this.comCode = comCode;
 	}
-	public String getCompanyType() {
-		return companyType;
+	public String getComType() {
+		return comType;
 	}
-	public void setCompanyType(String companyType) {
-		this.companyType = companyType;
+	public void setComType(String comType) {
+		this.comType = comType;
 	}
-	
+	public String getResumeType() {
+		return resumeType;
+	}
+	public void setResumeType(String resumeType) {
+		this.resumeType = resumeType;
+	}
 	@Override
 	public String toString() {
 		return "ComRecruitVO [recruitmentCode=" + recruitmentCode + ", comName=" + comName + ", title=" + title
@@ -254,7 +259,9 @@ public class ComRecruitVO {
 				+ recNumber + ", regdate=" + regdate + ", recDeadline=" + recDeadline + ", document=" + document
 				+ ", recDetail=" + recDetail + ", readCount=" + readCount + ", accuse=" + accuse + ", category="
 				+ category + ", imgUrl=" + imgUrl + ", fileName=" + fileName + ", fileSize=" + fileSize + ", comCode="
-				+ comCode + ", companyType=" + companyType + "]";
+				+ comCode + ", comType=" + comType + ", resumeType=" + resumeType + "]";
 	}
+	
+	
 		
 }

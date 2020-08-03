@@ -1,5 +1,8 @@
 package com.will.team4final.memberAdmin.model;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +46,11 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 	@Override
 	public MemberAdminVO selectByUserid(String adminId) {
 		return memberAdminDao.selectByUserid(adminId);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectInfo() {
+		return memberAdminDao.selectInfo();
 	}
 
 
