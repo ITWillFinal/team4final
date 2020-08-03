@@ -84,8 +84,7 @@ li.select {
 	<!-- main -->
 	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
 		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
-		<c:choose>
-			<c:when test="${!empty adminList}">
+			<c:if test="${!empty adminList}">
 				<li class = "select" style="width: 33%;" id = "btm">
 					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=A'/>">전체</a>
 				</li>
@@ -95,19 +94,8 @@ li.select {
 				<li class = "select" style="width: 33%;" id = "fst">
 					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=C'/>">회사</a>
 				</li>
-			</c:when>
-			<c:when test="${empty adminList}">
-				<li class = "select" style="width: 33%;" id = "btm">
-					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=A'/>">전체</a>
-				</li>
-				<li class = "select" style="width: 33%;" id = "mid">
-					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=U'/>">개인</a>
-				</li>
-				<li class = "select" style="width: 33%;" id = "fst">
-					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=C'/>">회사</a>
-				</li>
-			</c:when>
-			<c:when test="${!empty memberList}">
+			</c:if>
+			<c:if test="${!empty memberList}">
 				<li class = "select" style="width: 33%;" id = "fst">
 					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=A'/>">전체</a>
 				</li>
@@ -117,19 +105,8 @@ li.select {
 				<li class = "select" style="width: 33%;" id = "mid">
 					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=C'/>">회사</a>
 				</li>
-			</c:when>
-			<c:when test="${empty memberList}">
-				<li class = "select" style="width: 33%;" id = "fst">
-					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=A'/>">전체</a>
-				</li>
-				<li class = "select" style="width: 33%;" id = "btm">
-					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=U'/>">개인</a>
-				</li>
-				<li class = "select" style="width: 33%;" id = "mid">
-					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=C'/>">회사</a>
-				</li>
-			</c:when>
-			<c:when test="${!empty comList}">
+			</c:if>
+			<c:if test="${!empty comList}">
 				<li class = "select" style="width: 33%;" id = "fst">
 					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=A'/>">전체</a>
 				</li>
@@ -139,20 +116,8 @@ li.select {
 				<li class = "select" style="width: 33%;" id = "btm">
 					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=C'/>">회사</a>
 				</li>
-			</c:when>
-			<c:when test="${empty comList}">
-				<li class = "select" style="width: 33%;" id = "fst">
-					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=A'/>">전체</a>
-				</li>
-				<li class = "select" style="width: 33%;" id = "mid">
-					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=U'/>">개인</a>
-				</li>
-				<li class = "select" style="width: 33%;" id = "btm">
-					<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=C'/>">회사</a>
-				</li>
-			</c:when>
-		</c:choose>
-				
+			</c:if>
+			
 			
 		</ul>
 	<div class="divList" style="margin-top: 100px;">
