@@ -13,7 +13,7 @@
 		}
 		
 	</style>
-	<div style="float: left; width:250px; margin-left:16%; word-break:break-all; border:1px solid lightgray; font-size: 14px;">
+	<div style="float: left; width:250px; margin-left:16%; word-break:break-all; border:1px solid lightgray; font-size: 14px; margin-top: 9px;">
 		
 		<ul id="menu">
 		  <li class="ui-widget-header"><div>THE JOB+</div></li>
