@@ -21,4 +21,22 @@ public class MemberAdminDAOMybatis implements MemberAdminDAO{
 		return sqlsession.insert(namespace+"insertAdmin", vo);
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public String selectMemberPwd(String adminId) {
+		return sqlsession.selectOne(namespace+"selectMemberPwd", adminId);
+	}
+
+	@Override
+	public MemberAdminVO selectByUserid(String adminId) {
+		return sqlsession.selectOne(namespace+"selectByUserid", adminId);
+	}
+
+	@Override
+	public String selectLevel(String adminId) {
+		return sqlsession.selectOne(namespace+"selectLevel", adminId);
+	}
+
+>>>>>>> b7296c52e279172e6788ba3c48ad537d54734953
 }

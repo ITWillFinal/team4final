@@ -18,4 +18,35 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 		return memberAdminDao.insertAdmin(vo);
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public int loginCheck(String adminId, String pwd) {
+		int result = 0;
+		
+		int idCheck = memberAdminDao.selectIdDup(adminId);
+		if(idCheck>0) {
+			String pwdCheck = memberAdminDao.selectMemberPwd(adminId);
+			if(memberAdminDao.selectLevel(adminId)==null
+					|| memberAdminDao.selectLevel(adminId).isEmpty()) {
+				result = NO_LEVEL;
+			}else if(pwd.equals(pwdCheck)) {
+				result = LOGIN_OK;
+			}else if(!pwd.equals(pwdCheck)) {
+				result = PWD_DISAGREE;
+			}
+		}else {
+			result = ID_NONE;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public MemberAdminVO selectByUserid(String adminId) {
+		return memberAdminDao.selectByUserid(adminId);
+	}
+
+
+>>>>>>> b7296c52e279172e6788ba3c48ad537d54734953
 }

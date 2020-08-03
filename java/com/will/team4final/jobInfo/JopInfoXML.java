@@ -51,4 +51,9 @@ public class JopInfoXML {
 		response.setContentType("text/xml");
 		response.getWriter().write(sb.toString());			// 응답결과 반환
     }
+    
+    @RequestMapping("/mapTest123.do")
+    private String testmapTest() {
+		return "testTest/mapTest";
+	}
 }

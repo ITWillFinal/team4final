@@ -1,0 +1,137 @@
+select * from qna;
+
+select * from qnare;
+
+select count(*)
+from qna q join qnare r
+on q.QNA_NO = r.QNA_NO;
+
+select count(*)
+from qna;
+
+select *
+from qna q left join qnare r
+on q.qna_no = r.qna_no
+and r.no is null;
+
+create or replace view qnarere
+as
+select q.*, r.no
+from qna q left join qnare r
+on q.qna_no = r.qna_no;
+
+select * from qnarere;
+
+
+select * from qna;
+
+select * from qnarere;
+
+select * from qnarere
+where no is not null;
+
+select * from qnare;
+
+
+
+
+
+/* admin, admin level 테이블*/
+create table admin
+(
+    admin_no number primary key,
+    admin_id varchar2(100),
+    pwd varchar2(100),
+    admin_name  varchar2(50),
+    tel varchar2(50),
+    levels number ,
+    regdate date default sysdate,
+    
+    constraint admin_levels_fk foreign key (levels)
+    references adminlevel(levels) on delete cascade
+);
+
+create table adminlevel
+(
+    levels number primary key,
+    level_name varchar2(50)
+);
+
+drop table admin;
+drop table adminlevel;
+commit;
+
+select * from adminlevel order by levels;
+select * from admin;
+
+/* 관리자 등급 테이블 입력*/
+insert into adminlevel
+values(1, 'emperor');
+insert into adminlevel
+values(2, 'king');
+insert into adminlevel
+values(3, 'citizen');
+
+
+
+/*시퀀스*/
+create sequence admin_seq
+start with 1 --50부터 시작해서 1씩 증가
+increment by 1
+nocache;
+
+/*관리자 회원 입력*/
+insert into admin(admin_no, admin_id, pwd, admin_name, tel)
+values(admin_seq.nextval, 'admin1', '1', '관리자2', '010-2222-1111');
+
+/*관리자 등급 변경*/
+update admin
+set levels = 2
+where admin_no=1;
+
+/*관리자 삭제*/
+delete admin
+where admin_no=1;
+
+/* admin + adminlevel 조인*/
+select a.*, l.level_name
+from admin a left join
+(
+    select level_name, levels
+    from adminlevel
+)l
+on a.levels = l.levels;
+
+/* admin + adminlevel View 생성*/
+create or replace view adminInfo
+as
+select a.*, l.level_name
+from admin a left join
+(
+    select level_name, levels
+    from adminlevel
+)l
+on a.levels = l.levels;
+
+
+
+select * from admin;
+select * from adminlevel;
+select * from adminInfo;
+commit;
+
+select levels from admin
+where admin_id = 'admin1';
+
+delete admin
+where admin_no = 5;
+commit;
+
+
+select *
+from qna q join
+(
+    select * from qnare
+    
+)r
+on q.QNA_NO = r.QNA_NO;

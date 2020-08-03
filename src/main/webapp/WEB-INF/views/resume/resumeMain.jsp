@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../inc/mypageTop.jsp" %>
+<script src="<c:url value='/resources/js/html2canvas.js'/>"></script>
+<script src="<c:url value='/resources/js/jspdf.min.js'/>"></script>
 <style type="text/css">
 	*{
 		box-sizing: border-box;
@@ -157,6 +159,7 @@
 </style>
 <script type="text/javascript">
 	$(function(){
+		
 		$('.yorn-chk').change(function(){
 			$.ajax({
 				url:"<c:url value='/resume/resumeYorn.do'/>",

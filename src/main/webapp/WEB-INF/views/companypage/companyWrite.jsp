@@ -421,7 +421,6 @@
 	.sel{
 		width:150px;
 		display: inline-block;
-	
 	}
 	
 	.bttn{

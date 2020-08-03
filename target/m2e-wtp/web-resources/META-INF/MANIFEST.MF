@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: STU-04
 Build-Jdk: 1.8.0_241
+=======
+Built-By: woals
+Build-Jdk: 1.8.0_251
+>>>>>>> b7296c52e279172e6788ba3c48ad537d54734953
 Created-By: Maven Integration for Eclipse
 

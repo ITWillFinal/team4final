@@ -15,6 +15,24 @@
 		insert into admin(admin_no, admin_id, pwd, admin_name, tel)
 		values(#{adminNo}, #{adminId}, #{pwd}, #{adminName}, #{tel})
 	</insert>
+<<<<<<< HEAD
+=======
+	
+	<select id="selectMemberPwd" parameterType="string" resultType="string">
+		select pwd from admin
+		where admin_Id=#{adminId}
+	</select>
+	
+	<select id = "selectByUserid" parameterType="String" resultType="memberAdminVo">
+		select * from admin
+		where admin_id = #{adminId}
+	</select>
+	
+	<select id="selectLevel" parameterType="String" resultType="String">
+		select levels from admin
+		where admin_id = #{adminId}
+	</select>
+>>>>>>> b7296c52e279172e6788ba3c48ad537d54734953
 </mapper>
 
 
