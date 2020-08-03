@@ -221,7 +221,7 @@
 		
 		$("#ageSelect").change(function(){
 			var ageSel = $("#ageSelect option:selected").val();
-			$("#age").val(ageSel);
+			$("#age").val(Number(ageSel));
 		});
 		
 		$("#eduSelect").change(function(){
@@ -375,12 +375,9 @@
 				$('#recDetail').focus();
 				event.preventDefault();
 			}else if($('#comCode').val()==''){
-<<<<<<< HEAD
 				alert('회사코드를 입력하세요');
 				$('#comCode').focus();
-=======
 				alert('회사코드가 존재하지 않습니다! 기업정보입력 페이지로 이동합니다');
->>>>>>> 46972ea06982451532a9e9de09173f8692a476f7
 				event.preventDefault();
 			}else if($('#comType').val()==''){
 				alert('기업형태를 입력하세요');

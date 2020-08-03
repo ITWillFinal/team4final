@@ -10,4 +10,5 @@ public interface ComRecruitDAO {
 	String selectrecruitmentCode();
 	ComRecruitVO checkRecruitmentCode(String comCode);
 	int updateResumeType(ComRecruitVO comRecruitVo);
+	
 }
