@@ -200,7 +200,7 @@ input#btMultiDel {
 					<th>이름</th>
 					<th>연락처</th>
 					<th>관리 등급</th>
-				</tr>
+				</tr><!-- AAAAA -->
 			</thead>
 			<tbody>  
 				<c:if test="${empty list }">
