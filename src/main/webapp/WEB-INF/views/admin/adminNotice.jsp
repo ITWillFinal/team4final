@@ -36,6 +36,8 @@ function pageProc(curPage){
 	th {
 		border-bottom: 3px solid #FB246A;
 		text-align: center;
+		padding: 8px;
+
 	}
 	
 	td {
@@ -98,16 +100,17 @@ function pageProc(curPage){
 		text-align: center;
 	}
 </style>
+<h2 style="margin-left: 20px">공지사항</h2>
 <div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
 	<ul class = "tabList" style="width: 857px; margin-left: 0px;">
 		<li class = "select" style="width: 33%;" id = "btm">
-			<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=A'/>">전체</a>
+			<a class="" href="<c:url value='/admin/adminNotice.do'/>">전체</a>
 		</li>
 		<li class = "select" style="width: 33%;" id = "mid">
-			<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=U'/>">개인</a>
+			<a class="" href="<c:url value='/admin/adminNotice.do?searchKeyword=U'/>">개인</a>
 		</li>
 		<li class = "select" style="width: 33%;" id = "fst">
-			<a class="" href="<c:url value='/admin/adminMemberManagement.do?adminStatus=C'/>">회사</a>
+			<a class="" href="<c:url value='/admin/adminNotice.do?searchKeyword=C'/>">회사</a>
 		</li>
 	</ul>
 	<div>
@@ -121,7 +124,7 @@ function pageProc(curPage){
 					<col style="width:20%;">
 					<col style="width:5%;">
 				</colgroup>
-				<tr style="background:#d6d6d678">
+				<tr>
 					<th><input type="checkbox" id="chkAll"></th>
 					<th>타입</th>
 					<th>제목</th>
