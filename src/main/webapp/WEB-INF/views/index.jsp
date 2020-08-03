@@ -4,17 +4,13 @@
 <%@ include file="inc/top.jsp" %>
 
 <style>
-	#searchSelect{
-		margin-left: 30px;
-	    height: 55px;
-	    font-size: 1.1em;
-	    font-weight: bold;
-	    background: #ffffff;
-	    width: 11%;
-	    border: 1px solid #fb246a;
-	    color: #fb246a;
-	    text-align-last: center;
-	    margin-bottom: 10px;
+	#searchSelectDiv{
+	    margin-left: 30px;
+	}
+	#searchSelectDiv a{
+		margin-left: 25px;
+	    margin-bottom: 15px;
+	    font-size: 1em;
 	}
 	
 	#inputSubmit{
@@ -34,35 +30,19 @@
                     <div class="container">
                         <form action="">
                             <div class="row" id="searchSelectDiv">
-                                <select id="searchSelect" style="margin-left: 70px;">
-                                    <option>지역</option>
-                                    <c:forEach var="location" items="${locationList }">
-                                    	<option value="${location }">${location }</option>
-                                    </c:forEach>
-                                </select>
-                                <select id="searchSelect">
-                                    <option>직무</option>
-                                    <c:forEach var="map" items="${jobList }">
-                                    	<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
-                                    </c:forEach>
-                                </select>
-                                <select id="searchSelect">
-                                    <option>산업</option>
-                                    <c:forEach var="map" items="${induList }">
-                                    	<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
-                                    </c:forEach>
-                                </select><br>
-                                </div>
+                                <a href="<c:url value='/hireinpo/infoSearchByLocation.do'/>" class="btn head-btn2" style="font-weight: bold;">지역별</a>
+                                <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">직업별</a>
+                                <a href="#pop01" class="btn head-btn2" style="font-weight: bold;">산업별</a>
+                            </div>
                                 <!-- Search Box -->
                                
-                                <div style="display: flex; margin-left: 10px;">
-                                    <div style="box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.08); padding-left: 20px; width: 430px;margin-left: 20px;">
-                                        <input type="text" placeholder="원하는 직업을 입력해주세요!"
-                                            style="width: 95%;" id="inputSubmit">
-                                    </div>
-                                    <input type="submit" value="검색" style="background: #fb246a; width: 100px; color: #ffffff; font-weight: bold;" id="inputSubmit">
-                                </div>
-                                        
+							<div style="display: flex; margin-left: 10px;">
+							    <div style="box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.08); padding-left: 20px; width: 430px;margin-left: 20px;">
+							        <input type="text" placeholder="원하는 직업을 입력해주세요!"
+							            style="width: 95%;" id="inputSubmit">
+							    </div>
+							    <input type="submit" value="검색" style="background: #fb246a; width: 100px; color: #ffffff; font-weight: bold;" id="inputSubmit">
+							</div>
                         </form>
                     </div>
                 </div>
