@@ -212,7 +212,6 @@ public class CompanyHomeController {
 		String cUserid = (String)session.getAttribute("userid");
 		CompanyMemberVO comMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
 		logger.info("기업공고 페이지 회원 정보 조회, comMemberVo={}",comMemberVo);
-		
 		CompanyInfoVO comInfoVo=comInfoService.selectComInfoBycUserid(comMemberVo.getcMemberCode());
 		logger.info("기업공고 페이지 회사 정보 입력 값 확인, comInfoVo={}", comInfoVo);
 		

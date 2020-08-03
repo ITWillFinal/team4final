@@ -18,6 +18,7 @@
         var IMP = window.IMP; // 생략가능
         IMP.init('imp31064420'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
         var msg;
+        var payment = $('#frmPayment').serialize();
         
         IMP.request_pay({
             pg : 'kakaopay',
@@ -51,9 +52,9 @@
                         	url:"/import/payment.do",
                         	type: 'POST',
                             dataType: 'json',
-                            data:{ max : max},
+                            data: payment,
                             success : function(data) {
-                            	alert(sucess);
+                            	 location.href="<c:url value='/companypage/companyHome.do' />";
                             	
         					},
         					error : function(xhr, status, error) {
@@ -75,6 +76,12 @@
         
     });
     </script>
- 
+    <form id="frmPayment" name="frmPayment">
+	 	<input type="text" name="productName" value="${paymentVo.productName }">
+	 	<input type="text" name="price" value="${paymentVo.price }">
+	 	<input type="text" name="startDay" value="${paymentVo.startDay }">
+	 	<input type="text" name="endDay" value="${paymentVo.endDay }">
+	 	<input type="text" name="cMemberCode" value="${comRecruitVo.cMemberCode }">
+    </form>
 </body>
 </html>

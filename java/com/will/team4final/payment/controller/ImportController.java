@@ -8,24 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.will.team4final.company.model.ComMemberService;
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
-import com.will.team4final.company.model.CompanyMemberVO;
-import com.will.team4final.payment.controller.ImportController;
+import com.will.team4final.payment.model.PaymentService;
 import com.will.team4final.payment.model.PaymentVO;
 
 @Controller
 public class ImportController {
 		private static final Logger logger = LoggerFactory.getLogger(ImportController.class);
 		
-		@Autowired private ComMemberService comMemberService;
 		@Autowired private ComRecruitService comRecruitService;
+		@Autowired private PaymentService paymentService;
 		
 		@RequestMapping("/import/import.do")
 		public void import_get() {
@@ -61,10 +60,13 @@ public class ImportController {
 		
 		
 		@RequestMapping("/import/payment.do")
-		public String payment_post(HttpSession session,Model model,@ModelAttribute PaymentVO paymentVo,@RequestParam String max) {
-			 logger.info("max={}, paymentVo={}",max, paymentVo);
+		@ResponseBody
+		public int payment_post(HttpSession session,Model model,@ModelAttribute PaymentVO paymentVo,
+			@RequestParam String cMemberCode) {
+			 logger.info("결제 창 db 저장 화면 cMemberCode, paymentVo={}",cMemberCode, paymentVo);
 			 
-			 
-			return "index";
+			 paymentVo.setcMemberCode(cMemberCode);
+			 int cnt = paymentService.insertPayment(paymentVo);
+			return cnt;
 		}
 	}
