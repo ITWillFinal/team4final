@@ -5,7 +5,7 @@
 $(function(){
 	$( "#hireTabs" ).tabs();
 	$('#sido').click(function() {
-		$('#tdLocation1').val($('#sido').val());
+		$('#tdLocation1').val($('#sido option:selected').text());
 	});
 	$('#sigugun').click(function() {
 		$('#tdLocation2').val($('#sigugun').val());
@@ -35,70 +35,93 @@ $(function(){
 
 $(function() {
 	$('#sido').click(function() {
-		var sido = $('#sido').val();
-		$('#sigugun').empty();
-		$.ajax({
-			url:"<c:url value='/sigugun.do'/>",
-			type:"get",
-			dataType:"json",
-			data:"sido="+sido,
-			success:function(res){
-				$('#sigugun').append("<option>전체</option>");
-				for(var i = 0; i< res.length; i++){
-					var option ="<option value='"+res[i]+"'>"+res[i]+"</option>";
-					$('#sigugun').append(option);
+		if($('#sido').val() != 0){
+			var sido = $('#sido').val();
+			$('#sigugun').empty();
+			$.ajax({
+				url:"<c:url value='/sigugun.do'/>",
+				type:"get",
+				dataType:"json",
+				data:"sido="+sido,
+				success:function(res){
+					$('#sigugun').append("<option>전체</option>");
+					for(var i = 0; i< res.length; i++){
+						var option ="<option value='"+res[i]+"'>"+res[i]+"</option>";
+						$('#sigugun').append(option);
+					}
+				},
+				error:function(xhr, status, error){
+					alert(status + ", " + error);
 				}
-			},
-			error:function(xhr, status, error){
-				alert(status + ", " + error);
-			}
-		});
+			});
+		}
 	});
 	
 	$('#jobLarge').click(function() {
-		var num = $('#jobLarge').val();
-		$('#jobMiddle').empty();
-		$.ajax({
-			url:"<c:url value='/job/jobMiddle.do'/>",
-			type:"get",
-			dataType:"json",
-			data:"no="+num,
-			success:function(res){
-				$('#jobMiddle').append("<option>전체</option>");
-				for(var i = 0; i< res.length; i++){
-					var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
-					$('#jobMiddle').append(option);
+		if($('#jobLarge').val() != 0){
+			var num = $('#jobLarge').val();
+			$('#jobMiddle').empty();
+			$.ajax({
+				url:"<c:url value='/job/jobMiddle.do'/>",
+				type:"get",
+				dataType:"json",
+				data:"no="+num,
+				success:function(res){
+					$('#jobMiddle').append("<option>전체</option>");
+					for(var i = 0; i< res.length; i++){
+						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						$('#jobMiddle').append(option);
+					}
+				},
+				error:function(xhr, status, error){
+					alert(status + ", " + error);
 				}
-			},
-			error:function(xhr, status, error){
-				alert(status + ", " + error);
-			}
-		});
+			});
+		}
 	});
 	
 	$('#induLarge').click(function() {
-		var num = $('#induLarge').val();
-		$('#induMiddle').empty();
-		$.ajax({
-			url:"<c:url value='/job/induMiddle.do'/>",
-			type:"get",
-			dataType:"json",
-			data:"no="+num,
-			success:function(res){
-				$('#induMiddle').append("<option>전체</option>");
-				for(var i = 0; i< res.length; i++){
-					var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
-					$('#induMiddle').append(option);
+		if($('#induLarge').val() != 0){
+			var num = $('#induLarge').val();
+			$('#induMiddle').empty();
+			$.ajax({
+				url:"<c:url value='/job/induMiddle.do'/>",
+				type:"get",
+				dataType:"json",
+				data:"no="+num,
+				success:function(res){
+					$('#induMiddle').append("<option>전체</option>");
+					for(var i = 0; i< res.length; i++){
+						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						$('#induMiddle').append(option);
+					}
+				},
+				error:function(xhr, status, error){
+					alert(status + ", " + error);
 				}
-			},
-			error:function(xhr, status, error){
-				alert(status + ", " + error);
-			}
-		});
+			});
+		}
 	});
 });
+
+function hireInfo(){
+
+	$.ajax({
+		 url :"<c:url value='/hireinpo/searchHireInfo.do'/>"
+		,type:"post"
+		,data:$("#hireform").serialize()
+		,dataType:"text"
+		,success:function(res){
+			alert(res);			
+		}
+	    ,error: function(xhr,status, error){
+	    	alert("에러발생");
+	    }
+	});
+}
 </script>
 <style>
+
 	#hireTabs{
 		float: left;
 		width: 55%;
@@ -150,7 +173,7 @@ $(function() {
 	#searchTable tr{
 		border-bottom: 1px solid #f3f3f3;
 	}
-	input[type=submit]{
+	input[type=button]{
 		width: 77px;
 	    height: 55px;
 	    text-align: center;
@@ -178,7 +201,7 @@ $(function() {
 <!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
 <h2 style="margin-bottom: 22px;">채용정보 상세검색</h2>
 <div id="hireTabs">
-	<ul>
+	<ul style="border: 1px solid #dddddd; background: #e9e9e9; color: #333333; font-weight: bold;">
 		<li><a href="#hireTabs-1"><i class="fa fa-map-marker" aria-hidden="true"></i>　지역</a></li>
 		<li><a href="#hireTabs-2"><i class="fa fa-briefcase" aria-hidden="true"></i>　직무</a></li>
 		<li><a href="#hireTabs-3"><i class="fa fa-industry" aria-hidden="true"></i>　산업</a></li>
@@ -189,7 +212,7 @@ $(function() {
 	<div id="hireTabs-1">
 		<div id="locationLi" style="display: inline-block">
 			<select size="10" id="sido">
-				<option>전체</option>
+				<option value="0">전체</option>
 				<c:forEach var="location" items="${locationList }">
 					<option id="op" value="${location }">${location }</option>
 				</c:forEach>
@@ -205,7 +228,7 @@ $(function() {
 	<div id="hireTabs-2">
 		<div id="locationLi" style="display: inline-block">
 			<select size="10" id="jobLarge">
-				<option>전체</option>
+				<option value="0">전체</option>
 				<c:forEach var="map" items="${jobList }">
                		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
                 </c:forEach>
@@ -221,7 +244,7 @@ $(function() {
 	<div id="hireTabs-3">
 		<div id="locationLi" style="display: inline-block">
 			<select size="10" id="induLarge">
-				<option>전체</option>
+				<option value="0">전체</option>
 				<c:forEach var="map" items="${induList }">
                		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
                 </c:forEach>
@@ -248,13 +271,12 @@ $(function() {
 		<div style="display: inline" id="locationLi2">
 			<h5>기업형태</h5>
 			<select id="comty" name="comty" size="7" style="width: 160px">
-				<option value="무관">무관</option>
-				<option value="초등학교">초등학교</option>
-				<option value="중학교">중학교</option>
-				<option value="고등학교">고등학교</option>
-				<option value="대학(2~3년) 졸업">대학(2~3년) 졸업</option>
-				<option value="대학(4년) 졸업">대학(4년) 졸업</option>
-				<option value="대학원(박사) 졸업">대학원(박사) 졸업</option>
+				<option value="대기업">대기업</option>
+				<option value="공기업">공사/공기업</option>
+				<option value="중견기업">중견기업</option>
+				<option value="중소기업">중소기업</option>
+				<option value="스타트업">스타트업</option>
+				<option value="외국계기업">외국계기업</option>
 			</select> 
 		</div>
 		<div style="display: inline" id="locationLi2">
@@ -272,7 +294,7 @@ $(function() {
 	</div>
 </div>
 <div id="hireSearch">
-	<form action="">
+	<form name="hireform" id="hireform" method="post">
 		<table id="searchTable" style="margin-left: 40px;">
 			<tr>
 				<th>지역</th>
@@ -301,7 +323,7 @@ $(function() {
 		</table><br><br>
 		<div style="text-align: center;">
 			<input type="reset" value="초기화">
-			<input type="submit" value="상세검색">
+			<input type="button" onClick="hireInfo();" value="상세검색">
 		</div>
 	</form>
 </div>

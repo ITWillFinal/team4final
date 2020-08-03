@@ -928,14 +928,8 @@
 				<div class="col-lg-10" style="margin-top: 20px;">
 					<div class="photh">
 					</div>	
-					<label class="col-lg-2 control-label infoinfo">이름 :${memberVo.userName } (
-					<c:if test="${memberVo.gender==MALE }">
-						남
-					</c:if>
-					<c:if test="${memberVo.gender==FEMALE }">
-						여
-					</c:if>
-					)</label><br><br>
+					<label class="col-lg-2 control-label infoinfo">이름 :${memberVo.userName } 
+					(${memberVo.gender})</label><br><br>
 					<label class="col-lg-2 control-label infoinfo">생년월일 : ${memberVo.birth }</label><br><br>
 					<label class="col-lg-2 control-label infoinfo">연락처 : ${memberVo.hp }</label><br><br>	
 					<label class="col-lg-2 control-label infoinfo">이메일 : ${memberVo.email }</label><br><br>	

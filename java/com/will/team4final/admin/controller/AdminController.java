@@ -24,6 +24,7 @@ import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.notice.model.NoticeListVO;
 import com.will.team4final.notice.model.NoticeService;
 import com.will.team4final.notice.model.NoticeVO;
+import com.will.team4final.qna.model.QnaService;
 
 @Controller
 @RequestMapping("/admin")
@@ -37,6 +38,8 @@ public class AdminController {
 	@Autowired
 	private ComMemberService comMemberService;
 	@Autowired private AdminService adminService;
+	@Autowired
+	private QnaService qnaService;
 	
 	@RequestMapping("/adminMain.do")
 	public void adminMain(Model model) {
@@ -51,7 +54,8 @@ public class AdminController {
 		int todayCMember = adminService.selectTodayRegisterCMember();
 		int totalToday = todayMember + todayCMember;
 		
-		
+		int cnt = qnaService.noRe();
+	    model.addAttribute("cnt", cnt);
 		
 		model.addAttribute("totalRecordOfAdmin", totalRecordOfAdmin);
 		model.addAttribute("totalToday", totalToday);

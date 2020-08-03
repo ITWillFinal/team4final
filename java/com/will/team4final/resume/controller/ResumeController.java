@@ -50,8 +50,6 @@ public class ResumeController {
 		logger.info("memberVo={}",memberVo);
 		
 		model.addAttribute("memberVo",memberVo);
-		model.addAttribute("MALE",MemberService.MALE);
-		model.addAttribute("FEMALE",MemberService.FEMALE);
 		
 		return "resume/resumeWrite";
 	}
@@ -213,8 +211,6 @@ public class ResumeController {
 		ResumeAllVO resumeAllVo = resumeService.selectResumeByResumNo(resumeNo);
 		
 		model.addAttribute("memberVo", memberVo);
-		model.addAttribute("MALE",MemberService.MALE);
-		model.addAttribute("FEMALE",MemberService.FEMALE);
 		model.addAttribute("resumeAllVo",resumeAllVo);
 		return "resume/resumeDetail";
 	}

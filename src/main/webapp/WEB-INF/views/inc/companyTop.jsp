@@ -30,6 +30,10 @@
 	
 	<!-- 사이드바 제이쿼리 끝 -->
 <style>
+li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-active{
+	border: 1px solid #ff002f;
+    background: #fb246a;
+}
 /*사이드바 제이쿼리 스타일*/
 .ui-widget-header {
 	padding: 0.2em;

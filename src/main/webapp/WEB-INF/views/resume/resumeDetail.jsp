@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
-<script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-<script type = "text/javascript" src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="<c:url value='/resources/js/html2canvas.js'/>"></script>
+<script src="<c:url value='/resources/js/jspdf.min.js'/>"></script>
 <jsp:useBean id="currTime" class="java.util.Date" />
 <style type="text/css">
 	*{
@@ -14,8 +14,8 @@
 	}
 	
 	.resume-detail{
-		margin-left : 15%;
-		background: #f7f7f79e;
+		margin-left : 17%;
+		background: #fafafa;
    		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 		width: 980px;
 		float: left;
@@ -160,9 +160,135 @@
 		text-align: left;
 	}
 	
+	.remoteController{
+		position: fixed;
+	    width: 270px;
+	    height: 500px;
+	    top: 180px;
+	    left: 1320px;
+		background: #eaeaea;
+	    text-align: center;
+	    padding: 10px;
+	}
+	
+	.remoteContent{
+		padding-top:10px;
+	    background: #f7f7f7;
+		width: 100%;
+    	height: 50px;
+    	margin-bottom: 10px;
+	}
+	.remoteContent p{
+		font-weight: bold;
+    	font-size: large;
+	}
+	.pdf-down{
+		background: #fb236a;
+		border:1px solid #fb236a; 
+	}
+	
+	.pdf-down p{
+		color: white;
+	}
+
+	.pdf-save{
+		position: absolute;
+    	top: -100px;
+    	left: -324px;
+	}
+	
+	.isSaving{
+		width: 100%;
+	    height: 1100px;
+	    position: fixed;
+	    text-align: center;
+	    display: none;
+	    top:-100px;
+	    z-index: 1;
+	} 
+	.op{
+		width: 100%;
+	    height: 100%;
+ 	   	background: #ff9800;
+	    text-align: center;
+	    padding-top: 30%;
+	    z-index: 2;
+	    opacity:0.9;
+	} 
+	
+	.op em{
+		color: white;
+		font-size: xxx-large;
+	}
+	.saving{
+		display: block;
+	}
+	
+	
+	
+	
 </style>
+<script type="text/javascript">
+	$(function(){		
+		$('.pdf-down').click(function() { // pdf저장 button id
+			$('.isSaving').toggleClass('saving');
+		    
+		   	var scrollValue = $(document).scrollTop();
+		    $('html').scrollTop(0);
+		    $('#resumeDetail').toggleClass('pdf-save');
+		    
+			
+		   html2canvas($('#resumeDetail')[0]).then(function(canvas) { //저장 영역 div id
+	
+				$('html').scrollTop(scrollValue);
+				
+			    // 캔버스를 이미지로 변환
+			    var imgData = canvas.toDataURL('image/png');
+	            
+			    var imgWidth = 210; // 이미지 가로 길이(mm) / A4 기준 210mm
+			    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
+			    var imgHeight = canvas.height * imgWidth / canvas.width;
+			    var heightLeft = imgHeight;
+			    var margin = 0; // 출력 페이지 여백설정
+			    var doc = new jsPDF('p', 'mm');
+			    var position = 0;
+			       
+			    // 첫 페이지 출력
+			    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+			    heightLeft -= pageHeight;
+			         
+			    // 한 페이지 이상일 경우 루프 돌면서 출력
+			    while (heightLeft >= 20) {
+			        position = heightLeft - imgHeight;
+			        doc.addPage();
+			        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+			        heightLeft -= pageHeight;
+			    }
+			 	var fileName="THE_JOB_이력서_no_title";
+			 	if("${resumeAllVo.resumeVo.selfIntTitle }"!=""){
+			 		fileName="${resumeAllVo.resumeVo.selfIntTitle }";
+			 	}
+			    // 파일 저장
+			    doc.save("THE_JOB_이력서_"+fileName+'.pdf');  
+			    $('#resumeDetail').toggleClass('pdf-save');
+				$('.isSaving').toggleClass('saving');
+			}); 
+
+		});
+	}) 
+
+</script>
 <div class="resume-detail-main">
-	<div class="resume-detail">
+	<form name="pf">
+ 		<input type=hidden name="printzone">
+	</form>
+	<div class="remoteController">
+		<div class="remoteContent">
+			<p>최근 수정일 : ${fn:substring(resumeAllVo.resumeVo.regdate,0,10) }</p>
+		</div>
+		<button class="remoteContent pdf-down"><p>PDF파일로 받기</p></button>
+	</div>
+	<div class="resume-detail" id="resumeDetail">
 		<div class="profile">
 			<h1 class="resume-title">
 			<c:if test="${empty resumeAllVo.resumeVo.selfIntTitle or resumeAllVo.resumeVo.selfIntTitle==''}">
@@ -177,21 +303,11 @@
 						<fmt:formatDate value="${currTime}" var="sysYear" pattern="yy" />
 						<c:if test="${birthYear>sysYear }">
 							19${birthYear }년 (${101+sysYear-birthYear }세) | 
-							<c:if test="${memberVo.gender==MALE }">
-								남
-							</c:if>
-							<c:if test="${memberVo.gender==FEMALE }">
-								여
-							</c:if>
+							${memberVo.gender}
 						</c:if>
 						<c:if test="${birthYear<=sysYear }">
 							20${birthYear }년 (${sysYear-birthYear+1 }세) | 
-							<c:if test="${memberVo.gender==MALE }">
-								남
-							</c:if>
-							<c:if test="${memberVo.gender==FEMALE }">
-								여
-							</c:if>
+							${memberVo.gender}
 						</c:if>
 					</span>
 				</p>
@@ -271,7 +387,7 @@
 								<c:set var="eduPeriod" value="${fn:split(resumeAllVo.educationVo.eduPeriod,':') }"/>
 								<c:set var="eduState" value="${fn:substring(eduPeriod[1],8,fn:length(eduPeriod[1])) }"/>
 								<td>${fn:substring(resumeAllVo.educationVo.eduPeriod,3,8) }
-								~ ${fn:substring(resumeAllVo.educationVo.eduPeriod,15,20) }</td>
+								~ ${fn:substring(resumeAllVo.educationVo.eduPeriod,12+fn:length(eduState),18+fn:length(eduState)) }</td>
 								<td>${eduState }</td>
 								<td>${resumeAllVo.educationVo.uniName }</td>
 								<td>${resumeAllVo.educationVo.major }
@@ -563,5 +679,10 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div class="isSaving">
+	<div class="op">
+		<em>pdf파일을 저장중입니다...</em>
+	</div> 
 </div>
 <%@ include file="../inc/bottom.jsp" %>
