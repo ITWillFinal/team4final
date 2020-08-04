@@ -26,18 +26,18 @@ import com.will.team4final.company.model.CompanyMemberVO;
 @RequestMapping("/companypage")
 public class CompanyInfoController {
 	private static final Logger logger = LoggerFactory.getLogger(CompanyInfoController.class);
-	
+
 	@Autowired private ComMemberService comMemberService;
 	@Autowired private FileUploadUtil fileUploadUtil;
 	@Autowired private CompanyInfoService companyInfoService;
-	
+
 	@RequestMapping(value = "/companyInfoWrite.do", method = RequestMethod.GET)
 	public void comInfoView() {
 		logger.info("회사 정보 입력 화면");
 	}
-	
+
 	@RequestMapping(value = "/companyInfoWrite.do", method = RequestMethod.POST)
-	public String comInfoView_post(@ModelAttribute CompanyInfoVO vo, Model model, HttpSession session, 
+	public String comInfoView_post(@ModelAttribute CompanyInfoVO vo, Model model, HttpSession session,
 			@RequestParam String comIndustry2
 			,HttpServletRequest request) {
 		String cUserid = (String)session.getAttribute("userid");
@@ -48,7 +48,7 @@ public class CompanyInfoController {
 		if(comIndustry.equals("etc")) {
 			vo.setComIndustry(comIndustry2);
 		}
-		
+
 		vo.setcMemberCode(cMemberVo.getcMemberCode());
 		//파일 업로드 처리
 		List<Map<String, Object>> fileList
@@ -69,9 +69,9 @@ public class CompanyInfoController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		return "common/message";
-		
+
 	}
-	
-	
-	
+
+
+
 }
