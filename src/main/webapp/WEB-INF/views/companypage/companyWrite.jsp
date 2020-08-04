@@ -85,7 +85,7 @@
 				data:"no="+num,
 				success:function(res){
 					for(var i = 0; i< res.length; i++){
-						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						var option ="<option value='"+res[i].MIDDLE_GROUP+"'>"+res[i].MIDDLE_GROUP+"</option>";
 						$('#jobMiddle').append(option);
 					}
 				},
@@ -112,7 +112,7 @@
 				data:"no="+num,
 				success:function(res){
 					for(var i = 0; i< res.length; i++){
-						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
+						var option ="<option value='"+res[i].MIDDLE_GROUP+"'>"+res[i].MIDDLE_GROUP+"</option>";
 						$('#induMiddle').append(option);
 					}
 				},
