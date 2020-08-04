@@ -176,4 +176,8 @@ start with 1
 increment by 1
 nocache;
 
-
+create or replace view recruitment_tos
+as
+select r.*, t.end_date
+from RECRUITMENT r join tos t
+on r.RECRUITMENT_CODE = t.RECRUITMENT_CODE;
