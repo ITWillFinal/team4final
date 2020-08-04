@@ -31,12 +31,56 @@
 		where admin_id = #{adminId}
 	</select>
 	
-	<select id="selectInfo" resultType="map">
-		select * from admininfo
-		order by admin_no
+		
+	<select id="selectInfo" resultType="memberAdminVo" parameterType="searchvo">
+		select *
+		from
+		(
+			select rownum as RNUM, A.*
+			from (
+				select admin_No, admin_Id, pwd, admin_Name, tel, levels, regdate
+				from admin
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					where ${searchCondition} like '%'
+							|| #{searchKeyword} || '%'
+				</if>
+				order by admin_No desc
+			)A
+			
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
 	
+	<select id="levels" resultType="memberLevelVo">
+		select * from adminlevel
+	</select>
 	
+	<select id="selectTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from admin
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			where ${searchCondition} like '%'
+				|| #{searchKeyword} || '%'
+		</if>
+	</select>
+	
+	<delete id = "deleteAdmin" parameterType="int">
+		delete admin
+		where admin_no=#{adminNo}
+	</delete>
+	
+	<update id="updateLevel" parameterType="memberAdminVo">
+		update admin
+		set levels = #{levels}
+		where admin_no = #{adminNo}
+	</update>
+	
+	<select id="selectByNO" parameterType="int" resultType="memberadminVo">	
+		select * from admin
+		where admin_no=#{adminNo}
+	</select>
 </mapper>
 
 
