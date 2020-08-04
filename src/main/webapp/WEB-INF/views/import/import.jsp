@@ -75,9 +75,8 @@
 	 	<input type="text" id="productName" name="productName" value="${paymentVo.productName }">상품 이름 <br><br>
 	 	<input type="text" id="cMemberCode" name="cMemberCode" value="${cMemberCode }" id="cMemberCode">
 	 	<input type="text" id="price" name="price" value="${paymentVo.price }">가격<br><br>
-	 	<input type="text" id="startDay" name="startDay" value="${paymentVo.startDay }"><br><br>
-	 	<input type="text" id="endDay" name="endDay" value="${paymentVo.endDay }"><br><br>
-	 	<input type="text" id="example" name="example" value="example"><br><br>
+	 	<input type="text" id="startDay" name="startDay" value="${paymentVo.regdate }"><br><br>
+	 	<input type="text" id="recruitmentCode" name="recruitmentCode" value="${comRecruitVo.recruitmentCode }"><br><br>
     </form>
 </body>
 </html>

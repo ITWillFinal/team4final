@@ -93,15 +93,6 @@ where admin_no=1;
 delete admin
 where admin_no=1;
 
-/* admin + adminlevel 조인*/
-select a.*, l.level_name
-from admin a left join
-(
-    select level_name, levels
-    from adminlevel
-)l
-on a.levels = l.levels;
-
 /* admin + adminlevel View 생성*/
 create or replace view adminInfo
 as

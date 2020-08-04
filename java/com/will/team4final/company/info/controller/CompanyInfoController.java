@@ -44,8 +44,8 @@ public class CompanyInfoController {
 		logger.info("회사 정보 입력, 파라미터 cUserid={}, vo={}", cUserid, vo);
 		CompanyMemberVO cMemberVo=comMemberService.selectCMemberInfoByUserid(cUserid);
 		logger.info("아이디로 멤버 정보 불러오기 결과, cMemberVo={}", cMemberVo);
-		
-		if(comIndustry2!=null || !comIndustry2.isEmpty()) {
+		String comIndustry = vo.getComIndustry();
+		if(comIndustry.equals("etc")) {
 			vo.setComIndustry(comIndustry2);
 		}
 		
