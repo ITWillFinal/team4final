@@ -89,6 +89,6 @@ public class ImportController {
 			 int result = tosService.insertTOS(tosVo);
 			 logger.info("결제 창 result={}", result);
 			 
-			return cnt;
+			return result;
 		}
 	}

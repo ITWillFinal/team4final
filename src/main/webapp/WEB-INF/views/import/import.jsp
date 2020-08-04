@@ -27,18 +27,17 @@
             amount : parseInt(price),
         }, function(rsp) {
 			//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-			alert('결제성공');
 			$.ajax({
 				url: "<c:url value='/import/payment.do' />",
 				type: "post",
 				data: $('#frmPayment').serialize(),
-				sucess: function(result){
+				success: function(result){
 					if(result >0){
 						alert("결제 성공했습니다");
-						
+						location.href = "<c:url value='/companypage/companyHome.do' />";
 					}else{
 						alert("결제 실패했습니다");
-						
+						location.href="<c:url value='/companypage/companyHome.do' />";
 					}
 				},
 				error : function(xhr, status, error) {
