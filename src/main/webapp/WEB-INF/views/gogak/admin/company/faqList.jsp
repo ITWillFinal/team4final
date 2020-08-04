@@ -116,7 +116,7 @@ input#btMultiDel {
 	});
 </script>
 <main>
-	
+	<%@ include file="../../../inc/companySidebar.jsp" %>
 	<!-- main -->
 	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
 		<ul class = "tabList" style="width: 857px; margin-left: 0px;">

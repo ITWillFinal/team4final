@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="../../inc/top.jsp"%>
-<script type="text/javascript"
-	src="<c:url value = '/resources/js/jquery-3.5.1.min.js'/>"></script>
+
 <script type="text/javascript">
 	$(function() {
 		$('#rrr').click(function() {
@@ -80,7 +79,7 @@ h3{
 
 </style>
 <main>
-	<%@ include file="../../inc/companySidebar.jsp"%>
+	<%@ include file="../../inc/sidebar.jsp"%>
 
 	<!-- main -->
 	<div

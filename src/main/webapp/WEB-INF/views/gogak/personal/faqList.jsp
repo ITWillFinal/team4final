@@ -84,7 +84,7 @@ a{
 	});
 </script>
 <main>
-	<%@ include file="../../inc/companySidebar.jsp"%>
+	<%@ include file="../../inc/sidebar.jsp"%>
 	
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
