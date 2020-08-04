@@ -14,13 +14,11 @@
 
 <style>
 #head{
-	border: 1px solid blue;
 	font-size: 25px;
     font-weight: bold;
 }
 
 #body {
-    border: 1px solid red;
     margin-left: 34%;
     margin-right: 34%;
     margin-top: 8%;
@@ -28,7 +26,6 @@
 }
 
 div#foot {
-    border: 1px solid green;
     margin-left: 30%;
     margin-right: 30%;
     padding-top: 5px;
@@ -53,22 +50,28 @@ div#f {
 div#s {
     margin-bottom: 25px;
 }
+div#divLogin {
+    margin-left: 4%;
+    width: 100%;
+}
 </style>
 <main>
-	<div id = "all" style="text-align: center; width:50%; border:1px solid lightgray;">
+	<div id = "all" style="text-align: center; width:50%; ">
 		<div id = "head" >
 			<p>관리자 로그인</p>
 		</div>
 		
 		<div id = "body" style="text-align: left;">
 			<form name = "formLogIn" method = "post" action="<c:url value = '/memberAdmin/adminlogin.do'/>" >
-				<div id = "f">
-					<label id = "a1" for = "userId">ID</label>				
-					<input id = "a2" type="text" name = adminId>
-				</div>
-				<div id = "s">
-					<label id = "b1" for = "pwd">PWD</label>
-					<input id = "b2" type="text" name = "pwd">
+				<div id = "divLogin">
+					<div id = "f">
+						<label id = "a1" for = "userId">ID</label>				
+						<input id = "a2" type="text" name = adminId>
+					</div>
+					<div id = "s">
+						<label id = "b1" for = "pwd">PWD</label>
+						<input id = "b2" type="text" name = "pwd">
+					</div>
 				</div>
 				<div id = "t" style="text-align: center;">
 					<input type="submit" value = "LogIn">
