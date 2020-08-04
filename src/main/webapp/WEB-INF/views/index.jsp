@@ -66,24 +66,24 @@
                 <div class="col-xl-10">
                     <!-- single-job-content -->
                     <c:if test="${!empty reVo }">
-	                    <c:forEach var="vo" items="${reVo }">
+	                    <c:forEach var="map" items="${reVo }">
 		                    <div class="single-job-items mb-30">
 		                        <div class="job-items">
 		                            <div class="company-img">
 		                                <a href="job_details.html"></a>
 		                            </div>
 		                            <div class="job-tittle">
-		                                <a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h4>${vo.title }</h4></a>
+		                                <a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>"><h4>${map["TITLE"] }</h4></a>
 		                                <ul>
-		                                    <li>${vo.comName }</li>
-		                                    <li><i class="fas fa-map-marker-alt"></i>${vo.jobType2 }</li>
-		                                    <li>${vo.pay }</li>
+		                                    <li>${map["COM_NAME"] }</li>
+		                                    <li><i class="fas fa-map-marker-alt"></i>${map["JOB_TYPE2"] }</li>
+		                                    <li>${map["PAY"] }</li>
 		                                </ul>
 		                            </div>
 		                        </div>
 		                        <div class="items-link f-right">
-		                            <a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.recType }</a>
-		                            <span>7 hours ago</span>
+		                            <a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>">${map["REC_TYPE"] }</a>
+		                            <span>${map["REGDATE"] }</span>
 		                        </div>
 		                    </div>
 	                    </c:forEach>
