@@ -22,13 +22,12 @@ a {
 	color: black;
 }
 
-h4{
-	margin-top: 5px; 
-	font-weight: 800;
+h2 {
+    font-size: 24px;
 }
 
 #outDiv{
-    padding: 75px 35px 90px 35px;
+    padding: 23px 35px 90px 35px;
 	width: 750px;
 }
 /* 버튼 */
@@ -54,6 +53,33 @@ td {
     padding-top: 20px;
 }
 
+ul {
+    list-style: none;
+}
+
+li#fst {
+    padding-top: 5%;
+}
+
+table {
+    margin: 0 auto;
+    margin-bottom: 11%;
+}
+td{
+	color: black;
+}
+td.ss {
+    padding-left: 136px;
+    padding-bottom: 10px;
+}
+input#edit {
+    margin-left: 22px;
+}
+div#divH2 {
+    border-bottom: 4px solid gray;
+    margin: 0 auto;
+    width: 73%;
+}
 </style>
 	<!-- Id에 따라 top, sidebar, bottom 변경 -->
 	<%@ include file="../inc/adminTop.jsp"%>
@@ -61,28 +87,34 @@ td {
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 
 	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
-		<h4>-관리자 상세보기-</h4>
+		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
+			<li class = "select" style="width: 100%;" id = "fst">
+				<div id = "divH2">
+					<h2>관리자 권한 수정</h2>
+				</div>
+			</li>
+		</ul>
 		<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */">
 			<div id="outDiv">
 				<form action="<c:url value = '/memberAdmin/adminEdit.do'/>"
 					method="post" >
-					<input type="text" name = "adminNo" value = "${vo.adminNo }">
+					<input type="hidden" name = "adminNo" value = "${vo.adminNo }">
 					<table>
 						<tr>
 							<td>관리자  ID</td>
-							<td>${vo.adminId }</td>
+							<td class= "ss">${vo.adminId }</td>
 						</tr>
 						<tr>
 							<td>이름</td>
-							<td>${vo.adminName }</td>
+							<td class= "ss">${vo.adminName }</td>
 						</tr>
 						<tr>
 							<td>연락처</td>
-							<td>${vo.tel}</td>
+							<td class= "ss">${vo.tel}</td>
 						</tr>
 						<tr>
 							<td>관리등급</td>
-							<td>
+							<td class= "ss">
 								<select name="levels" id = "selectLV" style="width: 100px">
 									<option value="0">선택하세요</option>
 									<option value="1" 
@@ -105,7 +137,9 @@ td {
 						</tr>
 						<tr>
 							<td>관리자 등록일</td>
-							<td>${vo.regDate}</td>
+							<td class= "ss">
+								<fmt:formatDate value="${vo.regDate}" pattern="yyyy년 MM월 dd일"/>
+							</td>
 						</tr>
 					</table>
 					<input type="button" id = "list" value = "목록으로">

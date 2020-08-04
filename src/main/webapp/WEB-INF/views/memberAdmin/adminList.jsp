@@ -81,7 +81,11 @@ input[type="text"] {
     height: 17px;
 }
 input#btMultiDel {
-    margin-left: 5px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+li#fst {
+    padding-top: 5%;
 }
 
 </style>
