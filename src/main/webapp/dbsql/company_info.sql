@@ -18,7 +18,7 @@ CREATE TABLE COMPANY_INFO (
 
 drop table COMPANY_INFO cascade constraint;
 
---drop sequence cart_seq;
+--drop sequence companyInfo_seq;
 create sequence companyInfo_seq
 start with 1
 increment by 1

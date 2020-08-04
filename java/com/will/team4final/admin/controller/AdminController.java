@@ -64,13 +64,13 @@ public class AdminController {
 
 	@RequestMapping("/adminNotice.do")
 	public String adminNotice(Model model, @ModelAttribute SearchVO searchVo) {
-		logger.info("공지사항 관리 페이지");
-
+		logger.info("공지사항 관리 페이지 searchVo={}, searchKeyword={}", searchVo);
+		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
 		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
 		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
-
+		
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
 		logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());

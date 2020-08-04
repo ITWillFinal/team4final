@@ -221,7 +221,7 @@
 		
 		$("#ageSelect").change(function(){
 			var ageSel = $("#ageSelect option:selected").val();
-			$("#age").val(ageSel);
+			$("#age").val(Number(ageSel));
 		});
 		
 		$("#eduSelect").change(function(){
@@ -284,78 +284,104 @@
 		$('form[name=frmWrite]').submit(function(){
 			if($('#title').val()==''){
 				alert('제목을 입력하세요');
+				$('#title').focus();
 				event.preventDefault();
 			}else if($('#comName').val()==''){
 				alert('회사명을 입력하세요');
+				$('#comName').focus();
 				event.preventDefault();
 			}else if($('#jobType1').val()==''){
 				alert('직무1을 입력하세요');
+				$('#jobType1').focus();
 				event.preventDefault();
 			}else if($('#jobType2').val()==''){
 				alert('직무2를 입력하세요');
+				$('#jobType2').focus();
 				event.preventDefault();
 			}else if($('#induType1').val()==''){
 				alert('산업1을 입력하세요');
+				$('#induType1').focus();
 				event.preventDefault();
 			}else if($('#induType2').val()==''){
 				alert('산업2를 입력하세요');
+				$('#induType2').focus();
 				event.preventDefault();
 			}else if($('#location1').val()==''){
 				alert('지역1을 입력하세요');
+				$('#location1').focus();
 				event.preventDefault();
 			}else if($('#location2').val()==''){
 				alert('지역2를 입력하세요');
+				$('#location2').focus();
 				event.preventDefault();
 			}else if($('#zipcode').val()==''){
 				alert('우편번호를 입력하세요');
+				$('#zipcode').focus();
 				event.preventDefault();
 			}else if($('#address').val()==''){
 				alert('주소를 입력하세요');
+				$('#address').focus();
 				event.preventDefault();
 			}else if($('#addressDetail').val()==''){
 				alert('상세주소를 입력하세요');
+				$('#addressDetail').focus();
 				event.preventDefault();
 			}else if($('#workHours').val()==''){
 				alert('근무시간을 입력하세요');
+				$('#workHours').focus();
 				event.preventDefault();
 			}else if($('#recType').val()==''){
 				alert('근무형태를 입력하세요');
+				$('#recType').focus();
 				event.preventDefault();
 			}else if($('#pay').val()==''){
 				alert('급여를 입력하세요');
+				$('#pay').focus();
 				event.preventDefault();
 			}else if($('#welfare').val()==''){
 				alert('복리후생을 입력하세요');
+				$('#welfare').focus();
 				event.preventDefault();
 			}else if($('#recNumber').val()==''){
 				alert('모집인원을 입력하세요');
+				$('#recNumber').focus();
 				event.preventDefault();
 			}else if($('#gender').val()==''){
 				alert('성별을 입력하세요');
+				$('#gender').focus();
 				event.preventDefault();
 			}else if($('#age').val()==''){
 				alert('나이를 입력하세요');
+				$('#age').focus();
 				event.preventDefault();
 			}else if($('#educationLv').val()==''){
 				alert('학력을 입력하세요');
+				$('#educationLv').focus();
 				event.preventDefault();
 			}else if($('#career').val()==''){
 				alert('경력을 입력하세요');
+				$('#career').focus();
 				event.preventDefault();
 			}else if($('#preference').val()==''){
 				alert('우대사항을 입력하세요');
+				$('#preference').focus();
 				event.preventDefault();
 			}else if($('#document').val()==''){
 				alert('제출서류를 입력하세요');
+				$('#document').focus();
 				event.preventDefault();
 			}else if($('#recDetail').val()==''){
 				alert('상세모집내용을 입력하세요');
+				$('#recDetail').focus();
 				event.preventDefault();
 			}else if($('#comCode').val()==''){
+				alert('회사코드를 입력하세요');
+				$('#comCode').focus();
 				alert('회사코드가 존재하지 않습니다! 기업정보입력 페이지로 이동합니다');
 				event.preventDefault();
 			}else if($('#comType').val()==''){
 				alert('기업형태를 입력하세요');
+				$('#companyType').focus();
 				event.preventDefault();
 			}
 			
@@ -848,7 +874,7 @@
 			<input type="hidden" id="induType2" name="induType2">			
 			<input type="hidden" id="location1" name="location1">
 			<input type="hidden" id="location2" name="location2">			
-			<input type="text" id="comCode" name="comCode">
+			<input type="text" id="comCode" name="comCode" value="${comCode }">
 			
 		</form>
 	</div>
