@@ -47,7 +47,7 @@ public class MemberAdminDAOMybatis implements MemberAdminDAO{
 	}
 
 	@Override
-	public List<Map<String, Object>> selectInfo(SearchVO searchVo) {
+	public List<MemberAdminVO> selectInfo(SearchVO searchVo) {
 		return sqlsession.selectList(namespace+"selectInfo", searchVo);
 	}
 

@@ -32,7 +32,7 @@
 	</select>
 	
 		
-	<select id="selectInfo" resultType="map" parameterType="searchvo">
+	<select id="selectInfo" resultType="memberAdminVo" parameterType="searchvo">
 		select *
 		from
 		(

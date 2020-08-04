@@ -11,7 +11,7 @@ public interface MemberAdminDAO {
 	public String selectMemberPwd(String adminId);
 	public MemberAdminVO selectByUserid(String adminId);
 	public String selectLevel(String adminId);
-	public List<Map<String, Object>> selectInfo(SearchVO searchVo);
+	public List<MemberAdminVO> selectInfo(SearchVO searchVo);
 	public List<MemberLevelVO> levels();
 	public int selectTotalRecord(SearchVO searchVo);
 	public int deleteAdmin(int adminNo);

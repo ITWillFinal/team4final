@@ -138,7 +138,7 @@ public class MemberAdminController {
 		logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
 		
 		//2
-		List<Map<String, Object>> list = memberAdminService.selectInfo(searchVo);
+		List<MemberAdminVO> list = memberAdminService.selectInfo(searchVo);
 		logger.info("관리자 목록 개수, list.size={}", list.size());
 		
 		int totalRecord = memberAdminService.selectTotalRecord(searchVo);

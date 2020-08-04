@@ -58,7 +58,7 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 	}
 
 	@Override
-	public List<Map<String, Object>> selectInfo(SearchVO searchVo) {
+	public List<MemberAdminVO> selectInfo(SearchVO searchVo) {
 		return memberAdminDao.selectInfo(searchVo);
 	}
 

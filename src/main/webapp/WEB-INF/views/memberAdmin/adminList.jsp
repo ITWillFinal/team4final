@@ -89,7 +89,7 @@ input#btMultiDel {
 	$(function() {
 		$('#selectLV').change(function() {
 			$('#lvHidden').val($('#selectLV').val());
-			$('#noHidden').val($('.adminNo').text());
+			$('#noHidden').val($('#adminNo').val());
 		});
 		
 		$('#btMultiDel').click(function() {
@@ -200,7 +200,7 @@ input#btMultiDel {
 					<th>이름</th>
 					<th>연락처</th>
 					<th>관리 등급</th>
-				</tr><!-- AAAAA -->
+				</tr><!-- AAAAzXCVXCXCA -->
 			</thead>
 			<tbody>  
 				<c:if test="${empty list }">
@@ -210,22 +210,22 @@ input#btMultiDel {
 				</c:if>
 				<c:if test="${!empty list }">
 					<c:set var = "idx" value = "0"/>
-						<c:forEach var = "map" items="${list }">
+						<c:forEach var = "vo" items="${list }">
 							<tr>
 								<td style = "text-align: center">
 									<input type="checkbox" name="malist[${idx }].adminNo"
-										value = "${map['ADMIN_NO'] }">
-									<input type="text" name = "adminNo" value = "${map['ADMIN_NO'] }">
-									<input type="hidden" name = "adminId" value = "${map['ADMIN_ID'] }">
-									<input type="hidden" name = "adminName"  id = "hdno" value = "${map['ADMIN_NAME'] }">
-									<input type="hidden" name = "tel" value = "${map['TEL'] }">
-									<input type="hidden" name = "levelName" value = "${map['LEVELS'] }">
+										value = "${vo.adminNo}">
+									<input type="text" name = "adminNo" id = "adminNo" value = "${vo.adminNo}">
+									<input type="hidden" name = "adminId" value = "${vo.adminId}">
+									<input type="hidden" name = "adminName" value = "${vo.adminName}">
+									<input type="hidden" name = "tel" value = "${vo.tel}">
+									<input type="hidden" name = "levels" value = "${vo.levels}">
 								</td>
-								<td style="text-align: center;">${map['ADMIN_NO'] }</td>
-								<td style="text-align: center;">${map['ADMIN_ID'] }</td>
-								<td style="text-align: center;">${map['ADMIN_NAME'] }</td>
-								<td style="text-align: center;">${map['TEL'] }</td>
-								<td style="text-align: center;">${map['LEVELS'] }</td>
+								<td style="text-align: center;">${vo.adminNo}</td>
+								<td style="text-align: center;">${vo.adminId}</td>
+								<td style="text-align: center;">${vo.adminName}</td>
+								<td style="text-align: center;">${vo.tel}</td>
+								<td style="text-align: center;">${vo.levels}</td>
 							</tr>
 							<c:set var = "idx" value = "${idx+1 }"/>
 						</c:forEach>

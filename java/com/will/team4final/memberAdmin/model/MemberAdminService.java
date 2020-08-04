@@ -17,7 +17,7 @@ public interface MemberAdminService {
 	public int loginCheck(String adminId, String pwd);
 	public MemberAdminVO selectByUserid(String adminId);
 	public List<MemberLevelVO> levels();
-	public List<Map<String, Object>> selectInfo(SearchVO searchVo);
+	public List<MemberAdminVO> selectInfo(SearchVO searchVo);
 	public int selectTotalRecord(SearchVO searchVo);
 	int deleteMulti(List<MemberAdminVO>list);
 	public int deleteAdmin(int adminNo);
