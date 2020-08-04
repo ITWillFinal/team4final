@@ -57,8 +57,7 @@
 		select * from adminlevel
 	</select>
 	
-	<select id="selectTotalRecord" parameterType="searchVo"
-		resultType="int">
+	<select id="selectTotalRecord" parameterType="searchVo" resultType="int">
 		select count(*) from admin
 		<if test="searchKeyword!=null and searchKeyword != ''">
 			where ${searchCondition} like '%'

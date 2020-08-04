@@ -12,7 +12,7 @@
 		
 	})
 </script>
-<!-- asdfasdfasdfasdfasdfdsafsdfasdf -->
+
 <main>
 	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
 		<div id = "head" style="width: 857px; margin-left: 0px;">
@@ -20,21 +20,12 @@
 		</div>
 		
 		<div id = "body">
-			<form name = "formLogIn" method = "post" 
-<<<<<<< HEAD
-				action="<c:url value = '/memberAdmin/login.do'/>" >
+			<form name = "formLogIn" method = "post" action="<c:url value = '/memberAdmin/adminlogin.do'/>" >
 				<label for = "userId">ID</label>				
-				<input type="text" name = "userId" value = "userId">
-				<label for = "pwd">PWD</label>				
-				<input type="text" name = "pwd" value = "pwd">
-=======
-				action="<c:url value = '/memberAdmin/adminlogin.do'/>" >
-				<label for = "adminId">ID</label>				
-				<input type="text" name = "adminId">
-				<label for = "pwd">PWD</label>				
+				<input type="text" name = adminId>
+				<label for = "pwd">PWD</label>
 				<input type="text" name = "pwd">
 				<input type="submit" value = "LogIn">
->>>>>>> b7296c52e279172e6788ba3c48ad537d54734953
 			</form>
 		</div>
 		<div id = "foot">
