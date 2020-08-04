@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.will.team4final.common.SearchVO;
+
 @Repository
 public class MemberAdminDAOMybatis implements MemberAdminDAO{
 	
@@ -40,8 +42,33 @@ public class MemberAdminDAOMybatis implements MemberAdminDAO{
 	}
 
 	@Override
-	public List<Map<String, Object>> selectInfo() {
-		return sqlsession.selectList(namespace+"selectInfo");
+	public List<MemberLevelVO> levels() {
+		return sqlsession.selectList(namespace+"levels");
+	}
+
+	@Override
+	public List<MemberAdminVO> selectInfo(SearchVO searchVo) {
+		return sqlsession.selectList(namespace+"selectInfo", searchVo);
+	}
+
+	@Override
+	public int selectTotalRecord(SearchVO searchVo) {
+		return sqlsession.selectOne(namespace+"selectTotalRecord", searchVo);
+	}
+
+	@Override
+	public int deleteAdmin(int adminNo) {
+		return sqlsession.delete(namespace+"deleteAdmin", adminNo);
+	}
+
+	@Override
+	public int updateLevel(MemberAdminVO vo) {
+		return sqlsession.update(namespace+"updateLevel", vo);
+	}
+
+	@Override
+	public MemberAdminVO selectByNO(int adminNo) {
+		return sqlsession.selectOne(namespace+"selectByNO", adminNo);
 	}
 
 }
