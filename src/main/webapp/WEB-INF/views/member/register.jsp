@@ -109,7 +109,8 @@
 			}
 
 		});
-
+		
+		/* 이미지 업로드 쿼리=> 나중에 보고 삭제 ↓ */
 		document.getElementById('imageUpload').onchange = function() {
 			readImage();
 		};
@@ -131,6 +132,7 @@
 				};
 			}
 		}
+		
 		//모달을 전역변수로 선언
 		var modalContents = $(".modal-contents");
 		var modal = $("#defaultModal");
@@ -156,26 +158,22 @@
 			}
 		});
 		
+		/* 약관동의 */
 		$("#personAgree").click(function() {
 			window.open(
 				"<c:url value='/member/agreement/personTerm.do'/>", 'chk',
 				'width=800,height=800,location=yes,resizable=yes,left=500px,top=100');
 		});
 		
+		/* 약관동의 */
 		$("#personInfoCollaction").click(function() {
 			window.open(
 				"<c:url value='/member/agreement/personInfo.do'/>", 'chk',
 				'width=800,height=800,location=yes,resizable=yes,left=500px,top=100');
 		});
 		
-		$("#btChk").click(function() {
-			var user_id = $('#userid1').val();
-			window.open(
-				"<c:url value='/member/checkUserid.do?user_id="
-				+ user_id + "'/>", 'chk',
-				'width=420,height=300,left=500px,top=500px,location=yes,resizable=yes');
-		});
-
+		
+		/* email 전송 */
 		$('input[name=email]')
 				.click(
 						function() {

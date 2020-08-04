@@ -84,4 +84,11 @@ public class HireInfoController {
 		
 		return "hi";
 	}
+	
+	@RequestMapping("/infoSearchByLocation.do")
+	public void infoSearchByLocation(Model model) {
+		logger.info("지역별 채용정보");
+		List<String> locationList = locationServ.sido();
+		model.addAttribute("locationList", locationList);
+	}
 }
