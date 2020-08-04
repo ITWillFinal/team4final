@@ -59,7 +59,7 @@
 		border-bottom: 1px solid #ccc;
 	}
 	
-	.photh{
+	.photo{
 		background-image:url("<c:url value='/resources/images/${memberVo.imageURL}'/>");
 		background-repeat:no-repeat;
 		background-size:100% 100%;
@@ -709,6 +709,7 @@
 		
 		$(".career-addBt").click(function(){
 			var $addCareer = $('#career-add').clone(true);
+			$addCareer.removeAttr('id');
 			$addCareer.find("input[type=text]").val("");
 			$addCareer.find("input[type=radio]").removeAttr('checked');
 			$addCareer.find('#rankEtc').attr("disabled","disabled");
@@ -749,8 +750,12 @@
 			
 			if($('input[name=finalEdu]').val()=="대학·대학원 이상 졸업"){
 				$('input[name=uni]').val($('select[name=unisel]').val());
-				$('input[name=major]').val($('input[name=major-uni]').val());
 				$('input[name=eduScore]').val($("input[name=grade]").val()+"/"+$('select[name=gradeSel]').val());				
+				if($("select[name=majorSel]").val()=="직접입력"){
+					$('input[name=major]').val($('input[name=majorSelEtc]').val()+":"+$('input[name=major-uni]').val());					
+				}else{
+					$('input[name=major]').val($("select[name=majorSel]").val()+":"+$('input[name=major-uni]').val());										
+				}
 			}else if($('input[name=finalEdu]').val()=="고등학교 졸업"){
 				$('input[name=major]').val($('select[name=major-high]').val());
 			}
@@ -926,7 +931,7 @@
 			</div>
 			<div class="info-box-content">
 				<div class="col-lg-10" style="margin-top: 20px;">
-					<div class="photh">
+					<div class="photo">
 					</div>	
 					<label class="col-lg-2 control-label infoinfo">이름 :${memberVo.userName } 
 					(${memberVo.gender})</label><br><br>
@@ -1692,7 +1697,7 @@
 				<div class="col-lg-10">
 							<input type="text" class="form-control onlyAlphabetAndNumber"
 								name="selfIntTitle"
-								placeholder="자기소개서 제목" maxlength="15">
+								placeholder="자기소개서 제목" maxlength="20">
 				</div>
 				<div class="col-lg-10">
 							<textarea rows="1" cols="50" class="form-control" 
@@ -1701,8 +1706,8 @@
 			</div>
 		</div>
 		<div style="text-align:center; padding: 20px;">
+			<input class="bt-sub" type="submit" value="이력서 저장"/>
 			<input class="bt-return" type="button" value="돌아가기"/>
-			<input class="bt-sub" type="submit"/>
 		</div>
 		</form>
 	</div>

@@ -26,33 +26,30 @@ import com.will.team4final.company.model.CompanyMemberVO;
 @RequestMapping("/companypage")
 public class CompanyInfoController {
 	private static final Logger logger = LoggerFactory.getLogger(CompanyInfoController.class);
-	
+
 	@Autowired private ComMemberService comMemberService;
 	@Autowired private FileUploadUtil fileUploadUtil;
 	@Autowired private CompanyInfoService companyInfoService;
-	
+
 	@RequestMapping(value = "/companyInfoWrite.do", method = RequestMethod.GET)
 	public void comInfoView() {
 		logger.info("회사 정보 입력 화면");
 	}
-	
+
 	@RequestMapping(value = "/companyInfoWrite.do", method = RequestMethod.POST)
-	public String comInfoView_post(@ModelAttribute CompanyInfoVO vo, Model model, HttpSession session, 
+	public String comInfoView_post(@ModelAttribute CompanyInfoVO vo, Model model, HttpSession session,
 			@RequestParam String comIndustry2
 			,HttpServletRequest request) {
 		String cUserid = (String)session.getAttribute("userid");
 		logger.info("회사 정보 입력, 파라미터 cUserid={}, vo={}", cUserid, vo);
-		//debug용 cUserid
-		cUserid = "1";
 		CompanyMemberVO cMemberVo=comMemberService.selectCMemberInfoByUserid(cUserid);
 		logger.info("아이디로 멤버 정보 불러오기 결과, cMemberVo={}", cMemberVo);
-		
-		if(comIndustry2!=null || !comIndustry2.isEmpty()) {
+		String comIndustry = vo.getComIndustry();
+		if(comIndustry.equals("etc")) {
 			vo.setComIndustry(comIndustry2);
 		}
-		
-		//vo.setcMemberCode(cMemberVo.getcMemberCode());
-		vo.setcMemberCode(1); //일단 해보기
+
+		vo.setcMemberCode(cMemberVo.getcMemberCode());
 		//파일 업로드 처리
 		List<Map<String, Object>> fileList
 		=fileUploadUtil.fileUpload(request, FileUploadUtil.PATH_COMPANYINFO_IMAGE);
@@ -67,14 +64,14 @@ public class CompanyInfoController {
 		logger.info("회사 입력 결과 cnt={}", cnt);
 		if(cnt>0) {
 			msg="회사 정보 입력 완료했습니다.";
-			url="/companypage/companyMyPage.do";
+			url="/companypage/companyHome.do";
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		return "common/message";
-		
+
 	}
-	
-	
-	
+
+
+
 }

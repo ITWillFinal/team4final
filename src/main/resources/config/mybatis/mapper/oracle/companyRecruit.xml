@@ -3,10 +3,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.will.team4final.companyRecruit">
+	<select id="selectrecruitmentCode" resultType="string">
+		select RECRUITMENT_SEQ.nextval from dual
+	</select>
+	
 	<insert id="insertComRecruit" parameterType="comRecruitVo" >
-		<selectKey keyProperty="recruitmentCode" resultType="String" order="BEFORE">
-			select RECRUITMENT_SEQ.nextval from dual
-		</selectKey>
 		insert into recruitment(
 		RECRUITMENT_CODE, COM_NAME, TITLE, JOB_TYPE1, JOB_TYPE2,
 		INDU_TYPE1, INDU_TYPE2,	ZIPCODE, ADDRESS, ADDRESSDETAIL, WORKHOURS,
@@ -19,10 +20,14 @@
 		#{induType1}, #{induType2}, #{zipcode}, #{address}, #{addressDetail}, #{workHours},
 		#{location1}, #{location2}, #{recType}, #{pay}, #{recNumber}, #{welfare},
 		#{gender}, #{age}, #{educationLv}, #{career}, #{preference}, 
-		#{document}, #{recDetail}, #{comCode}, #{companyType})
-		
-		
+		#{document}, #{recDetail}, #{comCode}, #{comType})
 	</insert>
+	
+	<update id="editFaq" parameterType="faqVo">
+		update faq
+		set category = #{category}, question = #{question}, answer = #{answer}
+		where faq_No = #{faqNo}
+	</update>
 	
 	<select id="selectMost5" resultType="comRecruitVo">
 		select * from recruitment order by readcount desc
@@ -35,4 +40,11 @@
 	<select id="selectSearchInfo" resultType="comRecruitVo" parameterType="comRecruitVo">
 		select * from recruitment
 	</select>
+	
+	<update id="updateResumeType" parameterType="comRecruitVo">
+		update recruitment
+		set RESUME_TYPE = ${resumeType}
+		where recruitment_code = #{recruitmentCode}
+	</update>
+	
 </mapper>

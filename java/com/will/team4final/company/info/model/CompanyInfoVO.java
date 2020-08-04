@@ -1,7 +1,7 @@
 package com.will.team4final.company.info.model;
 
 public class CompanyInfoVO {
-	private int comCode;
+	private String comCode;
 	private String comName;
 	private String ceo;
 	private String comNum;
@@ -15,11 +15,11 @@ public class CompanyInfoVO {
 	private String content;
 	private String homepage;
 	private String review;
-	private int cMemberCode;
-	public int getComCode() {
+	private String cMemberCode;
+	public String getComCode() {
 		return comCode;
 	}
-	public void setComCode(int comCode) {
+	public void setComCode(String comCode) {
 		this.comCode = comCode;
 	}
 	public String getComName() {
@@ -100,10 +100,10 @@ public class CompanyInfoVO {
 	public void setReview(String review) {
 		this.review = review;
 	}
-	public int getcMemberCode() {
+	public String getcMemberCode() {
 		return cMemberCode;
 	}
-	public void setcMemberCode(int cMemberCode) {
+	public void setcMemberCode(String cMemberCode) {
 		this.cMemberCode = cMemberCode;
 	}
 	@Override
@@ -113,7 +113,6 @@ public class CompanyInfoVO {
 				+ imageURL + ", comHp=" + comHp + ", comType=" + comType + ", comIndustry=" + comIndustry + ", content="
 				+ content + ", homepage=" + homepage + ", review=" + review + ", cMemberCode=" + cMemberCode + "]";
 	}
-	
 	
 	
 

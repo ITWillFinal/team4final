@@ -19,8 +19,7 @@
 			from(
 				select notice_no, title, type, regdate, member_type from notice
 				<if test="searchKeyword!=null and searchKeyword != ''">
-					where ${searchCondition} like '%'
-							|| #{searchKeyword} || '%'
+					where member_Type = #{searchKeyword }
 				</if>
 				order by notice_no desc
 			)A
@@ -33,8 +32,7 @@
 	<select id="totalNotice" parameterType="searchVo" resultType="int">
 		select count(*) from notice
 		<if test="searchKeyword!=null and searchKeyword != ''">
-			where ${searchCondition} like '%'
-				|| #{searchKeyword} || '%'
+			where member_Type = #{searchKeyword }
 		</if>
 	</select>
 	
