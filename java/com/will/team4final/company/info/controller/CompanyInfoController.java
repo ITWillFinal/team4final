@@ -44,10 +44,11 @@ public class CompanyInfoController {
 		logger.info("회사 정보 입력, 파라미터 cUserid={}, vo={}", cUserid, vo);
 		CompanyMemberVO cMemberVo=comMemberService.selectCMemberInfoByUserid(cUserid);
 		logger.info("아이디로 멤버 정보 불러오기 결과, cMemberVo={}", cMemberVo);
+		logger.info("comIndustry={}", vo.getComIndustry());
+		logger.info("comIndustry2={}", comIndustry2);
+		String comIndustry = vo.getComIndustry();
 		
-		if(comIndustry2!=null || !comIndustry2.isEmpty()) {
-			vo.setComIndustry(comIndustry2);
-		}
+
 		
 		vo.setcMemberCode(cMemberVo.getcMemberCode());
 		//파일 업로드 처리
