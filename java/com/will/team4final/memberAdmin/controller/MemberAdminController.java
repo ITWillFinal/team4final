@@ -183,13 +183,13 @@ public class MemberAdminController {
 	
 	@RequestMapping("updateMulti.do")
 	public String updateMulti(@RequestParam (defaultValue = "0") int adminNo,
-			@RequestParam (defaultValue = "0") int level, Model model) {
-		logger.info("파라미터 adminNo={}, level = {}", adminNo, level);
+			@RequestParam (defaultValue = "0") int levels, Model model) {
+		logger.info("파라미터 adminNo={}, level = {}", adminNo, levels);
 		
 		MemberAdminVO vo = memberAdminService.selectByNO(adminNo);
 		logger.info("vo={}", vo);
 		
-		vo.setLevels(level);
+		vo.setLevels(levels);
 		int cnt = memberAdminService.updateLevel(vo);
 		logger.info("cnt={}", cnt);
 		
@@ -206,6 +206,79 @@ public class MemberAdminController {
 	}
 	
 	
+	@RequestMapping("updateMulti2.do")
+	@ResponseBody
+	public int updateMulti2(@RequestParam (defaultValue = "0") int adminNo,
+			@RequestParam (defaultValue = "0") int levels) {
+		logger.info("파라미터 adminNo={}, level = {}", adminNo, levels);
+		
+		MemberAdminVO vo = memberAdminService.selectByNO(adminNo);
+		logger.info("vo={}", vo);
+		
+		vo.setLevels(levels);
+		int cnt = memberAdminService.updateLevel(vo);
+		logger.info("cnt={}", cnt);
+		
+		String msg = "선택한 관리자의 권한을 변경하는 중 에러 발생", 
+				url = "/memberAdmin/adminInfo.do";
+		if(cnt>0) {
+			msg = "선택한 관리자의 권한을 병경했습니다..";
+		}
+		
+		return cnt;
+	}
+	
+	
+	@RequestMapping(value = "/adminDetail.do")
+	public String adminDetail(@RequestParam (defaultValue = "0") int adminNo,
+			Model model){
+		logger.info("관리자 상세보기 파라미터 adminNo={}", adminNo);
+		MemberAdminVO vo = memberAdminService.selectByNO(adminNo);
+		logger.info("검색한 vo = {}", vo);
+		
+		model.addAttribute("vo", vo);
+		
+		return "memberAdmin/adminDetail";
+	}
+	
+	@RequestMapping(value = "/adminEdit.do", method = RequestMethod.GET)
+	public String adminEdit_get(@RequestParam (defaultValue = "0") int adminNo,
+			Model model){
+		logger.info("관리자 수정 파라미터 adminNo={}", adminNo);
+		MemberAdminVO vo = memberAdminService.selectByNO(adminNo);
+		logger.info("검색한 vo = {}", vo);
+		
+		model.addAttribute("vo", vo);
+		
+		return "memberAdmin/adminEdit";
+	}
+	
+	
+	@RequestMapping(value = "/adminEdit.do", method = RequestMethod.POST)
+	public String adminEdit_post(@RequestParam (defaultValue = "0") int adminNo,
+			@RequestParam(defaultValue = "0") int levels,
+			Model model){
+		logger.info("관리자 수정 파라미터 adminNo={}", adminNo);
+
+		MemberAdminVO vo = memberAdminService.selectByNO(adminNo);
+		logger.info("vo={}", vo);
+		
+		vo.setLevels(levels);
+		int cnt = memberAdminService.updateLevel(vo);
+		logger.info("cnt={}", cnt);
+		
+		String msg = "선택한 관리자의 권한을 변경하는 중 에러 발생", 
+				url = "/memberAdmin/adminDetail.do?adminNo="+adminNo;
+		if(cnt>0) {
+			msg = "선택한 관리자의 권한을 병경했습니다.";
+			url = "/memberAdmin/adminDetail.do?adminNo="+adminNo;
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
 	
 }
 
