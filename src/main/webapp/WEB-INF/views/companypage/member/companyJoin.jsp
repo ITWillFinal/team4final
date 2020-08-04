@@ -67,12 +67,13 @@
 					type:"get",
 					data:"cUserid1=" +cUserid1,
 					success:function(res){
-						if(res){
-							$('#chkId2').html("사용 가능한 아이디입니다").css('color','green');
-							$('#chkId').val("Y");
-						}else{
+						if(res > 0){
 							$('#chkId2').html("중복된 아이디가 있습니다").css('color', 'red');
 							$('#chkId').val("N");
+							
+						}else{
+							$('#chkId2').html("사용 가능한 아이디입니다").css('color','green');
+							$('#chkId').val("Y");
 						}
 						
 					},
