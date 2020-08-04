@@ -1,15 +1,18 @@
 package com.will.team4final.termsOfService.model;
 
 public class TermsOfServiceVO {
-	private String serviceNo;
+	private String serviceCode;
 	private String startDate;
 	private String endDate;
 	private String recruitmentCode;
-	public String getServiceNo() {
-		return serviceNo;
+	
+	
+	
+	public String getServiceCode() {
+		return serviceCode;
 	}
-	public void setServiceNo(String serviceNo) {
-		this.serviceNo = serviceNo;
+	public void setServiceCode(String serviceCode) {
+		this.serviceCode = serviceCode;
 	}
 	public String getStartDate() {
 		return startDate;
@@ -31,9 +34,10 @@ public class TermsOfServiceVO {
 	}
 	@Override
 	public String toString() {
-		return "TermsOfServiceVO [serviceNo=" + serviceNo + ", startDate=" + startDate + ", endDate=" + endDate
+		return "TermsOfServiceVO [serviceCode=" + serviceCode + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", recruitmentCode=" + recruitmentCode + "]";
 	}
+
 	
 	
 }
