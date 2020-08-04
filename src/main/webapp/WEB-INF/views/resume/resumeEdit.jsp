@@ -398,6 +398,7 @@
 	$(function(){
 		$('.educationBt').each(function(){
 			if($(this).val()=="${resumeAllVo.educationVo.finalEdu}"){
+				$('input[name=finalEdu]').val($(this).val());
 				$(this).css('background','#fb246a');
 				$(this).css('color','white');
 				$(this).css('border','1px solid #fb246a');
@@ -463,8 +464,8 @@
 			$(".career").find("hr").css("visibility","visible");
 			
 			
-			for(var i=0; i<${resumeAllVo.careerVoList.size()}; i++){
-				if(i!=0){
+			for(var i=0; i<${resumeAllVo.careerVoList.size()}-1; i++){
+				/* if(i!=0){ */
 					var $addCareerInit = $('#career-add').clone(true);
 					$addCareerInit.removeAttr('id');
 					$addCareerInit.removeAttr('style');
@@ -473,15 +474,16 @@
 					$addCareerInit.find("input[type=radio]").removeAttr('checked');
 					$addCareerInit.find('#rankEtc').attr("disabled","disabled");
 					$addCareerInit.find('.rank-position').css("display","none");
-					
 					$(".career-addDiv").before($addCareerInit);
-					$('.career-info:not(:eq(0))').find(".career-subBt").css("display","block");					
-				}
+				/* } */
 
 			}
+					$('.career-info:not(:eq(0))').find(".career-subBt").css("display","block");					
 			
 			var j = 0;
 			<c:forEach var="careerVo" items="${resumeAllVo.careerVoList}">
+					
+			
 				$('.career-info').eq(j).find('.careerCompany').val("${careerVo.careerCompany}");
 				
 				var careerPeriod = "${careerVo.careerPeriod}";
@@ -525,7 +527,7 @@
 			careerBt = "신입";
 			
 		}
-		
+				
 		$('.switch:eq(0) input[type=checkbox]').prop("checked",true);
 		$('.hope').find(".nullOk-top").slideDown();
 		$('.hope').find("select[name=sal]").val("${resumeAllVo.resumeVo.sal}").prop("selected",true);
@@ -715,8 +717,9 @@
 				$(this).parent().parent().parent().find(".nullOk-top").slideDown();				
 				$(this).parent().parent().parent().find(".addDiv").slideDown();				
 			}else{
-				$(this).parent().parent().parent().find(".nullOk-top").slideUp();								
-				$(this).parent().parent().parent().find(".addDiv").slideUp();				
+				
+				$(this).parent().parent().parent().find(".nullOk-top").slideUp();						
+				$(this).parent().parent().parent().find(".addDiv").slideUp();								
 			}
 		});
 		
@@ -924,7 +927,7 @@
 				$(".career-addDiv").slideDown();
 				$(".career").find("hr").css("visibility","visible");
 			}else{
-				$(".career-info").slideUp();				
+				$(".career-info").slideUp();
 				$(".career-addDiv").slideUp();
 				$(".career").find("hr").css("visibility","hidden");
 			}
@@ -1048,8 +1051,12 @@
 			
 			if($('input[name=finalEdu]').val()=="대학·대학원 이상 졸업"){
 				$('input[name=uni]').val($('select[name=unisel]').val());
-				$('input[name=major]').val($('input[name=major-uni]').val());
-				$('input[name=eduScore]').val($("input[name=grade]").val()+"/"+$('select[name=gradeSel]').val());				
+				$('input[name=eduScore]').val($("input[name=grade]").val()+"/"+$('select[name=gradeSel]').val());
+				if($("select[name=majorSel]").val()=="직접입력"){
+					$('input[name=major]').val($('input[name=majorSelEtc]').val()+":"+$('input[name=major-uni]').val());					
+				}else{
+					$('input[name=major]').val($("select[name=majorSel]").val()+":"+$('input[name=major-uni]').val());										
+				}
 			}else if($('input[name=finalEdu]').val()=="고등학교 졸업"){
 				$('input[name=major]').val($('select[name=major-high]').val());
 			}
@@ -1214,11 +1221,12 @@
 </script>
 <body>
 	<div class="resume-main">
-		<h1 style="background: white;padding: 20px 0;font-weight: bold;">이력서 작성
+		<h1 style="background: white;padding: 20px 0;font-weight: bold;">이력서 수정
 			<span style="font-size: 14px; color: #777; padding-left: 30px;">* 필수가 아닌항목은 체크해제시 적용되지 않습니다.</span></h1>
-		<form name="frmResume" method="post" action="<c:url value='/resume/resumeWrite.do'/>"
+		<form name="frmResume" method="post" action="<c:url value='/resume/resumeEdit.do'/>"
 			enctype="multipart/form-data">
 		<input type="hidden" name="userNo" value="${memberVo.userNo }">
+		<input type="hidden" name="resumeNo" value="${param.resumeNo }">
 		<div class="info-box">
 			<div class="info-box-head">
 				<h3>기본 정보 ▼</h3>

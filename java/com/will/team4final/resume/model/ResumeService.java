@@ -10,4 +10,5 @@ public interface ResumeService {
 	List<Map<String, Object>> selectResumeCareerViewByUserNo(String userNo);
 	int deleteResume(int resumeNo);
 	ResumeAllVO selectResumeByResumNo(int resumeNo);
+	int updateResume(ResumeAllVO resumeAllVo);
 }

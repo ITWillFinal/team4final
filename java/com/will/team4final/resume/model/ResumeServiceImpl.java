@@ -151,4 +151,114 @@ public class ResumeServiceImpl implements ResumeService{
 		return resumeAllVo;
 	}
 
+
+	@Override
+	@Transactional
+	public int updateResume(ResumeAllVO resumeAllVo) {
+		int resumeNo = Integer.parseInt(resumeAllVo.getResumeVo().getResumeNo());
+		ResumeVO resumeVo = resumeAllVo.getResumeVo();
+		EducationVO educationVo = resumeAllVo.getEducationVo();
+		List<CareerVO> careerVoList = resumeAllVo.getCareerVoList();
+		List<ActiveVO> activeVoList = resumeAllVo.getActiveVoList();
+		List<CertifyVO> certifyVoList = resumeAllVo.getCertifyVoList();
+		List<LanguageVO> languageVoList = resumeAllVo.getLanguageVoList();
+		List<AwardVO> awardVoList = resumeAllVo.getAwardVoList();
+		AddinfoVO addinfoVo = resumeAllVo.getAddInfoVo();
+		PotfolioVO potfolioVo = resumeAllVo.getPotfolioVo();
+		
+		int cnt = resumeDao.updateResume(resumeVo);
+		logger.info("이력서 수정 결과 cnt={}",cnt);
+		cnt = resumeDao.deleteEducation(resumeNo);
+		logger.info("학력 삭제 결과 cnt={}",cnt);
+		cnt = resumeDao.deleteCareer(resumeNo);
+		logger.info("경력 삭제 결과 cnt={}",cnt);
+		cnt = resumeDao.deleteActive(resumeNo);
+		logger.info("대외활동 삭제 결과 cnt={}",cnt);
+		cnt = resumeDao.deleteCertify(resumeNo);
+		logger.info("자격증 삭제 결과 cnt={}",cnt);
+		cnt = resumeDao.deleteLanguage(resumeNo);
+		logger.info("어학 삭제 결과 cnt={}",cnt);
+		cnt = resumeDao.deleteAward(resumeNo);
+		logger.info("수상 삭제 결과 cnt={}",cnt);
+		cnt = resumeDao.deleteAddinfo(resumeNo);
+		logger.info("우대사항 삭제 결과 cnt={}",cnt);
+		cnt = resumeDao.deletePotfolio(resumeNo);
+		logger.info("포트폴리오 삭제 결과 cnt={}",cnt);
+		cnt=0;		
+		
+		if(educationVo != null) {
+			educationVo.setResumeNo(Integer.toString(resumeNo));
+			cnt = resumeDao.insertEducation(educationVo);
+			logger.info("이력서 - 학력 등록 결과 cnt={}",cnt);			
+		}
+		
+		if(careerVoList !=null && !careerVoList.isEmpty()) {
+			for(int i=0; i<careerVoList.size(); i++) {
+				CareerVO careerVo = careerVoList.get(i);
+				if(careerVo.getCareerCompany().equals("신입")) {
+					careerVo.setCareerLocation("-");
+					careerVo.setCareerPeriod("-");
+					careerVo.setCareerRank("-");
+					careerVo.setCareerReason("-");
+					careerVo.setCareerSal("-");
+					careerVo.setCareerYear("-");
+					careerVo.setTask("-");
+				}
+				careerVo.setResumeNo(Integer.toString(resumeNo));
+				cnt = resumeDao.insertCareer(careerVo);
+				logger.info("이력서 - 경력  등록 결과 cnt={}",cnt);
+			}
+		}
+		
+		if(activeVoList !=null && !activeVoList.isEmpty()) {
+			for(int i=0; i<activeVoList.size(); i++) {
+				ActiveVO activeVo = activeVoList.get(i);
+				activeVo.setResumeNo(Integer.toString(resumeNo));
+				cnt = resumeDao.insertActive(activeVo);
+				logger.info("이력서 - 대외활동  등록 결과 cnt={}",cnt);
+			}
+		}
+
+		if(certifyVoList !=null && !certifyVoList.isEmpty()) {
+			for(int i=0; i<certifyVoList.size(); i++) {
+				CertifyVO certifyVo = certifyVoList.get(i);
+				certifyVo.setResumeNo(Integer.toString(resumeNo));
+				cnt = resumeDao.insertCertify(certifyVo);
+				logger.info("이력서 - 자격증  등록 결과 cnt={}",cnt);
+			}
+		}
+
+		if(languageVoList !=null && !languageVoList.isEmpty()) {
+			for(int i=0; i<languageVoList.size(); i++) {
+				LanguageVO languageVo = languageVoList.get(i);
+				languageVo.setResumeNo(Integer.toString(resumeNo));
+				cnt = resumeDao.insertLanguage(languageVo);
+				logger.info("이력서 - 어학  등록 결과 cnt={}",cnt);
+			}
+		}
+
+		if(awardVoList !=null && !awardVoList.isEmpty()) {
+			for(int i=0; i<awardVoList.size(); i++) {
+				AwardVO awardVo = awardVoList.get(i);
+				awardVo.setResumeNo(Integer.toString(resumeNo));
+				cnt = resumeDao.insertAward(awardVo);
+				logger.info("이력서 - 수상내역/공모전  등록 결과 cnt={}",cnt);
+			}
+		}
+		
+		if(addinfoVo.getDisable() != null) {
+			addinfoVo.setResumeNo(Integer.toString(resumeNo));
+			cnt = resumeDao.insertAddinfo(addinfoVo);
+			logger.info("이력서 - 취업 우대사항 등록 결과 cnt={}",cnt);			
+		}
+		
+		if(potfolioVo.getIntro() !=null) {
+			potfolioVo.setResumeNo(Integer.toString(resumeNo));
+			cnt = resumeDao.insertPotfolio(potfolioVo);
+			logger.info("이력서 - 포트폴리오 등록 결과 cnt={}");
+		}
+		
+		return cnt;
+	}
+
 }

@@ -13,6 +13,14 @@
 		#{jobtype1},#{jobtype2},#{sal},#{selfIntTitle},#{selfInt},sysdate)
 	</insert>
 	
+	<update id="updateResume" parameterType="resumeVo">
+		update resume
+		set location1 = #{location1}, location2 = #{location2}, jobtype1=#{jobtype1},
+			jobtype2=#{jobtype2}, sal=#{sal}, self_int_title=#{selfIntTitle}, 
+			self_int=#{selfInt}, regdate=sysdate
+		where resume_no=#{resumeNo}
+	</update>
+	
 	<insert id="insertEducation" parameterType="educationVo">
 		<selectKey keyProperty="eduCode" order="BEFORE" resultType="string">
 			select EDUCATION_seq.nextval from dual
@@ -131,4 +139,43 @@
 		select * from potfolio where resume_no=#{resumeNo}
 	</select>
 	
+	<delete id="deleteEducation" parameterType="int">
+		delete education
+		where resume_no=#{resumeNo}
+	</delete>
+	
+	<delete id="deleteCareer" parameterType="int">
+		delete career
+		where resume_no=#{resumeNo}
+	</delete>
+	
+	<delete id="deleteActive" parameterType="int">
+		delete active
+		where resume_no=#{resumeNo}
+	</delete>
+
+	<delete id="deleteCertify" parameterType="int">
+		delete certify
+		where resume_no=#{resumeNo}
+	</delete>
+	
+	<delete id="deleteLanguage" parameterType="int">
+		delete language
+		where resume_no=#{resumeNo}
+	</delete>
+	
+	<delete id="deleteAward" parameterType="int">
+		delete award
+		where resume_no=#{resumeNo}
+	</delete>	
+
+	<delete id="deleteAddinfo" parameterType="int">
+		delete addinfo
+		where resume_no=#{resumeNo}
+	</delete>	
+	
+	<delete id="deletePotfolio" parameterType="int">
+		delete potfolio
+		where resume_no=#{resumeNo}
+	</delete>		
 </mapper>
