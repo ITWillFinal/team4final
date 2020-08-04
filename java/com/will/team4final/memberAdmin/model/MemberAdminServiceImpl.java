@@ -24,9 +24,7 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 	public int insertAdmin(MemberAdminVO vo) {
 		return memberAdminDao.insertAdmin(vo);
 	}
-
-<<<<<<< HEAD
-=======
+	
 	@Override
 	public int loginCheck(String adminId, String pwd) {
 		int result = 0;
@@ -123,5 +121,4 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 	}
 
 
->>>>>>> b7296c52e279172e6788ba3c48ad537d54734953
 }

@@ -80,7 +80,7 @@ public class MemberAdminController {
 
 	
 	//관리자 로그인
-	@RequestMapping("/adminlogin.do")
+	@RequestMapping(value = "/adminlogin.do", method = RequestMethod.POST)
 	public String adminLogin(@RequestParam String adminId, @RequestParam String pwd,
 			HttpServletRequest request, Model model) {
 		logger.info("관리자 로그인 adminId = {}, pwd = {}", adminId, pwd);

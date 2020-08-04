@@ -189,7 +189,8 @@ input#btMultiDel {
 			   <col style="width:10%;" /><!-- 체크박스 -->
 			   <col style="width:10%;" /><!-- 번호 -->
 			   <col style="width:15%;" /><!-- ID -->
-			   <col style="width:25%;" /><!-- 연락처 -->
+			   <col style="width:15%;" /><!-- 연락처 -->
+			   <col style="width:20%;" /><!-- 이름 -->
 			   <col style="width:25%;" /><!-- 이름 -->
 			</colgroup>
 			<thead>
@@ -200,7 +201,8 @@ input#btMultiDel {
 					<th>이름</th>
 					<th>연락처</th>
 					<th>관리 등급</th>
-				</tr><!-- AAAAzXCVXCXCA -->
+					<th>관리 등급 수정</th>
+				</tr>
 			</thead>
 			<tbody>  
 				<c:if test="${empty list }">
@@ -215,17 +217,34 @@ input#btMultiDel {
 								<td style = "text-align: center">
 									<input type="checkbox" name="malist[${idx }].adminNo"
 										value = "${vo.adminNo}">
-									<input type="text" name = "adminNo" id = "adminNo" value = "${vo.adminNo}">
-									<input type="hidden" name = "adminId" value = "${vo.adminId}">
-									<input type="hidden" name = "adminName" value = "${vo.adminName}">
-									<input type="hidden" name = "tel" value = "${vo.tel}">
-									<input type="hidden" name = "levels" value = "${vo.levels}">
+									<input type="text" id = "adminNo" value = "${vo.adminNo}"
+										style="width: 30px">
 								</td>
-								<td style="text-align: center;">${vo.adminNo}</td>
-								<td style="text-align: center;">${vo.adminId}</td>
-								<td style="text-align: center;">${vo.adminName}</td>
-								<td style="text-align: center;">${vo.tel}</td>
-								<td style="text-align: center;">${vo.levels}</td>
+								<td>${vo.adminNo }</td>
+								<td>${vo.adminId }</td>
+								<td>${vo.adminName }</td>
+								<td>${vo.tel }</td>
+								<td>${vo.levels }</td>
+								<td>
+									<select name="level" id = "selectLV" style="width: 100px">
+									<option value="">선택하세요</option>
+									<option value="1" 
+										<c:if test="${vo.levels==1}">
+											selected="selected"
+										</c:if>
+									>1급</option>
+									<option value="2"
+										<c:if test="${vo.levels==2}">
+											selected="selected"
+										</c:if>
+									>2급</option>
+									<option value="3"
+										<c:if test="${vo.levels==3}">
+											selected="selected"
+										</c:if>
+									>3급</option>				
+								</select>
+								</td>
 							</tr>
 							<c:set var = "idx" value = "${idx+1 }"/>
 						</c:forEach>
@@ -263,7 +282,7 @@ input#btMultiDel {
 	<div class = "divRight">
 		<input type="button" id = "btMultiDel" value="선택한 관리자 삭제"><br><br>
 		선택한 관리자를
-		<select name="level" id = "selectLV">
+		<%-- <select name="level" id = "selectLV">
 			<option value="">선택하세요</option>
 			<option value="1" 
 				<c:if test="${param.levelName=='king'}">
@@ -280,7 +299,7 @@ input#btMultiDel {
 					selected="selected"
 				</c:if>
 			>3급</option>				
-		</select>
+		</select> --%>
 		<input type="button" id = "btMultiAdd" value = "관리자 등급 설정">
 	</div>	
 </form>
