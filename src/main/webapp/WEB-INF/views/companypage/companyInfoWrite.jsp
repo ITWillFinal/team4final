@@ -34,7 +34,7 @@
 		$(".onlyHangulEnglish").keyup(function(event) {
 			if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
 				var inputVal = $(this).val();
-				$(this).val(inputVal.replace(/[!@#$%^&*()-_+=~;?0-9]/gi, ''));
+				$(this).val(inputVal.replace(/[!@#$%^&*-_+=~;?0-9]/gi, ''));
 			}
 		});
 		$(".onlyHangul").keyup(function(event) {
@@ -190,13 +190,13 @@ hr{
 				<label for="inputUser" class="col-sm-3 control-label">회사명 <span>*</span>
 				</label>
 				<div class="col-sm-9 form-input">
-					<input type="text" class="form-control onlyHangulEnglish" id="comName"
+					<input type="text" class="form-control onlyHangul" id="comName"
 						name="comName"
 						placeholder="회사명 입력 부탁드립니다.">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputUser" class="col-sm-3 control-label onlyHangul">대표자명 <span>*</span>
+				<label for="inputUser" class="col-sm-3 control-label onlyHangulEnglish">대표자명 <span>*</span>
 				</label>
 				<div class="col-sm-9 form-input">
 					<input type="text" class="form-control" id="ceo"
