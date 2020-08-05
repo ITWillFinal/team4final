@@ -47,4 +47,45 @@
 		where recruitment_code = #{recruitmentCode}
 	</update>
 	
+	<select id="recruitmentDetailList" parameterType="comRecruitVo" resultType="comRecruitVo">
+		select * from recruitment
+		<where>
+			<if test="location1!=null and location1!=''">
+				and location1=#{location1}
+				<if test="location2!=null and location2!=''">
+					and location2=#{location2}
+				</if>
+			</if>
+			<if test="jobType1!=null and jobType1!=''">
+				and JOB_TYPE1 = #{jobType1}
+				<if test="jobType2!=null and jobType2!=''">
+					and JOB_TYPE2 = #{jobType2}
+				</if>
+			</if>
+			<if test="induType1!=null and induType1!=''">
+				and INDU_TYPE1 = #{induType1}
+				<if test="induType2!=null and induType2!=''">
+					and INDU_TYPE2 = #{induType2}
+				</if>
+			</if>
+			<if test="comType!=null and comType!=''">
+				and COM_TYPE like '%' || #{comType} || '%'
+			</if>
+			<if test="recType!=null and recType!=''">
+				and REC_TYPE like '%' || #{recType} || '%'
+			</if>
+			<if test="educationLv!=null and educationLv!=''">
+				and EDUCATION_LV like '%' || #{educationLv} || '%'
+			</if>
+		</where>
+	</select>
+	<select id="selectBycomCode" parameterType="string" resultType="comRecruitVO">
+		select * from recruitment
+		where com_code=#{comCode}
+	</select>
+	
+	<select id="selectListBycomCode" parameterType="string" resultType="comRecruitVO">
+		select * from recruitment
+		where com_code=#{comCode}
+	</select>
 </mapper>

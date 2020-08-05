@@ -79,10 +79,11 @@ public class HireInfoController {
 	
 	@RequestMapping("/searchHireInfo.do")
 	@ResponseBody
-	public String searchHireInfo(@ModelAttribute ComRecruitVO comRecVo) {
+	public List<ComRecruitVO> searchHireInfo(@ModelAttribute ComRecruitVO comRecVo) {
 		logger.info("채용정보 검색 vo = {}", comRecVo);
-		
-		return "hi";
+		List<ComRecruitVO> list = comRecuritServ.recruitmentDetailList(comRecVo);
+		logger.info("list size = {}", list.size());
+		return list;
 	}
 	
 	@RequestMapping("/infoSearchByLocation.do")

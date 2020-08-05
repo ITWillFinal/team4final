@@ -1,0 +1,226 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../../inc/comMypageTop.jsp"%>
+
+
+<style>
+.divList{
+    padding-top: 40px;
+    padding-left: 80px;
+    padding-bottom: 50px;
+    padding-right: 80px;
+}
+th{
+	border-bottom: 3px solid #FB246A;;
+	text-align: center;
+    padding: 14px;
+}
+td{
+	border-bottom: 1px solid #FB246A;
+	padding: 13px;
+}
+
+a{
+	color: black;
+}
+
+#list{
+	width: 800px;
+	height: 700px;
+}
+
+#upList{
+	 padding-left: 300px;
+}
+/* 페이징 */
+.divPage {
+	text-align:center;     
+	margin-top: 70px;
+    margin-bottom: 25px;
+}
+
+/* 목록 */
+.divList{height: 250px;}
+/* 리스트 상단 탭 */
+ul, li{list-style: none;}
+.tabList>li .inTab:hover,
+.tabList>li .inTab:focus {text-decoration:underline}
+
+li.select {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 15pt;
+}
+#mid{
+	border-left: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+}
+#btm{
+	border-bottom: 1px solid lightgray;
+}
+input[type="submit"] {
+    width: 63px;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+input[type="text"] {
+    margin-left: 10px;
+    height: 17px;
+}
+input#btMultiDel {
+    margin-left: 5px;
+}
+
+</style>
+<script type="text/javascript" 
+	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
+<script type="text/javascript">	
+	
+</script>
+	<main>
+		<!-- main -->
+		<div style="text-align: center;  margin:0 auto; width:850px; border:1px solid lightgray;">
+			<div id = "list">
+	
+				<div id = "upList">
+					<c:if test="${!empty param.searchKeyword }">
+						<p>검색어 : ${param.searchKeyword },
+							 ${pagingInfo.totalRecord}건 검색되었습니다.</p>
+					</c:if>
+					<!-- 페이징 -->
+					<form action="<c:url value='/companypage/employmentNotice/employmentNoticeList.do'/>" 
+						name="frmPage" method="post">
+						<input type="hidden" name="currentPage">
+						<input type="hidden" name="searchCondition" 
+							value="${param.searchCondition}">
+						<input type="hidden" name="searchKeyword" 
+							value="${param.searchKeyword}">	
+					</form>
+				</div>
+			<div>
+			<form name="frmList" method="post"
+				action="<c:url value = '/companypage/employmentNotice/employmentNoticeList.do'/>">
+				<div class = "divList">
+					<table class = "box2" style="width: 700px; margin-top: 45px;">
+						<colgroup>
+						   <col style="width:3%;" />
+						   <col style="width:22%;" />
+						   <col style="width:25%;" />
+						   <col style="width:15%;" />
+						   <col style="width:15%;" />
+						   <col style="width:10%;" />
+						   <col style="width:10%;" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th><input type="checkbox" name="chkAll"></th>
+								<th>기업명</th>
+								<th>제목</th>
+								<th>등록일</th>
+								<th>모집종료일</th>
+								<th>수정</th>
+								<th>삭제</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:if test="${empty comRecruitVoList }">
+								<th colspan="5">등록된 채용 정보가 없습니다.</th>
+							</c:if>
+							<c:if test="${!empty comRecruitVoList }">
+								<c:set var = "idx" value = "0"/>
+									<c:forEach var = "vo" items="${comRecruitVoList }">
+										<tr>
+											<td style = "text-align: center">
+												<input type="checkbox" name="faqlist[${idx }].recruitmentCode"
+													value = "${vo.recruitmentCode }">
+											</td>
+											<td style="text-align: center;">
+												<!-- 제목줄이기 -->
+												<c:if test = "${fn:length(vo.comName)>=10 }">
+													${fn:substring(vo.answer,0,10)}...
+												</c:if>
+												<c:if test="${fn:length(vo.comName)<10 }">
+													${vo.comName }							
+												</c:if>
+											</td>
+											<td style="text-align: center;">
+												<!-- 제목줄이기 -->
+												<c:if test = "${fn:length(vo.title)>=10 }">
+													${fn:substring(vo.title,0,10)}...
+												</c:if>
+												<c:if test="${fn:length(vo.title)<10 }">
+													${vo.title }							
+												</c:if>
+											</td>
+											<td style="text-align: center;">${vo.regdate }</td>
+											<td style="text-align: center;">${vo.recDeadline }</td>
+											<td style="text-align: center;">
+												<a href="#">수정</a>
+											</td>
+											<td style="text-align: center;">
+												<a href="#">삭제</a>
+											</td>
+											
+										</tr>
+										<c:set var = "idx" value = "${idx+1 }"/>
+									</c:forEach>
+							</c:if>
+						</tbody>
+					</table>
+				</div>
+			</form>
+			</div>
+			<div class="divPage">
+		<!-- 페이지 번호 추가 -->
+		<!-- 이전 블럭으로 이동 ◀ -->
+		<c:if test="${pagingInfo.firstPage>1 }">
+			<a href="#" onclick="pageProc(${pagingInfo.firstPage-1})"> ◁ </a>
+		</c:if>
+
+		<!-- 페이지 번호 1~10 -->
+		<c:forEach var="i" begin="${pagingInfo.firstPage }"
+			end="${pagingInfo.lastPage }">
+			<c:if test="${i!=pagingInfo.currentPage }">
+				<a href="#" onclick="pageProc(${i})">[${i}]</a>
+			</c:if>
+			<c:if test="${i==pagingInfo.currentPage }">
+				<span style="color: blue; font-weight: bold; font-size: 12px;">${i}</span>
+			</c:if>
+		</c:forEach>
+
+		<!-- 다음 블럭으로 이동 ▶ -->
+		<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+			<a href="#" onclick="pageProc(${pagingInfo.lastPage+1})"> ▷ </a>
+		</c:if>
+		<!--  페이지 번호 끝 -->
+	</div>
+	<div class="divSearch" style="margin-top: 30px; text-align: center;">
+		<form name="frmSearch" method="post"
+			action='<c:url value="/admin/adminMemberManagement.do"/>'>
+			<select name="searchCondition" style="margin-top: 8px;">
+				<option value="user_id"
+					<c:if test="${param.searchCondition=='user_id' }">
+            		selected="selected"
+            	</c:if>>아이디</option>
+				<option value="user_name"
+					<c:if test="${param.searchCondition=='user_name' }">
+            		selected="selected"
+            	</c:if>>이름</option>
+				<option value="user_status"
+					<c:if test="${param.searchCondition=='user_status' }">
+            		selected="selected"
+            	</c:if>>유저
+					상태</option>
+			</select> <input type="text" name="searchKeyword" title="검색어 입력"
+				style="margin-top: 8px;" value="${param.searchKeyword}"> <input
+				type="submit" value="검색">
+		</form>
+	</div>
+			</div>
+		</div>
+	</main>
+
+<%@ include file="../../inc/companyBottom.jsp"%>

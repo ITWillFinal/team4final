@@ -31,5 +31,15 @@ public class JobServiceImpl implements JobService {
 	public List<Map<String, Object>> selectInduMiddle(int no) {
 		return jobDao.selectInduMiddle(no);
 	}
+
+	@Override
+	public String selectJobLargeName(String jobType) {
+		return jobDao.selectJobLargeName(jobType);
+	}
+
+	@Override
+	public String selectInduLargeName(String induType) {
+		return jobDao.selectInduLargeName(induType);
+	}
 	
 }

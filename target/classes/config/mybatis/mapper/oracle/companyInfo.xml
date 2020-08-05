@@ -14,7 +14,7 @@
 		#{comIndustry}, #{content}, #{homepage}, #{cMemberCode})
 	</insert>
 	
-	<select id="selectComInfoBycUserid" parameterType="string" resultType="companyInfoVO">
+	<select id="selectComInfoBycMemberCode" parameterType="string" resultType="companyInfoVO">
 		select * from COMPANY_INFO
 		where C_MEMBER_CODE = #{cMemberCode}
 	</select>

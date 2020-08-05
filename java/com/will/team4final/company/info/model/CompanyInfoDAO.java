@@ -2,5 +2,5 @@ package com.will.team4final.company.info.model;
 
 public interface CompanyInfoDAO {
 	int insertCompanyInfo(CompanyInfoVO vo);
-	CompanyInfoVO selectComInfoBycUserid(String cMemberCode);
+	CompanyInfoVO selectComInfoBycMemberCode(String cMemberCode);
 }

@@ -20,13 +20,8 @@ public class ComMemberServiceImpl implements ComMemberService{
 	public int selectCMemberDup(String cUserid) {
 		int cnt = comMemberDao.selectCMemberDup(cUserid);
 		System.out.println("아이디 중복 체크 결과. cnt= "+ cnt);
-		int result=0;
-		if(cnt>0) {
-			result=EXIST_ID;
-		}else {
-			result=NON_EXIST_ID;
-		}
-		return result;
+		
+		return cnt;
 	}
 
 	@Override
