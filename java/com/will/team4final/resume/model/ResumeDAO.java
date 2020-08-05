@@ -26,4 +26,13 @@ public interface ResumeDAO {
 	List<AwardVO> selectAwardByResumeNo(int resumeNo);
 	AddinfoVO selectAddInfoByResumeNo(int resumeNo);
 	PotfolioVO selectPotfolioByResumeNo(int resumeNo);
+	int updateResume(ResumeVO resumeVo);
+	int deleteEducation(int resumeNo);
+	int deleteCareer(int resumeNo);
+	int deleteActive(int resumeNo);
+	int deleteAddinfo(int resumeNo);
+	int deleteCertify(int resumeNo);
+	int deleteLanguage(int resumeNo);
+	int deleteAward(int resumeNo);
+	int deletePotfolio(int resumeNo);
 }

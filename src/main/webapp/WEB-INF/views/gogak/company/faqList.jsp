@@ -51,8 +51,7 @@ a{
 }
 
 </style>
-<script type="text/javascript" 
-	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
+
 <script type="text/javascript">	
 	function pageProc(curPage){
 		$('input[name=currentPage]').val(curPage);
@@ -84,7 +83,7 @@ a{
 	});
 </script>
 <main>
-	<%@ include file="../../inc/companySidebar.jsp"%>
+	<%@ include file="../../inc/companySidebar.jsp" %>
 	
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">

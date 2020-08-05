@@ -29,10 +29,9 @@
 		  <li><div>이력서 현황</div></li>
 		  <li><div>이력서 상태설정</div></li>
 		  <li><div>입사요청 현황???</div></li>		  
-		  <li class="ui-widget-header"><div>또뭐있지???</div></li>
-		  <li><div>직업검사</div></li>
-		  <li><div>나의관심기업???</div></li>
-		  <li><div>인기기업???</div></li>
-		  <li><div>맞춤기업정보???</div></li>
+		  <li class="ui-widget-header"><div>고객센터</div></li>
+		  <li><div>자주 찾는 질문</div></li>
+		  <li><div>1:1 문의</div></li>
+		  <li><div>나의 1:1 문의</div></li>
 		</ul>		
 	</div>

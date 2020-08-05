@@ -245,15 +245,15 @@ public class ResumeController {
 			@ModelAttribute PotfolioVO potfolioVo,
 			HttpServletRequest request, Model model) {
 		
-		logger.info("이력서 등록, 파라미터 resumeVo={}",resumeVo);
-		logger.info("이력서 등록, 파라미터 educationVo={}",educationVo);
-		logger.info("이력서 등록, 파라미터 careerListVo={}",careerListVo);
-		logger.info("이력서 등록, 파라미터 careerListVo={}",activeListVo);
-		logger.info("이력서 등록, 파라미터 careerListVo={}",certifyListVo);
-		logger.info("이력서 등록, 파라미터 careerListVo={}",languageListVo);
-		logger.info("이력서 등록, 파라미터 careerListVo={}",awardListVo);
-		logger.info("이력서 등록, 파라미터 careerListVo={}",addInfoVo);
-		logger.info("이력서 등록, 파라미터 careerListVo={}",potfolioVo);
+		logger.info("이력서 수정, 파라미터 resumeVo={}",resumeVo);
+		logger.info("이력서 수정, 파라미터 educationVo={}",educationVo);
+		logger.info("이력서 수정, 파라미터 careerListVo={}",careerListVo);
+		logger.info("이력서 수정, 파라미터 careerListVo={}",activeListVo);
+		logger.info("이력서 수정, 파라미터 careerListVo={}",certifyListVo);
+		logger.info("이력서 수정, 파라미터 careerListVo={}",languageListVo);
+		logger.info("이력서 수정, 파라미터 careerListVo={}",awardListVo);
+		logger.info("이력서 수정, 파라미터 careerListVo={}",addInfoVo);
+		logger.info("이력서 수정, 파라미터 careerListVo={}",potfolioVo);
 		
 		ResumeAllVO resumeAllVo = new ResumeAllVO();
 		
@@ -303,12 +303,12 @@ public class ResumeController {
 			potfolioVo.setPotFile(potFile);
 			resumeAllVo.setPotfolioVo(potfolioVo);
 		}
-		
-		int cnt = resumeService.insertResume(resumeAllVo);
-		logger.info("이력서 등록 결과 cnt={}",cnt);
-		String msg="이력서 등록에 실패하였습니다." , url ="/resume/resumeMain.do";
+		logger.info("resumeAllVo 세팅 완료");
+		int cnt = resumeService.updateResume(resumeAllVo);
+		logger.info("이력서 수정 결과 cnt={}",cnt);
+		String msg="이력서 수정에 실패하였습니다." , url ="/resume/resumeDetail.do?resumeNo="+resumeVo.getResumeNo();
 		if(cnt>0) {
-			msg="이력서가 등록되었습니다.";
+			msg="이력서가 수정되었습니다.";
 		}
 		
 		model.addAttribute("url",url);

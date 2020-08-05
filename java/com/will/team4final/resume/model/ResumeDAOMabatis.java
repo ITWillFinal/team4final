@@ -116,6 +116,56 @@ public class ResumeDAOMabatis implements ResumeDAO{
 	public PotfolioVO selectPotfolioByResumeNo(int resumeNo) {
 		return sqlSession.selectOne(namespace+"selectPotfolioByResumeNo",resumeNo);
 	}
+
+	@Override
+	public int updateResume(ResumeVO resumeVo) {
+		return sqlSession.update(namespace+"updateResume",resumeVo);
+	}
+
+	@Override
+	public int deleteEducation(int resumeNo) {
+		return sqlSession.delete(namespace+"deleteEducation",resumeNo);
+	}
+
+	@Override
+	public int deleteCareer(int resumeNo) {
+		return sqlSession.delete(namespace+"deleteCareer",resumeNo);
+	}
+
+	@Override
+	public int deleteActive(int resumeNo) {
+		return sqlSession.delete(namespace+"deleteActive",resumeNo);
+
+	}
+
+	@Override
+	public int deleteCertify(int resumeNo) {
+		return sqlSession.delete(namespace+"deleteCertify",resumeNo);
+
+	}
+
+	@Override
+	public int deleteLanguage(int resumeNo) {
+		return sqlSession.delete(namespace+"deleteLanguage",resumeNo);
+
+	}
+
+	@Override
+	public int deleteAward(int resumeNo) {
+		return sqlSession.delete(namespace+"deleteAward",resumeNo);
+
+	}
+
+	@Override
+	public int deletePotfolio(int resumeNo) {
+		return sqlSession.delete(namespace+"deletePotfolio",resumeNo);
+
+	}
+
+	@Override
+	public int deleteAddinfo(int resumeNo) {
+		return sqlSession.delete(namespace+"deleteAddinfo",resumeNo);
+	}
 	
 	
 }

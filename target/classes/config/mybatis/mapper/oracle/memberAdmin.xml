@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mybatis.mapper.oracle.memberAdmin">
-	<select id="selectIdDup" parameterType="String" resultType="int">
+	<select id="selectIdDup" parameterType="String" resultType="int">	
 		select count(*) from admin
 		where admin_Id = #{adminId}
 	</select>
@@ -15,23 +15,23 @@
 		insert into admin(admin_no, admin_id, pwd, admin_name, tel)
 		values(#{adminNo}, #{adminId}, #{pwd}, #{adminName}, #{tel})
 	</insert>
-
+	
 	<select id="selectMemberPwd" parameterType="string" resultType="string">
 		select pwd from admin
 		where admin_Id=#{adminId}
 	</select>
-
+	
 	<select id = "selectByUserid" parameterType="String" resultType="memberAdminVo">
 		select * from admin
 		where admin_id = #{adminId}
 	</select>
-
+	
 	<select id="selectLevel" parameterType="String" resultType="String">
 		select levels from admin
 		where admin_id = #{adminId}
 	</select>
-
-
+	
+		
 	<select id="selectInfo" resultType="memberAdminVo" parameterType="searchvo">
 		select *
 		from
@@ -46,17 +46,17 @@
 				</if>
 				order by admin_No desc
 			)A
-
+			
 		)
-		<![CDATA[
+		<![CDATA[ 
 		where RNUM>#{firstRecordIndex}
 		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
-
+	
 	<select id="levels" resultType="memberLevelVo">
 		select * from adminlevel
 	</select>
-
+	
 	<select id="selectTotalRecord" parameterType="searchVo" resultType="int">
 		select count(*) from admin
 		<if test="searchKeyword!=null and searchKeyword != ''">
@@ -64,20 +64,29 @@
 				|| #{searchKeyword} || '%'
 		</if>
 	</select>
-
+	
 	<delete id = "deleteAdmin" parameterType="int">
 		delete admin
 		where admin_no=#{adminNo}
 	</delete>
-
+	
 	<update id="updateLevel" parameterType="memberAdminVo">
 		update admin
 		set levels = #{levels}
 		where admin_no = #{adminNo}
 	</update>
-
-	<select id="selectByNO" parameterType="int" resultType="memberadminVo">
+	
+	<select id="selectByNO" parameterType="int" resultType="memberadminVo">	
 		select * from admin
 		where admin_no=#{adminNo}
 	</select>
 </mapper>
+
+
+
+
+
+
+
+
+

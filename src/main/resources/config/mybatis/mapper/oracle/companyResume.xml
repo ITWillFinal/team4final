@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.companyResume">
+	<insert id="insertCompanyResumeSet" parameterType="companyResumeSetVo" >
+		insert into company_resumeset (
+		recruitment_code, schoolVal, careerVal, certificateVal, 
+		languageVal, awardsVal, specialVal, activityVal, 
+		selfVal, selfTitle1, selfTitle2, selfTitle3, selfTitle4, selfTitle5
+		)
+		values (
+		#{recruitmentCode}, #{schoolVal}, #{careerVal}, #{certificateVal},
+		#{languageVal}, #{awardsVal}, #{specialVal}, #{activityVal},
+		#{selfVal}, #{selfTitle1}, #{selfTitle2}, #{selfTitle3}, #{selfTitle4}, #{selfTitle5}
+		)
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+

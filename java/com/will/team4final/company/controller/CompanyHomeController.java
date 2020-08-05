@@ -310,20 +310,7 @@ public class CompanyHomeController {
 		return "companypage/companyWritePeriod";
 	}
 	
-	
-	@RequestMapping("/companyResumeSet.do")
-	public String resumeSet() {
-		logger.info("기업페이지 자사 이력서양식 제작");
-		
-		return "companypage/companyResumeSet";
-	}
-	
-	@RequestMapping("/companyResumeUse.do")
-	public String resumeUse() {
-		logger.info("기업페이지 자사 이력서양식 제작");
-		
-		return "companypage/companyResumeUse";
-	}
+
 	
 	@RequestMapping("/member/checkId.do")
 	@ResponseBody

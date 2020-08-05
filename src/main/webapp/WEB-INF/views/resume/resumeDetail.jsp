@@ -265,7 +265,7 @@
 			        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
 			        heightLeft -= pageHeight;
 			    }
-			 	var fileName="THE_JOB_이력서_no_title";
+			 	var fileName="no_title";
 			 	if("${resumeAllVo.resumeVo.selfIntTitle }"!=""){
 			 		fileName="${resumeAllVo.resumeVo.selfIntTitle }";
 			 	}
