@@ -1,6 +1,7 @@
 package com.will.team4final.company.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	}
 
 	@Override
-	public List<ComRecruitVO> selectMost5() {
+	public List<Map<String, Object>> selectMost5() {
 		return comRecruitDao.selectMost5();
 	}
 

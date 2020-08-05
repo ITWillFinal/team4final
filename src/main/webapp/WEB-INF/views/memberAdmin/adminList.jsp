@@ -81,7 +81,11 @@ input[type="text"] {
     height: 17px;
 }
 input#btMultiDel {
-    margin-left: 5px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+li#fst {
+    padding-top: 5%;
 }
 
 </style>
@@ -104,25 +108,41 @@ input#btMultiDel {
 			$('form[name=frmList]').submit();
 		});
 		
+		
 		$('input[name=chkAll]').click(function () {
 			$('tbody input[type=checkbox]')
 			.prop('checked', this.checked);			
 		});
+		
+		$('td input[type=button]').click(function() {
+			var lv = $("#selectLV option:selected").val();
 			
-		$('#btMultiAdd').click(function(){
+			$.ajax({
+				url:"<c:url value='/memberAdmin/updateMulti2.do'/>",
+				type:"post",
+				data: $('form[name=frmList]').serialize(),
+				dataType:"json",
+				success:function(res){
+					if(res.cnt>0){
+						location.href="<c:url value = '/memberAdmin/adminInfo.do'/>";
+					}
+				},
+				error:function(xhr, status,error){
+					alert(status +", " + error);
+				}
+			});	
+			
+		});
+			
+		/* $('#btMultiAdd').click(function(){
 			var len=$('tbody input[type=checkbox]:checked').length;
-			if(len==0){
-				alert('권한을 변경하려는 관리자를 먼저 체크하세요');
-				return;
-			}
 			if(len>1){
 				alert('권한변경은 한번에 한 계정만 할 수 있습니다.');
 				return;
 			}
-			$('form[name=frmList]')
-			.prop("action", "<c:url value='/memberAdmin/updateMulti.do'/>");
+			$('form[name=frmList]').prop("action", "<c:url value='/memberAdmin/updateMulti.do'/>");
 			$('form[name=frmList]').submit();
-		});
+		}); */
 		
 	});//document.ready
 	
@@ -140,58 +160,24 @@ input#btMultiDel {
 				<h2>관리자 관리</h2>
 			</li>
 		</ul>
-
 	
-	<%-- <c:if test="${empty param.levelName}">
-		<p>검색된 관리자 ${pagingInfo.totalRecord }건입니다.</p>
-	</c:if>
-	<c:if test="${!empty param.levelName }">
-		<p>${param.levelName } 관리자 ${pagingInfo.totalRecord }건입니다.</p>
-	</c:if> --%>
-	
-	
-	<!-- 페이징 처리를 위한 form 시작-->
 	<form name="frmPage" method="post" 
 		action="<c:url value='/memberAdmin/adminInfo.do'/>">
 		<input type="hidden" name="levelName" 	value="${param.levelName}">
 		<input type="hidden" name="currentPage">	
 	</form>
-	<!-- 페이징 처리 form 끝 -->
 	
 	<form name="frmList" method="post" 
 		action="<c:url value='/memberAdmin/adminInfo.do'/>">
-		<input type="text" id = "lvHidden" name = "levels">
-		<input type="text" id = "noHidden" name = "nono">
-	<%-- <div class="divRight">	
-		관리자 조회
-		<select name="eventName">
-			<option value=""></option>
-			<option value="2" 
-				<c:if test="${param.levelName=='king'}">
-					selected="selected"
-				</c:if>
-			>1급</option>
-			<option value="3"
-				<c:if test="${param.levelName=='citizen'}">
-					selected="selected"
-				</c:if>
-			>2급</option>
-			<option value="1"
-				<c:if test="${param.levelName=='emperor'}">
-					selected="selected"
-				</c:if>
-			>3급</option>				
-		</select>
-	</div> --%>
 	<div class="divList">
 		<table style=" width='700';" class="box2" >
 			<colgroup>
-			   <col style="width:10%;" /><!-- 체크박스 -->
-			   <col style="width:10%;" /><!-- 번호 -->
-			   <col style="width:15%;" /><!-- ID -->
-			   <col style="width:15%;" /><!-- 연락처 -->
-			   <col style="width:20%;" /><!-- 이름 -->
-			   <col style="width:25%;" /><!-- 이름 -->
+			   <col style="width:5%;" />
+			   <col style="width:10%;" />
+			   <col style="width:15%;" />
+			   <col style="width:20%;" />
+			   <col style="width:20%;" />
+			   <col style="width:25%;" />
 			</colgroup>
 			<thead>
 				<tr>
@@ -201,7 +187,6 @@ input#btMultiDel {
 					<th>이름</th>
 					<th>연락처</th>
 					<th>관리 등급</th>
-					<th>관리 등급 수정</th>
 				</tr>
 			</thead>
 			<tbody>  
@@ -213,37 +198,26 @@ input#btMultiDel {
 				<c:if test="${!empty list }">
 					<c:set var = "idx" value = "0"/>
 						<c:forEach var = "vo" items="${list }">
+							
 							<tr>
 								<td style = "text-align: center">
 									<input type="checkbox" name="malist[${idx }].adminNo"
-										value = "${vo.adminNo}">
-									<input type="text" id = "adminNo" value = "${vo.adminNo}"
-										style="width: 30px">
+										value = "${vo.adminNo}" id = "ckbox">
+									<input type="hidden" name = "adminNo" id = "adminNo" value = "${vo.adminNo }">
+									<input type="hidden" name = "adminId" value = "${vo.adminId }">
+									<input type="hidden" name = "adminName" value = "${vo.adminName }">
+									<input type="hidden" name = "tel" value = "${vo.tel }">
+									<input type="hidden" name = "level" value = "${vo.levels }">
+									<input type="hidden" name = "regDate" value = "${vo.regDate }">
 								</td>
 								<td>${vo.adminNo }</td>
 								<td>${vo.adminId }</td>
-								<td>${vo.adminName }</td>
+								<td><a href = "<c:url value = '/memberAdmin/adminDetail.do?adminNo=${vo.adminNo }'/>">${vo.adminName }</a></td>
 								<td>${vo.tel }</td>
-								<td>${vo.levels }</td>
 								<td>
-									<select name="level" id = "selectLV" style="width: 100px">
-									<option value="">선택하세요</option>
-									<option value="1" 
-										<c:if test="${vo.levels==1}">
-											selected="selected"
-										</c:if>
-									>1급</option>
-									<option value="2"
-										<c:if test="${vo.levels==2}">
-											selected="selected"
-										</c:if>
-									>2급</option>
-									<option value="3"
-										<c:if test="${vo.levels==3}">
-											selected="selected"
-										</c:if>
-									>3급</option>				
-								</select>
+									<c:if test="${vo.levels==1}">1급</c:if>
+									<c:if test="${vo.levels==2}">2급</c:if>
+									<c:if test="${vo.levels==3}">3급</c:if>
 								</td>
 							</tr>
 							<c:set var = "idx" value = "${idx+1 }"/>
@@ -281,26 +255,6 @@ input#btMultiDel {
 	</div>
 	<div class = "divRight">
 		<input type="button" id = "btMultiDel" value="선택한 관리자 삭제"><br><br>
-		선택한 관리자를
-		<%-- <select name="level" id = "selectLV">
-			<option value="">선택하세요</option>
-			<option value="1" 
-				<c:if test="${param.levelName=='king'}">
-					selected="selected"
-				</c:if>
-			>1급</option>
-			<option value="2"
-				<c:if test="${param.levelName=='citizen'}">
-					selected="selected"
-				</c:if>
-			>2급</option>
-			<option value="3"
-				<c:if test="${param.levelName=='emperor'}">
-					selected="selected"
-				</c:if>
-			>3급</option>				
-		</select> --%>
-		<input type="button" id = "btMultiAdd" value = "관리자 등급 설정">
 	</div>	
 </form>
 </div>

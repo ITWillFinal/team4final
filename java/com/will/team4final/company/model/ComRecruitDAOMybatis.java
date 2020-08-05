@@ -1,6 +1,7 @@
 package com.will.team4final.company.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class ComRecruitDAOMybatis implements ComRecruitDAO {
 	}
 
 	@Override
-	public List<ComRecruitVO> selectMost5() {
+	public List<Map<String, Object>> selectMost5() {
 		return sqlSession.selectList(namespace + "selectMost5");
 	}
 

@@ -1,0 +1,183 @@
+ALTER TABLE potfolio DROP CONSTRAINT FK_RESUME_TO_POTFOLIO;
+
+ALTER TABLE potfolio ADD CONSTRAINT FK_RESUME_TO_POTFOLIO
+FOREIGN KEY(resume_no) REFERENCES resume(resume_no) ON DELETE CASCADE;
+
+ALTER TABLE ACTIVE DROP CONSTRAINT FK_RESUME_TO_ACTIVE;
+
+ALTER TABLE ACTIVE ADD CONSTRAINT FK_RESUME_TO_ACTIVE
+FOREIGN KEY(resume_no) REFERENCES resume(resume_no) ON DELETE CASCADE;
+
+ALTER TABLE EDUCATION DROP CONSTRAINT FK_RESUME_TO_EDUCATION;
+
+ALTER TABLE EDUCATION ADD CONSTRAINT FK_RESUME_TO_EDUCATION
+FOREIGN KEY(resume_no) REFERENCES resume(resume_no) ON DELETE CASCADE;
+
+ALTER TABLE ADDINFO DROP CONSTRAINT FK_RESUME_TO_ADDINFO;
+
+ALTER TABLE ADDINFO ADD CONSTRAINT FK_RESUME_TO_ADDINFO
+FOREIGN KEY(resume_no) REFERENCES resume(resume_no) ON DELETE CASCADE;
+
+ALTER TABLE career DROP CONSTRAINT FK_RESUME_TO_CAREER;
+
+ALTER TABLE career ADD CONSTRAINT FK_RESUME_TO_CAREER
+FOREIGN KEY(resume_no) REFERENCES resume(resume_no) ON DELETE CASCADE;
+
+ALTER TABLE AWARD DROP CONSTRAINT FK_RESUME_TO_AWARD;
+
+ALTER TABLE AWARD ADD CONSTRAINT FK_RESUME_TO_AWARD
+FOREIGN KEY(resume_no) REFERENCES resume(resume_no) ON DELETE CASCADE;
+
+ALTER TABLE CERTIFY DROP CONSTRAINT FK_RESUME_TO_CERTIFY;
+
+ALTER TABLE CERTIFY ADD CONSTRAINT FK_RESUME_TO_CERTIFY
+FOREIGN KEY(resume_no) REFERENCES resume(resume_no) ON DELETE CASCADE;
+
+ALTER TABLE LANGUAGE DROP CONSTRAINT FK_RESUME_TO_LANGUAGE;
+
+ALTER TABLE LANGUAGE ADD CONSTRAINT FK_RESUME_TO_LANGUAGE
+FOREIGN KEY(resume_no) REFERENCES resume(resume_no) ON DELETE CASCADE;
+
+create or replace view resume_career_view
+as
+select r.*, c.career_company
+from resume r inner join career c
+on r.resume_no = c.resume_no;
+
+create or replace view resume_career_one_view
+as
+SELECT * FROM resume_career_view 
+WHERE ROWID IN 
+(SELECT MAX(ROWID) FROM resume_career_view GROUP BY resume_no);
+
+create sequence TOS_seq
+increment by 1
+start with 1
+nocache;
+create sequence notice_seq
+increment by 1
+start with 1
+nocache;
+
+create sequence RECRUITMENT_SEQ
+increment by 1
+start with 1
+nocache;
+
+create sequence COMSCRAP_SEQ
+increment by 1
+start with 1
+nocache;
+
+create or replace view qnarere
+as
+select q.*, r.no
+from qna q left join qnare r
+on q.qna_no = r.qna_no;
+
+/* 관리자 등급 테이블 입력*/
+insert into adminlevel
+values(1, 'emperor');
+insert into adminlevel
+values(2, 'king');
+insert into adminlevel
+values(3, 'citizen');
+
+create sequence admin_seq
+start with 1 --50부터 시작해서 1씩 증가
+increment by 1
+nocache;
+
+create or replace view adminInfo
+as
+select a.*, l.level_name
+from admin a left join
+(
+    select level_name, levels
+    from adminlevel
+)l
+on a.levels = l.levels;
+
+/*관리자 회원 입력*/
+insert into admin(admin_no, admin_id, pwd, admin_name, tel)
+values(admin_seq.nextval, 'admin', '1', '관리자', '01065683542');
+
+/*관리자 등급 변경*/
+update admin
+set levels = 1
+where admin_no=1;
+
+create sequence payment_seq
+increment by 1
+start with 1
+nocache;
+
+create sequence member_seq
+increment by 1
+start with 1
+nocache;
+
+create sequence company_member_seq
+increment by 1
+start with 1
+nocache;
+
+create sequence companyInfo_seq
+start with 1
+increment by 1
+nocache;
+
+alter table CAREER  add career_rank varchar2(50); 
+alter table CAREER  add career_year varchar2(50); 
+alter table CAREER  add career_location varchar2(50);
+alter table CAREER  add career_sal varchar2(50);  
+alter table resume
+rename column resume_title to self_int_title;
+alter table CERTIFY
+rename column get_date to certify_get_date;
+
+create sequence EDUCATION_seq
+start with 1
+increment by 1
+nocache;
+
+create sequence CAREER_seq
+start with 1
+increment by 1
+nocache;
+
+create sequence LANGUAGE_seq
+start with 1
+increment by 1
+nocache;
+
+create sequence ADDINFO_seq
+start with 1
+increment by 1
+nocache;
+
+create sequence ACTIVE_seq
+start with 1
+increment by 1
+nocache;
+
+create sequence AWARD_seq
+start with 1
+increment by 1
+nocache;
+
+create sequence POTFOLIO_seq
+start with 1
+increment by 1
+nocache;
+
+create sequence CERTIFY_seq
+start with 1
+increment by 1
+nocache;
+
+create or replace view recruitment_tos
+as
+select r.*, t.end_date
+from RECRUITMENT r join tos t
+on r.RECRUITMENT_CODE = t.RECRUITMENT_CODE;

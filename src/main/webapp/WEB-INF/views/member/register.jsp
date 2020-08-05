@@ -34,8 +34,7 @@
 								var userid1 = $('#userid1').val();
 								console.log(userid1);
 
-								$
-										.ajax({
+								$.ajax({
 											url : "<c:url value='/member/register/checkId.do' />",
 											type : "get",
 											data : "userid1=" + userid1,

@@ -27,7 +27,13 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
+	<script>
+	  $( function() {
+	    $( "#menu" ).menu({
+	      items: "> :not(.ui-widget-header)"
+	    });
+	  } );
+	</script>
 	<!-- 사이드바 제이쿼리 끝 -->
 <style>
 li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-active{

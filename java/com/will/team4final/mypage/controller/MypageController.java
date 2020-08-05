@@ -46,6 +46,7 @@ public class MypageController {
 		}else if(status.equals("C")) {
 			logger.info("기업회원 마이페이지로 가자!");
 			
+			return "comMypage/comMypageHome";
 		}
 		
 		return "/index";

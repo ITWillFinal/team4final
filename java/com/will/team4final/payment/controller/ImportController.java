@@ -20,6 +20,8 @@ import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.payment.model.PaymentService;
 import com.will.team4final.payment.model.PaymentVO;
+import com.will.team4final.termsOfService.model.TermsOfServiceService;
+import com.will.team4final.termsOfService.model.TermsOfServiceVO;
 
 @Controller
 public class ImportController {
@@ -28,12 +30,15 @@ public class ImportController {
 		@Autowired private ComRecruitService comRecruitService;
 		@Autowired private PaymentService paymentService;
 		@Autowired private ComMemberService cMemberSerice;
+		@Autowired private TermsOfServiceService tosService;
 		
 		@RequestMapping(value = "/companyWritePeriod/payment.do", method = RequestMethod.POST)
 		public String companyWritePeriod_post(@ModelAttribute ComRecruitVO comRecruitVo , @ModelAttribute PaymentVO paymentVo,
-				Model model, HttpSession session) {
+				Model model, HttpSession session,
+				@RequestParam String endDay) {
 			logger.info("기업회원 채용공고 기간 저장, 파라미터 comRecruitVo={}", comRecruitVo);
 			logger.info("기업회원 채용공고 기간 저장, 파라미터 paymentVo={}",paymentVo);
+			logger.info("기업회원 채용공고 기간 저장, 파라미터 endDay={}",endDay);
 			
 			//이력서 종류 채용 정보에 입력
 			int cnt = comRecruitService.updateResumeType(comRecruitVo);
@@ -55,6 +60,7 @@ public class ImportController {
 			logger.info("기업회원 채용공고 comRecruitVo={}", comRecruitVo);
 			
 			
+			model.addAttribute("endDay", endDay);
 			model.addAttribute("cMemberCode", cMemberCode);
 			model.addAttribute("paymentVo", paymentVo);
 			model.addAttribute("comRecruitVo", comRecruitVo);
@@ -64,10 +70,25 @@ public class ImportController {
 		
 		@RequestMapping("/import/payment.do")
 		@ResponseBody
-		public int payment_post(HttpSession session,Model model,@ModelAttribute PaymentVO paymentVo) {
-			 logger.info("결제 창 db 저장 화면, paymentVo={}", paymentVo);
+		public int payment_post(HttpSession session,Model model,@RequestParam String productName, @RequestParam String cMemberCode, @RequestParam int price, @RequestParam String recruitmentCode, @RequestParam String endDay) {
+			 logger.info("결제 창 db 저장 화면, {}, {}", cMemberCode, price);
+			 logger.info("결제 창 db 저장 화면, recruitmentCode={}", recruitmentCode);
 			 
+			 //결제 db에 저장
+			 PaymentVO paymentVo = new PaymentVO();
+			 paymentVo.setcMemberCode(cMemberCode);
+			 paymentVo.setPrice(price);
+			 paymentVo.setProductName(productName);
 			 int cnt = paymentService.insertPayment(paymentVo);
-			return cnt;
+			 logger.info("결제 창 cnt={}", cnt);
+			 //서비스 기간 db에 저장
+			 
+			 TermsOfServiceVO tosVo = new TermsOfServiceVO();
+			 tosVo.setEndDate(endDay);
+			 tosVo.setRecruitmentCode(recruitmentCode);
+			 int result = tosService.insertTOS(tosVo);
+			 logger.info("결제 창 result={}", result);
+			 
+			return result;
 		}
 	}
