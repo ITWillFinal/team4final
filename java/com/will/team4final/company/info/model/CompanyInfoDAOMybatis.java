@@ -16,8 +16,8 @@ public class CompanyInfoDAOMybatis implements CompanyInfoDAO {
 	}
 
 	@Override
-	public CompanyInfoVO selectComInfoBycUserid(String cMemberCode) {
-		return sqlSession.selectOne(namespace+"selectComInfoBycUserid", cMemberCode );
+	public CompanyInfoVO selectComInfoBycMemberCode(String cMemberCode) {
+		return sqlSession.selectOne(namespace+"selectComInfoBycMemberCode", cMemberCode );
 	}
 	
 }
