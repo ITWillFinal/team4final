@@ -12,23 +12,23 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['월', '매출'],
-          ['1월',  ${snum1}],
-          ['2월',  ${snum2}],
-          ['3월',  ${snum3}],
-          ['4월',  ${snum4}],
-          ['5월',  ${snum5}],
-          ['6월',  ${snum6}],
-          ['7월',  ${snum7}],
-          ['8월',  ${snum8}],
-          ['9월',  ${snum9}],
-          ['10월',  ${snum10}],
-          ['11월',  ${snum11}],
-          ['12월',  ${snum12}]
+          ['월', '일반회원 가입자 수', '기업회원 가입자 수'],
+          ['1월',  ${snum1}, ${snum1c}],
+          ['2월',  ${snum2}, ${snum2c}],
+          ['3월',  ${snum3}, ${snum3c}],
+          ['4월',  ${snum4}, ${snum4c}],
+          ['5월',  ${snum5}, ${snum5c}],
+          ['6월',  ${snum6}, ${snum6c}],
+          ['7월',  ${snum7}, ${snum7c}],
+          ['8월',  ${snum8}, ${snum8c}],
+          ['9월',  ${snum9}, ${snum9c}],
+          ['10월',  ${snum10}, ${snum10c}],
+          ['11월',  ${snum11}, ${snum11c}],
+          ['12월',  ${snum12}, ${snum12c}]
         ]);
 
         var options = {
-          title: '월별 매출액',
+          title: '월별 일반회원 가입 현황',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
