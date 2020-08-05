@@ -52,9 +52,42 @@
 		where com_code=#{comCode}
 	</select>
 	
-	<select id="selectListBycomCode" parameterType="string" resultType="comRecruitVO">
-		select * from recruitment
-		where com_code=#{comCode}
+	<select id="selectListBycomCode" parameterType="comRecruitSearchVO" resultType="comRecruitVO">
+		select * 
+		from
+		(
+			select rownum as RNUM, A.*
+			from(
+				select *
+				from recruitment
+				where
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					 ${searchCondition} like '%'
+							|| #{searchKeyword} || '%' and 
+				</if>
+				 com_code=#{comCode}
+				order by RECRUITMENT_CODE desc
+			)A
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
+	
+	<select id="selectTotalRecord" parameterType="comRecruitSearchVO"
+		resultType="int">
+		select count(*) from recruitment
+		where
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			 ${searchCondition} like '%'
+				|| #{searchKeyword} || '%' and
+		</if>
+		 com_code=#{comCode}
+	</select>
+	
+	<delete id="deleteComRecruit" parameterType="int">
+		delete recruitment
+		where com_code=#{comCode}
+	</delete>
 	
 </mapper>

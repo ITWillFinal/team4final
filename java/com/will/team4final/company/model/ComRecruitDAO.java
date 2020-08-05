@@ -11,5 +11,8 @@ public interface ComRecruitDAO {
 	String selectrecruitmentCode();
 	ComRecruitVO selectBycomCode(String comCode);
 	int updateResumeType(ComRecruitVO comRecruitVo);
-	List<ComRecruitVO> selectListBycomCode(String comCode);
+	List<ComRecruitVO> selectListBycomCode(ComRecruitSearchVO comRecruitSearchVO);
+	int selectTotalRecord(ComRecruitSearchVO comRecruitSearchVO);
+	int deleteComRecruit(String no);
+	
 }

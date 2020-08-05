@@ -18,7 +18,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,17 +25,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.will.team4final.common.PaginationInfo;
+import com.will.team4final.common.Utility;
 import com.will.team4final.company.info.model.CompanyInfoService;
 import com.will.team4final.company.info.model.CompanyInfoVO;
 import com.will.team4final.company.model.ComMemberService;
+import com.will.team4final.company.model.ComRecruitSearchVO;
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
+import com.will.team4final.company.model.ComrRecruitListVO;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
-import com.will.team4final.location.model.LocationVO;
 import com.will.team4final.login.controller.LoginController;
-import com.will.team4final.payment.model.PaymentVO;
 
 @Controller
 @RequestMapping("/companypage")
@@ -338,7 +339,10 @@ public class CompanyHomeController {
 	}
 	
 	@RequestMapping("/employmentNotice/employmentNoticeList.do")
-	public void employmentNoticeList(HttpSession session, Model model) {
+	public void employmentNoticeList(HttpSession session, Model model,
+			@ModelAttribute ComRecruitSearchVO comRecruitSearchVO) {
+		logger.info("employmentNoticeList comRecruitSearchVO={}", comRecruitSearchVO);
+		
 		String cUserid = (String)session.getAttribute("userid");
 		//회원 아이디로 회원 코드 가져와소 => company_info를 조회 
 		CompanyMemberVO companyMemberVo = cMemberSerice.selectCMemberInfoByUserid(cUserid);
@@ -347,11 +351,58 @@ public class CompanyHomeController {
 		CompanyInfoVO companyInfoVO = comInfoService.selectComInfoBycMemberCode(cMemberCode);
 		//companyInfoVO에서 comCode 조회 해서 recruitment 데이터 가져오기
 		String comCode = companyInfoVO.getComCode();
-		List<ComRecruitVO> comRecruitVoList=comRecruitService.selectListBycomCode(comCode);
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		pagingInfo.setCurrentPage(comRecruitSearchVO.getCurrentPage());
+		
+		comRecruitSearchVO.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		comRecruitSearchVO.setRecordCountPerPage(Utility.RECORD_COUNT);
+		logger.info("레코드 개수={}", comRecruitSearchVO.getRecordCountPerPage());
+		comRecruitSearchVO.setComCode(comCode);
+		
+		List<ComRecruitVO> comRecruitVoList=comRecruitService.selectListBycomCode(comRecruitSearchVO);
+		logger.info(" comRecruitVoList comRecruitVoList.size={}", comRecruitVoList.size());
+		
+		int totalRecord = comRecruitService.selectTotalRecord(comRecruitSearchVO);
+		logger.info(" comRecruitVoList  totalRecord = {}",totalRecord);
+		
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("totalRecord", totalRecord);
 		logger.info("comRecruitVoList={}", comRecruitVoList);
 		model.addAttribute("comRecruitVoList", comRecruitVoList);
 		
 	}
 	
+	@RequestMapping("/employmentNotice/deleteMulti.do")
+	public String delMulti(@ModelAttribute ComrRecruitListVO comrRecruitListVO,
+			Model model) {
+		logger.info("선택 게시글 삭제, 파라미터 comrRecruitListVO={}", comrRecruitListVO);
+		
+		List<ComRecruitVO> list = comrRecruitListVO.getComrRecruitList();
+		int cnt = comRecruitService.deleteMulti(list);
+		logger.info("선택한 항목 삭제 결과 cnt = {}", cnt);
+		
+		String msg="", url="/companypage/employmentNotice/employmentNoticeList.do";
+		if(cnt>0) {
+			msg="선택한 게시글을 삭제했습니다.";
+			
+			for(int i=0; i<list.size(); i++) {
+				ComRecruitVO vo = list.get(i);
+				logger.info("i={}", i);
+				logger.info("recruitmentCode={}", vo.getRecruitmentCode());
+				
+			}
+		}else {
+			msg="선택한 항목 삭제 실패했습니다. ";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
 	
 }
