@@ -9,7 +9,7 @@ public interface ComRecruitDAO {
 	List<Map<String, Object>> selectMost5();
 	ComRecruitVO selectOneCom(String recruitmentCode);
 	String selectrecruitmentCode();
-	ComRecruitVO checkRecruitmentCode(String comCode);
+	ComRecruitVO selectBycomCode(String comCode);
 	int updateResumeType(ComRecruitVO comRecruitVo);
-	
+	List<ComRecruitVO> selectListBycomCode(String comCode);
 }

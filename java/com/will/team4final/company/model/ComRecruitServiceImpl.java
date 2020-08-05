@@ -32,13 +32,18 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	}
 
 	@Override
-	public ComRecruitVO checkRecruitmentCode(String comCode) {
-		return comRecruitDao.checkRecruitmentCode(comCode);
+	public ComRecruitVO selectBycomCode(String comCode) {
+		return comRecruitDao.selectBycomCode(comCode);
 	}
 
 	@Override
 	public int updateResumeType(ComRecruitVO comRecruitVo) {
 		return comRecruitDao.updateResumeType(comRecruitVo);
+	}
+
+	@Override
+	public List<ComRecruitVO> selectListBycomCode(String comCode) {
+		return comRecruitDao.selectListBycomCode(comCode);
 	}
 
 	

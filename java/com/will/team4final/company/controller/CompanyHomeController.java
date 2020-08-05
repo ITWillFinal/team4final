@@ -213,7 +213,7 @@ public class CompanyHomeController {
 		logger.info("cUserid={}", cUserid);
 		CompanyMemberVO comMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
 		logger.info("기업공고 페이지 회원 정보 조회, comMemberVo={}",comMemberVo);
-		CompanyInfoVO comInfoVo=comInfoService.selectComInfoBycUserid(comMemberVo.getcMemberCode());
+		CompanyInfoVO comInfoVo=comInfoService.selectComInfoBycMemberCode(comMemberVo.getcMemberCode());
 		logger.info("기업공고 페이지 회사 정보 입력 값 확인, comInfoVo={}", comInfoVo);
 		
 		String comCode = comInfoVo.getComCode();
@@ -290,11 +290,11 @@ public class CompanyHomeController {
 		 comMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
 		 logger.info("기업회원 채용공고 기간 페이지 회원 정보 조회, comMemberVo={}",comMemberVo);
 		 CompanyInfoVO
-		 comInfoVo=comInfoService.selectComInfoBycUserid(comMemberVo.getcMemberCode());
+		 comInfoVo=comInfoService.selectComInfoBycMemberCode(comMemberVo.getcMemberCode());
 		 logger.info("기업회원 채용공고 기간 페이지 회사 정보 입력 값 확인, comInfoVo={}", comInfoVo);
 		 String comCode = comInfoVo.getComCode(); 
 		 //comCode에 맞는 RecruitmenetCode가 있는지확인 
-		 ComRecruitVO comRecruitVo =  comRecruitService.checkRecruitmentCode(comCode); 
+		 ComRecruitVO comRecruitVo =  comRecruitService.selectBycomCode(comCode); 
 		 recruitmentCode = comRecruitVo.getRecruitmentCode(); 
 		 String msg="먼저 채용 정보 입력 부탁드립니다",
 		 url="/companypage/companyWrite.do"; if(recruitmentCode==null ||
@@ -336,5 +336,22 @@ public class CompanyHomeController {
 		return cnt;
 		
 	}
+	
+	@RequestMapping("/employmentNotice/employmentNoticeList.do")
+	public void employmentNoticeList(HttpSession session, Model model) {
+		String cUserid = (String)session.getAttribute("userid");
+		//회원 아이디로 회원 코드 가져와소 => company_info를 조회 
+		CompanyMemberVO companyMemberVo = cMemberSerice.selectCMemberInfoByUserid(cUserid);
+		String cMemberCode = companyMemberVo.getcMemberCode();
+		logger.info("cMemberCode={}", cMemberCode);
+		CompanyInfoVO companyInfoVO = comInfoService.selectComInfoBycMemberCode(cMemberCode);
+		//companyInfoVO에서 comCode 조회 해서 recruitment 데이터 가져오기
+		String comCode = companyInfoVO.getComCode();
+		List<ComRecruitVO> comRecruitVoList=comRecruitService.selectListBycomCode(comCode);
+		logger.info("comRecruitVoList={}", comRecruitVoList);
+		model.addAttribute("comRecruitVoList", comRecruitVoList);
+		
+	}
+	
 	
 }
