@@ -71,19 +71,12 @@ public class IndexController {
 		logger.info("네이버 : {}", naverAuthUrl);
 		logger.info("구글 : {}", url);
 		
-		//지역나오게하기
-		List<String> locationList = locationServ.sido();
-		List<Map<String, Object>> jobList = jobServ.selectLarge();
-		List<Map<String, Object>> induList = jobServ.selectInduLarge();
-		List<ComRecruitVO> reVo = comRecruitServ.selectMost5();
+		List<Map<String, Object>> reVo = comRecruitServ.selectMost5();
 		logger.info("모스트 5 공고 = {}", reVo.size());
 		
 		//네이버
 		model.addAttribute("url", naverAuthUrl);
 		model.addAttribute("google_url", url);
-		model.addAttribute("locationList", locationList);
-		model.addAttribute("jobList", jobList);
-		model.addAttribute("induList", induList);
 		model.addAttribute("reVo", reVo);
 		
 		return "index";

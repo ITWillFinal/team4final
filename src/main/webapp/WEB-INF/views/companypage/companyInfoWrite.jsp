@@ -190,13 +190,13 @@ hr{
 				<label for="inputUser" class="col-sm-3 control-label">회사명 <span>*</span>
 				</label>
 				<div class="col-sm-9 form-input">
-					<input type="text" class="form-control onlyHangul" id="comName"
+					<input type="text" class="form-control" id="comName"
 						name="comName"
 						placeholder="회사명 입력 부탁드립니다.">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputUser" class="col-sm-3 control-label onlyHangulEnglish">대표자명 <span>*</span>
+				<label for="inputUser" class="col-sm-3 control-label">대표자명 <span>*</span>
 				</label>
 				<div class="col-sm-9 form-input">
 					<input type="text" class="form-control" id="ceo"
@@ -325,7 +325,7 @@ hr{
 					</div>
  	        </div>
 			<div class="form-group">
-				<label for="inputUser" class="col-sm-3 control-label onlyHangul">주요 사업 내용 <span>*</span>
+				<label for="inputUser" class="col-sm-3 control-label">주요 사업 내용 <span>*</span>
 				</label>
 				<div class="col-sm-9 form-input">
 					<textarea class="form-control" rows="8" id="content" name="content"></textarea>
@@ -335,7 +335,7 @@ hr{
 				<label for="inputUser" class="col-sm-3 control-label onlyAlphabet ">홈페이지
 				</label>
 				<div class="col-sm-9 form-input">
-					<input type="email" class="form-control" id="homepage"
+					<input type="text" class="form-control" id="homepage"
 						name="homepage">
 				</div>
 			</div>

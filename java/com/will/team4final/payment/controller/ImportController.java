@@ -70,20 +70,25 @@ public class ImportController {
 		
 		@RequestMapping("/import/payment.do")
 		@ResponseBody
-		public String payment_post(HttpSession session,Model model,@ModelAttribute PaymentVO paymentVo, @ModelAttribute
-				ComRecruitVO comRecruitVo, @RequestParam String endDay) {
-			 logger.info("결제 창 db 저장 화면, paymentVo={}", paymentVo);
-			 logger.info("결제 창 db 저장 화면, comRecruitVo={}", comRecruitVo);
+		public int payment_post(HttpSession session,Model model,@RequestParam String productName, @RequestParam String cMemberCode, @RequestParam int price, @RequestParam String recruitmentCode, @RequestParam String endDay) {
+			 logger.info("결제 창 db 저장 화면, {}, {}", cMemberCode, price);
+			 logger.info("결제 창 db 저장 화면, recruitmentCode={}", recruitmentCode);
 			 
 			 //결제 db에 저장
+			 PaymentVO paymentVo = new PaymentVO();
+			 paymentVo.setcMemberCode(cMemberCode);
+			 paymentVo.setPrice(price);
+			 paymentVo.setProductName(productName);
 			 int cnt = paymentService.insertPayment(paymentVo);
-			 
+			 logger.info("결제 창 cnt={}", cnt);
 			 //서비스 기간 db에 저장
+			 
 			 TermsOfServiceVO tosVo = new TermsOfServiceVO();
 			 tosVo.setEndDate(endDay);
-			 tosVo.setRecruitmentCode(comRecruitVo.getRecruitmentCode());
+			 tosVo.setRecruitmentCode(recruitmentCode);
 			 int result = tosService.insertTOS(tosVo);
+			 logger.info("결제 창 result={}", result);
 			 
-			return "수정 성공";
+			return result;
 		}
 	}
