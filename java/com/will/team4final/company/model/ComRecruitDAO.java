@@ -13,4 +13,5 @@ public interface ComRecruitDAO {
 	int updateResumeType(ComRecruitVO comRecruitVo);
 	List<ComRecruitVO> recruitmentDetailList(ComRecruitVO comRecruitVo);
 	List<ComRecruitVO> selectListBycomCode(String comCode);
+	int updateReadCount(String recruitmentCode);
 }

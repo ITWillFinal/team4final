@@ -49,7 +49,7 @@
 			<span>입사요청</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="<c:url value='/resume/mypageScrap.do'/>"><i class="far fa-star fa-4x"></i><br>
+			<a href="<c:url value='/mypage/mypageScrap.do'/>"><i class="far fa-star fa-4x"></i><br>
 			<span>${scrap }</span><br>
 			<span>스크랩</span></a>
 		</div>

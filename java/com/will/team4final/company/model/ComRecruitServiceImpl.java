@@ -1,10 +1,13 @@
 package com.will.team4final.company.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.will.team4final.scrap.model.ComScrapVO;
 
 @Service
 public class ComRecruitServiceImpl implements ComRecruitService {
@@ -48,6 +51,22 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	
 	public List<ComRecruitVO> selectListBycomCode(String comCode) {
 		return comRecruitDao.selectListBycomCode(comCode);
+	}
+
+	@Override
+	public List<ComRecruitVO> selectScrapList(List<ComScrapVO> scrapList) {
+		List<ComRecruitVO> list = new ArrayList<ComRecruitVO>();
+		for (int i = 0; i < scrapList.size(); i++) {
+			ComScrapVO comScrap = scrapList.get(i);
+			ComRecruitVO rectuitVo = comRecruitDao.selectOneCom(comScrap.getRecruitmentCode());
+			list.add(rectuitVo);
+		}
+		return list;
+	}
+
+	@Override
+	public int updateReadCount(String recruitmentCode) {
+		return comRecruitDao.updateReadCount(recruitmentCode);
 	}
 	
 }

@@ -21,8 +21,8 @@ import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.login.controller.LoginController;
-import com.will.team4final.scrip.model.ComScrapService;
-import com.will.team4final.scrip.model.ComScrapVO;
+import com.will.team4final.scrap.model.ComScrapService;
+import com.will.team4final.scrap.model.ComScrapVO;
 
 @Controller
 @RequestMapping("/hireinpo")
@@ -55,6 +55,15 @@ public class HireInfoController {
 	}
 	
 	@RequestMapping("/infoDetail.do")
+	public String updateCount(@RequestParam String recruitmentCode, Model model) {
+		logger.info("기업 채용 디테일 조회수 up!, 파라미터 recruitmentCode = {}", recruitmentCode);
+		int cnt = comRecuritServ.updateReadCount(recruitmentCode);
+		logger.info("조회수 증가 결과 = {}", cnt);
+		
+		return "redirect:/hireinpo/infoDetailGo.do?recruitmentCode="+recruitmentCode;
+	}
+	
+	@RequestMapping("/infoDetailGo.do")
 	public String infoDetail(@RequestParam String recruitmentCode, Model model, HttpServletRequest request) {
 		logger.info("기업 채용 디테일, 파라미터 recruitmentCode = {}", recruitmentCode);
 		

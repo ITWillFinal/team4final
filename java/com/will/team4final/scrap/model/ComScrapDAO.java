@@ -1,4 +1,4 @@
-package com.will.team4final.scrip.model;
+package com.will.team4final.scrap.model;
 
 import java.util.List;
 

@@ -13,10 +13,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.will.team4final.company.model.ComRecruitService;
+import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.resume.model.ResumeService;
 import com.will.team4final.resume.model.ResumeVO;
-import com.will.team4final.scrip.model.ComScrapService;
-import com.will.team4final.scrip.model.ComScrapVO;
+import com.will.team4final.scrap.model.ComScrapService;
+import com.will.team4final.scrap.model.ComScrapVO;
 
 @Controller
 @RequestMapping("/mypage")
@@ -27,6 +29,8 @@ public class MypageController {
 	private ComScrapService comScrapServ;
 	@Autowired
 	private ResumeService resumeService;
+	@Autowired
+	private ComRecruitService comRecruitServ;
 	
 	@RequestMapping("/mypageHome.do")
 	public String mypage(@RequestParam String status, HttpSession session, Model model) {
@@ -57,7 +61,8 @@ public class MypageController {
 	public void mypageScrap(HttpSession session, Model model) {
 		String userNo = (String)session.getAttribute("userNo");
 		logger.info("나의 스크랩! userNo = {}", userNo);
-		List<ComScrapVO> list = comScrapServ.selectComScrapInfo(userNo);
+		List<ComScrapVO> scrapList = comScrapServ.selectComScrapInfo(userNo);
+		List<ComRecruitVO> list = comRecruitServ.selectScrapList(scrapList);
 		
 		model.addAttribute("list", list);
 	}

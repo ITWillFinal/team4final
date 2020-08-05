@@ -1,4 +1,4 @@
-package com.will.team4final.scrip.controller;
+package com.will.team4final.scrap.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.will.team4final.login.controller.LoginController;
-import com.will.team4final.scrip.model.ComScrapService;
-import com.will.team4final.scrip.model.ComScrapVO;
+import com.will.team4final.scrap.model.ComScrapService;
+import com.will.team4final.scrap.model.ComScrapVO;
 
 @Controller
 @RequestMapping("/scrap")

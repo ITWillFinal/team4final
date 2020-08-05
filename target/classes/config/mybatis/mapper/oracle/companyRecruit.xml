@@ -30,7 +30,11 @@
 	</update>
 	
 	<select id="selectMost5" resultType="map">
-		select * from recruitment_tos where to_date(end_date) >= sysdate-1
+		select A.*
+		from(
+			select * from recruitment_tos where to_date(end_date) >= sysdate-1 order by readcount desc
+		)A
+		<![CDATA[where rownum <= 5 ]]>
 	</select>
 	
 	<select id="selectOneCom" resultType="comRecruitVo" parameterType="string">
@@ -87,5 +91,11 @@
 	<select id="selectListBycomCode" parameterType="string" resultType="comRecruitVO">
 		select * from recruitment
 		where com_code=#{comCode}
+	</select>
+	
+	<select id="updateReadCount" parameterType="string">
+		update recruitment
+		set readcount = readcount+1
+		where recruitment_code = #{recruitmentCode}
 	</select>
 </mapper>
