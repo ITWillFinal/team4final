@@ -239,7 +239,8 @@
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frm" method="post" action="<c:url value='/companypage/companyResumeUse.do'/>">
 		
-		<input type="text" name="recruitmentCode" id="recruitmentCode" value="${vo.recruitmentCode}">
+		이력서코드 : <input type="text" name="recruitmentCode" id="recruitmentCode" value="${vo.recruitmentCode}">
+		일반회원아이디 : <input type="text" name="userId">
 			<!-- 
 			<div style="margin:5px; height:95px; border:1px solid lightgray">
 			위쪽 가로 긴 구역
@@ -257,11 +258,15 @@
 					</colgroup>
 					<tr>
 						<td>이름</td>
-						<td><input type="text"></td>
+						<td><input type="text" name="name"></td>
+					</tr>
+					<tr>
+						<td>성별</td>
+						<td><input type="text" name="gender"></td>
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td><input type="text"></td>
+						<td><input type="text" name="gender"></td>
 					</tr>
 					<tr>
 						<td>전화번호</td>

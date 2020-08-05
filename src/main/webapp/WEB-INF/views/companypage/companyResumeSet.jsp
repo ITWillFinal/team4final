@@ -208,7 +208,7 @@
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frm" method="post" action="<c:url value='/companypage/companyResumeSet.do'/>">
 		
-		<input type="text" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode}">
+		이력서코드 : <input type="text" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode}">
 		<span style="font-size: 25px; font-weight: bold;">자사 이력서 양식 설정</span>
 		<hr>
 		<div style="margin:5px;">
@@ -221,6 +221,10 @@
 				</colgroup>
 				<tr>
 					<td>이름</td>
+					<td><input type="text" readonly></td>
+				</tr>
+				<tr>
+					<td>성별</td>
 					<td><input type="text" readonly></td>
 				</tr>
 				<tr>
