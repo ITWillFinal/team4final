@@ -42,6 +42,11 @@ public class ComRecruitDAOMybatis implements ComRecruitDAO {
 	public int updateResumeType(ComRecruitVO comRecruitVo) {
 		return sqlSession.update(namespace+"updateResumeType", comRecruitVo);
 	}
+
+	@Override
+	public List<ComRecruitVO> recruitmentDetailList(ComRecruitVO comRecruitVo) {
+		return sqlSession.selectList(namespace + "recruitmentDetailList", comRecruitVo);
+	}
 	
 	
 }

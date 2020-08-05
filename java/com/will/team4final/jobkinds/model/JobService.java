@@ -8,4 +8,6 @@ public interface JobService {
 	List<Map<String, Object>> selectInduLarge();
 	List<Map<String, Object>> selectJobMiddle(int no);
 	List<Map<String, Object>> selectInduMiddle(int no);
+	String selectJobLargeName(String jobType);
+	String selectInduLargeName(String induType);
 }

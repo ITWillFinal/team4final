@@ -262,6 +262,16 @@ public class CompanyHomeController {
 		String recruitmentCode = comRecruitService.selectrecruitmentCode();
 		vo.setRecruitmentCode(recruitmentCode);
 		
+		String jobType = vo.getJobType1();
+		String induType = vo.getInduType1();
+		
+		String jobType1 = jobServ.selectInduLargeName(induType);
+		String induType1 = jobServ.selectJobLargeName(jobType);
+		logger.info("타입 1 이름 = {}, {}", jobType1, induType1);
+		
+		vo.setJobType1(induType1);
+		vo.setInduType1(jobType1);
+		
 		//기업 채용 공고 등록
 		int cnt = comRecruitService.insertComRecruit(vo);
 		logger.info("기업 채용 공고 결과 cnt={}", cnt);

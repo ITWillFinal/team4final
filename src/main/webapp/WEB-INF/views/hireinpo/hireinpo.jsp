@@ -35,72 +35,69 @@ $(function(){
 
 $(function() {
 	$('#sido').click(function() {
-		if($('#sido').val() != 0){
-			var sido = $('#sido').val();
-			$('#sigugun').empty();
-			$.ajax({
-				url:"<c:url value='/sigugun.do'/>",
-				type:"get",
-				dataType:"json",
-				data:"sido="+sido,
-				success:function(res){
-					$('#sigugun').append("<option>전체</option>");
-					for(var i = 0; i< res.length; i++){
-						var option ="<option value='"+res[i]+"'>"+res[i]+"</option>";
-						$('#sigugun').append(option);
-					}
-				},
-				error:function(xhr, status, error){
-					alert(status + ", " + error);
+		$('#tdLocation2').val('');
+		var sido = $('#sido').val();
+		$('#sigugun').empty();
+		$.ajax({
+			url:"<c:url value='/sigugun.do'/>",
+			type:"get",
+			dataType:"json",
+			data:"sido="+sido,
+			success:function(res){
+				$('#sigugun').append("<option>전체</option>");
+				for(var i = 0; i< res.length; i++){
+					var option ="<option value='"+res[i]+"'>"+res[i]+"</option>";
+					$('#sigugun').append(option);
 				}
-			});
-		}
+			},
+			error:function(xhr, status, error){
+				alert(status + ", " + error);
+			}
+		});
 	});
 	
 	$('#jobLarge').click(function() {
-		if($('#jobLarge').val() != 0){
-			var num = $('#jobLarge').val();
-			$('#jobMiddle').empty();
-			$.ajax({
-				url:"<c:url value='/job/jobMiddle.do'/>",
-				type:"get",
-				dataType:"json",
-				data:"no="+num,
-				success:function(res){
-					$('#jobMiddle').append("<option>전체</option>");
-					for(var i = 0; i< res.length; i++){
-						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
-						$('#jobMiddle').append(option);
-					}
-				},
-				error:function(xhr, status, error){
-					alert(status + ", " + error);
+		$('#tdJob2').val('');
+		var num = $('#jobLarge').val();
+		$('#jobMiddle').empty();
+		$.ajax({
+			url:"<c:url value='/job/jobMiddle.do'/>",
+			type:"get",
+			dataType:"json",
+			data:"no="+num,
+			success:function(res){
+				$('#jobMiddle').append("<option>전체</option>");
+				for(var i = 0; i< res.length; i++){
+					var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
+					$('#jobMiddle').append(option);
 				}
-			});
-		}
+			},
+			error:function(xhr, status, error){
+				alert(status + ", " + error);
+			}
+		});
 	});
 	
 	$('#induLarge').click(function() {
-		if($('#induLarge').val() != 0){
-			var num = $('#induLarge').val();
-			$('#induMiddle').empty();
-			$.ajax({
-				url:"<c:url value='/job/induMiddle.do'/>",
-				type:"get",
-				dataType:"json",
-				data:"no="+num,
-				success:function(res){
-					$('#induMiddle').append("<option>전체</option>");
-					for(var i = 0; i< res.length; i++){
-						var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
-						$('#induMiddle').append(option);
-					}
-				},
-				error:function(xhr, status, error){
-					alert(status + ", " + error);
+		$('#tdIndu2').val('');
+		var num = $('#induLarge').val();
+		$('#induMiddle').empty();
+		$.ajax({
+			url:"<c:url value='/job/induMiddle.do'/>",
+			type:"get",
+			dataType:"json",
+			data:"no="+num,
+			success:function(res){
+				$('#induMiddle').append("<option>전체</option>");
+				for(var i = 0; i< res.length; i++){
+					var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
+					$('#induMiddle').append(option);
 				}
-			});
-		}
+			},
+			error:function(xhr, status, error){
+				alert(status + ", " + error);
+			}
+		});
 	});
 });
 
@@ -112,7 +109,7 @@ function hireInfo(){
 		,data:$("#hireform").serialize()
 		,dataType:"text"
 		,success:function(res){
-			alert(res);			
+			alert(res);
 		}
 	    ,error: function(xhr,status, error){
 	    	alert("에러발생");
@@ -212,7 +209,6 @@ function hireInfo(){
 	<div id="hireTabs-1">
 		<div id="locationLi" style="display: inline-block">
 			<select size="10" id="sido">
-				<option value="0">전체</option>
 				<c:forEach var="location" items="${locationList }">
 					<option id="op" value="${location }">${location }</option>
 				</c:forEach>
@@ -228,7 +224,6 @@ function hireInfo(){
 	<div id="hireTabs-2">
 		<div id="locationLi" style="display: inline-block">
 			<select size="10" id="jobLarge">
-				<option value="0">전체</option>
 				<c:forEach var="map" items="${jobList }">
                		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
                 </c:forEach>
@@ -244,7 +239,6 @@ function hireInfo(){
 	<div id="hireTabs-3">
 		<div id="locationLi" style="display: inline-block">
 			<select size="10" id="induLarge">
-				<option value="0">전체</option>
 				<c:forEach var="map" items="${induList }">
                		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
                 </c:forEach>
@@ -326,6 +320,9 @@ function hireInfo(){
 			<input type="button" onClick="hireInfo();" value="상세검색">
 		</div>
 	</form>
+</div>
+<div>
+	
 </div>
 </div>
 <%@ include file="../inc/bottom.jsp" %>
