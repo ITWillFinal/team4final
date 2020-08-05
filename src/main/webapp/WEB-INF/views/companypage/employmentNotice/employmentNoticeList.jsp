@@ -30,13 +30,14 @@ a{
 }
 
 #upList{
-	 padding-left: 300px;
+	 padding-left: 80px;
 }
 /* 페이징 */
 .divPage {
 	text-align:center;     
 	margin-top: 70px;
     margin-bottom: 25px;
+    width: 1100px;
 }
 
 /* 목록 */
@@ -78,16 +79,44 @@ input#btMultiDel {
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
 <script type="text/javascript">	
+function pageProc(curPage){
+	$('input[name=currentPage]').val(curPage);
+	$('form[name=frmPage]').submit();
+}
+
+$(function () {
+	$('input[name=chkAll]').click(function () {
+		$('tbody input[type=checkbox]')
+		.prop('checked', this.checked);			
+	});
 	
+	$('#btMultiDel').click(function() {
+		var len = $('tbody input[type=checkbox]:checked').length;
+		if(len==0){
+			alert("삭제하려는 게시글을 먼저 체크하세요.");
+			return;
+		}
+		
+		$('form[name=frmList]')
+			.prop("action", "<c:url value = '/companypage/employmentNotice/deleteMulti.do'/>");
+		
+		$('form[name=frmList]').submit();
+	});
+	
+
+	
+});
 </script>
 	<main>
 		<!-- main -->
-		<div style="text-align: center;  margin:0 auto; width:850px; border:1px solid lightgray;">
+		<div style="text-align: center;  margin:0 auto; width:60%; height:800; border:1px solid lightgray;">
 			<div id = "list">
-	
-				<div id = "upList">
+				<div id = "upList" style="width: 1000px; margin-top: 50px;">
 					<c:if test="${!empty param.searchKeyword }">
 						<p>검색어 : ${param.searchKeyword },
+							 ${pagingInfo.totalRecord}건 검색되었습니다.</p>
+					</c:if>
+					<c:if test="${empty param.searchKeyword }">
 							 ${pagingInfo.totalRecord}건 검색되었습니다.</p>
 					</c:if>
 					<!-- 페이징 -->
@@ -104,7 +133,7 @@ input#btMultiDel {
 			<form name="frmList" method="post"
 				action="<c:url value = '/companypage/employmentNotice/employmentNoticeList.do'/>">
 				<div class = "divList">
-					<table class = "box2" style="width: 700px; margin-top: 45px;">
+					<table class = "box2" style="width: 1000px; margin-top: 45px;">
 						<colgroup>
 						   <col style="width:3%;" />
 						   <col style="width:22%;" />
@@ -127,7 +156,7 @@ input#btMultiDel {
 						</thead>
 						<tbody>
 							<c:if test="${empty comRecruitVoList }">
-								<th colspan="5">등록된 채용 정보가 없습니다.</th>
+								<th colspan="7">등록된 채용 정보가 없습니다.</th>
 							</c:if>
 							<c:if test="${!empty comRecruitVoList }">
 								<c:set var = "idx" value = "0"/>
@@ -173,54 +202,53 @@ input#btMultiDel {
 				</div>
 			</form>
 			</div>
-			<div class="divPage">
-		<!-- 페이지 번호 추가 -->
-		<!-- 이전 블럭으로 이동 ◀ -->
-		<c:if test="${pagingInfo.firstPage>1 }">
-			<a href="#" onclick="pageProc(${pagingInfo.firstPage-1})"> ◁ </a>
-		</c:if>
-
-		<!-- 페이지 번호 1~10 -->
-		<c:forEach var="i" begin="${pagingInfo.firstPage }"
-			end="${pagingInfo.lastPage }">
-			<c:if test="${i!=pagingInfo.currentPage }">
-				<a href="#" onclick="pageProc(${i})">[${i}]</a>
-			</c:if>
-			<c:if test="${i==pagingInfo.currentPage }">
-				<span style="color: blue; font-weight: bold; font-size: 12px;">${i}</span>
-			</c:if>
-		</c:forEach>
-
-		<!-- 다음 블럭으로 이동 ▶ -->
-		<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-			<a href="#" onclick="pageProc(${pagingInfo.lastPage+1})"> ▷ </a>
-		</c:if>
-		<!--  페이지 번호 끝 -->
-	</div>
-	<div class="divSearch" style="margin-top: 30px; text-align: center;">
-		<form name="frmSearch" method="post"
-			action='<c:url value="/admin/adminMemberManagement.do"/>'>
-			<select name="searchCondition" style="margin-top: 8px;">
-				<option value="user_id"
-					<c:if test="${param.searchCondition=='user_id' }">
-            		selected="selected"
-            	</c:if>>아이디</option>
-				<option value="user_name"
-					<c:if test="${param.searchCondition=='user_name' }">
-            		selected="selected"
-            	</c:if>>이름</option>
-				<option value="user_status"
-					<c:if test="${param.searchCondition=='user_status' }">
-            		selected="selected"
-            	</c:if>>유저
-					상태</option>
-			</select> <input type="text" name="searchKeyword" title="검색어 입력"
-				style="margin-top: 8px;" value="${param.searchKeyword}"> <input
-				type="submit" value="검색">
-		</form>
-	</div>
+		<div class="bottomBody" style="margin-top: 320px;">
+				<div class="divPage">
+					<!-- 페이지 번호 추가 -->
+					<!-- 이전 블럭으로 이동 ◀ -->
+					<c:if test="${pagingInfo.firstPage>1 }">
+						<a href="#" onclick="pageProc(${pagingInfo.firstPage-1})"> ◁ </a>
+					</c:if>
+			
+					<!-- 페이지 번호 1~10 -->
+					<c:forEach var="i" begin="${pagingInfo.firstPage }"
+						end="${pagingInfo.lastPage }">
+						<c:if test="${i!=pagingInfo.currentPage }">
+							<a href="#" onclick="pageProc(${i})">[${i}]</a>
+						</c:if>
+						<c:if test="${i==pagingInfo.currentPage }">
+							<span style="color: blue; font-weight: bold; font-size: 12px;">${i}</span>
+						</c:if>
+					</c:forEach>
+			
+					<!-- 다음 블럭으로 이동 ▶ -->
+					<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+						<a href="#" onclick="pageProc(${pagingInfo.lastPage+1})"> ▷ </a>
+					</c:if>
+					<!--  페이지 번호 끝 -->
+				</div>
+				<div class="divSearch" style="margin-top: 10px; width: 1200px; text-align: center;">
+					<form name="frmSearch" method="post"
+						action='<c:url value="/companypage/employmentNotice/employmentNoticeList.do"/>'>
+						<select name="searchCondition" style="margin-top: 8px;">
+							<option value="COM_NAME"
+								<c:if test="${param.searchCondition=='COM_NAME' }">
+			            		selected="selected"
+			            	</c:if>>기업명</option>
+							<option value="title"
+								<c:if test="${param.searchCondition=='title' }">
+			            		selected="selected"
+			            	</c:if>>제목</option>
+						</select> 
+						<input type="text" name="searchKeyword" title="검색어 입력"
+							style="margin-top: 8px;" value="${param.searchKeyword}"> <input
+							type="submit" value="검색">
+							<input type="button" id = "btMultiDel" value="선택한 게시글 삭제" style="margin-bottom: 50px"><br><br>
+					</form>
+				</div><!-- divPage -->
+			</div>
 			</div>
 		</div>
 	</main>
-
+	<br><br><br><br>
 <%@ include file="../../inc/companyBottom.jsp"%>
