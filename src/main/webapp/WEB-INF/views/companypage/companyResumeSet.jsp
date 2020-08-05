@@ -69,95 +69,130 @@
 		border-radius: 50%;
 	}
 	/* 토글 슬라이더 끝 */
+	
+	.selfTitle{
+		display: none;
+	}
+	
 </style>
 <script type="text/javascript">
 	
 	$(function(){
+		
+		$("#schoolVal").val("y");
 		$("#schoolChk").change(function(){
 	        if($("#schoolChk").is(":checked")){
 	            alert("학력 사용설정");
 	            $("#schoolDivChk").show();
+	            $("#schoolVal").val("y");
 	        }else{
 	            alert("학력 사용해제");
 	            $("#schoolDivChk").hide();
+	            $("#schoolVal").val("n");
 	        }
 	    });
+		
+		$("#careerVal").val("y");
 		$("#careerChk").change(function(){
 	        if($("#careerChk").is(":checked")){
 	            alert("경력 사용설정");
 	            $("#careerDivChk").show();
+	            $("#careerVal").val("y");
 	        }else{
 	            alert("경력 사용해제");
 	            $("#careerDivChk").hide();
+	            $("#careerVal").val("n");
 	        }
 	    });
+		
+		$("#certificateVal").val("y");
 		$("#certificateChk").change(function(){
 	        if($("#certificateChk").is(":checked")){
 	            alert("자격증 사용설정");
 	            $("#certificateDivChk").show();
+	            $("#certificateVal").val("y");
 	        }else{
 	            alert("자격증 사용해제");
 	            $("#certificateDivChk").hide();
+	            $("#certificateVal").val("n");
 	        }
 	    });
+	
+		$("#languageVal").val("y");
 		$("#languageChk").change(function(){
 	        if($("#languageChk").is(":checked")){
 	            alert("외국어능력 사용설정");
 	            $("#languageDivChk").show();
+	            $("#languageVal").val("y");
 	        }else{
 	            alert("외국어능력 사용해제");
 	            $("#languageDivChk").hide();
+	            $("#languageVal").val("n");
 	        }
 	    });
+		
+		$("#awardsVal").val("y");
 		$("#awardsChk").change(function(){
 	        if($("#awardsChk").is(":checked")){
 	            alert("수상내역 사용설정");
 	            $("#awardsDivChk").show();
+	            $("#awardsVal").val("y");
 	        }else{
 	            alert("수상내역 사용해제");
 	            $("#awardsDivChk").hide();
+	            $("#awardsVal").val("n");
 	        }
 	    });
+		
+		$("#activityVal").val("y");
 		$("#activityChk").change(function(){
 	        if($("#activityChk").is(":checked")){
 	            alert("대외활동 사용설정");
 	            $("#activityDivChk").show();
+	            $("#activityVal").val("y");
 	        }else{
 	            alert("대외활동 사용해제");
 	            $("#activityDivChk").hide();
+	            $("#activityVal").val("n");
 	        }
 	    });
+		
+		$("#specialVal").val("y");
 		$("#specialChk").change(function(){
 	        if($("#specialChk").is(":checked")){
 	            alert("우대사항 사용설정");
 	            $("#specialDivChk").show();
+	            $("#specialVal").val("y");
 	        }else{
 	            alert("우대사항 사용해제");
 	            $("#specialDivChk").hide();
+	            $("#specialVal").val("n");
 	        }
 	    });
 		
+		
+		
+		$("#selfVal").val("y");
 		$("#selfChk").change(function(){
 	        if($("#selfChk").is(":checked")){
 	            alert("자기소개서 사용설정");
 	            $("#selfDivChk").show();
+	            $("#selfVal").val("y");
 	        }else{
 	            alert("자기소개서 사용해제");
 	            $("#selfDivChk").hide();
+	            $("#selfVal").val("n");
+	            $('#selfTable').find('input[type=text]').val('');
 	        }
 	    });
 		
-				
-		var i = 2;
 		$("#selfAddBtn").click(function(){
-			$("#selfTable")			
-			.append("<tr id='selfTr'><td>항목 "+i+" :</td><td><input type='text'></td></tr>");
-			i++;
+			$('.selfTitle:eq(0)').removeClass('selfTitle');		
 		});
 		
 		$("#selfDelBtn").click(function(){
-			$("#selfTr:nth-last-child(1)").remove();
-			i--;
+			$('.removeTr').not('.selfTitle').last().find('input').val('');
+			$('.removeTr').not('.selfTitle').last().addClass('selfTitle');
 		});
 				
 	});
@@ -170,12 +205,9 @@
 	
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
-		<form>
-		<%--
-		<div style="margin:5px; height:95px; border:1px solid lightgray">
-		위쪽 가로 긴 구역
-		</div>
-		--%>
+		<form nape="frm" method="post" action="<c:url value='/companypage/companyResumeSet.do'/>">
+		
+		<input type="text" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode}">
 		<span style="font-size: 25px; font-weight: bold;">자사 이력서 양식 설정</span>
 		<hr>
 		<div style="margin:5px;">
@@ -239,6 +271,7 @@
 				</table>
 			</div>
 		</div>
+		<input type="text" name="schoolVal" id="schoolVal">
 		<hr>		
 		
 		<div id="careerDiv" style="margin:5px;">
@@ -266,6 +299,7 @@
 				</table>
 			</div>
 		</div>
+		<input type="text" name="careerVal" id="careerVal">
 		<hr>
 		
 		<div id="certificateDiv" style="margin:5px;">
@@ -291,6 +325,7 @@
 				</table>
 			</div>
 		</div>
+		<input type="text" name="certificateVal" id="certificateVal">
 		<hr>
 		
 		<div id="languageDiv" style="margin:5px;">
@@ -316,6 +351,7 @@
 				</table>
 			</div>
 		</div>
+		<input type="text" name="languageVal" id="languageVal">
 		<hr>
 		
 		<div id="awardsDiv" style="margin:5px;">
@@ -341,6 +377,7 @@
 				</table>
 			</div>
 		</div>
+		<input type="text" name="awardsVal" id="awardsVal">
 		<hr>
 		
 		<div id="specialDiv" style="margin:5px;">
@@ -356,6 +393,7 @@
 					<colgroup>
 						<col style="width:200px;">
 					</colgroup>
+					<span>예시)</span>
 					<tr>
 						<td><input type="checkbox">&nbsp;병역대상</td>
 					</tr>
@@ -368,6 +406,7 @@
 				</table>
 			</div>
 		</div>
+		<input type="text" name="specialVal" id="specialVal">
 		<hr>
 		
 		<div id="activityDiv" style="margin:5px;">
@@ -393,39 +432,57 @@
 				</table>
 			</div>
 		</div>
+		<input type="text" name="activityVal" id="activityVal">
 		<hr>
 		
-			<div id="selfDiv" style="margin:5px;">
-				<span style="font-size: 18px; font-weight: bold;">자기소개서</span>
-				<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
-				<label class="switch">
-					<input type="checkbox" id="selfChk" checked> <!-- 체크 시 테이블 등장 -->
-					<span class="slider round"></span>
-				</label><br><br>
-				<%-- 체크박스를 토글스위치로 바꾼 부분 끝 --%>
-				<div id="selfDivChk">
-				<span>주제를 입력하세요</span>
-				<input type="button" value="추가" id="selfAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
-				<input type="button" value="삭제" id="selfDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
-				<br><br>
-					<table id="selfTable">
-						<colgroup>
-							<col style="width:100px;">
-							<col style="width:500px;">
-						</colgroup>
-						<tr>
-							<td>항목 1 : </td>
-							<td><input type="text"></td>			
-						</tr>
-					</table>
-				</div>
-			</div>
-			<hr>
-			<div style="text-align: center;">
-				<input type="submit" value="설정완료">
-				<input type="button" value="뒤로가기">
-			</div>
+		<div id="selfDiv" style="margin:5px;">
+			<span style="font-size: 18px; font-weight: bold;">자기소개서</span>
+			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
+			<label class="switch">
+				<input type="checkbox" id="selfChk" checked> <!-- 체크 시 테이블 등장 -->
+				<span class="slider round"></span>
+			</label><br><br>
+			<%-- 체크박스를 토글스위치로 바꾼 부분 끝 --%>
+			<div id="selfDivChk">
+			<span>주제를 입력하세요</span>
+			<input type="button" value="추가" id="selfAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
+			<input type="button" value="삭제" id="selfDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
 			<br><br>
+				<table id="selfTable">
+					<colgroup>
+						<col style="width:100px;">
+						<col style="width:500px;">
+					</colgroup>
+					<tr>
+						<td>항목 1 : </td>
+						<td><input type="text" name="selfTitle1"></td>
+					</tr>
+					<tr class="selfTitle removeTr" >
+						<td>항목 2 : </td>
+						<td><input type="text" name="selfTitle2"></td>
+					</tr>
+					<tr class="selfTitle removeTr" >
+						<td>항목 3 : </td>
+						<td><input type="text" name="selfTitle3"></td>
+					</tr>
+					<tr class="selfTitle removeTr" >
+						<td>항목 4 : </td>
+						<td><input type="text" name="selfTitle4"></td>
+					</tr>
+					<tr class="selfTitle removeTr" >
+						<td>항목 5 : </td>
+						<td><input type="text" name="selfTitle5"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<input type="text" name="selfVal" id="selfVal">
+		<hr>
+		<div style="text-align: center;">
+			<input type="submit" value="설정완료">
+			<input type="button" value="뒤로가기">
+		</div>
+		<br><br>
 		</form>
 	</div>
 </main>
