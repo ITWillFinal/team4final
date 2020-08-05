@@ -107,18 +107,40 @@ function hireInfo(){
 		 url :"<c:url value='/hireinpo/searchHireInfo.do'/>"
 		,type:"post"
 		,data:$("#hireform").serialize()
-		,dataType:"text"
+		,dataType:"json"
 		,success:function(res){
-			alert(res);
+			makeListJson(res);
 		}
 	    ,error: function(xhr,status, error){
 	    	alert("에러발생");
 	    }
 	});
 }
+
+function makeListJson(res){
+	var htmlStr = "";
+	$(res).each(function(){
+		htmlStr += "<div class='single-job-items mb-30' style='width: 90%;margin: 0 auto; border: 1px solid #e0e0e08f; margin-top:20px;'><div class='job-items'><div class='job-tittle'>";
+		htmlStr += "<a href='<c:url value='/hireinpo/infoDetail.do?recruitmentCode="+this.recruitmentCode+"'/>'><h4>"+this.title+"</h4></a>";
+		htmlStr += "<ul>";
+		htmlStr += "<li>"+this.comName+"</li>";
+		htmlStr += "<li><i class='fas fa-map-marker-alt'></i>"+this.jobType2+"</li>";
+		htmlStr += "<li>"+this.pay+"</li>";
+		htmlStr += "<ul>";
+		htmlStr += "</div></div>";
+		htmlStr += "<div class='items-link f-right'>";
+		htmlStr += "<a href='<c:url value='/hireinpo/infoDetail.do?recruitmentCode="+this.recruitmentCode+"'/>'>"+this.recType+"</a>";
+		htmlStr += "</div></div>";
+	});
+	$("#jobListDiv").html(htmlStr);
+}
 </script>
 <style>
-
+	#jobListDiv{
+		clear: both;
+    	padding-top: 25px;
+    	margin-bottom: 50px;
+	}
 	#hireTabs{
 		float: left;
 		width: 55%;
@@ -321,7 +343,7 @@ function hireInfo(){
 		</div>
 	</form>
 </div>
-<div>
+<div id="jobListDiv">
 	
 </div>
 </div>
