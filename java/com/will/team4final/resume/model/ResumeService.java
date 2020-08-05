@@ -11,4 +11,8 @@ public interface ResumeService {
 	int deleteResume(int resumeNo);
 	ResumeAllVO selectResumeByResumNo(int resumeNo);
 	int updateResume(ResumeAllVO resumeAllVo);
+	List<Integer> searchTalent(String jobtype);
+	List<Integer> searchTalentByCareerYear(int careerYear);
+	List<Integer> searchTalentByLocation(String location);
+	List<Integer> searchTalentBySal(String sal);
 }

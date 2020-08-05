@@ -35,4 +35,8 @@ public interface ResumeDAO {
 	int deleteLanguage(int resumeNo);
 	int deleteAward(int resumeNo);
 	int deletePotfolio(int resumeNo);
+	List<Integer> searchTalent(String jobtype);
+	List<Integer> searchTalentByCareerYear(int careerYear);
+	List<Integer> searchTalentByLocation(String location);
+	List<Integer> searchTalentBySal(String sal);
 }

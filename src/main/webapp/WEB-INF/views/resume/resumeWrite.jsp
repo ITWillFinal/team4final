@@ -341,6 +341,10 @@
 		width: 1900px;
 	}
 	
+	.jobEtc{
+		display: none;
+	}
+	
 	/* 체크박스 => 토글 슬라이더 */
 	.switch {
 	position: relative;
@@ -397,6 +401,15 @@
 	$(function(){
 		var school="";
 		var careerBt="";
+		
+		$("input:text[numberOnly]").on("keyup", function() {
+		    $(this).val($(this).val().replace(/[^0-9]/g,""));
+		});
+
+		$("input:text[numberOnly2]").on("keyup", function() {
+		    $(this).val($(this).val().replace(/[^0-9.]/g,""));
+		});
+
 
 		$(".info-box-head").hover(function(){
 			$(this).css("background","#ccc");
@@ -744,9 +757,25 @@
 			$(this).parent().parent().remove();
 		});
 		
+		$('.jobSel').change(function(){
+			if($(this).val()=="etc"){
+				$(this).next().slideDown();
+			}else{
+				$(this).next().slideUp();
+			}
+		});
+		
 		$(".bt-sub").click(function(){
 			var escape = false;
 			//event.preventDefault();
+			
+			$('.jobType').each(function(){
+				if($(this).parent().find('.jobSel').val()=="etc"){
+					$(this).val($(this).parent().find('.jobEtc').val());
+				}else{
+					$(this).val($(this).parent().find('.jobSel').val());
+				}
+			});
 			
 			if($('input[name=finalEdu]').val()=="대학·대학원 이상 졸업"){
 				$('input[name=uni]').val($('select[name=unisel]').val());
@@ -910,7 +939,7 @@
 					}
 				}
 			});
-			
+
 		});
 		
 		$('.bt-return').click(function(){
@@ -1086,7 +1115,7 @@
 								<option value="7.0">7.0</option>
 								<option value="100">100</option>
 							</select>
-							<input type="text" class="form-control" name="grade" placeholder="학점 입력"/> 
+							<input type="text" class="form-control" name="grade" placeholder="학점 입력" numberOnly2/> 
 					</div>
 				</div>
 			</div>
@@ -1282,7 +1311,7 @@
 								</div>
 							</div>
 							<input type="text" class="form-control onlyAlphabetAndNumber careerYear not-null-input"
-								name="careerItems[].careerYear" style="display: inline-block;"
+								name="careerItems[].careerYear" style="display: inline-block;" numberOnly
 								placeholder="년차 입력" maxlength="2">
 					</div>	
 					<div class="col-lg-10">
@@ -1312,7 +1341,7 @@
 						<label for="term" class="col-lg-2 control-label">연봉</label>
 						<div>
 							<input type="hidden" name="careerItems[].careerSal" class="careerSal"/>
-							<input type="text" class="form-control" name="salary" placeholder="연봉입력"/> 
+							<input type="text" class="form-control" name="salary" placeholder="연봉입력" numberOnly/> 
 							<select class="form-control col-130px" name="salarySel">
 								<option value="만원">만원</option>
 								<option value="달러">달러</option>
@@ -1418,15 +1447,111 @@
 					</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">직종1</label> 
-							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="jobtype1"
-								placeholder="희망 직종을 입력하세요" maxlength="30">
+							<select name="hopeJobtype1" class="form-control jobSel">
+		                		<option value="">희망 직종을 선택하세요</option>
+				                <option value="정보보안" >정보보안</option>
+				                <option value="AS/카센터/주유" >AS/카센터/주유</option>
+				                <option value="판매/유통" >판매/유통</option>
+				                <option value="신문/잡지/언론사" >신문/잡지/언론사</option>
+				                <option value="보험/증권/카드" >보험/증권/카드</option>
+				                <option value="부동산/임대/중개" >부동산/임대/중개</option>
+				                <option value="병원/의료/약국" >병원/의료/약국</option>
+				                <option value="통역/번역" >통역/번역</option>
+				                <option value="공연/예술/문화" >공연/예술/문화</option>
+				                <option value="우편업" >우편업</option>
+				                <option value="식품가공/개발" >식품가공/개발</option>
+				                <option value="기계/설비/자동차" >기계/설비/자동차</option>
+				                <option value="정부/공공기관/공기업" >정부/공공기관/공기업</option>
+				                <option value="공증/법률/특허" >공증/법률/특허</option>
+				                <option value="반도체/광학/LCD" >반도체/광학/LCD</option>
+				                <option value="포털/인터넷/컨텐츠" >포털/인터넷/컨텐츠</option>
+				                <option value="웹에이젼시" >웹에이젼시</option>
+				                <option value="웨딩/이벤트" >웨딩/이벤트</option>
+				                <option value="섬유/의류/패션" >섬유/의류/패션</option>
+				                <option value="보안/경호/안전" >보안/경호/안전</option>
+				                <option value="렌탈/임대" >렌탈/임대</option>
+				                <option value="택배/물류" >택배/물류</option>
+				                <option value="기타서비스업" >기타서비스업</option>
+				                <option value="은행/금융서비스" >은행/금융서비스</option>
+				                <option value="구인구직/채용서비스" >구인구직/채용서비스</option>
+				                <option value="전기/전자/제어" >전기/전자/제어</option>
+				                <option value="가구/목재/제지" >가구/목재/제지</option>
+				                <option value="조선/항공/우주" >조선/항공/우주</option>
+				                <option value="관광/항공" >관광/항공</option>
+				                <option value="제약/건강관리/바이오" >제약/건강관리/바이오</option>
+				                <option value="솔루션/SI/ERP/CRM" >솔루션/SI/ERP/CRM</option>
+				                <option value="생활용품/소모품" >생활용품/소모품</option>
+				                <option value="헤드헌팅/인력공급" >헤드헌팅/인력공급</option>
+				                <option value="학원/어학원" >학원/어학원</option>
+				                <option value="IT/정보기술" >IT/정보기술</option>
+				                <option value="호텔/여행" >호텔/여행</option>
+				                <option value="금속/재료/철강/요업" >금속/재료/철강/요업</option>
+				                <option value="대출/캐피탈" >대출/캐피탈</option>
+				                <option value="유아/유치원" >유아/유치원</option>
+				                <option value="네트워크/통신/모바일" >네트워크/통신/모바일</option>
+				                <option value="화장품/뷰티" >화장품/뷰티</option>
+				                <option value="인테리어/조경" >인테리어/조경</option>
+				                <option value="농업/어업/광업" >농업/어업/광업</option>
+				                <option value="etc" >기타</option>
+	                      </select>
+	                      <input type="text" name="job1Etc" class="form-control jobEtc onlyAlphabetAndNumbers"
+	                     	 placeholder="희망 직종을 입력하세요"/>
+							<input type="hidden" class="form-control onlyAlphabetAndNumber jobType"
+								name="jobtype1" maxlength="30">
 					</div>
 					<div class="col-lg-10">
 							<label class="col-lg-2 control-label">직종2</label> 
-							<input type="text" class="form-control onlyAlphabetAndNumber"
-								name="jobtype2"
-								placeholder="희망 직종을 입력하세요" maxlength="30">
+							<select name="hopeJobtype2" class="form-control jobSel">
+		                		<option value="">희망 직종을 선택하세요</option>
+				                <option value="정보보안" >정보보안</option>
+				                <option value="AS/카센터/주유" >AS/카센터/주유</option>
+				                <option value="판매/유통" >판매/유통</option>
+				                <option value="신문/잡지/언론사" >신문/잡지/언론사</option>
+				                <option value="보험/증권/카드" >보험/증권/카드</option>
+				                <option value="부동산/임대/중개" >부동산/임대/중개</option>
+				                <option value="병원/의료/약국" >병원/의료/약국</option>
+				                <option value="통역/번역" >통역/번역</option>
+				                <option value="공연/예술/문화" >공연/예술/문화</option>
+				                <option value="우편업" >우편업</option>
+				                <option value="식품가공/개발" >식품가공/개발</option>
+				                <option value="기계/설비/자동차" >기계/설비/자동차</option>
+				                <option value="정부/공공기관/공기업" >정부/공공기관/공기업</option>
+				                <option value="공증/법률/특허" >공증/법률/특허</option>
+				                <option value="반도체/광학/LCD" >반도체/광학/LCD</option>
+				                <option value="포털/인터넷/컨텐츠" >포털/인터넷/컨텐츠</option>
+				                <option value="웹에이젼시" >웹에이젼시</option>
+				                <option value="웨딩/이벤트" >웨딩/이벤트</option>
+				                <option value="섬유/의류/패션" >섬유/의류/패션</option>
+				                <option value="보안/경호/안전" >보안/경호/안전</option>
+				                <option value="렌탈/임대" >렌탈/임대</option>
+				                <option value="택배/물류" >택배/물류</option>
+				                <option value="기타서비스업" >기타서비스업</option>
+				                <option value="은행/금융서비스" >은행/금융서비스</option>
+				                <option value="구인구직/채용서비스" >구인구직/채용서비스</option>
+				                <option value="전기/전자/제어" >전기/전자/제어</option>
+				                <option value="가구/목재/제지" >가구/목재/제지</option>
+				                <option value="조선/항공/우주" >조선/항공/우주</option>
+				                <option value="관광/항공" >관광/항공</option>
+				                <option value="제약/건강관리/바이오" >제약/건강관리/바이오</option>
+				                <option value="솔루션/SI/ERP/CRM" >솔루션/SI/ERP/CRM</option>
+				                <option value="생활용품/소모품" >생활용품/소모품</option>
+				                <option value="헤드헌팅/인력공급" >헤드헌팅/인력공급</option>
+				                <option value="학원/어학원" >학원/어학원</option>
+				                <option value="IT/정보기술" >IT/정보기술</option>
+				                <option value="호텔/여행" >호텔/여행</option>
+				                <option value="금속/재료/철강/요업" >금속/재료/철강/요업</option>
+				                <option value="대출/캐피탈" >대출/캐피탈</option>
+				                <option value="유아/유치원" >유아/유치원</option>
+				                <option value="네트워크/통신/모바일" >네트워크/통신/모바일</option>
+				                <option value="화장품/뷰티" >화장품/뷰티</option>
+				                <option value="인테리어/조경" >인테리어/조경</option>
+				                <option value="농업/어업/광업" >농업/어업/광업</option>
+				                <option value="etc" >기타</option>
+	                      </select>
+	                      <input type="text" name="job2Etc" class="form-control jobEtc onlyAlphabetAndNumber jobType"
+	                      	placeholder="희망 직종을 입력하세요"/>
+							<input type="hidden" class="form-control onlyAlphabetAndNumber jobType"
+								name="jobtype2" maxlength="30">
 					</div>
 			</div>
 		</div>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.searchTalent">
+	<select id="searchTalent" parameterType="string" resultType="int">
+		select * from(
+		select resume_no
+		from resume
+		where jobtype1=#{jobtype} or jobtype2=#{jobtype})
+	</select>
+	
+	<select id="searchTalentByCareerYear" parameterType="int" resultType="int">
+		select resume_no from career
+		where career_company != '신입'
+		group by resume_no
+		having sum(career_year)>=#{career_year}
+	</select>
+	
+	<select id="searchTalentByLocation" parameterType="string" resultType="int">
+		select resume_no from resume
+		where location1=#{location} or location2=#{location}
+		or location1='전국' or location2='전국'
+	</select>
+		
+	<select id="searchTalentBySal" parameterType="string" resultType="int">
+		select resume_no from resume
+		<if test="_parameter!=10000">
+			where substr(REGEXP_REPLACE(sal, '[^0-9]'),0,4) between 2 and #{sal} 
+			or REGEXP_REPLACE(sal, '[^0-9]') is null
+		</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
