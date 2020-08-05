@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.will.team4final.resume.model.ResumeService;
 import com.will.team4final.resume.model.ResumeVO;
 import com.will.team4final.scrip.model.ComScrapService;
+import com.will.team4final.scrip.model.ComScrapVO;
 
 @Controller
 @RequestMapping("/mypage")
@@ -53,10 +54,11 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/mypageScrap.do")
-	public void mypageScrap(HttpSession session) {
+	public void mypageScrap(HttpSession session, Model model) {
 		String userNo = (String)session.getAttribute("userNo");
 		logger.info("나의 스크랩! userNo = {}", userNo);
+		List<ComScrapVO> list = comScrapServ.selectComScrapInfo(userNo);
 		
-		
+		model.addAttribute("list", list);
 	}
 }

@@ -67,7 +67,6 @@ $(function() {
 		
 	</div>
 	<div id="map" style="width:98%;height:600px;"></div>
-	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f5a970707d8d0e271a8262251139638&libraries=services,clusterer"></script>
 	<script type="text/javascript">
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 

@@ -304,7 +304,7 @@ public class CompanyHomeController {
 		 logger.info("기업회원 채용공고 기간 페이지 회사 정보 입력 값 확인, comInfoVo={}", comInfoVo);
 		 String comCode = comInfoVo.getComCode(); 
 		 //comCode에 맞는 RecruitmenetCode가 있는지확인 
-		 ComRecruitVO comRecruitVo =  comRecruitService.selectBycomCode(comCode); 
+		 ComRecruitVO comRecruitVo =  comRecruitService.selectBycomCode(comCode);
 		 recruitmentCode = comRecruitVo.getRecruitmentCode(); 
 		 String msg="먼저 채용 정보 입력 부탁드립니다",
 		 url="/companypage/companyWrite.do"; if(recruitmentCode==null ||

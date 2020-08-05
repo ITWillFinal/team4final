@@ -109,7 +109,12 @@ function hireInfo(){
 		,data:$("#hireform").serialize()
 		,dataType:"json"
 		,success:function(res){
-			makeListJson(res);
+			if(res != null && res != ''){
+				makeListJson(res);
+			}
+			else{
+				$("#jobListDiv").html("<h5 style='width: 90%;margin: 0 auto; border: 1px solid #e0e0e08f; margin-top:20px; padding: 50px;'>등록된 채용공고가 없습니다.</h5>");
+			}
 		}
 	    ,error: function(xhr,status, error){
 	    	alert("에러발생");
@@ -344,7 +349,7 @@ function makeListJson(res){
 	</form>
 </div>
 <div id="jobListDiv">
-	
+
 </div>
 </div>
 <%@ include file="../inc/bottom.jsp" %>

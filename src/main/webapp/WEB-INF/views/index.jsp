@@ -41,7 +41,7 @@
 							        <input type="text" placeholder="원하는 직업을 입력해주세요!"
 							            style="width: 95%;" id="inputSubmit">
 							    </div>
-							    <input type="submit" value="검색" style="background: #fb246a; width: 100px; color: #ffffff; font-weight: bold;" id="inputSubmit">
+							    <input type="submit" value="검색" style="background: #fb246a; width: 100px; color: #ffffff; font-weight: bold; cursor: pointer;" id="inputSubmit">
 							</div>
                         </form>
                     </div>
