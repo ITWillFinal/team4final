@@ -13,4 +13,14 @@ public class ChartServiceImpl implements ChartService{
 		return chartDao.sumByMonth(month);
 	}
 
+	@Override
+	public int countByMember(String month) {
+		return chartDao.countByMember(month);
+	}
+
+	@Override
+	public int countByMemberC(String month) {
+		return chartDao.countByMemberC(month);
+	}
+
 }
