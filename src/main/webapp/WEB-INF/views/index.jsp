@@ -83,7 +83,7 @@
 		                        </div>
 		                        <div class="items-link f-right">
 		                            <a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>">${map["REC_TYPE"] }</a>
-		                            <span>${map["REGDATE"] }</span>
+		                            <span><fmt:formatDate value="${map['REGDATE'] }" pattern="yyyy-MM-dd"/></span>
 		                        </div>
 		                    </div>
 	                    </c:forEach>

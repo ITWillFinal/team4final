@@ -13,8 +13,8 @@
 	    background: white;
 	    border: 1px solid #fb246a;
 	    width: 16%;
-	    height: 30px;
-	    margin: 1px;
+	    height: 46px;
+	    margin: 4px 19px;
 	    font-weight: bold;
 	}
 	input[type=radio], label{
@@ -26,7 +26,7 @@
 </style>
 <script type="text/javascript">
 $(function() {
-	$('div button').click(function() {
+	/* $('div button').click(function() {
 		var sido = $(this).val();
 		$('#sigugun').empty();
 		$.ajax({
@@ -45,7 +45,7 @@ $(function() {
 				alert(status + ", " + error);
 			}
 		});
-	});
+	}); */
 	
 	$('button').hover(function() {
 		$(this).css('color', 'white').css('background', '#fb246a');
