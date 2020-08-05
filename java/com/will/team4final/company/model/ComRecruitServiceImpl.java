@@ -6,12 +6,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.will.team4final.scrap.model.ComScrapVO;
 
 @Service
 public class ComRecruitServiceImpl implements ComRecruitService {
-	@Autowired 
+	@Autowired
 	private ComRecruitDAO comRecruitDao;
 
 	@Override
@@ -48,7 +50,7 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	public List<ComRecruitVO> recruitmentDetailList(ComRecruitVO comRecruitVo) {
 		return comRecruitDao.recruitmentDetailList(comRecruitVo);
 	}
-	
+
 	public List<ComRecruitVO> selectListBycomCode(String comCode) {
 		return comRecruitDao.selectListBycomCode(comCode);
 	}
@@ -68,5 +70,33 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	public int updateReadCount(String recruitmentCode) {
 		return comRecruitDao.updateReadCount(recruitmentCode);
 	}
-	
+
+	public List<ComRecruitVO> selectListBycomCode(ComRecruitSearchVO comRecruitSearchVO) {
+		return comRecruitDao.selectListBycomCode(comRecruitSearchVO);
+	}
+
+	@Override
+	public int selectTotalRecord(ComRecruitSearchVO comRecruitSearchVO) {
+		return comRecruitDao.selectTotalRecord(comRecruitSearchVO);
+	}
+
+	@Override
+	@Transactional
+	public int deleteMulti(List<ComRecruitVO> list) {
+		int cnt = 0;
+		try {
+			for (ComRecruitVO vo : list) {
+				if ("0".equals(vo.getRecruitmentCode())) {
+					cnt = comRecruitDao.deleteComRecruit(vo.getRecruitmentCode());
+				}
+			}
+
+		} catch (RuntimeException e) {
+			cnt = -1;
+			e.printStackTrace();
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
+
+		return cnt;
+	}
 }

@@ -55,5 +55,18 @@ public class ComRecruitDAOMybatis implements ComRecruitDAO {
 	public int updateReadCount(String recruitmentCode) {
 		return sqlSession.update(namespace + "updateReadCount", recruitmentCode);
 	}
-	
+	public List<ComRecruitVO> selectListBycomCode(ComRecruitSearchVO comRecruitSearchVO) {
+		return sqlSession.selectList(namespace+"selectListBycomCode", comRecruitSearchVO);
+	}
+
+	@Override
+	public int selectTotalRecord(ComRecruitSearchVO comRecruitSearchVO) {
+		return sqlSession.selectOne(namespace +"selectTotalRecord", comRecruitSearchVO);
+	}
+
+	@Override
+	public int deleteComRecruit(String no) {
+		return sqlSession.delete(namespace+"deleteComRecruit", no);
+	}
+
 }

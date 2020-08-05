@@ -98,4 +98,9 @@
 		set readcount = readcount+1
 		where recruitment_code = #{recruitmentCode}
 	</select>
+	
+	<delete id="deleteComRecruit" parameterType="int">
+		delete recruitment
+		where com_code=#{comCode}
+	</delete>
 </mapper>

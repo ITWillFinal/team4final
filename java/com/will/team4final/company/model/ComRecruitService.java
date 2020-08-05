@@ -16,4 +16,7 @@ public interface ComRecruitService {
 	List<ComRecruitVO> selectListBycomCode(String comCode);
 	List<ComRecruitVO> selectScrapList(List<ComScrapVO> scrapList);
 	int updateReadCount(String recruitmentCode);
+	List<ComRecruitVO> selectListBycomCode(ComRecruitSearchVO comRecruitSearchVO);
+	int selectTotalRecord(ComRecruitSearchVO comRecruitSearchVO);
+	int deleteMulti(List<ComRecruitVO> list);
 }

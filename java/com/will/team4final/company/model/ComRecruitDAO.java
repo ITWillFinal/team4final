@@ -14,4 +14,7 @@ public interface ComRecruitDAO {
 	List<ComRecruitVO> recruitmentDetailList(ComRecruitVO comRecruitVo);
 	List<ComRecruitVO> selectListBycomCode(String comCode);
 	int updateReadCount(String recruitmentCode);
+	List<ComRecruitVO> selectListBycomCode(ComRecruitSearchVO comRecruitSearchVO);
+	int selectTotalRecord(ComRecruitSearchVO comRecruitSearchVO);
+	int deleteComRecruit(String no);
 }
