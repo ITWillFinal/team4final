@@ -79,5 +79,13 @@
 			</if>
 		</where>
 	</select>
+	<select id="selectBycomCode" parameterType="string" resultType="comRecruitVO">
+		select * from recruitment
+		where com_code=#{comCode}
+	</select>
 	
+	<select id="selectListBycomCode" parameterType="string" resultType="comRecruitVO">
+		select * from recruitment
+		where com_code=#{comCode}
+	</select>
 </mapper>

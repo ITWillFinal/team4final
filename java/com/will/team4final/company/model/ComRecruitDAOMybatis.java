@@ -47,6 +47,8 @@ public class ComRecruitDAOMybatis implements ComRecruitDAO {
 	public List<ComRecruitVO> recruitmentDetailList(ComRecruitVO comRecruitVo) {
 		return sqlSession.selectList(namespace + "recruitmentDetailList", comRecruitVo);
 	}
-	
+	public List<ComRecruitVO> selectListBycomCode(String comCode) {
+		return sqlSession.selectList(namespace+"selectListBycomCode", comCode);
+	}
 	
 }
