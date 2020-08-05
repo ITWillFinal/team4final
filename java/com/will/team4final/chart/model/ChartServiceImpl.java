@@ -9,8 +9,8 @@ public class ChartServiceImpl implements ChartService{
 	@Autowired private ChartDAO chartDao;
 
 	@Override
-	public int sumByMonth(CalendarVO vo) {
-		return chartDao.sumByMonth(vo);
+	public int sumByMonth(String month) {
+		return chartDao.sumByMonth(month);
 	}
 
 }

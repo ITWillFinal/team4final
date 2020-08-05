@@ -12,8 +12,8 @@ public class ChartDAOMybatis implements ChartDAO{
 	private String namespace = "com.mybatis.mapper.oracle.chart.";
 
 	@Override
-	public int sumByMonth(CalendarVO vo) {
-		return sqlsession.selectOne(namespace+"sumByMonth", vo);
+	public int sumByMonth(String month) {
+		return sqlsession.selectOne(namespace+"sumByMonth", month);
 	}
 	
 	
