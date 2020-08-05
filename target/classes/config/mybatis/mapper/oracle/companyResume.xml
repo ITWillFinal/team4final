@@ -15,6 +15,11 @@
 		#{selfVal}, #{selfTitle1}, #{selfTitle2}, #{selfTitle3}, #{selfTitle4}, #{selfTitle5}
 		)
 	</insert>
+	
+	<select id="selectCompanyResumeSet" resultType="companyResumeSetVo" parameterType="String">
+		select * from company_resumeset
+		where recruitment_code=#{recruitmentCode}
+	</select>
 </mapper>
 
 

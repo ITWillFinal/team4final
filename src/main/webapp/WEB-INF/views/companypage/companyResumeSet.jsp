@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../inc/companyTop.jsp" %>
 
 <style>
@@ -205,7 +206,7 @@
 	
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
-		<form nape="frm" method="post" action="<c:url value='/companypage/companyResumeSet.do'/>">
+		<form name="frm" method="post" action="<c:url value='/companypage/companyResumeSet.do'/>">
 		
 		<input type="text" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode}">
 		<span style="font-size: 25px; font-weight: bold;">자사 이력서 양식 설정</span>

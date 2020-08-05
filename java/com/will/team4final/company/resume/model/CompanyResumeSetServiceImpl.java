@@ -11,6 +11,11 @@ public class CompanyResumeSetServiceImpl implements CompanyResumeSetService {
 	public int insertCompanyResumeSet(CompanyResumeSetVO companyResumeSetVo) {
 		return companyResumeSetDao.insertCompanyResumeSet(companyResumeSetVo);
 	}
+
+	@Override
+	public CompanyResumeSetVO selectCompanyResumeSet(String recruitmentCode) {
+		return companyResumeSetDao.selectCompanyResumeSet(recruitmentCode);				
+	}
 	
 }
 

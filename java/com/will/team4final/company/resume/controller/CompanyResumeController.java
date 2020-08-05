@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,10 +48,14 @@ public class CompanyResumeController {
 		return "common/message";
 	}
 	
-	@RequestMapping("/companyResumeUse.do")
-	public String resumeUse() {
-		logger.info("기업페이지 자사 이력서양식 제작");
+	@RequestMapping(value = "/companyResumeUse.do", method = RequestMethod.GET)
+	public String resumeUse(@RequestParam String recruitmentCode, Model model) {
+		logger.info("기업 자사 이력서 사용 페이지");
+		logger.info("파라미터 recruitmentCode={}", recruitmentCode);
 		
+		CompanyResumeSetVO vo = companyResumeSetService.selectCompanyResumeSet(recruitmentCode);
+		logger.info("companyResumeUseVo={}", vo);
+		model.addAttribute("vo", vo);
 		return "companypage/companyResumeUse";
 	}
 }

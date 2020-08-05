@@ -561,7 +561,7 @@
 					<td>우편번호</td>
 					<td>
 						<input type="text" id="zipcode" name="zipcode" readonly value="${zipcode}">
-					 	<input type="button" onclick="sample4_execDaumPostcode()" value="선택" class="form-control bttn"> 
+					 	<input type="button" onclick="sample4_execDaumPostcode()" value="찾기" class="form-control bttn"> 
 					</td>
 				</tr>
 
