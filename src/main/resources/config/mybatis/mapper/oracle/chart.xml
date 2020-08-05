@@ -3,10 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mybatis.mapper.oracle.chart">
-<!-- 	<select id="sumByMonth" parameterType="calendarvo" resultType="int">
-		select sum(price) from payment
-		where regdate like '%'||' #{month} '||'%';
-	</select> -->
+ 	<select id="sumByMonth" parameterType="string" resultType="int">
+		select sum(price)as sum from payment
+		where substr(regdate, 4, 2) = #{month}
+	</select>
 	
 </mapper>
 

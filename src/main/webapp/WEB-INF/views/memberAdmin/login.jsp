@@ -70,7 +70,7 @@ div#divLogin {
 					</div>
 					<div id = "s">
 						<label id = "b1" for = "pwd">PWD</label>
-						<input id = "b2" type="text" name = "pwd">
+						<input id = "b2" type="password" name = "pwd">
 					</div>
 				</div>
 				<div id = "t" style="text-align: center;">

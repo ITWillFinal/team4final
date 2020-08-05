@@ -28,7 +28,7 @@
         ]);
 
         var options = {
-          title: 'Company Performance',
+          title: '월별 매출액',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
