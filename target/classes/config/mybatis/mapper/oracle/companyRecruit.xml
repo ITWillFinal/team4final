@@ -150,17 +150,12 @@
 		where recruitment_code = #{recruitmentCode}
 	</update>
 	
-	<select id="selectHot100" resultType="recruitment_TosVo" parameterType="string">
+	<select id="selectHot100" resultType="recruitment_TosVo">
 		select A.*
 		from(
 			select * from recruitment_tos where to_date(end_date) >= sysdate-1 order by readcount desc
 		)A
 		<![CDATA[where rownum <= 100 ]]>
-		<where>
-			<if test="jobType!=null and jobType != ''">
-				and JOB_TYPE1 = #{jobType }
-			</if>
-		</where>
 	</select>
 	
 </mapper>

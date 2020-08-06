@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -109,6 +110,7 @@ public class HireInfoController {
 	@RequestMapping("/hot100.do")
 	public void hot100(Model model) {
 		logger.info("hot100페이지");
-		
+		List<Recruitment_TosVO> list = comRecuritServ.selectHot100();
+		model.addAttribute("list", list);
 	}
 }

@@ -91,4 +91,9 @@ public class ComRecruitDAOMybatis implements ComRecruitDAO {
 		return sqlSession.selectOne(namespace + "selectOneByRecruitmentCode", recruitmentCode);
 	}
 
+	@Override
+	public List<Recruitment_TosVO> selectHot100() {
+		return sqlSession.selectList(namespace + "selectHot100");
+	}
+
 }

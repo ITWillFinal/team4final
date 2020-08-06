@@ -360,7 +360,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
                                                 </ul> -->
 
 											<li><a href=<c:url value='/hireinpo/hireinpo.do'/>>채용정보</a></li>
-											<li><a href="job_listing.html">HOT 100</a></li>
+											<li><a href="<c:url value='/hireinpo/hot100.do'/>">HOT 100</a></li>
 											<li><a href="<c:url value='/vocation/vocationalTest.do'/>">직업탐색</a></li>
 											<li><a
 												href="<c:url value='/companypage/companyHome.do'/>">기업페이지</a></li>

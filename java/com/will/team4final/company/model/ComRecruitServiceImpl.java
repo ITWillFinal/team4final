@@ -121,4 +121,9 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	public int deleteOne(String recruitmentCode) {
 		return comRecruitDao.deleteComRecruit(recruitmentCode);
 	}
+
+	@Override
+	public List<Recruitment_TosVO> selectHot100() {
+		return comRecruitDao.selectHot100();
+	}
 }

@@ -21,4 +21,5 @@ public interface ComRecruitDAO {
 	List<ComRecruitVO> selectAllRecruitment();
 	int updateComRecruit(ComRecruitVO vo);
 	ComRecruitVO selectOneByRecruitmentCode(String recruitmentCode);
+	List<Recruitment_TosVO> selectHot100();
 }
