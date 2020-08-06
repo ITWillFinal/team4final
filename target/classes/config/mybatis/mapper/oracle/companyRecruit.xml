@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="selectOneCom" resultType="comRecruitVo" parameterType="string">
-		select * from recruitment where recruitment_code = #{recruitmentCode}
+		select * from recruitment_tos where recruitment_code = #{recruitmentCode}
 	</select>
 	
 	<select id="selectSearchInfo" resultType="comRecruitVo" parameterType="comRecruitVo">
@@ -51,9 +51,10 @@
 		where recruitment_code = #{recruitmentCode}
 	</update>
 	
-	<select id="recruitmentDetailList" parameterType="comRecruitVo" resultType="comRecruitVo">
-		select * from recruitment
+	<select id="recruitmentDetailList" parameterType="comRecruitVo" resultType="recruitment_TosVo">
+		select * from recruitment_tos
 		<where>
+			to_date(end_date) >= sysdate-1
 			<if test="location1!=null and location1!=''">
 				and location1=#{location1}
 				<if test="location2!=null and location2!=''">
