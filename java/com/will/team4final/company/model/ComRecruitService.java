@@ -18,8 +18,10 @@ public interface ComRecruitService {
 	int updateReadCount(String recruitmentCode);
 	List<ComRecruitVO> selectListBycomCode(ComRecruitSearchVO comRecruitSearchVO);
 	int selectTotalRecord(ComRecruitSearchVO comRecruitSearchVO);
+	
 	int deleteMulti(List<ComRecruitVO> list);
 	int deleteOne(String recruitmentCode);
+	
 	int updateComRecruit(ComRecruitVO vo);
 	ComRecruitVO selectOneByRecruitmentCode(String recruitmentCode);
 }
