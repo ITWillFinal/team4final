@@ -233,14 +233,15 @@
 		<h5>접수기간 및 지원</h5>
 		<p><i class="fa fa-file-text" aria-hidden="true"></i> 필수 제출 서류 : ${vo.document }</p>
 		<p style="color: black; font-weight: 700">모집 마감일 : <fmt:formatDate value="${end }" pattern="yyyy년 MM월 dd일"/><br>남은 일수 D-${endDate-startDate+1 }</p>
-		<div id="bottomApply">
-		<c:if test="${endDate-startDate+1 > 0}">
-			<a href="#" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
-		</c:if>
-		<c:if test="${endDate-startDate+1 < 0}">
-			<div style="font-weight: bold; width: 120px; height: 59px; background: #585858e0; padding: 20px 30px; color: white;">지원마감</div>
-		</c:if>
-	</div>
+		<div>
+			<c:if test="${endDate-startDate+1 > 0}">
+				<a href="#" class="btn head-btn2" id="bottomApply">지원</a>
+			</c:if>
+			<c:if test="${endDate-startDate+1 < 0}">
+				<div style="margin-bottom: 100px; margin-top: 50px; font-weight: bold; width: 602px; height: 59px; background: #585858e0; padding: 20px; text-align: center; color: white;">지원마감</div>
+			</c:if>
+	    
+		</div>
 	</div>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f5a970707d8d0e271a8262251139638&libraries=services,clusterer,drawing"></script>

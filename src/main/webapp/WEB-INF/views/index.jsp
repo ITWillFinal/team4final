@@ -144,7 +144,7 @@
                             <span class="flaticon-tour"></span>
                         </div>
                         <div class="process-cap">
-                           <h5>3. 취직</h5>
+                           <h5>3. 해당 기업에 입사</h5>
                            <p><br>Job Finder에서 Life Job으로!<br></p>
                         </div>
                     </div>

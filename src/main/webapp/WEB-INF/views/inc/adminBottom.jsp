@@ -12,7 +12,7 @@
 	        <!--/.wrapper-->
     <div class="footer">
         <div class="container">
-            <b class="copyright">&copy; 2014 Edmin - EGrappler.com </b>All rights reserved.
+            Copyright &copy; <b style="color: white;">THE JOB+</b> Corp. All Right Reserved
         </div>
     </div>
 
