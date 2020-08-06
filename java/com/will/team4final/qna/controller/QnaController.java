@@ -2,6 +2,8 @@ package com.will.team4final.qna.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,14 +66,18 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "/qnaWrite.do", method = RequestMethod.GET)
-	public void faqWrite_get() {
+	public void faqWrite_get(HttpSession session, Model model) {
 		logger.info("1:1 문의게시판 글쓰기 보여주기");
+		String userId = (String)session.getAttribute("userId");
+		
+		model.addAttribute("userId", userId);
 	}
 
 	@RequestMapping(value = "/qnaWrite.do", method = RequestMethod.POST)
 	public String qnaWrite_get(@ModelAttribute QnaVO vo,
 			Model model) {
 		logger.info("1:1 문의게시판 글쓰기 화면");
+		logger.info("vo={}", vo);
 		
 		int cnt = qnaService.WriteQna(vo);
 		String msg = "1:1 문의게시판 등록 실패", url = "/gogak/qna/qnaWrite";

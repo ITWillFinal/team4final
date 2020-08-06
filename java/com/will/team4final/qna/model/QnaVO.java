@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 
 public class QnaVO {
 	private int qnaNo;
-	private String userNo;
 	private String userId;
 	private String title;
 	private int categoryNO;
@@ -27,12 +26,6 @@ public class QnaVO {
 	}
 	public void setNo(int no) {
 		this.no = no;
-	}
-	public String getUserNo() {
-		return userNo;
-	}
-	public void setUserNo(String userNo) {
-		this.userNo = userNo;
 	}
 	public String getUserId() {
 		return userId;
@@ -92,7 +85,7 @@ public class QnaVO {
 	
 	@Override
 	public String toString() {
-		return "qnaVO [qnaNo=" + qnaNo + ", userNo=" + userNo + ", userId=" + userId + ", title=" + title
+		return "qnaVO [qnaNo=" + qnaNo +", userId=" + userId + ", title=" + title
 				+ ", categoryNO=" + categoryNO + ", content=" + content + ", regDate=" + regDate + ", fileName="
 				+ fileName + ", fileSize=" + fileSize + ", originFileName=" + originFileName + ", status=" + status + ", no=" + no + "]";
 	}

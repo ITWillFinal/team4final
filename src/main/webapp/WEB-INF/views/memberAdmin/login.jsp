@@ -65,8 +65,8 @@ div#divLogin {
 			<form name = "formLogIn" method = "post" action="<c:url value = '/memberAdmin/adminlogin.do'/>" >
 				<div id = "divLogin">
 					<div id = "f">
-						<label id = "a1" for = "userId">ID</label>				
-						<input id = "a2" type="text" name = adminId>
+						<label id = "a1" for = userId>ID</label>				
+						<input id = "a2" type="text" name = userId>
 					</div>
 					<div id = "s">
 						<label id = "b1" for = "pwd">PWD</label>

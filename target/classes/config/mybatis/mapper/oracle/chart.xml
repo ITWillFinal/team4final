@@ -18,6 +18,47 @@
 		where substr(c_joindate,4, 2) = #{month}
 	</select>
 	
+	<select id="countByGenderM" resultType="int">
+		select count(*) as count from member
+		where gender = '남자'
+	</select>
+	
+	<select id="countByGenderF" resultType="int">
+		select count(*) as count from member
+		where gender = '여자'
+	</select>
+	
+	<select id="countByAgeM" parameterType="int" resultType="int">
+		select count(*) as count
+		from
+		(
+		    select 2020-(substr(birth,0,2)+1899) as age, gender
+		    from member
+		)
+		where substr(age,0,1)=#{age}
+		and gender='여자'
+	</select>
+	
+	<select id="countByAgeF" parameterType="int" resultType="int">
+		select count(*) as count
+		from
+		(
+		    select 2020-(substr(birth,0,2)+1899) as age, gender
+		    from member
+		)
+		where substr(age,0,1)=#{age}
+		and gender='남자'
+	</select>
+	
+	<select id="countByAge" parameterType="int" resultType="int">
+		select count(*) as count
+		from
+		(
+		    select 2020-(substr(birth,0,2)+1899) as age, gender
+		    from member
+		)
+		where substr(age,0,1)=#{age}
+	</select>
 </mapper>
 
 

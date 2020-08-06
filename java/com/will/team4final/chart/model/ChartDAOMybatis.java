@@ -25,6 +25,31 @@ public class ChartDAOMybatis implements ChartDAO{
 	public int countByMemberC(String month) {
 		return sqlsession.selectOne(namespace+"countByMemberC", month);
 	}
+
+	@Override
+	public int countByGenderM() {
+		return sqlsession.selectOne(namespace+"countByGenderM");
+	}
+
+	@Override
+	public int countByGenderF() {
+		return sqlsession.selectOne(namespace+"countByGenderF");
+	}
+
+	@Override
+	public int countByAgeM(int age) {
+		return sqlsession.selectOne(namespace+"countByAgeM", age);
+	}
+
+	@Override
+	public int countByAgeF(int age) {
+		return sqlsession.selectOne(namespace+"countByAgeF", age);
+	}
+
+	@Override
+	public int countByAge(int age) {
+		return sqlsession.selectOne(namespace+"countByAge", age);
+	}
 	
 	
 
