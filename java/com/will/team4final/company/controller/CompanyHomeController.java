@@ -39,8 +39,10 @@ import com.will.team4final.company.model.ComrRecruitListVO;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.login.controller.LoginController;
+import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.resume.model.ResumeAllVO;
 import com.will.team4final.resume.model.ResumeService;
+import com.will.team4final.resume.model.ResumeTalentVO;
 
 @Controller
 @RequestMapping("/companypage")
@@ -415,14 +417,14 @@ public class CompanyHomeController {
 	
 	@ResponseBody
 	@RequestMapping("/searchTalentResume.do")
-	public List<ResumeAllVO> searchTalentResume(@RequestParam String jobtype,
+	public List<ResumeTalentVO> searchTalentResume(@RequestParam String jobtype,
 			@RequestParam(defaultValue = "0") int careerYear,
 			@RequestParam(required = false) String location,
 			@RequestParam(required = false) String sal) {
 		logger.info("인재 이력서 번호 검색 파라미터 jobtype={}, careerYear={}",jobtype,careerYear);
 		logger.info("location={}, sal={}",location,sal);
 
-		List<ResumeAllVO> resumeAllVoList = new ArrayList<ResumeAllVO>();
+		List<ResumeTalentVO> resumeTalentVoList = new ArrayList<ResumeTalentVO>();
 		
 		List<Integer> list1 = resumeService.searchTalent(jobtype);
 		
@@ -442,10 +444,38 @@ public class CompanyHomeController {
 		}
 		
 		for(int i=0; i<list1.size(); i++) {
-			ResumeAllVO resumeAllVo = resumeService.selectResumeByResumNo(list1.get(i));
-			resumeAllVoList.add(resumeAllVo);
+			ResumeTalentVO resumeTalentVo = resumeService.selectResumeTalent(list1.get(i));
+			resumeTalentVoList.add(resumeTalentVo);
 		}
-		return resumeAllVoList;
+		return resumeTalentVoList;
 	}	
 	
+	@RequestMapping("/talentResumeDetail.do")
+	public String talentResumeDetail(@RequestParam int resumeNo,Model model) {
+		logger.info("기업 - 인재검색 - 이력서 상세 페이지, 파라미터 resumeNo={}",resumeNo);
+
+		
+		ResumeAllVO resumeAllVo = resumeService.selectResumeByResumNo(resumeNo);
+		logger.info("이력서 조회결과 resumeAllVo={}",resumeAllVo);
+		resumeAllVo.getResumeVo().getResumeNo();
+		MemberVO memberVo = resumeService.selectMemberByResumeNo(resumeNo);
+
+		model.addAttribute("memberVo", memberVo);
+		model.addAttribute("resumeAllVo",resumeAllVo);
+		
+		return "companypage/talentResumeDetail";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/requestToJoin.do", produces = "application/text; charset=utf8")
+	public String requestToJoin(@RequestParam List<Integer> resumeNoList,
+			HttpSession session) {
+		logger.info("입사요청 resumeNoList.size={}",resumeNoList.size());
+		
+		String cMemberCode=(String)session.getAttribute("cMemberCode");
+		logger.info("기업 회원 코드 = {}",cMemberCode);
+		
+		String result = resumeService.requestToJoinMulti(resumeNoList, cMemberCode);
+		return result;
+	}
 }
