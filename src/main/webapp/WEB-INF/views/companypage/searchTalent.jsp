@@ -76,7 +76,7 @@
 		$('#button1').click(function(){
 			var len=$('.checkMember:checked').length;
 			if(len==0){
-				alert('입사요철할 이력서를 체크해주세요');
+				alert('입사요청 할 이력서를 체크해주세요');
 				return;
 			}
 			var resumeNoList=[];

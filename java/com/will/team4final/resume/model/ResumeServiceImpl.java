@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.will.team4final.member.model.MemberVO;
 
@@ -316,6 +317,7 @@ public class ResumeServiceImpl implements ResumeService{
 				if(cnt<1) {
 					fail+=Integer.toString(resumeNo)+",";
 				}
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			}
 		}
 		
