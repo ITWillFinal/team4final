@@ -81,21 +81,21 @@ public class MemberAdminController {
 	
 	//관리자 로그인
 	@RequestMapping(value = "/adminlogin.do", method = RequestMethod.POST)
-	public String adminLogin(@RequestParam String adminId, @RequestParam String pwd,
+	public String adminLogin(@RequestParam String userId, @RequestParam String pwd,
 			HttpServletRequest request, Model model) {
-		logger.info("관리자 로그인 adminId = {}, pwd = {}", adminId, pwd);
+		logger.info("관리자 로그인 adminId = {}, pwd = {}", userId, pwd);
 		
-		int cnt = memberAdminService.loginCheck(adminId, pwd);
+		int cnt = memberAdminService.loginCheck(userId, pwd);
 		logger.info("로그인 결과, cnt = {}", cnt);
 		
 		String msg = "로그인 실패! \n오류가 발생했습니다!", url = "/memberAdmin/login.do";
 		if(cnt == MemberAdminService.LOGIN_OK) {
-			MemberAdminVO vo = memberAdminService.selectByUserid(adminId);
+			MemberAdminVO vo = memberAdminService.selectByUserid(userId);
 				msg = vo.getAdminName()+"관리자님 환영합니다.";
 				url = "/admin/adminMain.do";
 				
 				HttpSession sesssion = request.getSession();
-				sesssion.setAttribute("adminId", adminId);
+				sesssion.setAttribute("userId", userId);
 				sesssion.setAttribute("adminName", vo.getAdminName());
 				sesssion.setAttribute("levels", vo.getLevels());
 		}else if(cnt == MemberAdminService.PWD_DISAGREE) {
