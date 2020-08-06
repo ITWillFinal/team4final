@@ -51,7 +51,7 @@
 		where recruitment_code = #{recruitmentCode}
 	</update>
 	
-	<select id="recruitmentDetailList" parameterType="comRecruitVo" resultType="comRecruitVo">
+	<select id="recruitmentDetailList" parameterType="comRecruitVo" resultType="comRecruitSearchVO">
 		select * from recruitment
 		<where>
 			<if test="location1!=null and location1!=''">
@@ -89,8 +89,25 @@
 	</select>
 	
 	<select id="selectListBycomCode" parameterType="string" resultType="comRecruitVO">
-		select * from recruitment
-		where com_code=#{comCode}
+		select * 
+		from
+		(
+			select rownum as RNUM, A.*
+			from(
+				select *
+				from recruitment
+				where
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					 ${searchCondition} like '%'
+							|| #{searchKeyword} || '%' and 
+				</if>
+				com_code=#{comCode}
+				order by recruitment_code desc
+			)A
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
 	
 	<select id="updateReadCount" parameterType="string">
@@ -103,4 +120,9 @@
 		delete recruitment
 		where com_code=#{comCode}
 	</delete>
+	
+	<select id="selectTotalRecord" parameterType="string" resultType="int">
+		select count(*) from recruitment
+		where com_code=#{comCode}
+	</select>
 </mapper>
