@@ -86,9 +86,7 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 		int cnt = 0;
 		try {
 			for (ComRecruitVO vo : list) {
-				if ("0".equals(vo.getRecruitmentCode())) {
-					cnt = comRecruitDao.deleteComRecruit(vo.getRecruitmentCode());
-				}
+				cnt = comRecruitDao.deleteComRecruit(vo.getRecruitmentCode());
 			}
 
 		} catch (RuntimeException e) {
@@ -98,5 +96,20 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 		}
 
 		return cnt;
+	}
+
+	@Override
+	public int updateComRecruit(ComRecruitVO vo) {
+		return comRecruitDao.updateComRecruit(vo);
+	}
+
+	@Override
+	public ComRecruitVO selectOneByRecruitmentCode(String recruitmentCode) {
+		return comRecruitDao.selectOneByRecruitmentCode(recruitmentCode);
+	}
+
+	@Override
+	public int deleteOne(String recruitmentCode) {
+		return comRecruitDao.deleteComRecruit(recruitmentCode);
 	}
 }

@@ -237,6 +237,7 @@ public class CompanyHomeController {
 		logger.info("address={}", address);
 		logger.info("addressDetail={}", addressDetail);
 		
+		//지역 정보 받아오기
 		List<String> list = locaServ.sido();
 		logger.info("지역 list = {}", list.size());
 		
@@ -385,6 +386,7 @@ public class CompanyHomeController {
 		logger.info("선택 게시글 삭제, 파라미터 comrRecruitListVO={}", comrRecruitListVO);
 		
 		List<ComRecruitVO> list = comrRecruitListVO.getComrRecruitList();
+		logger.info("list.size={}",list.size());
 		int cnt = comRecruitService.deleteMulti(list);
 		logger.info("선택한 항목 삭제 결과 cnt = {}", cnt);
 		
@@ -447,6 +449,102 @@ public class CompanyHomeController {
 			resumeAllVoList.add(resumeAllVo);
 		}
 		return resumeAllVoList;
-	}	
+	}
+	@RequestMapping(value = "/employmentNotice/companyReWrite.do", method = RequestMethod.GET)
+	public void companyReWrite_get(@RequestParam String recruitmentCode, Model model, HttpSession session) {
+		logger.info("채용 정보 수정 화면, 파라미터 recruitmentCode={}", recruitmentCode);
+		
+		ComRecruitVO comRecruitVo =comRecruitService.selectOneByRecruitmentCode(recruitmentCode);
+		logger.info("채용 정보 가져온거 확인, comRecruitVo={}", comRecruitVo);
+		
+		//회사정보 불러와서 출력할 값 받아오기	
+		String cUserid = (String)session.getAttribute("userid");
+		logger.info("cUserid={}", cUserid);
+		CompanyMemberVO comMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
+		logger.info("기업공고 페이지 회원 정보 조회, comMemberVo={}",comMemberVo);
+		CompanyInfoVO comInfoVo=comInfoService.selectComInfoBycMemberCode(comMemberVo.getcMemberCode());
+		logger.info("기업공고 페이지 회사 정보 입력 값 확인, comInfoVo={}", comInfoVo);
+		
+		String comCode = comInfoVo.getComCode();
+		String comName = comInfoVo.getComName();
+		String zipcode = comInfoVo.getZipcode();
+		String address = comInfoVo.getAddress();
+		String addressDetail = comInfoVo.getAddressDetail();
+		logger.info("comName={}", comName);
+		logger.info("zipcode={}", zipcode);
+		logger.info("address={}", address);
+		logger.info("addressDetail={}", addressDetail);
+		
+		//지역 정보 받아오기
+		List<String> list = locaServ.sido();
+		logger.info("지역 list = {}", list.size());
+		
+		List<Map<String, Object>> induList = jobServ.selectInduLarge();
+		List<Map<String, Object>> jobList = jobServ.selectLarge();
+		logger.info("직무, 산업 list = {}, {}", jobList.size(), induList.size());
+		
+		model.addAttribute("list", list);
+		model.addAttribute("induList", induList);
+		model.addAttribute("jobList", jobList);
+		
+		//회사정보 불러와서 출력해주기 => jsp에서는 해당 태그에 value=${} 로 넣어준다
+		model.addAttribute("comCode", comCode);
+		model.addAttribute("comName", comName);
+		model.addAttribute("zipcode", zipcode);
+		model.addAttribute("address", address);
+		model.addAttribute("addressDetail", addressDetail);
+		
+		//
+		model.addAttribute("comRecruitVo", comRecruitVo);
+		
+	}
+	
+	@RequestMapping(value = "/companyReWrite.do", method = RequestMethod.POST)
+	public String companyReWrite_post(@ModelAttribute ComRecruitVO vo, Model model, HttpSession session) {
+		logger.info("기업 채용 수정 , 파라미터 vo={}", vo);
+		
+		String jobType = vo.getJobType1();
+		String induType = vo.getInduType1();
+		
+		String jobType1 = jobServ.selectInduLargeName(induType);
+		String induType1 = jobServ.selectJobLargeName(jobType);
+		logger.info("타입 1 이름 = {}, {}", jobType1, induType1);
+		
+		vo.setJobType1(induType1);
+		vo.setInduType1(jobType1);
+		
+		//기업 채용 재공고 등록
+		int cnt = comRecruitService.updateComRecruit(vo);
+		logger.info("기업 채용 수정 결과 cnt={}", cnt);
+		
+		String msg = "기업 채용 수정 실패", url = "/companypage/companyReWrite.do?"+vo.getRecruitmentCode();
+		if(cnt>0) {
+			msg = "기업 채용 수정 성공";
+			url = "/companypage/employmentNotice/employmentNoticeList.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url); 
+		
+		return "common/message";
+	}
+	
+	@RequestMapping("/employmentNotice/employmentNoticeDelete.do")
+	public String employmentNoticeDelete(@RequestParam String recruitmentCode, Model model) {
+		logger.info("채용 정보 삭제 화면, 파라미터 recruitmentCode={}", recruitmentCode);
+		String msg="기업 정보 삭제 실패 했습니다", url = "";
+		int cnt = comRecruitService.deleteOne(recruitmentCode);
+		
+		if(cnt>0) {
+			msg = "기업 채용 삭제 성공";
+			url = "/companypage/employmentNotice/employmentNoticeList.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url); 
+		
+		return "common/message";
+	}
+	
 	
 }

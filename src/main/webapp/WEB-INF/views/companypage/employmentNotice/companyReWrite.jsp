@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="../inc/companyTop.jsp" %>
+<%@ include file="../../inc/comMypageTop.jsp"%>
 <script src="<c:url value='/editor/ckeditor/ckeditor.js'/>"></script>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -377,6 +377,7 @@
 				alert('회사코드를 입력하세요');
 				$('#comCode').focus();
 				alert('회사코드가 존재하지 않습니다! 기업정보입력 페이지로 이동합니다');
+				location.href="<c:url value='/companypage/companyInfoWrite.do' /> ";
 				event.preventDefault();
 			}else if($('#comType').val()==''){
 				alert('기업형태를 입력하세요');
@@ -404,7 +405,7 @@
 	
 	hr {
 		border:1px solid #FB246A;
-		width:100%;
+		width:900px;
 	}
 	
 	input[type=text]:hover {
@@ -458,20 +459,27 @@
 		width:200px;
 		display: inline-block;
 	}
-
-
+	.stress{
+		color: red;
+		font-size: small;
+	
+	}
+	body > main > div > form > div:nth-child(7){
+		margin-left: 10%;
+ 	  	width: 800px;
+	
+	}
 </style>
 
 <main>
-	<%@ include file="../inc/companySidebar.jsp" %>
 
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
-		<form name="frmWrite" method="post" action="<c:url value='/companypage/companyWrite.do'/>">
-			<span style="font-size: 25px; font-weight: bold;">채용정보등록</span>
+		<form name="frmWrite" style="padding-left: 370px;" method="post" action="<c:url value='/companypage/companyReWrite.do'/>">
+			<span style="font-size: 25px; font-weight: bold;">채용정보재등록</span>
 			<hr>
 			<div style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span><br><br>
+			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span>&nbsp&nbsp<span class="stress"> *은 다시 선택해주세요</span><br><br>
 
 			<table style="width: 900px;">
 				<colgroup>
@@ -481,14 +489,14 @@
 				<tr>
 					<td>모집제목</td>
 					<td>
-						<input type="text" id="title" name="title">
+						<input type="text" id="title" name="title" value="${comRecruitVo.title }">
 					</td>
 				</tr>
 
 				<tr>
 					<td>회사명</td>
 					<td>
-						<input type="text" id="comName" name="comName" value="${comName}">
+						<input type="text" id="comName" name="comName" value="${comRecruitVo.comName}">
 					</td>
 				</tr>
 				<tr>
@@ -496,21 +504,53 @@
 					<td>
 						<select id="comTypeSelect" name="comTypeSelect" class="form-control sel">
 							<option value="0">선택</option>
-							<option value="소기업">소기업</option>
-						   	<option value="중소기업">중소기업</option>
-			                <option value="중견기업">중견기업</option>
-			                <option value="대기업">대기업</option>
-			                <option value="상장기업">상장기업</option>
-			                <option value="공공기업">공공기업</option>
-			                <option value="외국기업">외국기업</option>
-			                <option value="기타">기타</option>
+							<option value="소기업"
+								<c:if test="${comRecruitVo.comType == '소기업'}">
+									selected="selected"
+								</c:if>
+							>소기업</option>
+						   	<option value="중소기업"
+						   		<c:if test="${comRecruitVo.comType == '중소기업'}">
+									selected="selected"
+								</c:if>
+						   	>중소기업</option>
+			                <option value="중견기업"
+			                	<c:if test="${comRecruitVo.comType == '중견기업'}">
+									selected="selected"
+								</c:if>
+			                >중견기업</option>
+			                <option value="대기업"
+			                	<c:if test="${comRecruitVo.comType == '대기업'}">
+									selected="selected"
+								</c:if>
+			                >대기업</option>
+			                <option value="상장기업"
+			                	<c:if test="${comRecruitVo.comType == '상장기업'}">
+									selected="selected"
+								</c:if>
+			                >상장기업</option>
+			                <option value="공공기업"
+			                	<c:if test="${comRecruitVo.comType == '공공기업'}">
+									selected="selected"
+								</c:if>
+			                >공공기업</option>
+			                <option value="외국기업"
+			                	<c:if test="${comRecruitVo.comType == '외국기업'}">
+									selected="selected"
+								</c:if>
+			                >외국기업</option>
+			                <option value="기타"
+			                	<c:if test="${comRecruitVo.comType == '기타'}">
+									selected="selected"
+								</c:if>
+			                >기타</option>
 						</select>
-						<input type="hidden" id="comType" name="comType">
+						<input type="hidden" id="comType" name="comType" value="${comRecruitVo.comType}">
 					</td>
 				</tr>	
 
 				<tr>
-					<td>직무</td>
+					<td>직무&nbsp&nbsp<span class="stress">*</span><br></td>
 					<td>
 						<select size="5" id="jobLarge" class="form-control cat">
 							<c:forEach var="map" items="${jobList }">
@@ -524,7 +564,7 @@
 				</tr>
 				
 				<tr>
-					<td>산업</td>
+					<td>산업&nbsp&nbsp<span class="stress">*</span></td>
 					<td>
 						<select size="5" id="induLarge" class="form-control cat">
 							<c:forEach var="map" items="${induList }">
@@ -580,7 +620,7 @@
 
 
 				<tr>
-					<td>근무시간</td>
+					<td>근무시간&nbsp&nbsp<span class="stress">*</span></td>
 					<td>
 						<select id="timeSelect1" name="timeSelect1" class="form-control sel">
 							<option value="">선택</option>
@@ -595,7 +635,6 @@
 							<option value="3교대">3교대</option>
 							<option value="탄력근무제">탄력근무제</option>
 						</select><br>
-												
 						<div style="margin:5px 0px 5px 0px;">
 							<input type="time" value="09:00" id="timeSelect3" name="timeSelect3" class="form-control sel">
 							<input type="time" value="18:00" id="timeSelect4" name="timeSelect4" class="form-control sel">
@@ -616,17 +655,37 @@
 				<tr>
 					<td>근무형태</td>
 					<td>
-						<label><input type="checkbox" class="recTypeChk" value="추후협의">추후협의</label>
-						<label><input type="checkbox" class="recTypeChk" value="인턴직">인턴직</label>
-						<label><input type="checkbox" class="recTypeChk" value="정규직">정규직</label>
-						<label><input type="checkbox" class="recTypeChk" value="계약직">계약직</label>
-						<label><input type="checkbox" class="recTypeChk" value="프리랜서">프리랜서</label>
+						<label><input type="checkbox" class="recTypeChk" value="추후협의"
+							<c:if test="${comRecruitVo.recType == '추후협의'}">
+								selected="selected"
+							</c:if>
+						>추후협의</label>
+						<label><input type="checkbox" class="recTypeChk" value="인턴직"
+							<c:if test="${comRecruitVo.recType == '추후협의'}">
+								selected="selected"
+							</c:if>
+						>인턴직</label>
+						<label><input type="checkbox" class="recTypeChk" value="정규직"
+							<c:if test="${comRecruitVo.recType == '정규직'}">
+								selected="selected"
+							</c:if>
+						>정규직</label>
+						<label><input type="checkbox" class="recTypeChk" value="계약직"
+							<c:if test="${comRecruitVo.recType == '계약직'}">
+								selected="selected"
+							</c:if>
+						>계약직</label>
+						<label><input type="checkbox" class="recTypeChk" value="프리랜서"
+							<c:if test="${comRecruitVo.recType == '프리랜서'}">
+								selected="selected"
+							</c:if>
+						>프리랜서</label>
 						<input type="hidden" id="recType" name="recType">
 					</td>
 				</tr>
 				
 				<tr>
-					<td>급여사항</td>
+					<td>급여사항&nbsp&nbsp<span class="stress">*</span></td>
 					<td>
 						<select id="paySelect" name="paySelect" class="form-control cat">
 							<option value="추후협의">추후협의</option>
@@ -667,7 +726,7 @@
 				</tr>
 				
 				<tr>
-					<td>복리후생</td>
+					<td>복리후생&nbsp&nbsp<span class="stress">*</span></td>
 					<td>
 						<label><input type="checkbox" class="welfareChk" value="4대보험">4대보험</label>
 						<label><input type="checkbox" class="welfareChk" value="격주휴무">격주휴무</label>
@@ -690,12 +749,36 @@
 					<td>모집인원</td>
 					<td>
 						<select id="recNumSelect" name="recNumSelect" class="form-control sel">
-							<option value="0명">0명</option>
-							<option value="1명">1명</option>
-							<option value="2명">2명</option>
-							<option value="3명">3명</option>
-							<option value="4명">4명</option>
-							<option value="5명">5명</option>
+							<option value="0명"
+								<c:if test="${comRecruitVo.recNumber == '0명'}">
+									selected="selected"
+								</c:if>
+							>0명</option>
+							<option value="1명"
+								<c:if test="${comRecruitVo.recNumber == '1명'}">
+									selected="selected"
+								</c:if>
+							>1명</option>
+							<option value="2명"
+								<c:if test="${comRecruitVo.recNumber == '2명'}">
+									selected="selected"
+								</c:if>
+							>2명</option>
+							<option value="3명"
+								<c:if test="${comRecruitVo.recNumber == '3명'}">
+									selected="selected"
+								</c:if>
+							>3명</option>
+							<option value="4명"
+								<c:if test="${comRecruitVo.recNumber == '4명'}">
+									selected="selected"
+								</c:if>
+							>4명</option>
+							<option value="5명"
+								<c:if test="${comRecruitVo.recNumber == '5명'}">
+									selected="selected"
+								</c:if>
+							>5명</option>
 						</select>
 						<input type="hidden" id="recNumber" name="recNumber" value="0명">
 					</td>
@@ -715,9 +798,21 @@
 					<td>성별</td>
 					<td>						 
 						<select id="genderSelect" name="genderSelect" class="form-control sel">
-							<option value="무관">무관</option>
-							<option value="남자">남자</option>
-							<option value="여자">여자</option>
+							<option value="무관"
+								<c:if test="${comRecruitVo.gender == '무관'}">
+									selected="selected"
+								</c:if>
+							>무관</option>
+							<option value="남자"
+								<c:if test="${comRecruitVo.gender == '남자'}">
+									selected="selected"
+								</c:if>
+							>남자</option>
+							<option value="여자"
+								<c:if test="${comRecruitVo.gender == '여자'}">
+									selected="selected"
+								</c:if>
+							>여자</option>
 						</select> 
 						<input type="hidden" id="gender" name="gender" value="무관">
 						<br>
@@ -726,7 +821,7 @@
 				</tr>
 
 				<tr>
-					<td>나이</td>
+					<td>나이&nbsp&nbsp<span class="stress">*</span></td>
 					<td>
 						<select id="ageSelect" name="ageSelect" class="form-control sel">
 							<option value="제한없음">제한없음</option>
@@ -758,7 +853,7 @@
 				</tr>
 
 				<tr>
-					<td>학력</td>
+					<td>학력&nbsp&nbsp<span class="stress">*</span></td>
 					<td> 
 						<select id="eduSelect" name="eduSelect" class="form-control sel">
 							<option value="무관">무관</option>
@@ -775,7 +870,7 @@
 				</tr>
 
 				<tr>
-					<td>경력</td>
+					<td>경력&nbsp&nbsp<span class="stress">*</span></td>
 					<td> 
 						<select id="careerSelect" name="careerSelect" class="form-control sel">
 							<option value="무관">무관</option>
@@ -816,7 +911,7 @@
 				</tr>
 
 				<tr>
-					<td>우대조건</td>
+					<td>우대조건&nbsp&nbsp<span class="stress">*</span></td>
 					<td> 
 						<label><input type="checkbox" class="preferChk" value="국가유공자">국가유공자</label>
 						<label><input type="checkbox" class="preferChk" value="보훈대상자">보훈대상자</label>
@@ -846,7 +941,7 @@
 				</tr>
 				
 				<tr>
-					<td>제출서류</td>
+					<td>제출서류&nbsp&nbsp<span class="stress">*</span></td>
 					<td>	 
 						<label><input type="checkbox" class="docChk" value="이력서">이력서</label>
 						<label><input type="checkbox" class="docChk" value="자기소개서">자기소개서</label>
@@ -861,7 +956,7 @@
 			</div>
 			<hr>
 			<div>
-				<span style="font-size: 18px; font-weight: bold;">◎상세모집내용</span><br><br>
+				<span style="font-size: 18px; font-weight: bold;">◎상세모집내용</span>&nbsp&nbsp<span class="stress">*</span><br><br>
 				<textarea id="recDetail" name="recDetail" rows="20" cols="93"></textarea>
 			</div>
 			<br>
@@ -876,8 +971,8 @@
 			<input type="hidden" id="location1" name="location1">
 			<input type="hidden" id="location2" name="location2">			
 			<input type="text" id="comCode" name="comCode" value="${comCode }">
-			
+			<input tyn" id="comRecruitVo" name="recruitmentCode" value="${comRecruitVo.recruitmentCode }">
 		</form>
 	</div>
 </main>
-<%@ include file="../inc/companyBottom.jsp" %>
+<%@ include file="../../inc/companyBottom.jsp"%>

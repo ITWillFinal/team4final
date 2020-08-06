@@ -103,6 +103,15 @@ $(function () {
 		$('form[name=frmList]').submit();
 	});
 	
+	$('#deleteNotice').click(function(){
+		var result = confirm('Are you sure you want to do this?'); 
+		if(result) { //yes 
+		}else {
+			return false;
+		}
+		
+
+	});
 
 	
 });
@@ -163,7 +172,7 @@ $(function () {
 									<c:forEach var = "vo" items="${comRecruitVoList }">
 										<tr>
 											<td style = "text-align: center">
-												<input type="checkbox" name="faqlist[${idx }].recruitmentCode"
+											<input type="checkbox" name="comrRecruitList[${idx }].recruitmentCode"
 													value = "${vo.recruitmentCode }">
 											</td>
 											<td style="text-align: center;">
@@ -187,10 +196,10 @@ $(function () {
 											<td style="text-align: center;">${vo.regdate }</td>
 											<td style="text-align: center;">${vo.recDeadline }</td>
 											<td style="text-align: center;">
-												<a href="#">수정</a>
+												<a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }' />">수정</a>
 											</td>
 											<td style="text-align: center;">
-												<a href="#">삭제</a>
+												<a href="<c:url value='/companypage/employmentNotice/employmentNoticeDelete.do?recruitmentCode=${vo.recruitmentCode }' />" id="deleteNotice">삭제</a>
 											</td>
 											
 										</tr>

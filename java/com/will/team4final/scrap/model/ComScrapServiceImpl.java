@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 @Service
 public class ComScrapServiceImpl implements ComScrapService {
 	
@@ -34,6 +36,30 @@ public class ComScrapServiceImpl implements ComScrapService {
 	@Override
 	public List<ComScrapVO> selectComScrapInfo(String userNo) {
 		return comScrapDao.selectComScrapInfo(userNo);
+	}
+
+	@Override
+	@Transactional
+	public int deleteMulti(List<ComScrapVO> list) {
+		int cnt=0;
+		try {
+			for(ComScrapVO vo : list) {
+				cnt = comScrapDao.deleteByrecruitmentCode(vo.getRecruitmentCode());
+			}
+			
+		}catch (RuntimeException e) {
+			cnt = -1;
+			e.printStackTrace();
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
+		
+		
+		return cnt;
+	}
+
+	@Override
+	public int deleteOne(String recruitmentCode) {
+		return comScrapDao.deleteByrecruitmentCode(recruitmentCode);
 	}
 	
 	

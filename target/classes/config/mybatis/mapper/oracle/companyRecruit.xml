@@ -41,6 +41,10 @@
 		select * from recruitment_tos where recruitment_code = #{recruitmentCode}
 	</select>
 	
+	<select id="selectOneByRecruitmentCode" resultType="comRecruitVo" parameterType="string">
+		select * from recruitment where recruitment_code = #{recruitmentCode}
+	</select>
+	
 	<select id="selectSearchInfo" resultType="comRecruitVo" parameterType="comRecruitVo">
 		select * from recruitment
 	</select>
@@ -90,8 +94,25 @@
 	</select>
 	
 	<select id="selectListBycomCode" parameterType="string" resultType="comRecruitVO">
-		select * from recruitment
-		where com_code=#{comCode}
+		select * 
+		from
+		(
+			select rownum as RNUM, A.*
+			from(
+				select *
+				from recruitment
+				where
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					 ${searchCondition} like '%'
+							|| #{searchKeyword} || '%' and 
+				</if>
+				com_code=#{comCode}
+				order by recruitment_code desc
+			)A
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
 	
 	<select id="updateReadCount" parameterType="string">
@@ -100,8 +121,24 @@
 		where recruitment_code = #{recruitmentCode}
 	</select>
 	
-	<delete id="deleteComRecruit" parameterType="int">
+	<delete id="deleteComRecruit" parameterType="string">
 		delete recruitment
-		where com_code=#{comCode}
+		where recruitment_code = #{recruitmentCode}
 	</delete>
+	
+	<select id="selectTotalRecord" parameterType="string" resultType="int">
+		select count(*) from recruitment
+		where com_code=#{comCode}
+	</select>
+	
+	<update id="updateComRecruit" parameterType="comRecruitVO">
+		update recruitment
+		set COM_NAME =#{comName}, TITLE=#{title}, JOB_TYPE1=#{jobType1}, JOB_TYPE2=#{jobType2},
+			INDU_TYPE1=#{induType1}, INDU_TYPE2=#{induType2},	ZIPCODE=#{zipcode}, ADDRESS=#{address}, ADDRESSDETAIL=#{addressDetail},
+			WORKHOURS=#{workHours},
+			LOCATION1=#{location1}, LOCATION2=#{location2}, REC_TYPE=#{recType}, PAY=#{pay}, REC_NUMBER=#{recNumber}, WELFARE=#{welfare},
+			GENDER=#{gender}, AGE=#{age}, EDUCATION_LV=#{educationLv}, CAREER=#{career}, PREFERENCE=#{preference}, 
+			DOCUMENT=#{document}, REC_DETAIL=#{recDetail}, COM_TYPE=#{comType}
+		where recruitment_code = #{recruitmentCode}
+	</update>
 </mapper>

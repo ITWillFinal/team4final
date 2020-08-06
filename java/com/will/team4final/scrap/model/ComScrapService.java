@@ -8,4 +8,6 @@ public interface ComScrapService {
 	int deleteScrap(ComScrapVO comVo);
 	int selectComScrapNum(String userNo);
 	List<ComScrapVO> selectComScrapInfo(String userNo);
+	int deleteMulti(List<ComScrapVO> list);
+	int deleteOne(String recruitmentCode);
 }
