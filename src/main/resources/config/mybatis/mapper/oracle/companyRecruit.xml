@@ -51,13 +51,8 @@
 		where recruitment_code = #{recruitmentCode}
 	</update>
 	
-<<<<<<< HEAD
 	<select id="recruitmentDetailList" parameterType="comRecruitVo" resultType="recruitment_TosVo">
 		select * from recruitment_tos
-=======
-	<select id="recruitmentDetailList" parameterType="comRecruitVo" resultType="comRecruitSearchVO">
-		select * from recruitment
->>>>>>> origin/seunghwan
 		<where>
 			to_date(end_date) >= sysdate-1
 			<if test="location1!=null and location1!=''">
