@@ -105,4 +105,10 @@ public class HireInfoController {
 		logger.info("list size = {}", list.size());
 		model.addAttribute("list", list);
 	}
+	
+	@RequestMapping("/hot100.do")
+	public void hot100(Model model) {
+		logger.info("hot100페이지");
+		
+	}
 }
