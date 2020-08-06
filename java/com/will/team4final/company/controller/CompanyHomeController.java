@@ -353,6 +353,7 @@ public class CompanyHomeController {
 		//companyInfoVO에서 comCode 조회 해서 recruitment 데이터 가져오기
 		String comCode = companyInfoVO.getComCode();
 		
+		//페이징 처리
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
 		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
