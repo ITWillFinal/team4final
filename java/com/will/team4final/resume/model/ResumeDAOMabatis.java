@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 public class ResumeDAOMabatis implements ResumeDAO{
 	@Autowired private SqlSessionTemplate sqlSession;
 	private String namespace="com.will.team4final.resume.";
+	private String namespace2="com.will.team4final.searchTalent.";
 	
 	@Override
 	public int insertResume(ResumeVO resumeVo) {
@@ -165,6 +166,26 @@ public class ResumeDAOMabatis implements ResumeDAO{
 	@Override
 	public int deleteAddinfo(int resumeNo) {
 		return sqlSession.delete(namespace+"deleteAddinfo",resumeNo);
+	}
+
+	@Override
+	public List<Integer> searchTalent(String jobtype) {
+		return sqlSession.selectList(namespace2+"searchTalent",jobtype);
+	}
+
+	@Override
+	public List<Integer> searchTalentByCareerYear(int careerYear) {
+		return sqlSession.selectList(namespace2+"searchTalentByCareerYear",careerYear);
+	}
+
+	@Override
+	public List<Integer> searchTalentByLocation(String location) {
+		return sqlSession.selectList(namespace2+"searchTalentByLocation",location);
+	}
+
+	@Override
+	public List<Integer> searchTalentBySal(String sal) {
+		return sqlSession.selectList(namespace2+"searchTalentBySal",sal);
 	}
 	
 	

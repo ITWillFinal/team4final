@@ -146,5 +146,4 @@
     <!-- How  Apply Process End-->
 </main>
 
-<%@ include file="inc/chatbot.jsp" %>
 <%@ include file="inc/bottom.jsp" %>

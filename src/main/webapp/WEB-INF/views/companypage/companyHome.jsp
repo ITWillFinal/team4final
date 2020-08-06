@@ -33,7 +33,7 @@
 	                        <span class="flaticon-tour"></span>
 	                    </div>
 	                    <div class="services-cap">
-	                       <h5><a href="job_listing.html">인재검색</a></h5>
+	                       <h5><a href="<c:url value='/companypage/searchTalent.do'/>">인재검색</a></h5>
 	                        <span>(653)</span>
 	                    </div>
 	                </div>
