@@ -104,4 +104,9 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	public Recruitment_TosVO selectTosOneCom(String recruitmentCode) {
 		return comRecruitDao.selectTosOneCom(recruitmentCode);
 	}
+
+	@Override
+	public List<ComRecruitVO> selectAllRecruitment() {
+		return comRecruitDao.selectAllRecruitment();
+	}
 }

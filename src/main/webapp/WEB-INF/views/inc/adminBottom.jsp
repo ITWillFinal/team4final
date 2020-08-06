@@ -12,7 +12,7 @@
 	        <!--/.wrapper-->
     <div class="footer">
         <div class="container">
-            Copyright &copy; <b style="color: white;">THE JOB+</b> Corp. All Right Reserved
+            Copyright &copy; <b style="color: black;">THE JOB+</b> Corp. All Right Reserved
         </div>
     </div>
 

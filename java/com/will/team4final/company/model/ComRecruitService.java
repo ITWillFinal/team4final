@@ -20,4 +20,5 @@ public interface ComRecruitService {
 	int selectTotalRecord(ComRecruitSearchVO comRecruitSearchVO);
 	int deleteMulti(List<ComRecruitVO> list);
 	Recruitment_TosVO selectTosOneCom(String recruitmentCode);
+	List<ComRecruitVO> selectAllRecruitment();
 }

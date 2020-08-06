@@ -41,8 +41,8 @@
 		select * from recruitment_tos where recruitment_code = #{recruitmentCode}
 	</select>
 	
-	<select id="selectSearchInfo" resultType="comRecruitVo" parameterType="comRecruitVo">
-		select * from recruitment
+	<select id="selectAllRecruitment" resultType="recruitment_TosVo">
+		select * from recruitment_tos where to_date(end_date) >= sysdate-1
 	</select>
 	
 	<update id="updateResumeType" parameterType="comRecruitVo">

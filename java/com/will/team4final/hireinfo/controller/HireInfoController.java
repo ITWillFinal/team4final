@@ -101,5 +101,8 @@ public class HireInfoController {
 		logger.info("지역별 채용정보");
 		List<String> locationList = locationServ.sido();
 		model.addAttribute("locationList", locationList);
+		List<ComRecruitVO> list = comRecuritServ.selectAllRecruitment();
+		logger.info("list size = {}", list.size());
+		model.addAttribute("list", list);
 	}
 }

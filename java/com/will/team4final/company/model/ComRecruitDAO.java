@@ -18,4 +18,5 @@ public interface ComRecruitDAO {
 	int selectTotalRecord(ComRecruitSearchVO comRecruitSearchVO);
 	int deleteComRecruit(String no);
 	Recruitment_TosVO selectTosOneCom(String recruitmentCode);
+	List<ComRecruitVO> selectAllRecruitment();
 }

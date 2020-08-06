@@ -28,8 +28,9 @@
 		  <li><div>이력서 등록</div></li>
 		  <li><div>이력서 현황</div></li>
 		  <li><div>이력서 상태설정</div></li>
-		  <li><div>입사요청 현황???</div></li>		  
+		  <li><div>입사요청 현황</div></li>		  
 		  <li class="ui-widget-header"><div>고객센터</div></li>
+		  <li><div>공지사항</div></li>
 		  <li><div>자주 찾는 질문</div></li>
 		  <li><div>1:1 문의</div></li>
 		  <li><div>나의 1:1 문의</div></li>
