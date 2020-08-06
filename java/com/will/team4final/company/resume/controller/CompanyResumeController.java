@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.will.team4final.company.model.ComMemberService;
 import com.will.team4final.company.resume.model.CompanyResumeSetService;
 import com.will.team4final.company.resume.model.CompanyResumeSetVO;
+import com.will.team4final.company.resume.model.CompanyResumeUseService;
+import com.will.team4final.company.resume.model.CompanyResumeUseVO;
 import com.will.team4final.login.controller.LoginController;
 
 @Controller
@@ -21,6 +24,7 @@ public class CompanyResumeController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired private CompanyResumeSetService companyResumeSetService;
+	@Autowired private CompanyResumeUseService companyResumeUseService;
 	
 	@RequestMapping(value = "/companyResumeSet.do", method = RequestMethod.GET)
 	public String companyResumeSet_get(@RequestParam String recruitmentCode, Model model) {
@@ -47,10 +51,33 @@ public class CompanyResumeController {
 		return "common/message";
 	}
 	
-	@RequestMapping("/companyResumeUse.do")
-	public String resumeUse() {
-		logger.info("기업페이지 자사 이력서양식 제작");
+	@RequestMapping(value = "/companyResumeUse.do", method = RequestMethod.GET)
+	public String resumeUse_get(@RequestParam String recruitmentCode, Model model) {
+		logger.info("기업 자사 이력서 사용 페이지");
+		logger.info("파라미터 recruitmentCode={}", recruitmentCode);
 		
+		CompanyResumeSetVO vo = companyResumeSetService.selectCompanyResumeSet(recruitmentCode);
+		logger.info("companyResumeUseVo={}", vo);
+		model.addAttribute("vo", vo);
 		return "companypage/companyResumeUse";
+	}
+	
+	@RequestMapping(value = "/companyResumeUse.do", method = RequestMethod.POST)
+	public String resumeUse_post(@ModelAttribute CompanyResumeUseVO companyResumeUseVo, Model model) {
+		logger.info("기업 자사 이력서 입력 페이지, 파라미터 vo={}", companyResumeUseVo);
+		int cnt = companyResumeUseService.insertCompanyResumeUse(companyResumeUseVo);
+		logger.info("자사 이력서 입력 결과 cnt={}", cnt);
+		
+		String msg = "자사 이력서 입력 실패", url = "/companypage/companyResumeUse.do";
+		if(cnt>0) {
+			msg = "자사 이력서 입력 성공";
+			url = "/companypage/companyHome.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+		
 	}
 }

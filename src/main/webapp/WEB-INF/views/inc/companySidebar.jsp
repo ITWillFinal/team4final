@@ -24,7 +24,8 @@
 		  <li><div>채용정보등록</div></li>
 		  <li><div>진행중인채용정보</div></li>
 		  <li><div>마감된채용정보</div></li>
-		  <li><div><a href="<c:url value='/companypage/companyResumeSet.do'/>">자사이력서양식설정</a></div></li>
+		  <li><div><a href="<c:url value='/companypage/companyResumeUse.do'/>">임시)자사이력서양식사용</a></div></li>
+		  <li><div><a href="<c:url value='/companypage/companyResumeSet.do'/>">임시)자사이력서양식설정</a></div></li>
 		  <li class="ui-widget-header"><div>인재정보</div></li>
 		  <li><div>입사지원요청관리</div></li>
 		  <li><div>면접제의요청관리</div></li>

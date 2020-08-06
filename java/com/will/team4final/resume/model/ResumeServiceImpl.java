@@ -261,4 +261,28 @@ public class ResumeServiceImpl implements ResumeService{
 		return cnt;
 	}
 
+
+	@Override
+	public List<Integer> searchTalent(String jobtype) {
+		return resumeDao.searchTalent(jobtype);
+	}
+
+
+	@Override
+	public List<Integer> searchTalentByCareerYear(int careerYear) {
+		return resumeDao.searchTalentByCareerYear(careerYear);
+	}
+
+
+	@Override
+	public List<Integer> searchTalentByLocation(String location) {
+		return resumeDao.searchTalentByLocation(location);
+	}
+
+
+	@Override
+	public List<Integer> searchTalentBySal(String sal) {
+		return resumeDao.searchTalentBySal(sal);
+	}
+
 }

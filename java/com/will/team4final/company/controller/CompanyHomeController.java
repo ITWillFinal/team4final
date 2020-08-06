@@ -2,6 +2,7 @@ package com.will.team4final.company.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -38,6 +39,8 @@ import com.will.team4final.company.model.ComrRecruitListVO;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.login.controller.LoginController;
+import com.will.team4final.resume.model.ResumeAllVO;
+import com.will.team4final.resume.model.ResumeService;
 
 @Controller
 @RequestMapping("/companypage")
@@ -54,6 +57,7 @@ public class CompanyHomeController {
 	private JobService jobServ;
 	@Autowired private JavaMailSender mailSender;
 	@Autowired private CompanyInfoService comInfoService;
+	@Autowired private ResumeService resumeService;
 	
 	@RequestMapping("/companyHome.do")
 	public String companyHome() {
@@ -402,5 +406,47 @@ public class CompanyHomeController {
 		
 		return "common/message";
 	}
+	
+	@RequestMapping("/searchTalent.do")
+	public String searchTalent() {
+		logger.info("기업페이지-인재검색");
+		
+		return "companypage/searchTalent";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/searchTalentResume.do")
+	public List<ResumeAllVO> searchTalentResume(@RequestParam String jobtype,
+			@RequestParam(defaultValue = "0") int careerYear,
+			@RequestParam(required = false) String location,
+			@RequestParam(required = false) String sal) {
+		logger.info("인재 이력서 번호 검색 파라미터 jobtype={}, careerYear={}",jobtype,careerYear);
+		logger.info("location={}, sal={}",location,sal);
+
+		List<ResumeAllVO> resumeAllVoList = new ArrayList<ResumeAllVO>();
+		
+		List<Integer> list1 = resumeService.searchTalent(jobtype);
+		
+		if(careerYear != 0) {
+			List<Integer> list2 = resumeService.searchTalentByCareerYear(careerYear);	
+			list1 = Utility.intersection(list1, list2);
+		}
+
+		if(location != null) {
+			List<Integer> list3 = resumeService.searchTalentByLocation(location);		
+			list1 = Utility.intersection(list1, list3);
+		}
+		
+		if(sal != null) {
+			List<Integer> list4 = resumeService.searchTalentBySal(sal);		
+			list1 = Utility.intersection(list1, list4);
+		}
+		
+		for(int i=0; i<list1.size(); i++) {
+			ResumeAllVO resumeAllVo = resumeService.selectResumeByResumNo(list1.get(i));
+			resumeAllVoList.add(resumeAllVo);
+		}
+		return resumeAllVoList;
+	}	
 	
 }

@@ -1,5 +1,8 @@
 package com.will.team4final.common;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -21,4 +24,18 @@ public class Utility {
 		
 		return result;
 	}
+	
+	//교집합 구하기
+	public static <T> List<T> intersection(List<T> list1, List<T> list2) {
+	    List<T> list = new ArrayList<T>();
+	 
+	    for (T t : list1) {
+	        if (list2.contains(t)) {
+	            list.add(t);
+	        }
+	    }
+	 
+	    return list;
+	}
+
 }

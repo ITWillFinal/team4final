@@ -15,6 +15,25 @@
 		#{selfVal}, #{selfTitle1}, #{selfTitle2}, #{selfTitle3}, #{selfTitle4}, #{selfTitle5}
 		)
 	</insert>
+	
+	<select id="selectCompanyResumeSet" resultType="companyResumeSetVo" parameterType="String">
+		select * from company_resumeset
+		where recruitment_code=#{recruitmentCode}
+	</select>
+	
+	<insert id="insertCompanyResumeUse" parameterType="companyResumeUseVo">
+		insert into company_resumeuse (
+		RECRUITMENT_CODE, USER_ID, GENDER, EMAIL, HP, BIRTH,
+	    ZIPCODE, ADDRESS, ADDRESS_DETAIL, EDU, CAREER, CERTIFICATE,
+	    LANGUAGE, AWARD, SPECIAL, ACTIVITY, SELF
+		)
+		values (
+		#{recruitmentCode}, #{userId}, #{gender}, #{email}, #{hp}, #{birth},
+		#{zipcode}, #{address}, #{addressDetail}, #{edu}, #{career}, #{certificate},
+		#{language}, #{award}, #{special}, #{activity}, #{self}
+		)
+	</insert>
+	
 </mapper>
 
 

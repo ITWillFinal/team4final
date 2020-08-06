@@ -175,7 +175,7 @@
 				error:function(xhr, status, error){
 					alert(status+","+error );
 				}
-			})
+			});
 		});
 		
 		$('.delResume').click(function(){
@@ -291,7 +291,7 @@
 			</c:if>
 			</ul>
 		</div>
-		<c:if test="${resumeList.size() <= 10}">
+		<c:if test="${resumeList.size() < 10}">
 			<div class="resume-add">
 					<a href="<c:url value='/resume/resumeWrite.do'/>" class="btn head-btn2">새로운 이력서 등록하기</a>
 			</div>

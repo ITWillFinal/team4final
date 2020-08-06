@@ -5,6 +5,7 @@
 		margin-top: 27px;
 	}
 </style>
+<%@ include file="chatbot.jsp" %>
 <footer>
     <!-- Footer Start-->
     <div class="footer-area footer-bg footer-padding" style="clear:both;">
