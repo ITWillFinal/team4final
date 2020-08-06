@@ -26,7 +26,7 @@
 		select * from comscrap where user_no = #{userNo}
 	</select>
 	
-	<delete id="deleteByrecruitmentCode" parameterType="comScrapVo">
+	<delete id="deleteByrecruitmentCode" parameterType="string">
 		delete from comscrap where recruitment_code = #{recruitmentCode}
 	</delete>
 	
