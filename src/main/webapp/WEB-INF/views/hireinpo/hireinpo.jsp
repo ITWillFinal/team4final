@@ -44,7 +44,6 @@ $(function() {
 			dataType:"json",
 			data:"sido="+sido,
 			success:function(res){
-				$('#sigugun').append("<option>전체</option>");
 				for(var i = 0; i< res.length; i++){
 					var option ="<option value='"+res[i]+"'>"+res[i]+"</option>";
 					$('#sigugun').append(option);
@@ -66,7 +65,6 @@ $(function() {
 			dataType:"json",
 			data:"no="+num,
 			success:function(res){
-				$('#jobMiddle').append("<option>전체</option>");
 				for(var i = 0; i< res.length; i++){
 					var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
 					$('#jobMiddle').append(option);
@@ -88,7 +86,6 @@ $(function() {
 			dataType:"json",
 			data:"no="+num,
 			success:function(res){
-				$('#induMiddle').append("<option>전체</option>");
 				for(var i = 0; i< res.length; i++){
 					var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
 					$('#induMiddle').append(option);
@@ -102,7 +99,11 @@ $(function() {
 });
 
 function hireInfo(){
-
+	if($('#tdLocation1').val().length < 1 && $('#tdJob1').val().length < 1 && $('#tdIndu1').val().length < 1 && 
+			$('#tdComType').val().length < 1 && $('#tdHireType').val().length < 1 && $('#tdEdu').val().length < 1){
+		alert('최소 1개 이상의 조건을 등록해주세요.');
+		return
+	}
 	$.ajax({
 		 url :"<c:url value='/hireinpo/searchHireInfo.do'/>"
 		,type:"post"

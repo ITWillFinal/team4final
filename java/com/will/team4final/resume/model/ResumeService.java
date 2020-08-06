@@ -3,6 +3,8 @@ package com.will.team4final.resume.model;
 import java.util.List;
 import java.util.Map;
 
+import com.will.team4final.member.model.MemberVO;
+
 public interface ResumeService {
 	
 	int insertResume(ResumeAllVO resumeAllVo);
@@ -15,4 +17,7 @@ public interface ResumeService {
 	List<Integer> searchTalentByCareerYear(int careerYear);
 	List<Integer> searchTalentByLocation(String location);
 	List<Integer> searchTalentBySal(String sal);
+	ResumeTalentVO selectResumeTalent(int resumeNo);
+	MemberVO selectMemberByResumeNo(int resumeNo);
+	String requestToJoinMulti(List<Integer> resumeNoList, String cMemberCode);
 }

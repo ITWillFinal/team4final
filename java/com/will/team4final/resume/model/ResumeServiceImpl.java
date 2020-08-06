@@ -1,13 +1,17 @@
 package com.will.team4final.resume.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.will.team4final.member.model.MemberVO;
 
 @Service
 public class ResumeServiceImpl implements ResumeService{
@@ -201,7 +205,7 @@ public class ResumeServiceImpl implements ResumeService{
 					careerVo.setCareerRank("-");
 					careerVo.setCareerReason("-");
 					careerVo.setCareerSal("-");
-					careerVo.setCareerYear("-");
+					careerVo.setCareerYear("0");
 					careerVo.setTask("-");
 				}
 				careerVo.setResumeNo(Integer.toString(resumeNo));
@@ -283,6 +287,44 @@ public class ResumeServiceImpl implements ResumeService{
 	@Override
 	public List<Integer> searchTalentBySal(String sal) {
 		return resumeDao.searchTalentBySal(sal);
+	}
+
+
+	@Override
+	public ResumeTalentVO selectResumeTalent(int resumeNo) {
+		return resumeDao.selectResumeTalent(resumeNo);
+	}
+
+
+	@Override
+	public MemberVO selectMemberByResumeNo(int resumeNo) {
+		return resumeDao.selectMemberByResumeNo(resumeNo);
+	}
+
+	@Transactional
+	@Override
+	public String requestToJoinMulti(List<Integer> resumeNoList, String cMemberCode) {
+		String fail="";
+		for(int resumeNo : resumeNoList) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("resumeNo",Integer.toString(resumeNo));
+			map.put("cMemberCode",cMemberCode);
+			int cnt=0;
+			try {
+				cnt = resumeDao.requestToJoin(map);				
+			} catch (DataIntegrityViolationException e) {
+				if(cnt<1) {
+					fail+=Integer.toString(resumeNo)+",";
+				}
+			}
+		}
+		
+		if(fail.length()>0) {
+			fail = "이력서 번호 "+fail.substring(0, fail.length()-1)+"은(는) 이미 입사요청을 보냈습니다.\n다시 선택해 주세요";
+			return fail;
+		}
+		
+		return "입사 요청 완료";
 	}
 
 }

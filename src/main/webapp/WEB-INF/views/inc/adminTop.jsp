@@ -36,8 +36,7 @@
 					</form>
 					<ul class="nav pull-right">
 						<li><a href="<c:url value='/index.do'/>" >THE JOB HOME</a></li>
-						<li><a href="#">Support </a></li>
-						<li><a href="#">Support </a></li>
+						<li><a href="<c:url value='/companypage/companyHome.do'/>">THE JOB COMPANY HOME </a></li>
 						
 					</ul>
 				</div>

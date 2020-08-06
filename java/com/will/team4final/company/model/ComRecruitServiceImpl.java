@@ -22,7 +22,7 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectMost5() {
+	public List<Recruitment_TosVO> selectMost5() {
 		return comRecruitDao.selectMost5();
 	}
 
@@ -56,11 +56,11 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	}
 
 	@Override
-	public List<ComRecruitVO> selectScrapList(List<ComScrapVO> scrapList) {
-		List<ComRecruitVO> list = new ArrayList<ComRecruitVO>();
+	public List<Recruitment_TosVO> selectScrapList(List<ComScrapVO> scrapList) {
+		List<Recruitment_TosVO> list = new ArrayList<Recruitment_TosVO>();
 		for (int i = 0; i < scrapList.size(); i++) {
 			ComScrapVO comScrap = scrapList.get(i);
-			ComRecruitVO rectuitVo = comRecruitDao.selectOneCom(comScrap.getRecruitmentCode());
+			Recruitment_TosVO rectuitVo = comRecruitDao.selectTosOneCom(comScrap.getRecruitmentCode());
 			list.add(rectuitVo);
 		}
 		return list;
@@ -86,7 +86,9 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 		int cnt = 0;
 		try {
 			for (ComRecruitVO vo : list) {
-				cnt = comRecruitDao.deleteComRecruit(vo.getRecruitmentCode());
+				if ("0".equals(vo.getRecruitmentCode())) {
+					cnt = comRecruitDao.deleteComRecruit(vo.getRecruitmentCode());
+				}
 			}
 
 		} catch (RuntimeException e) {
@@ -99,6 +101,15 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	}
 
 	@Override
+	public Recruitment_TosVO selectTosOneCom(String recruitmentCode) {
+		return comRecruitDao.selectTosOneCom(recruitmentCode);
+	}
+
+	@Override
+	public List<ComRecruitVO> selectAllRecruitment() {
+		return comRecruitDao.selectAllRecruitment();
+	}
+
 	public int updateComRecruit(ComRecruitVO vo) {
 		return comRecruitDao.updateComRecruit(vo);
 	}

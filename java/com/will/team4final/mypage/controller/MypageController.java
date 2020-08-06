@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
+import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.resume.model.ResumeService;
 import com.will.team4final.resume.model.ResumeVO;
 import com.will.team4final.scrap.model.ComScrapService;
@@ -62,7 +63,7 @@ public class MypageController {
 		String userNo = (String)session.getAttribute("userNo");
 		logger.info("나의 스크랩! userNo = {}", userNo);
 		List<ComScrapVO> scrapList = comScrapServ.selectComScrapInfo(userNo);
-		List<ComRecruitVO> list = comRecruitServ.selectScrapList(scrapList);
+		List<Recruitment_TosVO> list = comRecruitServ.selectScrapList(scrapList);
 		
 		model.addAttribute("list", list);
 	}

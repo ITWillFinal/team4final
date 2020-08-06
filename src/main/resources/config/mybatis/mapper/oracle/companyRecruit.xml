@@ -29,7 +29,7 @@
 		where faq_No = #{faqNo}
 	</update>
 	
-	<select id="selectMost5" resultType="map">
+	<select id="selectMost5" resultType="recruitment_TosVo">
 		select A.*
 		from(
 			select * from recruitment_tos where to_date(end_date) >= sysdate-1 order by readcount desc
@@ -41,12 +41,8 @@
 		select * from recruitment_tos where recruitment_code = #{recruitmentCode}
 	</select>
 	
-	<select id="selectOneByRecruitmentCode" resultType="comRecruitVo" parameterType="string">
-		select * from recruitment where recruitment_code = #{recruitmentCode}
-	</select>
-	
-	<select id="selectSearchInfo" resultType="comRecruitVo" parameterType="comRecruitVo">
-		select * from recruitment
+	<select id="selectAllRecruitment" resultType="recruitment_TosVo">
+		select * from recruitment_tos where to_date(end_date) >= sysdate-1
 	</select>
 	
 	<update id="updateResumeType" parameterType="comRecruitVo">
@@ -121,9 +117,9 @@
 		where recruitment_code = #{recruitmentCode}
 	</select>
 	
-	<delete id="deleteComRecruit" parameterType="string">
+	<delete id="deleteComRecruit" parameterType="int">
 		delete recruitment
-		where recruitment_code = #{recruitmentCode}
+		where com_code=#{comCode}
 	</delete>
 	
 	<select id="selectTotalRecord" parameterType="string" resultType="int">
@@ -131,6 +127,17 @@
 		where com_code=#{comCode}
 	</select>
 	
+	<select id="selectTosOneCom" resultType="recruitment_TosVo" parameterType="string">
+		select * from recruitment_tos where recruitment_code = #{recruitmentCode}
+	</select>
+	
+	<select id="selectOneByRecruitmentCode" resultType="comRecruitVo" parameterType="string">
+		select * from recruitment where recruitment_code = #{recruitmentCode}
+	</select>
+	
+	<select id="selectSearchInfo" resultType="comRecruitVo" parameterType="comRecruitVo">
+		select * from recruitment
+	</select>
 	<update id="updateComRecruit" parameterType="comRecruitVO">
 		update recruitment
 		set COM_NAME =#{comName}, TITLE=#{title}, JOB_TYPE1=#{jobType1}, JOB_TYPE2=#{jobType2},

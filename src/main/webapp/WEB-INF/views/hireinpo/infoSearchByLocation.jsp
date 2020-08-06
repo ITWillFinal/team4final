@@ -87,13 +87,13 @@ $(function() {
 		
 		//주소-좌표 변환 객체를 생성합니다
 		var geocoder = new kakao.maps.services.Geocoder();
-		var mapData = ['서울 강남구 가로수길 5', '서울 강남구 가로수길 9', '서울 강남구 가로수길 10'];
-		var comName = ['아이티윌', '유니잡', '고로스키'];
+		var mapData = [];
+		var comName = [];
 		
-		/* <c:forEach items="${vo }" var="vo">
+		<c:forEach items="${list }" var="vo">
 	   		mapData.push("${vo.address }");
-	   		comName.push("${vo.data}");
-	 	</c:forEach> */
+	   		comName.push("${vo.comName }");
+	 	</c:forEach>
 		var markers = [];
 	 	var num = 0;
 		//주소로 좌표를 검색합니다

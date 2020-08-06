@@ -3,6 +3,8 @@ package com.will.team4final.resume.model;
 import java.util.List;
 import java.util.Map;
 
+import com.will.team4final.member.model.MemberVO;
+
 public interface ResumeDAO {
 
 	int insertResume(ResumeVO resumeVo);
@@ -39,4 +41,7 @@ public interface ResumeDAO {
 	List<Integer> searchTalentByCareerYear(int careerYear);
 	List<Integer> searchTalentByLocation(String location);
 	List<Integer> searchTalentBySal(String sal);
+	ResumeTalentVO selectResumeTalent(int resumeNo);
+	MemberVO selectMemberByResumeNo(int resumeNo);
+	int requestToJoin(Map<String, String> map);
 }
