@@ -10,41 +10,108 @@
 		
 		$(".add-condition").hide();
 		
-		$('.jobTypeSel').change(function(){
-			
-			if($(this).val()==""){
+		$('select').change(function(){
+			if($('.jobTypeSel').val()==""){
 				$(".add-condition").slideUp();
 				$('tbody').html("");
 			}else{
-				var jobtype = "";
-				var sal = "";
-				var careerYear = 0;
-				var location;
-				var table="";
-				$(".add-condition").slideDown();				
-				$.ajax({
-					url:"<c:url value='/companypage/searchTalentResume.do'/>",
-					type:"get",
-					data:"jobtype="+$('.yorn-chk').is(":checked"),
-					success:function(res){
-						if(res=="Y"){
-							$('.YorN').text("이력서 공개");
-						}else if(res=="N"){
-							$('.YorN').text("이력서 비공개");						
-						}
-					},
-					error:function(xhr, status, error){
-						alert(status+","+error );
-					}
-				});
-				
-				$('tbody').html();
+				$(".add-condition").slideDown();			
+				searchResume();				
+			}
+		});
+		
+		$('.checkAll').change(function(){
+			console.log($(this).is(':checked'));
+			if($(this).is(':checked')){
+				console.log("!!");
+				$('.checkMember').prop('checked', true); 
+			}else{
+				$('.checkMember').prop('checked', false); 				
 			}
 		});
 	})
+	
+	function searchResume(){
+		/* if($('table').height()>330){
+			$('.search-result').css('height','auto');
+		} */
+		var addData="";
+		if($('.salSel').val()!=''){
+			addData+="&sal="+$('.salSel').val();
+		}
+		if($('.locationSel').val()!=''){
+			addData+="&location="+$('.locationSel').val();
+		}
+		if($('.careerYearSel').val()!=''){
+			addData+="&careerYear="+$('.careerYearSel').val();
+		}
+		$.ajax({
+			url:"<c:url value='/companypage/searchTalentResume.do'/>",
+			type:"get",
+			data:"jobtype="+$('.jobTypeSel').val()+addData,
+			success:function(res){
+				var table="";
+				if(res.length>0){
+					$.each(res,function(idx,item){
+						table+="<tr><td>"
+						table+="<input type='checkbox' class='checkMember' value='"+item.resumeNo+"'></td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
+						table+=item.userName+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
+						table+=item.finalEdu+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
+						table+=item.careerYear+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
+						table+=item.selfIntTitle+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
+						table+=item.sal+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
+						table+=item.jobtype1+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
+						table+=item.jobtype2+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
+						table+=item.location1+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
+						table+=item.location2+"</td></tr>"
+					});
+				}
+				$('tbody').html(table);
+			},
+			error:function(xhr, status, error){
+				alert(status+","+error );
+			}
+		});
+		
+		$('#button1').click(function(){
+			var len=$('.checkMember:checked').length;
+			if(len==0){
+				alert('입사요철할 이력서를 체크해주세요');
+				return;
+			}
+			var resumeNoList=[];
+			$('.checkMember').each(function(){
+				if($(this).is(':checked')){
+					resumeNoList.push($(this).val());					
+				}
+			});
+			
+			$.ajax({
+				url:"<c:url value='/companypage/requestToJoin.do'/>",
+				type:"get",
+				data: "resumeNoList="+resumeNoList,
+				success:function(res){
+					alert(res);
+				},
+				error:function(xhr, status, error){
+					alert(status+","+error );
+				}
+			});
+		});
+	}
+	
+	function open_resume(resumeNo){
+		window.open("<c:url value='/companypage/talentResumeDetail.do?resumeNo="+resumeNo+"'/>",
+				'RESUME','width=980,height=auto,left=0,top=0,location=yes,resizable=false')
+	}
 
 </script>
 <style type="text/css">
+	a{
+		color:black;
+		font-weight: bold;
+	}
+
 	hr{
 		border-bottom: 2px dotted#88898c;
 	    border-top: 0 none;
@@ -91,7 +158,7 @@
 	
 	.add-condition{
 		display: inline-block;
-		margin-right: 46px;
+		/* margin-right: 46px; */
 	}
 
 	.add-condition:last-child{
@@ -109,6 +176,38 @@
 	    text-align: center;
 	    margin-top: 15px;
     	border-top: 2px solid #666;
+    	
+	}
+	
+	.tableRow{
+		cursor:pointer;
+	}
+	
+	tbody{
+		height: 330px;
+		overflow: scroll;
+	}
+	
+	table th{
+	    background: #f7f7f7;
+	    border-bottom: 1px solid #eaeaea;
+	    border-right: 1px solid #eaeaea;
+	    text-align: center;
+	    color: #444;
+	    font-size: 14px;
+	    font-weight: bold;
+	    vertical-align: middle;
+	    line-height: 14px;
+	}
+	table td{
+	    border-right: 1px solid #eaeaea;
+	    border-bottom: 1px solid #eaeaea;
+	    color: #444;
+	    font-size: 14px;
+	    vertical-align: top;
+	    line-height: 20px;
+	    word-break: break-all;
+	    font-family: "Malgun Gothic",dotum,gulim,sans-serif;
 	}
 </style>
 <main>
@@ -170,7 +269,7 @@
 			                <option value="etc" >기타</option>
                       </select>
                       <hr>
-                      <select class="form-control selectWidth-250px add-condition">
+                      <select class="form-control selectWidth-250px add-condition salSel">
 								<option value="">최대 연봉을 선택해 주세요</option>
 								<option value="1400">1,400만원</option>
 								<option value="1600">1,600만원</option>
@@ -193,9 +292,22 @@
 								<option value="9000">9,000만원</option>
 								<option value="10000">1억원 이상</option>
                       </select>
-                      <input type="text" name="" class="form-control selectWidth-250px add-condition"
-	                     	 placeholder="최소 경력 연차를 입력하세요" numberOnly/>
-					  <select class="form-control selectWidth-250px add-condition" name="">
+					  <select class="form-control selectWidth-250px add-condition careerYearSel" name="">
+								<option value="">최소 경력을 선택해 주세요</option>
+								<option value="1">1년 이상</option>
+								<option value="2">2년 이상</option>
+								<option value="3">3년 이상</option>
+								<option value="4">4년 이상</option>
+								<option value="5">5년 이상</option>
+								<option value="6">6년 이상</option>
+								<option value="7">7년 이상</option>
+								<option value="8">8년 이상</option>
+								<option value="9">9년 이상</option>
+								<option value="10">10년 이상</option>
+								<option value="15">15년 이상</option>
+								<option value="20">20년 이상</option>
+							</select>
+					  <select class="form-control selectWidth-250px add-condition locationSel" name="">
 								<option value="">지역을 선택해 주세요</option>
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
@@ -212,26 +324,28 @@
 								<option value="전북">전북</option>
 								<option value="충남">충북</option>
 								<option value="제주">제주</option>
-								<option value="전국">전국</option>
 								<option value="세종">세종</option>
 							</select>
 				</div>	
 				<div class="search-result">
+				<div style="height:290px;">
 					<table>
 						<caption style="display: none;">인재 검색 결과 테이블</caption>
-							<col width="10%">
-							<col width="10%">
+							<col width=3%>
+							<col width="7%">
+							<col width="14%">
 							<col width="5%">
-							<col width="25%">
-							<col width="10%">
+							<col width="19%">
+							<col width="14%">
 							<col width="15%">
 							<col width="15%">
-							<col width="5%">
-							<col width="5%">
+							<col width="4%">
+							<col width="4%">
 						<colgroup>
 						<thead>
 							<tr>
-								<th scope="col">이름(나이)</th>
+								<th scope="col"><input type="checkbox" class="checkAll"></th>
+								<th scope="col">이름</th>
 								<th scope="col">최종학력</th>
 								<th scope="col">경력</th>
 								<th scope="col">제목</th>								
@@ -245,6 +359,10 @@
 						<tbody>
 						</tbody>
 					</table>
+				</div>
+				<div>
+					<input type="button" value="입사요청" id='button1' style="float: right;"/>
+				</div>
 				</div>
 			</div>
 		</div>

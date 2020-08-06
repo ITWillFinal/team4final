@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.will.team4final.member.model.MemberVO;
+
 @Repository
 public class ResumeDAOMabatis implements ResumeDAO{
 	@Autowired private SqlSessionTemplate sqlSession;
@@ -186,6 +188,21 @@ public class ResumeDAOMabatis implements ResumeDAO{
 	@Override
 	public List<Integer> searchTalentBySal(String sal) {
 		return sqlSession.selectList(namespace2+"searchTalentBySal",sal);
+	}
+
+	@Override
+	public ResumeTalentVO selectResumeTalent(int resumeNo) {
+		return sqlSession.selectOne(namespace2+"selectResumeTalent",resumeNo);
+	}
+
+	@Override
+	public MemberVO selectMemberByResumeNo(int resumeNo) {
+		return sqlSession.selectOne(namespace2+"selectMemberByResumeNo",resumeNo);
+	}
+
+	@Override
+	public int requestToJoin(Map<String, String> map) {
+		return sqlSession.insert(namespace2+"requestToJoin",map);
 	}
 	
 	
