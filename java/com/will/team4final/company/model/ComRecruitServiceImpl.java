@@ -109,4 +109,18 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	public List<ComRecruitVO> selectAllRecruitment() {
 		return comRecruitDao.selectAllRecruitment();
 	}
+
+	public int updateComRecruit(ComRecruitVO vo) {
+		return comRecruitDao.updateComRecruit(vo);
+	}
+
+	@Override
+	public ComRecruitVO selectOneByRecruitmentCode(String recruitmentCode) {
+		return comRecruitDao.selectOneByRecruitmentCode(recruitmentCode);
+	}
+
+	@Override
+	public int deleteOne(String recruitmentCode) {
+		return comRecruitDao.deleteComRecruit(recruitmentCode);
+	}
 }

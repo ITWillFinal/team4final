@@ -9,10 +9,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ComRecruitDAOMybatis implements ComRecruitDAO {
-	@Autowired private SqlSessionTemplate sqlSession;
-	
-	private String namespace="com.will.team4final.companyRecruit.";
-	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+
+	private String namespace = "com.will.team4final.companyRecruit.";
+
 	@Override
 	public int insertComRecruit(ComRecruitVO comRecruitVo) {
 		return sqlSession.insert(namespace + "insertComRecruit", comRecruitVo);
@@ -30,43 +31,45 @@ public class ComRecruitDAOMybatis implements ComRecruitDAO {
 
 	@Override
 	public String selectrecruitmentCode() {
-		return sqlSession.selectOne(namespace+"selectrecruitmentCode");
+		return sqlSession.selectOne(namespace + "selectrecruitmentCode");
 	}
 
 	@Override
 	public ComRecruitVO selectBycomCode(String comCode) {
-		return sqlSession.selectOne(namespace +"selectBycomCode", comCode);
+		return sqlSession.selectOne(namespace + "selectBycomCode", comCode);
 	}
 
 	@Override
 	public int updateResumeType(ComRecruitVO comRecruitVo) {
-		return sqlSession.update(namespace+"updateResumeType", comRecruitVo);
+		return sqlSession.update(namespace + "updateResumeType", comRecruitVo);
 	}
 
 	@Override
 	public List<ComRecruitVO> recruitmentDetailList(ComRecruitVO comRecruitVo) {
 		return sqlSession.selectList(namespace + "recruitmentDetailList", comRecruitVo);
 	}
+
 	public List<ComRecruitVO> selectListBycomCode(String comCode) {
-		return sqlSession.selectList(namespace+"selectListBycomCode", comCode);
+		return sqlSession.selectList(namespace + "selectListBycomCode", comCode);
 	}
 
 	@Override
 	public int updateReadCount(String recruitmentCode) {
 		return sqlSession.update(namespace + "updateReadCount", recruitmentCode);
 	}
+
 	public List<ComRecruitVO> selectListBycomCode(ComRecruitSearchVO comRecruitSearchVO) {
-		return sqlSession.selectList(namespace+"selectListBycomCode", comRecruitSearchVO);
+		return sqlSession.selectList(namespace + "selectListBycomCode", comRecruitSearchVO);
 	}
 
 	@Override
 	public int selectTotalRecord(ComRecruitSearchVO comRecruitSearchVO) {
-		return sqlSession.selectOne(namespace +"selectTotalRecord", comRecruitSearchVO);
+		return sqlSession.selectOne(namespace + "selectTotalRecord", comRecruitSearchVO);
 	}
 
 	@Override
 	public int deleteComRecruit(String no) {
-		return sqlSession.delete(namespace+"deleteComRecruit", no);
+		return sqlSession.delete(namespace + "deleteComRecruit", no);
 	}
 
 	@Override
@@ -77,6 +80,15 @@ public class ComRecruitDAOMybatis implements ComRecruitDAO {
 	@Override
 	public List<ComRecruitVO> selectAllRecruitment() {
 		return sqlSession.selectList(namespace + "selectAllRecruitment");
+	}
+
+	public int updateComRecruit(ComRecruitVO vo) {
+		return sqlSession.update(namespace + "updateComRecruit", vo);
+	}
+
+	@Override
+	public ComRecruitVO selectOneByRecruitmentCode(String recruitmentCode) {
+		return sqlSession.selectOne(namespace + "selectOneByRecruitmentCode", recruitmentCode);
 	}
 
 }
