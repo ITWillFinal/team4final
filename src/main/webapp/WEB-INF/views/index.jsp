@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="inc/top.jsp" %>
-
+<jsp:useBean id="today" class="java.util.Date"/>
 <style>
 	#searchSelectDiv{
 	    margin-left: 30px;
@@ -66,26 +66,35 @@
                 <div class="col-xl-10">
                     <!-- single-job-content -->
                     <c:if test="${!empty reVo }">
-	                    <c:forEach var="map" items="${reVo }">
-		                    <div class="single-job-items mb-30">
-		                        <div class="job-items">
-		                            <div class="company-img">
-		                                <a href="job_details.html"></a>
-		                            </div>
-		                            <div class="job-tittle">
-		                                <a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>"><h4>${map["TITLE"] }</h4></a>
-		                                <ul>
-		                                    <li>${map["COM_NAME"] }</li>
-		                                    <li><i class="fa fa-briefcase" aria-hidden="true"></i>${map["JOB_TYPE2"] }</li>
-		                                    <li>${map["PAY"] }</li>
-		                                </ul>
-		                            </div>
-		                        </div>
-		                        <div class="items-link f-right">
-		                            <a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>">${map["REC_TYPE"] }</a>
-		                            <span><fmt:formatDate value="${map['REGDATE'] }" pattern="yyyy-MM-dd"/></span>
-		                        </div>
-		                    </div>
+	                    <c:forEach var="vo" items="${reVo }">
+		                    <fmt:parseDate var="end" value="${vo.endDate}" pattern="yyyy-MM-dd" />
+							<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
+							<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
+			
+							<div class="single-job-items mb-30" id="listOne">
+								<div class="job-items">
+									<div class="job-tittle">
+										<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h4>${vo.title }</h4></a>
+										<ul>
+											<li>${vo.comName }</li>
+											<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
+											<li>${vo.pay }</li>
+										</ul>
+									</div>
+								</div>
+								<c:if test="${endDate-startDate+1 > 0}">
+									<div class="items-link f-right">
+										<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.recType }</a>
+										<span>지원마감까지 D - ${endDate-startDate+1 }일</span>
+									</div>
+								</c:if>
+								<c:if test="${endDate-startDate+1 == 0}">
+									<div class="items-link f-right">
+										<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.recType }</a>
+										<span>오늘 지원 마감!</span>
+									</div>
+								</c:if>
+							</div>
 	                    </c:forEach>
                     </c:if>
                 </div>

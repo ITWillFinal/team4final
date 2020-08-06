@@ -29,7 +29,7 @@
 		where faq_No = #{faqNo}
 	</update>
 	
-	<select id="selectMost5" resultType="map">
+	<select id="selectMost5" resultType="recruitment_TosVo">
 		select A.*
 		from(
 			select * from recruitment_tos where to_date(end_date) >= sysdate-1 order by readcount desc
@@ -126,6 +126,7 @@
 		select count(*) from recruitment
 		where com_code=#{comCode}
 	</select>
+	
 	<select id="selectTosOneCom" resultType="recruitment_TosVo" parameterType="string">
 		select * from recruitment_tos where recruitment_code = #{recruitmentCode}
 	</select>

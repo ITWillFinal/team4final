@@ -102,7 +102,11 @@ $(function() {
 });
 
 function hireInfo(){
-
+	if($('#tdLocation1').val().length < 1 && $('#tdJob1').val().length < 1 && $('#tdIndu1').val().length < 1 && 
+			$('#tdComType').val().length < 1 && $('#tdHireType').val().length < 1 && $('#tdEdu').val().length < 1){
+		alert('최소 1개 이상의 조건을 등록해주세요.');
+		return
+	}
 	$.ajax({
 		 url :"<c:url value='/hireinpo/searchHireInfo.do'/>"
 		,type:"post"

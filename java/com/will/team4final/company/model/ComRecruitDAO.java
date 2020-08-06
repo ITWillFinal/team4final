@@ -6,7 +6,7 @@ import java.util.Map;
 public interface ComRecruitDAO {
 	
 	int insertComRecruit(ComRecruitVO comRecruitVo);
-	List<Map<String, Object>> selectMost5();
+	List<Recruitment_TosVO> selectMost5();
 	ComRecruitVO selectOneCom(String recruitmentCode);
 	String selectrecruitmentCode();
 	ComRecruitVO selectBycomCode(String comCode);

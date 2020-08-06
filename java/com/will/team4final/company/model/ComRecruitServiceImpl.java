@@ -22,7 +22,7 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectMost5() {
+	public List<Recruitment_TosVO> selectMost5() {
 		return comRecruitDao.selectMost5();
 	}
 

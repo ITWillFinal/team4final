@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
+import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.login.controller.LoginController;
@@ -67,7 +68,7 @@ public class HireInfoController {
 	public String infoDetail(@RequestParam String recruitmentCode, Model model, HttpServletRequest request) {
 		logger.info("기업 채용 디테일, 파라미터 recruitmentCode = {}", recruitmentCode);
 		
-		ComRecruitVO vo = comRecuritServ.selectOneCom(recruitmentCode);
+		Recruitment_TosVO vo = comRecuritServ.selectTosOneCom(recruitmentCode);
 		logger.info("채용 vo = {}", vo);
 		
 		HttpSession session = request.getSession();

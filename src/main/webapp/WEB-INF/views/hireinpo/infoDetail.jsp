@@ -114,6 +114,10 @@
 	
 	
 </script>
+<jsp:useBean id="today" class="java.util.Date"/>
+<fmt:parseDate var="end" value="${vo.endDate}" pattern="yyyy-MM-dd" />
+<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
+<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
 <div id="contentDiv">
 	<div id="headDiv">
 		<p>${vo.comName }</p>
@@ -121,7 +125,12 @@
 		<p style="margin-bottom: -15px; font-size: 0.8em;">등록일 : ${vo.regdate }</p>
 	</div>
 	<div id="headAdd2">
-		<a href="#" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
+		<c:if test="${endDate-startDate+1 > 0}">
+			<a href="#" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
+		</c:if>
+		<c:if test="${endDate-startDate+1 < 0}">
+			<div style="font-weight: bold; width: 120px; height: 59px; background: #585858e0; padding: 20px 30px; color: white;">지원마감</div>
+		</c:if>
 	</div>
 	<c:if test="${sessionScope.userid != null }">
 		<div id="headAddDiv1" 

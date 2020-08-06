@@ -46,7 +46,7 @@
 					<c:if test="${endDate-startDate+1 == 0}">
 						<div class="items-link f-right">
 							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.recType }</a>
-							<span>지원마감까지 D - ${endDate-startDate+1 }일</span>
+							<span>오늘 지원 마감!</span>
 						</div>
 					</c:if>
 					<c:if test="${endDate-startDate+1 < 0}">
