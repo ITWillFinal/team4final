@@ -8,5 +8,6 @@ public interface ComScrapDAO {
 	int deleteScrap(ComScrapVO comVo);
 	int selectComScrapNum(String userNo);
 	List<ComScrapVO> selectComScrapInfo(String userNo);
+	int deleteByrecruitmentCode(String recruitmentCode);
 	
 }

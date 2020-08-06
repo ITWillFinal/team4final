@@ -39,6 +39,11 @@ public class ComScrapDAOMybatis implements ComScrapDAO{
 	public List<ComScrapVO> selectComScrapInfo(String userNo) {
 		return sqlSession.selectList(namespace + "selectComScrapInfo", userNo);
 	}
+
+	@Override
+	public int deleteByrecruitmentCode(String recruitmentCode) {
+		return sqlSession.delete(namespace+"deleteByrecruitmentCode", recruitmentCode);
+	}
 	
 
 }
