@@ -76,7 +76,7 @@
 		                                <a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>"><h4>${map["TITLE"] }</h4></a>
 		                                <ul>
 		                                    <li>${map["COM_NAME"] }</li>
-		                                    <li><i class="fas fa-map-marker-alt"></i>${map["JOB_TYPE2"] }</li>
+		                                    <li><i class="fa fa-briefcase" aria-hidden="true"></i>${map["JOB_TYPE2"] }</li>
 		                                    <li>${map["PAY"] }</li>
 		                                </ul>
 		                            </div>

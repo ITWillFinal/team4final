@@ -56,11 +56,11 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	}
 
 	@Override
-	public List<ComRecruitVO> selectScrapList(List<ComScrapVO> scrapList) {
-		List<ComRecruitVO> list = new ArrayList<ComRecruitVO>();
+	public List<Recruitment_TosVO> selectScrapList(List<ComScrapVO> scrapList) {
+		List<Recruitment_TosVO> list = new ArrayList<Recruitment_TosVO>();
 		for (int i = 0; i < scrapList.size(); i++) {
 			ComScrapVO comScrap = scrapList.get(i);
-			ComRecruitVO rectuitVo = comRecruitDao.selectOneCom(comScrap.getRecruitmentCode());
+			Recruitment_TosVO rectuitVo = comRecruitDao.selectTosOneCom(comScrap.getRecruitmentCode());
 			list.add(rectuitVo);
 		}
 		return list;
@@ -98,5 +98,10 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 		}
 
 		return cnt;
+	}
+
+	@Override
+	public Recruitment_TosVO selectTosOneCom(String recruitmentCode) {
+		return comRecruitDao.selectTosOneCom(recruitmentCode);
 	}
 }

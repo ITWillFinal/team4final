@@ -69,4 +69,9 @@ public class ComRecruitDAOMybatis implements ComRecruitDAO {
 		return sqlSession.delete(namespace+"deleteComRecruit", no);
 	}
 
+	@Override
+	public Recruitment_TosVO selectTosOneCom(String recruitmentCode) {
+		return sqlSession.selectOne(namespace + "selectTosOneCom", recruitmentCode);
+	}
+
 }

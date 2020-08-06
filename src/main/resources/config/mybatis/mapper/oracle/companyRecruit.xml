@@ -126,4 +126,7 @@
 		select count(*) from recruitment
 		where com_code=#{comCode}
 	</select>
+	<select id="selectTosOneCom" resultType="recruitment_TosVo" parameterType="string">
+		select * from recruitment_tos where recruitment_code = #{recruitmentCode}
+	</select>
 </mapper>
