@@ -14,6 +14,9 @@ public class CompanyResumeSetDAOMybatis implements CompanyResumeSetDAO {
 	public int insertCompanyResumeSet(CompanyResumeSetVO companyResumeSetVo) {
 		return sqlSession.insert(namespace+"insertCompanyResumeSet", companyResumeSetVo);
 	}
-	
-	
+
+	@Override
+	public CompanyResumeSetVO selectCompanyResumeSet(String recruitmentCode) {
+		return sqlSession.selectOne(namespace+"selectCompanyResumeSet", recruitmentCode);
+	}
 }
