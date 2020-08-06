@@ -56,14 +56,13 @@ public class ImportController {
 			
 			//기업 채용 정보에 입력된 정보 가져오기
 			String recruitmentCode = comRecruitVo.getRecruitmentCode();
-			comRecruitVo = comRecruitService.selectOneCom(recruitmentCode);
-			logger.info("기업회원 채용공고 comRecruitVo={}", comRecruitVo);
+			logger.info("기업회원 채용공고 recruitmentCode={}", recruitmentCode);
 			
 			
 			model.addAttribute("endDay", endDay);
 			model.addAttribute("cMemberCode", cMemberCode);
 			model.addAttribute("paymentVo", paymentVo);
-			model.addAttribute("comRecruitVo", comRecruitVo);
+			model.addAttribute("recruitmentCode", recruitmentCode);
 			return "import/import";
 		}
 		
