@@ -59,7 +59,7 @@ public class ResumeServiceImpl implements ResumeService{
 					careerVo.setCareerRank("-");
 					careerVo.setCareerReason("-");
 					careerVo.setCareerSal("-");
-					careerVo.setCareerYear("-");
+					careerVo.setCareerYear("0");
 					careerVo.setTask("-");
 				}
 				careerVo.setResumeNo(resumeNo);
