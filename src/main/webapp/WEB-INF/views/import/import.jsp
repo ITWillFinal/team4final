@@ -52,11 +52,11 @@
     });
     </script>
     <form id="frmPayment" name="frmPayment">
-	 	<input type="text" id="productName" name="productName" value="${paymentVo.productName }">상품 이름 <br><br>
-	 	<input type="text" id="cMemberCode" name="cMemberCode" value="${cMemberCode }" id="cMemberCode">
-	 	<input type="text" id="price" name="price" value="${paymentVo.price }">가격<br><br>
-	 	<input type="text" id="recruitmentCode" name="recruitmentCode" value="${comRecruitVo.recruitmentCode }"><br><br>
-	 	<input type="text" id="endDay" name="endDay" value="${endDay }"><br><br>
+	 	<input type="hidden" id="productName" name="productName" value="${paymentVo.productName }">상품 이름 <br><br>
+	 	<input type="hidden" id="cMemberCode" name="cMemberCode" value="${cMemberCode }" id="cMemberCode">
+	 	<input type="hidden" id="price" name="price" value="${paymentVo.price }">가격<br><br>
+	 	<input type="hidden" id="recruitmentCode" name="recruitmentCode" value="${comRecruitVo.recruitmentCode }"><br><br>
+	 	<input type="hidden" id="endDay" name="endDay" value="${endDay }"><br><br>
     </form>
 </body>
 </html>
