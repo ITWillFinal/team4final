@@ -86,9 +86,7 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 		int cnt = 0;
 		try {
 			for (ComRecruitVO vo : list) {
-				if ("0".equals(vo.getRecruitmentCode())) {
-					cnt = comRecruitDao.deleteComRecruit(vo.getRecruitmentCode());
-				}
+				cnt = comRecruitDao.deleteComRecruit(vo.getRecruitmentCode());
 			}
 
 		} catch (RuntimeException e) {

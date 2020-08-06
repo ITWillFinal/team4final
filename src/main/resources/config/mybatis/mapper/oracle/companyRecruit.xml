@@ -84,6 +84,7 @@
 			</if>
 		</where>
 	</select>
+	
 	<select id="selectBycomCode" parameterType="string" resultType="comRecruitVO">
 		select * from recruitment
 		where com_code=#{comCode}
@@ -117,9 +118,9 @@
 		where recruitment_code = #{recruitmentCode}
 	</select>
 	
-	<delete id="deleteComRecruit" parameterType="int">
+	<delete id="deleteComRecruit" parameterType="string">
 		delete recruitment
-		where com_code=#{comCode}
+		where recruitment_code = #{recruitmentCode}
 	</delete>
 	
 	<select id="selectTotalRecord" parameterType="string" resultType="int">
