@@ -68,6 +68,11 @@
 	.slider.round:before {
 		border-radius: 50%;
 	}
+	
+	.awardsTr {
+		display: none;
+	}
+	
 </style>
 
 <script
@@ -115,6 +120,8 @@
 <script type="text/javascript">
 	
 	$(function(){
+		
+		
 		//DB값 처리 시작
 		var n1 = $("#schoolVal").val();
 		if(n1=="n"){
@@ -164,27 +171,26 @@
 		});
 						
 		//학력사항
-		var z1 = 1;
-		$("#schoolDelBtn").prop("disabled", true);
-		$("#schoolAddBtn").click(function(){
-			$("#schoolTable")
-			.append("<tr id='schoolTr'><td><input type='text' id='schoolName"+z1+"'></td><td><input type='date' id='schoolDate"+z1+"'></td></tr>");
-			++z1;
-			if(z1 >= 1){
-				$("#schoolDelBtn").prop("disabled", false);							
-			}
+		
+		var eduData = "";
+		$("#schoolName").keyup(function(){
+			eduData = ($("#schoolName").val() +" "+ $("#schoolMajor").val() +" " + $("#schoolDate").val());
+			$("#edu").val(eduData);
 		});
 		
-		$("#schoolDelBtn").click(function(){
-			$("#schoolTr:nth-last-child(1)").remove();
-			--z1;
-			if(z1 < 2){
-				$("#schoolDelBtn").prop("disabled", true);
-			}
+		$("#schoolMajor").keyup(function(){
+			eduData = ($("#schoolName").val() +" "+ $("#schoolMajor").val() +" " + $("#schoolDate").val());
+			$("#edu").val(eduData);
 		});		
+		
+		$("#schoolDate").change(function(){
+			eduData = ($("#schoolName").val() +" "+ $("#schoolMajor").val() +" " + $("#schoolDate").val());
+			$("#edu").val(eduData);
+		});
 		
 		//경력사항
 		var z2 = 1;
+		var careerData = "";
 		$("#careerDelBtn").prop("disabled", true);
 		$("#careerAddBtn").click(function(){
 			$("#careerTable")
@@ -193,6 +199,7 @@
 			if(z2 >= 1){
 				$("#careerDelBtn").prop("disabled", false);
 			}
+			
 		});
 		
 		$("#careerDelBtn").click(function(){
@@ -245,25 +252,191 @@
 		});
 		
 		//수상기록
-		var z5 = 1;
-		$("#awardsDelBtn").prop("disabled", true);
-		$("#awardsAddBtn").click(function(){
-			$("#awardsTable")
-			.append("<tr id='awardsTr'><td><input type='text' id='awardsName"+z5+"'></td><td><input type='text' id='awardsOrg"+z5+"'></td><td><input type='date' id='awardsDate"+z5+"'></td></tr>");
-			++z5;
-			if(z5 >= 1){
-				$("#awardsDelBtn").prop("disabled", false)
+		var awardsTr1Td1 = "";
+		var awardsTr1Td2 = "";
+		var awardsTr1Td3 = "";
+		
+		var awardsTr2Td1 = "";
+		var awardsTr2Td2 = "";
+		var awardsTr2Td3 = "";
+		
+		var awardsTr3Td1 = "";
+		var awardsTr3Td2 = "";
+		var awardsTr3Td3 = "";
+		
+		var awardsTr4Td1 = "";
+		var awardsTr4Td2 = "";
+		var awardsTr4Td3 = "";
+		
+		var awardsTr5Td1 = "";
+		var awardsTr5Td2 = "";
+		var awardsTr5Td3 = "";
+		
+		var awardsTotal = "";
+		
+		var awardsResult1 = "";
+		var awardsResult2 = "";
+		var awardsResult3 = "";
+		var awardsResult4 = "";
+		var awardsResult5 = "";
+										
+		$("#awardsTable").children().children().change(function(){
+			awardsTr1Td1 = $("#awardsTr1Td1").val();
+			awardsTr1Td2 = $("#awardsTr1Td2").val();
+			awardsTr1Td3 = $("#awardsTr1Td3").val();
+			
+			awardsTr2Td1 = $("#awardsTr2Td1").val();
+			awardsTr2Td2 = $("#awardsTr2Td2").val();
+			awardsTr2Td3 = $("#awardsTr2Td3").val();
+			
+			awardsTr3Td1 = $("#awardsTr3Td1").val();
+			awardsTr3Td2 = $("#awardsTr3Td2").val();
+			awardsTr3Td3 = $("#awardsTr3Td3").val();
+			
+			awardsTr4Td1 = $("#awardsTr4Td1").val();
+			awardsTr4Td2 = $("#awardsTr4Td2").val();
+			awardsTr4Td3 = $("#awardsTr4Td3").val();
+			
+			awardsTr5Td1 = $("#awardsTr5Td1").val();
+			awardsTr5Td2 = $("#awardsTr5Td2").val();
+			awardsTr5Td3 = $("#awardsTr5Td3").val();
+			
+			if(awardsTr1Td1=="" || awardsTr1Td2=="" || awardsTr1Td3=="" ){
+				awardsResult1 = "";				
+			}else{
+				awardsResult1 = awardsTr1Td1+" "+awardsTr1Td2+" "+awardsTr1Td3;
 			}
+			
+			if(awardsTr2Td1=="" || awardsTr2Td2=="" || awardsTr2Td3==""){
+				awardsResult2 = "";				
+			}else{
+				awardsResult2 = awardsTr2Td1+" "+awardsTr2Td2+" "+awardsTr2Td3;
+			}
+			
+			if(awardsTr3Td1=="" || awardsTr3Td2=="" || awardsTr3Td3==""){
+				awardsResult3 = "";				
+			}else{
+				awardsResult3 = awardsTr3Td1+" "+awardsTr3Td2+" "+awardsTr3Td3;
+			}
+			
+			if(awardsTr4Td1=="" || awardsTr4Td2=="" || awardsTr4Td3==""){
+				awardsResult4 = "";				
+			}else{
+				awardsResult4 = awardsTr4Td1+" "+awardsTr4Td2+" "+awardsTr4Td3;
+			}
+			
+			if(awardsTr5Td1=="" || awardsTr5Td2=="" || awardsTr5Td3==""){
+				awardsResult5 = "";				
+			}else{
+				awardsResult5 = awardsTr5Td1+" "+awardsTr5Td2+" "+awardsTr5Td3;
+			}						
+			
+			$("#awardsResult1").val(awardsResult1);
+			$("#awardsResult2").val(awardsResult2);
+			$("#awardsResult3").val(awardsResult3);
+			$("#awardsResult4").val(awardsResult4);
+			$("#awardsResult5").val(awardsResult5);
+			
+			if(awardsResult2!=""){
+				awardsResult2="*"+awardsResult2;
+			}
+			if(awardsResult3!=""){
+				awardsResult3="*"+awardsResult3;
+			}
+			if(awardsResult4!=""){
+				awardsResult4="*"+awardsResult4;
+			}
+			if(awardsResult5!=""){
+				awardsResult5="*"+awardsResult5;
+			}
+			
+			awardsTotal = awardsResult1 + awardsResult2 + awardsResult3 + awardsResult4 + awardsResult5;
+			$("#award").val(awardsTotal);
+										
+		});
+		
+		$("#awardsAddBtn").click(function(){
+			$('.awardsTr:eq(0)').removeClass('awardsTr');
 		});
 		
 		$("#awardsDelBtn").click(function(){
-			$("#awardsTr:nth-last-child(1)").remove();
-			--z5;
-			if(z5 < 2){
-				$("#awardsDelBtn").prop("disabled", true);
+			$('.awardsDel').not('.awardsTr').last().find('input').val('');
+			$('.awardsDel').not('.awardsTr').last().addClass('awardsTr');
+			
+			awardsTr1Td1 = $("#awardsTr1Td1").val();
+			awardsTr1Td2 = $("#awardsTr1Td2").val();
+			awardsTr1Td3 = $("#awardsTr1Td3").val();
+			
+			awardsTr2Td1 = $("#awardsTr2Td1").val();
+			awardsTr2Td2 = $("#awardsTr2Td2").val();
+			awardsTr2Td3 = $("#awardsTr2Td3").val();
+			
+			awardsTr3Td1 = $("#awardsTr3Td1").val();
+			awardsTr3Td2 = $("#awardsTr3Td2").val();
+			awardsTr3Td3 = $("#awardsTr3Td3").val();
+			
+			awardsTr4Td1 = $("#awardsTr4Td1").val();
+			awardsTr4Td2 = $("#awardsTr4Td2").val();
+			awardsTr4Td3 = $("#awardsTr4Td3").val();
+			
+			awardsTr5Td1 = $("#awardsTr5Td1").val();
+			awardsTr5Td2 = $("#awardsTr5Td2").val();
+			awardsTr5Td3 = $("#awardsTr5Td3").val();
+			
+			if(awardsTr1Td1=="" || awardsTr1Td2=="" || awardsTr1Td3=="" ){
+				awardsResult1 = "";				
+			}else{
+				awardsResult1 = awardsTr1Td1+" "+awardsTr1Td2+" "+awardsTr1Td3;
 			}
+			
+			if(awardsTr2Td1=="" || awardsTr2Td2=="" || awardsTr2Td3==""){
+				awardsResult2 = "";				
+			}else{
+				awardsResult2 = awardsTr2Td1+" "+awardsTr2Td2+" "+awardsTr2Td3;
+			}
+			
+			if(awardsTr3Td1=="" || awardsTr3Td2=="" || awardsTr3Td3==""){
+				awardsResult3 = "";				
+			}else{
+				awardsResult3 = awardsTr3Td1+" "+awardsTr3Td2+" "+awardsTr3Td3;
+			}
+			
+			if(awardsTr4Td1=="" || awardsTr4Td2=="" || awardsTr4Td3==""){
+				awardsResult4 = "";				
+			}else{
+				awardsResult4 = awardsTr4Td1+" "+awardsTr4Td2+" "+awardsTr4Td3;
+			}
+			
+			if(awardsTr5Td1=="" || awardsTr5Td2=="" || awardsTr5Td3==""){
+				awardsResult5 = "";				
+			}else{
+				awardsResult5 = awardsTr5Td1+" "+awardsTr5Td2+" "+awardsTr5Td3;
+			}						
+			
+			$("#awardsResult1").val(awardsResult1);
+			$("#awardsResult2").val(awardsResult2);
+			$("#awardsResult3").val(awardsResult3);
+			$("#awardsResult4").val(awardsResult4);
+			$("#awardsResult5").val(awardsResult5);
+			
+			if(awardsResult2!=""){
+				awardsResult2="*"+awardsResult2;
+			}
+			if(awardsResult3!=""){
+				awardsResult3="*"+awardsResult3;
+			}
+			if(awardsResult4!=""){
+				awardsResult4="*"+awardsResult4;
+			}
+			if(awardsResult5!=""){
+				awardsResult5="*"+awardsResult5;
+			}
+			
+			awardsTotal = awardsResult1 + awardsResult2 + awardsResult3 + awardsResult4 + awardsResult5;
+			$("#award").val(awardsTotal);
 		});
 		
+				
 		//대외활동
 		var z6 = 1;
 		$("#activityDelBtn").prop("disabled", true);
@@ -324,8 +497,8 @@
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frm" method="post" action="<c:url value='/companypage/companyResumeUse.do'/>">
 		
-		<!-- 이력서코드 : --><input type="hidden" name="recruitmentCode" id="recruitmentCode" value="${vo.recruitmentCode}">
-		<!-- 일반회원아이디 : --><input type="hidden" name="userId" value="${userId}">
+		이력서코드 : <input type="text" name="recruitmentCode" id="recruitmentCode" value="${vo.recruitmentCode}">
+		일반회원아이디 : <input type="text" name="userId" value="${userId}">
 			<!-- 
 			<div style="margin:5px; height:95px; border:1px solid lightgray">
 			위쪽 가로 긴 구역
@@ -396,20 +569,21 @@
 				체크박스를 토글로 바꾼 부분 끝 --%>
 				<br><br>
 				<div id="schoolDivChk">
-					<input type="button" value="추가" id="schoolAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
-					<input type="button" value="삭제" id="schoolDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
+					<span>최종학력을 입력하세요</span>
 					<br><br>
 					<table id="schoolTable">
 						<colgroup>
 							<col style="width:200px;">
 							<col style="width:200px;">
+							<col style="width:200px;">
 						</colgroup>
 						<tr>
-							<td>학교명</td>
-							<td>졸업일</td>				
+							<td>학교 : <input type="text" id="schoolName"></td>
+							<td>전공 : <input type="text" id="schoolMajor"></td>
+							<td>졸업일 : <input type="date" id="schoolDate"></td>		
 						</tr>
 					</table>
-					<input type="hidden" name="edu" id="edu">
+					<input type="text" name="edu" id="edu">
 				</div>
 			<hr>
 			</div>
@@ -417,7 +591,7 @@
 			
 			<div id="careerDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">경력사항</span>
-				<input type="hidden" name="careerVal" id="careerVal" value="${vo.careerVal}">
+				<input type="text" name="careerVal" id="careerVal" value="${vo.careerVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="careerChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -443,7 +617,7 @@
 							<td>근무기간</td>
 						</tr>
 					</table>
-					<input type="hidden" name="career">
+					<input type="text" id="career">
 				</div>
 			<hr>
 			</div>
@@ -451,7 +625,7 @@
 			
 			<div id="certificateDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">자격증</span>
-				<input type="hidden" name="certificateVal" id="certificateVal" value="${vo.certificateVal}">
+				<input type="text" name="certificateVal" id="certificateVal" value="${vo.certificateVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="certificateChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -475,7 +649,7 @@
 							<td>취득일</td>				
 						</tr>
 					</table>
-					<input type="hidden" name="certificate">
+					<input type="text" name="certificate">
 				</div>
 			<hr>
 			</div>
@@ -483,7 +657,7 @@
 			
 			<div id="languageDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">외국어능력</span>
-				<input type="hidden" name="languageVal" id="languageVal" value="${vo.languageVal}">
+				<input type="text" name="languageVal" id="languageVal" value="${vo.languageVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="languageChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -507,7 +681,7 @@
 							<td>취득일</td>				
 						</tr>
 					</table>
-					<input type="hidden" name="language">
+					<input type="text" name="language">
 				</div>
 			<hr>
 			</div>
@@ -515,7 +689,7 @@
 			
 			<div id="awardsDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">수상내역</span>
-				<input type="hidden" name="awardsVal" id="awardsVal" value="${vo.awardsVal}">
+				<input type="text" name="awardsVal" id="awardsVal" value="${vo.awardsVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="awardsChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -526,28 +700,58 @@
 				<div id="awardsDivChk">	
 					<input type="button" value="추가" id="awardsAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
 					<input type="button" value="삭제" id="awardsDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
+					<span>(최대 5건)</span>
 					<br><br>
 					<table id="awardsTable">
 						<colgroup>
 							<col style="width:200px;">
 							<col style="width:200px;">
 							<col style="width:200px;">
-						</colgroup>
+						</colgroup>						
 						<tr>
 							<td>종류</td>
 							<td>수여기관</td>				
 							<td>수여일</td>				
+						</tr>						
+						<tr id="awardsTr1" class="awardsTr awardsDel">
+							<td><input type='text' id="awardsTr1Td1"></td>
+							<td><input type='text' id="awardsTr1Td2"></td>	
+							<td><input type='date' id="awardsTr1Td3"></td>
+						</tr>
+						<tr id="awardsTr2" class="awardsTr awardsDel">
+							<td><input type='text' id="awardsTr2Td1"></td>
+							<td><input type='text' id="awardsTr2Td2"></td>	
+							<td><input type='date' id="awardsTr2Td3"></td>
+						</tr>
+						<tr id="awardsTr3" class="awardsTr awardsDel">
+							<td><input type='text' id="awardsTr3Td1"></td>
+							<td><input type='text' id="awardsTr3Td2"></td>	
+							<td><input type='date' id="awardsTr3Td3"></td>
+						</tr>
+						<tr id="awardsTr4" class="awardsTr awardsDel">
+							<td><input type='text' id="awardsTr4Td1"></td>
+							<td><input type='text' id="awardsTr4Td2"></td>	
+							<td><input type='date' id="awardsTr4Td3"></td>
+						</tr>
+						<tr id="awardsTr5" class="awardsTr awardsDel">
+							<td><input type='text' id="awardsTr5Td1"></td>
+							<td><input type='text' id="awardsTr5Td2"></td>	
+							<td><input type='date' id="awardsTr5Td3"></td>
 						</tr>
 					</table>
-					<input type="hidden" name="award">
+					<input type="text" name="award" id="award">
+					<input type="text" id="awardsResult1" class="awardsResult">
+					<input type="text" id="awardsResult2" class="awardsResult">
+					<input type="text" id="awardsResult3" class="awardsResult">
+					<input type="text" id="awardsResult4" class="awardsResult">
+					<input type="text" id="awardsResult5" class="awardsResult">
 				</div>
 			<hr>
 			</div>
-			
-			
+						
 			<div id="specialDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">우대사항</span>
-				<input type="hidden" name="specialVal" id="specialVal" value="${vo.specialVal}">
+				<input type="text" name="specialVal" id="specialVal" value="${vo.specialVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="specialChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -570,7 +774,7 @@
 							<td><input type="checkbox" class="specialChk" value="고용지원금대상">&nbsp;고용지원금대상</td>
 						</tr>
 					</table>
-					<input type="hidden" name="special" id="special">
+					<input type="text" name="special" id="special">
 				</div>
 			<hr>
 			</div>
@@ -578,7 +782,7 @@
 			
 			<div id="activityDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">대외활동</span>
-				<input type="hidden" name="activityVal" id="activityVal" value="${vo.activityVal}">
+				<input type="text" name="activityVal" id="activityVal" value="${vo.activityVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="activityChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -602,14 +806,14 @@
 							<td>대외활동일자</td>			
 						</tr>
 					</table>
-					<input type="hidden" name="activity">
+					<input type="text" name="activity">
 				</div>
 			<hr>
 			</div>
 			
 						
 			<div id="selfDiv" style="margin:5px;">
-			<input type="hidden" name="selfVal" id="selfVal" value="${vo.selfVal}">
+			<input type="text" name="selfVal" id="selfVal" value="${vo.selfVal}">
 				<span style="font-size: 18px; font-weight: bold;">자기소개서</span>				
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
@@ -632,7 +836,7 @@
 							<td><input type="text"></td>			
 						</tr>
 					</table>
-					<input type="hidden" name="self">
+					<input type="text" name="self">
 				</div>
 			<hr>
 			</div>			
