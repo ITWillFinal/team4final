@@ -179,7 +179,8 @@ p {
 }
 
 .f-right {
-	float: right
+	float: right;
+	text-align: center;
 }
 
 .fix {
@@ -6682,7 +6683,8 @@ form.search-box .search-form input {
 	border-radius: 30px;
 	padding: 4px 33px;
 	text-align: center;
-	margin-bottom: 25px
+	margin-bottom: 25px;
+	width: 157px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

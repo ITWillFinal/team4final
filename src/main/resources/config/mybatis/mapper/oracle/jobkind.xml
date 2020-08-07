@@ -26,6 +26,9 @@
 	<select id="selectInduLargeName" resultType="string">
 		select large_group from industry_large where large_no = #{induType}
 	</select>
+	<select id="selectDetailByJobType" resultType="recruitment_TosVo">
+		select * from recruitment_tos where to_date(end_date) >= sysdate-1 and JOB_TYPE2 like '%' || #{jobType2} || '%'
+	</select>
 </mapper>
 
 

@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.will.team4final.company.model.Recruitment_TosVO;
+
 @Repository
 public class JobDAOMybatis implements JobDAO{
 	
@@ -43,6 +45,11 @@ public class JobDAOMybatis implements JobDAO{
 	@Override
 	public String selectInduLargeName(String induType) {
 		return sqlSession.selectOne(namespace + "selectInduLargeName", induType);
+	}
+
+	@Override
+	public List<Recruitment_TosVO> selectDetailByJobType(String jobType2) {
+		return sqlSession.selectList(namespace + "selectDetailByJobType", jobType2);
 	}
 	
 	

@@ -113,4 +113,22 @@ public class HireInfoController {
 		List<Recruitment_TosVO> list = comRecuritServ.selectHot100();
 		model.addAttribute("list", list);
 	}
+	
+	@RequestMapping("/hireInfoByJobType.do")
+	public void hireInfoByJobType(Model model) {
+		List<Map<String, Object>> jobList = jobServ.selectLarge();
+		logger.info("직무별 채용정보 조회페이지, 사이즈 = {}", jobList.size());
+		
+		model.addAttribute("jobList", jobList);
+	}
+	
+	@RequestMapping("/searchJobMiddleType.do")
+	@ResponseBody
+	public List<Recruitment_TosVO> searchJobMiddleType(@RequestParam String jobType2){
+		logger.info("ajax 직무별 채용정보 조회, 파라미터 jobType2 = {}", jobType2);
+		List<Recruitment_TosVO> list = jobServ.selectDetailByJobType(jobType2);
+		logger.info("직무별 조회 사이즈 = {}", list.size());
+		
+		return list;
+	}
 }
