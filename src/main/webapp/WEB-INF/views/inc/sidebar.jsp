@@ -17,10 +17,11 @@
 		
 		<ul id="menu">
 		  <li class="ui-widget-header"><div>채용정보</div></li>
-		  <li><div>HOT100</div></li>
-		  <li><div>맞춤채용정보</div></li>
-		  <li><div>지역별</div></li>
-		  <li><div>직업별</div></li>
+		  <li><div><a href="<c:url value='/hireinpo/hireinpo.do'/>">채용정보 상세검색</a> </div></li>
+		  <li><div><a href="<c:url value='/hireinpo/hot100.do'/>">HOT100</a></div></li>
+		  <li><div><a href="<c:url value='/hireinpo/hireInfoByJobType.do'/>">직무별 채용정보</a></div></li>
+		  <li><div><a href="<c:url value='/hireinpo/hireInfoByInduType.do'/>">산업별 채용정보</a></div></li>
+		  <li><div><a href="<c:url value='/hireinpo/infoSearchByLocation.do'/>">지역별 채용정보</a></div></li>
 		  <li class="ui-widget-header"><div>회원정보</div></li>
 		  <li><div>회원정보수정</div></li>
 		  <li><div>나의프로필</div></li>

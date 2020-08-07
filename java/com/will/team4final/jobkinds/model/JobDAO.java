@@ -13,4 +13,5 @@ public interface JobDAO {
 	String selectJobLargeName(String jobType);
 	String selectInduLargeName(String induType);
 	List<Recruitment_TosVO> selectDetailByJobType(String jobType2);
+	List<Recruitment_TosVO> selectDetailByInduType(String induType2);
 }

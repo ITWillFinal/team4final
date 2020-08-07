@@ -42,7 +42,6 @@ public class JobController {
 		List<Map<String, Object>> middleList = jobServ.selectInduMiddle(no);
 		logger.info("인더미들 사이즈 = {}", middleList.size());
 		
-		
 		return middleList;
 	}
 }

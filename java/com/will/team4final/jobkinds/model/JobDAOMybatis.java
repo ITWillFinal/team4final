@@ -51,6 +51,11 @@ public class JobDAOMybatis implements JobDAO{
 	public List<Recruitment_TosVO> selectDetailByJobType(String jobType2) {
 		return sqlSession.selectList(namespace + "selectDetailByJobType", jobType2);
 	}
+
+	@Override
+	public List<Recruitment_TosVO> selectDetailByInduType(String induType2) {
+		return sqlSession.selectList(namespace + "selectDetailByInduType", induType2);
+	}
 	
 	
 }

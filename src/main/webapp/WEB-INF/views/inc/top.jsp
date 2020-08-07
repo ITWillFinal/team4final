@@ -359,7 +359,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
                                                     <li><a href="job_details.html">job Details</a></li>
                                                 </ul> -->
 
-											<li><a href=<c:url value='/hireinpo/hireinpo.do'/>>채용정보</a></li>
+											<li><a href="<c:url value='/hireinpo/hireinpo.do'/>">채용정보</a></li>
 											<li><a href="<c:url value='/hireinpo/hot100.do'/>">HOT 100</a></li>
 											<li><a href="<c:url value='/vocation/vocationalTest.do'/>">직업탐색</a></li>
 											<li><a
@@ -382,13 +382,13 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 											<div>
 												<span>채용정보 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
 												<br><br> 
-												<a href="about.html">상세검색</a> 
+												<a href="<c:url value='/hireinpo/hireinpo.do'/>">상세검색</a> 
 												<br>
 												<a href="<c:url value='/hireinpo/infoSearchByLocation.do'/>">지역별</a>
 												<br>
-												<a href="about.html">직무별</a> 
+												<a href="<c:url value='/hireinpo/hireInfoByJobType.do'/>">직무별</a> 
 												<br>
-												<a href="about.html">산업별</a>
+												<a href="<c:url value='/hireinpo/hireInfoByInduType.do'/>">산업별</a>
 
 											</div>
 											<div>

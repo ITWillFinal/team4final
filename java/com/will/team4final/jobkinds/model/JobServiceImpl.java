@@ -48,5 +48,10 @@ public class JobServiceImpl implements JobService {
 	public List<Recruitment_TosVO> selectDetailByJobType(String jobType2) {
 		return jobDao.selectDetailByJobType(jobType2);
 	}
+
+	@Override
+	public List<Recruitment_TosVO> selectDetailByInduType(String induType2) {
+		return jobDao.selectDetailByInduType(induType2);
+	}
 	
 }

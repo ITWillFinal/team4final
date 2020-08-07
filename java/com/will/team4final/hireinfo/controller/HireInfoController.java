@@ -122,12 +122,30 @@ public class HireInfoController {
 		model.addAttribute("jobList", jobList);
 	}
 	
+	@RequestMapping("/hireInfoByInduType.do")
+	public void hireInfoByInduType(Model model) {
+		List<Map<String, Object>> induList = jobServ.selectInduLarge();
+		logger.info("직무별 채용정보 조회페이지, 사이즈 = {}", induList.size());
+		
+		model.addAttribute("induList", induList);
+	}
+	
 	@RequestMapping("/searchJobMiddleType.do")
 	@ResponseBody
 	public List<Recruitment_TosVO> searchJobMiddleType(@RequestParam String jobType2){
 		logger.info("ajax 직무별 채용정보 조회, 파라미터 jobType2 = {}", jobType2);
 		List<Recruitment_TosVO> list = jobServ.selectDetailByJobType(jobType2);
 		logger.info("직무별 조회 사이즈 = {}", list.size());
+		
+		return list;
+	}
+	
+	@RequestMapping("/searchInduMiddleType.do")
+	@ResponseBody
+	public List<Recruitment_TosVO> searchInduMiddleType(@RequestParam String induType2){
+		logger.info("ajax 산업별 채용정보 조회, 파라미터 induType2 = {}", induType2);
+		List<Recruitment_TosVO> list = jobServ.selectDetailByInduType(induType2);
+		logger.info("산업별 조회 사이즈 = {}", list.size());
 		
 		return list;
 	}
