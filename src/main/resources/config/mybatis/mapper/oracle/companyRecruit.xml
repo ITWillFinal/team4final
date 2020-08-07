@@ -41,6 +41,10 @@
 		select * from recruitment_tos where recruitment_code = #{recruitmentCode}
 	</select>
 	
+	<select id="selectList_tosByComcode" resultType="recruitment_TosVo" parameterType="string">
+		select * from recruitment_tos where com_code=#{comCode}
+	</select>
+	
 	<select id="selectAllRecruitment" resultType="recruitment_TosVo">
 		select * from recruitment_tos where to_date(end_date) >= sysdate-1
 	</select>

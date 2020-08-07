@@ -387,6 +387,16 @@
 			
 		});
 		
+		$('#ReWriteDelte').click(function(){
+			var result = confirm('정말 삭제하시겠습니까?'); 
+			if(result) {
+				location.href="<c:url value='/companypage/employmentNotice/employmentNoticeDelete.do?recruitmentCode=" + ${comRecruitVo.recruitmentCode }  +"' />";
+			}else {
+				event.preventDefault();
+				return false;
+			}
+		});
+		
 	});
 	
 	
@@ -480,7 +490,7 @@
 			<hr>
 			<div style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span>&nbsp&nbsp<span class="stress"> *은 다시 선택해주세요</span><br><br>
-
+			
 			<table style="width: 900px;">
 				<colgroup>
 					<col style="width:20%;"/>
@@ -962,6 +972,8 @@
 			<br>
 			<div style="width: 900px; text-align: center;">
 				<input type="submit" value="채용공고 등록하기"/>
+				<input type="button" value="채용공고 삭제하기" id="ReWriteDelte"/>
+				
 			</div><br>
 			
 			<input type="hidden" id="jobType1" name="jobType1">
@@ -970,8 +982,8 @@
 			<input type="hidden" id="induType2" name="induType2">			
 			<input type="hidden" id="location1" name="location1">
 			<input type="hidden" id="location2" name="location2">			
-			<input type="text" id="comCode" name="comCode" value="${comCode }">
-			<input tyn" id="comRecruitVo" name="recruitmentCode" value="${comRecruitVo.recruitmentCode }">
+			<input type="hidden" id="comCode" name="comCode" value="${comCode }">
+			<input type="hidden"" id="comRecruitVo" name="recruitmentCode" value="${comRecruitVo.recruitmentCode }">
 		</form>
 	</div>
 </main>

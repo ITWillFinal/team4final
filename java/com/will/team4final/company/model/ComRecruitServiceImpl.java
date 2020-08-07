@@ -126,4 +126,9 @@ public class ComRecruitServiceImpl implements ComRecruitService {
 	public List<Recruitment_TosVO> selectHot100() {
 		return comRecruitDao.selectHot100();
 	}
+
+	@Override
+	public List<Recruitment_TosVO> selectList_tosByComcode(String comCode) {
+		return comRecruitDao.selectList_tosByComcode(comCode);
+	}
 }

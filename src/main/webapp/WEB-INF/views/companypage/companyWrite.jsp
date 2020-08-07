@@ -875,7 +875,7 @@
 			<input type="hidden" id="induType2" name="induType2">			
 			<input type="hidden" id="location1" name="location1">
 			<input type="hidden" id="location2" name="location2">			
-			<input type="text" id="comCode" name="comCode" value="${comCode }">
+			<input type="hidden" id="comCode" name="comCode" value="${comCode }">
 			
 		</form>
 	</div>

@@ -36,6 +36,7 @@ import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.company.model.ComrRecruitListVO;
+import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.login.controller.LoginController;
@@ -43,6 +44,8 @@ import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.resume.model.ResumeAllVO;
 import com.will.team4final.resume.model.ResumeService;
 import com.will.team4final.resume.model.ResumeTalentVO;
+import com.will.team4final.scrap.model.ComScrapService;
+import com.will.team4final.scrap.model.ComScrapVO;
 
 @Controller
 @RequestMapping("/companypage")
@@ -63,7 +66,11 @@ public class CompanyHomeController {
 	private CompanyInfoService comInfoService;
 	@Autowired
 	private ResumeService resumeService;
-
+	@Autowired
+	private ComRecruitService comRecruitServ;
+	@Autowired
+	private ComScrapService comScrapServ;
+	
 	@RequestMapping("/companyHome.do")
 	public String companyHome() {
 		logger.info("기업페이지 홈");
@@ -340,43 +347,22 @@ public class CompanyHomeController {
 	}
 
 	@RequestMapping("/employmentNotice/employmentNoticeList.do")
-	public void employmentNoticeList(HttpSession session, Model model,
-			@ModelAttribute ComRecruitSearchVO comRecruitSearchVO) {
-		logger.info("employmentNoticeList comRecruitSearchVO={}", comRecruitSearchVO);
-
-		String cUserid = (String) session.getAttribute("userid");
+	public String employmentNoticeList(HttpSession session, Model model) {
+		
 		// 회원 아이디로 회원 코드 가져와소 => company_info를 조회
+		String cUserid = (String) session.getAttribute("userid");
 		CompanyMemberVO companyMemberVo = cMemberSerice.selectCMemberInfoByUserid(cUserid);
 		String cMemberCode = companyMemberVo.getcMemberCode();
 		logger.info("cMemberCode={}", cMemberCode);
 		CompanyInfoVO companyInfoVO = comInfoService.selectComInfoBycMemberCode(cMemberCode);
 		// companyInfoVO에서 comCode 조회 해서 recruitment 데이터 가져오기
 		String comCode = companyInfoVO.getComCode();
-
-		// 페이징 처리
-		PaginationInfo pagingInfo = new PaginationInfo();
-		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		pagingInfo.setCurrentPage(comRecruitSearchVO.getCurrentPage());
-
-		comRecruitSearchVO.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		comRecruitSearchVO.setRecordCountPerPage(Utility.RECORD_COUNT);
-		logger.info("레코드 개수={}", comRecruitSearchVO.getRecordCountPerPage());
-		comRecruitSearchVO.setComCode(comCode);
-
-		List<ComRecruitVO> comRecruitVoList = comRecruitService.selectListBycomCode(comRecruitSearchVO);
-		logger.info(" comRecruitVoList comRecruitVoList.size={}", comRecruitVoList.size());
-
-		int totalRecord = comRecruitService.selectTotalRecord(comRecruitSearchVO);
-		logger.info(" comRecruitVoList  totalRecord = {}", totalRecord);
-
-		pagingInfo.setTotalRecord(totalRecord);
-
-		model.addAttribute("pagingInfo", pagingInfo);
-		model.addAttribute("totalRecord", totalRecord);
-		logger.info("comRecruitVoList={}", comRecruitVoList);
-		model.addAttribute("comRecruitVoList", comRecruitVoList);
-
+		logger.info("comCode={}", comCode);
+		List<Recruitment_TosVO> list = comRecruitService.selectList_tosByComcode(comCode);
+		logger.info("list={}", list);
+		
+		model.addAttribute("list", list);
+		return "companypage/employmentNotice/employmentNoticeList";
 	}
 
 	@RequestMapping("/employmentNotice/deleteMulti.do")
