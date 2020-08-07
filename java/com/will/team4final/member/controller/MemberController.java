@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,7 +36,9 @@ public class MemberController {
 	@Autowired private FileUploadUtil fileUploadUtil;
 	@Autowired private MemberService memberService;
 	@Autowired private JavaMailSender mailSender;
-
+	@Autowired private BCryptPasswordEncoder pwdEncoder;
+	
+	
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
 	public void memberRegister_get() {
 		logger.info("개인회원 등록 화면");
@@ -54,7 +57,12 @@ public class MemberController {
 			imageURL=(String) map.get("fileName");
 		}
 		vo.setImageURL(imageURL);
-
+		
+		//비밀번호 암호화
+		String inputPass = vo.getPwd();
+		String pwd = pwdEncoder.encode(inputPass);
+		vo.setPwd(pwd);
+		
 		int cnt = memberService.insertMember(vo);
 		logger.info("개인 회원 입력 결과 cnt={}", cnt);
 		String msg="회원 가입 실패", url="/member/register.do";

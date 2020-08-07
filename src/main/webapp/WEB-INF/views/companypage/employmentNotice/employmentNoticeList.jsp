@@ -37,7 +37,7 @@
 				<div class="single-job-items mb-30" id="listOne">
 					<div class="job-items">
 						<div class="job-tittle">
-						<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h4>${vo.title }</h4></a>
+						<h4>${vo.title }</h4>
 							<ul>
 								<li>${vo.comName }</li>
 								<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
