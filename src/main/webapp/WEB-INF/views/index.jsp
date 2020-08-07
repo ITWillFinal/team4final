@@ -32,7 +32,7 @@
                             <div class="row" id="searchSelectDiv">
                                 <a href="<c:url value='/hireinpo/infoSearchByLocation.do'/>" class="btn head-btn2" style="font-weight: bold;">지역별</a>
                                 <a href="<c:url value='/hireinpo/hireInfoByJobType.do'/>" class="btn head-btn2" style="font-weight: bold;">직무별</a>
-                                <a href="<c:url value='/hireinpo/hireInfoByJobType.do'/>" class="btn head-btn2" style="font-weight: bold;">산업별</a>
+                                <a href="<c:url value='/hireinpo/hireInfoByInduType.do'/>" class="btn head-btn2" style="font-weight: bold;">산업별</a>
                             </div>
                                 <!-- Search Box -->
                                
