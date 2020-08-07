@@ -320,27 +320,27 @@ function makeListJson(res){
 		<table id="searchTable" style="margin-left: 40px;">
 			<tr>
 				<th>지역</th>
-				<td><input type="text" id="tdLocation1" name="location1" style="width: 40px;"><input type="text" id="tdLocation2" name="location2"></td>
+				<td><input type="text" id="tdLocation1" name="location1" style="width: 40px;" readonly="readonly"><input type="text" id="tdLocation2" name="location2" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th>직무</th>
-				<td><input type="text" id="tdJob1" name="jobType1" style="width: 115px;"><input type="text" id="tdJob2" name="jobType2" style="padding-left: 14px;"></td>
+				<td><input type="text" id="tdJob1" name="jobType1" style="width: 115px;" readonly="readonly"><input type="text" id="tdJob2" name="jobType2" style="padding-left: 14px;" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th>산업</th>
-				<td><input type="text" id="tdIndu1" name="induType1" style="width: 127px;"><input type="text" id="tdIndu2" name="induType2"></td>
+				<td><input type="text" id="tdIndu1" name="induType1" style="width: 127px;" readonly="readonly"><input type="text" id="tdIndu2" name="induType2" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th>기업형태</th>
-				<td><input type="text" id="tdComType" name="comType"></td>
+				<td><input type="text" id="tdComType" name="comType" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th>고용형태</th>
-				<td><input type="text" id="tdHireType" name="recType"></td>
+				<td><input type="text" id="tdHireType" name="recType" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th>학력</th>
-				<td><input type="text" id="tdEdu" name="educationLv"></td>
+				<td><input type="text" id="tdEdu" name="educationLv" readonly="readonly"></td>
 			</tr>
 		</table><br><br>
 		<div style="text-align: center;">
