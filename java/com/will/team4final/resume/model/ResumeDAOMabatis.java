@@ -204,6 +204,21 @@ public class ResumeDAOMabatis implements ResumeDAO{
 	public int requestToJoin(Map<String, String> map) {
 		return sqlSession.insert(namespace2+"requestToJoin",map);
 	}
+
+	@Override
+	public List<Integer> selectResumeNoFromPerscrap(Map<String, String> map) {
+		return sqlSession.selectList(namespace2+"selectResumeNoFromPerscrap",map);
+	}
+
+	@Override
+	public int updatePerscrapStatus(Map<String, String> map) {
+		return sqlSession.update(namespace2+"updatePerscrapStatus",map);
+	}
+
+	@Override
+	public int deletePerscrap(Map<String, String> map) {
+		return sqlSession.delete(namespace2+"deletePerscrap",map);
+	}
 	
 	
 }

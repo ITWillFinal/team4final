@@ -57,6 +57,33 @@
 		insert into perscrap(scrap_no,resume_no,c_member_code)
 		values(perscrap_seq.nextval,?,?)
 	</insert>
+	
+	<parameterMap type="map" id="selectResumeNoFromPerscrapParam">
+		<parameter property="status" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="cMemberCode" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+	</parameterMap>
+	
+	<select id="selectResumeNoFromPerscrap" resultType="int" parameterMap="selectResumeNoFromPerscrapParam">
+		select resume_no from perscrap
+		where status = ? and c_member_code = ? 
+	</select>
+	
+	<parameterMap type="map" id="updatePerscrapStatusParam">
+		<parameter property="status" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="resumeNo" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="cMemberCode" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+	</parameterMap>
+	
+	<update id="updatePerscrapStatus" parameterMap="updatePerscrapStatusParam">
+		update perscrap
+		set status = ?
+		where resume_no=? and c_member_code=?
+	</update>
+	
+	<delete id="deletePerscrap" parameterMap="requestToJoinParam">
+		delete perscrap
+		where resume_no=? and c_member_code=?
+	</delete>
 </mapper>
 
 

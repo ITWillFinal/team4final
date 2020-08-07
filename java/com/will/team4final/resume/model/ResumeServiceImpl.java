@@ -1,5 +1,6 @@
 package com.will.team4final.resume.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -329,4 +330,88 @@ public class ResumeServiceImpl implements ResumeService{
 		return "입사 요청 완료";
 	}
 
+	public List<List<ResumeTalentVO>> perscrapList(String cMemberCode) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("status","WAITING");
+		map.put("cMemberCode",cMemberCode);
+		
+		Map<String, String> map2 = new HashMap<String, String>();
+		map2.put("status","N");
+		map2.put("cMemberCode",cMemberCode);		
+		
+		Map<String, String> map3 = new HashMap<String, String>();
+		map3.put("status","Y");
+		map3.put("cMemberCode",cMemberCode);		
+		
+		List<List<ResumeTalentVO>> resultList = new ArrayList<List<ResumeTalentVO>>();
+		List<ResumeTalentVO> waitingList = new ArrayList<ResumeTalentVO>();
+		List<ResumeTalentVO> noList = new ArrayList<ResumeTalentVO>();
+		List<ResumeTalentVO> yesList = new ArrayList<ResumeTalentVO>();
+		
+		List<Integer> list = resumeDao.selectResumeNoFromPerscrap(map);
+		logger.info("입사요청 - 대기중 : {}",list.size());
+		for(int i=0; i<list.size(); i++) {
+			int resumeNo = list.get(i);
+			waitingList.add(resumeDao.selectResumeTalent(resumeNo));	
+		}
+		
+		list = resumeDao.selectResumeNoFromPerscrap(map2);
+		logger.info("입사요청 - 입사거부 : {}",list.size());
+		for(int i=0; i<list.size(); i++) {
+			int resumeNo = list.get(i);
+			noList.add(resumeDao.selectResumeTalent(resumeNo));	
+		}
+
+		list = resumeDao.selectResumeNoFromPerscrap(map3);
+		logger.info("입사요청 - 입사희망 : {}",list.size());
+		for(int i=0; i<list.size(); i++) {
+			int resumeNo = list.get(i);
+			yesList.add(resumeDao.selectResumeTalent(resumeNo));	
+		}
+		
+		resultList.add(waitingList);
+		resultList.add(noList);
+		resultList.add(yesList);
+		
+		return resultList;
+	}
+
+	@Transactional
+	public String updatePerscrapStatusMulti(List<Integer> resumeNoList,String cMemberCode, String status) {
+		
+		String result = "변경에 되었습니다.";
+		for(int i=0; i<resumeNoList.size(); i++) {
+			Map<String,String> map = new HashMap<String, String>();
+			int resumeNo = resumeNoList.get(i);
+			map.put("status",status);
+			map.put("resumeNo",Integer.toString(resumeNo));
+			map.put("cMemberCode",cMemberCode);
+			
+			int cnt = resumeDao.updatePerscrapStatus(map);
+			if(cnt<1) {
+				result = "변경에 실패했습니다.";
+			}
+		}
+		
+		return result;
+	}
+
+	@Transactional
+	public String deletePerscrapMulti(List<Integer> resumeNoList,String cMemberCode) {
+		
+		String result = "요청을 취소했습니다.";
+		for(int i=0; i<resumeNoList.size(); i++) {
+			Map<String,String> map = new HashMap<String, String>();
+			int resumeNo = resumeNoList.get(i);
+			map.put("resumeNo",Integer.toString(resumeNo));
+			map.put("cMemberCode",cMemberCode);
+			
+			int cnt = resumeDao.deletePerscrap(map);
+			if(cnt<1) {
+				result = "요청 취소에 실패했습니다.";
+			}
+		}
+		
+		return result;
+	}
 }

@@ -20,4 +20,7 @@ public interface ResumeService {
 	ResumeTalentVO selectResumeTalent(int resumeNo);
 	MemberVO selectMemberByResumeNo(int resumeNo);
 	String requestToJoinMulti(List<Integer> resumeNoList, String cMemberCode);
+	List<List<ResumeTalentVO>> perscrapList(String cMemberCode);
+	String updatePerscrapStatusMulti(List<Integer> resumeNoList,String cMemberCode, String status);
+	String deletePerscrapMulti(List<Integer> resumeNoList,String cMemberCode);
 }
