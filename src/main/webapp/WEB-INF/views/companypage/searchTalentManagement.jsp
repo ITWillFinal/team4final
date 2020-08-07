@@ -17,8 +17,6 @@
 				$('.checkAll').prop('checked', false); 
 			}
 		});
-	})
-		
 		$('#button1').click(function(){
 			var len=$(this).parent().parent().find('.checkMember:checked').length;
 			if(len==0){
@@ -38,10 +36,19 @@
 				data: "resumeNoListforDel="+resumeNoListforDel,
 				success:function(res){
 					alert(res);
+					
+					
 				},
 				error:function(xhr, status, error){
 					alert(status+","+error );
+					return;
 				}
+			});
+			
+			$(this).parent().parent().find('.checkMember').each(function(){
+				if($(this).is(':checked')){
+					$(this).parent().parent().remove();
+				}						
 			});
 		});
 
@@ -64,13 +71,23 @@
 				data: "resumeNoListforJoin="+resumeNoListforJoin,
 				success:function(res){
 					alert(res);
+					
 				},
 				error:function(xhr, status, error){
 					alert(status+","+error );
+					return;
 				}
+			});
+			
+			$(this).parent().parent().find('.checkMember').each(function(){
+				if($(this).is(':checked')){
+					$(this).parent().parent().remove();
+				}						
 			});
 		});
 	
+	})
+		
 	function open_resume(resumeNo){
 		window.open("<c:url value='/companypage/talentResumeDetail.do?resumeNo="+resumeNo+"'/>",
 				'RESUME','width=980,height=auto,left=0,top=0,location=yes,resizable=false')
