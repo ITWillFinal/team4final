@@ -86,6 +86,9 @@
 			<if test="educationLv!=null and educationLv!=''">
 				and EDUCATION_LV like '%' || #{educationLv} || '%'
 			</if>
+			<if test="recDetail!=null and recDetail!=''">
+				and TITLE like '%' || #{recDetail} || '%' or REC_DETAIL like '%' || #{recDetail} || '%'
+			</if>
 		</where>
 	</select>
 	

@@ -100,7 +100,7 @@ $(function() {
 
 function hireInfo(){
 	if($('#tdLocation1').val().length < 1 && $('#tdJob1').val().length < 1 && $('#tdIndu1').val().length < 1 && 
-			$('#tdComType').val().length < 1 && $('#tdHireType').val().length < 1 && $('#tdEdu').val().length < 1){
+			$('#tdComType').val().length < 1 && $('#tdHireType').val().length < 1 && $('#tdEdu').val().length < 1 && $('#tdRecDetail').val().length < 1){
 		alert('최소 1개 이상의 조건을 등록해주세요.');
 		return
 	}
@@ -150,7 +150,7 @@ function makeListJson(res){
 	#hireTabs{
 		float: left;
 		width: 55%;
-		height: 370px;
+		height: 424px;
 	}
 	#hireSearch{
 		float: right;
@@ -173,13 +173,15 @@ function makeListJson(res){
 	
 	#locationLi{
 		width: 200px;
-		margin-left: 30px;
+	    margin-left: 10px;
+	    padding: 25px;
 	}
 	#locationLi2{
 		width: 161px;
     	margin-left: 6px;
     	text-align: center;
     	float: left;
+    	ma
 	}
 	
 	#searchTable th{
@@ -219,6 +221,14 @@ function makeListJson(res){
 	    color: #fb246a;
 	    font-weight: bold;
 	    cursor: pointer;
+	}
+	
+	#tdRecDetail{
+		background: #eaeaea94;
+	    border-radius: 8px;
+	    width: 80%;
+	    height: 30px;
+	    margin-bottom: 2px;
 	}
 </style>
 <%@ include file="../inc/sidebar.jsp"%>
@@ -341,6 +351,10 @@ function makeListJson(res){
 			<tr>
 				<th>학력</th>
 				<td><input type="text" id="tdEdu" name="educationLv" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<th>키워드</th>
+				<td><input type="text" id="tdRecDetail" name="recDetail"></td>
 			</tr>
 		</table><br><br>
 		<div style="text-align: center;">

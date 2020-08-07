@@ -27,7 +27,7 @@
 					<div class="single-job-items mb-30" id="listOne">
 						<div class="job-items">
 							<div class="job-tittle">
-								<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h4>${vo.title }</h4></a>
+								<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h4>${num}　 ${vo.title }</h4></a>
 								<ul>
 									<li>${vo.comName }</li>
 									<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
@@ -48,6 +48,7 @@
 						</div>
 						</c:if>
 					</div>
+					<c:set var="num" value="${num + 1 }" property="int"/>
 				</c:forEach>
 			</c:if>
 		</div>

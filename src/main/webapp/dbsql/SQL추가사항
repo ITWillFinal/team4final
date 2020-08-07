@@ -194,3 +194,12 @@ ALTER TABLE perscrap ADD UNIQUE (resume_no,c_member_code);
 
 alter table company_member
 modify(c_pwd varchar2(150));
+
+alter table recruitment
+modify(PREFERENCE varchar2(500));
+
+alter table recruitment
+modify(WELFARE varchar2(300));
+
+alter table perscrap
+add status varchar2(30) default 'WAITING';
