@@ -36,6 +36,56 @@
 		</if>
 	</select>
 	
+	<select id="selectMemberNotice" resultType="noticeVo" parameterType="searchVo">
+		select * 
+		from 
+		(
+			select rownum as RNUM, A.*
+			from(
+				select notice_no, title, type, regdate, member_type from notice where member_type = 'U'
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					and TYPE = #{searchKeyword }
+				</if>
+				order by notice_no desc
+			)A
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
+	</select>
+	
+	<select id="totalMemberNotice" parameterType="searchVo" resultType="int">
+		select count(*) from notice where member_type = 'U'
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			and TYPE = #{searchKeyword }
+		</if>
+	</select>
+	
+	<select id="selectComNotice" resultType="noticeVo" parameterType="searchVo">
+		select * 
+		from 
+		(
+			select rownum as RNUM, A.*
+			from(
+				select notice_no, title, type, regdate, member_type from notice where member_type = 'C'
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					and TYPE = #{searchKeyword }
+				</if>
+				order by notice_no desc
+			)A
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
+	</select>
+	
+	<select id="totalComNotice" parameterType="searchVo" resultType="int">
+		select count(*) from notice where member_type = 'C'
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			and TYPE = #{searchKeyword }
+		</if>
+	</select>
+	
 	<select id="selectNoticeByNo" resultType="noticeVo" parameterType="int">
 		select * from notice where notice_no = #{noticeNo}
 	</select>
@@ -47,6 +97,10 @@
 	<update id="updateNotice" parameterType="noticeVo">
 		update notice set type=#{type}, member_type=#{memberType}, title=#{title}, content=#{content}
 		where notice_no = #{noticeNo}
+	</update>
+	
+	<update id="updateNoticeReadcount" parameterType="int">
+		update notice set readCount = readCount+1 where notice_no = #{noticeNo}
 	</update>
 	
 </mapper>

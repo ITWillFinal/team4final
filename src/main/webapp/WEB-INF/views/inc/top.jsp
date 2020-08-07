@@ -412,7 +412,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 											<div>
 												<span>고객센터 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
 												<br><br>
-												<a href="about.html">공지사항</a> 
+												<a href="<c:url value='/notice/memberNotice.do'/>">공지사항</a>
 												<br>
 												<a href="about.html">자주찾는질문</a> 
 												<br>
