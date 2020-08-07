@@ -19,16 +19,21 @@
 				searchResume();				
 			}
 		});
+
+		$('.checkMember').change(function(){
+			if(!$(this).is(':checked')){
+				$('.checkAll').prop('checked', false); 
+			}
+		});
 		
 		$('.checkAll').change(function(){
-			console.log($(this).is(':checked'));
 			if($(this).is(':checked')){
-				console.log("!!");
 				$('.checkMember').prop('checked', true); 
 			}else{
 				$('.checkMember').prop('checked', false); 				
 			}
 		});
+		
 	})
 	
 	function searchResume(){
@@ -67,6 +72,7 @@
 					});
 				}
 				$('tbody').html(table);
+				$("td:contains('null')").text("-");
 			},
 			error:function(xhr, status, error){
 				alert(status+","+error );
@@ -185,7 +191,6 @@
 	
 	tbody{
 		height: 330px;
-		overflow: scroll;
 	}
 	
 	table th{
@@ -328,7 +333,7 @@
 							</select>
 				</div>	
 				<div class="search-result">
-				<div style="height:290px;">
+				<div style="height:290px; overflow-y: scroll;">
 					<table>
 						<caption style="display: none;">인재 검색 결과 테이블</caption>
 							<col width=3%>

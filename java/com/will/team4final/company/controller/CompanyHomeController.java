@@ -566,4 +566,45 @@ public class CompanyHomeController {
 		return "common/message";
 	}
 
+	@RequestMapping("/searchTalentManagement.do")
+	public String searchTalentManagement(HttpSession session, Model model) {
+		 logger.info("기업 - 입사요청 관리페이지");
+	      
+	      String cMemberCode=(String)session.getAttribute("cMemberCode");
+	      logger.info("기업 회원 코드 = {}",cMemberCode);
+	      
+	      List<List<ResumeTalentVO>> list = resumeService.perscrapList(cMemberCode);
+	      
+	      model.addAttribute("list",list);
+	      
+	      return "companypage/searchTalentManagement";
+	}
+	
+	@ResponseBody
+	   @RequestMapping(value = "/requestDelete.do", produces = "application/text; charset=utf8")
+	   public String requestDelete(@RequestParam List<Integer> resumeNoListforDel,
+	         HttpSession session) {
+	      logger.info("입사요청 취소 resumeNoListforDel.size={}",resumeNoListforDel.size());
+	      
+	      String cMemberCode=(String)session.getAttribute("cMemberCode");
+	      logger.info("기업 회원 코드 = {}",cMemberCode);
+	      
+	      String result = resumeService.deletePerscrapMulti(resumeNoListforDel, cMemberCode);
+	      
+	      return result;
+	   }
+
+	@ResponseBody
+	@RequestMapping(value = "/yesToJoin.do", produces = "application/text; charset=utf8")
+	public String yesToJoin(@RequestParam List<Integer> resumeNoListforJoin,
+			HttpSession session) {
+		logger.info("입사 희망요청 처리 resumeNoListforJoin.size={}",resumeNoListforJoin.size());
+		
+		String cMemberCode=(String)session.getAttribute("cMemberCode");
+		logger.info("기업 회원 코드 = {}",cMemberCode);
+		
+		String result = resumeService.updatePerscrapStatusMulti(resumeNoListforJoin, cMemberCode,"JOIN");
+		
+		return result;
+	}
 }

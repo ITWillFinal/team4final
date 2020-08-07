@@ -44,4 +44,8 @@ public interface ResumeDAO {
 	ResumeTalentVO selectResumeTalent(int resumeNo);
 	MemberVO selectMemberByResumeNo(int resumeNo);
 	int requestToJoin(Map<String, String> map);
+	List<Integer> selectResumeNoFromPerscrap(Map<String, String> map);
+	int updatePerscrapStatus(Map<String,String> map);
+	int deletePerscrap(Map<String,String> map);
+	
 }
