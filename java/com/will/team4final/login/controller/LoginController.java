@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Operations;
@@ -36,7 +37,9 @@ public class LoginController {
 	private MemberService memServ;
 	@Autowired
 	private ComMemberService comServ;
-
+	@Autowired private BCryptPasswordEncoder pwdEncoder;
+	
+	
 	/* GoogleLogin */
 	@Autowired
 	private GoogleConnectionFactory googleConnectionFactory;
@@ -143,12 +146,22 @@ public class LoginController {
 	public String userLogin(@RequestParam String pwd, @RequestParam String userid, Model model,
 			HttpServletRequest request) {
 		logger.info("로그인 처리 userid={}, pwd={}", userid, pwd);
-
-		int result = memServ.loginCheck(userid, pwd);
-		logger.info("로그인 result의 값은 = {}", result);
-
+		
+		MemberVO vo=memServ.selectByUserid(userid);
+		
+		//아이디 있는지 확인
 		String url = "/index.do", msg = "로그인시 오류!";
-		if (result == MemberService.LOGIN_OK) {
+		if(vo.getUserid()==null || vo.getUserid().isEmpty()) {
+			msg="아이디가 없습니다";
+			model.addAttribute("url", url);
+			model.addAttribute("msg", msg);
+			return "common/message";
+		}
+		
+		boolean pwdMatch = pwdEncoder.matches(pwd, vo.getPwd());
+		logger.info("pwdMatch={}", pwdMatch);
+		
+		if (pwdMatch == true) {
 			MemberVO memVo = memServ.selectByUserid(userid);
 
 			msg = memVo.getUserName() + "님 취뽀하세요!";
@@ -158,10 +171,8 @@ public class LoginController {
 			session.setAttribute("name", memVo.getUserName());
 			session.setAttribute("status", memVo.getUserStatus());
 			session.setAttribute("userNo", memVo.getUserNo());
-		} else if (result == MemberService.PWD_DISAGREE) {
+		} else if (pwdMatch == false) {
 			msg = "비밀번호가 다릅니다!";
-		} else if (result == MemberService.ID_NONE) {
-			msg = "존재하지 않는 아이디입니다.!";
 		}
 
 		model.addAttribute("url", url);
@@ -175,11 +186,21 @@ public class LoginController {
 			HttpServletRequest request) {
 		logger.info("기업 로그인 처리 userid={}, pwd={}", userid, pwd);
 		
-		int result = comServ.comLoginCheck(userid, pwd);
-		logger.info("기업 로그인 result의 값은 = {}", result);
+		CompanyMemberVO vo = comServ.selectCMemberInfoByUserid(userid);
+		String cUserid = vo.getcUserid();
 		
 		String url = "/companypage/companyHome.do", msg = "기업 로그인시 오류!";
-		if (result == MemberService.LOGIN_OK) {
+		if(cUserid==null || cUserid.isEmpty()) {
+			msg="아이디가 없습니다.";
+			model.addAttribute("url", url);
+			model.addAttribute("msg", msg);
+			return "common/message";
+		}
+		
+		boolean pwdMatch = pwdEncoder.matches(pwd, vo.getcPwd());
+		logger.info("pwdMatch={}", pwdMatch);
+		
+		if (pwdMatch == true) {
 			CompanyMemberVO comVo = comServ.selectCMemberInfoByUserid(userid);
 			
 			msg = comVo.getcUsername() + "님 안녕하세요!";
@@ -189,10 +210,8 @@ public class LoginController {
 			session.setAttribute("name", comVo.getcUsername());
 			session.setAttribute("status", comVo.getcUserStatus());
 			session.setAttribute("cMemberCode", comVo.getcMemberCode());
-		} else if (result == MemberService.PWD_DISAGREE) {
+		} else if (pwdMatch == false) {
 			msg = "비밀번호가 다릅니다!";
-		} else if (result == MemberService.ID_NONE) {
-			msg = "존재하지 않는 아이디입니다.!";
 		}
 		
 		model.addAttribute("url", url);
