@@ -1,5 +1,7 @@
 package com.will.team4final.company.resume.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,12 +54,17 @@ public class CompanyResumeController {
 	}
 	
 	@RequestMapping(value = "/companyResumeUse.do", method = RequestMethod.GET)
-	public String resumeUse_get(@RequestParam String recruitmentCode, Model model) {
+	public String resumeUse_get(@RequestParam String recruitmentCode, HttpServletRequest request , Model model) {
 		logger.info("기업 자사 이력서 사용 페이지");
 		logger.info("파라미터 recruitmentCode={}", recruitmentCode);
 		
+		String userId = request.getParameter("userId");
+		logger.info("userId={}", userId);
+		
 		CompanyResumeSetVO vo = companyResumeSetService.selectCompanyResumeSet(recruitmentCode);
+		
 		logger.info("companyResumeUseVo={}", vo);
+		model.addAttribute("userId", userId);
 		model.addAttribute("vo", vo);
 		return "companypage/companyResumeUse";
 	}

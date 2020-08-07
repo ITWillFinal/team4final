@@ -110,10 +110,12 @@
 
 </script>
 
+
+
 <script type="text/javascript">
 	
 	$(function(){
-		
+		//DB값 처리 시작
 		var n1 = $("#schoolVal").val();
 		if(n1=="n"){
 			$("#schoolDiv").hide();
@@ -153,63 +155,146 @@
 		if(n8=="n"){
 			$("#selfDiv").hide();
 		}
+		//DB값 처리 끝
 		
-		
+		//성별
+		$("#genderSelect").change(function(){
+			var genderSel = $("#genderSelect option:selected").val();
+			$("#gender").val(genderSel);
+		});
+						
+		//학력사항
+		var z1 = 1;
+		$("#schoolDelBtn").prop("disabled", true);
 		$("#schoolAddBtn").click(function(){
 			$("#schoolTable")
-			.append("<tr id='schoolTr'><td><input type='text'></td><td><input type='date'></td></tr>");
+			.append("<tr id='schoolTr'><td><input type='text' id='schoolName"+z1+"'></td><td><input type='date' id='schoolDate"+z1+"'></td></tr>");
+			++z1;
+			if(z1 >= 1){
+				$("#schoolDelBtn").prop("disabled", false);							
+			}
 		});
 		
 		$("#schoolDelBtn").click(function(){
 			$("#schoolTr:nth-last-child(1)").remove();
-		});
+			--z1;
+			if(z1 < 2){
+				$("#schoolDelBtn").prop("disabled", true);
+			}
+		});		
 		
+		//경력사항
+		var z2 = 1;
+		$("#careerDelBtn").prop("disabled", true);
 		$("#careerAddBtn").click(function(){
 			$("#careerTable")
-			.append("<tr id='careerTr'><td><input type='text'></td><td><input type='text'></td><td><input type='text'></td><td><input type='date' style='width:50%;'><input type='date' style='width:50%;'></td></tr>")
+			.append("<tr id='careerTr'><td><input type='text' id='careerName"+z2+"'></td><td><input type='text' id='careerLv"+z2+"'></td><td><input type='text' id='careerContent"+z2+"'></td><td><input type='date' id='careerStartDate"+z2+"' style='width:50%;'><input type='date' id='careerEndDate"+z2+"' style='width:50%;'></td></tr>");
+			++z2;
+			if(z2 >= 1){
+				$("#careerDelBtn").prop("disabled", false);
+			}
 		});
 		
 		$("#careerDelBtn").click(function(){
 			$("#careerTr:nth-last-child(1)").remove();
+			--z2;
+			if(z2 < 2){
+				$("#careerDelBtn").prop("disabled", true);
+			}
 		});
 		
+		//자격증
+		var z3 = 1;
+		$("#certificateDelBtn").prop("disabled", true);
 		$("#certificateAddBtn").click(function(){
 			$("#certificateTable")
-			.append("<tr id='certificateTr'><td><input type='text'></td><td><input type='text'></td><td><input type='date'></td></tr>");
+			.append("<tr id='certificateTr'><td><input type='text' id='certificateName"+z3+"'></td><td><input type='text' id='certificateOrg"+z3+"'></td><td><input type='date' id='certificateDate"+z3+"'></td></tr>");
+			++z3;
+			if(z3 >= 1){
+				$("#certificateDelBtn").prop("disabled", false)
+			}		
 		});
 		
 		$("#certificateDelBtn").click(function(){
 			$("#certificateTr:nth-last-child(1)").remove();
+			--z3;
+			if(z3 < 2){
+				$("#certificateDelBtn").prop("disabled", true);
+			}
 		});
+				
 		
+		//외국어능력
+		var z4 = 1;
+		$("#languageDelBtn").prop("disabled", true);
 		$("#languageAddBtn").click(function(){
 			$("#languageTable")
-			.append("<tr id='languageTr'><td><input type='text'></td><td><input type='text'></td><td><input type='date'></td></tr>");
+			.append("<tr id='languageTr'><td><input type='text' id='languageName"+z4+"'></td><td><input type='text' id='languageOrg"+z4+"'></td><td><input type='date' id='languageDate"+z4+"'></td></tr>");
+			++z4;
+			if(z4 >= 1){
+				$("#languageDelBtn").prop("disabled", false)
+			}
 		});
 		
 		$("#languageDelBtn").click(function(){
 			$("#languageTr:nth-last-child(1)").remove();
+			--z4;
+			if(z4 < 2){
+				$("#languageDelBtn").prop("disabled", true);
+			}
 		});
 		
+		//수상기록
+		var z5 = 1;
+		$("#awardsDelBtn").prop("disabled", true);
 		$("#awardsAddBtn").click(function(){
 			$("#awardsTable")
-			.append("<tr id='awardsTr'><td><input type='text'></td><td><input type='text'></td><td><input type='date'></td></tr>");
+			.append("<tr id='awardsTr'><td><input type='text' id='awardsName"+z5+"'></td><td><input type='text' id='awardsOrg"+z5+"'></td><td><input type='date' id='awardsDate"+z5+"'></td></tr>");
+			++z5;
+			if(z5 >= 1){
+				$("#awardsDelBtn").prop("disabled", false)
+			}
 		});
 		
 		$("#awardsDelBtn").click(function(){
 			$("#awardsTr:nth-last-child(1)").remove();
+			--z5;
+			if(z5 < 2){
+				$("#awardsDelBtn").prop("disabled", true);
+			}
 		});
 		
+		//대외활동
+		var z6 = 1;
+		$("#activityDelBtn").prop("disabled", true);
 		$("#activityAddBtn").click(function(){
 			$("#activityTable")
-			.append("<tr id='activityTr'><td><input type='text'></td><td><input type='text'></td><td><input type='date' style='width:50%;'><input type='date' style='width:50%;'></td></tr>");
+			.append("<tr id='activityTr'><td><input type='text' id='activityName"+z6+"'></td><td><input type='text' id='activityOrg"+z6+"'></td><td><input type='date' id='activityStartDate"+z6+"' style='width:50%;'><input type='date' id='activityEndDate"+z6+"' style='width:50%;'></td></tr>");
+			++z6;
+			if(z6 >= 1){
+				$("#activityDelBtn").prop("disabled", false)
+			}
 		});
 		
 		$("#activityDelBtn").click(function(){
 			$("#activityTr:nth-last-child(1)").remove();
+			--z6;
+			if(z6 < 2){
+				$("#activityDelBtn").prop("disabled", true);
+			}
 		});
 		
+		//우대사항
+		$(".specialChk").click(function(){
+			var specialData = "";
+			$(".specialChk").each(function(){
+				if($(this).is(":checked"))
+					specialData += $(this).val() + " ";
+			});			
+			$("#special").val(specialData);			
+		});
 		
+		//자기소개서
 		var i = 2;
 		$("#selfAddBtn").click(function(){
 
@@ -239,8 +324,8 @@
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frm" method="post" action="<c:url value='/companypage/companyResumeUse.do'/>">
 		
-		이력서코드 : <input type="text" name="recruitmentCode" id="recruitmentCode" value="${vo.recruitmentCode}">
-		일반회원아이디 : <input type="text" name="userId">
+		<!-- 이력서코드 : --><input type="hidden" name="recruitmentCode" id="recruitmentCode" value="${vo.recruitmentCode}">
+		<!-- 일반회원아이디 : --><input type="hidden" name="userId" value="${userId}">
 			<!-- 
 			<div style="margin:5px; height:95px; border:1px solid lightgray">
 			위쪽 가로 긴 구역
@@ -262,19 +347,25 @@
 					</tr>
 					<tr>
 						<td>성별</td>
-						<td><input type="text" name="gender"></td>
+						<td><input type="text" name="gender" id="gender" value="남자" readonly></td>
+						<td>
+							<select id="genderSelect" name="genderSelect">
+								<option value="남자">남자</option>
+						   		<option value="여자">여자</option>
+			                </select>
+						</td>
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td><input type="text" name="gender"></td>
+						<td><input type="text" name="email"></td>
 					</tr>
 					<tr>
 						<td>전화번호</td>
-						<td><input type="text"></td>
+						<td><input type="text" name="hp"></td>
 					</tr>
 					<tr>
 						<td>생년월일</td>
-						<td><input type="date"></td>
+						<td><input type="date" name="birth"></td>
 					</tr>
 					<tr>
 						<td>우편번호</td>
@@ -287,7 +378,7 @@
 					</tr>
 					<tr>
 						<td>상세주소</td>
-						<td><input type="text"></td>
+						<td><input type="text" name="addressDetail"></td>
 					</tr>
 				</table>
 			<hr>
@@ -296,7 +387,7 @@
 			
 			<div id="schoolDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">학력사항</span>
-				<input type="text" name="schoolVal" id="schoolVal" value="${vo.schoolVal}">
+				<input type="hidden" name="schoolVal" id="schoolVal" value="${vo.schoolVal}">
 				<%-- 체크박스를 토글로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="schoolChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -318,6 +409,7 @@
 							<td>졸업일</td>				
 						</tr>
 					</table>
+					<input type="hidden" name="edu" id="edu">
 				</div>
 			<hr>
 			</div>
@@ -325,7 +417,7 @@
 			
 			<div id="careerDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">경력사항</span>
-				<input type="text" name="careerVal" id="careerVal" value="${vo.careerVal}">
+				<input type="hidden" name="careerVal" id="careerVal" value="${vo.careerVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="careerChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -351,6 +443,7 @@
 							<td>근무기간</td>
 						</tr>
 					</table>
+					<input type="hidden" name="career">
 				</div>
 			<hr>
 			</div>
@@ -358,7 +451,7 @@
 			
 			<div id="certificateDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">자격증</span>
-				<input type="text" name="certificateVal" id="certificateVal" value="${vo.certificateVal}">
+				<input type="hidden" name="certificateVal" id="certificateVal" value="${vo.certificateVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="certificateChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -382,6 +475,7 @@
 							<td>취득일</td>				
 						</tr>
 					</table>
+					<input type="hidden" name="certificate">
 				</div>
 			<hr>
 			</div>
@@ -389,7 +483,7 @@
 			
 			<div id="languageDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">외국어능력</span>
-				<input type="text" name="languageVal" id="languageVal" value="${vo.languageVal}">
+				<input type="hidden" name="languageVal" id="languageVal" value="${vo.languageVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="languageChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -413,6 +507,7 @@
 							<td>취득일</td>				
 						</tr>
 					</table>
+					<input type="hidden" name="language">
 				</div>
 			<hr>
 			</div>
@@ -420,7 +515,7 @@
 			
 			<div id="awardsDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">수상내역</span>
-				<input type="text" name="awardsVal" id="awardsVal" value="${vo.awardsVal}">
+				<input type="hidden" name="awardsVal" id="awardsVal" value="${vo.awardsVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="awardsChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -444,6 +539,7 @@
 							<td>수여일</td>				
 						</tr>
 					</table>
+					<input type="hidden" name="award">
 				</div>
 			<hr>
 			</div>
@@ -451,7 +547,7 @@
 			
 			<div id="specialDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">우대사항</span>
-				<input type="text" name="specialVal" id="specialVal" value="${vo.specialVal}">
+				<input type="hidden" name="specialVal" id="specialVal" value="${vo.specialVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="specialChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -465,15 +561,16 @@
 							<col style="width:200px;">
 						</colgroup>
 						<tr>
-							<td><input type="checkbox">&nbsp;병역대상</td>
+							<td><input type="checkbox" class="specialChk" value="병역대상">&nbsp;병역대상</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox">&nbsp;보훈대상</td>
+							<td><input type="checkbox" class="specialChk" value="보훈대상">&nbsp;보훈대상</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox">&nbsp;고용지원금 대상</td>
+							<td><input type="checkbox" class="specialChk" value="고용지원금대상">&nbsp;고용지원금대상</td>
 						</tr>
 					</table>
+					<input type="hidden" name="special" id="special">
 				</div>
 			<hr>
 			</div>
@@ -481,7 +578,7 @@
 			
 			<div id="activityDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">대외활동</span>
-				<input type="text" name="activityVal" id="activityVal" value="${vo.activityVal}">
+				<input type="hidden" name="activityVal" id="activityVal" value="${vo.activityVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="activityChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -505,13 +602,14 @@
 							<td>대외활동일자</td>			
 						</tr>
 					</table>
+					<input type="hidden" name="activity">
 				</div>
 			<hr>
 			</div>
 			
 						
 			<div id="selfDiv" style="margin:5px;">
-			<input type="text" name="selfVal" id="selfVal" value="${vo.selfVal}">
+			<input type="hidden" name="selfVal" id="selfVal" value="${vo.selfVal}">
 				<span style="font-size: 18px; font-weight: bold;">자기소개서</span>				
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
@@ -534,6 +632,7 @@
 							<td><input type="text"></td>			
 						</tr>
 					</table>
+					<input type="hidden" name="self">
 				</div>
 			<hr>
 			</div>			
