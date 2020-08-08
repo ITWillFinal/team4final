@@ -26,26 +26,24 @@
 </style>
 <script type="text/javascript">
 $(function() {
-	/* $('div button').click(function() {
-		var sido = $(this).val();
-		$('#sigugun').empty();
-		$.ajax({
-			url:"<c:url value='/sigugun.do'/>",
+	
+	$('div button').click(function() {
+		var loca = $(this).val();
+		location.href="<c:url value='/hireinpo/infoSearchByLocation.do?location="+loca+"'/>";
+		/* $.ajax({
+			url:"<c:url value='/hireinpo/infoSearchByLocation.do'/>",
 			type:"get",
 			dataType:"json",
-			data:"sido="+sido,
+			data:"location="+loca,
 			success:function(res){
-				$('#sigugun').append("<hr>");
-				for(var i = 0; i< res.length; i++){
-					var option ="<label><input type='radio' name='sigugun' value='"+res[i]+"'>"+res[i]+"</label>";
-					$('#sigugun').append(option);
-				}
+				$("#map").load(window.location.href + "#map");
 			},
 			error:function(xhr, status, error){
 				alert(status + ", " + error);
 			}
-		});
-	}); */
+		}); */
+	});
+
 	
 	$('button').hover(function() {
 		$(this).css('color', 'white').css('background', '#fb246a');
@@ -143,6 +141,8 @@ $(function() {
 			infowindow.setContent('<div style="width:150px;text-align:center;padding:6px 0;">'+comName[num]+'</div>');
 			num = num + 1;
 		}
+		
 	</script>
+
 </div>
 <%@ include file="../inc/bottom.jsp" %>

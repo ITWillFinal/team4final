@@ -98,13 +98,15 @@ public class HireInfoController {
 	}
 	
 	@RequestMapping("/infoSearchByLocation.do")
-	public void infoSearchByLocation(Model model) {
-		logger.info("지역별 채용정보");
+	public void infoSearchByLocation(Model model, @RequestParam(required = false) String location) {
+		logger.info("지역별 채용정보, 파라미터 location = {}", location);
 		List<String> locationList = locationServ.sido();
 		model.addAttribute("locationList", locationList);
-		List<ComRecruitVO> list = comRecuritServ.selectAllRecruitment();
-		logger.info("list size = {}", list.size());
-		model.addAttribute("list", list);
+		if(location != null && !location.isEmpty()) {
+			List<Recruitment_TosVO> list = locationServ.selectHireInfoByLocation(location);
+			logger.info("list size = {}", list.size());
+			model.addAttribute("list", list);
+		}
 	}
 	
 	@RequestMapping("/hot100.do")
