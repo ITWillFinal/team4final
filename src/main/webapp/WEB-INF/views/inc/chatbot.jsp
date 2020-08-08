@@ -14,6 +14,7 @@
 		background-repeat:no-repeat;
 		background-size:75% 80%;
 		background-position: center center; 
+		z-index: 1
 	}
 	
 	.chatbot-main{
@@ -26,6 +27,7 @@
    		padding: 10px;
    		background: #8e7a80;
    		 border-radius: 20px;
+   		 z-index: 2;
 	}
 	
 	.chatbot-top{
@@ -104,7 +106,7 @@
 	.balloon1 {
 		position: relative;
 	    margin-left: 20px;
-	    width: 210px;
+	    width: 220px;
 	    height: auto;
 	    background: #ffffff;
 	    border-radius: 10px;
@@ -125,7 +127,7 @@
 	.balloon2 {
 		 position: relative;
 	    margin-left: 20px;
-	    width: 210px;
+	    width: 220px;
 	    height: auto;
 	    background: #f1e344;
 	    border-radius: 10px;
@@ -152,7 +154,7 @@
 	$(function(){
 		$('.chatbot').click(function(){
 			$('.chatbot-main').show('nomal');
-			$('.chatbot-screen').scrollTop($('.chatbot-screen').height());
+			$('.chatbot-screen').scrollTop($('.chatbot-screen').height()+$('.chatbot-screen div').length*500);
 		});
 		
 		$('.exit').click(function(){
@@ -172,7 +174,8 @@
 			$('.chatbot-screen').append(receiveMsg);
 			
 			$('.message').val("");
-			$('.chatbot-screen').scrollTop($('.chatbot-screen').height());
+			$('.chatbot-screen').scrollTop($('.chatbot-screen').height()+$('.chatbot-screen div').length*500);
+			console.log();
 			
 			/* $.ajax({
 				url:"<c:url value='/chatbot/messageSend.do'/>",

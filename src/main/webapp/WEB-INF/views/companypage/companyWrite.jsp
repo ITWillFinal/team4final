@@ -46,7 +46,7 @@
 
 <script type="text/javascript">
 	$(function() {
-		$('#sido').click(function() {
+		$('#sido').change(function() {
 			var sido = $('#sido').val();
 			$('#sigugun').empty();
 			$('input[name=location1]').empty();
@@ -59,6 +59,9 @@
 					for(var i = 0; i< res.length; i++){
 						var option ="<option value='"+res[i]+"'>"+res[i]+"</option>";
 						$('#sigugun').append(option);
+						if(i==0){
+							$('input[name=location2]').val(res[i]);
+						}
 					}
 				},
 				error:function(xhr, status, error){
@@ -369,10 +372,6 @@
 			}else if($('#document').val()==''){
 				alert('제출서류를 입력하세요');
 				$('#document').focus();
-				event.preventDefault();
-			}else if($('#recDetail').val()==''){
-				alert('상세모집내용을 입력하세요');
-				$('#recDetail').focus();
 				event.preventDefault();
 			}else if($('#comCode').val()==''){
 				alert('회사코드를 입력하세요');
@@ -876,7 +875,7 @@
 			<input type="hidden" id="induType2" name="induType2">			
 			<input type="hidden" id="location1" name="location1">
 			<input type="hidden" id="location2" name="location2">			
-			<input type="text" id="comCode" name="comCode" value="${comCode }">
+			<input type="hidden" id="comCode" name="comCode" value="${comCode }">
 			
 		</form>
 	</div>

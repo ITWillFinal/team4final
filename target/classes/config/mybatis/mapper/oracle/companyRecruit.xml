@@ -29,16 +29,24 @@
 		where faq_No = #{faqNo}
 	</update>
 	
-	<select id="selectMost5" resultType="map">
-		select * from recruitment_tos where to_date(end_date) >= sysdate-1
+	<select id="selectMost5" resultType="recruitment_TosVo">
+		select A.*
+		from(
+			select * from recruitment_tos where to_date(end_date) >= sysdate-1 order by readcount desc
+		)A
+		<![CDATA[where rownum <= 5 ]]>
 	</select>
 	
 	<select id="selectOneCom" resultType="comRecruitVo" parameterType="string">
-		select * from recruitment where recruitment_code = #{recruitmentCode}
+		select * from recruitment_tos where recruitment_code = #{recruitmentCode}
 	</select>
 	
-	<select id="selectSearchInfo" resultType="comRecruitVo" parameterType="comRecruitVo">
-		select * from recruitment
+	<select id="selectList_tosByComcode" resultType="recruitment_TosVo" parameterType="string">
+		select * from recruitment_tos where com_code=#{comCode}
+	</select>
+	
+	<select id="selectAllRecruitment" resultType="recruitment_TosVo">
+		select * from recruitment_tos where to_date(end_date) >= sysdate-1
 	</select>
 	
 	<update id="updateResumeType" parameterType="comRecruitVo">
@@ -46,5 +54,115 @@
 		set RESUME_TYPE = ${resumeType}
 		where recruitment_code = #{recruitmentCode}
 	</update>
+	
+	<select id="recruitmentDetailList" parameterType="comRecruitVo" resultType="recruitment_TosVo">
+		select * from recruitment_tos
+		<where>
+			to_date(end_date) >= sysdate-1
+			<if test="location1!=null and location1!=''">
+				and location1=#{location1}
+				<if test="location2!=null and location2!=''">
+					and location2=#{location2}
+				</if>
+			</if>
+			<if test="jobType1!=null and jobType1!=''">
+				and JOB_TYPE1 = #{jobType1}
+				<if test="jobType2!=null and jobType2!=''">
+					and JOB_TYPE2 = #{jobType2}
+				</if>
+			</if>
+			<if test="induType1!=null and induType1!=''">
+				and INDU_TYPE1 = #{induType1}
+				<if test="induType2!=null and induType2!=''">
+					and INDU_TYPE2 = #{induType2}
+				</if>
+			</if>
+			<if test="comType!=null and comType!=''">
+				and COM_TYPE like '%' || #{comType} || '%'
+			</if>
+			<if test="recType!=null and recType!=''">
+				and REC_TYPE like '%' || #{recType} || '%'
+			</if>
+			<if test="educationLv!=null and educationLv!=''">
+				and EDUCATION_LV like '%' || #{educationLv} || '%'
+			</if>
+			<if test="recDetail!=null and recDetail!=''">
+				and TITLE like '%' || #{recDetail} || '%' or REC_DETAIL like '%' || #{recDetail} || '%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectBycomCode" parameterType="string" resultType="comRecruitVO">
+		select * from recruitment
+		where com_code=#{comCode}
+	</select>
+	
+	<select id="selectListBycomCode" parameterType="string" resultType="comRecruitVO">
+		select * 
+		from
+		(
+			select rownum as RNUM, A.*
+			from(
+				select *
+				from recruitment
+				where
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					 ${searchCondition} like '%'
+							|| #{searchKeyword} || '%' and 
+				</if>
+				com_code=#{comCode}
+				order by recruitment_code desc
+			)A
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
+	</select>
+	
+	<select id="updateReadCount" parameterType="string">
+		update recruitment
+		set readcount = readcount+1
+		where recruitment_code = #{recruitmentCode}
+	</select>
+	
+	<delete id="deleteComRecruit" parameterType="string">
+		delete recruitment
+		where recruitment_code = #{recruitmentCode}
+	</delete>
+	
+	<select id="selectTotalRecord" parameterType="string" resultType="int">
+		select count(*) from recruitment
+		where com_code=#{comCode}
+	</select>
+	
+	<select id="selectTosOneCom" resultType="recruitment_TosVo" parameterType="string">
+		select * from recruitment_tos where recruitment_code = #{recruitmentCode}
+	</select>
+	
+	<select id="selectOneByRecruitmentCode" resultType="comRecruitVo" parameterType="string">
+		select * from recruitment where recruitment_code = #{recruitmentCode}
+	</select>
+	
+	<select id="selectSearchInfo" resultType="comRecruitVo" parameterType="comRecruitVo">
+		select * from recruitment
+	</select>
+	<update id="updateComRecruit" parameterType="comRecruitVO">
+		update recruitment
+		set COM_NAME =#{comName}, TITLE=#{title}, JOB_TYPE1=#{jobType1}, JOB_TYPE2=#{jobType2},
+			INDU_TYPE1=#{induType1}, INDU_TYPE2=#{induType2},	ZIPCODE=#{zipcode}, ADDRESS=#{address}, ADDRESSDETAIL=#{addressDetail},
+			WORKHOURS=#{workHours},
+			LOCATION1=#{location1}, LOCATION2=#{location2}, REC_TYPE=#{recType}, PAY=#{pay}, REC_NUMBER=#{recNumber}, WELFARE=#{welfare},
+			GENDER=#{gender}, AGE=#{age}, EDUCATION_LV=#{educationLv}, CAREER=#{career}, PREFERENCE=#{preference}, 
+			DOCUMENT=#{document}, REC_DETAIL=#{recDetail}, COM_TYPE=#{comType}
+		where recruitment_code = #{recruitmentCode}
+	</update>
+	
+	<select id="selectHot100" resultType="recruitment_TosVo">
+		select A.*
+		from(
+			select * from recruitment_tos where to_date(end_date) >= sysdate-1 order by readcount desc
+		)A
+		<![CDATA[where rownum <= 100 ]]>
+	</select>
 	
 </mapper>

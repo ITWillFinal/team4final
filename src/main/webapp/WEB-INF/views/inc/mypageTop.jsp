@@ -53,7 +53,7 @@
 											<li><a href="<c:url value='/mypage/mypageHome.do?status=${sessionScope.status }'/>">MY 홈</a></li>
 											<li><a href="<c:url value='/resume/resumeMain.do'/>">이력서관리</a></li>
 											<li><a href="contact.html">입사지원/요청관리</a></li>
-											<li><a href="contact.html">스크랩</a></li>
+											<li><a href="<c:url value='/mypage/mypageScrap.do'/>">스크랩</a></li>
 										</ul>
 									</nav>
 								</div>

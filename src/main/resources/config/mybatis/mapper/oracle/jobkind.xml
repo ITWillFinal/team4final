@@ -18,6 +18,20 @@
 	<select id="selectInduMiddle" resultType="map">
 		select * from industry_middle where large_no = #{no}
 	</select>
+	
+	<select id="selectJobLargeName" resultType="string">
+		select large_group from job_large where large_no = #{jobType}
+	</select>
+	
+	<select id="selectInduLargeName" resultType="string">
+		select large_group from industry_large where large_no = #{induType}
+	</select>
+	<select id="selectDetailByJobType" resultType="recruitment_TosVo">
+		select * from recruitment_tos where to_date(end_date) >= sysdate-1 and JOB_TYPE2 like '%' || #{jobType2} || '%'
+	</select>
+	<select id="selectDetailByInduType" resultType="recruitment_TosVo">
+		select * from recruitment_tos where to_date(end_date) >= sysdate-1 and INDU_TYPE2 like '%' || #{induType2} || '%'
+	</select>
 </mapper>
 
 

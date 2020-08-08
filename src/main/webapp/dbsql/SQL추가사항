@@ -178,6 +178,28 @@ nocache;
 
 create or replace view recruitment_tos
 as
-select r.*, t.end_date
+select r.*, t.start_date, t.end_date
 from RECRUITMENT r join tos t
 on r.RECRUITMENT_CODE = t.RECRUITMENT_CODE;
+
+alter table member
+modify(pwd varchar2(150));
+
+create sequence perscrap_seq
+start with 1
+increment by 1
+nocache;
+
+ALTER TABLE perscrap ADD UNIQUE (resume_no,c_member_code);
+
+alter table company_member
+modify(c_pwd varchar2(150));
+
+alter table recruitment
+modify(PREFERENCE varchar2(500));
+
+alter table recruitment
+modify(WELFARE varchar2(300));
+
+alter table perscrap
+add status varchar2(30) default 'WAITING';

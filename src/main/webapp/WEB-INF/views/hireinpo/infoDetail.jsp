@@ -64,7 +64,13 @@
 	    float: right;
 	    margin-right: 50px
 	}
-	
+	#bottomApply{
+	    font-weight: bold;
+	    width: 602px;
+	    height: 59px;
+	    margin-top: 50px;
+	    margin-bottom: 100px;
+	}
 </style>
 
 <script type="text/javascript">
@@ -114,6 +120,10 @@
 	
 	
 </script>
+<jsp:useBean id="today" class="java.util.Date"/>
+<fmt:parseDate var="end" value="${vo.endDate}" pattern="yyyy-MM-dd" />
+<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
+<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
 <div id="contentDiv">
 	<div id="headDiv">
 		<p>${vo.comName }</p>
@@ -121,7 +131,12 @@
 		<p style="margin-bottom: -15px; font-size: 0.8em;">등록일 : ${vo.regdate }</p>
 	</div>
 	<div id="headAdd2">
-		<a href="#" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
+		<c:if test="${endDate-startDate+1 > 0}">
+			<a href="#" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
+		</c:if>
+		<c:if test="${endDate-startDate+1 < 0}">
+			<div style="font-weight: bold; width: 120px; height: 59px; background: #585858e0; padding: 20px 30px; color: white;">지원마감</div>
+		</c:if>
 	</div>
 	<c:if test="${sessionScope.userid != null }">
 		<div id="headAddDiv1" 
@@ -213,9 +228,20 @@
 		</p>
 		<div id="map" style="width:600px;height:350px;"></div>
 	</div>
+	<br>
 	<div id="moreDiv">
 		<h5>접수기간 및 지원</h5>
-		<p>필수 제출 서류 : ${vo.document }</p>
+		<p><i class="fa fa-file-text" aria-hidden="true"></i> 필수 제출 서류 : ${vo.document }</p>
+		<p style="color: black; font-weight: 700">모집 마감일 : <fmt:formatDate value="${end }" pattern="yyyy년 MM월 dd일"/><br>남은 일수 D-${endDate-startDate+1 }</p>
+		<div>
+			<c:if test="${endDate-startDate+1 > 0}">
+				<a href="#" class="btn head-btn2" id="bottomApply">지원</a>
+			</c:if>
+			<c:if test="${endDate-startDate+1 < 0}">
+				<div style="margin-bottom: 100px; margin-top: 50px; font-weight: bold; width: 602px; height: 59px; background: #585858e0; padding: 20px; text-align: center; color: white;">지원마감</div>
+			</c:if>
+	    
+		</div>
 	</div>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f5a970707d8d0e271a8262251139638&libraries=services,clusterer,drawing"></script>

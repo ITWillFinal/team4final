@@ -270,7 +270,7 @@ hr{
 	        	<label for="select_type" class="col-sm-3 control-label">회사 업종  <span>*</span></label>
 	            	<div class="col-sm-9 form-input">
 	                <select name="comIndustry" id="comIndustry" class="form-control">
-	                	<option value="0">회사 업종을 선택하세요</option>
+	                		<option value="0">회사 업종을 선택하세요</option>
 			                <option value="정보보안" >정보보안</option>
 			                <option value="AS/카센터/주유" >AS/카센터/주유</option>
 			                <option value="판매/유통" >판매/유통</option>

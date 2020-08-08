@@ -34,7 +34,7 @@
 <div>
 	<div id="addHeadMenu">
 		<div id="headMenu">
-			<a href="#"><i class="far fa-address-card fa-4x"></i><br>
+			<a href="<c:url value='/resume/resumeMain.do'/>"><i class="far fa-address-card fa-4x"></i><br>
 			<span>${resumeCount }/10</span><br>
 			<span>이력서</span></a>
 		</div>
@@ -49,7 +49,7 @@
 			<span>입사요청</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="#"><i class="far fa-star fa-4x"></i><br>
+			<a href="<c:url value='/mypage/mypageScrap.do'/>"><i class="far fa-star fa-4x"></i><br>
 			<span>${scrap }</span><br>
 			<span>스크랩</span></a>
 		</div>

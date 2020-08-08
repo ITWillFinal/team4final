@@ -13,8 +13,8 @@
 	    background: white;
 	    border: 1px solid #fb246a;
 	    width: 16%;
-	    height: 30px;
-	    margin: 1px;
+	    height: 46px;
+	    margin: 4px 19px;
 	    font-weight: bold;
 	}
 	input[type=radio], label{
@@ -26,7 +26,7 @@
 </style>
 <script type="text/javascript">
 $(function() {
-	$('div button').click(function() {
+	/* $('div button').click(function() {
 		var sido = $(this).val();
 		$('#sigugun').empty();
 		$.ajax({
@@ -45,7 +45,7 @@ $(function() {
 				alert(status + ", " + error);
 			}
 		});
-	});
+	}); */
 	
 	$('button').hover(function() {
 		$(this).css('color', 'white').css('background', '#fb246a');
@@ -67,7 +67,6 @@ $(function() {
 		
 	</div>
 	<div id="map" style="width:98%;height:600px;"></div>
-	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f5a970707d8d0e271a8262251139638&libraries=services,clusterer"></script>
 	<script type="text/javascript">
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -88,13 +87,13 @@ $(function() {
 		
 		//주소-좌표 변환 객체를 생성합니다
 		var geocoder = new kakao.maps.services.Geocoder();
-		var mapData = ['서울 강남구 가로수길 5', '서울 강남구 가로수길 9', '서울 강남구 가로수길 10'];
-		var comName = ['아이티윌', '유니잡', '고로스키'];
+		var mapData = [];
+		var comName = [];
 		
-		/* <c:forEach items="${vo }" var="vo">
+		<c:forEach items="${list }" var="vo">
 	   		mapData.push("${vo.address }");
-	   		comName.push("${vo.data}");
-	 	</c:forEach> */
+	   		comName.push("${vo.comName }");
+	 	</c:forEach>
 		var markers = [];
 	 	var num = 0;
 		//주소로 좌표를 검색합니다

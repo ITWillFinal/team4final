@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,11 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
+import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.login.controller.LoginController;
-import com.will.team4final.scrip.model.ComScrapService;
-import com.will.team4final.scrip.model.ComScrapVO;
+import com.will.team4final.scrap.model.ComScrapService;
+import com.will.team4final.scrap.model.ComScrapVO;
 
 @Controller
 @RequestMapping("/hireinpo")
@@ -55,10 +57,19 @@ public class HireInfoController {
 	}
 	
 	@RequestMapping("/infoDetail.do")
+	public String updateCount(@RequestParam String recruitmentCode, Model model) {
+		logger.info("기업 채용 디테일 조회수 up!, 파라미터 recruitmentCode = {}", recruitmentCode);
+		int cnt = comRecuritServ.updateReadCount(recruitmentCode);
+		logger.info("조회수 증가 결과 = {}", cnt);
+		
+		return "redirect:/hireinpo/infoDetailGo.do?recruitmentCode="+recruitmentCode;
+	}
+	
+	@RequestMapping("/infoDetailGo.do")
 	public String infoDetail(@RequestParam String recruitmentCode, Model model, HttpServletRequest request) {
 		logger.info("기업 채용 디테일, 파라미터 recruitmentCode = {}", recruitmentCode);
 		
-		ComRecruitVO vo = comRecuritServ.selectOneCom(recruitmentCode);
+		Recruitment_TosVO vo = comRecuritServ.selectTosOneCom(recruitmentCode);
 		logger.info("채용 vo = {}", vo);
 		
 		HttpSession session = request.getSession();
@@ -79,10 +90,11 @@ public class HireInfoController {
 	
 	@RequestMapping("/searchHireInfo.do")
 	@ResponseBody
-	public String searchHireInfo(@ModelAttribute ComRecruitVO comRecVo) {
+	public List<ComRecruitVO> searchHireInfo(@ModelAttribute ComRecruitVO comRecVo) {
 		logger.info("채용정보 검색 vo = {}", comRecVo);
-		
-		return "hi";
+		List<ComRecruitVO> list = comRecuritServ.recruitmentDetailList(comRecVo);
+		logger.info("list size = {}", list.size());
+		return list;
 	}
 	
 	@RequestMapping("/infoSearchByLocation.do")
@@ -90,5 +102,51 @@ public class HireInfoController {
 		logger.info("지역별 채용정보");
 		List<String> locationList = locationServ.sido();
 		model.addAttribute("locationList", locationList);
+		List<ComRecruitVO> list = comRecuritServ.selectAllRecruitment();
+		logger.info("list size = {}", list.size());
+		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("/hot100.do")
+	public void hot100(Model model) {
+		logger.info("hot100페이지");
+		List<Recruitment_TosVO> list = comRecuritServ.selectHot100();
+		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("/hireInfoByJobType.do")
+	public void hireInfoByJobType(Model model) {
+		List<Map<String, Object>> jobList = jobServ.selectLarge();
+		logger.info("직무별 채용정보 조회페이지, 사이즈 = {}", jobList.size());
+		
+		model.addAttribute("jobList", jobList);
+	}
+	
+	@RequestMapping("/hireInfoByInduType.do")
+	public void hireInfoByInduType(Model model) {
+		List<Map<String, Object>> induList = jobServ.selectInduLarge();
+		logger.info("직무별 채용정보 조회페이지, 사이즈 = {}", induList.size());
+		
+		model.addAttribute("induList", induList);
+	}
+	
+	@RequestMapping("/searchJobMiddleType.do")
+	@ResponseBody
+	public List<Recruitment_TosVO> searchJobMiddleType(@RequestParam String jobType2){
+		logger.info("ajax 직무별 채용정보 조회, 파라미터 jobType2 = {}", jobType2);
+		List<Recruitment_TosVO> list = jobServ.selectDetailByJobType(jobType2);
+		logger.info("직무별 조회 사이즈 = {}", list.size());
+		
+		return list;
+	}
+	
+	@RequestMapping("/searchInduMiddleType.do")
+	@ResponseBody
+	public List<Recruitment_TosVO> searchInduMiddleType(@RequestParam String induType2){
+		logger.info("ajax 산업별 채용정보 조회, 파라미터 induType2 = {}", induType2);
+		List<Recruitment_TosVO> list = jobServ.selectDetailByInduType(induType2);
+		logger.info("산업별 조회 사이즈 = {}", list.size());
+		
+		return list;
 	}
 }

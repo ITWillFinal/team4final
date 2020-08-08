@@ -152,15 +152,16 @@
 			<br>
 			<input type="radio" name="period" id="radioPeriodDate" value="date"> 날짜지정 : 결제일로부터 지정일 까지 이용가능
 			<input type="date" name="startDay" class="startDay" readonly>
-			<input type="date" name="endPickDay" id="datePick" >
-			<input type="text" name="price" id="price" readonly>			
+			<input type="date" name="endPickDay" id="datePick" ><br>
+			가격
+			<input type="text" name="price" id="price" readonly style="text-align: right; width: 80px; padding-right: 10px;">원	
 			
 			<br><br><br>
-			<input type="submit" id="btn" value="결제하기">
-			<input type="text" name="productName" id="productName">
-			<input type="text" name="resumeType" id="resumeType">
-			<input type="text" name="endDay" id="endDay" >
-			<input type="text" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode }">
+			<input type="submit" id="btn" value="결제하기" >
+			<input type="hidden" name="productName" id="productName">
+			<input type="hidden" name="resumeType" id="resumeType">
+			<input type="hidden" name="endDay" id="endDay" >
+			<input type="hidden" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode }">
 			
 
 		</form>

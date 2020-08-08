@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
+import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.location.model.LocationVO;
@@ -40,13 +41,7 @@ public class IndexController {
 	private GoogleConnectionFactory googleConnectionFactory;
 	@Autowired
 	private OAuth2Parameters googleOAuth2Parameters;
-	
-	@Autowired
-	private LocationService locationServ;
-	
-	@Autowired
-	private JobService jobServ;
-	
+
 	@Autowired
 	private ComRecruitService comRecruitServ;
 	
@@ -71,7 +66,7 @@ public class IndexController {
 		logger.info("네이버 : {}", naverAuthUrl);
 		logger.info("구글 : {}", url);
 		
-		List<Map<String, Object>> reVo = comRecruitServ.selectMost5();
+		List<Recruitment_TosVO> reVo = comRecruitServ.selectMost5();
 		logger.info("모스트 5 공고 = {}", reVo.size());
 		
 		//네이버

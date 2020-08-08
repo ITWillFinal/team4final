@@ -7,10 +7,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.will.team4final.member.model.MemberVO;
+
 @Repository
 public class ResumeDAOMabatis implements ResumeDAO{
 	@Autowired private SqlSessionTemplate sqlSession;
 	private String namespace="com.will.team4final.resume.";
+	private String namespace2="com.will.team4final.searchTalent.";
 	
 	@Override
 	public int insertResume(ResumeVO resumeVo) {
@@ -165,6 +168,56 @@ public class ResumeDAOMabatis implements ResumeDAO{
 	@Override
 	public int deleteAddinfo(int resumeNo) {
 		return sqlSession.delete(namespace+"deleteAddinfo",resumeNo);
+	}
+
+	@Override
+	public List<Integer> searchTalent(String jobtype) {
+		return sqlSession.selectList(namespace2+"searchTalent",jobtype);
+	}
+
+	@Override
+	public List<Integer> searchTalentByCareerYear(int careerYear) {
+		return sqlSession.selectList(namespace2+"searchTalentByCareerYear",careerYear);
+	}
+
+	@Override
+	public List<Integer> searchTalentByLocation(String location) {
+		return sqlSession.selectList(namespace2+"searchTalentByLocation",location);
+	}
+
+	@Override
+	public List<Integer> searchTalentBySal(String sal) {
+		return sqlSession.selectList(namespace2+"searchTalentBySal",sal);
+	}
+
+	@Override
+	public ResumeTalentVO selectResumeTalent(int resumeNo) {
+		return sqlSession.selectOne(namespace2+"selectResumeTalent",resumeNo);
+	}
+
+	@Override
+	public MemberVO selectMemberByResumeNo(int resumeNo) {
+		return sqlSession.selectOne(namespace2+"selectMemberByResumeNo",resumeNo);
+	}
+
+	@Override
+	public int requestToJoin(Map<String, String> map) {
+		return sqlSession.insert(namespace2+"requestToJoin",map);
+	}
+
+	@Override
+	public List<Integer> selectResumeNoFromPerscrap(Map<String, String> map) {
+		return sqlSession.selectList(namespace2+"selectResumeNoFromPerscrap",map);
+	}
+
+	@Override
+	public int updatePerscrapStatus(Map<String, String> map) {
+		return sqlSession.update(namespace2+"updatePerscrapStatus",map);
+	}
+
+	@Override
+	public int deletePerscrap(Map<String, String> map) {
+		return sqlSession.delete(namespace2+"deletePerscrap",map);
 	}
 	
 	

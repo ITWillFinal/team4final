@@ -12,4 +12,9 @@ public interface NoticeService {
 	int deleteNotice(int noticeNo);
 	int deleteMultiNotice(List<NoticeVO> list);
 	int updateNotice(NoticeVO vo);
+	List<NoticeVO> selectMemberNotice(SearchVO searchVo);
+	int totalMemberNotice(SearchVO searchVo);
+	List<NoticeVO> selectComNotice(SearchVO searchVo);
+	int totalComNotice(SearchVO searchVo);
+	int updateNoticeReadcount(int noticeNo);
 }

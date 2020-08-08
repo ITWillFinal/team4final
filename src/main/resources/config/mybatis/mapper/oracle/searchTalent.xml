@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.searchTalent">
+	<select id="searchTalent" parameterType="string" resultType="int">
+		select * from(
+			select resume_no
+			from resume
+			<if test="_parameter!='etc'">
+				where jobtype1=#{jobtype} or jobtype2=#{jobtype}
+			</if>
+		)where resume_no in (select resume_no from member where yorn='Y')
+	</select>
+	
+	<select id="searchTalentByCareerYear" parameterType="int" resultType="int">
+		select resume_no from career
+		where career_company != '신입'
+		group by resume_no
+		having sum(career_year)>=#{career_year}
+	</select>
+	
+	<select id="searchTalentByLocation" parameterType="string" resultType="int">
+		select resume_no from resume
+		where location1=#{location} or location2=#{location}
+		or location1='전국' or location2='전국'
+	</select>
+		
+	<select id="searchTalentBySal" parameterType="string" resultType="int">
+		select resume_no from resume
+		<if test="_parameter!='10000'">
+			where substr(REGEXP_REPLACE(sal, '[^0-9]'),0,4) between 2 and #{sal} 
+			or REGEXP_REPLACE(sal, '[^0-9]') is null
+		</if>
+	</select>
+	
+	<select id="selectResumeTalent" resultType="resumeTalentVo" parameterType="int" >
+		select r.resume_no, user_name, 
+			(select final_edu||'('||uni||')' from education where resume_no=#{resume_no}) final_edu, 
+			(select sum(career_year) from career where resume_no=#{resume_no}) career_year,
+		self_int_title, sal, jobtype1, jobtype2, location1, location2
+		from resume r join member m
+		on r.resume_no = m.resume_no
+		where r.resume_no = #{resume_no}
+	</select>
+	
+	<select id="selectMemberByResumeNo" parameterType="int" resultType="memberVo">
+		select * from member where resume_no=#{resumeNo}
+	</select>
+	
+	<parameterMap type="map" id="requestToJoinParam">
+		<parameter property="resumeNo" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="cMemberCode" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+	</parameterMap>
+	
+	<insert id="requestToJoin" parameterMap="requestToJoinParam">
+		insert into perscrap(scrap_no,resume_no,c_member_code)
+		values(perscrap_seq.nextval,?,?)
+	</insert>
+	
+	<parameterMap type="map" id="selectResumeNoFromPerscrapParam">
+		<parameter property="status" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="cMemberCode" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+	</parameterMap>
+	
+	<select id="selectResumeNoFromPerscrap" resultType="int" parameterMap="selectResumeNoFromPerscrapParam">
+		select resume_no from perscrap
+		where status = ? and c_member_code = ? 
+	</select>
+	
+	<parameterMap type="map" id="updatePerscrapStatusParam">
+		<parameter property="status" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="resumeNo" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="cMemberCode" javaType="String" jdbcType="VARCHAR" mode="IN"/>
+	</parameterMap>
+	
+	<update id="updatePerscrapStatus" parameterMap="updatePerscrapStatusParam">
+		update perscrap
+		set status = ?
+		where resume_no=? and c_member_code=?
+	</update>
+	
+	<delete id="deletePerscrap" parameterMap="requestToJoinParam">
+		delete perscrap
+		where resume_no=? and c_member_code=?
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
