@@ -8,20 +8,12 @@
 	#locationDiv{
 		margin-bottom: 50px;
 	}
-	button{
-		color: #fb246a;
-	    background: white;
-	    border: 1px solid #fb246a;
-	    width: 16%;
-	    height: 46px;
-	    margin: 4px 19px;
-	    font-weight: bold;
-	}
-	input[type=radio], label{
-		margin-left: 25px;
-    	width: 17%;
-	}
 	
+	button#sido{
+		width: 13%;
+		padding: 24px 0px;
+		margin-top: 10px;
+	}
 
 </style>
 <script type="text/javascript">
@@ -44,12 +36,6 @@ $(function() {
 		}); */
 	});
 
-	
-	$('button').hover(function() {
-		$(this).css('color', 'white').css('background', '#fb246a');
-	}, function() {
-		$(this).css('color', '#fb246a').css('background', 'white');
-	});
 });
 </script>
 <%@ include file="../inc/sidebar.jsp"%>
@@ -58,7 +44,7 @@ $(function() {
 	<h2 style="margin-bottom: 22px;">지역별 채용정보</h2>
 	<div id="locationDiv">
 		<c:forEach var="location" items="${locationList }">
-			<button value="${location }" id="sido">${location }</button>
+			<button value="${location }" id="sido" class="btn head-btn2">${location }</button>
 		</c:forEach>
 	</div>
 	<div id="sigugun" id="locationDiv">
