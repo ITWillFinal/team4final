@@ -208,7 +208,7 @@
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frm" method="post" action="<c:url value='/companypage/companyResumeSet.do'/>">
 		
-		이력서코드 : <input type="text" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode}">
+		<!--이력서코드 : --> <input type="hidden" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode}">
 		<span style="font-size: 25px; font-weight: bold;">자사 이력서 양식 설정</span>
 		<hr>
 		<div style="margin:5px;">
@@ -276,7 +276,7 @@
 				</table>
 			</div>
 		</div>
-		<input type="text" name="schoolVal" id="schoolVal">
+		<input type="hidden" name="schoolVal" id="schoolVal">
 		<hr>		
 		
 		<div id="careerDiv" style="margin:5px;">
@@ -304,7 +304,7 @@
 				</table>
 			</div>
 		</div>
-		<input type="text" name="careerVal" id="careerVal">
+		<input type="hidden" name="careerVal" id="careerVal">
 		<hr>
 		
 		<div id="certificateDiv" style="margin:5px;">
@@ -330,7 +330,7 @@
 				</table>
 			</div>
 		</div>
-		<input type="text" name="certificateVal" id="certificateVal">
+		<input type="hidden" name="certificateVal" id="certificateVal">
 		<hr>
 		
 		<div id="languageDiv" style="margin:5px;">
@@ -356,7 +356,7 @@
 				</table>
 			</div>
 		</div>
-		<input type="text" name="languageVal" id="languageVal">
+		<input type="hidden" name="languageVal" id="languageVal">
 		<hr>
 		
 		<div id="awardsDiv" style="margin:5px;">
@@ -382,7 +382,7 @@
 				</table>
 			</div>
 		</div>
-		<input type="text" name="awardsVal" id="awardsVal">
+		<input type="hidden" name="awardsVal" id="awardsVal">
 		<hr>
 		
 		<div id="specialDiv" style="margin:5px;">
@@ -411,7 +411,7 @@
 				</table>
 			</div>
 		</div>
-		<input type="text" name="specialVal" id="specialVal">
+		<input type="hidden" name="specialVal" id="specialVal">
 		<hr>
 		
 		<div id="activityDiv" style="margin:5px;">
@@ -437,7 +437,7 @@
 				</table>
 			</div>
 		</div>
-		<input type="text" name="activityVal" id="activityVal">
+		<input type="hidden" name="activityVal" id="activityVal">
 		<hr>
 		
 		<div id="selfDiv" style="margin:5px;">
@@ -481,7 +481,7 @@
 				</table>
 			</div>
 		</div>
-		<input type="text" name="selfVal" id="selfVal">
+		<input type="hidden" name="selfVal" id="selfVal">
 		<hr>
 		<div style="text-align: center;">
 			<input type="submit" value="설정완료">

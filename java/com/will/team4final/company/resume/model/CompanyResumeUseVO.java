@@ -4,6 +4,7 @@ public class CompanyResumeUseVO {
 
 	String recruitmentCode;
 	String userId;
+	String name;
 	String gender;
 	String email;
 	String hp;
@@ -19,7 +20,6 @@ public class CompanyResumeUseVO {
 	String special;
 	String activity;
 	String self;
-	
 	public String getRecruitmentCode() {
 		return recruitmentCode;
 	}
@@ -31,6 +31,12 @@ public class CompanyResumeUseVO {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getGender() {
 		return gender;
@@ -122,14 +128,13 @@ public class CompanyResumeUseVO {
 	public void setSelf(String self) {
 		this.self = self;
 	}
-	
 	@Override
 	public String toString() {
-		return "CompanyResumeUseVO [recruitmentCode=" + recruitmentCode + ", userId=" + userId + ", gender=" + gender
-				+ ", email=" + email + ", hp=" + hp + ", birth=" + birth + ", zipcode=" + zipcode + ", address="
-				+ address + ", addressDetail=" + addressDetail + ", edu=" + edu + ", career=" + career
+		return "CompanyResumeUseVO [recruitmentCode=" + recruitmentCode + ", userId=" + userId + ", name=" + name
+				+ ", gender=" + gender + ", email=" + email + ", hp=" + hp + ", birth=" + birth + ", zipcode=" + zipcode
+				+ ", address=" + address + ", addressDetail=" + addressDetail + ", edu=" + edu + ", career=" + career
 				+ ", certificate=" + certificate + ", language=" + language + ", award=" + award + ", special="
 				+ special + ", activity=" + activity + ", self=" + self + "]";
-	}	
+	}
 	
 }
