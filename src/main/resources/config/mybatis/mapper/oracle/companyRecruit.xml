@@ -164,5 +164,4 @@
 		)A
 		<![CDATA[where rownum <= 100 ]]>
 	</select>
-	
 </mapper>

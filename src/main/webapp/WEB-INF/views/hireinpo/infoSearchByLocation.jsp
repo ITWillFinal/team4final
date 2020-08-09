@@ -47,10 +47,30 @@ $(function() {
 			<button value="${location }" id="sido" class="btn head-btn2">${location }</button>
 		</c:forEach>
 	</div>
-	<div id="sigugun" id="locationDiv">
-		
+	<div id="hireInfo" style="width:29%;height:600px; float: left; background: #f9f9f9; overflow:scroll">
+		<c:if test="${!empty list }">
+			<c:forEach var="vo" items="${list }">
+				<div class="single-job-items mb-30" id="listOne" style="margin-bottom: 5px; padding: 20px; border: 1px solid #dcdcdc73;">
+					<div class="job-items">
+						<div class="job-tittle">
+							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h6 style="font-weight: bold;">${vo.title }</h6></a>
+							<ul>
+								<li>${vo.comName }</li>
+								<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</c:if>
+		<c:if test="${empty list }">
+			<div>
+				등록된 채용공고가 없습니다.
+			</div>
+		</c:if>
 	</div>
-	<div id="map" style="width:98%;height:600px;"></div>
+	<div id="map" style="width:70%;height:600px; float: right;"></div>
+	<div style="margin-bottom: 50px; clear: both;"></div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f5a970707d8d0e271a8262251139638&libraries=services,clusterer"></script>
 	<script type="text/javascript">
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
