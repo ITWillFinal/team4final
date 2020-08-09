@@ -15,6 +15,11 @@ public class CompanyInfoServiceImpl implements CompanyInfoService {
 	@Override
 	public CompanyInfoVO selectComInfoBycMemberCode(String cMemberCode) {
 		return companyInfoDao.selectComInfoBycMemberCode(cMemberCode);
+	}
+
+	@Override
+	public int updateCominfoByCode(CompanyInfoVO vo) {
+		return companyInfoDao.updateCominfoByCode(vo);
 	}	
 	
 }

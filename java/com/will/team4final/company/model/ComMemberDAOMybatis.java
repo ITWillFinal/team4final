@@ -68,4 +68,9 @@ public class ComMemberDAOMybatis implements ComMemberDAO {
 	public int updateCMember(CompanyMemberVO companyMemberVo) {
 		return sqlSession.update(namespace+"updateCMember", companyMemberVo);
 	}
+
+	@Override
+	public String selectMemberCode(String cUserid) {
+		return sqlSession.selectOne(namespace+"selectMemberCode",cUserid);
+	}
 }

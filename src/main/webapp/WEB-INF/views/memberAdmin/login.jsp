@@ -51,12 +51,13 @@ div#s {
     margin-bottom: 25px;
 }
 div#divLogin {
-    margin-left: 4%;
-    width: 100%;
+    margin-top: -11%;
+    margin-left: 31%;
+    margin-bottom: 5%;
 }
 </style>
 <main>
-	<div id = "all" style="text-align: center; width:50%; ">
+	<div id = "all" style="text-align: center;">
 		<div id = "head" >
 			<p>관리자 로그인</p>
 		</div>
