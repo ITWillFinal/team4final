@@ -607,4 +607,42 @@ public class CompanyHomeController {
 		
 		return result;
 	}
+	
+	@RequestMapping(value = "/cMemberEdit.do", method = RequestMethod.GET)
+	public void cMemberEdit_get(HttpSession session, Model model) {
+		String cUserid = (String)session.getAttribute("userid");
+		CompanyMemberVO cMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
+		logger.info("회사 회원 정보 수정 화면, cMemberVo={}", cMemberVo );
+		
+		model.addAttribute("cMemberVo", cMemberVo);
+	}
+	
+	@RequestMapping("/checkPwd.do")
+	@ResponseBody
+	public boolean checkPwd(@RequestParam String cPwd, HttpSession session) {
+		String cUserid = (String)session.getAttribute("userid");
+		CompanyMemberVO cMemberVo = cMemberSerice.selectCMemberInfoByUserid(cUserid);
+		
+		boolean pwdMatch = pwdEncoder.matches(cPwd, cMemberVo.getcPwd());
+		logger.info("pwdMatch={}", pwdMatch);
+		
+		return pwdMatch;
+	}
+	
+	@RequestMapping(value = "/cMemberEdit.do", method = RequestMethod.POST)
+	public String cMemberEdit_post(@ModelAttribute CompanyMemberVO companyMemberVo,@RequestParam String cMemberCode, Model model) {
+		logger.info("기업 회원 정보 수정, 파라미터 cMemberCode={}, comMemberVo={}", cMemberCode, companyMemberVo);
+		companyMemberVo.setcMemberCode(cMemberCode);
+		int cnt = cMemberSerice.updateCMember(companyMemberVo);
+		String msg="회원 정보 수정 실패했습니다.", url="/companypage/cMemberEdit.do";
+		if(cnt>0) {
+			msg="회원 정보 수정 성공했습니다.";
+			url="/mypage/mypageHome.do?status=C";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";
+		
+	}
 }

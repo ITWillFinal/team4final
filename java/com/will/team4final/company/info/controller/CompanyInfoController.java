@@ -71,7 +71,9 @@ public class CompanyInfoController {
 		return "common/message";
 
 	}
-
+	
+	
+	
 
 
 }
