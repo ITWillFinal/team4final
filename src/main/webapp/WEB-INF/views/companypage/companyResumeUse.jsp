@@ -72,6 +72,18 @@
 	.awardsTr {
 		display: none;
 	}
+	.careerTr {
+		display: none;
+	}
+	.activityTr{
+		display: none;
+	}
+	.languageTr{
+		display: none;
+	}
+	.certificateTr{
+		display: none;
+	}
 	
 </style>
 
@@ -170,85 +182,606 @@
 			$("#gender").val(genderSel);
 		});
 						
-		//학력사항
-		
+		//학력사항		
 		var eduData = "";
-		$("#schoolName").keyup(function(){
-			eduData = ($("#schoolName").val() +" "+ $("#schoolMajor").val() +" " + $("#schoolDate").val());
-			$("#edu").val(eduData);
-		});
+		var eduData1 = "";
+		var eduData2 = "";
+		var eduData3 = "";
 		
-		$("#schoolMajor").keyup(function(){
-			eduData = ($("#schoolName").val() +" "+ $("#schoolMajor").val() +" " + $("#schoolDate").val());
-			$("#edu").val(eduData);
-		});		
-		
-		$("#schoolDate").change(function(){
-			eduData = ($("#schoolName").val() +" "+ $("#schoolMajor").val() +" " + $("#schoolDate").val());
-			$("#edu").val(eduData);
-		});
-		
-		//경력사항
-		var z2 = 1;
-		var careerData = "";
-		$("#careerDelBtn").prop("disabled", true);
-		$("#careerAddBtn").click(function(){
-			$("#careerTable")
-			.append("<tr id='careerTr'><td><input type='text' id='careerName"+z2+"'></td><td><input type='text' id='careerLv"+z2+"'></td><td><input type='text' id='careerContent"+z2+"'></td><td><input type='date' id='careerStartDate"+z2+"' style='width:50%;'><input type='date' id='careerEndDate"+z2+"' style='width:50%;'></td></tr>");
-			++z2;
-			if(z2 >= 1){
-				$("#careerDelBtn").prop("disabled", false);
+		$("#schoolTable").children().children().change(function(){
+			eduData1 = $("#schoolName").val();
+			eduData2 = $("#schoolMajor").val();
+			eduData3 = $("#schoolDate").val();
+
+			$("#edu1").val(eduData1);
+			$("#edu2").val(eduData2);
+			$("#edu3").val(eduData3);
+			
+			if(eduData1=="" || eduData2=="" || eduData3==""){
+				eduData = "";				
+			}else{
+				eduData = eduData1+" "+eduData2+" "+eduData3;
 			}
 			
+			$("#edu").val(eduData);
+		});
+		
+		
+		
+		//경력
+		var careerTr1Td1 = "";
+		var careerTr1Td2 = "";
+		var careerTr1Td3 = "";
+		var careerTr1Td4 = "";
+		var careerTr1Td5 = "";
+		
+		var careerTr2Td1 = "";
+		var careerTr2Td2 = "";
+		var careerTr2Td3 = "";
+		var careerTr2Td4 = "";
+		var careerTr2Td5 = "";
+		
+		var careerTr3Td1 = "";
+		var careerTr3Td2 = "";
+		var careerTr3Td3 = "";
+		var careerTr3Td4 = "";
+		var careerTr3Td5 = "";
+		
+		var careerTr4Td1 = "";
+		var careerTr4Td2 = "";
+		var careerTr4Td3 = "";
+		var careerTr4Td4 = "";
+		var careerTr4Td5 = "";
+		
+		var careerTr5Td1 = "";
+		var careerTr5Td2 = "";
+		var careerTr5Td3 = "";
+		var careerTr5Td4 = "";
+		var careerTr5Td5 = "";
+		
+		var careerTotal = "";
+		
+		var careerResult1 = "";
+		var careerResult2 = "";
+		var careerResult3 = "";
+		var careerResult4 = "";
+		var careerResult5 = "";
+										
+		$("#careerTable").children().children().change(function(){
+			careerTr1Td1 = $("#careerTr1Td1").val();
+			careerTr1Td2 = $("#careerTr1Td2").val();
+			careerTr1Td3 = $("#careerTr1Td3").val();
+			careerTr1Td4 = $("#careerTr1Td4").val();
+			careerTr1Td5 = $("#careerTr1Td5").val();
+			
+			careerTr2Td1 = $("#careerTr2Td1").val();
+			careerTr2Td2 = $("#careerTr2Td2").val();
+			careerTr2Td3 = $("#careerTr2Td3").val();
+			careerTr2Td4 = $("#careerTr2Td4").val();
+			careerTr2Td5 = $("#careerTr2Td5").val();
+			
+			careerTr3Td1 = $("#careerTr3Td1").val();
+			careerTr3Td2 = $("#careerTr3Td2").val();
+			careerTr3Td3 = $("#careerTr3Td3").val();
+			careerTr3Td4 = $("#careerTr3Td4").val();
+			careerTr3Td5 = $("#careerTr3Td5").val();
+			
+			careerTr4Td1 = $("#careerTr4Td1").val();
+			careerTr4Td2 = $("#careerTr4Td2").val();
+			careerTr4Td3 = $("#careerTr4Td3").val();
+			careerTr4Td4 = $("#careerTr4Td4").val();
+			careerTr4Td5 = $("#careerTr4Td5").val();
+			
+			careerTr5Td1 = $("#careerTr5Td1").val();
+			careerTr5Td2 = $("#careerTr5Td2").val();
+			careerTr5Td3 = $("#careerTr5Td3").val();
+			careerTr5Td4 = $("#careerTr5Td4").val();
+			careerTr5Td5 = $("#careerTr5Td5").val();
+			
+			if(careerTr1Td1=="" || careerTr1Td2=="" || careerTr1Td3=="" || careerTr1Td4=="" || careerTr1Td5==""){
+				careerResult1 = "";				
+			}else{
+				careerResult1 = careerTr1Td1+" "+careerTr1Td2+" "+careerTr1Td3+" "+careerTr1Td4+" "+careerTr1Td5;
+			}
+			
+			if(careerTr2Td1=="" || careerTr2Td2=="" || careerTr2Td3=="" || careerTr2Td4=="" || careerTr2Td5==""){
+				careerResult2 = "";				
+			}else{
+				careerResult2 = careerTr2Td1+" "+careerTr2Td2+" "+careerTr2Td3+" "+careerTr2Td4+" "+careerTr2Td5;
+			}
+			
+			if(careerTr3Td1=="" || careerTr3Td2=="" || careerTr3Td3=="" || careerTr3Td4=="" || careerTr3Td5==""){
+				careerResult3 = "";				
+			}else{
+				careerResult3 = careerTr3Td1+" "+careerTr3Td2+" "+careerTr3Td3+" "+careerTr3Td4+" "+careerTr3Td5;
+			}
+			
+			if(careerTr4Td1=="" || careerTr4Td2=="" || careerTr4Td3=="" || careerTr4Td4=="" || careerTr4Td5==""){
+				careerResult4 = "";				
+			}else{
+				careerResult4 = careerTr4Td1+" "+careerTr4Td2+" "+careerTr4Td3+" "+careerTr4Td4+" "+careerTr4Td5;
+			}
+			
+			if(careerTr5Td1=="" || careerTr5Td2=="" || careerTr5Td3=="" || careerTr5Td4=="" || careerTr5Td5==""){
+				careerResult5 = "";				
+			}else{
+				careerResult5 = careerTr5Td1+" "+careerTr5Td2+" "+careerTr5Td3+" "+careerTr5Td4+" "+careerTr5Td5;
+			}						
+			
+			$("#careerResult1").val(careerResult1);
+			$("#careerResult2").val(careerResult2);
+			$("#careerResult3").val(careerResult3);
+			$("#careerResult4").val(careerResult4);
+			$("#careerResult5").val(careerResult5);
+			
+			if(careerResult2!=""){
+				careerResult2="*"+careerResult2;
+			}
+			if(careerResult3!=""){
+				careerResult3="*"+careerResult3;
+			}
+			if(careerResult4!=""){
+				careerResult4="*"+careerResult4;
+			}
+			if(careerResult5!=""){
+				careerResult5="*"+careerResult5;
+			}
+			
+			careerTotal = careerResult1 + careerResult2 + careerResult3 + careerResult4 + careerResult5;
+			$("#career").val(careerTotal);
+										
+		});
+		
+		$("#careerAddBtn").click(function(){
+			$('.careerTr:eq(0)').removeClass('careerTr');
 		});
 		
 		$("#careerDelBtn").click(function(){
-			$("#careerTr:nth-last-child(1)").remove();
-			--z2;
-			if(z2 < 2){
-				$("#careerDelBtn").prop("disabled", true);
+			$('.careerDel').not('.careerTr').last().find('input').val('');
+			$('.careerDel').not('.careerTr').last().addClass('careerTr');
+			
+			careerTr1Td1 = $("#careerTr1Td1").val();
+			careerTr1Td2 = $("#careerTr1Td2").val();
+			careerTr1Td3 = $("#careerTr1Td3").val();
+			
+			careerTr2Td1 = $("#careerTr2Td1").val();
+			careerTr2Td2 = $("#careerTr2Td2").val();
+			careerTr2Td3 = $("#careerTr2Td3").val();
+			
+			careerTr3Td1 = $("#careerTr3Td1").val();
+			careerTr3Td2 = $("#careerTr3Td2").val();
+			careerTr3Td3 = $("#careerTr3Td3").val();
+			
+			careerTr4Td1 = $("#careerTr4Td1").val();
+			careerTr4Td2 = $("#careerTr4Td2").val();
+			careerTr4Td3 = $("#careerTr4Td3").val();
+			
+			careerTr5Td1 = $("#careerTr5Td1").val();
+			careerTr5Td2 = $("#careerTr5Td2").val();
+			careerTr5Td3 = $("#careerTr5Td3").val();
+			
+			if(careerTr1Td1=="" || careerTr1Td2=="" || careerTr1Td3=="" || careerTr1Td4=="" || careerTr1Td5==""){
+				careerResult1 = "";				
+			}else{
+				careerResult1 = careerTr1Td1+" "+careerTr1Td2+" "+careerTr1Td3+" "+careerTr1Td4+" "+careerTr1Td5;
 			}
+			
+			if(careerTr2Td1=="" || careerTr2Td2=="" || careerTr2Td3=="" || careerTr2Td4=="" || careerTr2Td5==""){
+				careerResult2 = "";				
+			}else{
+				careerResult2 = careerTr2Td1+" "+careerTr2Td2+" "+careerTr2Td3+" "+careerTr2Td4+" "+careerTr2Td5;
+			}
+			
+			if(careerTr3Td1=="" || careerTr3Td2=="" || careerTr3Td3=="" || careerTr3Td4=="" || careerTr3Td5==""){
+				careerResult3 = "";				
+			}else{
+				careerResult3 = careerTr3Td1+" "+careerTr3Td2+" "+careerTr3Td3+" "+careerTr3Td4+" "+careerTr3Td5;
+			}
+			
+			if(careerTr4Td1=="" || careerTr4Td2=="" || careerTr4Td3=="" || careerTr4Td4=="" || careerTr4Td5==""){
+				careerResult4 = "";				
+			}else{
+				careerResult4 = careerTr4Td1+" "+careerTr4Td2+" "+careerTr4Td3+" "+careerTr4Td4+" "+careerTr4Td5;
+			}
+			
+			if(careerTr5Td1=="" || careerTr5Td2=="" || careerTr5Td3=="" || careerTr5Td4=="" || careerTr5Td5==""){
+				careerResult5 = "";				
+			}else{
+				careerResult5 = careerTr5Td1+" "+careerTr5Td2+" "+careerTr5Td3+" "+careerTr5Td4+" "+careerTr5Td5;
+			}					
+			
+			$("#careerResult1").val(careerResult1);
+			$("#careerResult2").val(careerResult2);
+			$("#careerResult3").val(careerResult3);
+			$("#careerResult4").val(careerResult4);
+			$("#careerResult5").val(careerResult5);
+			
+			if(careerResult2!=""){
+				careerResult2="*"+careerResult2;
+			}
+			if(careerResult3!=""){
+				careerResult3="*"+careerResult3;
+			}
+			if(careerResult4!=""){
+				careerResult4="*"+careerResult4;
+			}
+			if(careerResult5!=""){
+				careerResult5="*"+careerResult5;
+			}
+			
+			careerTotal = careerResult1 + careerResult2 + careerResult3 + careerResult4 + careerResult5;
+			$("#career").val(careerTotal);
 		});
 		
 		//자격증
-		var z3 = 1;
-		$("#certificateDelBtn").prop("disabled", true);
+		var certificateTr1Td1 = "";
+		var certificateTr1Td2 = "";
+		var certificateTr1Td3 = "";
+		
+		var certificateTr2Td1 = "";
+		var certificateTr2Td2 = "";
+		var certificateTr2Td3 = "";
+		
+		var certificateTr3Td1 = "";
+		var certificateTr3Td2 = "";
+		var certificateTr3Td3 = "";
+		
+		var certificateTr4Td1 = "";
+		var certificateTr4Td2 = "";
+		var certificateTr4Td3 = "";
+		
+		var certificateTr5Td1 = "";
+		var certificateTr5Td2 = "";
+		var certificateTr5Td3 = "";
+		
+		var certificateTotal = "";
+		
+		var certificateResult1 = "";
+		var certificateResult2 = "";
+		var certificateResult3 = "";
+		var certificateResult4 = "";
+		var certificateResult5 = "";
+										
+		$("#certificateTable").children().children().change(function(){
+			certificateTr1Td1 = $("#certificateTr1Td1").val();
+			certificateTr1Td2 = $("#certificateTr1Td2").val();
+			certificateTr1Td3 = $("#certificateTr1Td3").val();
+			
+			certificateTr2Td1 = $("#certificateTr2Td1").val();
+			certificateTr2Td2 = $("#certificateTr2Td2").val();
+			certificateTr2Td3 = $("#certificateTr2Td3").val();
+			
+			certificateTr3Td1 = $("#certificateTr3Td1").val();
+			certificateTr3Td2 = $("#certificateTr3Td2").val();
+			certificateTr3Td3 = $("#certificateTr3Td3").val();
+			
+			certificateTr4Td1 = $("#certificateTr4Td1").val();
+			certificateTr4Td2 = $("#certificateTr4Td2").val();
+			certificateTr4Td3 = $("#certificateTr4Td3").val();
+			
+			certificateTr5Td1 = $("#certificateTr5Td1").val();
+			certificateTr5Td2 = $("#certificateTr5Td2").val();
+			certificateTr5Td3 = $("#certificateTr5Td3").val();
+			
+			if(certificateTr1Td1=="" || certificateTr1Td2=="" || certificateTr1Td3=="" ){
+				certificateResult1 = "";				
+			}else{
+				certificateResult1 = certificateTr1Td1+" "+certificateTr1Td2+" "+certificateTr1Td3;
+			}
+			
+			if(certificateTr2Td1=="" || certificateTr2Td2=="" || certificateTr2Td3==""){
+				certificateResult2 = "";				
+			}else{
+				certificateResult2 = certificateTr2Td1+" "+certificateTr2Td2+" "+certificateTr2Td3;
+			}
+			
+			if(certificateTr3Td1=="" || certificateTr3Td2=="" || certificateTr3Td3==""){
+				certificateResult3 = "";				
+			}else{
+				certificateResult3 = certificateTr3Td1+" "+certificateTr3Td2+" "+certificateTr3Td3;
+			}
+			
+			if(certificateTr4Td1=="" || certificateTr4Td2=="" || certificateTr4Td3==""){
+				certificateResult4 = "";				
+			}else{
+				certificateResult4 = certificateTr4Td1+" "+certificateTr4Td2+" "+certificateTr4Td3;
+			}
+			
+			if(certificateTr5Td1=="" || certificateTr5Td2=="" || certificateTr5Td3==""){
+				certificateResult5 = "";				
+			}else{
+				certificateResult5 = certificateTr5Td1+" "+certificateTr5Td2+" "+certificateTr5Td3;
+			}						
+			
+			$("#certificateResult1").val(certificateResult1);
+			$("#certificateResult2").val(certificateResult2);
+			$("#certificateResult3").val(certificateResult3);
+			$("#certificateResult4").val(certificateResult4);
+			$("#certificateResult5").val(certificateResult5);
+			
+			if(certificateResult2!=""){
+				certificateResult2="*"+certificateResult2;
+			}
+			if(certificateResult3!=""){
+				certificateResult3="*"+certificateResult3;
+			}
+			if(certificateResult4!=""){
+				certificateResult4="*"+certificateResult4;
+			}
+			if(certificateResult5!=""){
+				certificateResult5="*"+certificateResult5;
+			}
+			
+			certificateTotal = certificateResult1 + certificateResult2 + certificateResult3 + certificateResult4 + certificateResult5;
+			$("#certificate").val(certificateTotal);
+										
+		});
+		
 		$("#certificateAddBtn").click(function(){
-			$("#certificateTable")
-			.append("<tr id='certificateTr'><td><input type='text' id='certificateName"+z3+"'></td><td><input type='text' id='certificateOrg"+z3+"'></td><td><input type='date' id='certificateDate"+z3+"'></td></tr>");
-			++z3;
-			if(z3 >= 1){
-				$("#certificateDelBtn").prop("disabled", false)
-			}		
+			$('.certificateTr:eq(0)').removeClass('certificateTr');
 		});
 		
 		$("#certificateDelBtn").click(function(){
-			$("#certificateTr:nth-last-child(1)").remove();
-			--z3;
-			if(z3 < 2){
-				$("#certificateDelBtn").prop("disabled", true);
+			$('.certificateDel').not('.certificateTr').last().find('input').val('');
+			$('.certificateDel').not('.certificateTr').last().addClass('certificateTr');
+			
+			certificateTr1Td1 = $("#certificateTr1Td1").val();
+			certificateTr1Td2 = $("#certificateTr1Td2").val();
+			certificateTr1Td3 = $("#certificateTr1Td3").val();
+			
+			certificateTr2Td1 = $("#certificateTr2Td1").val();
+			certificateTr2Td2 = $("#certificateTr2Td2").val();
+			certificateTr2Td3 = $("#certificateTr2Td3").val();
+			
+			certificateTr3Td1 = $("#certificateTr3Td1").val();
+			certificateTr3Td2 = $("#certificateTr3Td2").val();
+			certificateTr3Td3 = $("#certificateTr3Td3").val();
+			
+			certificateTr4Td1 = $("#certificateTr4Td1").val();
+			certificateTr4Td2 = $("#certificateTr4Td2").val();
+			certificateTr4Td3 = $("#certificateTr4Td3").val();
+			
+			certificateTr5Td1 = $("#certificateTr5Td1").val();
+			certificateTr5Td2 = $("#certificateTr5Td2").val();
+			certificateTr5Td3 = $("#certificateTr5Td3").val();
+			
+			if(certificateTr1Td1=="" || certificateTr1Td2=="" || certificateTr1Td3=="" ){
+				certificateResult1 = "";				
+			}else{
+				certificateResult1 = certificateTr1Td1+" "+certificateTr1Td2+" "+certificateTr1Td3;
 			}
+			
+			if(certificateTr2Td1=="" || certificateTr2Td2=="" || certificateTr2Td3==""){
+				certificateResult2 = "";				
+			}else{
+				certificateResult2 = certificateTr2Td1+" "+certificateTr2Td2+" "+certificateTr2Td3;
+			}
+			
+			if(certificateTr3Td1=="" || certificateTr3Td2=="" || certificateTr3Td3==""){
+				certificateResult3 = "";				
+			}else{
+				certificateResult3 = certificateTr3Td1+" "+certificateTr3Td2+" "+certificateTr3Td3;
+			}
+			
+			if(certificateTr4Td1=="" || certificateTr4Td2=="" || certificateTr4Td3==""){
+				certificateResult4 = "";				
+			}else{
+				certificateResult4 = certificateTr4Td1+" "+certificateTr4Td2+" "+certificateTr4Td3;
+			}
+			
+			if(certificateTr5Td1=="" || certificateTr5Td2=="" || certificateTr5Td3==""){
+				certificateResult5 = "";				
+			}else{
+				certificateResult5 = certificateTr5Td1+" "+certificateTr5Td2+" "+certificateTr5Td3;
+			}						
+			
+			$("#certificateResult1").val(certificateResult1);
+			$("#certificateResult2").val(certificateResult2);
+			$("#certificateResult3").val(certificateResult3);
+			$("#certificateResult4").val(certificateResult4);
+			$("#certificateResult5").val(certificateResult5);
+			
+			if(certificateResult2!=""){
+				certificateResult2="*"+certificateResult2;
+			}
+			if(certificateResult3!=""){
+				certificateResult3="*"+certificateResult3;
+			}
+			if(certificateResult4!=""){
+				certificateResult4="*"+certificateResult4;
+			}
+			if(certificateResult5!=""){
+				certificateResult5="*"+certificateResult5;
+			}
+			
+			certificateTotal = certificateResult1 + certificateResult2 + certificateResult3 + certificateResult4 + certificateResult5;
+			$("#certificate").val(certificateTotal);
 		});
 				
 		
 		//외국어능력
-		var z4 = 1;
-		$("#languageDelBtn").prop("disabled", true);
-		$("#languageAddBtn").click(function(){
-			$("#languageTable")
-			.append("<tr id='languageTr'><td><input type='text' id='languageName"+z4+"'></td><td><input type='text' id='languageOrg"+z4+"'></td><td><input type='date' id='languageDate"+z4+"'></td></tr>");
-			++z4;
-			if(z4 >= 1){
-				$("#languageDelBtn").prop("disabled", false)
+		var languageTr1Td1 = "";
+		var languageTr1Td2 = "";
+		var languageTr1Td3 = "";
+		
+		var languageTr2Td1 = "";
+		var languageTr2Td2 = "";
+		var languageTr2Td3 = "";
+		
+		var languageTr3Td1 = "";
+		var languageTr3Td2 = "";
+		var languageTr3Td3 = "";
+		
+		var languageTr4Td1 = "";
+		var languageTr4Td2 = "";
+		var languageTr4Td3 = "";
+		
+		var languageTr5Td1 = "";
+		var languageTr5Td2 = "";
+		var languageTr5Td3 = "";
+		
+		var languageTotal = "";
+		
+		var languageResult1 = "";
+		var languageResult2 = "";
+		var languageResult3 = "";
+		var languageResult4 = "";
+		var languageResult5 = "";
+										
+		$("#languageTable").children().children().change(function(){
+			languageTr1Td1 = $("#languageTr1Td1").val();
+			languageTr1Td2 = $("#languageTr1Td2").val();
+			languageTr1Td3 = $("#languageTr1Td3").val();
+			
+			languageTr2Td1 = $("#languageTr2Td1").val();
+			languageTr2Td2 = $("#languageTr2Td2").val();
+			languageTr2Td3 = $("#languageTr2Td3").val();
+			
+			languageTr3Td1 = $("#languageTr3Td1").val();
+			languageTr3Td2 = $("#languageTr3Td2").val();
+			languageTr3Td3 = $("#languageTr3Td3").val();
+			
+			languageTr4Td1 = $("#languageTr4Td1").val();
+			languageTr4Td2 = $("#languageTr4Td2").val();
+			languageTr4Td3 = $("#languageTr4Td3").val();
+			
+			languageTr5Td1 = $("#languageTr5Td1").val();
+			languageTr5Td2 = $("#languageTr5Td2").val();
+			languageTr5Td3 = $("#languageTr5Td3").val();
+			
+			if(languageTr1Td1=="" || languageTr1Td2=="" || languageTr1Td3=="" ){
+				languageResult1 = "";				
+			}else{
+				languageResult1 = languageTr1Td1+" "+languageTr1Td2+" "+languageTr1Td3;
 			}
+			
+			if(languageTr2Td1=="" || languageTr2Td2=="" || languageTr2Td3==""){
+				languageResult2 = "";				
+			}else{
+				languageResult2 = languageTr2Td1+" "+languageTr2Td2+" "+languageTr2Td3;
+			}
+			
+			if(languageTr3Td1=="" || languageTr3Td2=="" || languageTr3Td3==""){
+				languageResult3 = "";				
+			}else{
+				languageResult3 = languageTr3Td1+" "+languageTr3Td2+" "+languageTr3Td3;
+			}
+			
+			if(languageTr4Td1=="" || languageTr4Td2=="" || languageTr4Td3==""){
+				languageResult4 = "";				
+			}else{
+				languageResult4 = languageTr4Td1+" "+languageTr4Td2+" "+languageTr4Td3;
+			}
+			
+			if(languageTr5Td1=="" || languageTr5Td2=="" || languageTr5Td3==""){
+				languageResult5 = "";				
+			}else{
+				languageResult5 = languageTr5Td1+" "+languageTr5Td2+" "+languageTr5Td3;
+			}						
+			
+			$("#languageResult1").val(languageResult1);
+			$("#languageResult2").val(languageResult2);
+			$("#languageResult3").val(languageResult3);
+			$("#languageResult4").val(languageResult4);
+			$("#languageResult5").val(languageResult5);
+			
+			if(languageResult2!=""){
+				languageResult2="*"+languageResult2;
+			}
+			if(languageResult3!=""){
+				languageResult3="*"+languageResult3;
+			}
+			if(languageResult4!=""){
+				languageResult4="*"+languageResult4;
+			}
+			if(languageResult5!=""){
+				languageResult5="*"+languageResult5;
+			}
+			
+			languageTotal = languageResult1 + languageResult2 + languageResult3 + languageResult4 + languageResult5;
+			$("#language").val(languageTotal);
+										
+		});
+		
+		$("#languageAddBtn").click(function(){
+			$('.languageTr:eq(0)').removeClass('languageTr');
 		});
 		
 		$("#languageDelBtn").click(function(){
-			$("#languageTr:nth-last-child(1)").remove();
-			--z4;
-			if(z4 < 2){
-				$("#languageDelBtn").prop("disabled", true);
+			$('.languageDel').not('.languageTr').last().find('input').val('');
+			$('.languageDel').not('.languageTr').last().addClass('languageTr');
+			
+			languageTr1Td1 = $("#languageTr1Td1").val();
+			languageTr1Td2 = $("#languageTr1Td2").val();
+			languageTr1Td3 = $("#languageTr1Td3").val();
+			
+			languageTr2Td1 = $("#languageTr2Td1").val();
+			languageTr2Td2 = $("#languageTr2Td2").val();
+			languageTr2Td3 = $("#languageTr2Td3").val();
+			
+			languageTr3Td1 = $("#languageTr3Td1").val();
+			languageTr3Td2 = $("#languageTr3Td2").val();
+			languageTr3Td3 = $("#languageTr3Td3").val();
+			
+			languageTr4Td1 = $("#languageTr4Td1").val();
+			languageTr4Td2 = $("#languageTr4Td2").val();
+			languageTr4Td3 = $("#languageTr4Td3").val();
+			
+			languageTr5Td1 = $("#languageTr5Td1").val();
+			languageTr5Td2 = $("#languageTr5Td2").val();
+			languageTr5Td3 = $("#languageTr5Td3").val();
+			
+			if(languageTr1Td1=="" || languageTr1Td2=="" || languageTr1Td3=="" ){
+				languageResult1 = "";				
+			}else{
+				languageResult1 = languageTr1Td1+" "+languageTr1Td2+" "+languageTr1Td3;
 			}
+			
+			if(languageTr2Td1=="" || languageTr2Td2=="" || languageTr2Td3==""){
+				languageResult2 = "";				
+			}else{
+				languageResult2 = languageTr2Td1+" "+languageTr2Td2+" "+languageTr2Td3;
+			}
+			
+			if(languageTr3Td1=="" || languageTr3Td2=="" || languageTr3Td3==""){
+				languageResult3 = "";				
+			}else{
+				languageResult3 = languageTr3Td1+" "+languageTr3Td2+" "+languageTr3Td3;
+			}
+			
+			if(languageTr4Td1=="" || languageTr4Td2=="" || languageTr4Td3==""){
+				languageResult4 = "";				
+			}else{
+				languageResult4 = languageTr4Td1+" "+languageTr4Td2+" "+languageTr4Td3;
+			}
+			
+			if(languageTr5Td1=="" || languageTr5Td2=="" || languageTr5Td3==""){
+				languageResult5 = "";				
+			}else{
+				languageResult5 = languageTr5Td1+" "+languageTr5Td2+" "+languageTr5Td3;
+			}						
+			
+			$("#languageResult1").val(languageResult1);
+			$("#languageResult2").val(languageResult2);
+			$("#languageResult3").val(languageResult3);
+			$("#languageResult4").val(languageResult4);
+			$("#languageResult5").val(languageResult5);
+			
+			if(languageResult2!=""){
+				languageResult2="*"+languageResult2;
+			}
+			if(languageResult3!=""){
+				languageResult3="*"+languageResult3;
+			}
+			if(languageResult4!=""){
+				languageResult4="*"+languageResult4;
+			}
+			if(languageResult5!=""){
+				languageResult5="*"+languageResult5;
+			}
+			
+			languageTotal = languageResult1 + languageResult2 + languageResult3 + languageResult4 + languageResult5;
+			$("#language").val(languageTotal);
 		});
 		
 		//수상기록
@@ -436,27 +969,202 @@
 			$("#award").val(awardsTotal);
 		});
 		
-				
 		//대외활동
-		var z6 = 1;
-		$("#activityDelBtn").prop("disabled", true);
-		$("#activityAddBtn").click(function(){
-			$("#activityTable")
-			.append("<tr id='activityTr'><td><input type='text' id='activityName"+z6+"'></td><td><input type='text' id='activityOrg"+z6+"'></td><td><input type='date' id='activityStartDate"+z6+"' style='width:50%;'><input type='date' id='activityEndDate"+z6+"' style='width:50%;'></td></tr>");
-			++z6;
-			if(z6 >= 1){
-				$("#activityDelBtn").prop("disabled", false)
+		var activityTr1Td1 = "";
+		var activityTr1Td2 = "";
+		var activityTr1Td3 = "";
+		var activityTr1Td4 = "";
+		
+		var activityTr2Td1 = "";
+		var activityTr2Td2 = "";
+		var activityTr2Td3 = "";
+		var activityTr2Td4 = "";
+		
+		var activityTr3Td1 = "";
+		var activityTr3Td2 = "";
+		var activityTr3Td3 = "";
+		var activityTr3Td4 = "";
+		
+		var activityTr4Td1 = "";
+		var activityTr4Td2 = "";
+		var activityTr4Td3 = "";
+		var activityTr4Td4 = "";
+		
+		var activityTr5Td1 = "";
+		var activityTr5Td2 = "";
+		var activityTr5Td3 = "";
+		var activityTr5Td4 = "";
+		
+		var activityTotal = "";
+		
+		var activityResult1 = "";
+		var activityResult2 = "";
+		var activityResult3 = "";
+		var activityResult4 = "";
+		var activityResult5 = "";
+										
+		$("#activityTable").children().children().change(function(){
+			activityTr1Td1 = $("#activityTr1Td1").val();
+			activityTr1Td2 = $("#activityTr1Td2").val();
+			activityTr1Td3 = $("#activityTr1Td3").val();
+			activityTr1Td4 = $("#activityTr1Td4").val();
+			
+			activityTr2Td1 = $("#activityTr2Td1").val();
+			activityTr2Td2 = $("#activityTr2Td2").val();
+			activityTr2Td3 = $("#activityTr2Td3").val();
+			activityTr2Td4 = $("#activityTr2Td4").val();
+			
+			activityTr3Td1 = $("#activityTr3Td1").val();
+			activityTr3Td2 = $("#activityTr3Td2").val();
+			activityTr3Td3 = $("#activityTr3Td3").val();
+			activityTr3Td4 = $("#activityTr3Td4").val();
+			
+			activityTr4Td1 = $("#activityTr4Td1").val();
+			activityTr4Td2 = $("#activityTr4Td2").val();
+			activityTr4Td3 = $("#activityTr4Td3").val();
+			activityTr4Td4 = $("#activityTr4Td4").val();
+			
+			activityTr5Td1 = $("#activityTr5Td1").val();
+			activityTr5Td2 = $("#activityTr5Td2").val();
+			activityTr5Td3 = $("#activityTr5Td3").val();
+			activityTr5Td4 = $("#activityTr5Td4").val();
+			
+			if(activityTr1Td1=="" || activityTr1Td2=="" || activityTr1Td3=="" || activityTr1Td4==""){
+				activityResult1 = "";				
+			}else{
+				activityResult1 = activityTr1Td1+" "+activityTr1Td2+" "+activityTr1Td3+" "+activityTr1Td4;
 			}
+			
+			if(activityTr2Td1=="" || activityTr2Td2=="" || activityTr2Td3=="" || activityTr2Td4==""){
+				activityResult2 = "";				
+			}else{
+				activityResult2 = activityTr2Td1+" "+activityTr2Td2+" "+activityTr2Td3+" "+activityTr2Td4;
+			}
+			
+			if(activityTr3Td1=="" || activityTr3Td2=="" || activityTr3Td3=="" || activityTr3Td4==""){
+				activityResult3 = "";				
+			}else{
+				activityResult3 = activityTr3Td1+" "+activityTr3Td2+" "+activityTr3Td3+" "+activityTr3Td4;
+			}
+			
+			if(activityTr4Td1=="" || activityTr4Td2=="" || activityTr4Td3=="" || activityTr4Td4==""){
+				activityResult4 = "";				
+			}else{
+				activityResult4 = activityTr4Td1+" "+activityTr4Td2+" "+activityTr4Td3+" "+activityTr4Td4;
+			}
+			
+			if(activityTr5Td1=="" || activityTr5Td2=="" || activityTr5Td3=="" || activityTr5Td4==""){
+				activityResult5 = "";				
+			}else{
+				activityResult5 = activityTr5Td1+" "+activityTr5Td2+" "+activityTr5Td3+" "+activityTr5Td4;
+			}						
+			
+			$("#activityResult1").val(activityResult1);
+			$("#activityResult2").val(activityResult2);
+			$("#activityResult3").val(activityResult3);
+			$("#activityResult4").val(activityResult4);
+			$("#activityResult5").val(activityResult5);
+			
+			if(activityResult2!=""){
+				activityResult2="*"+activityResult2;
+			}
+			if(activityResult3!=""){
+				activityResult3="*"+activityResult3;
+			}
+			if(activityResult4!=""){
+				activityResult4="*"+activityResult4;
+			}
+			if(activityResult5!=""){
+				activityResult5="*"+activityResult5;
+			}
+			
+			activityTotal = activityResult1 + activityResult2 + activityResult3 + activityResult4 + activityResult5;
+			$("#activity").val(activityTotal);
+										
+		});
+		
+		$("#activityAddBtn").click(function(){
+			$('.activityTr:eq(0)').removeClass('activityTr');
 		});
 		
 		$("#activityDelBtn").click(function(){
-			$("#activityTr:nth-last-child(1)").remove();
-			--z6;
-			if(z6 < 2){
-				$("#activityDelBtn").prop("disabled", true);
+			$('.activityDel').not('.activityTr').last().find('input').val('');
+			$('.activityDel').not('.activityTr').last().addClass('activityTr');
+			
+			activityTr1Td1 = $("#activityTr1Td1").val();
+			activityTr1Td2 = $("#activityTr1Td2").val();
+			activityTr1Td3 = $("#activityTr1Td3").val();
+			
+			activityTr2Td1 = $("#activityTr2Td1").val();
+			activityTr2Td2 = $("#activityTr2Td2").val();
+			activityTr2Td3 = $("#activityTr2Td3").val();
+			
+			activityTr3Td1 = $("#activityTr3Td1").val();
+			activityTr3Td2 = $("#activityTr3Td2").val();
+			activityTr3Td3 = $("#activityTr3Td3").val();
+			
+			activityTr4Td1 = $("#activityTr4Td1").val();
+			activityTr4Td2 = $("#activityTr4Td2").val();
+			activityTr4Td3 = $("#activityTr4Td3").val();
+			
+			activityTr5Td1 = $("#activityTr5Td1").val();
+			activityTr5Td2 = $("#activityTr5Td2").val();
+			activityTr5Td3 = $("#activityTr5Td3").val();
+			
+			if(activityTr1Td1=="" || activityTr1Td2=="" || activityTr1Td3=="" || activityTr1Td4==""){
+				activityResult1 = "";				
+			}else{
+				activityResult1 = activityTr1Td1+" "+activityTr1Td2+" "+activityTr1Td3+" "+activityTr1Td4;
 			}
+			
+			if(activityTr2Td1=="" || activityTr2Td2=="" || activityTr2Td3=="" || activityTr2Td4==""){
+				activityResult2 = "";				
+			}else{
+				activityResult2 = activityTr2Td1+" "+activityTr2Td2+" "+activityTr2Td3+" "+activityTr2Td4;
+			}
+			
+			if(activityTr3Td1=="" || activityTr3Td2=="" || activityTr3Td3=="" || activityTr3Td4==""){
+				activityResult3 = "";				
+			}else{
+				activityResult3 = activityTr3Td1+" "+activityTr3Td2+" "+activityTr3Td3+" "+activityTr3Td4;
+			}
+			
+			if(activityTr4Td1=="" || activityTr4Td2=="" || activityTr4Td3=="" || activityTr4Td4==""){
+				activityResult4 = "";				
+			}else{
+				activityResult4 = activityTr4Td1+" "+activityTr4Td2+" "+activityTr4Td3+" "+activityTr4Td4;
+			}
+			
+			if(activityTr5Td1=="" || activityTr5Td2=="" || activityTr5Td3=="" || activityTr5Td4==""){
+				activityResult5 = "";				
+			}else{
+				activityResult5 = activityTr5Td1+" "+activityTr5Td2+" "+activityTr5Td3+" "+activityTr5Td4;
+			}						
+			
+			$("#activityResult1").val(activityResult1);
+			$("#activityResult2").val(activityResult2);
+			$("#activityResult3").val(activityResult3);
+			$("#activityResult4").val(activityResult4);
+			$("#activityResult5").val(activityResult5);
+			
+			if(activityResult2!=""){
+				activityResult2="*"+activityResult2;
+			}
+			if(activityResult3!=""){
+				activityResult3="*"+activityResult3;
+			}
+			if(activityResult4!=""){
+				activityResult4="*"+activityResult4;
+			}
+			if(activityResult5!=""){
+				activityResult5="*"+activityResult5;
+			}
+			
+			activityTotal = activityResult1 + activityResult2 + activityResult3 + activityResult4 + activityResult5;
+			$("#activity").val(activityTotal);
 		});
 		
+			
 		//우대사항
 		$(".specialChk").click(function(){
 			var specialData = "";
@@ -573,9 +1281,9 @@
 					<br><br>
 					<table id="schoolTable">
 						<colgroup>
-							<col style="width:200px;">
-							<col style="width:200px;">
-							<col style="width:200px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
 						</colgroup>
 						<tr>
 							<td>학교 : <input type="text" id="schoolName"></td>
@@ -584,6 +1292,9 @@
 						</tr>
 					</table>
 					<input type="text" name="edu" id="edu">
+					<input type="text" name="edu1" id="edu1">
+					<input type="text" name="edu2" id="edu2">
+					<input type="text" name="edu3" id="edu3">
 				</div>
 			<hr>
 			</div>
@@ -602,22 +1313,65 @@
 				<div id="careerDivChk">				
 					<input type="button" value="추가" id="careerAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
 					<input type="button" value="삭제" id="careerDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
+					<span>(최대 5건)</span>
 					<br><br>
 					<table id="careerTable">
 						<colgroup>
-							<col style="width:200px;">
-							<col style="width:200px;">
-							<col style="width:200px;">
-							<col style="width:250px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
 						</colgroup>
 						<tr>
 							<td>회사명</td>
 							<td>직위</td>	
 							<td>담당업무</td>
-							<td>근무기간</td>
+							<td>입사일</td>
+							<td>퇴사일</td>
+						</tr>
+						<tr id="careerTr1" class="careerTr careerDel">
+							<td><input type='text' id="careerTr1Td1"></td>
+							<td><input type='text' id="careerTr1Td2"></td>	
+							<td><input type='text' id="careerTr1Td3"></td>
+							<td><input type='date' id="careerTr1Td4"></td>
+							<td><input type='date' id="careerTr1Td5"></td>
+						</tr>
+						<tr id="careerTr2" class="careerTr careerDel">
+							<td><input type='text' id="careerTr2Td1"></td>
+							<td><input type='text' id="careerTr2Td2"></td>	
+							<td><input type='text' id="careerTr2Td3"></td>
+							<td><input type='date' id="careerTr2Td4"></td>
+							<td><input type='date' id="careerTr2Td5"></td>
+						</tr>
+						<tr id="careerTr3" class="careerTr careerDel">
+							<td><input type='text' id="careerTr3Td1"></td>
+							<td><input type='text' id="careerTr3Td2"></td>	
+							<td><input type='text' id="careerTr3Td3"></td>
+							<td><input type='date' id="careerTr3Td4"></td>
+							<td><input type='date' id="careerTr3Td5"></td>
+						</tr>
+						<tr id="careerTr4" class="careerTr careerDel">
+							<td><input type='text' id="careerTr4Td1"></td>
+							<td><input type='text' id="careerTr4Td2"></td>	
+							<td><input type='text' id="careerTr4Td3"></td>
+							<td><input type='date' id="careerTr4Td4"></td>
+							<td><input type='date' id="careerTr4Td5"></td>
+						</tr>
+						<tr id="careerTr5" class="careerTr careerDel">
+							<td><input type='text' id="careerTr5Td1"></td>
+							<td><input type='text' id="careerTr5Td2"></td>	
+							<td><input type='text' id="careerTr5Td3"></td>
+							<td><input type='date' id="careerTr5Td4"></td>
+							<td><input type='date' id="careerTr5Td5"></td>
 						</tr>
 					</table>
-					<input type="text" id="career">
+					경력<input type="text" name="career" id="career">
+					경력1<input type="text" id="careerResult1" class="careerResult">
+					경력2<input type="text" id="careerResult2" class="careerResult">
+					경력3<input type="text" id="careerResult3" class="careerResult">
+					경력4<input type="text" id="careerResult4" class="careerResult">
+					경력5<input type="text" id="careerResult5" class="careerResult">
 				</div>
 			<hr>
 			</div>
@@ -636,20 +1390,51 @@
 				<div id="certificateDivChk">	
 					<input type="button" value="추가" id="certificateAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
 					<input type="button" value="삭제" id="certificateDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
+					<span>(최대 5건)</span>
 					<br><br>
 					<table id="certificateTable">
 						<colgroup>
-							<col style="width:200px;">
-							<col style="width:200px;">
-							<col style="width:200px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
 						</colgroup>
 						<tr>
 							<td>종류</td>
 							<td>발급기관</td>				
 							<td>취득일</td>				
 						</tr>
+						<tr id="certificateTr1" class="certificateTr certificateDel">
+							<td><input type='text' id="certificateTr1Td1"></td>
+							<td><input type='text' id="certificateTr1Td2"></td>	
+							<td><input type='date' id="certificateTr1Td3"></td>
+						</tr>
+						<tr id="certificateTr2" class="certificateTr certificateDel">
+							<td><input type='text' id="certificateTr2Td1"></td>
+							<td><input type='text' id="certificateTr2Td2"></td>	
+							<td><input type='date' id="certificateTr2Td3"></td>
+						</tr>
+						<tr id="certificateTr3" class="certificateTr certificateDel">
+							<td><input type='text' id="certificateTr3Td1"></td>
+							<td><input type='text' id="certificateTr3Td2"></td>	
+							<td><input type='date' id="certificateTr3Td3"></td>
+						</tr>
+						<tr id="certificateTr4" class="certificateTr certificateDel">
+							<td><input type='text' id="certificateTr4Td1"></td>
+							<td><input type='text' id="certificateTr4Td2"></td>	
+							<td><input type='date' id="certificateTr4Td3"></td>
+						</tr>
+						<tr id="certificateTr5" class="certificateTr certificateDel">
+							<td><input type='text' id="certificateTr5Td1"></td>
+							<td><input type='text' id="certificateTr5Td2"></td>	
+							<td><input type='date' id="certificateTr5Td3"></td>
+						</tr>
 					</table>
-					<input type="text" name="certificate">
+					자격증<input type="text" name="certificate" id="certificate">
+					자격증1<input type="text" id="certificateResult1" class="certificateResult">
+					자격증2<input type="text" id="certificateResult2" class="certificateResult">
+					자격증3<input type="text" id="certificateResult3" class="certificateResult">
+					자격증4<input type="text" id="certificateResult4" class="certificateResult">
+					자격증5<input type="text" id="certificateResult5" class="certificateResult">
 				</div>
 			<hr>
 			</div>
@@ -668,20 +1453,51 @@
 				<div id="languageDivChk">	
 					<input type="button" value="추가" id="languageAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
 					<input type="button" value="삭제" id="languageDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
+					<span>(최대 5건)</span>
 				 	<br><br>
 					<table id="languageTable">
 						<colgroup>
-							<col style="width:200px;">
-							<col style="width:200px;">
-							<col style="width:200px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
 						</colgroup>
 						<tr>
 							<td>종류</td>
 							<td>발급기관</td>				
 							<td>취득일</td>				
 						</tr>
+						<tr id="languageTr1" class="languageTr languageDel">
+							<td><input type='text' id="languageTr1Td1"></td>
+							<td><input type='text' id="languageTr1Td2"></td>	
+							<td><input type='date' id="languageTr1Td3"></td>
+						</tr>
+						<tr id="languageTr2" class="languageTr languageDel">
+							<td><input type='text' id="languageTr2Td1"></td>
+							<td><input type='text' id="languageTr2Td2"></td>	
+							<td><input type='date' id="languageTr2Td3"></td>
+						</tr>
+						<tr id="languageTr3" class="languageTr languageDel">
+							<td><input type='text' id="languageTr3Td1"></td>
+							<td><input type='text' id="languageTr3Td2"></td>	
+							<td><input type='date' id="languageTr3Td3"></td>
+						</tr>
+						<tr id="languageTr4" class="languageTr languageDel">
+							<td><input type='text' id="languageTr4Td1"></td>
+							<td><input type='text' id="languageTr4Td2"></td>	
+							<td><input type='date' id="languageTr4Td3"></td>
+						</tr>
+						<tr id="languageTr5" class="languageTr languageDel">
+							<td><input type='text' id="languageTr5Td1"></td>
+							<td><input type='text' id="languageTr5Td2"></td>	
+							<td><input type='date' id="languageTr5Td3"></td>
+						</tr>
 					</table>
-					<input type="text" name="language">
+					어학능력<input type="text" name="language" id="language">
+					어학능력1<input type="text" id="languageResult1" class="languageResult">
+					어학능력2<input type="text" id="languageResult2" class="languageResult">
+					어학능력3<input type="text" id="languageResult3" class="languageResult">
+					어학능력4<input type="text" id="languageResult4" class="languageResult">
+					어학능력5<input type="text" id="languageResult5" class="languageResult">
 				</div>
 			<hr>
 			</div>
@@ -704,9 +1520,9 @@
 					<br><br>
 					<table id="awardsTable">
 						<colgroup>
-							<col style="width:200px;">
-							<col style="width:200px;">
-							<col style="width:200px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
 						</colgroup>						
 						<tr>
 							<td>종류</td>
@@ -739,12 +1555,12 @@
 							<td><input type='date' id="awardsTr5Td3"></td>
 						</tr>
 					</table>
-					<input type="text" name="award" id="award">
-					<input type="text" id="awardsResult1" class="awardsResult">
-					<input type="text" id="awardsResult2" class="awardsResult">
-					<input type="text" id="awardsResult3" class="awardsResult">
-					<input type="text" id="awardsResult4" class="awardsResult">
-					<input type="text" id="awardsResult5" class="awardsResult">
+					수상기록<input type="text" name="award" id="award">
+					수상기록1<input type="text" id="awardsResult1" class="awardsResult">
+					수상기록2<input type="text" id="awardsResult2" class="awardsResult">
+					수상기록3<input type="text" id="awardsResult3" class="awardsResult">
+					수상기록4<input type="text" id="awardsResult4" class="awardsResult">
+					수상기록5<input type="text" id="awardsResult5" class="awardsResult">
 				</div>
 			<hr>
 			</div>
@@ -793,20 +1609,58 @@
 				<div id="activityDivChk">	
 					<input type="button" value="추가" id="activityAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
 					<input type="button" value="삭제" id="activityDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
+					<span>(최대 5건)</span>
 					<br><br>
 					<table id="activityTable">
 						<colgroup>
-							<col style="width:200px;">
-							<col style="width:200px;">
-							<col style="width:250px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
+							<col style="width:180px;">
 						</colgroup>
 						<tr>							
 							<td>대외활동명</td>				
 							<td>대외활동기관</td>
-							<td>대외활동일자</td>			
+							<td>대외활동시작일</td>			
+							<td>대외활동종료일</td>			
+						</tr>
+						<tr id="activityTr1" class="activityTr activityDel">
+							<td><input type='text' id="activityTr1Td1"></td>
+							<td><input type='text' id="activityTr1Td2"></td>	
+							<td><input type='date' id="activityTr1Td3"></td>
+							<td><input type='date' id="activityTr1Td4"></td>
+						</tr>
+						<tr id="activityTr2" class="activityTr activityDel">
+							<td><input type='text' id="activityTr2Td1"></td>
+							<td><input type='text' id="activityTr2Td2"></td>	
+							<td><input type='date' id="activityTr2Td3"></td>
+							<td><input type='date' id="activityTr2Td4"></td>
+						</tr>
+						<tr id="activityTr3" class="activityTr activityDel">
+							<td><input type='text' id="activityTr3Td1"></td>
+							<td><input type='text' id="activityTr3Td2"></td>	
+							<td><input type='date' id="activityTr3Td3"></td>
+							<td><input type='date' id="activityTr3Td4"></td>
+						</tr>
+						<tr id="activityTr4" class="activityTr activityDel">
+							<td><input type='text' id="activityTr4Td1"></td>
+							<td><input type='text' id="activityTr4Td2"></td>	
+							<td><input type='date' id="activityTr4Td3"></td>
+							<td><input type='date' id="activityTr4Td4"></td>
+						</tr>
+						<tr id="activityTr5" class="activityTr activityDel">
+							<td><input type='text' id="activityTr5Td1"></td>
+							<td><input type='text' id="activityTr5Td2"></td>	
+							<td><input type='date' id="activityTr5Td3"></td>
+							<td><input type='date' id="activityTr5Td4"></td>
 						</tr>
 					</table>
-					<input type="text" name="activity">
+					대외활동<input type="text" name="activity" id="activity">
+					대외활동1<input type="text" id="activityResult1" class="activityResult">
+					대외활동2<input type="text" id="activityResult2" class="activityResult">
+					대외활동3<input type="text" id="activityResult3" class="activityResult">
+					대외활동4<input type="text" id="activityResult4" class="activityResult">
+					대외활동5<input type="text" id="activityResult5" class="activityResult">
 				</div>
 			<hr>
 			</div>
