@@ -1,6 +1,7 @@
 package com.will.team4final.company.resume.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,17 +55,17 @@ public class CompanyResumeController {
 	}
 	
 	@RequestMapping(value = "/companyResumeUse.do", method = RequestMethod.GET)
-	public String resumeUse_get(@RequestParam String recruitmentCode, HttpServletRequest request , Model model) {
+	public String resumeUse_get(@RequestParam String recruitmentCode, HttpSession session, Model model) {
 		logger.info("기업 자사 이력서 사용 페이지");
 		logger.info("파라미터 recruitmentCode={}", recruitmentCode);
 		
-		String userId = request.getParameter("userId");
-		logger.info("userId={}", userId);
+		String userid = (String)session.getAttribute("userid");
+		logger.info("userid={}", userid);
 		
 		CompanyResumeSetVO vo = companyResumeSetService.selectCompanyResumeSet(recruitmentCode);
 		
 		logger.info("companyResumeUseVo={}", vo);
-		model.addAttribute("userId", userId);
+		model.addAttribute("userId", userid);
 		model.addAttribute("vo", vo);
 		return "companypage/companyResumeUse";
 	}
@@ -78,7 +79,7 @@ public class CompanyResumeController {
 		String msg = "자사 이력서 입력 실패", url = "/companypage/companyResumeUse.do";
 		if(cnt>0) {
 			msg = "자사 이력서 입력 성공";
-			url = "/companypage/companyHome.do";
+			url = "/companypage/companyResumeView.do?recruitmentCode="+companyResumeUseVo.getRecruitmentCode();
 		}
 		
 		model.addAttribute("msg", msg);
@@ -87,4 +88,30 @@ public class CompanyResumeController {
 		return "common/message";
 		
 	}
+	
+	//@RequestParam
+	//do 뒤에 오거나 name의 밸류값
+	
+	//@ModelAttribute
+	//한번에 넣고 처리할수 있도록
+
+	
+	@RequestMapping(value = "/companyResumeView.do", method = RequestMethod.GET)
+	public String resumeView_get(@RequestParam String recruitmentCode, @ModelAttribute CompanyResumeUseVO companyResumeUseVo,
+			HttpSession session, Model model) {
+		logger.info("기업 자사 이력서 사용 후 뷰 페이지");
+		logger.info("파라미터 recruitmentCode={}", recruitmentCode);
+		
+		
+		String userid = "aaa"; //(String)session.getAttribute("userid");
+		logger.info("userId={}", userid);
+		
+		CompanyResumeUseVO vo = companyResumeUseService.selectCompanyResumeUse(companyResumeUseVo);
+		logger.info("companyResumeUseVo={}", vo);
+		
+		model.addAttribute("userId", userid);
+		model.addAttribute("vo", vo);
+		return "companypage/companyResumeView";
+	}
+	
 }

@@ -11,6 +11,11 @@ public class CompanyResumeUseServiceImpl implements CompanyResumeUseService {
 	public int insertCompanyResumeUse(CompanyResumeUseVO companyResumeUseVo) {
 		return companyResumeUseDao.insertCompanyResumeUse(companyResumeUseVo);
 	}
+
+	@Override
+	public CompanyResumeUseVO selectCompanyResumeUse(CompanyResumeUseVO companyResumeUseVo) {
+		return companyResumeUseDao.selectCompanyResumeUse(companyResumeUseVo);
+	}
 	
 	
 }

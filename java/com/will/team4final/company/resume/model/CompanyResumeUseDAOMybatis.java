@@ -15,4 +15,12 @@ public class CompanyResumeUseDAOMybatis implements CompanyResumeUseDAO {
 		return sqlSession.insert(namespace+"insertCompanyResumeUse", companyResumeUseVo);
 	}
 
+	@Override
+	public CompanyResumeUseVO selectCompanyResumeUse(CompanyResumeUseVO companyResumeUseVo) {
+		return sqlSession.selectOne(namespace+"selectCompanyResumeUse", companyResumeUseVo);
+	}
+
+	
+	
+
 }

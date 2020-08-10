@@ -19,7 +19,12 @@ public class CompanyResumeUseVO {
 	String award;
 	String special;
 	String activity;
-	String self;
+	String self1;
+	String self2;
+	String self3;
+	String self4;
+	String self5;
+	
 	public String getRecruitmentCode() {
 		return recruitmentCode;
 	}
@@ -122,19 +127,45 @@ public class CompanyResumeUseVO {
 	public void setActivity(String activity) {
 		this.activity = activity;
 	}
-	public String getSelf() {
-		return self;
+	public String getSelf1() {
+		return self1;
 	}
-	public void setSelf(String self) {
-		this.self = self;
+	public void setSelf1(String self1) {
+		this.self1 = self1;
 	}
+	public String getSelf2() {
+		return self2;
+	}
+	public void setSelf2(String self2) {
+		this.self2 = self2;
+	}
+	public String getSelf3() {
+		return self3;
+	}
+	public void setSelf3(String self3) {
+		this.self3 = self3;
+	}
+	public String getSelf4() {
+		return self4;
+	}
+	public void setSelf4(String self4) {
+		this.self4 = self4;
+	}
+	public String getSelf5() {
+		return self5;
+	}
+	public void setSelf5(String self5) {
+		this.self5 = self5;
+	}
+	
 	@Override
 	public String toString() {
 		return "CompanyResumeUseVO [recruitmentCode=" + recruitmentCode + ", userId=" + userId + ", name=" + name
 				+ ", gender=" + gender + ", email=" + email + ", hp=" + hp + ", birth=" + birth + ", zipcode=" + zipcode
 				+ ", address=" + address + ", addressDetail=" + addressDetail + ", edu=" + edu + ", career=" + career
 				+ ", certificate=" + certificate + ", language=" + language + ", award=" + award + ", special="
-				+ special + ", activity=" + activity + ", self=" + self + "]";
+				+ special + ", activity=" + activity + ", self1=" + self1 + ", self2=" + self2 + ", self3=" + self3
+				+ ", self4=" + self4 + ", self5=" + self5 + "]";
 	}
 	
 }

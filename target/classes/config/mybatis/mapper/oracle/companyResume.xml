@@ -25,22 +25,20 @@
 		insert into company_resumeuse (
 		RECRUITMENT_CODE, USER_ID, NAME, GENDER, EMAIL, HP, BIRTH,
 	    ZIPCODE, ADDRESS, ADDRESS_DETAIL, EDU, CAREER, CERTIFICATE,
-	    LANGUAGE, AWARD, SPECIAL, ACTIVITY, SELF
+	    LANGUAGE, AWARD, SPECIAL, ACTIVITY, SELF1, SELF2, SELF3, SELF4, SELF5
 		)
 		values (
 		#{recruitmentCode}, #{userId}, #{name}, #{gender}, #{email}, #{hp}, #{birth},
 		#{zipcode}, #{address}, #{addressDetail}, #{edu}, #{career}, #{certificate},
-		#{language}, #{award}, #{special}, #{activity}, #{self}
+		#{language}, #{award}, #{special}, #{activity}, #{self1}, #{self2}, #{self3}, #{self4}, #{self5}
 		)
 	</insert>
 	
+	<select id="selectCompanyResumeUse" resultType="companyResumeUseVo" parameterType="companyResumeUseVo">
+		select * from company_resumeuse
+		where recruitment_code=#{recruitmentCode} and user_id=#{userId}	
+	</select>
+	
 </mapper>
-
-
-
-
-
-
-
 
 

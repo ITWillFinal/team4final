@@ -213,28 +213,29 @@
 				alert('상세주소를 입력하세요');
 				$('#addressDetail').focus();
 				event.preventDefault();
-			}
+			}else if($('#self1area').val().indexOf('*')!=-1){
+				alert("자기소개서 내용에 *은 포함될 수 없습니다");
+				$('#self1area').focus();
+				event.preventDefault();
+			}else if($('#self2area').val().indexOf('*')!=-1){
+				alert("자기소개서 내용에 *은 포함될 수 없습니다");
+				$('#self2area').focus();
+				event.preventDefault();
+			}else if($('#self3area').val().indexOf('*')!=-1){
+				alert("자기소개서 내용에 *은 포함될 수 없습니다");
+				$('#self3area').focus();
+				event.preventDefault();
+			}else if($('#self4area').val().indexOf('*')!=-1){
+				alert("자기소개서 내용에 *은 포함될 수 없습니다");
+				$('#self4area').focus();
+				event.preventDefault();
+			}else if($('#self5area').val().indexOf('*')!=-1){
+				alert("자기소개서 내용에 *은 포함될 수 없습니다");
+				$('#self5area').focus();
+				event.preventDefault();
+			}		
 			
 		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		//성별
 		$("#genderSelect").change(function(){
@@ -1250,19 +1251,17 @@
 		}
 		if($("#selfTitle5Val").val()==""){
 			$(".selfTitleTr5").hide();
-		}
+		}		
 		
-		
-		
-		$(".self").change(function(){
 				
-			var self = "";
-			var self1 = $("#self1").val();
-			var self2 = $("#self2").val();
-			var self3 = $("#self3").val();
-			var self4 = $("#self4").val();
-			var self5 = $("#self5").val();
+		$(".self").change(function(){				
 			
+			var self1 = $("#self1area").val();
+			var self2 = $("#self2area").val();
+			var self3 = $("#self3area").val();
+			var self4 = $("#self4area").val();
+			var self5 = $("#self5area").val();
+						
 			var self1Title = $("#selfTitle1Val").val();
 			var self2Title = $("#selfTitle2Val").val();
 			var self3Title = $("#selfTitle3Val").val();
@@ -1284,29 +1283,32 @@
 			if(self2Title=="" || self2==""){
 				selfResult2 = "";				
 			}else{
-				selfResult2 = "*"+self2Title+"*"+self2;
+				selfResult2 = self2Title+"*"+self2;
 			}
 			
 			if(self3Title=="" || self3==""){
 				selfResult3 = "";				
 			}else{
-				selfResult3 = "*"+self3Title+"*"+self3;
+				selfResult3 = self3Title+"*"+self3;
 			}
 			
 			if(self4Title=="" || self4==""){
 				selfResult4 = "";				
 			}else{
-				selfResult4 = "*"+self4Title+"*"+self4;
+				selfResult4 = self4Title+"*"+self4;
 			}
 			
 			if(self5Title=="" || self5==""){
 				selfResult5 = "";				
 			}else{
-				selfResult5 = "*"+self5Title+"*"+self5;
-			}			
-			
-			self = selfResult1 + selfResult2 + selfResult3 + selfResult4 + selfResult5;
-			$("#self").val(self);
+				selfResult5 = self5Title+"*"+self5;
+			}					
+		
+			$("#self1").val(selfResult1);
+			$("#self2").val(selfResult2);
+			$("#self3").val(selfResult3);
+			$("#self4").val(selfResult4);
+			$("#self5").val(selfResult5);
 		});
 			
 	});
@@ -1784,49 +1786,53 @@
 						
 			<div id="selfDiv" style="margin:5px;">
 			<input type="text" name="selfVal" id="selfVal" value="${vo.selfVal}">
-				<span style="font-size: 18px; font-weight: bold;">자기소개서</span>				
+				<span style="font-size: 18px; font-weight: bold;">자기소개서</span>	
+				<br><br>		
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="selfChk" checked> <!-- 체크 시 테이블 등장 -->
 					<span class="slider round"></span>
 				</label>
 				체크박스를 토글스위치로 바꾼 부분 끝 --%>
-				<br><br>
 				<div id="selfDivChk">
-				<br><br>
 					<table id="selfTable">
 						<tr class="selfTitleTr1">						
 							<td><input type="text" id="selfTitle1Val" value="${vo.selfTitle1}"></td>			
 						</tr>
 						<tr class="selfTitleTr1">
-							<td><textarea id="self1" class="self" name="self1" rows="8" cols="80"></textarea></td>						
+							<td><textarea id="self1area" class="self" name="self1area" rows="8" cols="80"></textarea></td>						
 						</tr>
 						<tr class="selfTitleTr2">
 							<td><input type="text" id="selfTitle2Val" value="${vo.selfTitle2}"></td>			
 						</tr>
 						<tr class="selfTitleTr2">
-							<td><textarea id="self2" class="self" name="self2" rows="8" cols="80"></textarea></td>						
+							<td><textarea id="self2area" class="self" name="self2area" rows="8" cols="80"></textarea></td>						
 						</tr>
 						<tr class="selfTitleTr3">
 							<td><input type="text" id="selfTitle3Val" value="${vo.selfTitle3}"></td>			
 						</tr>
 						<tr class="selfTitleTr3">
-							<td><textarea id="self3" class="self" name="self3" rows="8" cols="80"></textarea></td>						
+							<td><textarea id="self3area" class="self" name="self3area" rows="8" cols="80"></textarea></td>						
 						</tr>
 						<tr class="selfTitleTr4">
 							<td><input type="text" id="selfTitle4Val" value="${vo.selfTitle4}"></td>			
 						</tr>
 						<tr class="selfTitleTr4">
-							<td><textarea id="self4" class="self" name="self4" rows="8" cols="80"></textarea></td>						
+							<td><textarea id="self4area" class="self" name="self4area" rows="8" cols="80"></textarea></td>						
 						</tr>
 						<tr class="selfTitleTr5">
 							<td><input type="text" id="selfTitle5Val" value="${vo.selfTitle5}"></td>			
 						</tr>
 						<tr class="selfTitleTr5">
-							<td><textarea id="self5" class="self" name="self5" rows="8" cols="80"></textarea></td>						
+							<td><textarea id="self5area" class="self" name="self5area" rows="8" cols="80"></textarea></td>						
 						</tr>
 					</table>
-					<input type="text" name="self" id="self">
+					5가지 자기소개
+					<input type="text" name="self1" id="self1">
+					<input type="text" name="self2" id="self2">
+					<input type="text" name="self3" id="self3">
+					<input type="text" name="self4" id="self4">
+					<input type="text" name="self5" id="self5">
 				</div>
 			<hr>
 			</div>			
