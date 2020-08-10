@@ -370,7 +370,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 											<div>
 												<span>THE JOB+ <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
 												<br><br> 
-												<a href="<c:url value=''/>">회사소개</a> 
+												<a href="<c:url value='/info/info.do'/>">회사소개</a> 
 												<br>
 												<a href="<c:url value=''/>">회사 CI</a>
 												<br>
