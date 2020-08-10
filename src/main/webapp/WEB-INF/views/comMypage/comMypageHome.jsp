@@ -86,14 +86,14 @@
 <div>
 	<div id="addHeadMenu">
 		<div id="headMenu">
-			<a href="#"><i class="far fa-address-card fa-4x"></i><br>
-			<span>${resumeCount }/10</span><br>
-			<span>이력서</span></a>
+			<a href="#"><i class="fas fa-building fa-4x"></i><br>
+			<span></span><br>
+			<span>회사정보</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="#"><i class="far fa-calendar-check fa-4x"></i><br>
+			<a href="#"><i class="fas fa-paste fa-4x"></i><br>
 			<span></span><br>
-			<span>입사지원</span></a>
+			<span>공고관리</span></a>
 		</div>
 		<div id="headMenu">
 			<a href="#"><i class="fas fa-hand-holding-usd fa-4x"></i><br>
@@ -101,9 +101,9 @@
 			<span>입사요청</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="#"><i class="far fa-star fa-4x"></i><br>
-			<span>${scrap }</span><br>
-			<span>스크랩</span></a>
+			<a href="#"><i class="fas fa-user-plus fa-4x"></i><br>
+			<span></span><br>
+			<span>지원자관리</span></a>
 		</div>
 	</div>
 	<div id="upDiv">
