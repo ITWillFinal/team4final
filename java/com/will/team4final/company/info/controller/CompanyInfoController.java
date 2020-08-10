@@ -1,5 +1,6 @@
 package com.will.team4final.company.info.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sun.mail.imap.OlderTerm;
 import com.will.team4final.common.FileUploadUtil;
 import com.will.team4final.company.info.model.CompanyInfoService;
 import com.will.team4final.company.info.model.CompanyInfoVO;
@@ -95,7 +97,6 @@ public class CompanyInfoController {
 		
 		String cUserid = (String)session.getAttribute("userid");
 		
-
 		String cnt = comMemberService.selectMemberCode(cUserid);
 		logger.info("{}의 c_member_code = {}", cUserid, cnt);
 		
@@ -111,18 +112,36 @@ public class CompanyInfoController {
 	@RequestMapping(value = "/MyCompanyEdit.do", method = RequestMethod.POST)
 	public String EditMyComInfo(@ModelAttribute CompanyInfoVO vo,
 			@RequestParam (defaultValue = "0") String comCode,
-			Model model) {
+			HttpServletRequest request, Model model) {
 		logger.info("수정(POST)할 기업 정보 vo={}", vo);
 		
-		
-		int cnt = companyInfoService.updateCominfoByCode(vo);
-		logger.info("수정(POST) 결과 cnt = {}", cnt);
-		
 		String msg = "기업정보 수정 실패", url ="/companypage/MycCompanyEdit.do?comCode="+vo.getComCode();
-		if(cnt>0) {
+			//새로 파일 업로드한 경우, 기존 파일이 있으면 삭제 처리
+			if(vo.getImageURL() != null && !vo.getImageURL().isEmpty()) {
+				String upPath = fileUploadUtil.getUploadPath(request, FileUploadUtil.PATH_COMPANYINFO_IMAGE);
+				File file = new File(upPath, vo.getImageURL());
+				if(file.exists()) {
+					boolean bool = file.delete();
+					logger.info("파일 삭제 여부 : {}", bool);
+				}
+			}
+			//파일 업로드
+			List<Map<String, Object>> fileList
+			=fileUploadUtil.fileUpload(request, FileUploadUtil.PATH_COMPANYINFO_IMAGE);
+			
+			String imageURL="";
+			for(Map<String, Object> map : fileList) {
+				imageURL=(String)map.get("fileName");
+			}
+			vo.setImageURL(imageURL);
+			logger.info("파일 업로드 ? imageURL={}",imageURL);
+			int cnt = companyInfoService.updateCominfoByCode(vo);
+			logger.info("수정(POST) 결과 cnt = {}", cnt);
+			
 			msg = "기업정보를 수정 완료했습니다.";
 			url = "/companypage/MyCompany.do";
-		}
+		
+		
 		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
