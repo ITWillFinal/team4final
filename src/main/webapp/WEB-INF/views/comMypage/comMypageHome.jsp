@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ include file="../inc/comMypageTop.jsp" %>
+<jsp:useBean id="today" class="java.util.Date"/>
 <script type="text/javascript">
 	$(function() {
 		$('#addHeadMenu div').hover(function() {
@@ -68,7 +68,7 @@
 		margin-left: 20px;
 		width: 490px;
 	}    
-	.userName{
+	.title{
 		font-size: xxx-large
 	}
 	.editA{
@@ -115,7 +115,7 @@
 							</div>
 							<div class="memberInfo">
 								<span class="userName">${comMemberVo.cUsername }</span><span>님</span><span>(${comMemberVo.cGender } ${birth }년생)</span>
-									<input class="editA" type="button" value="수정하기">
+									<input class="editComInfo" type="button" value="수정하기">
 								<br>
 								<span>이메일 : ${comMemberVo.cEmail }</span><br>
 								<span>전화번호 : ${comMemberVo.cHp }</span><br>
@@ -161,6 +161,49 @@
 			</div>
 		</div>
 	</c:if>
-	
+	<!-- 회사 공고 -->
+	<c:if test="${!empty comRecuritListVo}">
+		<div id="upDiv">
+			<div id="scrapListDiv">
+				<h3 style="margin: 40px;">Company Notice</h3>
+				<c:forEach var="vo" items="${comRecuritListVo }">
+					<fmt:parseDate var="end" value="${vo.endDate}" pattern="yyyy-MM-dd" />
+					<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
+					<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
+					<div class="single-job-items mb-30" id="listOne">
+						
+						<div class="job-items">
+							<div class="job-tittle">
+								<a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>"><h4>${vo.title }</h4></a>
+								<ul>
+									<li>${vo.comName }</li>
+									<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
+									<li>${vo.pay }</li>
+								</ul>
+							</div>
+						</div>
+						<c:if test="${endDate-startDate+1 > 0}">
+							<div class="items-link f-right">
+								<a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정 및 삭제</a>
+								<span>지원마감까지 D - ${endDate-startDate+1 }일</span>
+							</div>
+						</c:if>
+						<c:if test="${endDate-startDate+1 == 0}">
+							<div class="items-link f-right">
+								<a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정 및 삭제</a>
+								<span>오늘 지원 마감!</span>
+							</div>
+						</c:if>
+						<c:if test="${endDate-startDate+1 < 0}">
+							<div class="items-link f-right">
+								<a style="background: #7b7b7bbf;border: 1px solid #7b7b7bbf;">지원마감</a>
+								<span>지원이 마감되었습니다.</span>
+							</div>
+						</c:if>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</c:if>
 </div>
 <%@ include file="../inc/bottom.jsp" %>
