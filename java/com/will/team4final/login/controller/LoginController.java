@@ -143,11 +143,14 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/userLogin.do")
-	public String userLogin(@RequestParam String pwd, @RequestParam String userid, Model model,
+	public String userLogin(@RequestParam(required = false) String pwd, @RequestParam(required = false) String userid, Model model,
 			HttpServletRequest request) {
 		logger.info("로그인 처리 userid={}, pwd={}", userid, pwd);
 		
-		MemberVO vo=memServ.selectByUserid(userid);
+		MemberVO vo = new MemberVO();
+		
+		vo=memServ.selectByUserid(userid);
+		logger.info("memServ={}", vo.getUserid());
 		
 		//아이디 있는지 확인
 		String url = "/index.do", msg = "로그인시 오류!";
@@ -182,7 +185,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/companyLogin.do")
-	public String companyLogin(@RequestParam String pwd, @RequestParam String userid, Model model,
+	public String companyLogin(@RequestParam(required = false) String pwd, @RequestParam(required = false) String userid, Model model,
 			HttpServletRequest request) {
 		logger.info("기업 로그인 처리 userid={}, pwd={}", userid, pwd);
 		
