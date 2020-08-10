@@ -132,13 +132,18 @@
 	</div>
 	<div id="headAdd2">
 		<c:if test="${endDate-startDate+1 > 0}">
-			<a href="#" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
+			<c:if test="${sessionScope.status == 'U' }">
+				<a href="#" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
+			</c:if>
+			<c:if test="${sessionScope.status == null }">
+				<a href="#" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
+			</c:if>
 		</c:if>
 		<c:if test="${endDate-startDate+1 < 0}">
 			<div style="font-weight: bold; width: 120px; height: 59px; background: #585858e0; padding: 20px 30px; color: white;">지원마감</div>
 		</c:if>
 	</div>
-	<c:if test="${sessionScope.userid != null }">
+	<c:if test="${sessionScope.userid != null && sessionScope.status == 'U'}">
 		<div id="headAddDiv1" 
 			<c:if test="${result == 0 }">
 				style="display: none"
@@ -162,6 +167,7 @@
 				스크랩</a>
 		</div>
 	</c:if>
+	
 	<hr>
 	<div id="infoDiv1">
 		<table>
@@ -235,7 +241,12 @@
 		<p style="color: black; font-weight: 700">모집 마감일 : <fmt:formatDate value="${end }" pattern="yyyy년 MM월 dd일"/><br>남은 일수 D-${endDate-startDate+1 }</p>
 		<div>
 			<c:if test="${endDate-startDate+1 > 0}">
-				<a href="#" class="btn head-btn2" id="bottomApply">지원</a>
+				<c:if test="${sessionScope.status == 'U' }">
+					<a href="#" class="btn head-btn2" id="bottomApply">지원</a>
+				</c:if>
+				<c:if test="${sessionScope.status == null }">
+					<a href="#" class="btn head-btn2" id="bottomApply">지원</a>
+				</c:if>
 			</c:if>
 			<c:if test="${endDate-startDate+1 < 0}">
 				<div style="margin-bottom: 100px; margin-top: 50px; font-weight: bold; width: 602px; height: 59px; background: #585858e0; padding: 20px; text-align: center; color: white;">지원마감</div>
@@ -277,11 +288,11 @@
 		        content: '<div style="width:150px;text-align:center;padding:6px 0;">${vo.comName}</div>'
 		    });
 		    infowindow.open(map, marker);
-		
+			
 		    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		    map.setCenter(coords);
-		} 
-	});    
+		}
+	});
 	
 </script>
 <%@ include file="../inc/bottom.jsp" %>

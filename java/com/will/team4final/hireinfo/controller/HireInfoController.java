@@ -73,7 +73,7 @@ public class HireInfoController {
 		logger.info("채용 vo = {}", vo);
 		
 		HttpSession session = request.getSession();
-		if(session.getAttribute("userid") != null) {
+		if(session.getAttribute("userid") != null && !session.getAttribute("status").equals("C")) {
 			String userNo = (String)session.getAttribute("userNo");
 			ComScrapVO comScrapVo = new ComScrapVO();
 			comScrapVo.setRecruitmentCode(recruitmentCode);

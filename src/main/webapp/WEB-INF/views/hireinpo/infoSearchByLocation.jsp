@@ -75,8 +75,8 @@ $(function() {
 	<script type="text/javascript">
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
-		    center: new kakao.maps.LatLng(37.394921, 127.111282), // 지도의 중심좌표
-		    level: 10 // 지도의 확대 레벨
+		    center: new kakao.maps.LatLng(36.364285, 128.099900), // 지도의 중심좌표
+		    level: 13 // 지도의 확대 레벨
 		};  
 		
 		//지도를 생성합니다    
