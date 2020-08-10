@@ -63,8 +63,7 @@
 	}
 	.editA{
 		margin-left: 120px;
-		background-color: #fb246a;
-		color: white;
+		color: black;
 		border-style: none;
 	}
 </style>
@@ -76,9 +75,9 @@
 			<span>이력서</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="#"><i class="far fa-calendar-check fa-4x"></i><br>
+			<a href="/member/currentApply.do"><i class="far fa-calendar-check fa-4x"></i><br>
 			<span></span><br>
-			<span>입사지원</span></a>
+			<span>지원 현황</span></a>
 		</div>
 		<div id="headMenu">
 			<a href="#"><i class="fas fa-hand-holding-usd fa-4x"></i><br>
@@ -102,9 +101,9 @@
 							<div class="memberInfo">
 								<span class="userName">${memberVo.userName }</span><span>님</span><span>(${memberVo.gender } ${birth }년생)</span>
 									<input class="editA" type="button" value="수정하기">
-								<br>
-								<span>이메일 : ${memberVo.email }</span><br>
-								<span>전화번호 : ${memberVo.hp }</span><br>
+								<br><br><br>
+								<span>이메일 : ${memberVo.email }</span><br><br>
+								<span>전화번호 : ${memberVo.hp }</span><br><br>
 								<span>주소 : ${memberVo.zipcode } ${memberVo.address } ${memberVo.addressDetail }</span><br>
 							</div>
 						</div>

@@ -79,8 +79,7 @@
 	}
 	.editComInfo{
 		margin-left: 120px;
-		background-color: #fb246a;
-		color: white;
+		color: black;
 		border-style: none;
 	}
 </style>
