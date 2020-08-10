@@ -27,12 +27,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.will.team4final.common.PaginationInfo;
 import com.will.team4final.common.Utility;
 import com.will.team4final.company.info.model.CompanyInfoService;
 import com.will.team4final.company.info.model.CompanyInfoVO;
 import com.will.team4final.company.model.ComMemberService;
-import com.will.team4final.company.model.ComRecruitSearchVO;
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
@@ -46,7 +44,6 @@ import com.will.team4final.resume.model.ResumeAllVO;
 import com.will.team4final.resume.model.ResumeService;
 import com.will.team4final.resume.model.ResumeTalentVO;
 import com.will.team4final.scrap.model.ComScrapService;
-import com.will.team4final.scrap.model.ComScrapVO;
 
 @Controller
 @RequestMapping("/companypage")
