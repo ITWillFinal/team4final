@@ -10,6 +10,17 @@
 		}, function() {
 			$(this).css('background', 'white');
 		});
+		
+		/* 수정하기 창으로 이동 */
+		$('.editA').click(function(){
+			var result = confirm("수정하시겠습니까?");
+			if(result){
+				location.href="<c:url value='/member/memberEdit.do'/> "
+			}else{
+				return false;
+			}
+			
+		});
 	});
 </script>
 <style>
@@ -50,6 +61,11 @@
 	.userName{
 		font-size: xxx-large
 	}
+	.editA{
+		margin-left: 120px;
+		color: black;
+		border-style: none;
+	}
 </style>
 <div>
 	<div id="addHeadMenu">
@@ -59,9 +75,9 @@
 			<span>이력서</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="#"><i class="far fa-calendar-check fa-4x"></i><br>
+			<a href="/member/currentApply.do"><i class="far fa-calendar-check fa-4x"></i><br>
 			<span></span><br>
-			<span>입사지원</span></a>
+			<span>지원 현황</span></a>
 		</div>
 		<div id="headMenu">
 			<a href="#"><i class="fas fa-hand-holding-usd fa-4x"></i><br>
@@ -80,15 +96,14 @@
 					<div class="single-job-items mb-30" id="listOne">
 						<div class="job-items">
 							<div class="job-tittle">
-								<%-- <img src="<c:url value='/personalMemberProfile/${memberVo.imageURL }'/>" alt="" width="230" align="absmiddle"> --%>
-								<img src="<c:url value='/personalMemberProfile/고양이_20200719113615064.jpg'/>" alt="" width="230" align="absmiddle">
+								<img src="<c:url value='/personalMemberProfile/${memberVo.imageURL }'/>" alt="" width="230" align="absmiddle"> 
 							</div>
 							<div class="memberInfo">
 								<span class="userName">${memberVo.userName }</span><span>님</span><span>(${memberVo.gender } ${birth }년생)</span>
-								<a style="color: #635c5c;" href="<c:url value='/member/memberEdit.do'/> ">수정하기</a>
-								<br>
-								<span>이메일 : ${memberVo.email }</span><br>
-								<span>전화번호 : ${memberVo.hp }</span><br>
+									<input class="editA" type="button" value="수정하기">
+								<br><br><br>
+								<span>이메일 : ${memberVo.email }</span><br><br>
+								<span>전화번호 : ${memberVo.hp }</span><br><br>
 								<span>주소 : ${memberVo.zipcode } ${memberVo.address } ${memberVo.addressDetail }</span><br>
 							</div>
 						</div>

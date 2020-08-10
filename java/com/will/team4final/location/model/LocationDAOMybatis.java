@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.will.team4final.company.model.Recruitment_TosVO;
+
 @Repository
 public class LocationDAOMybatis implements LocationDAO{
 	
@@ -26,6 +28,11 @@ public class LocationDAOMybatis implements LocationDAO{
 	@Override
 	public List<String> selectSigugun(String sido) {
 		return sqlSession.selectList(namespace + "selectSigugun", sido);
+	}
+
+	@Override
+	public List<Recruitment_TosVO> selectHireInfoByLocation(String location) {
+		return sqlSession.selectList(namespace + "selectHireInfoByLocation", location);
 	}
 	
 	

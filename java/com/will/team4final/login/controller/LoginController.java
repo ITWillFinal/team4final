@@ -143,15 +143,14 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/userLogin.do")
-	public String userLogin(@RequestParam String pwd, @RequestParam String userid, Model model,
+	public String userLogin(@RequestParam(required = false) String pwd, @RequestParam(required = false) String userid, Model model,
 			HttpServletRequest request) {
 		logger.info("로그인 처리 userid={}, pwd={}", userid, pwd);
-		
-		MemberVO vo=memServ.selectByUserid(userid);
-		
-		//아이디 있는지 확인
 		String url = "/index.do", msg = "로그인시 오류!";
-		if(vo.getUserid()==null || vo.getUserid().isEmpty()) {
+		
+		MemberVO vo = new MemberVO();
+		vo=memServ.selectByUserid(userid);
+		if(vo==null) {
 			msg="아이디가 없습니다";
 			model.addAttribute("url", url);
 			model.addAttribute("msg", msg);
@@ -182,15 +181,14 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/companyLogin.do")
-	public String companyLogin(@RequestParam String pwd, @RequestParam String userid, Model model,
+	public String companyLogin(@RequestParam(required = false) String pwd, @RequestParam(required = false) String userid, Model model,
 			HttpServletRequest request) {
 		logger.info("기업 로그인 처리 userid={}, pwd={}", userid, pwd);
-		
-		CompanyMemberVO vo = comServ.selectCMemberInfoByUserid(userid);
-		String cUserid = vo.getcUserid();
-		
 		String url = "/companypage/companyHome.do", msg = "기업 로그인시 오류!";
-		if(cUserid==null || cUserid.isEmpty()) {
+		CompanyMemberVO vo = new CompanyMemberVO();
+		
+		vo = comServ.selectCMemberInfoByUserid(userid);
+		if(vo ==null) {
 			msg="아이디가 없습니다.";
 			model.addAttribute("url", url);
 			model.addAttribute("msg", msg);

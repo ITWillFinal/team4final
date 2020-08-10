@@ -9,6 +9,28 @@
 		}, function() {
 			$(this).css('background', 'white');
 		});
+		
+		/* 수정하기 창으로 이동 */
+		$('.editA').click(function(){
+			var result = confirm("수정하시겠습니까?");
+			if(result){
+				location.href="<c:url value='/companypage/cMemberEdit.do'/> "
+			}else{
+				return false;
+			}
+			
+		});
+		
+		$('.editComInfo').click(function(){
+			var result = confirm("수정하시겠습니까?");
+			if(result){
+				location.href="<c:url value='/companypage/MyCompanyEdit.do'/> "
+			}else{
+				return false;
+			}
+			
+		});
+		
 	});
 </script>
 <style>
@@ -49,18 +71,29 @@
 	.userName{
 		font-size: xxx-large
 	}
+	.editA{
+		margin-left: 120px;
+		background-color: #fb246a;
+		color: white;
+		border-style: none;
+	}
+	.editComInfo{
+		margin-left: 120px;
+		color: black;
+		border-style: none;
+	}
 </style>
 <div>
 	<div id="addHeadMenu">
 		<div id="headMenu">
-			<a href="#"><i class="far fa-address-card fa-4x"></i><br>
-			<span>${resumeCount }/10</span><br>
-			<span>이력서</span></a>
+			<a href="#"><i class="fas fa-building fa-4x"></i><br>
+			<span></span><br>
+			<span>회사정보</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="#"><i class="far fa-calendar-check fa-4x"></i><br>
+			<a href="#"><i class="fas fa-paste fa-4x"></i><br>
 			<span></span><br>
-			<span>입사지원</span></a>
+			<span>공고관리</span></a>
 		</div>
 		<div id="headMenu">
 			<a href="#"><i class="fas fa-hand-holding-usd fa-4x"></i><br>
@@ -68,9 +101,9 @@
 			<span>입사요청</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="#"><i class="far fa-star fa-4x"></i><br>
-			<span>${scrap }</span><br>
-			<span>스크랩</span></a>
+			<a href="#"><i class="fas fa-user-plus fa-4x"></i><br>
+			<span></span><br>
+			<span>지원자관리</span></a>
 		</div>
 	</div>
 	<div id="upDiv">
@@ -82,7 +115,7 @@
 							</div>
 							<div class="memberInfo">
 								<span class="userName">${comMemberVo.cUsername }</span><span>님</span><span>(${comMemberVo.cGender } ${birth }년생)</span>
-								<a style="color: #635c5c;" href="<c:url value='/companypage/cMemberEdit.do'/> ">수정하기</a>
+									<input class="editA" type="button" value="수정하기">
 								<br>
 								<span>이메일 : ${comMemberVo.cEmail }</span><br>
 								<span>전화번호 : ${comMemberVo.cHp }</span><br>
@@ -91,31 +124,43 @@
 					</div>
 		</div>
 	</div>
-	<div id="upDiv">
-		<div id="scrapListDiv">
-				<h3 style="margin: 40px;">Company Information</h3>
-					<div class="single-job-items mb-30" id="listOne">
-						<div class="job-items">
-							<div class="job-tittle">
-								<img src="<c:url value='/personalMemberProfile/${comInfoVo.imageURL }'/>" alt="" width="230" align="absmiddle">
-							</div>
-							<div class="memberInfo">
-								<span class="userName">${comInfoVo.comName }</span><span>님</span><span>(${comInfoVo.ceo }사장님)</span>
-								<a style="color: #635c5c;" href="<c:url value='#'/> ">수정하기</a>
-								<br>
-								<c:if test="${!empty comInfoVo.homepage }">
-									<span>홈페이지 : ${comInfoVo.homepage }</span><br>
-								</c:if>
-								<c:if test="${empty comInfoVo.homepage }">
-									<span>홈페이지 : (미입력)</span><br>
-								</c:if>
-								<span>전화번호 : ${comInfoVo.comHp }</span><br>
-								<span>주소 : ${comInfoVo.zipcode } ${comInfoVo.address } ${comInfoVo.addressDetail }</span><br>
+	<c:if test="${empty comInfoVo}">
+		<div id="upDiv">
+			<div id="scrapListDiv">
+					<a href="<c:url value='/companypage/companyInfoWrite.do'/> ">
+						<h3 style="margin: 40px;">아직 회사 정보를 입력 하지 않으셨습니다. <span style="font-size: small;">(클릭시 자동으로 회사 정보 입력 창으로 이동)</span></h3>
+					</a>
+						
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${!empty comInfoVo}">
+		<div id="upDiv">
+			<div id="scrapListDiv">
+					<h3 style="margin: 40px;">Company Information</h3>
+						<div class="single-job-items mb-30" id="listOne">
+							<div class="job-items">
+								<div class="job-tittle">
+									<img src="<c:url value='/companyInfoImage/${comInfoVo.imageURL }'/>" alt="" width="230" align="absmiddle">
+								</div>
+								<div class="memberInfo">
+									<span class="userName">${comInfoVo.comName }</span><span>님</span><span>(${comInfoVo.ceo }사장님)</span>
+										<input class="editComInfo" type="button" value="수정하기">
+									<br>
+									<c:if test="${!empty comInfoVo.homepage }">
+										<span>홈페이지 : ${comInfoVo.homepage }</span><br>
+									</c:if>
+									<c:if test="${empty comInfoVo.homepage }">
+										<span>홈페이지 : (미입력)</span><br>
+									</c:if>
+									<span>전화번호 : ${comInfoVo.comHp }</span><br>
+									<span>주소 : ${comInfoVo.zipcode } ${comInfoVo.address } ${comInfoVo.addressDetail }</span><br>
+								</div>
 							</div>
 						</div>
-					</div>
+			</div>
 		</div>
-	</div>
+	</c:if>
 	
 </div>
 <%@ include file="../inc/bottom.jsp" %>
