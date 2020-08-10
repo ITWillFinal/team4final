@@ -27,12 +27,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.will.team4final.common.PaginationInfo;
 import com.will.team4final.common.Utility;
 import com.will.team4final.company.info.model.CompanyInfoService;
 import com.will.team4final.company.info.model.CompanyInfoVO;
 import com.will.team4final.company.model.ComMemberService;
-import com.will.team4final.company.model.ComRecruitSearchVO;
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
@@ -46,7 +44,6 @@ import com.will.team4final.resume.model.ResumeAllVO;
 import com.will.team4final.resume.model.ResumeService;
 import com.will.team4final.resume.model.ResumeTalentVO;
 import com.will.team4final.scrap.model.ComScrapService;
-import com.will.team4final.scrap.model.ComScrapVO;
 
 @Controller
 @RequestMapping("/companypage")
@@ -606,5 +603,43 @@ public class CompanyHomeController {
 		String result = resumeService.updatePerscrapStatusMulti(resumeNoListforJoin, cMemberCode,"JOIN");
 		
 		return result;
+	}
+	
+	@RequestMapping(value = "/cMemberEdit.do", method = RequestMethod.GET)
+	public void cMemberEdit_get(HttpSession session, Model model) {
+		String cUserid = (String)session.getAttribute("userid");
+		CompanyMemberVO cMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
+		logger.info("회사 회원 정보 수정 화면, cMemberVo={}", cMemberVo );
+		
+		model.addAttribute("cMemberVo", cMemberVo);
+	}
+	
+	@RequestMapping("/checkPwd.do")
+	@ResponseBody
+	public boolean checkPwd(@RequestParam String cPwd, HttpSession session) {
+		String cUserid = (String)session.getAttribute("userid");
+		CompanyMemberVO cMemberVo = cMemberSerice.selectCMemberInfoByUserid(cUserid);
+		
+		boolean pwdMatch = pwdEncoder.matches(cPwd, cMemberVo.getcPwd());
+		logger.info("pwdMatch={}", pwdMatch);
+		
+		return pwdMatch;
+	}
+	
+	@RequestMapping(value = "/cMemberEdit.do", method = RequestMethod.POST)
+	public String cMemberEdit_post(@ModelAttribute CompanyMemberVO companyMemberVo,@RequestParam String cMemberCode, Model model) {
+		logger.info("기업 회원 정보 수정, 파라미터 cMemberCode={}, comMemberVo={}", cMemberCode, companyMemberVo);
+		companyMemberVo.setcMemberCode(cMemberCode);
+		int cnt = cMemberSerice.updateCMember(companyMemberVo);
+		String msg="회원 정보 수정 실패했습니다.", url="/companypage/cMemberEdit.do";
+		if(cnt>0) {
+			msg="회원 정보 수정 성공했습니다.";
+			url="/mypage/mypageHome.do?status=C";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";
+		
 	}
 }

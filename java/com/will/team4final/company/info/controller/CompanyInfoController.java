@@ -72,6 +72,64 @@ public class CompanyInfoController {
 
 	}
 
+	//기업정보 조회하기
+	@RequestMapping("/MyCompany.do")
+	public void myComInfo(Model model, HttpSession session) {
+		String cUserid = (String)session.getAttribute("userid");
+		logger.info("조회 기업회원 아이디, userid= {}", cUserid);
+		
+		String cnt = comMemberService.selectMemberCode(cUserid);
+		logger.info("{}의 c_member_code = {}", cUserid, cnt);
+		
+		CompanyInfoVO vo = companyInfoService.selectComInfoBycMemberCode(cnt);
+		
+		model.addAttribute("vo", vo);
+		
+	}
+	
+	//기업정보 수정하기 - GET
+	@RequestMapping(value = "/MyCompanyEdit.do", method = RequestMethod.GET)
+	public void EditMyComInfo(@RequestParam (defaultValue = "0") String comCode,
+			HttpSession session, Model model) {
+		logger.info("수정(GET)할 기업 정보 comCode = {}", comCode);
+		
+		String cUserid = (String)session.getAttribute("userid");
+		
+
+		String cnt = comMemberService.selectMemberCode(cUserid);
+		logger.info("{}의 c_member_code = {}", cUserid, cnt);
+		
+		CompanyInfoVO vo = companyInfoService.selectComInfoBycMemberCode(cnt);
+		logger.info("수정(GET)할 기업 정보 조회 vo={}", vo);
+		
+		model.addAttribute("comCode", comCode);
+		model.addAttribute("vo", vo);
+		
+	}
+	
+	//기업정보 수정하기 - POST
+	@RequestMapping(value = "/MyCompanyEdit.do", method = RequestMethod.POST)
+	public String EditMyComInfo(@ModelAttribute CompanyInfoVO vo,
+			@RequestParam (defaultValue = "0") String comCode,
+			Model model) {
+		logger.info("수정(POST)할 기업 정보 vo={}", vo);
+		
+		
+		int cnt = companyInfoService.updateCominfoByCode(vo);
+		logger.info("수정(POST) 결과 cnt = {}", cnt);
+		
+		String msg = "기업정보 수정 실패", url ="/companypage/MycCompanyEdit.do?comCode="+vo.getComCode();
+		if(cnt>0) {
+			msg = "기업정보를 수정 완료했습니다.";
+			url = "/companypage/MyCompany.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+		
+	}
 
 
 }

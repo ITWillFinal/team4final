@@ -83,6 +83,11 @@ public class ComMemberServiceImpl implements ComMemberService{
 	public int updateCMember(CompanyMemberVO companyMemberVo) {
 		return comMemberDao.updateCMember(companyMemberVo);
 	}
+
+	@Override
+	public String selectMemberCode(String cUserid) {
+		return comMemberDao.selectMemberCode(cUserid);
+	}
 	
 	
 

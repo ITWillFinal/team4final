@@ -109,7 +109,7 @@
 
 		});
 		
-		/* 이미지 업로드 쿼리=> 나중에 보고 삭제 ↓ */
+		/* 이미지 업로드 쿼리 */
 		document.getElementById('imageUpload').onchange = function() {
 			readImage();
 		};

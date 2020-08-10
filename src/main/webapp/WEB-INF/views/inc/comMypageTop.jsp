@@ -51,7 +51,7 @@
 									<nav class="d-none d-lg-block">
 										<ul id="navigation">
 											<li><a href="<c:url value='/mypage/mypageHome.do?status=${sessionScope.status }'/>">MY 홈</a></li>
-											<li><a href="<c:url value='/resume/resumeMain.do'/>">회사정보</a></li>
+											<li><a href="<c:url value='/companypage/MyCompany.do'/>">회사정보</a></li>
 											<li><a href="<c:url value='/companypage/employmentNotice/employmentNoticeList.do'/>">채용공고</a></li>
 											<li><a href="contact.html">지원자관리</a></li>
 										</ul>

@@ -30,6 +30,25 @@
 	#headMenu a{
 		color: #010b1d;
 	}
+	#upDiv{
+		margin: 90px 0;
+	}
+	#scrapListDiv{
+		margin: 0 auto;
+		width: 48%;
+		
+	}
+	#listOne{
+		border: 1px solid #e0e0e08f;
+		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
+	}
+	.memberInfo{
+		margin-left: 20px;
+		width: 490px;
+	}    
+	.userName{
+		font-size: xxx-large
+	}
 </style>
 <div>
 	<div id="addHeadMenu">
@@ -54,5 +73,49 @@
 			<span>스크랩</span></a>
 		</div>
 	</div>
+	<div id="upDiv">
+		<div id="scrapListDiv">
+				<h3 style="margin: 40px;">MyProfile</h3>
+					<div class="single-job-items mb-30" id="listOne">
+						<div class="job-items">
+							<div class="job-tittle">
+							</div>
+							<div class="memberInfo">
+								<span class="userName">${comMemberVo.cUsername }</span><span>님</span><span>(${comMemberVo.cGender } ${birth }년생)</span>
+								<a style="color: #635c5c;" href="<c:url value='/companypage/cMemberEdit.do'/> ">수정하기</a>
+								<br>
+								<span>이메일 : ${comMemberVo.cEmail }</span><br>
+								<span>전화번호 : ${comMemberVo.cHp }</span><br>
+							</div>
+						</div>
+					</div>
+		</div>
+	</div>
+	<div id="upDiv">
+		<div id="scrapListDiv">
+				<h3 style="margin: 40px;">Company Information</h3>
+					<div class="single-job-items mb-30" id="listOne">
+						<div class="job-items">
+							<div class="job-tittle">
+								<img src="<c:url value='/personalMemberProfile/${comInfoVo.imageURL }'/>" alt="" width="230" align="absmiddle">
+							</div>
+							<div class="memberInfo">
+								<span class="userName">${comInfoVo.comName }</span><span>님</span><span>(${comInfoVo.ceo }사장님)</span>
+								<a style="color: #635c5c;" href="<c:url value='#'/> ">수정하기</a>
+								<br>
+								<c:if test="${!empty comInfoVo.homepage }">
+									<span>홈페이지 : ${comInfoVo.homepage }</span><br>
+								</c:if>
+								<c:if test="${empty comInfoVo.homepage }">
+									<span>홈페이지 : (미입력)</span><br>
+								</c:if>
+								<span>전화번호 : ${comInfoVo.comHp }</span><br>
+								<span>주소 : ${comInfoVo.zipcode } ${comInfoVo.address } ${comInfoVo.addressDetail }</span><br>
+							</div>
+						</div>
+					</div>
+		</div>
+	</div>
+	
 </div>
 <%@ include file="../inc/bottom.jsp" %>

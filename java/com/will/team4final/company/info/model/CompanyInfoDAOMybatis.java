@@ -19,5 +19,10 @@ public class CompanyInfoDAOMybatis implements CompanyInfoDAO {
 	public CompanyInfoVO selectComInfoBycMemberCode(String cMemberCode) {
 		return sqlSession.selectOne(namespace+"selectComInfoBycMemberCode", cMemberCode );
 	}
+
+	@Override
+	public int updateCominfoByCode(CompanyInfoVO vo) {
+		return sqlSession.update(namespace+"updateCominfoByCode", vo);
+	}
 	
 }
