@@ -75,13 +75,13 @@
 	.careerTr {
 		display: none;
 	}
-	.activityTr{
+	.activityTr {
 		display: none;
 	}
-	.languageTr{
+	.languageTr {
 		display: none;
 	}
-	.certificateTr{
+	.certificateTr {
 		display: none;
 	}
 	
@@ -132,8 +132,6 @@
 <script type="text/javascript">
 	
 	$(function(){
-		
-		
 		//DB값 처리 시작
 		var n1 = $("#schoolVal").val();
 		if(n1=="n"){
@@ -175,6 +173,68 @@
 			$("#selfDiv").hide();
 		}
 		//DB값 처리 끝
+		
+		
+		//필수값 처리
+		
+		$("#address").val();
+		$("#addressDetail").val();
+		
+		$('form[name=frm]').submit(function(){
+			if($("#name").val()==''){
+				alert('이름을 입력하세요');
+				$('#name').focus();
+				event.preventDefault();
+			}else if($('#gender').val()==''){
+				alert('성별을 입력하세요');
+				$('#gender').focus();
+				event.preventDefault();
+			}else if($('#email').val()==''){
+				alert('이메일주소를 입력하세요');
+				$('#email').focus();
+				event.preventDefault();
+			}else if($('#hp').val()==''){
+				alert('전화번호를 입력하세요');
+				$('#hp').focus();
+				event.preventDefault();
+			}else if($('#birth').val()==''){
+				alert('생년월일을 입력하세요');
+				$('#birth').focus();
+				event.preventDefault();
+			}else if($('#zipcode').val()==''){
+				alert('우편번호를 입력하세요');
+				$('#zipcode').focus();
+				event.preventDefault();
+			}else if($('#address').val()==''){
+				alert('주소를 입력하세요');
+				$('#address').focus();
+				event.preventDefault();
+			}else if($('#addressDetail').val()==''){
+				alert('상세주소를 입력하세요');
+				$('#addressDetail').focus();
+				event.preventDefault();
+			}
+			
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		//성별
 		$("#genderSelect").change(function(){
@@ -1176,23 +1236,79 @@
 		});
 		
 		//자기소개서
-		var i = 2;
-		$("#selfAddBtn").click(function(){
-
-			if (i >= 6) return; // 4번째부터는 append 안되고 return 시키기
-			$("#selfTable")			
-			.append("<tr id='selfTr'><td>항목 "+i+" :</td><td><input type='text'></td></tr>");
-			i++;
-
-		});
+		if($("#selfTitle1Val").val()==""){
+			$(".selfTitleTr1").hide();
+		}
+		if($("#selfTitle2Val").val()==""){
+			$(".selfTitleTr2").hide();
+		}
+		if($("#selfTitle3Val").val()==""){
+			$(".selfTitleTr3").hide();
+		}
+		if($("#selfTitle4Val").val()==""){
+			$(".selfTitleTr4").hide();
+		}
+		if($("#selfTitle5Val").val()==""){
+			$(".selfTitleTr5").hide();
+		}
 		
-		$("#selfDelBtn").click(function(){
-			
-			if (i <= 2) return;
-			$("#selfTr:nth-last-child(1)").remove();
-			i--;
-		});
+		
+		
+		$(".self").change(function(){
 				
+			var self = "";
+			var self1 = $("#self1").val();
+			var self2 = $("#self2").val();
+			var self3 = $("#self3").val();
+			var self4 = $("#self4").val();
+			var self5 = $("#self5").val();
+			
+			var self1Title = $("#selfTitle1Val").val();
+			var self2Title = $("#selfTitle2Val").val();
+			var self3Title = $("#selfTitle3Val").val();
+			var self4Title = $("#selfTitle4Val").val();
+			var self5Title = $("#selfTitle5Val").val();
+			
+			var selfResult1 = "";
+			var selfResult2 = "";
+			var selfResult3 = "";
+			var selfResult4 = "";
+			var selfResult5 = "";
+			
+			if(self1Title=="" || self1==""){
+				selfResult1 = "";				
+			}else{
+				selfResult1 = self1Title+"*"+self1;
+			}
+			
+			if(self2Title=="" || self2==""){
+				selfResult2 = "";				
+			}else{
+				selfResult2 = "*"+self2Title+"*"+self2;
+			}
+			
+			if(self3Title=="" || self3==""){
+				selfResult3 = "";				
+			}else{
+				selfResult3 = "*"+self3Title+"*"+self3;
+			}
+			
+			if(self4Title=="" || self4==""){
+				selfResult4 = "";				
+			}else{
+				selfResult4 = "*"+self4Title+"*"+self4;
+			}
+			
+			if(self5Title=="" || self5==""){
+				selfResult5 = "";				
+			}else{
+				selfResult5 = "*"+self5Title+"*"+self5;
+			}			
+			
+			self = selfResult1 + selfResult2 + selfResult3 + selfResult4 + selfResult5;
+			$("#self").val(self);
+		});
+			
 	});
 	
 	
@@ -1224,7 +1340,7 @@
 					</colgroup>
 					<tr>
 						<td>이름</td>
-						<td><input type="text" name="name"></td>
+						<td><input type="text" name="name" id="name"></td>
 					</tr>
 					<tr>
 						<td>성별</td>
@@ -1238,15 +1354,15 @@
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td><input type="text" name="email"></td>
+						<td><input type="text" name="email" id="email"></td>
 					</tr>
 					<tr>
 						<td>전화번호</td>
-						<td><input type="text" name="hp"></td>
+						<td><input type="text" name="hp" id="hp"></td>
 					</tr>
 					<tr>
 						<td>생년월일</td>
-						<td><input type="date" name="birth"></td>
+						<td><input type="date" name="birth" id="birth"></td>
 					</tr>
 					<tr>
 						<td>우편번호</td>
@@ -1259,7 +1375,7 @@
 					</tr>
 					<tr>
 						<td>상세주소</td>
-						<td><input type="text" name="addressDetail"></td>
+						<td><input type="text" name="addressDetail" id="addressDetail"></td>
 					</tr>
 				</table>
 			<hr>
@@ -1268,7 +1384,7 @@
 			
 			<div id="schoolDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">학력사항</span>
-				<input type="hidden" name="schoolVal" id="schoolVal" value="${vo.schoolVal}">
+				<input type="text" name="schoolVal" id="schoolVal" value="${vo.schoolVal}">
 				<%-- 체크박스를 토글로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="schoolChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -1292,9 +1408,9 @@
 						</tr>
 					</table>
 					<input type="text" name="edu" id="edu">
-					<input type="text" name="edu1" id="edu1">
-					<input type="text" name="edu2" id="edu2">
-					<input type="text" name="edu3" id="edu3">
+					<input type="hidden" name="edu1" id="edu1">
+					<input type="hidden" name="edu2" id="edu2">
+					<input type="hidden" name="edu3" id="edu3">
 				</div>
 			<hr>
 			</div>
@@ -1366,12 +1482,12 @@
 							<td><input type='date' id="careerTr5Td5"></td>
 						</tr>
 					</table>
-					경력<input type="text" name="career" id="career">
-					경력1<input type="text" id="careerResult1" class="careerResult">
-					경력2<input type="text" id="careerResult2" class="careerResult">
-					경력3<input type="text" id="careerResult3" class="careerResult">
-					경력4<input type="text" id="careerResult4" class="careerResult">
-					경력5<input type="text" id="careerResult5" class="careerResult">
+					<input type="text" name="career" id="career">
+					<input type="hidden" id="careerResult1" class="careerResult">
+					<input type="hidden" id="careerResult2" class="careerResult">
+					<input type="hidden" id="careerResult3" class="careerResult">
+					<input type="hidden" id="careerResult4" class="careerResult">
+					<input type="hidden" id="careerResult5" class="careerResult">
 				</div>
 			<hr>
 			</div>
@@ -1430,11 +1546,11 @@
 						</tr>
 					</table>
 					자격증<input type="text" name="certificate" id="certificate">
-					자격증1<input type="text" id="certificateResult1" class="certificateResult">
-					자격증2<input type="text" id="certificateResult2" class="certificateResult">
-					자격증3<input type="text" id="certificateResult3" class="certificateResult">
-					자격증4<input type="text" id="certificateResult4" class="certificateResult">
-					자격증5<input type="text" id="certificateResult5" class="certificateResult">
+					<input type="hidden" id="certificateResult1" class="certificateResult">
+					<input type="hidden" id="certificateResult2" class="certificateResult">
+					<input type="hidden" id="certificateResult3" class="certificateResult">
+					<input type="hidden" id="certificateResult4" class="certificateResult">
+					<input type="hidden" id="certificateResult5" class="certificateResult">
 				</div>
 			<hr>
 			</div>
@@ -1493,11 +1609,11 @@
 						</tr>
 					</table>
 					어학능력<input type="text" name="language" id="language">
-					어학능력1<input type="text" id="languageResult1" class="languageResult">
-					어학능력2<input type="text" id="languageResult2" class="languageResult">
-					어학능력3<input type="text" id="languageResult3" class="languageResult">
-					어학능력4<input type="text" id="languageResult4" class="languageResult">
-					어학능력5<input type="text" id="languageResult5" class="languageResult">
+					<input type="hidden" id="languageResult1" class="languageResult">
+					<input type="hidden" id="languageResult2" class="languageResult">
+					<input type="hidden" id="languageResult3" class="languageResult">
+					<input type="hidden" id="languageResult4" class="languageResult">
+					<input type="hidden" id="languageResult5" class="languageResult">
 				</div>
 			<hr>
 			</div>
@@ -1556,11 +1672,11 @@
 						</tr>
 					</table>
 					수상기록<input type="text" name="award" id="award">
-					수상기록1<input type="text" id="awardsResult1" class="awardsResult">
-					수상기록2<input type="text" id="awardsResult2" class="awardsResult">
-					수상기록3<input type="text" id="awardsResult3" class="awardsResult">
-					수상기록4<input type="text" id="awardsResult4" class="awardsResult">
-					수상기록5<input type="text" id="awardsResult5" class="awardsResult">
+					<input type="hidden" id="awardsResult1" class="awardsResult">
+					<input type="hidden" id="awardsResult2" class="awardsResult">
+					<input type="hidden" id="awardsResult3" class="awardsResult">
+					<input type="hidden" id="awardsResult4" class="awardsResult">
+					<input type="hidden" id="awardsResult5" class="awardsResult">
 				</div>
 			<hr>
 			</div>
@@ -1656,11 +1772,11 @@
 						</tr>
 					</table>
 					대외활동<input type="text" name="activity" id="activity">
-					대외활동1<input type="text" id="activityResult1" class="activityResult">
-					대외활동2<input type="text" id="activityResult2" class="activityResult">
-					대외활동3<input type="text" id="activityResult3" class="activityResult">
-					대외활동4<input type="text" id="activityResult4" class="activityResult">
-					대외활동5<input type="text" id="activityResult5" class="activityResult">
+					<input type="hidden" id="activityResult1" class="activityResult">
+					<input type="hidden" id="activityResult2" class="activityResult">
+					<input type="hidden" id="activityResult3" class="activityResult">
+					<input type="hidden" id="activityResult4" class="activityResult">
+					<input type="hidden" id="activityResult5" class="activityResult">
 				</div>
 			<hr>
 			</div>
@@ -1677,20 +1793,40 @@
 				체크박스를 토글스위치로 바꾼 부분 끝 --%>
 				<br><br>
 				<div id="selfDivChk">
-				<input type="button" value="추가" id="selfAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
-				<input type="button" value="삭제" id="selfDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
 				<br><br>
 					<table id="selfTable">
-						<colgroup>
-							<col style="width:100px;">
-							<col style="width:500px;">
-						</colgroup>
-						<tr>
-							<td>항목 1 : </td>
-							<td><input type="text"></td>			
+						<tr class="selfTitleTr1">						
+							<td><input type="text" id="selfTitle1Val" value="${vo.selfTitle1}"></td>			
+						</tr>
+						<tr class="selfTitleTr1">
+							<td><textarea id="self1" class="self" name="self1" rows="8" cols="80"></textarea></td>						
+						</tr>
+						<tr class="selfTitleTr2">
+							<td><input type="text" id="selfTitle2Val" value="${vo.selfTitle2}"></td>			
+						</tr>
+						<tr class="selfTitleTr2">
+							<td><textarea id="self2" class="self" name="self2" rows="8" cols="80"></textarea></td>						
+						</tr>
+						<tr class="selfTitleTr3">
+							<td><input type="text" id="selfTitle3Val" value="${vo.selfTitle3}"></td>			
+						</tr>
+						<tr class="selfTitleTr3">
+							<td><textarea id="self3" class="self" name="self3" rows="8" cols="80"></textarea></td>						
+						</tr>
+						<tr class="selfTitleTr4">
+							<td><input type="text" id="selfTitle4Val" value="${vo.selfTitle4}"></td>			
+						</tr>
+						<tr class="selfTitleTr4">
+							<td><textarea id="self4" class="self" name="self4" rows="8" cols="80"></textarea></td>						
+						</tr>
+						<tr class="selfTitleTr5">
+							<td><input type="text" id="selfTitle5Val" value="${vo.selfTitle5}"></td>			
+						</tr>
+						<tr class="selfTitleTr5">
+							<td><textarea id="self5" class="self" name="self5" rows="8" cols="80"></textarea></td>						
 						</tr>
 					</table>
-					<input type="text" name="self">
+					<input type="text" name="self" id="self">
 				</div>
 			<hr>
 			</div>			
