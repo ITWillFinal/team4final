@@ -122,9 +122,13 @@ public class MemberAdminController {
 	
 	@RequestMapping("/adminInfo.do")
 	public String pdList(@ModelAttribute SearchVO searchVo,
-			Model model) {
+			Model model, HttpServletRequest request) {
 		//1
 		logger.info("관리자 목록 목록, 파라미터 searchVo={}", searchVo);
+		
+		//사이드바 식별을 위한 levels
+		String levels = (String)request.getAttribute("getLevels");
+		model.addAttribute("levels", levels);
 		
 		//[1] PaginationInfo 생성
 		PaginationInfo pagingInfo = new PaginationInfo();

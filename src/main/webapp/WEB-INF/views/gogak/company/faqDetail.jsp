@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="../../inc/companyTop.jsp"%>
-<script type="text/javascript"
-	src="<c:url value = '/resources/js/jquery-3.5.1.min.js'/>"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#rrr').click(function() {

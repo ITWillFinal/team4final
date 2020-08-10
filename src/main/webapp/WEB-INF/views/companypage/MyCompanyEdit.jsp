@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="../inc/companyTop.jsp"%>
+<%@ include file="../inc/comMypageTop.jsp" %>
 <script type="text/javascript">
 	$(function(){
 		document.getElementById('imageUpload').onchange = function() {
@@ -111,7 +111,7 @@
 </script>
 <style type="text/css">
 hr{
-height: 3px;
+	height: 3px;
     background: #da2461;
 
 }
@@ -119,8 +119,26 @@ height: 3px;
 	text-align: center;
 	padding: 30px;
 }
-
-
+img {
+    width: 100%;
+}
+input#imageUpload {
+    margin-top: 3%;
+}
+/* 라벨 */
+label.col-sm-3.control-label {
+    font-size: 10pt;
+    color: gray;
+}
+input[type="text"] {
+    font-weight: bold;
+}
+label.col-sm-3.control-label {
+    margin-top: 2%;
+}
+#bbk > form > div.form-horizontal > div:nth-child(2) {
+    margin-top: -3%;
+}
 </style>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -161,17 +179,9 @@ height: 3px;
 		
 	}
 </script>
-<style>
-hr{
-	height: 3px;
-    background: #da2461;
-}
-
-</style>
 <main>
-	<%@ include file="../inc/companySidebar.jsp"%>
-	<div
-		style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
+	<div id = "bbk"
+		style="float: left; width: 49%; margin-left: 29%; font-size: 14px;">
 		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
 		
 		<!-- main -->
@@ -183,7 +193,7 @@ hr{
 			</h1>
 		</div>
 		<br>
-		<hr>
+		<hr style="margin: 5px 0px;">
 		<form name="frm" method="post" style="margin-top: 50px;"
 			action="<c:url value='/companypage/MyCompanyEdit.do' /> "
 			enctype="multipart/form-data" >
@@ -237,7 +247,7 @@ hr{
 				<label for="inputUser" class="col-sm-3 control-label">회사 사진 
 				</label>
 				<div class="col-sm-9 form-input">
-					<input type="text" name = "imageURL" value = "${vo.imageURL }">
+					<input type="hidden" name = "imageURL" value = "${vo.imageURL }">
 					<img src = "<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
 					<input type="file" name="imageUpload" id="imageUpload" class="infobox"
 						placeholder="회사 사진 업로드"> 
@@ -538,7 +548,7 @@ hr{
 				</label>
 				<div class="col-sm-9 form-input">
 					<textarea rows="8" cols="20" name = "content"
-						style="width: 645px;">${fn:replace(vo.content , newLine, '<br>')}</textarea>
+						style="width: 570px;">${fn:replace(vo.content , newLine, '<br>')}</textarea>
 				</div>
 			</div>	
 			<div class="form-group">

@@ -6,7 +6,7 @@ public class QnaVO {
 	private int qnaNo;
 	private String userId;
 	private String title;
-	private int categoryNO;
+	private String category;
 	private String content;
 	private Timestamp regDate;
 	private String fileName;
@@ -21,12 +21,6 @@ public class QnaVO {
 	public void setQnaNo(int qnaNo) {
 		this.qnaNo = qnaNo;
 	}
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
 	public String getUserId() {
 		return userId;
 	}
@@ -39,11 +33,11 @@ public class QnaVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getCategoryNO() {
-		return categoryNO;
+	public String getCategory() {
+		return category;
 	}
-	public void setCategoryNO(int categoryNO) {
-		this.categoryNO = categoryNO;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public String getContent() {
 		return content;
@@ -81,13 +75,20 @@ public class QnaVO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	
 	@Override
 	public String toString() {
-		return "qnaVO [qnaNo=" + qnaNo +", userId=" + userId + ", title=" + title
-				+ ", categoryNO=" + categoryNO + ", content=" + content + ", regDate=" + regDate + ", fileName="
-				+ fileName + ", fileSize=" + fileSize + ", originFileName=" + originFileName + ", status=" + status + ", no=" + no + "]";
+		return "QnaVO [qnaNo=" + qnaNo + ", userId=" + userId + ", title=" + title + ", category=" + category
+				+ ", content=" + content + ", regDate=" + regDate + ", fileName=" + fileName + ", fileSize=" + fileSize
+				+ ", originFileName=" + originFileName + ", status=" + status + ", no=" + no + "]";
 	}
+
+	
 	
 }

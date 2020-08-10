@@ -32,8 +32,8 @@
 		  <li><div>입사요청 현황</div></li>		  
 		  <li class="ui-widget-header"><div>고객센터</div></li>
 		  <li><div>공지사항</div></li>
-		  <li><div>자주 찾는 질문</div></li>
-		  <li><div>1:1 문의</div></li>
-		  <li><div>나의 1:1 문의</div></li>
+		  <li><div><a href = "<c:url value = '/gogak/personal/faqList.do'/>">자주 찾는 질문</a></div></li>
+		  <li><div><a href = "<c:url value = '/gogak/qnaP/qnaWrite.do'/>">1:1 문의</a></div></li>
+		  <li><div><a href = "<c:url value = '/gogak/qnaP/qnaList.do'/>">나의 1:1 문의</a></div></li>
 		</ul>		
 	</div>

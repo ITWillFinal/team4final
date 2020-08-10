@@ -9,7 +9,7 @@
 		(
 			select rownum as RNUM, A.*
 			from(
-				select qna_no, user_id, title, category_no, content, fileName, fileSize, originFileName, status, regDate, no
+				select qna_no, user_id, title, category, content, fileName, fileSize, originFileName, status, regDate, no
 				from qnarere
 				<if test="searchKeyword!=null and searchKeyword != ''">
 					where ${searchCondition} like '%'
@@ -27,8 +27,8 @@
 		<selectKey keyProperty="qnaNo" resultType="int" order="BEFORE">
 			select qna_seq.nextval from dual
 		</selectKey>
-		insert into qna(qna_no, user_id, title, category_no, content, status)
-		values(#{qnaNo}, #{userNo}, #{userId}, #{title}, #{categoryNO}, #{content}, #{status})
+		insert into qna(qna_no, user_id, title, category, content, status)
+		values(#{qnaNo}, #{userId}, #{title}, #{category}, #{content}, #{status})
 	</insert>
 
 	<select id="selectTotalRecord" parameterType="searchVo"
@@ -47,7 +47,7 @@
 	
 	<update id="editQna" parameterType="QnaVo">
 		update qna
-		set title = #{title}, category_no=#{categoryNO}, content=#{content}, status=#{status}<!-- , filename=#{filename}, filesize=#{filesize}, originfilename=#{originfilename} -->
+		set title = #{title}, category=#{category}, content=#{content}, status=#{status}<!-- , filename=#{filename}, filesize=#{filesize}, originfilename=#{originfilename} -->
 		where qna_no=#{qnaNo}
 	</update>
 	

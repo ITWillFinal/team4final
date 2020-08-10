@@ -109,25 +109,25 @@ p#info {
 			}
 			
 			$('form[name=frmList]')
-				.prop("action", "<c:url value = '/gogak/qna/deleteMulti.do'/>");
+				.prop("action", "<c:url value = '/gogak/qnaC/deleteMulti.do'/>");
 			
 			$('form[name=frmList]').submit();
 		});
 		
 		$('#qnaWrite').click(function() {
-			location.href = "<c:url value = '/gogak/qna/qnaWrite.do'/>";
+			location.href = "<c:url value = '/gogak/qnaC/qnaWrite.do'/>";
 		});
 	});
 </script>
 
 	<!-- Id에 따라 top, sidebar, bottom 변경 -->
 	
-	<%@ include file="../../inc/adminTop.jsp"%>
+	<%@ include file="../../inc/companyTop.jsp"%>
 <main>
-	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
+	<%@ include file="../../inc/companySidebar.jsp"%>
 	
 	<!-- main -->
-	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
+	<div id = "mainDiv" style="text-align: center; margin:5px; width:850px; border:1px solid lightgray; float: left;">
 		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
 			<li class = "select" style="width: 33%;" id = "fst">
 				<a href = <c:url value='/gogak/admin/company/faqList.do'/> style="color: black;">FaQ - 기업</a>
@@ -149,7 +149,7 @@ p#info {
 							 ${pagingInfo.totalRecord}건 검색되었습니다.</p>
 					</c:if>
 					<!-- 페이징 -->
-					<form action="<c:url value='/gogak/qna/qnaList.do'/>" 
+					<form action="<c:url value='/gogak/qnaC/qnaList.do'/>" 
 						name="frmPage" method="post">
 						<input type="hidden" name="currentPage">
 						<input type="hidden" name="searchCondition" 
@@ -160,7 +160,7 @@ p#info {
 				</div>
 			<div>
 			<form name="frmList" method="post"
-				action="<c:url value = '/gogak/qna/qnaList.do'/>">
+				action="<c:url value = '/gogak/qnaC/qnaList.do'/>">
 				<div class = "divList">
 					<table class = "box2" style="width: 700px; margin-top: 45px;">
 						<colgroup>
@@ -197,7 +197,7 @@ p#info {
 										<td style="text-align: center;">${vo.category }</td>
 										<td style="text-align: center;">
 											<c:if test="${vo.no != 0 }">
-												<a href = "<c:url value = '/gogak/qna/qnaDetail.do?no=${vo.qnaNo }'/>" style="color: black;">
+												<a href = "<c:url value = '/gogak/qnaC/qnaDetail.do?no=${vo.qnaNo }'/>" style="color: black;">
 													<c:if test = "${fn:length(vo.title)>=10 }">
 														${fn:substring(vo.title,0,10)}...
 													</c:if>
@@ -207,7 +207,7 @@ p#info {
 												</a>
 											</c:if>
 											<c:if test="${vo.no == 0 }">
-												<a href = "<c:url value = '/gogak/qna/qnaDetail.do?no=${vo.qnaNo }'/>" style="color: red;">
+												<a href = "<c:url value = '/gogak/qnaC/qnaDetail.do?no=${vo.qnaNo }'/>" style="color: red;">
 													<c:if test = "${fn:length(vo.title)>=10 }">
 														${fn:substring(vo.title,0,10)}...
 													</c:if>
@@ -261,7 +261,7 @@ p#info {
 				</div>
 				<div class="divSearch" style="padding-top: 10px">
 				   	<form name="frmSearch" method="post" 
-				   		action='<c:url value="/gogak/qna/qnaList.do"/>'>
+				   		action='<c:url value="/gogak/qnaC/qnaList.do"/>'>
 				        <select name="searchCondition" style="height: 27px; width: 98px;">
 				            <option value="category" 
 				            	<c:if test="${param.searchCondition=='category' }">
@@ -291,6 +291,6 @@ p#info {
 	</div>
 </main>
 
-<%@ include file="../../inc/adminBottom.jsp"%>
+<%@ include file="../../inc/companyBottom.jsp"%>
 
 
