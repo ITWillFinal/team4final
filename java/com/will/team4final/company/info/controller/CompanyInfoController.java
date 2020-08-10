@@ -73,6 +73,7 @@ public class CompanyInfoController {
 	}
 	
 	
+<<<<<<< HEAD
 	//기업정보 조회하기
 	@RequestMapping("/MyCompany.do")
 	public void myComInfo(Model model, HttpSession session) {
@@ -131,5 +132,9 @@ public class CompanyInfoController {
 		return "common/message";
 		
 	}
+=======
+	
+
+>>>>>>> origin/seunghwan
 
 }

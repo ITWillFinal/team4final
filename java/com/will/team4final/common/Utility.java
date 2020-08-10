@@ -12,14 +12,14 @@ public class Utility {
 	public static final int BLOCKSIZE=10;	//블럭 크기 1~10
 	
 	//글 상세보기에 파일 정보 띄우기
-	public static String getFileInfo(String originFileName,
+	public static String getImageURL(String IMAGEURL,
 			HttpServletRequest request) {
 		//파일이미지 + 파일명 => 파일정보 리턴
 		String result="";
-		if(originFileName!=null && !originFileName.isEmpty()) {
+		if(IMAGEURL!=null && !IMAGEURL.isEmpty()) {
 			result="<img src='"+ request.getContextPath()
 					+"/resources/images/file.gif' alt='파일 이미지'> ";
-			result+= originFileName;
+			result+= IMAGEURL;
 		}
 		
 		return result;

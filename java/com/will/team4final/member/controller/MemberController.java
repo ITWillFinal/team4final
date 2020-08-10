@@ -9,6 +9,7 @@ import java.util.Random;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +49,7 @@ public class MemberController {
 	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
 	public String memberRegister_post(@ModelAttribute MemberVO vo,HttpServletRequest request ,Model model) {
 		logger.info("개인회원 등록, 파라미터 vo={}", vo);
+		
 		//파일 업로드 처리
 		List<Map<String, Object>> fileList
 		=fileUploadUtil.fileUpload(request, FileUploadUtil.PATH_PERSONAL_IMAGE);
@@ -250,4 +252,55 @@ public class MemberController {
 			
 		return "agreement/personInfoCollaction";
 	}
+	
+	@RequestMapping( value = "/memberEdit.do", method =RequestMethod.GET)
+	public void memberEdit_get(HttpSession session, Model model) {
+		logger.info("멤버 회원 수정 화면 ");
+		//아이디로 멤버 정보 조회
+		String userid = (String)session.getAttribute("userid");
+		MemberVO memberVo = memberService.selectByUserid(userid);
+		
+		model.addAttribute("memberVo", memberVo);
+	}
+	
+	@RequestMapping("/memberEdit/checkPwd.do")
+	@ResponseBody
+	public boolean checkPwd(@RequestParam String pwd, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		MemberVO memberVo = memberService.selectByUserid(userid);
+		
+		boolean pwdMatch = pwdEncoder.matches(pwd, memberVo.getPwd());
+		logger.info("pwdMatch={}", pwdMatch);
+		
+		return pwdMatch;
+	}
+	
+	@RequestMapping(value = "/memberEdit.do", method = RequestMethod.POST)
+	public String memberEdit_post(@ModelAttribute MemberVO memberVo, Model model, HttpSession session) {
+		logger.info("회원 정보 수정, 파라미터 memberVo={}", memberVo);
+		
+		String userNo = (String)session.getAttribute("userNo");
+		String msg="", url="";
+		if(userNo ==null || userNo.isEmpty()) {
+			msg="로그인 해주세요.";
+			url="/index.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "common/message";
+		}
+		memberVo.setUserNo(userNo);
+		int cnt = memberService.updateMember(memberVo);
+		logger.info("회원 정보 수정 결과, cnt={}", cnt);
+		if(cnt > 0) {
+			msg="회원 정보 수정되었습니다";
+			url="/mypage/mypageHome.do?status=U";
+		}else {
+			msg="회원 정보 수정 실패 했습니다";
+			url="/member/memberEdit.do";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
+	}
+	
 }
