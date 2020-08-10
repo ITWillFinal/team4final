@@ -8,50 +8,34 @@
 	#locationDiv{
 		margin-bottom: 50px;
 	}
-	button{
-		color: #fb246a;
-	    background: white;
-	    border: 1px solid #fb246a;
-	    width: 16%;
-	    height: 46px;
-	    margin: 4px 19px;
-	    font-weight: bold;
-	}
-	input[type=radio], label{
-		margin-left: 25px;
-    	width: 17%;
-	}
 	
+	button#sido{
+		width: 13%;
+		padding: 24px 0px;
+		margin-top: 10px;
+	}
 
 </style>
 <script type="text/javascript">
 $(function() {
-	/* $('div button').click(function() {
-		var sido = $(this).val();
-		$('#sigugun').empty();
-		$.ajax({
-			url:"<c:url value='/sigugun.do'/>",
+	
+	$('div button').click(function() {
+		var loca = $(this).val();
+		location.href="<c:url value='/hireinpo/infoSearchByLocation.do?location="+loca+"'/>";
+		/* $.ajax({
+			url:"<c:url value='/hireinpo/infoSearchByLocation.do'/>",
 			type:"get",
 			dataType:"json",
-			data:"sido="+sido,
+			data:"location="+loca,
 			success:function(res){
-				$('#sigugun').append("<hr>");
-				for(var i = 0; i< res.length; i++){
-					var option ="<label><input type='radio' name='sigugun' value='"+res[i]+"'>"+res[i]+"</label>";
-					$('#sigugun').append(option);
-				}
+				$("#map").load(window.location.href + "#map");
 			},
 			error:function(xhr, status, error){
 				alert(status + ", " + error);
 			}
-		});
-	}); */
-	
-	$('button').hover(function() {
-		$(this).css('color', 'white').css('background', '#fb246a');
-	}, function() {
-		$(this).css('color', '#fb246a').css('background', 'white');
+		}); */
 	});
+
 });
 </script>
 <%@ include file="../inc/sidebar.jsp"%>
@@ -60,13 +44,33 @@ $(function() {
 	<h2 style="margin-bottom: 22px;">지역별 채용정보</h2>
 	<div id="locationDiv">
 		<c:forEach var="location" items="${locationList }">
-			<button value="${location }" id="sido">${location }</button>
+			<button value="${location }" id="sido" class="btn head-btn2">${location }</button>
 		</c:forEach>
 	</div>
-	<div id="sigugun" id="locationDiv">
-		
+	<div id="hireInfo" style="width:29%;height:600px; float: left; background: #f9f9f9; overflow:scroll">
+		<c:if test="${!empty list }">
+			<c:forEach var="vo" items="${list }">
+				<div class="single-job-items mb-30" id="listOne" style="margin-bottom: 5px; padding: 20px; border: 1px solid #dcdcdc73;">
+					<div class="job-items">
+						<div class="job-tittle">
+							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h6 style="font-weight: bold;">${vo.title }</h6></a>
+							<ul>
+								<li>${vo.comName }</li>
+								<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</c:if>
+		<c:if test="${empty list }">
+			<div>
+				등록된 채용공고가 없습니다.
+			</div>
+		</c:if>
 	</div>
-	<div id="map" style="width:98%;height:600px;"></div>
+	<div id="map" style="width:70%;height:600px; float: right;"></div>
+	<div style="margin-bottom: 50px; clear: both;"></div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f5a970707d8d0e271a8262251139638&libraries=services,clusterer"></script>
 	<script type="text/javascript">
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -143,6 +147,8 @@ $(function() {
 			infowindow.setContent('<div style="width:150px;text-align:center;padding:6px 0;">'+comName[num]+'</div>');
 			num = num + 1;
 		}
+		
 	</script>
+
 </div>
 <%@ include file="../inc/bottom.jsp" %>

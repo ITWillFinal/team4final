@@ -25,7 +25,7 @@ import com.will.team4final.resume.model.ResumeVO;
 import com.will.team4final.scrap.model.ComScrapService;
 import com.will.team4final.scrap.model.ComScrapVO;
 
-@Controller
+@Controller 
 @RequestMapping("/mypage")
 public class MypageController {
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
