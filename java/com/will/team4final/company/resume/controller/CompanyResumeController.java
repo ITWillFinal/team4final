@@ -102,13 +102,16 @@ public class CompanyResumeController {
 		logger.info("기업 자사 이력서 사용 후 뷰 페이지");
 		logger.info("파라미터 recruitmentCode={}", recruitmentCode);
 		
-		String userid = "aaa"; //(String)session.getAttribute("userid");
-		logger.info("userId={}", userid);
+		String userid = (String)session.getAttribute("userid");
+		logger.info("userid={}", userid);
 		
+		companyResumeUseVo.setUserId(userid);
+		companyResumeUseVo.setRecruitmentCode(recruitmentCode);
+				
 		CompanyResumeUseVO vo = companyResumeUseService.selectCompanyResumeUse(companyResumeUseVo);
 		logger.info("companyResumeUseVo={}", vo);
 		
-		model.addAttribute("userId", userid);
+		model.addAttribute("userid", userid);
 		model.addAttribute("vo", vo);
 		return "companypage/companyResumeView";
 	}
