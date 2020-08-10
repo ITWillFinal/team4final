@@ -554,7 +554,7 @@ public class CompanyHomeController {
 
 		if (cnt > 0) {
 			msg = "기업 채용 삭제 성공";
-			url = "/companypage/employmentNotice/employmentNoticeList.do";
+			url = "/mypage/mypageHome.do?status=C";
 		}
 
 		model.addAttribute("msg", msg);

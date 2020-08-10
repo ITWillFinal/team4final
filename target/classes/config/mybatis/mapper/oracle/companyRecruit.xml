@@ -37,7 +37,7 @@
 		<![CDATA[where rownum <= 5 ]]>
 	</select>
 	
-	<select id="selectOneCom" resultType="comRecruitVo" parameterType="string">
+	<select id="selectOneCom" resultType="recruitment_TosVo" parameterType="string">
 		select * from recruitment_tos where recruitment_code = #{recruitmentCode}
 	</select>
 	
