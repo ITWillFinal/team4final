@@ -89,6 +89,8 @@ public class FileUploadUtil {
 				key = "file.upload.path.test";
 			} else if (pathGb == PATH_PERSONAL_IMAGE) {
 				key = "imageFile.upload.path.test";
+			} else if(pathGb == PATH_COMPANYINFO_IMAGE) {
+				key = "imageFile.comUpload.path.test";
 			}
 
 			uploadPath = fileUploadProps.getProperty(key);
@@ -97,6 +99,8 @@ public class FileUploadUtil {
 				key = "file.upload.path";
 			} else if (pathGb == PATH_PERSONAL_IMAGE) {
 				key = "imageFile.upload.path";
+			} else if(pathGb == PATH_COMPANYINFO_IMAGE) {
+				key = "imageFile.comUpload.path";
 			}
 
 			uploadPath = fileUploadProps.getProperty(key);

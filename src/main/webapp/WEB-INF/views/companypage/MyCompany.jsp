@@ -5,28 +5,6 @@
 <%@ include file="../inc/companyTop.jsp"%>
 <script type="text/javascript">
 $(function(){
-	document.getElementById('imageUpload').onchange = function() {
-		readImage();
-	};
-
-	function readImage() {
-		var file = document.getElementById('imageUpload');
-		if (file.files && file.files[0]) {
-			var reader = new FileReader();
-
-			//이미지 읽기
-			reader.readAsDataURL(file.files[0]);
-
-			//이미지 전부 읽어들였으면 호출
-			reader.onload = function() {
-				var image = document.getElementById('image');
-				image.src = reader.result;
-				//img 태그 노출
-				image.style.display = '';
-			};
-		}
-	}//function readImage()
-	
 	$(".onlyNumber").keyup(function(event) {
 		if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
 			var inputVal = $(this).val();
@@ -214,12 +192,12 @@ hr{
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="zipcode" class="col-sm-3 control-label">주소<span>*</span>
-				</label>
 				<div class="col-sm-9 form-input">
-					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+					<input type="hidden" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 					<br><br>
 				</div>
+				<label for="zipcode" class="col-sm-3 control-label">주소<span>*</span>
+				</label>
 				<div class="col-sm-9 form-input">
 					<input type="text" class="form-control" id="zipcode" name="zipcode"
 						placeholder="우편번호" ReadOnly value = "${vo.zipcode}" ReadOnly>
@@ -232,19 +210,16 @@ hr{
 					<input type="text" class="form-control" id="addressDetail"
 						name="addressDetail" placeholder="상세주소" value = "${vo.addressDetail }" ReadOnly>
 				</div>
-			</div>
-			<div class="form-group">
+				<div class="form-group">
 				<label for="inputUser" class="col-sm-3 control-label">회사 사진 
 				</label>
 				<div class="col-sm-9 form-input">
-					<input type="file" name="imageUpload" id="imageUpload" class="infobox"
-						placeholder="회사 사진 업로드"> 
+					<img alt="${vo.comName } 이미지" src="<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
 				</div>
 				<div class="col-sm-9 form-input">
 					<img id="image" width="100" height="100" alt="Image Preview" style="display: none;">
-					<%-- 회사 사진 보기
-					<img alt="회사 사진 보기" src="<c:url value = '/resources/img'/>"> --%>
 				</div>
+			</div>
 			</div>
 			<div class="form-group">
 					<label for="inputUser" class="col-sm-4 control-label">회사 내부 전화 번호 <span>*</span>
