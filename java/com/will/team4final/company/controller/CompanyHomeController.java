@@ -447,6 +447,7 @@ public class CompanyHomeController {
 	      logger.info("이력서 조회결과 resumeAllVo={}",resumeAllVo);
 	      resumeAllVo.getResumeVo().getResumeNo();
 	      MemberVO memberVo = resumeService.selectMemberByResumeNo(resumeNo);
+	      logger.info("회원 조회결과 memberVo={}",memberVo);
 
 	      model.addAttribute("memberVo", memberVo);
 	      model.addAttribute("resumeAllVo",resumeAllVo);
