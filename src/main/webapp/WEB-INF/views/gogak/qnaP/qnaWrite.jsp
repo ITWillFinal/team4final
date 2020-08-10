@@ -56,7 +56,7 @@ tr {
 <script type="text/javascript">
 	$(function(){
 		$('#rrr').click(function() {
-			location.href = "<c:url value = '/gogak/qnaP/qnaList.do'/>";
+			location.href = "<c:url value = '/gogak/qnaC/qnaList.do'/>";
 		});
 		CKEDITOR.replace('content',{
 			filebrowserUploadUrl:"<c:url value=''/>"
@@ -64,16 +64,16 @@ tr {
 	});
 </script>
 
-	<%@ include file="../../inc/companyTop.jsp"%>
+	<%@ include file="../../inc/top.jsp"%>
 <main>
-	<%@ include file="../../inc/companySidebar.jsp"%>
+	<%@ include file="../../inc/sidebar.jsp"%>
 	
 	<!-- main -->
 	<div style=" margin:5px; width:850px;  float: left;">
 		<div style="margin:5px;">
 			<div id="outDiv">
 				<form name = "frmWrite" method="post" 
-					action="<c:url value = '/gogak/qnaP/qnaWrite.do'/>">
+					action="<c:url value = '/gogak/qnaC/qnaWrite.do'/>">
 					<div id = "idx" style="border: 1px solid lightgray">
 						<h4 style="text-align:center; font-size: 24px; margin-top: 10%; margin-bottom: 10%;">― 1:1 문의 ―</h4>
 						<div class = "notice" >
@@ -102,7 +102,7 @@ tr {
 								<tr>
 									<td></td>
 									<td><p>작성자</p></td>
-									<td><input type = "text" id = "userId" name = "userId" value = "${userId}" disabled  /></td>
+									<td><input type = "text" id = "userId" name = "userId" value = "${userid}" disabled  /></td>
 									<td></td>
 								</tr>
 								<tr>

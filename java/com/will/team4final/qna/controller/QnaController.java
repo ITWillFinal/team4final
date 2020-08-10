@@ -220,7 +220,12 @@ public class QnaController {
 	
 	@RequestMapping("/qnaC/qnaList.do")
 	public String qnaCList(@ModelAttribute SearchVO searchVo,
-				Model model) {
+				Model model, HttpSession session) {
+		String userId = (String)session.getAttribute("userid");
+		logger.info("접속한 유저 아이디 userId = {}", userId);
+		
+		model.addAttribute("userId", userId);
+		
 		//1
 		logger.info("1:1 문의게시판 목록 searchVo={}", searchVo);
 		
@@ -253,9 +258,9 @@ public class QnaController {
 	@RequestMapping(value = "/qnaC/qnaWrite.do", method = RequestMethod.GET)
 	public void qnaCWrite_get(HttpSession session, Model model) {
 		logger.info("1:1 문의게시판 글쓰기 보여주기");
-		String userId = (String)session.getAttribute("userid");
+		String userid = (String)session.getAttribute("userid");
 		
-		model.addAttribute("userId", userId);
+		model.addAttribute("userid", userid);
 	}
 
 	@RequestMapping(value = "/qnaC/qnaWrite.do", method = RequestMethod.POST)
@@ -323,17 +328,25 @@ public class QnaController {
 		QnaVO vo = qnaService.selectByNo(no);
 		model.addAttribute("vo", vo);
 		
+		
 		return "gogak/qnaC/qnaEdit";
 		
 	}
 	
 	@RequestMapping(value = "/qnaC/qnaEdit.do", method = RequestMethod.POST)
 	public String editqnaC_post(@ModelAttribute QnaVO vo,
-			@RequestParam (defaultValue = "0")int no,
+			@RequestParam (defaultValue = "0")int qnaNo, HttpSession session,
 			Model model) {
 		logger.info("1:1 문의게시판 수정 post 파라미터 vo = {}", vo);
 		
-		vo.setQnaNo(no);
+		String userId = (String)session.getAttribute("userid");
+		
+		vo.setUserId(userId);
+		vo.setStatus("기업");
+		vo.setQnaNo(qnaNo);
+		logger.info("userId = {}", userId);
+		logger.info("status = {}", vo.getStatus());
+		logger.info("qnaNo = {}", vo.getQnaNo());
 		
 		String msg = "1:1 문의게시판 수정 실패", url = "/gogak/qnaC/qnaEdit.do";
 		int cnt = qnaService.editQna(vo);
@@ -402,15 +415,19 @@ public class QnaController {
 	}
 	
 	
-	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓qnaP↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓///
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	@RequestMapping("/qnaP/qnaList.do")
-	public String qnaPList(@ModelAttribute SearchVO searchVo,
-			Model model) {
+	public String qnaPCList(@ModelAttribute SearchVO searchVo,
+				Model model, HttpSession session) {
+		String userId = (String)session.getAttribute("userid");
+		logger.info("접속한 유저 아이디 userId = {}", userId);
+		
+		model.addAttribute("userId", userId);
+		
 		//1
 		logger.info("1:1 문의게시판 목록 searchVo={}", searchVo);
 		
@@ -437,23 +454,23 @@ public class QnaController {
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		
-		return "gogak/qnaC/qnaList";
+		return "gogak/qnaP/qnaList";
 	}
 	
 	@RequestMapping(value = "/qnaP/qnaWrite.do", method = RequestMethod.GET)
 	public void qnaPWrite_get(HttpSession session, Model model) {
 		logger.info("1:1 문의게시판 글쓰기 보여주기");
-		String userId = (String)session.getAttribute("userid");
+		String userid = (String)session.getAttribute("userid");
 		
-		model.addAttribute("userId", userId);
+		model.addAttribute("userid", userid);
 	}
-	
+
 	@RequestMapping(value = "/qnaP/qnaWrite.do", method = RequestMethod.POST)
 	public String qnaPWrite_get(@ModelAttribute QnaVO vo,
 			HttpSession session, Model model) {
 		logger.info("1:1 문의게시판 글쓰기 화면");
 		logger.info("vo={}", vo);
-		
+
 		String userId = (String)session.getAttribute("userid");
 		vo.setUserId(userId);
 		vo.setStatus("개인");
@@ -476,7 +493,7 @@ public class QnaController {
 	public String qnaPselectByNo(@RequestParam(defaultValue = "0") int no,
 			Model model) {
 		logger.info("1:1 문의게시판 상세보기");
-		
+
 		//상세보기
 		QnaVO vo = qnaService.selectByNo(no);
 		logger.info("1:1 문의게시판 파라미터 = {}",vo);
@@ -513,17 +530,25 @@ public class QnaController {
 		QnaVO vo = qnaService.selectByNo(no);
 		model.addAttribute("vo", vo);
 		
+		
 		return "gogak/qnaP/qnaEdit";
 		
 	}
 	
 	@RequestMapping(value = "/qnaP/qnaEdit.do", method = RequestMethod.POST)
 	public String editqnaP_post(@ModelAttribute QnaVO vo,
-			@RequestParam (defaultValue = "0")int no,
+			@RequestParam (defaultValue = "0")int qnaNo, HttpSession session,
 			Model model) {
 		logger.info("1:1 문의게시판 수정 post 파라미터 vo = {}", vo);
 		
-		vo.setQnaNo(no);
+		String userId = (String)session.getAttribute("userid");
+		
+		vo.setUserId(userId);
+		vo.setStatus("개인");
+		vo.setQnaNo(qnaNo);
+		logger.info("userId = {}", userId);
+		logger.info("status = {}", vo.getStatus());
+		logger.info("qnaNo = {}", vo.getQnaNo());
 		
 		String msg = "1:1 문의게시판 수정 실패", url = "/gogak/qnaP/qnaEdit.do";
 		int cnt = qnaService.editQna(vo);
@@ -590,6 +615,5 @@ public class QnaController {
 		
 		return "common/message";
 	}
-	
 
 }
