@@ -237,6 +237,8 @@ hr{
 				<label for="inputUser" class="col-sm-3 control-label">회사 사진 
 				</label>
 				<div class="col-sm-9 form-input">
+					<input type="text" name = "imageURL" value = "${vo.imageURL }">
+					<img src = "<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
 					<input type="file" name="imageUpload" id="imageUpload" class="infobox"
 						placeholder="회사 사진 업로드"> 
 				</div>
