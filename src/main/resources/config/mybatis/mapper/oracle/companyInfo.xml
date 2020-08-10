@@ -18,7 +18,13 @@
 		select * from COMPANY_INFO
 		where C_MEMBER_CODE = #{cMemberCode}
 	</select>
-		
+	
+	<update id="updateCominfoByCode" parameterType="companyInfoVo">
+		update company_info
+		set com_name = #{comName}, ceo = #{ceo}, com_num = #{comNum}, zipcode = #{zipcode}, address = #{address}, addressDetail=#{addressDetail}, com_hp=#{comHp}, com_type = #{comType}, com_industry=#{comIndustry}, content=#{content}
+		where com_code = #{comCode}
+	</update>
+	
 </mapper>
 
 

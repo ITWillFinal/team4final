@@ -82,6 +82,11 @@
 		where C_MEMBER_CODE=#{cMemberCode}
 	</update>
 	
+	<select id="selectMemberCode" parameterType="String" resultType="String">
+		select c_member_code from company_member
+		where c_userid = #{cUserid}
+	</select>
+	
 </mapper>
 
 
