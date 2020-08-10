@@ -234,16 +234,16 @@ public class CompanyHomeController {
 		CompanyInfoVO comInfoVo = comInfoService.selectComInfoBycMemberCode(comMemberVo.getcMemberCode());
 		logger.info("기업공고 페이지 회사 정보 입력 값 확인, comInfoVo={}", comInfoVo);
 
-		String comCode = comInfoVo.getComCode();
 		String msg = "먼저 회사 정보 입력 부탁드립니다", url = "/companypage/companyInfoWrite.do";
 
-		if (comCode == null || comCode.isEmpty()) {
+		if (comInfoVo == null) {
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 			return "common/message";
 		}
 
 		// 회사정보 불러와서 출력할 값 받아오기
+		String comCode = comInfoVo.getComCode();
 		String comName = comInfoVo.getComName();
 		String zipcode = comInfoVo.getZipcode();
 		String address = comInfoVo.getAddress();
