@@ -9,5 +9,5 @@ public interface ChartService {
 	public int countByAgeM(int age);
 	public int countByAgeF(int age);
 	public int countByAge(int age);
-	
+
 }
