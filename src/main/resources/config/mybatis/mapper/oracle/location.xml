@@ -13,6 +13,10 @@
 	<select id="selectSigugun" parameterType="string" resultType="string">
 		select sigugun from location where sido = #{sido}
 	</select>
+	
+	<select id="selectHireInfoByLocation" resultType="recruitment_TosVo">
+		select * from recruitment_tos where to_date(end_date) >= sysdate-1 and LOCATION1 = #{location}
+	</select>
 </mapper>
 
 
