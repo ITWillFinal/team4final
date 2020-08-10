@@ -278,6 +278,11 @@ p#info {
 				            		selected="selected"
 				            	</c:if>
 				            >답변</option>
+				            <option value="status" 
+				            	<c:if test="${param.searchCondition=='status' }">
+				            		selected="selected"
+				            	</c:if>
+				            >구분</option>
 				        </select>
 					        <input type="text" name="searchKeyword" title="검색어 입력"
 					        	value="${param.searchKeyword}"style="height: 27px;">   

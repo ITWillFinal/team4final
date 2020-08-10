@@ -30,16 +30,6 @@ td{
 	 padding-left: 300px;
 }
 
-.divPage {
-	text-align:center;     
-	margin-top: 70px;
-    margin-bottom: 25px;
-}
-
-.divList{
-	height: 250px;
-}
-
 #bt{
 	margin: 20px;
 }
@@ -70,21 +60,18 @@ li.select {
     padding-bottom: 15px;
     font-size: 15pt;
 }
-#fst{
-	border-bottom: 1px solid lightgray;
-
-}
-#mid{
-	border-left: 1px solid lightgray;
-	border-bottom: 1px solid lightgray;
-	border-right: 1px solid lightgray;
-}
 tbody {
     font-size: 12px;
     text-align: center;
 }
 p#info {
     margin-top: 30px;
+}
+li#fst {
+    margin-top: 4%;
+    margin-bottom: 3%;
+    font-weight: bold;
+    font-size: 30px;
 }
 </style>
 <script type="text/javascript" 
@@ -96,24 +83,6 @@ p#info {
 	}
 	
 	$(function () {
-		$('input[name=chkAll]').click(function () {
-			$('tbody input[type=checkbox]')
-			.prop('checked', this.checked);			
-		});
-			
-		$('#btMultiDel').click(function() {
-			var len = $('tbody input[type=checkbox]:checked').length;
-			if(len==0){
-				alert("삭제하려는 게시글을 먼저 체크하세요.");
-				return;
-			}
-			
-			$('form[name=frmList]')
-				.prop("action", "<c:url value = '/gogak/qnaC/deleteMulti.do'/>");
-			
-			$('form[name=frmList]').submit();
-		});
-		
 		$('#qnaWrite').click(function() {
 			location.href = "<c:url value = '/gogak/qnaC/qnaWrite.do'/>";
 		});
@@ -130,18 +99,14 @@ p#info {
 	<div id = "mainDiv" style="text-align: center; margin:5px; width:850px; border:1px solid lightgray; float: left;">
 		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
 			<li class = "select" style="width: 33%;" id = "fst">
-				<a href = <c:url value='/gogak/admin/company/faqList.do'/> style="color: black;">FaQ - 기업</a>
+				<a href = <c:url value='/gogak/qnaC/qnaList.do'/> style="color: black;">1:1 문의</a>
 			</li>
 			<li class = "select" style="width: 33%;" id = "mid">
-				<a href = <c:url value='/gogak/admin/personal/faqList.do'/> style="color: black;">FaQ - 일반</a>
 			</li>
 			<li class = "select" style="width: 33%;" id = "btm">
-				<a href = <c:url value='/gogak/qna/qnaList.do'/> style="color: black;">Q&A</a>
 			</li>
-			
 		</ul>
 		<div style="text-align: center; margin:5px; /* border:1px solid lightgray; */">
-		
 			<div id = "list">
 				<div id = "upList">
 					<c:if test="${!empty param.searchKeyword }">
@@ -165,15 +130,13 @@ p#info {
 					<table class = "box2" style="width: 700px; margin-top: 45px;">
 						<colgroup>
 						   <col style="width:10%;" />
-						   <col style="width:10%;" />
-						   <col style="width:10%;" />
+						   <col style="width:15%;" />
 						   <col style="width:15%;" />
 						   <col style="width:20%;" />
-						   <col style="width:15%;" />
+						   <col style="width:20%;" />
 						   <col style="width:20%;" />
 						</colgroup>
 						<tr>
-							<th><input type="checkbox" name="chkAll"></th>
 							<th>글번호</th>
 							<th>구분</th>
 							<th>카테고리</th>
@@ -187,11 +150,8 @@ p#info {
 						<c:if test="${!empty list }">
 							<c:set var = "idx" value = "0"/>
 								<c:forEach var = "vo" items="${list }">
-									<tr>
-										<td style = "text-align: center">
-											<input type="checkbox" name="qnaList[${idx }].qnaNo"
-												value = "${vo.qnaNo }">
-										</td>
+									<c:if test="${vo.userId==userId }">
+										<tr>
 										<td style="text-align: center;">${vo.qnaNo }</td>
 										<td style="text-align: center;">${vo.status }</td>
 										<td style="text-align: center;">${vo.category }</td>
@@ -223,12 +183,12 @@ p#info {
 												pattern="yyyy-MM-dd"/>
 										</td>
 									</tr>
+									</c:if>
 									<c:set var = "idx" value = "${idx+1 }"/>
 								</c:forEach>
 						</c:if>
 					</table>
-					<p id = "info">※ 답변하지 않은 문의는 빨간색 제목으로 표시됩니다.</p>
-				</div>
+				</div><!-- divList -->
 			</form>
 			</div>
 				<div class="divPage">
@@ -257,7 +217,9 @@ p#info {
 							▷
 						</a>
 					</c:if>
-					<!--  페이지 번호 끝 -->
+				</div> <!--  페이지 번호 끝 -->
+				<div id = "divP">
+					<p id = "info">※ 답변하지 않은 문의는 빨간색 제목으로 표시됩니다.</p>
 				</div>
 				<div class="divSearch" style="padding-top: 10px">
 				   	<form name="frmSearch" method="post" 
@@ -268,8 +230,8 @@ p#info {
 				            		selected="selected"
 				            	</c:if>
 				            >카테고리</option>
-				            <option value="question" 
-				            	<c:if test="${param.searchCondition=='question' }">
+				            <option value="title" 
+				            	<c:if test="${param.searchCondition=='title' }">
 				            		selected="selected"
 				            	</c:if>
 				            >질문</option>
@@ -283,10 +245,9 @@ p#info {
 					        	value="${param.searchKeyword}"style="height: 27px;">   
 							<input type="submit" value="검색"><br>
 							<input type="button" id = "qnaWrite" value = "게시글 등록">
-							<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"><br><br>
 				    </form>
 				</div>
-			</div>
+			</div><!-- divList -->
 		</div>
 	</div>
 </main>

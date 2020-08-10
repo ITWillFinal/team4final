@@ -202,7 +202,7 @@ li.select {
 				<h4>― 1:1 문의게시판 ―</h4>
 				<h3>${vo.title}</h3>
 				<div id = "idx">
-					<p>작성자: ${vo.userId }　　　카테고리: ${vo.categoryNO}　　　작성일:<fmt:formatDate value="${vo.regDate}" pattern="yyyy-MM-dd HH:mm"/></p>
+					<p>작성자: ${vo.userId }　　　카테고리: ${vo.category}　　　작성일:<fmt:formatDate value="${vo.regDate}" pattern="yyyy-MM-dd HH:mm"/></p>
 				</div>
 				<div style="text-align: left;">
 					<div id = "divH4">

@@ -102,7 +102,7 @@ tr {
 								<tr>
 									<td></td>
 									<td><p>작성자</p></td>
-									<td><input type = "text" id = "userId" name = "userId" value = "${userId}" disabled  /></td>
+									<td><input type = "text" id = "userId" name = "userId" value = "${userid}" disabled  /></td>
 									<td></td>
 								</tr>
 								<tr>

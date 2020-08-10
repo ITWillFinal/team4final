@@ -2,16 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript"
 	src="<c:url value = '/resources/js/jquery-3.5.1.min.js'/>"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#rrr').click(function() {
-			location.href = "<c:url value='/gogak/qnaP/qnaList.do'/>";
+			location.href = "<c:url value='/gogak/qnaC/qnaList.do'/>";
 		});
 
 		$('#ddd').click(function() {
-			location.href = "<c:url value='/gogak/qnaP/qnaEdit.do?no=${vo.qnaNo}'/>";
+			location.href = "<c:url value='/gogak/qnaC/qnaEdit.do?no=${vo.qnaNo}'/>";
 		});
 
 		$('#delete').click(function() {
@@ -19,10 +20,10 @@
 
 			if (str) {
 				//true
-				location.href = "<c:url value = '/gogak/qnaP/qnaDelete.do?no=${vo.qnaNo}'/>";
+				location.href = "<c:url value = '/gogak/qnaC/qnaDelete.do?no=${vo.qnaNo}'/>";
 			} else {
 				event.preventDefault;
-				location.href = "<c:url value='/gogak/qnaP/qnaDetail.do?no=${vo.qnaNo}'/>";
+				location.href = "<c:url value='/gogak/qnaC/qnaDetail.do?no=${vo.qnaNo}'/>";
 			}
 		});
 		
@@ -59,7 +60,7 @@ h3{
 
 #outDiv{
     padding: 75px 35px 90px 35px;
-	width: 750px;
+	width: 100%;
 }
 
 /* 글내용 */
@@ -165,34 +166,13 @@ li.select {
     padding-bottom: 15px;
     font-size: 15pt;
 }
-#fst{
-	border-bottom: 1px solid lightgray;
-
-}
-#mid{
-	border-left: 1px solid lightgray;
-	border-bottom: 1px solid lightgray;
-	border-right: 1px solid lightgray;
-}
 </style>
-	<%@ include file="../../inc/companyTop.jsp"%>
+	<%@ include file="../../inc/top.jsp"%>
 <main>
-	<%@ include file="../../inc/companySidebar.jsp"%>
-
+	<%@ include file="../../inc/sidebar.jsp"%>
 	<!-- main -->
-	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray; float: left;">
-		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
-			<li class = "select" style="width: 33%;" id = "fst">
-				<a href = <c:url value='/gogak/admin/company/faqList.do'/> style="color: black;">FaQ - 기업</a>
-			</li>
-			<li class = "select" style="width: 33%;" id = "mid">
-				<a href = <c:url value='/gogak/admin/personal/faqList.do'/> style="color: black;">FaQ - 일반</a>
-			</li>
-			<li class = "select" style="width: 33%;" id = "btm">
-				<a href = <c:url value='/gogak/qna/qnaList.do'/> style="color: black;">Q&A</a>
-			</li>
-			
-		</ul>
+	<!-- main -->
+	<div id = "mainDiv" style="text-align: center; margin:5px; margin-left:3%; width:933px; border:1px solid lightgray; float: left;">
 		<!-- 본문 -->
 		<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */">
 			<div id="outDiv">
@@ -201,7 +181,7 @@ li.select {
 				<h4>― 1:1 문의게시판 ―</h4>
 				<h3>${vo.title}</h3>
 				<div id = "idx">
-					<p>작성자: ${vo.userId }　　　카테고리: ${vo.categoryNO}　　　작성일:<fmt:formatDate value="${vo.regDate}" pattern="yyyy-MM-dd HH:mm"/></p>
+					<p>작성자: ${vo.userId }　　　카테고리: ${vo.category}　　　작성일:<fmt:formatDate value="${vo.regDate}" pattern="yyyy-MM-dd HH:mm"/></p>
 				</div>
 				<div style="text-align: left;">
 					<div id = "divH4">
@@ -278,7 +258,7 @@ li.select {
 							<span class = "font-color">다음 게시글이 없습니다.</span>
 						</c:if>
 						<c:if test="${!empty afterVO.qnaNo }">
-							<a href="<c:url value='/gogak/qnaP/qnaDetail.do?no=${afterVO.qnaNo}'/>" class = "font-color">
+							<a href="<c:url value='/gogak/qnaC/qnaDetail.do?no=${afterVO.qnaNo}'/>" class = "font-color">
 								<c:if test="${fn:length(afterVO.title )>=10 }">
 									${fn:substring(afterVO.title,0,10)}...
 								</c:if> 
@@ -294,7 +274,7 @@ li.select {
 							<span class = "font-color">이전 게시글이 없습니다.</span>
 						</c:if> 
 						<c:if test="${!empty beforeVO.qnaNo }">
-							<a href="<c:url value='/gogak/qnaP/qnaDetail.do?no=${beforeVO.qnaNo}'/>" class = "font-color">
+							<a href="<c:url value='/gogak/qnaC/qnaDetail.do?no=${beforeVO.qnaNo}'/>" class = "font-color">
 								<c:if test="${fn:length(beforeVO.title )>=10 }">
 										${fn:substring(beforeVO.title,0,10)}...
 								</c:if> 
