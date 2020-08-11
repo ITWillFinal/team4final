@@ -10,9 +10,10 @@
 	}
 	
 	button#sido{
-		width: 13%;
-		padding: 24px 0px;
-		margin-top: 10px;
+		width: 9.8%;
+	    padding: 24px 0px;
+	    margin-top: 10px;
+	    margin-left: 10px;
 	}
 
 </style>

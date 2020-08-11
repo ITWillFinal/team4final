@@ -31,6 +31,10 @@ $(function(){
 	$('#eduLv').click(function() {
 		$('#tdEdu').val($('#eduLv').val());
 	});
+	
+	$('#reset').click(function() {
+		$('td input').val('');
+	});
 });
 
 $(function() {
@@ -130,7 +134,7 @@ function makeListJson(res){
 		htmlStr += "<a href='<c:url value='/hireinpo/infoDetail.do?recruitmentCode="+this.recruitmentCode+"'/>'><h4>"+this.title+"</h4></a>";
 		htmlStr += "<ul>";
 		htmlStr += "<li>"+this.comName+"</li>";
-		htmlStr += "<li><i class='fas fa-map-marker-alt'></i>"+this.jobType2+"</li>";
+		htmlStr += "<li><i class='fa fa-briefcase' aria-hidden='true'></i>"+this.jobType2+"</li>";
 		htmlStr += "<li>"+this.pay+"</li>";
 		htmlStr += "<ul>";
 		htmlStr += "</div></div>";
@@ -211,7 +215,7 @@ function makeListJson(res){
 	    font-weight: bold;
 	    cursor: pointer;
 	}
-	input[type=reset]{
+	#reset{
 		width: 55px;
 	    height: 55px;
 	    text-align: center;
@@ -358,7 +362,7 @@ function makeListJson(res){
 			</tr>
 		</table><br><br>
 		<div style="text-align: center;">
-			<input type="reset" value="초기화">
+			<input type="button" value="초기화" id="reset">
 			<input type="button" onClick="hireInfo();" value="상세검색">
 		</div>
 	</form>
@@ -376,6 +380,9 @@ function makeListJson(res){
 							<li>${vo.pay }</li>
 						</ul>
 					</div>
+				</div>
+				<div class='items-link f-right'>
+					<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.recType }</a>
 				</div>
 			</div>
 		</c:forEach>

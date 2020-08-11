@@ -73,16 +73,18 @@
 		<interceptor>
 			<mapping path="/companypage/**"/>
 			<exclude-mapping path="/companypage/companyHome.do"/>			
-			<exclude-mapping path="/companypage/companyResumeUse.do"/>			
-			<exclude-mapping path="/companypage/companyResumeView.do"/>
-			<exclude-mapping path="/companypage/companyResumeEdit.do"/>
 			<exclude-mapping path="/companypage/member/companyJoin.do"/>			
 			<exclude-mapping path="/companypage/member/checkUserid.do"/>		
 			<exclude-mapping path="/companypage/member/register.do"/>		
 			<exclude-mapping path="/companypage/member/email.do"/>		
 			<exclude-mapping path="/companypage/member/auth.do"/>		
 			<exclude-mapping path="/companypage/member/join_injeung.do"/>		
-			<exclude-mapping path="/companypage//member/checkId.do"/>		
+			<exclude-mapping path="/companypage/member/checkId.do"/>		
+			<exclude-mapping path="/companypage/requestToJoin.do"/>		
+			<exclude-mapping path="/companypage/requestHope.do"/>		
+			<exclude-mapping path="/companypage/requestNo.do"/>		
+			<exclude-mapping path="/companypage/talentResumeDetail.do"/>	
+			<exclude-mapping path="/companypage/serviceInfo.do"/>		
 			<beans:ref bean="companyUseInterceptors"/>
 		</interceptor>
 	</interceptors>

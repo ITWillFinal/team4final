@@ -414,4 +414,10 @@ public class ResumeServiceImpl implements ResumeService{
 		
 		return result;
 	}
+
+
+	@Override
+	public List<Map<String, Object>> selectPerscrapByUserNo(String userNo) {
+		return resumeDao.selectPerscrapByUserNo(userNo);
+	}
 }

@@ -219,6 +219,11 @@ public class ResumeDAOMabatis implements ResumeDAO{
 	public int deletePerscrap(Map<String, String> map) {
 		return sqlSession.delete(namespace2+"deletePerscrap",map);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectPerscrapByUserNo(String userNo) {
+		return sqlSession.selectList(namespace2+"selectPerscrapByUserNo",userNo);
+	}
 	
 	
 }
