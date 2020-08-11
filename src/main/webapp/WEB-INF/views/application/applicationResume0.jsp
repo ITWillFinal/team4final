@@ -12,8 +12,8 @@
 
 	#infoDiv1{
 		padding-top: 10px;
-	    padding-left: 30px;
-	    width: 40%;
+	    padding-left: 50px;
+	    width: 50%;
 	    float: left;
 	}
 	#infoDiv2{
@@ -29,7 +29,7 @@
     background: #f1f1f1;
     padding: 10px;
     margin-bottom: 30px;
-    width: 85%;
+    width: 99%;
 	}
 	
 	.resumeMain{
@@ -182,7 +182,14 @@
 </style>
 <script type="text/javascript">
 	$(function(){
-
+		$('.apply').click(function(){
+			if($('input[type=radio]:checked').val()==null){
+				alert("이력서를 선택해주세요.");
+				return;
+			}
+			var resumeNo=$('input[type=radio]:checked').val();
+			location.href="<c:url value='/application/apply.do?resumeNo="+resumeNo+"&recruitmentCode=${param.recruitmentCode}'/>"
+		});
 
 	});
 	
@@ -243,9 +250,8 @@
 				<c:forEach var="resumeVo" items="${resumeList }">
 						<li>
 							<span class="regdate">수정 : ${resumeVo.regdate }</span>
-							<input type="hidden" value="${resumeVo.resumeNo }"/>
 							<div class="resume-info">
-								<input type="radio" name="selResume"/>
+								<input type="radio" name="selResume" value="${resumeVo.resumeNo }"/>
 								<a onclick="open_resume(${resumeVo.resumeNo})" style="cursor: pointer;">
 								<c:if test="${empty resumeVo.selfIntTitle or resumeVo.selfIntTitle==''}">no title</c:if>
 								<c:if test="${!empty resumeVo.selfIntTitle or resumeVo.selfIntTitle!=''}">${resumeVo.selfIntTitle }</c:if>
@@ -263,7 +269,7 @@
 		</c:if>
 		<c:if test="${!empty resumeList }">
 			<div class="resume-add">
-					<a href="<c:url value='/application/apply.do'/>" class="btn head-btn2">지원하기</a>
+					<a class="btn head-btn2 apply" style="cursor: pointer;">지원하기</a>
 			</div>
 		</c:if>
 	</div>

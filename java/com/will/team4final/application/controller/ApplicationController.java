@@ -33,7 +33,7 @@ public class ApplicationController {
 	@Autowired private ApplyService applyService;
 	
 	@RequestMapping("/applicationResume.do")
-	public String applicationResume(@RequestParam(defaultValue = "0") String recruitmentCode,
+	public String applicationResume(@RequestParam String recruitmentCode,
 			HttpSession session, Model model) {
 		
 		String userid = (String)session.getAttribute("userid");
@@ -42,9 +42,10 @@ public class ApplicationController {
 		logger.info("회사 지원 페이지 userid={}, recruitmentCode={}",userid,recruitmentCode);
 		
 		Recruitment_TosVO vo = comRecuritService.selectTosOneCom(recruitmentCode);
+		logger.info("회사 지원 페이지 vo={}",vo);
+		
 		
 		model.addAttribute("memberVo",memberVo);
-		
 		model.addAttribute("vo",vo);	
 		
 		if(vo.getResumeType()==1) {
@@ -58,17 +59,18 @@ public class ApplicationController {
 	}
 	
 	@RequestMapping("/apply.do")
-	public String apply(@RequestParam(defaultValue = "0") String recruitmentCode,
+	public String apply(@RequestParam String recruitmentCode, @RequestParam String resumeNo,
 			HttpSession session,Model model) {
 		String userid = (String)session.getAttribute("userid");
 		MemberVO memberVo = memberService.selectByUserid(userid);
 		
 		String userNo = memberVo.getUserNo();
-		logger.info("회사 지원 페이지 userNo={}, recruitmentCode={}",userNo);
+		logger.info("회사 지원 페이지 userNo={}, recruitmentCode={}",userNo,recruitmentCode);
 		
 		
 		ApplyVO applyVo = new ApplyVO();
 		applyVo.setUserNo(userNo);
+		applyVo.setResumeNo(resumeNo);
 		applyVo.setRecruitmentCode(recruitmentCode);
 		
 		int cnt = applyService.insertApply(applyVo);
