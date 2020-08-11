@@ -151,7 +151,7 @@ li#fst {
 	}
 	
 	function pageFunc(curPage){
-		$('input[name=currentPage]').val(curPage);
+		$('#currentPage').val(curPage);
 		$("form[name=frmPage]").submit();
 	}
 </script>
@@ -170,7 +170,7 @@ li#fst {
 		action="<c:url value='/payment/paymentList.do'/>">
 		<input type="text" name="startDay" value="${param.startDay }">
 		<input type="text" name="endDay" value="${param.endDay }">
-		<input type="text" name="currentPage">	
+		<input type="text" id="currentPage">	
 	</form>
 
 	<form name="frmList" method="post" 
@@ -178,7 +178,6 @@ li#fst {
 		<!-- 조회기간 include -->
 		<%@include file = "../inc/dateTerm.jsp" %>
 		<input type="submit" value="조회" >
-	</form>
 	<br>
 	<c:if test="${pagingInfo.totalRecord > 0 }">
 		<p style="font-size: 1.0em">
@@ -237,6 +236,7 @@ li#fst {
 	</tbody>
 	</table>
 	</div>
+	</form>
 
 <div class="divPage">		
 	<!-- 페이지 번호 추가 -->		
