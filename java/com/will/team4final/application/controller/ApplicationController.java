@@ -43,8 +43,7 @@ public class ApplicationController {
 		
 		Recruitment_TosVO vo = comRecuritService.selectTosOneCom(recruitmentCode);
 		logger.info("회사 지원 페이지 vo={}",vo);
-		
-		
+				
 		model.addAttribute("memberVo",memberVo);
 		model.addAttribute("vo",vo);	
 		

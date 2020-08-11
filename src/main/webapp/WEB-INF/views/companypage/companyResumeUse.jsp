@@ -1330,7 +1330,7 @@
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frm" method="post" action="<c:url value='/companypage/companyResumeUse.do'/>">
 		
-		이력서코드 : <input type="text" name="recruitmentCode" id="recruitmentCode" value="${vo.recruitmentCode}">
+		채용공고코드 : <input type="text" name="recruitmentCode" id="recruitmentCode" value="${param.recruitmentCode}">
 		일반회원아이디 : <input type="text" name="userId" value="${userId}">
 			<!-- 
 			<div style="margin:5px; height:95px; border:1px solid lightgray">
