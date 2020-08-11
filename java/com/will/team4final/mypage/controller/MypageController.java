@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.will.team4final.apply.model.ApplyService;
+import com.will.team4final.apply.model.ApplyVO;
 import com.will.team4final.company.info.model.CompanyInfoService;
 import com.will.team4final.company.info.model.CompanyInfoVO;
 import com.will.team4final.company.model.ComMemberService;
@@ -53,6 +55,11 @@ public class MypageController {
 			List<ResumeVO> list = resumeService.selectResumeByUserNo(userNo);
 			
 			
+			//지원 숫자 구하기
+			List<ApplyVO> applyListVo = memberServ.selectApplyByuserNo(userNo);
+			logger.info("일반회원, applyListVo.size()={}", applyListVo.size());
+			int applyNum = applyListVo.size();
+			
 			//회원 정보 구하기
 			MemberVO memberVo = memberServ.selectByUerNo(userNo);
 			logger.info("memberVo={}", memberVo);
@@ -63,6 +70,7 @@ public class MypageController {
 			logger.info("birth={}", birth);
 			
 			
+			model.addAttribute("applyNum", applyNum);
 			model.addAttribute("birth", birth);
 			model.addAttribute("memberVo", memberVo);
 			model.addAttribute("scrap", scrap);

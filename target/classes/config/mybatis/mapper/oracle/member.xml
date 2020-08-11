@@ -107,5 +107,11 @@
 		select c_member_code, c_userid, c_username, C_EMAIL, C_HP, c_birth, c_gender, C_JOINDATE, C_OUTDATE, C_USER_STATUS
 		from COMPANY_member order by user_status desc, regdate desc
    </select>
+   
+   <select id="selectApplyByuserNo" parameterType="string" resultType="applyVo">
+   		select * 
+   		from apply
+   		where user_no = #{userNo}
+   </select>
 </mapper>
 

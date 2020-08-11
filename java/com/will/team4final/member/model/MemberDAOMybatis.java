@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.will.team4final.apply.model.ApplyVO;
 import com.will.team4final.common.DateSearchVO;
 import com.will.team4final.common.SearchVO;
 
@@ -82,6 +83,11 @@ public class MemberDAOMybatis implements MemberDAO {
 	@Override
 	public List<MemberVO> showMemberForExcel() {
 		return sqlSession.selectList(namespace + "showMemberForExcel");
+	}
+
+	@Override
+	public List<ApplyVO> selectApplyByuserNo(String userNo) {
+		return sqlSession.selectList(namespace+"selectApplyByuserNo", userNo);
 	}
 
 }
