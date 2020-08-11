@@ -47,7 +47,7 @@
 	}
 	#scrapListDiv{
 		margin: 0 auto;
-		width: 48%;
+		width: 900px;
 		
 	}
 	#listOne{
