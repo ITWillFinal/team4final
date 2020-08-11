@@ -3,43 +3,32 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mybatis.mapper.oracle.chart">
- 	<select id="sumByMonth" parameterType="string" resultType="int">
+ 	<select id="sumByMonth" parameterType="string" resultType="String">
 		select sum(price)as sum from payment
 		where substr(regdate, 4, 2) = #{month}
 	</select>
 	
-	<select id="countByMember" parameterType="string" resultType="int">
+	<select id="countByMember" parameterType="string" resultType="String">
 		select count(*)as count from member
 		where substr(regdate, 4, 2) = #{month}
 	</select>
 	
-	<select id="countByMemberC" parameterType="string" resultType="int">
+	<select id="countByMemberC" parameterType="string" resultType="String">
 		select count(*)as count from company_member
 		where substr(c_joindate,4, 2) = #{month}
 	</select>
 	
-	<select id="countByGenderM" resultType="int">
+	<select id="countByGenderM" resultType="String">
 		select count(*) as count from member
 		where gender = '남자'
 	</select>
 	
-	<select id="countByGenderF" resultType="int">
+	<select id="countByGenderF" resultType="String">
 		select count(*) as count from member
 		where gender = '여자'
 	</select>
 	
-	<select id="countByAgeM" parameterType="int" resultType="int">
-		select count(*) as count
-		from
-		(
-		    select 2020-(substr(birth,0,2)+1899) as age, gender
-		    from member
-		)
-		where substr(age,0,1)=#{age}
-		and gender='여자'
-	</select>
-	
-	<select id="countByAgeF" parameterType="int" resultType="int">
+	<select id="countByAgeM" parameterType="int" resultType="String">
 		select count(*) as count
 		from
 		(
@@ -50,7 +39,18 @@
 		and gender='남자'
 	</select>
 	
-	<select id="countByAge" parameterType="int" resultType="int">
+	<select id="countByAgeF" parameterType="int" resultType="String">
+		select count(*) as count
+		from
+		(
+		    select 2020-(substr(birth,0,2)+1899) as age, gender
+		    from member
+		)
+		where substr(age,0,1)=#{age}
+		and gender='여자'
+	</select>
+	
+	<select id="countByAge" parameterType="int" resultType="String">
 		select count(*) as count
 		from
 		(

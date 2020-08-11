@@ -62,7 +62,7 @@
       where newMember < 24
       ]]>
    </select>
-
+   
 </mapper>
 
 

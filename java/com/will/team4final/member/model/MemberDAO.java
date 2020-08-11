@@ -20,5 +20,6 @@ public interface MemberDAO {
 	int changeYorn(MemberVO memberVo);
 	int selectTotalRecordOfMember(SearchVO searchVo);
 	int updateMember(MemberVO memberVo);
+	List<MemberVO> showMemberForExcel();
 	
 }

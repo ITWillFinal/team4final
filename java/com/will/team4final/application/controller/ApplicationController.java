@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.will.team4final.apply.model.ApplyService;
+import com.will.team4final.apply.model.ApplyVO;
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.member.model.MemberService;
@@ -25,9 +27,10 @@ import com.will.team4final.resume.model.ResumeVO;
 @RequestMapping("/application")
 public class ApplicationController {
 	private static final Logger logger = LoggerFactory.getLogger(ApplicationController.class);
-	@Autowired private ComRecruitService comRecuritServ;
+	@Autowired private ComRecruitService comRecuritService;
 	@Autowired private MemberService memberService;
 	@Autowired private ResumeService resumeService;
+	@Autowired private ApplyService applyService;
 	
 	@RequestMapping("/applicationResume.do")
 	public String applicationResume(@RequestParam(defaultValue = "0") String recruitmentCode,
@@ -38,15 +41,15 @@ public class ApplicationController {
 		
 		logger.info("회사 지원 페이지 userid={}, recruitmentCode={}",userid,recruitmentCode);
 		
-		/* Recruitment_TosVO vo = comRecuritServ.selectTosOneCom(recruitmentCode); */
+		Recruitment_TosVO vo = comRecuritService.selectTosOneCom(recruitmentCode);
 		
 		model.addAttribute("memberVo",memberVo);
 		
-		/*
-		model.addAttribute("vo",vo);		
+		model.addAttribute("vo",vo);	
+		
 		if(vo.getResumeType()==1) {
 			return "application/applicationResume1";			
-		}*/
+		}
 		
 		List<ResumeVO> resumeList = resumeService.selectResumeByUserNo(memberVo.getUserNo());
 		model.addAttribute("resumeList",resumeList);
@@ -56,14 +59,43 @@ public class ApplicationController {
 	
 	@RequestMapping("/apply.do")
 	public String apply(@RequestParam(defaultValue = "0") String recruitmentCode,
-			HttpSession session) {
+			HttpSession session,Model model) {
 		String userid = (String)session.getAttribute("userid");
 		MemberVO memberVo = memberService.selectByUserid(userid);
 		
 		String userNo = memberVo.getUserNo();
 		logger.info("회사 지원 페이지 userNo={}, recruitmentCode={}",userNo);
 		
-		return "";
+		
+		ApplyVO applyVo = new ApplyVO();
+		applyVo.setUserNo(userNo);
+		applyVo.setRecruitmentCode(recruitmentCode);
+		
+		int cnt = applyService.insertApply(applyVo);
+		logger.info("입사 지원 결과 cnt = {}",cnt);
+		
+		Recruitment_TosVO vo = comRecuritService.selectTosOneCom(recruitmentCode);
+		
+		model.addAttribute("vo",vo);
+		model.addAttribute("cnt",cnt);
+
+		if(cnt==0) {
+			String msg="error:입사 지원에 실패했습니다.", url="/hireinpo/infoDetailGo.do?recruitmentCode="+recruitmentCode;
+			model.addAttribute("url",url);
+			model.addAttribute("msg",msg);
+			
+			return "common/message";
+		}else if(cnt==-1) {
+			String msg="이미 지원하였습니다. 재지원 시 취소후 다시 진행해주세요.", url="/hireinpo/infoDetailGo.do?recruitmentCode="+recruitmentCode;
+			model.addAttribute("url",url);
+			model.addAttribute("msg",msg);
+			
+			return "common/message";			
+		}
+		
+		
+		model.addAttribute("memberVo",memberVo);
+		return "application/apply";
 	}
 	
 	
