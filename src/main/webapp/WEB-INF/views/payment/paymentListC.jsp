@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../inc/top.jsp" %>
+<%@ include file="../inc/top.jsp" %>
 <link rel="stylesheet" type="text/css" 
 	href="<c:url value='/resources/js/jquery-ui.min.css'/>"> 
 <script type="text/javascript" 
@@ -83,7 +83,7 @@
 <form name="frm1" method="post" 
 	action="<c:url value='/shop/order/orderList.do'/>" >
 	<!-- 조회기간 include -->
-	<%@include file = "../../inc/dateTerm.jsp" %>
+	<%@include file = "../inc/dateTerm.jsp" %>
 	<input type="submit" value="조회" >
 </form>
 <br>
@@ -198,4 +198,4 @@
 
 
 
-<%@ include file="../../inc/bottom.jsp" %>
+<%@ include file="../inc/bottom.jsp" %>
