@@ -235,3 +235,22 @@ alter table apply drop column memo;
 
 alter table apply
 rename column status to apply_status;
+
+alter table APPLY add resume_no number;
+ALTER TABLE APPLY
+ADD CONSTRAINT APPLY_RESUME_NO
+FOREIGN KEY (resume_no)
+REFERENCES resume (resume_no);
+
+create or replace view v_payment
+as
+select cm.c_member_code, cm.c_userid, ci.com_name, cm.c_username, t.start_date, t.end_date, p.regdate, p.price
+from company_member cm 
+join company_info ci
+on cm.c_member_code = ci.c_member_code
+join payment p
+on ci.c_member_code = p.c_member_code
+join recruitment r
+on ci.com_code = r.com_code
+join tos t
+on r.recruitment_code = t.recruitment_code;

@@ -23,4 +23,6 @@ public interface ResumeService {
 	List<List<ResumeTalentVO>> perscrapList(String cMemberCode);
 	String updatePerscrapStatusMulti(List<Integer> resumeNoList,String cMemberCode, String status);
 	String deletePerscrapMulti(List<Integer> resumeNoList,String cMemberCode);
+	List<Map<String, Object>> selectPerscrapByUserNo(String userNo);
+
 }

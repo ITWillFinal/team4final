@@ -1,6 +1,7 @@
 package com.will.team4final.mypage.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -118,5 +119,18 @@ public class MypageController {
 		List<Recruitment_TosVO> list = comRecruitServ.selectScrapList(scrapList);
 		
 		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("/requestEmployment.do")
+	public String requestEmployment(HttpSession session, Model model) {
+		String userNo = (String)session.getAttribute("userNo");
+		logger.info("입사요청 현황, userNo={}",userNo);
+		
+		List<Map<String,Object>> perList = resumeService.selectPerscrapByUserNo(userNo);
+		logger.info("입사요청 현황, perList={}",perList);
+		
+		model.addAttribute("perList",perList);
+		
+		return "mypage/requestEmployment";
 	}
 }

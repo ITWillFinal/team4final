@@ -31,6 +31,10 @@ $(function(){
 	$('#eduLv').click(function() {
 		$('#tdEdu').val($('#eduLv').val());
 	});
+	
+	$('#reset').click(function() {
+		$('td input').val('');
+	});
 });
 
 $(function() {
@@ -130,7 +134,7 @@ function makeListJson(res){
 		htmlStr += "<a href='<c:url value='/hireinpo/infoDetail.do?recruitmentCode="+this.recruitmentCode+"'/>'><h4>"+this.title+"</h4></a>";
 		htmlStr += "<ul>";
 		htmlStr += "<li>"+this.comName+"</li>";
-		htmlStr += "<li><i class='fas fa-map-marker-alt'></i>"+this.jobType2+"</li>";
+		htmlStr += "<li><i class='fa fa-briefcase' aria-hidden='true'></i>"+this.jobType2+"</li>";
 		htmlStr += "<li>"+this.pay+"</li>";
 		htmlStr += "<ul>";
 		htmlStr += "</div></div>";
@@ -211,7 +215,7 @@ function makeListJson(res){
 	    font-weight: bold;
 	    cursor: pointer;
 	}
-	input[type=reset]{
+	#reset{
 		width: 55px;
 	    height: 55px;
 	    text-align: center;
@@ -354,17 +358,38 @@ function makeListJson(res){
 			</tr>
 			<tr>
 				<th>키워드</th>
-				<td><input type="text" id="tdRecDetail" name="recDetail"></td>
+				<td><input type="text" id="tdRecDetail" name="recDetail" value="${keyword }" placeholder="　키워드 입력"></td>
 			</tr>
 		</table><br><br>
 		<div style="text-align: center;">
-			<input type="reset" value="초기화">
+			<input type="button" value="초기화" id="reset">
 			<input type="button" onClick="hireInfo();" value="상세검색">
 		</div>
 	</form>
 </div>
 <div id="jobListDiv">
-
+	<c:if test="${!empty list }">
+		<c:forEach var="vo" items="${list }">
+			<div class='single-job-items mb-30' style='width: 90%;margin: 0 auto; border: 1px solid #e0e0e08f; margin-top:20px;'>
+				<div class="job-items">
+					<div class="job-tittle">
+						<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h4>${vo.title }</h4></a>
+						<ul>
+							<li>${vo.comName }</li>
+							<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
+							<li>${vo.pay }</li>
+						</ul>
+					</div>
+				</div>
+				<div class='items-link f-right'>
+					<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.recType }</a>
+				</div>
+			</div>
+		</c:forEach>
+	</c:if>
+	<c:if test="${empty list }">
+		<h5 style='width: 90%;margin: 0 auto; border: 1px solid #e0e0e08f; margin-top:20px; padding: 50px;'>등록된 채용공고가 없습니다.</h5>
+	</c:if>
 </div>
 </div>
 <%@ include file="../inc/bottom.jsp" %>

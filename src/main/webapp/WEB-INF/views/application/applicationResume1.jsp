@@ -59,7 +59,6 @@
 	 	font-weight: bold;
 	 	display: block;
 	 	margin: 30px auto;
-	 	color: white;
 	}
 	
 	.resumeList{
@@ -182,47 +181,32 @@
 	}
 </style>
 <script type="text/javascript">
-	$(function(){
-		$('.apply').click(function(){
-			if($('input[type=radio]:checked').val()==null){
-				alert("이력서를 선택해주세요.");
-				return;
-			}
-			var resumeNo=$('input[type=radio]:checked').val();
-			location.href="<c:url value='/application/apply.do?resumeNo="+resumeNo+"&recruitmentCode=${param.recruitmentCode}'/>"
-		});
-
-	});
 	
-	function open_resume(resumeNo){
-		window.open("<c:url value='/companypage/talentResumeDetail.do?resumeNo="+resumeNo+"'/>",
-				'RESUME','width=980,height=auto,left=0,top=0,location=yes,resizable=false')
-	}
 </script>
 	<div class="resumeMain">
 		<h1>${vo.comName} 지원</h1>
 		<div class="info">
-		<div id="infoDiv1">
-		<table>
-			<tr>
-				<th>경력</th>
-				<td>${vo.career }</td>
-			<tr>
-			<tr>
-				<th>학력</th>
-				<td>${vo.educationLv }</td>
-			<tr>
-			<tr>
-				<th>성별</th>
-				<td>${vo.gender }</td>
-			<tr>
-			<tr>
-				<th>근무형태</th>
-				<td>${vo.recType }</td>
-			<tr>
-		</table>
-		</div>
-		<div id="infoDiv2">
+			<div id="infoDiv1">
+			<table>
+				<tr>
+					<th>경력</th>
+					<td>${vo.career }</td>
+				<tr>
+				<tr>
+					<th>학력</th>
+					<td>${vo.educationLv }</td>
+				<tr>
+				<tr>
+					<th>성별</th>
+					<td>${vo.gender }</td>
+				<tr>
+				<tr>
+					<th>근무형태</th>
+					<td>${vo.recType }</td>
+				<tr>
+			</table>
+			</div>
+			<div id="infoDiv2">
 			<table>
 				<tr>
 					<th>급여</th>
@@ -240,38 +224,8 @@
 			</table>
 			</div>
 		</div>
-		<div class="resumeList">
-			<ul>
-			<c:if test="${empty resumeList }">
-				등록된 이력서가 없습니다. 이력서 등록 후 지원해주세요.
-			</c:if>
-			<c:if test="${!empty resumeList }">
-				<span>총 <b style="color: #fb246a;">${resumeList.size() }</b>건</span><br>
-				<span>지원할 이력서를 선택해주세요.</span>
-				<c:forEach var="resumeVo" items="${resumeList }">
-						<li>
-							<span class="regdate">수정 : ${resumeVo.regdate }</span>
-							<div class="resume-info">
-								<input type="radio" name="selResume" value="${resumeVo.resumeNo }"/>
-								<a onclick="open_resume(${resumeVo.resumeNo})" style="cursor: pointer;">
-								<c:if test="${empty resumeVo.selfIntTitle or resumeVo.selfIntTitle==''}">no title</c:if>
-								<c:if test="${!empty resumeVo.selfIntTitle or resumeVo.selfIntTitle!=''}">${resumeVo.selfIntTitle }</c:if>
-								 </a>
-							</div>
-						</li>
-				</c:forEach>				
-			</c:if>
-			</ul>
-		</div>
-		<c:if test="${empty resumeList }">
 			<div class="resume-add">
-					<a href="<c:url value='/resume/resumeWrite.do'/>" class="btn head-btn2">새로운 이력서 등록하기</a>
+				<a href="<c:url value='/companypage/companyResumeUse.do?recruitmentCode=${vo.recruitmentCode}'/>" class="btn head-btn2">자사 이력서 입력하기</a>
 			</div>
-		</c:if>
-		<c:if test="${!empty resumeList }">
-			<div class="resume-add">
-					<a class="btn head-btn2 apply" style="cursor: pointer;">지원하기</a>
-			</div>
-		</c:if>
 	</div>
 <%@ include file="../inc/bottom.jsp" %>

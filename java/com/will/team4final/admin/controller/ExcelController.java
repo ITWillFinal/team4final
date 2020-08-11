@@ -2,6 +2,7 @@ package com.will.team4final.admin.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;
+import com.will.team4final.payment.model.PaymentService;
 
 @Controller
 public class ExcelController {
@@ -31,9 +33,11 @@ public class ExcelController {
 	
 	@Autowired 
 	private MemberService memServ;
+	@Autowired
+	private PaymentService paymentServ;
 	
 	@RequestMapping("/memberExel.do")
-	public void excelDown(HttpServletResponse response) throws IOException {
+	public void memberExcelDown(HttpServletResponse response) throws IOException {
 		List<MemberVO> memList = memServ.showMemberForExcel();
 		logger.info("맴버 엑셀 다운로드, 맴버 수 = {}", memList.size());
 		
@@ -100,10 +104,77 @@ public class ExcelController {
 		}
 	    
 	    response.setContentType("application/vnd.ms-excel");
-	    response.setHeader("Content-Disposition", "attachment;filename=test.xls");
+	    response.setHeader("Content-Disposition", "attachment;filename=member.xls");
 	    
 	    wb.write(response.getOutputStream());
 	    wb.close();
+	}
+	
+	@RequestMapping("/paymentExel.do")
+	public void paymentExcelDown(HttpServletResponse response) throws IOException {
+		List<Map<String, Object>> payList = paymentServ.selectPamentForView();
+		logger.info("결재 엑셀 다운로드, 결재내역 수 = {}", payList.size());
+		
+		XSSFWorkbook wb = new XSSFWorkbook(); //xlsx 엑셀 2007 이상
+		//HSSFWorkbook wb = new HSSFWorkbook(); //xls 엑셀 97~03
+		
+		Sheet sheet = wb.createSheet("결재내역"); //시트명 설정
+		
+		Row row = null;
+		Cell cell = null;
+		int rowNo = 0;
+		String[] col = {"회원번호", "아이디", "기업이름", "회원이름", "서비스시작일", "서비스종료일", "등록일", "결재금액"};
+		row = sheet.createRow(rowNo++);
+		for (int i = 0; i < col.length; i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(col[i]);
+			cell.setCellStyle(cellStyle(wb, "head"));
+		}
+		
+		for (Map<String, Object> map : payList) {
+			row = sheet.createRow(rowNo++);
+			int cellIdx = 0;
+			
+			//data 출력
+			cell = row.createCell(cellIdx++);
+			cell.setCellValue((String)map.get("C_MEMBER_CODE"));
+			cell.setCellStyle(cellStyle(wb, "data"));
+			
+			cell = row.createCell(cellIdx++);
+			cell.setCellValue((String)map.get("C_USERID"));
+			cell.setCellStyle(cellStyle(wb, "data"));
+			
+			cell = row.createCell(cellIdx++);
+			cell.setCellValue((String)map.get("COM_NAME"));
+			cell.setCellStyle(cellStyle(wb, "data"));
+			
+			cell = row.createCell(cellIdx++);
+			cell.setCellValue((String)map.get("C_USERNAME"));
+			cell.setCellStyle(cellStyle(wb, "data"));
+			
+			cell = row.createCell(cellIdx++);
+			cell.setCellValue((String)map.get("START_DATE"));
+			cell.setCellStyle(cellStyle(wb, "data"));
+			
+			cell = row.createCell(cellIdx++);
+			cell.setCellValue((String)map.get("END_DATE"));
+			cell.setCellStyle(cellStyle(wb, "data"));
+			
+			cell = row.createCell(cellIdx++);
+			cell.setCellValue((String)map.get("REGDATE"));
+			cell.setCellStyle(cellStyle(wb, "data"));
+			
+			cell = row.createCell(cellIdx++);
+			cell.setCellValue(Integer.parseInt(map.get("PRICE").toString()));
+			cell.setCellStyle(cellStyle(wb, "data"));
+			
+		}
+		
+		response.setContentType("application/vnd.ms-excel");
+		response.setHeader("Content-Disposition", "attachment;filename=payment.xls");
+		
+		wb.write(response.getOutputStream());
+		wb.close();
 	}
 	
 	//셀 스타일 설정하는 함수

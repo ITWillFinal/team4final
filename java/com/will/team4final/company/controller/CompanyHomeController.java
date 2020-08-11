@@ -468,6 +468,30 @@ public class CompanyHomeController {
 	      return result;
 	   }
 
+	   @ResponseBody
+	   @RequestMapping(value = "/requestHope.do", produces = "application/text; charset=utf8")
+	   public String requestHope(@RequestParam int resumeNo,@RequestParam String cMemberCode) {
+		   logger.info("입사요청희망 cMemberCode={}, resumeNo={}",cMemberCode,resumeNo);
+		   
+		   List<Integer> list = new ArrayList<Integer>();
+		   list.add(resumeNo);
+		   String result=resumeService.updatePerscrapStatusMulti(list, cMemberCode, "Y");
+		   
+		   return result;
+	   }
+
+	   @ResponseBody
+	   @RequestMapping(value = "/requestNo.do", produces = "application/text; charset=utf8")
+	   public String requestNo(@RequestParam int resumeNo,@RequestParam String cMemberCode) {
+		   logger.info("입사요청거절 cMemberCode={}, resumeNo={}",cMemberCode,resumeNo);
+		   
+		   List<Integer> list = new ArrayList<Integer>();
+		   list.add(resumeNo);
+		   String result=resumeService.updatePerscrapStatusMulti(list, cMemberCode, "N");
+		   
+		   return result;
+	   }
+
 	@RequestMapping(value = "/employmentNotice/companyReWrite.do", method = RequestMethod.GET)
 	public void companyReWrite_get(@RequestParam String recruitmentCode, Model model, HttpSession session) {
 		logger.info("채용 정보 수정 화면, 파라미터 recruitmentCode={}", recruitmentCode);
