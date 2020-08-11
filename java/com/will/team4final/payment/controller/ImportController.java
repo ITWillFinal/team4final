@@ -1,5 +1,10 @@
 package com.will.team4final.payment.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,6 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.will.team4final.common.DateSearchVO;
+import com.will.team4final.common.PaginationInfo;
+import com.will.team4final.common.SearchVO;
+import com.will.team4final.common.Utility;
 import com.will.team4final.company.model.ComMemberService;
 import com.will.team4final.company.model.ComRecruitService;
 import com.will.team4final.company.model.ComRecruitVO;
@@ -90,4 +99,58 @@ public class ImportController {
 			 
 			return result;
 		}
+		
+		@RequestMapping("/payment/paymentList.do")
+		public void paymentList(@ModelAttribute SearchVO searchvo, 
+				@ModelAttribute DateSearchVO datesearchVo, Model model) {
+			logger.info("결제목록 searchvo={}", searchvo);
+			logger.info("결제목록 파라미터 dateSearchVo={}", datesearchVo);
+			
+			//페이징
+			PaginationInfo pagingInfo = new PaginationInfo();
+			pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+			pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			pagingInfo.setCurrentPage(searchvo.getCurrentPage());
+			
+			//searchVO에 세팅
+			searchvo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+			searchvo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			logger.info("레코드 개수 = {}", searchvo.getRecordCountPerPage());
+			
+			//datesearch 시작, 종료일시
+			datesearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+			datesearchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			
+			String startDay = datesearchVo.getStartDay();
+			if(startDay == null || startDay.isEmpty()) {
+				Date today = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String str = sdf.format(today);
+				datesearchVo.setStartDay(str);
+				datesearchVo.setEndDay(str);
+			}
+			
+			//map => orderSheet_get 참고
+			List<Map<String, Object>> list = paymentService.selectPayment(datesearchVo);
+			logger.info("결제내역 결과, list.size()={}", list.size());
+			
+			int totalRecord = paymentService.selectTotalRecord(datesearchVo);
+			logger.info("결제내역 개수 조회 결과, totalRecord = {}", totalRecord);
+			
+			pagingInfo.setTotalRecord(totalRecord);
+			
+			//model 담기
+			model.addAttribute("list", list);
+			model.addAttribute("pagingInfo", pagingInfo);
+			
+		}
 	}
+
+
+
+
+
+
+
+
+
