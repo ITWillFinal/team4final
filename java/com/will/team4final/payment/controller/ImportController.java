@@ -102,7 +102,10 @@ public class ImportController {
 		
 		@RequestMapping("/payment/paymentList.do")
 		public void paymentList(@ModelAttribute SearchVO searchvo, 
-				@ModelAttribute DateSearchVO datesearchVo, Model model) {
+				@ModelAttribute DateSearchVO datesearchVo, 
+				HttpSession session,Model model) {
+			String userid = (String) session.getAttribute("userid");
+			
 			logger.info("결제목록 searchvo={}", searchvo);
 			logger.info("결제목록 파라미터 dateSearchVo={}", datesearchVo);
 			
@@ -142,6 +145,7 @@ public class ImportController {
 			//model 담기
 			model.addAttribute("list", list);
 			model.addAttribute("pagingInfo", pagingInfo);
+			model.addAttribute("userid",userid);
 			
 		}
 	}

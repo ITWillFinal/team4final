@@ -58,7 +58,8 @@
 									class="menu-icon icon-bullhorn"></i>공지사항</a></li>
 							<li><a href="<c:url value='/admin/adminMemberManagement.do' />"><i
 									class="menu-icon icon-group"></i>고객관리 </a></li>
-							<li><a href="<c:url value='/admin/adminPayment.do' />"><i class="menu-icon icon-money"></i>매출현황 </a></li>
+							<li><a href="<c:url value='/payment/paymentList.do' />">
+							<i class="menu-icon icon-money"></i>매출현황 </a></li>
 						</ul>
 						<!--/.widget-nav-->
 

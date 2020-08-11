@@ -16,7 +16,7 @@
 		select sum(price) from payment where regdate = to_char(sysdate)
 	</select>
 	
-	<select id="selectPayment" resultType="map" parameterType="searchVo">
+	<select id="selectPayment" resultType="map" parameterType="datesearchVo">
 		select * 
 		from
 		(
@@ -24,10 +24,9 @@
 			from(
 				select *
 				from v_payment
-				<if test="searchKeyword!=null and searchKeyword != ''">
-					where ${searchCondition} like '%'
-							|| #{searchKeyword} || '%'
-				</if>
+				<![CDATA[
+				where regdate>=to_date(#{startDay})
+					and regdate < to_date(#{endDay})+1 ]]>
 				order by regdate desc
 			)A
 		)
@@ -36,12 +35,11 @@
 		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
 	
-	<select id="selectTotalRecord" parameterType="searchVo" resultType="int">
+	<select id="selectTotalRecord" parameterType="datesearchVo" resultType="int">
 		select count(*) from v_payment
-		<if test="searchKeyword!=null and searchKeyword != ''">
-			where ${searchCondition} like '%'
-				|| #{searchKeyword} || '%'
-		</if>
+		<![CDATA[
+		where regdate>=to_date(#{startDay})
+		and regdate < to_date(#{endDay})+1 ]]>
 	</select>
 	<select id="selectPamentForView" resultType="map">
 		select * from v_payment order by start_date desc
