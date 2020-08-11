@@ -13,6 +13,16 @@
 				return false; 
 			}
 		});
+		function open_resume(resumeNo){
+			window.open("<c:url value='/companypage/talentResumeDetail.do?resumeNo="+resumeNo+"'/>",
+					'RESUME','width=980,height=auto,left=0,top=0,location=yes,resizable=false')
+		}
+		$('#resumeNo').click(function(){
+			var resumeNo = $('.resumeNo').val();
+			open_resume(resumeNo);
+			
+		});
+		
 		
 	});
 
@@ -104,11 +114,13 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 				<fmt:parseDate var="end" value="${vo.endDate}" pattern="yyyy-MM-dd" />
 				<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
 				<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
-
+				<!-- resumeNo 값 -->
+				<input type="text" value="${applyVo.resumeNo }" name="resumeNo" class="resumeNo">
+				
 				<div class="single-job-items mb-30" id="listOne">
 					<div class="job-items">
 						<div class="job-tittle">
-							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h4>${vo.title }(${applyVo.applyStatus })</h4></a>
+							<a href="#" id="resumeNo"><h4>${vo.title }(${applyVo.applyStatus })</h4></a>
 							<input type="hidden" id="applyCode" value="${applyVo.applyCode }">
 							<ul>
 								<li>${vo.comName }</li>
