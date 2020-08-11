@@ -30,7 +30,7 @@ public class ExcelController {
 		XSSFWorkbook wb = new XSSFWorkbook(); //xlsx 엑셀 2007 이상
 		//HSSFWorkbook wb = new HSSFWorkbook(); //xls 엑셀 97~03
 		
-		Sheet sheet = wb.createSheet("게시판");
+		Sheet sheet = wb.createSheet("회원 목록"); //시트명 설정
 	    Row row = null;
 	    Cell cell = null;
 	    int rowNo = 0;
