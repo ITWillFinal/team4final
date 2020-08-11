@@ -356,7 +356,6 @@ public class ChartConroller {
 		model.addAttribute("F40", F40);
 		
 		logger.info("차트 조회 완료!!!!!!!!!!");
-		logger.info("차트 조회 완료!!!!!!!!!!");
 	}
 	
 }
