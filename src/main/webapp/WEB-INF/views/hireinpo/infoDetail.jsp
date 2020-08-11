@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
+<jsp:useBean id="today" class="java.util.Date"/>
+<fmt:parseDate var="end" value="${vo.endDate}" pattern="yyyy-MM-dd" />
+<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
+<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
+<input type="hidden" value="${vo.endDate }" id="timerEnd">
 <style>
 	#contentDiv{
 		margin-top: 70px;
@@ -74,7 +79,44 @@
 </style>
 
 <script type="text/javascript">
+	/* 시간 계산 */
+	const countDownTimer = function (id, date) { 
+		var _vDate = new Date(date); // 전달 받은 일자
+		var _second = 1000; 
+		var _minute = _second * 60; 
+		var _hour = _minute * 60; 
+		var _day = _hour * 24; 
+		var timer; 
+		
+		function showRemaining() { 
+			var now = new Date(); 
+			var distDt = _vDate - now; 
+			if (distDt < 0) { 
+				clearInterval(timer); 
+				document.getElementById(id).textContent = '해당 이벤트가 종료 되었습니다!'; 
+				return; 
+			} 
+			var days = Math.floor(distDt / _day); 
+			var hours = Math.floor((distDt % _day) / _hour); 
+			var minutes = Math.floor((distDt % _hour) / _minute); 
+			var seconds = Math.floor((distDt % _minute) / _second); 
+			//document.getElementById(id).textContent = date.toLocaleString() + "까지 : "; 
+			document.getElementById(id).textContent = days + '일 '; 
+			document.getElementById(id).textContent += hours + '시간 '; 
+			document.getElementById(id).textContent += minutes + '분 '; 
+			document.getElementById(id).textContent += seconds + '초'; 
+		} 
+		
+		timer = setInterval(showRemaining, 1000); 
+	} 
+	var timerEnd = $('#timerEnd').val();
+	countDownTimer('timer', timerEnd); // 내일까지 
+	
+
 	$(function() {
+		
+		
+		
 	});
 	function scrapSave() {
 		$.ajax({
@@ -120,10 +162,6 @@
 	
 	
 </script>
-<jsp:useBean id="today" class="java.util.Date"/>
-<fmt:parseDate var="end" value="${vo.endDate}" pattern="yyyy-MM-dd" />
-<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
-<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
 <div id="contentDiv">
 	<div id="headDiv">
 		<p>${vo.comName }</p>
@@ -232,7 +270,9 @@
 	<div id="moreDiv">
 		<h5>접수기간 및 지원</h5>
 		<p><i class="fa fa-file-text" aria-hidden="true"></i> 필수 제출 서류 : ${vo.document }</p>
-		<p style="color: black; font-weight: 700">모집 마감일 : <fmt:formatDate value="${end }" pattern="yyyy년 MM월 dd일"/><br>남은 일수 D-${endDate-startDate+1 }</p>
+		<p style="color: black; font-weight: 700">모집 마감일 : <fmt:formatDate value="${end }" pattern="yyyy년 MM월 dd일"/><br>남은 일수 : D-${endDate-startDate+1 }
+		<p id="timer" style="color: red; font-weight: 700"></p></p>
+		
 		<div>
 			<c:if test="${endDate-startDate+1 > 0}">
 				<a href="<c:url value='/application/applicationResume.do?comCode=${vo.recruitmentCode }'/>" class="btn head-btn2" id="bottomApply">지원</a>
@@ -240,7 +280,8 @@
 			<c:if test="${endDate-startDate+1 < 0}">
 				<div style="margin-bottom: 100px; margin-top: 50px; font-weight: bold; width: 602px; height: 59px; background: #585858e0; padding: 20px; text-align: center; color: white;">지원마감</div>
 			</c:if>
-	    
+	   
+
 		</div>
 	</div>
 </div>
