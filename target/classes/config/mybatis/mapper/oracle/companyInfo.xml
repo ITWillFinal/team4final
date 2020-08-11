@@ -27,6 +27,9 @@
 		where com_code = #{comCode}
 	</update>
 	
+	<select id="selectCompanyInfoByComCode" parameterType="string" resultType="companyInfoVo">
+		select * from COMPANY_INFO where com_code = #{comCode}
+	</select>
 </mapper>
 
 

@@ -24,5 +24,12 @@ public class CompanyInfoDAOMybatis implements CompanyInfoDAO {
 	public int updateCominfoByCode(CompanyInfoVO vo) {
 		return sqlSession.update(namespace+"updateCominfoByCode", vo);
 	}
+
+	@Override
+	public CompanyInfoVO selectCompanyInfoByComCode(String comCode) {
+		return sqlSession.selectOne(namespace+"selectCompanyInfoByComCode",comCode);
+	}
+	
+	
 	
 }

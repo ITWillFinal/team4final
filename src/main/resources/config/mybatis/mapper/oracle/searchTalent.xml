@@ -45,7 +45,9 @@
 	</select>
 	
 	<select id="selectMemberByResumeNo" parameterType="int" resultType="memberVo">
-		select * from member where resume_no=#{resumeNo}
+		select * from member 
+		where user_no = (select user_no from resume 
+		where resume_no=#{resumeNo})
 	</select>
 	
 	<parameterMap type="map" id="requestToJoinParam">
