@@ -58,7 +58,7 @@
 	<select id="recruitmentDetailList" parameterType="comRecruitVo" resultType="recruitment_TosVo">
 		select * from recruitment_tos
 		<where>
-			to_date(end_date) >= sysdate-1
+			and to_date(end_date) >= sysdate-1
 			<if test="location1!=null and location1!=''">
 				and location1=#{location1}
 				<if test="location2!=null and location2!=''">
@@ -87,7 +87,10 @@
 				and EDUCATION_LV like '%' || #{educationLv} || '%'
 			</if>
 			<if test="recDetail!=null and recDetail!=''">
-				and TITLE like '%' || #{recDetail} || '%' or REC_DETAIL like '%' || #{recDetail} || '%'
+				and TITLE like '%' || #{recDetail} || '%'
+			</if>
+			<if test="recDetail!=null and recDetail!=''">
+				and REC_DETAIL like '%' || #{recDetail} || '%'
 			</if>
 		</where>
 	</select>
