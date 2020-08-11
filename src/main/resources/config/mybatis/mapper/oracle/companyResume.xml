@@ -34,11 +34,41 @@
 		)
 	</insert>
 	
+	<update id="updateCompanyResumeUse" parameterType="companyResumeUseVo">
+		update company_resumeuse
+		set
+		NAME = #{name},
+		GENDER = #{gender},
+		EMAIL = #{email},
+		HP = #{hp},
+		BIRTH = #{birth},
+		ZIPCODE = #{zipcode},
+		ADDRESS = #{address},
+		ADDRESS_DETAIL = #{addressDetail},
+		EDU = #{edu},
+		CAREER = #{career},
+		CERTIFICATE = #{certificate},
+	    LANGUAGE = #{language},
+	    AWARD = #{award},
+	    SPECIAL = #{special},
+	    ACTIVITY = #{activity},
+	    SELF1 = #{self1},
+	    SELF2 = #{self2},
+	    SELF3 = #{self3},
+	    SELF4 = #{self4},
+	    SELF5 = #{self5}
+	    where recruitment_code=#{recruitmentCode} and user_id=#{userId}
+	</update>	
+	
 	<select id="selectCompanyResumeUse" resultType="companyResumeUseVo" parameterType="companyResumeUseVo">
 		select * from company_resumeuse
 		where recruitment_code=#{recruitmentCode} and user_id=#{userId}	
 	</select>
 	
+	<select id="countCompanyResumeUse" resultType="int" parameterType="companyResumeUseVo">
+		select count(*) from company_resumeuse
+		where recruitment_code=#{recruitmentCode} and user_id=#{userId}	
+	</select>
 </mapper>
 
 
