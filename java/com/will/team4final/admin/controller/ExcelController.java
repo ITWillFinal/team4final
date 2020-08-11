@@ -100,7 +100,7 @@ public class ExcelController {
 		}
 	    
 	    response.setContentType("application/vnd.ms-excel");
-	    response.setHeader("Content-Disposition", "attachment;filename=test.xls");
+	    response.setHeader("Content-Disposition", "attachment;filename=member.xls");
 	    
 	    wb.write(response.getOutputStream());
 	    wb.close();

@@ -276,6 +276,8 @@ li.select {
 		</c:if>
 		<!--  페이지 번호 끝 -->
 	</div>
+	<br>
+	<a href="<c:url value='/memberExel.do'/>">[엑셀로 다운]</a>
 	<div class="divSearch" style="margin-top: 30px; text-align: center;">
 		<form name="frmSearch" method="post"
 			action='<c:url value="/admin/adminMemberManagement.do"/>'>

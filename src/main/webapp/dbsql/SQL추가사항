@@ -235,3 +235,9 @@ alter table apply drop column memo;
 
 alter table apply
 rename column status to apply_status;
+
+alter table APPLY add resume_no number;
+ALTER TABLE APPLY
+ADD CONSTRAINT APPLY_RESUME_NO
+FOREIGN KEY (resume_no)
+REFERENCES resume (resume_no);
