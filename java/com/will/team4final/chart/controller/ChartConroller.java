@@ -317,7 +317,7 @@ public class ChartConroller {
 		logger.info("{}대 남성 회원수 ={}", 30, M30);
 		logger.info("{}대 남성 회원수 ={}", 40, M40);
 		
-		//남성
+		//여성
 		String F10 = chartService.countByAgeF(1);
 		if (F10 == null || F10.length() == 0) {
 			F10 = "0";
