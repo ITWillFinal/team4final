@@ -1,5 +1,6 @@
 package com.will.team4final.admin.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;
@@ -30,7 +32,8 @@ public class ExcelController {
 	@Autowired 
 	private MemberService memServ;
 	
-	public void excelDown(HttpServletResponse response) {
+	@RequestMapping("/memberExel.do")
+	public void excelDown(HttpServletResponse response) throws IOException {
 		List<MemberVO> memList = memServ.showMemberForExcel();
 		logger.info("맴버 엑셀 다운로드, 맴버 수 = {}", memList.size());
 		
@@ -42,7 +45,7 @@ public class ExcelController {
 	    Row row = null;
 	    Cell cell = null;
 	    int rowNo = 0;
-	    String[] col = {"회원번호", "아이디", "비밀번호", "이름", "이메일", "전화번호", "생년월일", "성별", "가입일", "탈퇴일", "유저상태"};
+	    String[] col = {"회원번호", "아이디", "이름", "이메일", "전화번호", "생년월일", "성별", "가입일", "탈퇴일", "유저상태"};
 	    row = sheet.createRow(rowNo++);
 	    for (int i = 0; i < col.length; i++) {
 			cell = row.createCell(i);
@@ -51,8 +54,56 @@ public class ExcelController {
 		}
 	    
 	    for (MemberVO vo : memList) {
-			
+	    	 row = sheet.createRow(rowNo++);
+	    	 int cellIdx = 0;
+	    	 
+	    	 //data 출력
+	    	 cell = row.createCell(cellIdx++);
+	    	 cell.setCellValue(vo.getUserNo());
+	    	 cell.setCellStyle(cellStyle(wb, "data"));
+	    	 
+	    	 cell = row.createCell(cellIdx++);
+	    	 cell.setCellValue(vo.getUserid());
+	    	 cell.setCellStyle(cellStyle(wb, "data"));
+	    	 
+	    	 cell = row.createCell(cellIdx++);
+	    	 cell.setCellValue(vo.getUserName());
+	    	 cell.setCellStyle(cellStyle(wb, "data"));
+	    	 
+	    	 cell = row.createCell(cellIdx++);
+	    	 cell.setCellValue(vo.getEmail());
+	    	 cell.setCellStyle(cellStyle(wb, "data"));
+	    	 
+	    	 cell = row.createCell(cellIdx++);
+	    	 cell.setCellValue(vo.getHp());
+	    	 cell.setCellStyle(cellStyle(wb, "data"));
+	    	 
+	    	 cell = row.createCell(cellIdx++);
+	    	 cell.setCellValue(vo.getBirth());
+	    	 cell.setCellStyle(cellStyle(wb, "data"));
+	    	 
+	    	 cell = row.createCell(cellIdx++);
+	    	 cell.setCellValue(vo.getGender());
+	    	 cell.setCellStyle(cellStyle(wb, "data"));
+	    	 
+	    	 cell = row.createCell(cellIdx++);
+	    	 cell.setCellValue(vo.getRegdate());
+	    	 cell.setCellStyle(cellStyle(wb, "data"));
+	    	 
+	    	 cell = row.createCell(cellIdx++);
+	    	 cell.setCellValue(vo.getOutdate());
+	    	 cell.setCellStyle(cellStyle(wb, "data"));
+	    	 
+	    	 cell = row.createCell(cellIdx++);
+	    	 cell.setCellValue(vo.getUserStatus());
+	    	 cell.setCellStyle(cellStyle(wb, "data"));
 		}
+	    
+	    response.setContentType("application/vnd.ms-excel");
+	    response.setHeader("Content-Disposition", "attachment;filename=test.xls");
+	    
+	    wb.write(response.getOutputStream());
+	    wb.close();
 	}
 	
 	//셀 스타일 설정하는 함수
