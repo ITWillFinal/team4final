@@ -62,8 +62,8 @@ public class CompanyResumeController {
 		logger.info("userid={}", userid);
 		
 		CompanyResumeSetVO vo = companyResumeSetService.selectCompanyResumeSet(recruitmentCode);
-		
 		logger.info("companyResumeUseVo={}", vo);
+		
 		model.addAttribute("userId", userid);
 		model.addAttribute("vo", vo);
 		return "companypage/companyResumeUse";
