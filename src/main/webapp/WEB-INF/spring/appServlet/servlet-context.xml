@@ -73,6 +73,9 @@
 		<interceptor>
 			<mapping path="/companypage/**"/>
 			<exclude-mapping path="/companypage/companyHome.do"/>			
+			<exclude-mapping path="/companypage/companyResumeUse.do"/>			
+			<exclude-mapping path="/companypage/companyResumeView.do"/>
+			<exclude-mapping path="/companypage/companyResumeEdit.do"/>
 			<exclude-mapping path="/companypage/member/companyJoin.do"/>			
 			<exclude-mapping path="/companypage/member/checkUserid.do"/>		
 			<exclude-mapping path="/companypage/member/register.do"/>		
