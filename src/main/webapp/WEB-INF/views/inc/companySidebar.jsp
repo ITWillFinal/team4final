@@ -34,8 +34,9 @@
 		  <li><div>결제내역조회</div></li>
 		  <li><div>세금계산서발행</div></li>
 		  <li class="ui-widget-header"><div>고객센터</div></li>
-		  <li><div>자주 찾는 질문</div></li>
-		  <li><div>1:1 문의</div></li>
-		  <li><div>나의 1:1 문의</div></li>
+		  <li><div>공지사항</div></li>
+		  <li><div><a href = "<c:url value = '/gogak/company/faqList.do'/>">자주 찾는 질문</a></div></li>
+		  <li><div><a href = "<c:url value = '/gogak/qnaC/qnaWrite.do'/>">1:1 문의</a></div></li>
+		  <li><div><a href = "<c:url value = '/gogak/qnaC/qnaList.do'/>">나의 1:1 문의</a></div></li>
 		</ul>		
 	</div>

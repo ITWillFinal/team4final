@@ -175,10 +175,10 @@ div#donutchart {
 				<div id="curve_chart2" style="width: 700px; height: 400px"></div>
 				<div class = "idx">각 월별 매출현황입니다.<br>그래프 선에 마우스를 올리면 정확한 데이터를 알 수 있습니다.<br>월별 매출 현황은 매월 5일에 업데이트 됩니다.</div>
 				
-				<h4 class = "others">월별 일반회원 가입 현황</h4>
+				<h4 class = "others">월별 일반회원 및 기업회원 가입 현황</h4>
 				<hr>
 				<div id="curve_chart" style="width: 680px; height: 300px"></div>
-				<div class = "idx">각 월별 일반회원 가입 현황입니다.<br>그래프 선에 마우스를 올리면 정확한 데이터를 알 수 있습니다.<br>월별 매출 현황은 매월 5일에 업데이트 됩니다.</div>
+				<div class = "idx">각 월별 일반회원 및 기업회원 가입 현황입니다.<br>그래프 선에 마우스를 올리면 정확한 데이터를 알 수 있습니다.<br>월별 매출 현황은 매월 5일에 업데이트 됩니다.</div>
 				
 				<h4 class = "others">연령별 일반회원 현황</h4>
 				<hr>

@@ -81,6 +81,7 @@ li.select {
 }
 tbody {
     font-size: 12px;
+    text-align: center;
 }
 p#info {
     margin-top: 30px;
@@ -120,6 +121,7 @@ p#info {
 </script>
 
 	<!-- Id에 따라 top, sidebar, bottom 변경 -->
+	
 	<%@ include file="../../inc/adminTop.jsp"%>
 <main>
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
@@ -192,7 +194,7 @@ p#info {
 										</td>
 										<td style="text-align: center;">${vo.qnaNo }</td>
 										<td style="text-align: center;">${vo.status }</td>
-										<td style="text-align: center;">${vo.categoryNO }</td>
+										<td style="text-align: center;">${vo.category }</td>
 										<td style="text-align: center;">
 											<c:if test="${vo.no != 0 }">
 												<a href = "<c:url value = '/gogak/qna/qnaDetail.do?no=${vo.qnaNo }'/>" style="color: black;">
@@ -276,6 +278,11 @@ p#info {
 				            		selected="selected"
 				            	</c:if>
 				            >답변</option>
+				            <option value="status" 
+				            	<c:if test="${param.searchCondition=='status' }">
+				            		selected="selected"
+				            	</c:if>
+				            >구분</option>
 				        </select>
 					        <input type="text" name="searchKeyword" title="검색어 입력"
 					        	value="${param.searchKeyword}"style="height: 27px;">   

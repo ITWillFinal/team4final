@@ -303,4 +303,11 @@ public class MemberController {
 		return "common/message";
 	}
 	
+	@RequestMapping("/currentApply.do")
+	public String currentApply(HttpSession session) {
+		String userNo = (String)session.getAttribute("userNo");
+		logger.info("일반 회원 지원 현황, userNo={}", userNo);
+		return "member/currentApply/currentApply";
+	}
+	
 }

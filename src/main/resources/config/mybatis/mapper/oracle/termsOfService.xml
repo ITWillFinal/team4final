@@ -11,7 +11,6 @@
 			insert into TOS(SERVICE_CODE,END_DATE, RECRUITMENT_CODE)
 			values(#{serviceCode}, #{endDate}, #{recruitmentCode})
 	</insert>
-	
 </mapper>
 
 

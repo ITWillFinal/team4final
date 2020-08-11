@@ -12,6 +12,10 @@
 			values(#{paymentCode}, #{productName}, #{price}, #{cMemberCode})
 	</insert>
 	
+	<select id="selectTodayPayment" resultType="String">
+		select sum(price) from payment where regdate = to_char(sysdate)
+	</select>
+	
 </mapper>
 
 

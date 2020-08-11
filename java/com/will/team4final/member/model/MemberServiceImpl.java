@@ -88,4 +88,9 @@ public class MemberServiceImpl implements MemberService{
 	public int updateMember(MemberVO memberVo) {
 		return memberDao.updateMember(memberVo);
 	}
+
+	@Override
+	public List<MemberVO> showMemberForExcel() {
+		return memberDao.showMemberForExcel();
+	}
 }

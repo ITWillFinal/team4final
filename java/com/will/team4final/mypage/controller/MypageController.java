@@ -16,6 +16,7 @@ import com.will.team4final.company.info.model.CompanyInfoService;
 import com.will.team4final.company.info.model.CompanyInfoVO;
 import com.will.team4final.company.model.ComMemberService;
 import com.will.team4final.company.model.ComRecruitService;
+import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.member.model.MemberService;
@@ -86,9 +87,14 @@ public class MypageController {
 			CompanyInfoVO comInfoVo = comInfoServ.selectComInfoBycMemberCode(comMemberVo.getcMemberCode());
 			logger.info("기업회원 기업 정보, comInfoVo={}", comInfoVo);
 			
+			//기업회원 공고 정보 구하기
+			List<Recruitment_TosVO> comRecuritTosListVo = comRecruitServ.selectList_tosByComcode(comInfoVo.getComCode());
+			logger.info("기업회원 notice, comRecuritVo={}", comRecuritTosListVo);
+			
 			model.addAttribute("birth", birth);
 			model.addAttribute("comMemberVo", comMemberVo);
 			model.addAttribute("comInfoVo", comInfoVo);
+			model.addAttribute("comRecuritListVo", comRecuritTosListVo);
 			
 			return "comMypage/comMypageHome";
 		}
