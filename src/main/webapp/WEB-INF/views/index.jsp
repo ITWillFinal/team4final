@@ -21,13 +21,20 @@
 	
 </style>
 <script type="text/javascript">
-	function searchForKeyword() {
-		var keyword = $('#inputKeyword').val();
-		location.href="<c:url value='/hireinpo/hireinpo.do?keyword="+keyword+"'/>";
-	}
 	
 	$(function() {
 		$('#inputSubmit').click(function() {
+			if($('#inputKeyword').val().length < 1){
+				alert('키워드를 입력해주세요!');
+				$('#inputKeyword').focus();
+				event.preventDefault();
+			}else{
+				var keyword = $('#inputKeyword').val();
+				location.href="<c:url value='/hireinpo/hireinpo.do?keyword="+keyword+"'/>";
+			}
+		});
+		
+		$('form[name=frm]').submit(function() {
 			if($('#inputKeyword').val().length < 1){
 				alert('키워드를 입력해주세요!');
 				$('#inputKeyword').focus();
@@ -44,22 +51,21 @@
                 <div class="single-slider slider-height d-flex align-items-center"
                     style="background-image: url('${pageContext.request.contextPath}/resources/images/hero/h1_hero.jpg');">
                     <div class="container">
-                        <form action="">
-                            <div class="row" id="searchSelectDiv">
-                                <a href="<c:url value='/hireinpo/infoSearchByLocation.do'/>" class="btn head-btn2" style="font-weight: bold;">지역별</a>
-                                <a href="<c:url value='/hireinpo/hireInfoByJobType.do'/>" class="btn head-btn2" style="font-weight: bold;">직무별</a>
-                                <a href="<c:url value='/hireinpo/hireInfoByInduType.do'/>" class="btn head-btn2" style="font-weight: bold;">산업별</a>
-                            </div>
-                                <!-- Search Box -->
-                               
-							<div style="display: flex; margin-left: 10px;">
-							    <div style="box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.08); padding-left: 20px; width: 430px;margin-left: 20px;">
-							        <input type="text" placeholder="원하는 직업의 키워드를 입력해주세요!"
-							            style="width: 95%;" id="inputKeyword">
-							    </div>
-							    <input type="button" onclick="searchForKeyword()" value="검색" style="background: #fb246a; width: 100px; color: #ffffff; font-weight: bold; cursor: pointer;" id="inputSubmit">
+						<div class="row" id="searchSelectDiv">
+							<a href="<c:url value='/hireinpo/infoSearchByLocation.do'/>" class="btn head-btn2" style="font-weight: bold;">지역별</a>
+							<a href="<c:url value='/hireinpo/hireInfoByJobType.do'/>" class="btn head-btn2" style="font-weight: bold;">직무별</a>
+							<a href="<c:url value='/hireinpo/hireInfoByInduType.do'/>" class="btn head-btn2" style="font-weight: bold;">산업별</a>
+						</div>
+						    <!-- Search Box -->
+						                        
+						<div style="display: flex; margin-left: 10px;">
+							<div style="box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.08); padding-left: 20px; width: 430px;margin-left: 20px;">
+								<form name="frm" action="<c:url value='/hireinpo/hireinpo.do'/>">
+									<input type="text" placeholder="원하는 직업의 키워드를 입력해주세요!" style="width: 95%;" id="inputKeyword" name="keyword">
+								</form>
 							</div>
-                        </form>
+							<input type="button" onclick="searchForKeyword()" value="검색" style="background: #fb246a; width: 100px; color: #ffffff; font-weight: bold; cursor: pointer;" id="inputSubmit">
+						</div>
                     </div>
                 </div>
             </div>

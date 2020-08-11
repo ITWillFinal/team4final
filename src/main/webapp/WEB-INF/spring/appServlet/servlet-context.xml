@@ -83,6 +83,7 @@
 			<exclude-mapping path="/companypage/member/auth.do"/>		
 			<exclude-mapping path="/companypage/member/join_injeung.do"/>		
 			<exclude-mapping path="/companypage//member/checkId.do"/>		
+			<exclude-mapping path="/companypage/serviceInfo.do"/>		
 			<beans:ref bean="companyUseInterceptors"/>
 		</interceptor>
 	</interceptors>
