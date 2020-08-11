@@ -2,13 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<<<<<<< HEAD
 <mapper namespace="com.mybatis.mapper.oracle.chart">
  	<select id="sumByMonth" parameterType="string" resultType="String">
-=======
-<mapper namespace="com.will.team4final.chart">
- 	<select id="sumByMonth" parameterType="string" resultType="int">
->>>>>>> 46fee69f696b99526f0ffaaf3b73af3630572f32
 		select sum(price)as sum from payment
 		where substr(regdate, 4, 2) = #{month}
 	</select>
