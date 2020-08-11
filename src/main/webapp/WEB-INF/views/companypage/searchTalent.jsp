@@ -60,7 +60,7 @@
 					$.each(res,function(idx,item){
 						table+="<tr><td>"
 						table+="<input type='checkbox' class='checkMember' value='"+item.resumeNo+"'></td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
-						table+=item.userName+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
+						table+=item.userName+"("+item.resumeNo+")"+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
 						table+=item.finalEdu+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
 						table+=item.careerYear+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
 						table+=item.selfIntTitle+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
@@ -125,7 +125,7 @@
 	    padding: 0;
 	}
 	.ST-main{
-		width: 900px;
+		width: 1000px;
 		height: auto;
 		padding: 15px;
 	}
@@ -333,13 +333,13 @@
 							</select>
 				</div>	
 				<div class="search-result">
-				<div style="height:290px; overflow-y: scroll;">
+				<div style="height:290px; overflow-y: auto;">
 					<table>
 						<caption style="display: none;">인재 검색 결과 테이블</caption>
-							<col width=3%>
-							<col width="7%">
+							<col width=2%>
+							<col width="9%">
 							<col width="14%">
-							<col width="5%">
+							<col width="4%">
 							<col width="19%">
 							<col width="14%">
 							<col width="15%">

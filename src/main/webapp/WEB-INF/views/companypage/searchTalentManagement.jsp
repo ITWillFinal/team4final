@@ -107,7 +107,7 @@
 	    padding: 0;
 	}
 	.ST-main{
-		width: 900px;
+		width: 1000px;
 		height: auto;
 		padding: 15px;
 	}
@@ -127,7 +127,7 @@
    		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 		padding: 10px;
 		height: 460px;
-		width:430px;
+		width:483px;
 	}
 	
 	.add-condition{
@@ -196,15 +196,15 @@
 				<h1>입사지원 요청 관리</h1>
 			</div>
 				<div class="search-result">
-				<div style="height:415px;overflow-y: scroll;">
+				<div style="height:415px;overflow-y: auto;">
 					<span>입사지원 요청 현황 ▼</span>
 					<table>
 						<caption style="display: none;">인재 검색 결과 테이블</caption>
-							<col width=8%>
-							<col width="17%">
+							<col width=7%>
+							<col width="15%">
 							<col width="25%">
-							<col width="10%">
-							<col width="22%">
+							<col width="9%">
+							<col width="26%">
 							<col width="18%">
 						<colgroup>
 						<thead>
@@ -246,15 +246,15 @@
 				</div>
 				</div>
 				<div class="search-result">
-				<div style="height:415px;overflow-y: scroll;">
+				<div style="height:415px;overflow-y: auto;">
 					<span>입사지원 희망 현황 ▼</span>
 					<table>
 						<caption style="display: none;">인재 검색 결과 테이블</caption>
-							<col width=8%>
-							<col width="17%">
+							<col width=7%>
+							<col width="15%">
 							<col width="25%">
-							<col width="10%">
-							<col width="22%">
+							<col width="9%">
+							<col width="26%">
 							<col width="18%">
 						<colgroup>
 						<thead>

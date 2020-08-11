@@ -47,5 +47,5 @@ public interface ResumeDAO {
 	List<Integer> selectResumeNoFromPerscrap(Map<String, String> map);
 	int updatePerscrapStatus(Map<String,String> map);
 	int deletePerscrap(Map<String,String> map);
-	
+	List<Map<String, Object>> selectPerscrapByUserNo(String userNo);
 }

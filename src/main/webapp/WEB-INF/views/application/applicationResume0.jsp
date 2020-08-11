@@ -59,6 +59,7 @@
 	 	font-weight: bold;
 	 	display: block;
 	 	margin: 30px auto;
+	 	color: white;
 	}
 	
 	.resumeList{
