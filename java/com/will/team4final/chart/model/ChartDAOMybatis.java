@@ -12,42 +12,42 @@ public class ChartDAOMybatis implements ChartDAO{
 	private String namespace = "com.mybatis.mapper.oracle.chart.";
 
 	@Override
-	public int sumByMonth(String month) {
+	public String sumByMonth(String month) {
 		return sqlsession.selectOne(namespace+"sumByMonth", month);
 	}
 
 	@Override
-	public int countByMember(String month) {
+	public String countByMember(String month) {
 		return sqlsession.selectOne(namespace+"countByMember", month);
 	}
 
 	@Override
-	public int countByMemberC(String month) {
+	public String countByMemberC(String month) {
 		return sqlsession.selectOne(namespace+"countByMemberC", month);
 	}
 
 	@Override
-	public int countByGenderM() {
+	public String countByGenderM() {
 		return sqlsession.selectOne(namespace+"countByGenderM");
 	}
 
 	@Override
-	public int countByGenderF() {
+	public String countByGenderF() {
 		return sqlsession.selectOne(namespace+"countByGenderF");
 	}
 
 	@Override
-	public int countByAgeM(int age) {
+	public String countByAgeM(int age) {
 		return sqlsession.selectOne(namespace+"countByAgeM", age);
 	}
 
 	@Override
-	public int countByAgeF(int age) {
+	public String countByAgeF(int age) {
 		return sqlsession.selectOne(namespace+"countByAgeF", age);
 	}
 
 	@Override
-	public int countByAge(int age) {
+	public String countByAge(int age) {
 		return sqlsession.selectOne(namespace+"countByAge", age);
 	}
 	
