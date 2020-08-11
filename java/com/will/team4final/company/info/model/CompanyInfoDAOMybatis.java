@@ -1,5 +1,7 @@
 package com.will.team4final.company.info.model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,6 +30,11 @@ public class CompanyInfoDAOMybatis implements CompanyInfoDAO {
 	@Override
 	public CompanyInfoVO selectCompanyInfoByComCode(String comCode) {
 		return sqlSession.selectOne(namespace+"selectCompanyInfoByComCode",comCode);
+	}
+
+	@Override
+	public List<CompanyInfoVO> selectCompanyInfo() {
+		return sqlSession.selectList(namespace+"selectCompanyInfo");
 	}
 	
 	
