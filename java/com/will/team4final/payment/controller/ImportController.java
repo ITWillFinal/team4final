@@ -148,6 +148,63 @@ public class ImportController {
 			model.addAttribute("userid",userid);
 			
 		}
+		
+		
+		///////////////////////////////////////////////////////////////////////////////////
+		/////////↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓paymentListC↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓/////////////
+		///////////////////////////////////////////////////////////////////////////////////
+		@RequestMapping("/payment/paymentListC.do")
+		public void paymentListC(@ModelAttribute SearchVO searchvo, 
+				@ModelAttribute DateSearchVO datesearchVo, 
+				HttpSession session,Model model) {
+			String customerId = (String) session.getAttribute("userid");
+			datesearchVo.setCustomerId(customerId);
+			
+			logger.info("결제목록 searchvo={}", searchvo);
+			logger.info("결제목록 파라미터 dateSearchVo={}", datesearchVo);
+			logger.info("회원 ID customerId={}", customerId);
+			
+			//페이징
+			PaginationInfo pagingInfo = new PaginationInfo();
+			pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+			pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			pagingInfo.setCurrentPage(searchvo.getCurrentPage());
+			
+			//searchVO에 세팅
+			searchvo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+			searchvo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			logger.info("레코드 개수 = {}", searchvo.getRecordCountPerPage());
+			
+			//datesearch 시작, 종료일시
+			datesearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+			datesearchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			
+			String startDay = datesearchVo.getStartDay();
+			if(startDay == null || startDay.isEmpty()) {
+				Date today = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String str = sdf.format(today);
+				datesearchVo.setStartDay(str);
+				datesearchVo.setEndDay(str);
+			}
+			
+			//map => orderSheet_get 참고
+			List<Map<String, Object>> list = paymentService.selectPaymentC(datesearchVo);
+			logger.info("결제내역 결과, list.size()={}", list.size());
+			
+			int totalRecord = paymentService.selectTotalRecordC(datesearchVo);
+			logger.info("결제내역 개수 조회 결과, totalRecord = {}", totalRecord);
+			
+			pagingInfo.setTotalRecord(totalRecord);
+			
+			//model 담기
+			model.addAttribute("list", list);
+			model.addAttribute("pagingInfo", pagingInfo);
+			
+		}
+		
+		
+		
 	}
 
 

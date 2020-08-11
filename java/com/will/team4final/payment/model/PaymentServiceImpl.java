@@ -31,5 +31,15 @@ public class PaymentServiceImpl implements PaymentService {
 	public int selectTotalRecord(SearchVO searchvo) {
 		return paymentDao.selectTotalRecord(searchvo);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectPaymentC(SearchVO searchvo) {
+		return paymentDao.selectPaymentC(searchvo);
+	}
+
+	@Override
+	public int selectTotalRecordC(SearchVO searchvo) {
+		return paymentDao.selectTotalRecordC(searchvo);
+	}
 	
 }

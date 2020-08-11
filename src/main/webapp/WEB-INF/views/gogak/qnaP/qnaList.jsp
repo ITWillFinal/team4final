@@ -183,7 +183,7 @@ li#fst {
 												pattern="yyyy-MM-dd"/>
 										</td>
 									</tr>
-									</c:if>
+									</c:if>z
 									<c:set var = "idx" value = "${idx+1 }"/>
 								</c:forEach>
 						</c:if>
