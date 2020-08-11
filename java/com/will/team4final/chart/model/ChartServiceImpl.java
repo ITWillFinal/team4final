@@ -8,42 +8,42 @@ public class ChartServiceImpl implements ChartService{
 	@Autowired private ChartDAO chartDao;
 
 	@Override
-	public int sumByMonth(String month) {
+	public String sumByMonth(String month) {
 		return chartDao.sumByMonth(month);
 	}
 
 	@Override
-	public int countByMember(String month) {
+	public String countByMember(String month) {
 		return chartDao.countByMember(month);
 	}
 
 	@Override
-	public int countByMemberC(String month) {
+	public String countByMemberC(String month) {
 		return chartDao.countByMemberC(month);
 	}
 
 	@Override
-	public int countByGenderM() {
+	public String countByGenderM() {
 		return chartDao.countByGenderM();
 	}
 
 	@Override
-	public int countByGenderF() {
+	public String countByGenderF() {
 		return chartDao.countByGenderF();
 	}
 
 	@Override
-	public int countByAgeM(int age) {
+	public String countByAgeM(int age) {
 		return chartDao.countByAgeM(age);
 	}
 
 	@Override
-	public int countByAgeF(int age) {
+	public String countByAgeF(int age) {
 		return chartDao.countByAgeF(age);
 	}
 
 	@Override
-	public int countByAge(int age) {
+	public String countByAge(int age) {
 		return chartDao.countByAge(age);
 	}
 
