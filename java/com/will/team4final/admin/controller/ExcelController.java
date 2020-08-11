@@ -4,9 +4,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.util.HSSFColor.HSSFColorPredefined;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,11 +38,42 @@ public class ExcelController {
 		//HSSFWorkbook wb = new HSSFWorkbook(); //xls 엑셀 97~03
 		
 		Sheet sheet = wb.createSheet("회원 목록"); //시트명 설정
+		
 	    Row row = null;
 	    Cell cell = null;
 	    int rowNo = 0;
-
-
-
+	    String[] col = {"회원번호", "아이디", "비밀번호", "이름", "이메일", "전화번호", "생년월일", "성별", "가입일", "탈퇴일", "유저상태"};
+	    row = sheet.createRow(rowNo++);
+	    for (int i = 0; i < col.length; i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(col[i]);
+			cell.setCellStyle(cellStyle(wb, "head"));
+		}
+	    
+	    for (MemberVO vo : memList) {
+			
+		}
+	}
+	
+	//셀 스타일 설정하는 함수
+	public static CellStyle cellStyle(XSSFWorkbook wb, String kind) {
+		CellStyle cellStyle = wb.createCellStyle();
+		cellStyle.setAlignment(HorizontalAlignment.CENTER); //가운데 정렬
+		cellStyle.setVerticalAlignment(VerticalAlignment.CENTER); //중앙 정렬
+		//경계선 설정
+		cellStyle.setBorderTop(BorderStyle.THIN);
+		cellStyle.setBorderBottom(BorderStyle.THIN);
+		cellStyle.setBorderLeft(BorderStyle.THIN);
+		cellStyle.setBorderRight(BorderStyle.THIN);
+		
+		if(kind.equals("head")) {
+			cellStyle.setFillForegroundColor(IndexedColors.YELLOW.getIndex()); //노란색
+			cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND); //색상 패턴처리
+		}else if(kind.equals("data")) {
+			cellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex()); //회색 25%
+			cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND); //색상 패턴처리
+		}
+		
+		return cellStyle;
 	}
 }
