@@ -221,3 +221,17 @@ REFERENCES RECRUITMENT (RECRUITMENT_CODE);
 
 ALTER TABLE qna DROP COLUMN category_no;
 ALTER TABLE qna add category varchar2(100);
+
+create sequence apply_seq
+increment by 1
+start with 1
+nocache;
+
+ALTER TABLE qna DROP COLUMN category_no;
+ALTER TABLE qna add category varchar2(100);
+
+alter table apply drop column CONTENT;
+alter table apply drop column memo;
+
+alter table apply
+rename column status to apply_status;

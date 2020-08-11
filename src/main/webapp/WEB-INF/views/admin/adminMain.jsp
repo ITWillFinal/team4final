@@ -8,7 +8,7 @@
 			<p class="text-muted">Growth</p> </a><a href="#"
 			class="btn-box big span4"><i class="icon-user"></i><b>${totalToday }</b>
 			<p class="text-muted">New Users</p> </a><a href="#"
-			class="btn-box big span4"><i class="icon-money"></i><b><fmt:formatNumber value="${todayPay }" pattern="#,###"/>원</b>
+			class="btn-box big span4"><i class="icon-money"></i><b>￦<fmt:formatNumber value="${todayPay }" pattern="#,###"/></b>
 			<p class="text-muted">Profit</p> </a>
 	</div>
 	<div class="btn-box-row row-fluid">
