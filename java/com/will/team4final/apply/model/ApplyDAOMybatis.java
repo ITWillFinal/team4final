@@ -20,4 +20,9 @@ public class ApplyDAOMybatis implements ApplyDAO{
 		return sqlSession.selectOne(namespace+"selectApply",applyVo);
 	}
 
+	@Override
+	public int deleteApply(String applyCode) {
+		return sqlSession.delete(namespace+"deleteApply", applyCode);
+	}
+
 }

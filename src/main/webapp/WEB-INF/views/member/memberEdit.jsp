@@ -234,7 +234,7 @@
 
 					<div class="form-group">
 						<div class="col-lg-offset-2 col-lg-10">
-							<button type="submit" class="btn btn-primary">Sign in</button>
+							<button type="submit" class="btn btn-primary">수정</button>
 						</div>
 					</div>
 					<input type="hidden" name="chPwd" id="chPwd">

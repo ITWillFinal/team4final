@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.will.team4final.apply.model.ApplyVO;
 import com.will.team4final.common.SearchVO;
 
 @Service
@@ -92,5 +93,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<MemberVO> showMemberForExcel() {
 		return memberDao.showMemberForExcel();
+	}
+
+	@Override
+	public List<ApplyVO> selectApplyByuserNo(String userNo) {
+		return memberDao.selectApplyByuserNo(userNo);
 	}
 }

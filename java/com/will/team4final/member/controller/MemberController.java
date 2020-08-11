@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -26,7 +27,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.will.team4final.apply.model.ApplyService;
+import com.will.team4final.apply.model.ApplyVO;
 import com.will.team4final.common.FileUploadUtil;
+import com.will.team4final.company.model.ComRecruitService;
+import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;
 
@@ -38,6 +43,7 @@ public class MemberController {
 	@Autowired private MemberService memberService;
 	@Autowired private JavaMailSender mailSender;
 	@Autowired private BCryptPasswordEncoder pwdEncoder;
+	@Autowired private ComRecruitService comRecruitServ;
 	
 	
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
@@ -304,9 +310,27 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/currentApply.do")
-	public String currentApply(HttpSession session) {
+	public String currentApply(HttpSession session, Model model) {
 		String userNo = (String)session.getAttribute("userNo");
 		logger.info("일반 회원 지원 현황, userNo={}", userNo);
+		
+		//지원 정보 가져오기(여러개면 여러개)
+		List<ApplyVO> applyListVo = memberService.selectApplyByuserNo(userNo);
+		logger.info("지원 정보, applyListVo={}", applyListVo);
+		
+		//여러개 있는 것을 _tos에 담기
+		List<Recruitment_TosVO> tosVo = new ArrayList<Recruitment_TosVO>();
+		for(ApplyVO list : applyListVo ) {
+			//하나씩 가져와서 담기
+			Recruitment_TosVO vo = comRecruitServ.selectOneCom(list.getRecruitmentCode());
+			 tosVo.add(vo);
+		}
+		logger.info("tosVo={}", tosVo);
+		
+		
+		model.addAttribute("tosVo", tosVo);
+		model.addAttribute("applyListVo", applyListVo);
+		
 		return "member/currentApply/currentApply";
 	}
 	

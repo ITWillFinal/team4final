@@ -19,4 +19,9 @@ public class ApplyServiceImpl implements ApplyService{
 		}
 		
 	}
+
+	@Override
+	public int deleteApply(String applyCode) {
+		return applyDao.deleteApply(applyCode);
+	}
 }

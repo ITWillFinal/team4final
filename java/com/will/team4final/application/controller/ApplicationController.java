@@ -100,5 +100,22 @@ public class ApplicationController {
 		return "application/apply";
 	}
 	
-	
+	@RequestMapping("/applicationDelete.do")
+	public String applicationDelete(@RequestParam(required = false) String applyCode, Model model) {
+		if(applyCode ==null || applyCode.isEmpty()) {
+			String msg="잘못된 경로입니다.", url="/member/currentApply.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "common/message";
+		}
+		
+		int cnt = applyService.deleteApply(applyCode);
+		String msg="삭제 실패했습니다.", url="/member/currentApply.do";
+		if(cnt>0) {
+			msg="삭제 성공했습니다";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
+	}
 }

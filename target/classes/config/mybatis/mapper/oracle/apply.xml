@@ -16,6 +16,12 @@
 		select count(*) from apply 
 		where user_no=#{userNo} and recruitment_code=#{recruitmentCode}
 	</select>
+	
+	<delete id="deleteApply" parameterType="string">
+		delete from APPLY
+		where APPLY_CODE=#{applyCode}
+	</delete>
+	
 </mapper>
 
 

@@ -144,7 +144,7 @@
 									<img src="<c:url value='/companyInfoImage/${comInfoVo.imageURL }'/>" alt="" width="230" align="absmiddle">
 								</div>
 								<div class="memberInfo">
-									<span class="userName">${comInfoVo.comName }</span><span>님</span><span>(${comInfoVo.ceo }사장님)</span>
+									<span class="userName">${comInfoVo.comName }</span><span>님</span><span>(${comInfoVo.ceo } 대표님)</span>
 										<input class="editComInfo" type="button" value="수정하기">
 									<br>
 									<c:if test="${!empty comInfoVo.homepage }">
