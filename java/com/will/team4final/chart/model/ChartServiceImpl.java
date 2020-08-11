@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ChartServiceImpl implements ChartService{
-	
 	@Autowired private ChartDAO chartDao;
 
 	@Override
