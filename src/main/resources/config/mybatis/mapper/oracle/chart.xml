@@ -36,7 +36,7 @@
 		    from member
 		)
 		where substr(age,0,1)=#{age}
-		and gender='여자'
+		and gender='남자'
 	</select>
 	
 	<select id="countByAgeF" parameterType="int" resultType="String">
@@ -47,7 +47,7 @@
 		    from member
 		)
 		where substr(age,0,1)=#{age}
-		and gender='남자'
+		and gender='여자'
 	</select>
 	
 	<select id="countByAge" parameterType="int" resultType="String">
