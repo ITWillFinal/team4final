@@ -1,6 +1,7 @@
 package com.will.team4final.mypage.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import com.will.team4final.company.info.model.CompanyInfoService;
 import com.will.team4final.company.info.model.CompanyInfoVO;
 import com.will.team4final.company.model.ComMemberService;
 import com.will.team4final.company.model.ComRecruitService;
+import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.member.model.MemberService;
@@ -86,9 +88,14 @@ public class MypageController {
 			CompanyInfoVO comInfoVo = comInfoServ.selectComInfoBycMemberCode(comMemberVo.getcMemberCode());
 			logger.info("기업회원 기업 정보, comInfoVo={}", comInfoVo);
 			
+			//기업회원 공고 정보 구하기
+			List<Recruitment_TosVO> comRecuritTosListVo = comRecruitServ.selectList_tosByComcode(comInfoVo.getComCode());
+			logger.info("기업회원 notice, comRecuritVo={}", comRecuritTosListVo);
+			
 			model.addAttribute("birth", birth);
 			model.addAttribute("comMemberVo", comMemberVo);
 			model.addAttribute("comInfoVo", comInfoVo);
+			model.addAttribute("comRecuritListVo", comRecuritTosListVo);
 			
 			return "comMypage/comMypageHome";
 		}
@@ -104,5 +111,18 @@ public class MypageController {
 		List<Recruitment_TosVO> list = comRecruitServ.selectScrapList(scrapList);
 		
 		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("/requestEmployment.do")
+	public String requestEmployment(HttpSession session, Model model) {
+		String userNo = (String)session.getAttribute("userNo");
+		logger.info("입사요청 현황, userNo={}",userNo);
+		
+		List<Map<String,Object>> perList = resumeService.selectPerscrapByUserNo(userNo);
+		logger.info("입사요청 현황, perList={}",perList);
+		
+		model.addAttribute("perList",perList);
+		
+		return "mypage/requestEmployment";
 	}
 }

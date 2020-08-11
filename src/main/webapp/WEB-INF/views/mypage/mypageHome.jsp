@@ -66,6 +66,10 @@
 		color: black;
 		border-style: none;
 	}
+	.new{
+		background: red;
+		bo
+	}
 </style>
 <div>
 	<div id="addHeadMenu">
@@ -75,12 +79,13 @@
 			<span>이력서</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="/member/currentApply.do"><i class="far fa-calendar-check fa-4x"></i><br>
+			<a href="<c:url value='/member/currentApply.do'/>"><i class="far fa-calendar-check fa-4x"></i><br>
 			<span></span><br>
 			<span>지원 현황</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="#"><i class="fas fa-hand-holding-usd fa-4x"></i><br>
+			<div class="new"></div>
+			<a href="<c:url value='/mypage/requestEmployment.do'/>"><i class="fas fa-hand-holding-usd fa-4x"></i><br>
 			<span></span><br>
 			<span>입사요청</span></a>
 		</div>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../inc/companyTop.jsp" %>
+<%@ include file="../inc/top.jsp" %>
 
 <style>
 	td {
@@ -16,7 +16,11 @@
 		border:1px solid #FB246A;
 		width:100%;
 	}
-
+	
+	textarea {
+    resize:none; /*크기고정 */ 
+	}	
+	
 	/* 체크박스 => 토글 슬라이더 */
 	.switch {
 	position: relative;
@@ -175,6 +179,8 @@
 		//DB값 처리 끝
 		
 		
+		
+		
 		//필수값 처리
 		
 		$("#address").val();
@@ -234,6 +240,7 @@
 				$('#self5area').focus();
 				event.preventDefault();
 			}		
+			
 			
 		});
 		
@@ -659,7 +666,7 @@
 			$("#certificate").val(certificateTotal);
 		});
 				
-		
+	
 		//외국어능력
 		var languageTr1Td1 = "";
 		var languageTr1Td2 = "";
@@ -1317,13 +1324,13 @@
 </script>
 
 <main>
-	<%@ include file="../inc/companySidebar.jsp" %>
+	<%@ include file="../inc/sidebar.jsp" %>
 	
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frm" method="post" action="<c:url value='/companypage/companyResumeUse.do'/>">
 		
-		이력서코드 : <input type="text" name="recruitmentCode" id="recruitmentCode" value="${vo.recruitmentCode}">
+		채용공고코드 : <input type="text" name="recruitmentCode" id="recruitmentCode" value="${param.recruitmentCode}">
 		일반회원아이디 : <input type="text" name="userId" value="${userId}">
 			<!-- 
 			<div style="margin:5px; height:95px; border:1px solid lightgray">
@@ -1797,31 +1804,31 @@
 				<div id="selfDivChk">
 					<table id="selfTable">
 						<tr class="selfTitleTr1">						
-							<td><input type="text" id="selfTitle1Val" value="${vo.selfTitle1}"></td>			
+							<td><input type="text" id="selfTitle1Val" value="${vo.selfTitle1}" readonly></td>			
 						</tr>
 						<tr class="selfTitleTr1">
 							<td><textarea id="self1area" class="self" name="self1area" rows="8" cols="80"></textarea></td>						
 						</tr>
 						<tr class="selfTitleTr2">
-							<td><input type="text" id="selfTitle2Val" value="${vo.selfTitle2}"></td>			
+							<td><input type="text" id="selfTitle2Val" value="${vo.selfTitle2}" readonly></td>			
 						</tr>
 						<tr class="selfTitleTr2">
 							<td><textarea id="self2area" class="self" name="self2area" rows="8" cols="80"></textarea></td>						
 						</tr>
 						<tr class="selfTitleTr3">
-							<td><input type="text" id="selfTitle3Val" value="${vo.selfTitle3}"></td>			
+							<td><input type="text" id="selfTitle3Val" value="${vo.selfTitle3}" readonly></td>			
 						</tr>
 						<tr class="selfTitleTr3">
 							<td><textarea id="self3area" class="self" name="self3area" rows="8" cols="80"></textarea></td>						
 						</tr>
 						<tr class="selfTitleTr4">
-							<td><input type="text" id="selfTitle4Val" value="${vo.selfTitle4}"></td>			
+							<td><input type="text" id="selfTitle4Val" value="${vo.selfTitle4}" readonly></td>			
 						</tr>
 						<tr class="selfTitleTr4">
 							<td><textarea id="self4area" class="self" name="self4area" rows="8" cols="80"></textarea></td>						
 						</tr>
 						<tr class="selfTitleTr5">
-							<td><input type="text" id="selfTitle5Val" value="${vo.selfTitle5}"></td>			
+							<td><input type="text" id="selfTitle5Val" value="${vo.selfTitle5}" readonly></td>			
 						</tr>
 						<tr class="selfTitleTr5">
 							<td><textarea id="self5area" class="self" name="self5area" rows="8" cols="80"></textarea></td>						
@@ -1844,4 +1851,4 @@
 		</form>
 	</div>
 </main>
-<%@ include file="../inc/companyBottom.jsp" %>
+<%@ include file="../inc/bottom.jsp" %>

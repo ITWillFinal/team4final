@@ -45,7 +45,9 @@
 	</select>
 	
 	<select id="selectMemberByResumeNo" parameterType="int" resultType="memberVo">
-		select * from member where resume_no=#{resumeNo}
+		select * from member 
+		where user_no = (select user_no from resume 
+		where resume_no=#{resumeNo})
 	</select>
 	
 	<parameterMap type="map" id="requestToJoinParam">
@@ -84,6 +86,16 @@
 		delete perscrap
 		where resume_no=? and c_member_code=?
 	</delete>
+	
+	<select id="selectPerscrapByUserNo" parameterType="string" resultType="map">
+		select * from PERSCRAP p join company_info c 
+        on p.c_member_code=c.c_member_code
+        join resume r
+        on r.resume_no=p.RESUME_NO
+		where p.resume_no = (
+		select resume_no from member where user_no=#{userNo}) 
+		and status='WAITING' 
+	</select>
 </mapper>
 
 

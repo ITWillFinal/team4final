@@ -7,7 +7,7 @@ public interface ComRecruitDAO {
 	
 	int insertComRecruit(ComRecruitVO comRecruitVo);
 	List<Recruitment_TosVO> selectMost5();
-	ComRecruitVO selectOneCom(String recruitmentCode);
+	Recruitment_TosVO selectOneCom(String recruitmentCode);
 	String selectrecruitmentCode();
 	ComRecruitVO selectBycomCode(String comCode);
 	int updateResumeType(ComRecruitVO comRecruitVo);

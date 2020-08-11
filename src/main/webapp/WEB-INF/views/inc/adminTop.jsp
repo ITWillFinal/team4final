@@ -58,22 +58,23 @@
 									class="menu-icon icon-bullhorn"></i>공지사항</a></li>
 							<li><a href="<c:url value='/admin/adminMemberManagement.do' />"><i
 									class="menu-icon icon-group"></i>고객관리 </a></li>
-							<li><a href="task.html"><i class="menu-icon icon-tasks"></i>Tasks </a></li>
+							<li><a href="<c:url value='/payment/paymentList.do' />">
+							<i class="menu-icon icon-money"></i>매출현황 </a></li>
 						</ul>
 						<!--/.widget-nav-->
 
 
 						<ul class="widget widget-menu unstyled">
 							<li><a href="<c:url value = '/gogak/admin/company/faqList.do'/>"><i
-									class="menu-icon icon-bold"></i> 고객센터 </a></li>
+									class="menu-icon icon-book"></i> 고객센터 </a></li>
 							<li><a href="<c:url value = '/memberAdmin/adminInfo.do'/>"><i
-									class="menu-icon icon-book"></i>관리자 관리 </a></li>
-							<li><a href="<c:url value = '/chart/AllChart.do'/>"><i 
-									class="menu-icon icon-paste"></i>THE JOB+ 사용현황</a></li>
+									class="menu-icon icon-user"></i>관리자 관리 </a></li>
+							<li><a href="<c:url value = '/chart/AllChart.do'/>"><i
+									class="menu-icon icon-bar-chart"></i>THE JOB+ 사용현황</a></li>
 							<li><a href="table.html"><i class="menu-icon icon-table"></i>Tables
 							</a></li>
-							<li><a href="charts.html"><i
-									class="menu-icon icon-bar-chart"></i>Charts </a></li>
+							<li><a href="charts.html"><i 
+									class="menu-icon icon-paste"></i>Charts </a></li>
 						</ul>
 						<!--/.widget-nav-->
 						<ul class="widget widget-menu unstyled">

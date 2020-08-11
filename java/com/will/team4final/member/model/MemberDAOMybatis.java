@@ -79,4 +79,9 @@ public class MemberDAOMybatis implements MemberDAO {
 		return sqlSession.update(namespace+"updateMember", memberVo);
 	}
 
+	@Override
+	public List<MemberVO> showMemberForExcel() {
+		return sqlSession.selectList(namespace + "showMemberForExcel");
+	}
+
 }

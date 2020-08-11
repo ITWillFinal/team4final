@@ -130,18 +130,10 @@
 		});
 		
 		
-		$("#btChk").click(function() {
-			var cUserid = $('#cUserid').val();
-			window.open(
-			"<c:url value='/companypage/member/checkUserid.do?cUserid="
-			+ cUserid + "'/>", 'chk',
-			'width=420,height=300,left=0,top=0,location=yes,resizable=yes');
-		});
-		
 		$('input[name=cEmail]').click(function(){
 			window.open(
 			"<c:url value='/companypage/member/email.do'/> ", 'emailchk',
-			'width=420,height=300,left=0,top=0,location=yes,resizable=yes');
+			'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
 		});
 
 	});

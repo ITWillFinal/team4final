@@ -42,12 +42,22 @@ public class HireInfoController {
 	private ComScrapService comScrapServ;
 	
 	@RequestMapping("/hireinpo.do")
-	public String hireinpoHome(Model model) {
+	public String hireinpoHome(Model model, @RequestParam(required = false) String keyword) {
 		logger.info("채용정보 홈");
 		
 		List<String> locationList = locationServ.sido();
 		List<Map<String, Object>> jobList = jobServ.selectLarge();
 		List<Map<String, Object>> induList = jobServ.selectInduLarge();
+		
+		if(keyword != null && !keyword.isEmpty()) {
+			logger.info("파라미터 keyword = {}", keyword);
+			ComRecruitVO comRecVo = new ComRecruitVO();
+			comRecVo.setRecDetail(keyword);
+			
+			List<ComRecruitVO> list = comRecuritServ.recruitmentDetailList(comRecVo);
+			model.addAttribute("list", list);
+			model.addAttribute("keyword", keyword);
+		}
 		
 		model.addAttribute("locationList", locationList);
 		model.addAttribute("jobList", jobList);

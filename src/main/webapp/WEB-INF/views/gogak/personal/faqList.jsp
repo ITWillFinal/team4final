@@ -51,8 +51,6 @@ a{
 }
 
 </style>
-<script type="text/javascript" 
-	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
 <script type="text/javascript">	
 	function pageProc(curPage){
 		$('input[name=currentPage]').val(curPage);

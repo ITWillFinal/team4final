@@ -11,11 +11,23 @@ public class CompanyResumeUseServiceImpl implements CompanyResumeUseService {
 	public int insertCompanyResumeUse(CompanyResumeUseVO companyResumeUseVo) {
 		return companyResumeUseDao.insertCompanyResumeUse(companyResumeUseVo);
 	}
+	
+	@Override
+	public int updateCompanyResumeUse(CompanyResumeUseVO companyResumeUseVo) {
+		return companyResumeUseDao.updateCompanyResumeUse(companyResumeUseVo);
+	}
 
 	@Override
 	public CompanyResumeUseVO selectCompanyResumeUse(CompanyResumeUseVO companyResumeUseVo) {
 		return companyResumeUseDao.selectCompanyResumeUse(companyResumeUseVo);
 	}
+
+	@Override
+	public int countCompanyResumeUse(CompanyResumeUseVO companyResumeUseVo) {
+		return companyResumeUseDao.countCompanyResumeUse(companyResumeUseVo);
+	}
+
+	
 	
 	
 }

@@ -447,6 +447,7 @@ public class CompanyHomeController {
 	      logger.info("이력서 조회결과 resumeAllVo={}",resumeAllVo);
 	      resumeAllVo.getResumeVo().getResumeNo();
 	      MemberVO memberVo = resumeService.selectMemberByResumeNo(resumeNo);
+	      logger.info("회원 조회결과 memberVo={}",memberVo);
 
 	      model.addAttribute("memberVo", memberVo);
 	      model.addAttribute("resumeAllVo",resumeAllVo);
@@ -465,6 +466,30 @@ public class CompanyHomeController {
 	      
 	      String result = resumeService.requestToJoinMulti(resumeNoList, cMemberCode);
 	      return result;
+	   }
+
+	   @ResponseBody
+	   @RequestMapping(value = "/requestHope.do", produces = "application/text; charset=utf8")
+	   public String requestHope(@RequestParam int resumeNo,@RequestParam String cMemberCode) {
+		   logger.info("입사요청희망 cMemberCode={}, resumeNo={}",cMemberCode,resumeNo);
+		   
+		   List<Integer> list = new ArrayList<Integer>();
+		   list.add(resumeNo);
+		   String result=resumeService.updatePerscrapStatusMulti(list, cMemberCode, "Y");
+		   
+		   return result;
+	   }
+
+	   @ResponseBody
+	   @RequestMapping(value = "/requestNo.do", produces = "application/text; charset=utf8")
+	   public String requestNo(@RequestParam int resumeNo,@RequestParam String cMemberCode) {
+		   logger.info("입사요청거절 cMemberCode={}, resumeNo={}",cMemberCode,resumeNo);
+		   
+		   List<Integer> list = new ArrayList<Integer>();
+		   list.add(resumeNo);
+		   String result=resumeService.updatePerscrapStatusMulti(list, cMemberCode, "N");
+		   
+		   return result;
 	   }
 
 	@RequestMapping(value = "/employmentNotice/companyReWrite.do", method = RequestMethod.GET)
@@ -554,7 +579,7 @@ public class CompanyHomeController {
 
 		if (cnt > 0) {
 			msg = "기업 채용 삭제 성공";
-			url = "/companypage/employmentNotice/employmentNoticeList.do";
+			url = "/mypage/mypageHome.do?status=C";
 		}
 
 		model.addAttribute("msg", msg);

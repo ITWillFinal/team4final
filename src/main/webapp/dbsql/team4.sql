@@ -697,7 +697,11 @@ CREATE TABLE COMPANY_RESUMEUSE  (
 	AWARD VARCHAR2(900), /* 수상경력 */
 	SPECIAL VARCHAR2(900), /* 우대사항 */
 	ACTIVITY VARCHAR2(900), /* 대외활동 */
-	SELF CLOB, /* 자기소개서 */
+	SELF1 CLOB, /* 자기소개서1 */
+	SELF2 CLOB, /* 자기소개서2 */
+	SELF3 CLOB, /* 자기소개서3 */
+	SELF4 CLOB, /* 자기소개서4 */
+	SELF5 CLOB, /* 자기소개서5 */
 	NAME VARCHAR2(30), /* 이름 */
 	RECRUITMENT_CODE VARCHAR2(30) /* 채용정보코드 */
 );

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.apply">
+
+	<insert id="insertApply" parameterType="applyVo">
+		<selectKey keyProperty="applyCode" order="BEFORE" resultType="String">
+			select apply_seq.nextval from dual
+		</selectKey>
+		insert into apply(apply_code,apply_status,user_no,recruitment_code,resume_no)
+		values(#{applyCode},'지원중',#{userNo},#{recruitmentCode},#{resumeNo})
+	</insert>
+	
+	<select id="selectApply" parameterType="applyVo" resultType="int">
+		select count(*) from apply 
+		where user_no=#{userNo} and recruitment_code=#{recruitmentCode}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
