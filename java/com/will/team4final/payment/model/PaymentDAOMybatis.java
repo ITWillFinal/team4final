@@ -34,4 +34,9 @@ public class PaymentDAOMybatis implements PaymentDAO {
 	public int selectTotalRecord(SearchVO searchvo) {
 		return sqlSession.selectOne(namespace+"selectTotalRecord", searchvo);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectPamentForView() {
+		return sqlSession.selectList(namespace + "selectPamentForView");
+	}
 }
