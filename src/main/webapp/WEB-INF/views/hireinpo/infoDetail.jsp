@@ -176,7 +176,7 @@
 			<div style="font-weight: bold; width: 120px; height: 59px; background: #585858e0; padding: 20px 30px; color: white;">지원마감</div>
 		</c:if>
 	</div>
-	<c:if test="${sessionScope.userid != null }">
+	<c:if test="${sessionScope.userid != null && sessionScope.status == 'U'}">
 		<div id="headAddDiv1" 
 			<c:if test="${result == 0 }">
 				style="display: none"
