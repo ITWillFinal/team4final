@@ -5,7 +5,6 @@
 <!-- CSS here -->
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/bootstrap.min.css'/>">
-
 <style>
 	#upDiv{
 		margin: 90px 0;
@@ -25,6 +24,24 @@
 		color: red;
 	}
 </style>
+<script type="text/javascript">
+	$(function(){
+		/* 서비스 연장 */
+		$('.extendPeriod').click(function(){
+			var recruitmentCode = $('.extendPeriod_recruitmentCode').val();
+			var con = confirm("기간 연장하시겠습니까?");
+			if(con){
+				window.open(
+					"<c:url value='/payment/extendPeriod.do?recruitmentCode="+recruitmentCode+"'/>", 'extendPeriod',
+					'width=800,height=800,location=yes,resizable=no,left=500px,top=100');
+			}else{
+				return false;
+			}
+		});
+		
+	});
+
+</script>
 <div id="upDiv">
 	<div id="scrapListDiv">
 		<c:if test="${!empty list }">
@@ -48,6 +65,8 @@
 					<c:if test="${endDate-startDate+1 > 0}">
 					<div class="items-link f-right">
 						<a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정</a>
+						<a class="extendPeriod" href="<c:url value='#'/>">기간연장</a>
+						<input type="hidden" value="${vo.recruitmentCode }" class="extendPeriod_recruitmentCode">
 						<span>채용 공고 마감까지 D - ${endDate-startDate+1 }일</span>
 					</div>
 					</c:if>

@@ -10,6 +10,10 @@
 		font-size: x-small;
     	color: red;
 	}
+	.btSubmit{
+		text-align: center;
+		padding: 30px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){

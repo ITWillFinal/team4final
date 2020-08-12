@@ -34,8 +34,20 @@ public class CompanyInfoController {
 	@Autowired private CompanyInfoService companyInfoService;
 
 	@RequestMapping(value = "/companyInfoWrite.do", method = RequestMethod.GET)
-	public void comInfoView() {
+	public String comInfoView(HttpSession session, Model model) {
 		logger.info("회사 정보 입력 화면");
+		//회사 정보 입력 되어  있는지 확인
+		String cUserid = (String)session.getAttribute("userid");
+		String cMemberCode = comMemberService.selectMemberCode(cUserid);
+		CompanyInfoVO comInfoVo = companyInfoService.selectComInfoBycMemberCode(cMemberCode);
+		if(comInfoVo != null) {
+			String msg="회사 정보가 입력되어 있습니다.", url="/companypage/MyCompany.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "common/message";
+			
+		}
+		return "companypage/companyInfoWrite";
 	}
 
 	@RequestMapping(value = "/companyInfoWrite.do", method = RequestMethod.POST)

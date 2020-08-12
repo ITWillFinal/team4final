@@ -6,8 +6,15 @@ public class PaymentVO {
 	private int price;
 	private String regdate;
 	private String cMemberCode;
+	private String recruitmentCode;
 	
 	
+	public String getRecruitmentCode() {
+		return recruitmentCode;
+	}
+	public void setRecruitmentCode(String recruitmentCode) {
+		this.recruitmentCode = recruitmentCode;
+	}
 	public String getPaymentCode() {
 		return paymentCode;
 	}
@@ -41,7 +48,8 @@ public class PaymentVO {
 	@Override
 	public String toString() {
 		return "PaymentVO [paymentCode=" + paymentCode + ", productName=" + productName + ", price=" + price
-				+ ", regdate=" + regdate + ", cMemberCode=" + cMemberCode + "]";
+				+ ", regdate=" + regdate + ", cMemberCode=" + cMemberCode + ", recruitmentCode=" + recruitmentCode
+				+ "]";
 	}
 	
 	

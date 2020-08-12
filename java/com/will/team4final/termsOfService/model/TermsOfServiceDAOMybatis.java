@@ -14,5 +14,10 @@ public class TermsOfServiceDAOMybatis implements TermsOfServiceDAO {
 	public int insertTOS(TermsOfServiceVO tosVo) {
 		return sqlSession.insert(namespace+"insertTOS", tosVo);
 	}
+
+	@Override
+	public TermsOfServiceVO selectByrecruitmentCode(String recruitmentCode) {
+		return sqlSession.selectOne(namespace+"selectByrecruitmentCode",recruitmentCode);
+	}
 	
 }
