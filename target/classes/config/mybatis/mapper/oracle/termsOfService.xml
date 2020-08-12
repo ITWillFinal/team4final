@@ -3,7 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.will.team4final.tos">
-
 	<insert id="insertTOS" parameterType="termsOfServiceVo" >
 		<selectKey keyProperty="serviceCode" resultType="String" order="BEFORE">
 			select TOS_seq.nextval from dual
@@ -11,6 +10,12 @@
 			insert into TOS(SERVICE_CODE,END_DATE, RECRUITMENT_CODE)
 			values(#{serviceCode}, #{endDate}, #{recruitmentCode})
 	</insert>
+	
+	<select id="selectByrecruitmentCode" parameterType="string" resultType="termsOfServiceVo">
+		select * from tos
+		where RECRUITMENT_CODE = #{recruitmentCode}
+	</select>
+	
 </mapper>
 
 

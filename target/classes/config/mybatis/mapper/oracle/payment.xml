@@ -8,8 +8,8 @@
 		<selectKey keyProperty="paymentCode" resultType="String" order="BEFORE">
 			select payment_seq.nextval from dual
 		</selectKey>
-			insert into payment(PAYMENT_CODE, PRODUCT_NAME, PRICE, C_MEMBER_CODE  )
-			values(#{paymentCode}, #{productName}, #{price}, #{cMemberCode})
+			insert into payment(PAYMENT_CODE, PRODUCT_NAME, PRICE, C_MEMBER_CODE, RECRUITMENT_CODE  )
+			values(#{paymentCode}, #{productName}, #{price}, #{cMemberCode}, #{recruitmentCode})
 	</insert>
 	
 	<select id="selectTodayPayment" resultType="String">

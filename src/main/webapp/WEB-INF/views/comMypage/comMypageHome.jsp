@@ -73,8 +73,7 @@
 	}
 	.editA{
 		margin-left: 120px;
-		background-color: #fb246a;
-		color: white;
+		color: black;
 		border-style: none;
 	}
 	.editComInfo{
@@ -115,7 +114,7 @@
 							</div>
 							<div class="memberInfo">
 								<span class="userName">${comMemberVo.cUsername }</span><span>님</span><span>(${comMemberVo.cGender } ${birth }년생)</span>
-									<input class="editComInfo" type="button" value="수정하기">
+									<input class="editA" type="button" value="수정하기">
 								<br>
 								<span>이메일 : ${comMemberVo.cEmail }</span><br>
 								<span>전화번호 : ${comMemberVo.cHp }</span><br>

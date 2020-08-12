@@ -34,7 +34,7 @@
 				success: function(result){
 					if(result >0){
 						alert("결제 성공했습니다");
-						location.href = "<c:url value='/companypage/companyResumeSet.do?recruitmentCode=${recruitmentCode}' />";
+						location.href = "<c:url value='/companypage/MyCompany.do?recruitmentCode=${recruitmentCode}' />";
 					}else{
 						alert("결제 실패했습니다");
 						location.href="<c:url value='/companypage/companyHome.do' />";

@@ -6,7 +6,8 @@ create table payment
     PRICE NUMBER NULL,
     START_DAY varchar2(300) default sysdate,
     END_DAY varchar2(300) NULL,
-    C_MEMBER_CODE varchar2(30)
+    C_MEMBER_CODE varchar2(30),
+    RECRUITMENT_CODE varchar2(30)
 );
 
 drop sequence payment_seq;
