@@ -11,6 +11,51 @@
 		width:150px;
 		display: inline-block;
 	}
+	input[type=radio]{
+		width: 0px;
+		height: 1px;
+		position: absolute;
+	}
+	.lab{
+		text-align: center;
+	    width: 48%;
+	    font-size: 16px;
+	    line-height: 49px;
+	    background: #b4c5d2;
+	    color: #fff;
+	    cursor: pointer;
+	    font-weight: bold;
+   		margin-left: 9px;
+    	font-weight: bold;
+	}
+	
+	.labpay{
+		text-align: center;
+	    width: 40%;
+	    font-size: 16px;
+	    line-height: 49px;
+	    background: #b4c5d2;
+	    color: #fff;
+	    cursor: pointer;
+	    font-weight: bold;
+	}
+	
+	input[type=date]{
+		text-align: center;
+    	font-size: large;
+    	width: 200px;
+    	height: 46px;
+	}
+	
+	#priceDiv{
+	    float: right;
+	    margin: 18px;
+	    margin-right: 4%;
+	    font-size: 20px;
+	    font-weight: bold;
+	    padding: 40px;
+	    border: 1px solid #cacaca;
+	}
 </style>
 	
 <script type="text/javascript">
@@ -124,6 +169,29 @@
 			
 			
 		});
+		$('input[type=radio]').change(function() {
+			if($(this).val() == 0){
+				$('#labTheJob').css('background', '#2e3752');
+				$('#labCom').css('background', '#b4c5d2');
+			}else if($(this).val() == 1){
+				$('#labTheJob').css('background', '#b4c5d2');
+				$('#labCom').css('background', '#2e3752');
+			}
+			
+		});
+		$('#dateDiv').hide();
+		$('input[type=radio]').change(function() {
+			if($(this).val() == 'month'){
+				$('#labPeriodMonth').css('background', '#2e3752');
+				$('#labPerioddDate').css('background', '#b4c5d2');
+				$('#dateDiv').hide();
+			}else if($(this).val() == 'date'){
+				$('#labPeriodMonth').css('background', '#b4c5d2');
+				$('#labPerioddDate').css('background', '#2e3752');
+				$('#dateDiv').show();
+			}
+			
+		});
 	});
 </script>
 
@@ -138,26 +206,35 @@
 			<hr>
 			<span style="font-size: 18px; font-weight: bold;">◎지원방법</span><br><br>
 
-			<input type="radio" name="radioResumeType" id="radioResumeTheJob" value="0"> 더잡 이력서<br>
-			<input type="radio" name="radioResumeType" id="radioResumeCompany" value="1"> 자사 이력서<br>
+			<input type="radio" name="radioResumeType" id="radioResumeTheJob" value="0"> 
+			<label for="radioResumeTheJob" class="lab" id="labTheJob">더잡 이력서</label>
+			<input type="radio" name="radioResumeType" id="radioResumeCompany" value="1"> 
+			<label for="radioResumeCompany" class="lab" id="labCom">자사 이력서</label>
+			<br>
 			
 			<div id="radioResumeDiv"></div>			
 			<hr>
 			<span style="font-size: 18px; font-weight: bold;">◎모집기간</span><br><br>
-			<span>모집기간을 선택하세요</span><br><br>
-			<input type="radio" name="period" id="radioPeriodMonth" value="month"> 상시채용 또는 채용시까지 : 결제일로 부터 1달 이용가능
-			<input type="date" name="monthStart" class="startDay" readonly>
-			<input type="date" name="monthEnd" id="monthEnd" >
+			<input type="radio" name="period" id="radioPeriodMonth" value="month">
+			<label for="radioPeriodMonth" class="labpay" id="labPeriodMonth">상시채용</label><br>결제일로 부터 30일 이용가능
+			<input type="date" name="monthEnd" id="monthEnd" style="display: none;"><br><br>
 			
 			<br>
-			<input type="radio" name="period" id="radioPeriodDate" value="date"> 날짜지정 : 결제일로부터 지정일 까지 이용가능
-			<input type="date" name="startDay" class="startDay" readonly>
-			<input type="date" name="endPickDay" id="datePick" ><br>
-			가격
-			<input type="text" name="price" id="price" readonly style="text-align: right; width: 80px; padding-right: 10px;">원	
+			<input type="radio" name="period" id="radioPeriodDate" value="date">
+			<label for="radioPeriodDate" class="labpay" id="labPerioddDate">날짜지정</label>
+			<div style="display: inline;margin-left: 50px;" id="dateDiv">
+				<input type="date" name="startDay" class="startDay" readonly> ~ 
+				<input type="date" name="endPickDay" id="datePick" >
+			</div>
+			<br>
+			<div id="priceDiv">
+				<span style="color: #f73f22">결재 금액</span>
+				<input type="text" name="price" id="price" readonly style="text-align: right; width: 100px; padding-right: 10px; border: 0">원	
+			</div>
 			
-			<br><br><br>
-			<input type="submit" id="btn" value="결제하기" >
+			<div style="text-align: center; margin: 50px; clear: both;">
+				<input type="submit" id="btn" class="btn" value="결제하기" >
+			</div>
 			<input type="hidden" name="productName" id="productName">
 			<input type="hidden" name="resumeType" id="resumeType">
 			<input type="hidden" name="endDay" id="endDay" >
