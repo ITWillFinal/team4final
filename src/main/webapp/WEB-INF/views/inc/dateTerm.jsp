@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" type="text/css" 
-	href="<c:url value='/resources/js/jquery-ui.min.css'/>"> 
-<script type="text/javascript" 
-	src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
-
 <script type="text/javascript">
 	$(function(){
 		
@@ -50,14 +45,31 @@
 	
 
 </script>
-
-조회기간
-<input type="button" value="1주일" class="btWeek">
-<input type="button" value="1개월" class="btMonth1">
-<input type="button" value="3개월" class="btMonth3">
-
+<style>
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-left: 1%;
+}
+span#pp {
+    font-size: 16pt;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+input.bts {
+    margin-bottom: 8%;
+}
+</style>
 <input type="date" name="startDay" id="startDay" value="${dateSearchVO.startDay }">
-~
+<span id = "pp">~</span>
 <input type="date" name="endDay" id="endDay"
 	value="${dateSearchVO.endDay }">
+<br>
+<input type="button" value="1주일" class="btWeek" style="margin-top: -6%;">
+<input type="button" value="1개월" class="btMonth1" style="margin-top: -6%;">
+<input type="button" value="3개월" class="btMonth3" style="margin-top: -6%;">
 
