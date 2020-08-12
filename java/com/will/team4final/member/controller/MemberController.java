@@ -31,6 +31,7 @@ import com.will.team4final.apply.model.ApplyService;
 import com.will.team4final.apply.model.ApplyVO;
 import com.will.team4final.common.FileUploadUtil;
 import com.will.team4final.company.model.ComRecruitService;
+import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;
@@ -236,36 +237,66 @@ public class MemberController {
 		model.addAttribute("url", url);
 		return "common/message";
 	}
+			
+	@RequestMapping(value = "/memberOut.do", method = RequestMethod.GET)
+	public void memberOut_get(HttpSession session, Model model) {
+		logger.info("일반회원 탈퇴 페이지");
+		String userid = (String)session.getAttribute("userid");
+		MemberVO vo = memberService.selectByUserid(userid);
+		logger.info("일반회원 탈퇴 vo memberVo={}", vo);
+		model.addAttribute("vo", vo);		
+	}
+	
+	@RequestMapping(value = "/memberOut.do", method = RequestMethod.POST)
+	public String companyOut_post(@RequestParam String userNo, @RequestParam String password, HttpSession session, Model model) {
+		logger.info("일반회원 탈퇴 처리");				
+		logger.info("일반회원넘버 userNo={}", userNo);		
+		String userid = (String)session.getAttribute("userid");
+		MemberVO vo = memberService.selectByUserid(userid);
+		
+		boolean pwdMatch = pwdEncoder.matches(password, vo.getPwd());
+		logger.info("pwdMatch={}", pwdMatch);
+		
+		String msg="비밀번호가 일치하지 않습니다.", url="/member/memberOut.do";
+		if (pwdMatch == true) {
+			msg="일반회원 탈퇴 실패했습니다.";
+			int cnt = memberService.deleteUser(userNo);
+			logger.info("처리결과 cnt={}", cnt);
+			if(cnt>0) {
+				msg="일반회원 탈퇴 성공했습니다.";
+				url="/";
+				session.invalidate();
+			}
+		}		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";		
+	}
 	
 	@RequestMapping("/updateUser.do")
 	public String updateUser(@RequestParam(defaultValue = "0") int userNo, Model model) {
-		logger.info("관리자에서 회원 정보 변경 창 열기, 파라미터 userNo={}", userNo);
-		
-		
+		logger.info("관리자에서 회원 정보 변경 창 열기, 파라미터 userNo={}", userNo);		
 		return "member/updateUser";
 	}
 	
 	@RequestMapping("/agreement/personTerm.do")
 	public String personTerm() {
-		logger.info("개인 회원 약관 동의서 페이지");
-			
+		logger.info("개인 회원 약관 동의서 페이지");			
 		return "agreement/personTerm";
 	}
 	
 	@RequestMapping("/agreement/personInfo.do")
 	public String personInfo() {
-		logger.info("개인 회원 정보 수집  동의서 페이지");
-			
+		logger.info("개인 회원 정보 수집  동의서 페이지");			
 		return "agreement/personInfoCollaction";
 	}
 	
-	@RequestMapping( value = "/memberEdit.do", method =RequestMethod.GET)
+	@RequestMapping(value = "/memberEdit.do", method =RequestMethod.GET)
 	public void memberEdit_get(HttpSession session, Model model) {
 		logger.info("멤버 회원 수정 화면 ");
 		//아이디로 멤버 정보 조회
 		String userid = (String)session.getAttribute("userid");
-		MemberVO memberVo = memberService.selectByUserid(userid);
-		
+		MemberVO memberVo = memberService.selectByUserid(userid);		
 		model.addAttribute("memberVo", memberVo);
 	}
 	
