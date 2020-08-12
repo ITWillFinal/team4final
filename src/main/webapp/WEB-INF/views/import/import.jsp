@@ -34,7 +34,7 @@
 				success: function(result){
 					if(result >0){
 						alert("결제 성공했습니다");
-						location.href = "<c:url value='/companypage/MyCompany.do?recruitmentCode=${recruitmentCode}' />";
+						location.href = "<c:url value='/companypage/employmentNotice/employmentNoticeList.do' />";
 					}else{
 						alert("결제 실패했습니다");
 						location.href="<c:url value='/companypage/companyHome.do' />";
@@ -56,7 +56,7 @@
 	 	<input type="hidden" id="cMemberCode" name="cMemberCode" value="${cMemberCode }" id="cMemberCode">
 	 	<input type="hidden" id="price" name="price" value="${paymentVo.price }">
 	 	<input type="hidden" id="recruitmentCode" name="recruitmentCode" value="${recruitmentCode }"><br><br>
-	 	<input type="hidden" id="endDay" name="endDay" value="${endDay }">
+	 	<input type="text" id="endDay" name="endDay" value="${endDay }">
     </form>
 </body>
 </html>
