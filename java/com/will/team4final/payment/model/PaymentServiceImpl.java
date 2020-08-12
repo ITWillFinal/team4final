@@ -42,4 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
 		return paymentDao.selectTotalRecordC(searchvo);
 	}
 	
+	public List<Map<String, Object>> selectPamentForView() {
+		return paymentDao.selectPamentForView();
+	}
 }

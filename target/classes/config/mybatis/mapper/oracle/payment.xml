@@ -70,6 +70,10 @@
 			and regdate>=to_date(#{startDay})
 			and regdate < to_date(#{endDay})+1 ]]>
 	</select>
+	
+	<select id="selectPamentForView" resultType="map">
+		select * from v_payment order by start_date desc
+	</select>
 </mapper>
 
 
