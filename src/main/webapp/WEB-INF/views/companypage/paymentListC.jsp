@@ -188,7 +188,7 @@ span#totalPrice {
 		action="<c:url value='/companypage/paymentListC.do'/>">
 		<input type="hidden" name="startDay" value="${param.startDay }">
 		<input type="hidden" name="endDay" value="${param.endDay }">
-		<input type="hidden" id="currentPage">	
+		<input type="hidden" id="currentPage" name = "currentPage">	
 	</form>
 
 	<form name="frmList" method="post" 
@@ -210,7 +210,7 @@ span#totalPrice {
 		</colgroup>
 		<thead>
 		  <tr>
-		    <th scope="col">회원번호</th>
+		    <th scope="col">결제번호</th>
 			<th scope="col">기업 ID</th>
 			<th scope="col">기업명</th>
 			<th scope="col">회원명</th>
@@ -232,7 +232,7 @@ span#totalPrice {
 				<c:forEach var="map" items="${list }">
 					<c:set var = "sum" value = "${map['PRICE'] }"/>
 						<tr class="align_center">
-							<td>${map['C_MEMBER_CODE']}</td>
+							<td>${map['RECRUITMENT_CODE']}</td>
 							<td>${map['C_USERID']}</td>
 							<td>${map['COM_NAME']}</td>
 							<td>${map['C_USERNAME']}</td>

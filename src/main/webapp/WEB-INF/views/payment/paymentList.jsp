@@ -109,9 +109,7 @@ span#totalPrice {
 			dayNamesMin:['일', '월', '화', '수', '목', '금', '토'],
 			monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월',]
 		});
-	});	
 	
-	$(function () {
 		$('#endDay').datepicker({
 			dateFormat:'yy-mm-dd',
 			changeYear:true,
@@ -177,7 +175,7 @@ span#totalPrice {
 		action="<c:url value='/payment/paymentList.do'/>">
 		<input type="hidden" name="startDay" value="${param.startDay }">
 		<input type="hidden" name="endDay" value="${param.endDay }">
-		<input type="hidden" id="currentPage">	
+		<input type="text" id="currentPage" name = "currentPage">
 	</form>
 
 	<form name="frmList" method="post" 
@@ -199,7 +197,7 @@ span#totalPrice {
 		</colgroup>
 		<thead>
 		  <tr>
-		    <th scope="col">회원번호</th>
+		    <th scope="col">결제번호</th>
 			<th scope="col">기업 ID</th>
 			<th scope="col">기업명</th>
 			<th scope="col">회원명</th>
@@ -221,7 +219,7 @@ span#totalPrice {
 				<c:forEach var="map" items="${list }">
 					<c:set var = "sum" value = "${map['PRICE'] }"/>
 					<tr class="align_center">
-						<td>${map['C_MEMBER_CODE']}</td>
+						<td>${map['RECRUITMENT_CODE']}</td>
 						<td>${map['C_USERID']}</td>
 						<td>${map['COM_NAME']}</td>
 						<td>${map['C_USERNAME']}</td>
@@ -252,18 +250,17 @@ span#totalPrice {
 			</c:if>
 							
 			<!-- [1][2][3][4][5][6][7][8][9][10] -->
-			<c:forEach var="i" begin="${pagingInfo.firstPage }" 
-			end="${pagingInfo.lastPage }">
+			<c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
 				<c:if test="${i==pagingInfo.currentPage }">
 					<span style="color:blue;font-weight:bold">${i }</span>
 				</c:if>
 				<c:if test="${i!=pagingInfo.currentPage }">						
-					<a href="#" onclick="pageFunc(${i})">
+					<a onclick="pageFunc(${i})" style="cursor: pointer;">
 						[${i }]
 					</a>
 				</c:if>
 			</c:forEach>
-				
+
 			<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
 				<a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">			
 					<img src="<c:url value="/resources/images/last.JPG" />" border="0">
@@ -279,7 +276,7 @@ span#totalPrice {
 					기간 내 총 판매금액은 
 					<span id = "totalPrice">
 						<fmt:formatNumber type="number" maxFractionDigits="3"
-							value="${totalPrice}"/>
+							value="${sumPrice}"/>
 					</span>원 입니다.
 				</p>
 			</c:if>
