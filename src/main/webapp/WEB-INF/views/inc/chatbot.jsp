@@ -20,7 +20,7 @@
 	.chatbot-main{
 		display:none;
 		position: fixed;
-		width: 270px;
+		width: 300px;
    		height: 500px;
 		bottom: 50px;
    		right: 50px;
@@ -35,7 +35,7 @@
 	}
 	
 	.chatbot-screen{
-		width: 250px;
+		width: 280px;
 		height: 390px;
 	    background: #d1f6ff;
   	  	border-radius: 5px;
@@ -79,7 +79,7 @@
 	
 	.chatbot-title{
 		text-align:center;
-		width: 250px;
+		width: 290px;
 		display: inline-block;
 		height: 30px;
 		float: right;
@@ -105,8 +105,8 @@
 	
 	.balloon1 {
 		position: relative;
-	    margin-left: 20px;
-	    width: 220px;
+	    margin-left: 15px;
+	    width: 250px;
 	    height: auto;
 	    background: #ffffff;
 	    border-radius: 10px;
@@ -126,8 +126,8 @@
 
 	.balloon2 {
 		 position: relative;
-	    margin-left: 20px;
-	    width: 220px;
+	    margin-left: 15px;
+	    width: 250px;
 	    height: auto;
 	    background: #f1e344;
 	    border-radius: 10px;
@@ -149,6 +149,11 @@
 		word-wrap: break-word;
 	}
 	
+	.balloon1 img{
+		width: 240px;
+    	border-radius: 5px;
+    	margin: 2px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -169,25 +174,24 @@
 			sendMsg+=$('.message').val()+"</span></div>";			
 			$('.chatbot-screen').append(sendMsg);
 			
-			var receiveMsg = "<div class='balloon1'><span class='autoBr'>";
-			receiveMsg+="기능 미구현...</span></div>";
-			$('.chatbot-screen').append(receiveMsg);
-			
-			$('.message').val("");
-			$('.chatbot-screen').scrollTop($('.chatbot-screen').height()+$('.chatbot-screen div').length*500);
-			console.log();
-			
-			/* $.ajax({
+			$.ajax({
 				url:"<c:url value='/chatbot/messageSend.do'/>",
 				type:"get",
 				data:"message="+$('.message').val(),
 				success:function(res){
-					
+					var receiveMsg = "<div class='balloon1'><span class='autoBr'>";
+					receiveMsg+=res+"</span></div>";
+					$('.chatbot-screen').append(receiveMsg);					
+				 $('.chatbot-screen').scrollTop($('.chatbot-screen')[0].scrollHeight);
 				},
 				error:function(xhr, status, error){
 					alert(status+","+error );
 				}
-			}) */
+			})
+
+			$('.message').val("");
+			/* $('.chatbot-screen').scrollTop($('.chatbot-screen').height()+$('.chatbot-screen div').length*1000);
+			 */
 		});
 		
 		$('.message').keypress(function(event){
@@ -211,7 +215,7 @@
 	<div class="chatbot-screen">
 		<div class='balloon1'>
 		안녕하세요!<br>
-		THE JOB 챗봇 잡잡이 입니다!
+		THE JOB 챗봇 잡잡이 입니다!<br>
 		무엇을 도와드릴까요?
 		<span class='autoBr'></span></div>
 	</div>

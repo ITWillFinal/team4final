@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.will.team4final.chatbot">
+	<select id="searchAnswer" resultType="string" parameterType="string">
+		select answer from chatbot_answer
+		where answer_no = (select answer_no from chatbot 
+		    where keyword = #{keyword})
+	</select>
+	
+	<select id="selectKeyword" resultType="string">
+		select keyword from chatbot
+		order by answer_rank desc 
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
