@@ -103,24 +103,23 @@ public class ImportController {
 	}
 	
 	@RequestMapping("/payment/paymentList.do")
-	public void paymentList(@ModelAttribute SearchVO searchvo, 
-			@ModelAttribute DateSearchVO datesearchVo, 
+	public void paymentList(@ModelAttribute DateSearchVO datesearchVo, 
 			HttpSession session,Model model) {
 		String userid = (String) session.getAttribute("userid");
 		
-		logger.info("결제목록 searchvo={}", searchvo);
+		logger.info("결제목록 searchvo={}", datesearchVo);
 		logger.info("결제목록 파라미터 dateSearchVo={}", datesearchVo);
 		
 		//페이징
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
 		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchvo.getCurrentPage());
+		pagingInfo.setCurrentPage(datesearchVo.getCurrentPage());
 		
 		//searchVO에 세팅
-		searchvo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		searchvo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		logger.info("레코드 개수 = {}", searchvo.getRecordCountPerPage());
+		datesearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		datesearchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+		logger.info("레코드 개수 = {}", datesearchVo.getRecordCountPerPage());
 		
 		//datesearch 시작, 종료일시
 		datesearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
@@ -142,14 +141,20 @@ public class ImportController {
 		logger.info("결제내역 결과, list.size()={}", list.size());
 		
 		int totalRecord = paymentService.selectTotalRecord(datesearchVo);
+		pagingInfo.setTotalRecord(totalRecord);
 		logger.info("결제내역 개수 조회 결과, totalRecord = {}", totalRecord);
 		
-		pagingInfo.setTotalRecord(totalRecord);
+		
+		
+		//기간내 판매수익 
+		int sumPrice = paymentService.selectTotalPrice(datesearchVo);
+		 
 		
 		//model 담기
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("userid",userid);
+		model.addAttribute("sumPrice",sumPrice);
 		
 	}
 	

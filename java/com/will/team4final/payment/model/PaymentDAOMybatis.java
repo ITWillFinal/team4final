@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.will.team4final.common.DateSearchVO;
 import com.will.team4final.common.SearchVO;
 
 @Repository
@@ -43,6 +44,11 @@ public class PaymentDAOMybatis implements PaymentDAO {
 	@Override
 	public int selectTotalRecordC(SearchVO searchvo) {
 		return sqlSession.selectOne(namespace+"selectTotalRecordC", searchvo);
+	}
+	
+	@Override
+	public int selectTotalPrice(DateSearchVO dateSearchVo) {
+		return sqlSession.selectOne(namespace+"selectTotalPrice", dateSearchVo);
 	}
 	
 	public List<Map<String, Object>> selectPamentForView() {

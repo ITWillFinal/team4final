@@ -23,7 +23,7 @@
 			select rownum as RNUM, A.*
 			from(
 				select *
-				from v_payment
+				from v_A
 				<if test="startDay != null and startDay !=''">
 					<![CDATA[
 					where regdate>=to_date(#{startDay})
@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="selectTotalRecord" parameterType="datesearchVo" resultType="int">
-		select count(*) from v_payment
+		select count(*) from v_A
 		<if test="startDay != null and startDay !=''">
 			<![CDATA[
 			where regdate>=to_date(#{startDay})
@@ -54,7 +54,7 @@
 			select rownum as RNUM, A.*
 			from(
 				select *
-				from v_payment
+				from v_A
 				<![CDATA[
 				where c_userid=#{customerId}
 					and regdate>=to_date(#{startDay})
@@ -68,15 +68,20 @@
 	</select>
 	
 	<select id="selectTotalRecordC" parameterType="datesearchVo" resultType="int">
-		select count(*) from v_payment
+		select count(*) from v_A
 		<![CDATA[
 		where c_userid=#{customerId}
 			and regdate>=to_date(#{startDay})
 			and regdate < to_date(#{endDay})+1 ]]>
 	</select>
 	
-	<select id="selectPamentForView" resultType="map">
-		select * from v_payment order by start_date desc
+ 	<select id="selectTotalPrice" parameterType="datesearchVo" resultType="int">
+		select sum(price)as sumPrice from v_A
+		<if test="startDay != null and startDay !=''">
+			<![CDATA[
+			where regdate>=to_date(#{startDay})
+			and regdate < to_date(#{endDay})+1 ]]>
+		</if>
 	</select>
 </mapper>
 
