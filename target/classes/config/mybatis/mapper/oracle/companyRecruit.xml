@@ -32,7 +32,7 @@
 	<select id="selectMost5" resultType="recruitment_TosVo">
 		select A.*
 		from(
-			select * from recruitment_tos where to_date(end_date) >= sysdate-1 order by readcount desc
+			select * from recruitment_tos where regdate > sysdate-1 order by regdate desc
 		)A
 		<![CDATA[where rownum <= 5 ]]>
 	</select>

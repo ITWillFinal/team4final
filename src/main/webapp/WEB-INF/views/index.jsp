@@ -79,8 +79,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-tittle text-center">
-                        <span>현재 인기있는 채용공고</span>
-                        <h2>채용 TOP 5</h2>
+                        <span>오늘 뜬 NEW 채용공고</span>
+                        <h2>신규 채용공고</h2>
                     </div>
                 </div>
             </div>
