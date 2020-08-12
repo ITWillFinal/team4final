@@ -10,5 +10,7 @@ public interface PaymentService {
 	String selectTodayPayment();
 	List<Map<String, Object>>selectPayment(SearchVO searchvo);
 	public int selectTotalRecord(SearchVO searchvo);
+	List<Map<String, Object>>selectPaymentC(SearchVO searchvo);
+	public int selectTotalRecordC(SearchVO searchvo);
 	List<Map<String, Object>> selectPamentForView();
 }

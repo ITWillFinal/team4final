@@ -3,12 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../inc/adminTop.jsp" %>
+<%@ include file="../inc/companyTop.jsp"%>
 
 <style>
-.divList {
-    padding-left: 2%;
-    padding-right: 2%;
+.divList{
+    padding-top: 40px;
+    padding-left: 80px;
+    padding-bottom: 5%;
+    padding-right: 80px;
 }
 th{
 	border-bottom: 3px solid #FB246A;;
@@ -87,14 +89,22 @@ input[type=submit] {
     margin-bottom: 2%;
 }
 input#startDay {
-    width: 16%;
+    width: 18%;
 }
 input#endDay {
-    width: 16%;
+    width: 18%;
 }
 p.rst {
     margin-top: 2%;
     margin-bottom: 2%;
+}
+.divList {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+h2#h2Title {
+    margin-left: 30%;
+    margin-bottom: 1%;
 }
 span#totalPrice {
     color: #FB246A;
@@ -166,22 +176,23 @@ span#totalPrice {
 
 <!-- 본문 시작 -->
 <main>
-	<h2 style="margin-left: 20px">기업회원 결제 내역</h2>
+	<%@ include file="../inc/companySidebar.jsp"%>
+	<h2 id = "h2Title">기업회원 결제 내역</h2>
 	<!-- main -->
-	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
+	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray; margin-left:30%;">
 		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
 			<li class = "select" style="width: 100%;" id = "fst">
 			</li>
 		</ul>
 	<form name="frmPage" method="post" 
-		action="<c:url value='/payment/paymentList.do'/>">
+		action="<c:url value='/companypage/paymentListC.do'/>">
 		<input type="hidden" name="startDay" value="${param.startDay }">
 		<input type="hidden" name="endDay" value="${param.endDay }">
 		<input type="hidden" id="currentPage">	
 	</form>
 
 	<form name="frmList" method="post" 
-		action="<c:url value='/payment/paymentList.do'/>" >
+		action="<c:url value='/companypage/paymentListC.do'/>" >
 		<!-- 조회기간 include -->
 		
 	<div class="divList">
@@ -220,22 +231,22 @@ span#totalPrice {
 				<c:set var = "totalPrice" value = "0"/>
 				<c:forEach var="map" items="${list }">
 					<c:set var = "sum" value = "${map['PRICE'] }"/>
-					<tr class="align_center">
-						<td>${map['C_MEMBER_CODE']}</td>
-						<td>${map['C_USERID']}</td>
-						<td>${map['COM_NAME']}</td>
-						<td>${map['C_USERNAME']}</td>
-						<td>${map['START_DATE']}</td>
-						<td>
-							<c:set var = "endDate" value = "${map['END_DATE'] }"/>
-							${fn:substring(endDate,2,4)}/${fn:substring(endDate,5,7)}/${fn:substring(endDate,8,10)}
-						</td>
-						<td>${map['REGDATE']}</td>
-						<td>
-							<fmt:formatNumber type="number" maxFractionDigits="3"
-								value="${map['PRICE']}"/>
-						</td>
-					</tr>
+						<tr class="align_center">
+							<td>${map['C_MEMBER_CODE']}</td>
+							<td>${map['C_USERID']}</td>
+							<td>${map['COM_NAME']}</td>
+							<td>${map['C_USERNAME']}</td>
+							<td>${map['START_DATE']}</td>
+							<td>
+								<c:set var = "endDate" value = "${map['END_DATE'] }"/>
+								${fn:substring(endDate,2,4)}/${fn:substring(endDate,5,7)}/${fn:substring(endDate,8,10)}
+							</td>
+							<td>${map['REGDATE']}</td>
+							<td>
+								<fmt:formatNumber type="number" maxFractionDigits="3"
+									value="${map['PRICE']}"/>
+							</td>
+						</tr>
 					<c:set var = "totalPrice" value = "${totalPrice + sum}"/>
 				</c:forEach>
 				<!-- 반복 끝 -->
@@ -283,7 +294,6 @@ span#totalPrice {
 					</span>원 입니다.
 				</p>
 			</c:if>
-			<a href="<c:url value='/paymentExel.do'/>">[엑셀로 다운]</a><br><br>
 			<c:if test="${pagingInfo.totalRecord == 0 }">
 				<p class = "rst"  style="font-size: 1.0em">
 					${param.startDay } ~ ${dateSearchVO.endDay } 까지의 결제내역이 없습니다.
@@ -299,4 +309,4 @@ span#totalPrice {
 </div>
 </main>
 
-<%@ include file="../inc/adminBottom.jsp"%>
+<%@ include file="../inc/companyBottom.jsp"%>

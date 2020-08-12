@@ -30,6 +30,10 @@
 	<select id="selectCompanyInfoByComCode" parameterType="string" resultType="companyInfoVo">
 		select * from COMPANY_INFO where com_code = #{comCode}
 	</select>
+	
+	<select id="selectCompanyInfo" resultType="companyInfoVo">
+		select * from COMPANY_INFO
+	</select>
 </mapper>
 
 
