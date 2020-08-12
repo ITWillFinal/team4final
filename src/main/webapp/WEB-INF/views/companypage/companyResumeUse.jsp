@@ -260,7 +260,7 @@
 			eduData1 = $("#schoolName").val();
 			eduData2 = $("#schoolMajor").val();
 			eduData3 = $("#schoolDate").val();
-
+			
 			$("#edu1").val(eduData1);
 			$("#edu2").val(eduData2);
 			$("#edu3").val(eduData3);

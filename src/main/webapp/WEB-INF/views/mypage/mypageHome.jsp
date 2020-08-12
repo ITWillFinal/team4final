@@ -19,7 +19,16 @@
 			}else{
 				return false;
 			}
-			
+		});
+		
+		$('.outBtn').click(function(){
+			var result = confirm("회원탈퇴하시겠습니까?");
+			if(result){
+				location.href="<c:url value='/member/memberOut.do'/>"
+			}else{
+				return false;
+			}
+		
 		});
 	});
 </script>
@@ -70,6 +79,10 @@
 		background: red;
 		bo
 	}
+	.outBtn{
+		color: black;
+		border-style: none;
+	}
 </style>
 <div>
 	<div id="addHeadMenu">
@@ -105,12 +118,16 @@
 							</div>
 							<div class="memberInfo">
 								<span class="userName">${memberVo.userName }</span><span>님</span><span>(${memberVo.gender } ${birth }년생)</span>
-									<input class="editA" type="button" value="수정하기">
+																	
 								<br><br><br>
 								<span>이메일 : ${memberVo.email }</span><br><br>
 								<span>전화번호 : ${memberVo.hp }</span><br><br>
 								<span>주소 : ${memberVo.zipcode } ${memberVo.address } ${memberVo.addressDetail }</span><br>
 							</div>
+						</div>
+						<div>
+							<input class="editA" type="button" value="수정하기">
+							<input class="outBtn" type="button" value="회원탈퇴">
 						</div>
 					</div>
 		</div>

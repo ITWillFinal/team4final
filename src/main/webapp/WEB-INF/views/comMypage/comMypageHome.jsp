@@ -31,6 +31,16 @@
 			
 		});
 		
+		$('.outBtn').click(function(){
+			var result = confirm("회원탈퇴하시겠습니까?");
+			if(result){
+				location.href="<c:url value='/companypage/member/companyOut.do'/>"
+			}else{
+				return false;
+			}
+		
+		});
+		
 	});
 </script>
 <style>
@@ -82,6 +92,10 @@
 		color: black;
 		border-style: none;
 	}
+	.outBtn{
+		color: black;
+		border-style: none;
+	}
 </style>
 <div>
 	<div id="addHeadMenu">
@@ -115,11 +129,17 @@
 							</div>
 							<div class="memberInfo">
 								<span class="userName">${comMemberVo.cUsername }</span><span>님</span><span>(${comMemberVo.cGender } ${birth }년생)</span>
-									<input class="editComInfo" type="button" value="수정하기">
+									
 								<br>
 								<span>이메일 : ${comMemberVo.cEmail }</span><br>
 								<span>전화번호 : ${comMemberVo.cHp }</span><br>
+													
 							</div>
+								
+						</div>
+						<div style="text-align: right;">
+							<input class="editComInfo" type="button" value="정보수정">
+							<input class="outBtn" type="button" value="회원탈퇴">
 						</div>
 					</div>
 		</div>

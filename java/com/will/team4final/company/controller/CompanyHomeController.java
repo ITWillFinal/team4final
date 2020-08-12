@@ -80,17 +80,17 @@ public class CompanyHomeController {
 	@RequestMapping("/member/companyJoin.do")
 	public void companyJoin() {
 		logger.info("기업회원가입 페이지");
-
 	}
-
+	
 	@RequestMapping("/serviceInfo.do")
 	public void serviceInfo() {
 		logger.info("기업회원 서비스안내");
 	}
 
 	@RequestMapping("/member/email.do")
-	public String email() {
+	public String email(@RequestParam (required = false) String email, Model model) {
 		logger.info("이메일 화면");
+		model.addAttribute("email", email);
 		return "/companypage/member/email";
 	}
 
@@ -179,7 +179,7 @@ public class CompanyHomeController {
 
 			response_equals.setContentType("text/html; charset=UTF-8");
 			PrintWriter out_equals = response_equals.getWriter();
-			out_equals.println("<script>alert('인증번호가 일치하였습니다. 회원가입창으로 이동합니다.');</script>");
+			out_equals.println("<script>alert('인증번호가 일치하였습니다. 입력창으로 이동합니다.');</script>");
 			out_equals.flush();
 
 			return mv;
@@ -222,7 +222,8 @@ public class CompanyHomeController {
 		return "common/message";
 
 	}
-
+	
+	
 	@RequestMapping(value = "/companyWrite.do", method = RequestMethod.GET)
 	public String companyWrite_get(Model model, HttpSession session) {
 		logger.info("기업페이지 채용공고 등록 페이지");
@@ -637,6 +638,50 @@ public class CompanyHomeController {
 		logger.info("회사 회원 정보 수정 화면, cMemberVo={}", cMemberVo );
 		
 		model.addAttribute("cMemberVo", cMemberVo);
+	}
+	
+	@RequestMapping(value = "/member/companyOut.do", method = RequestMethod.GET)
+	public void companyOut_get(HttpSession session, Model model) {
+		logger.info("기업회원 탈퇴 페이지");
+		String cUserid = (String)session.getAttribute("userid");
+		CompanyMemberVO vo = cMemberSerice.selectCMemberInfoByUserid(cUserid);
+		logger.info("기업회원 탈퇴 vo cMemberVo={}", vo);
+		
+		model.addAttribute("vo", vo);
+	}
+	
+	@RequestMapping(value = "/member/companyOut.do", method = RequestMethod.POST)
+	public String companyOut_post(@RequestParam String cMemberCode, @RequestParam String password, HttpSession session, Model model) {
+		logger.info("기업회원 탈퇴 처리");
+				
+		logger.info("기업회원코드 cMemberCode={}", cMemberCode);
+		
+		
+		String cUserid = (String)session.getAttribute("userid");
+		CompanyMemberVO vo = cMemberSerice.selectCMemberInfoByUserid(cUserid);		
+		
+		boolean pwdMatch = pwdEncoder.matches(password, vo.getcPwd());
+		logger.info("pwdMatch={}", pwdMatch);
+		
+		String msg="비밀번호가 일치하지 않습니다.", url="/companypage/member/companyOut.do";
+		
+		if (pwdMatch == true) {
+			msg="기업회원 탈퇴 실패했습니다.";
+			int cnt = cMemberSerice.deleteCMember(cMemberCode);
+			logger.info("처리결과 cnt={}", cnt);
+			if(cnt>0) {
+				msg="기업회원 탈퇴 성공했습니다.";
+				url="/";
+				
+				session.invalidate();
+			}
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";
+		
 	}
 	
 	@RequestMapping("/checkPwd.do")
