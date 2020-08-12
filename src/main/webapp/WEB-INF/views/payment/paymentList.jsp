@@ -283,6 +283,7 @@ span#totalPrice {
 					</span>원 입니다.
 				</p>
 			</c:if>
+			<a href="<c:url value='/paymentExel.do'/>">[엑셀로 다운]</a><br><br>
 			<c:if test="${pagingInfo.totalRecord == 0 }">
 				<p class = "rst"  style="font-size: 1.0em">
 					${param.startDay } ~ ${dateSearchVO.endDay } 까지의 결제내역이 없습니다.

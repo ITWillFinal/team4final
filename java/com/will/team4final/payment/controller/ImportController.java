@@ -124,6 +124,7 @@ public class ImportController {
 			datesearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 			datesearchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
 			
+			
 			String startDay = datesearchVo.getStartDay();
 			if(startDay == null || startDay.isEmpty()) {
 				Date today = new Date();
@@ -132,6 +133,7 @@ public class ImportController {
 				datesearchVo.setStartDay(str);
 				datesearchVo.setEndDay(str);
 			}
+			
 			
 			//map => orderSheet_get 참고
 			List<Map<String, Object>> list = paymentService.selectPayment(datesearchVo);
