@@ -96,7 +96,7 @@
 			<span>공고관리</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="#"><i class="fas fa-hand-holding-usd fa-4x"></i><br>
+			<a href="<c:url value='/companypage/searchTalentManagement.do'/>"><i class="fas fa-hand-holding-usd fa-4x"></i><br>
 			<span></span><br>
 			<span>입사요청</span></a>
 		</div>
