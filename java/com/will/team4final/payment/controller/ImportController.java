@@ -153,7 +153,7 @@ public class ImportController {
 		///////////////////////////////////////////////////////////////////////////////////
 		/////////↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓paymentListC↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓/////////////
 		///////////////////////////////////////////////////////////////////////////////////
-		@RequestMapping("/payment/paymentListC.do")
+		@RequestMapping("/companypage/paymentListC.do")
 		public void paymentListC(@ModelAttribute SearchVO searchvo, 
 				@ModelAttribute DateSearchVO datesearchVo, 
 				HttpSession session,Model model) {

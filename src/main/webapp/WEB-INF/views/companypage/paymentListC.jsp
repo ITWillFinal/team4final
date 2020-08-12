@@ -185,14 +185,14 @@ span#totalPrice {
 			</li>
 		</ul>
 	<form name="frmPage" method="post" 
-		action="<c:url value='/payment/paymentListC.do'/>">
+		action="<c:url value='/companypage/paymentListC.do'/>">
 		<input type="hidden" name="startDay" value="${param.startDay }">
 		<input type="hidden" name="endDay" value="${param.endDay }">
 		<input type="hidden" id="currentPage">	
 	</form>
 
 	<form name="frmList" method="post" 
-		action="<c:url value='/payment/paymentListC.do'/>" >
+		action="<c:url value='/companypage/paymentListC.do'/>" >
 		<!-- 조회기간 include -->
 		
 	<div class="divList">
