@@ -54,7 +54,8 @@
 	}
 	#moreDiv{
 		padding-top: 10px;
-	    padding-left: 30px;
+		padding-left: 30px;
+    	padding-right: 40px;
 	}
 	hr{
 		clear: both; 
