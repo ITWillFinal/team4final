@@ -280,8 +280,8 @@
 		});
 		
 		
-		CKEDITOR.replace('recDetail',{
-			filebrowserUploadUrl:"<c:url value=''/>"
+		CKEDITOR.replace('content',{
+			filebrowserUploadUrl:"<c:url value='/admin/insertImage.do'/>"
 		});
 		
 		$('form[name=frmWrite]').submit(function(){

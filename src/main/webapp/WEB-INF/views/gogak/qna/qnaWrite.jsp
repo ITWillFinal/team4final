@@ -59,7 +59,7 @@ tr {
 			location.href = "<c:url value = '/gogak/qna/qnaList.do'/>";
 		});
 		CKEDITOR.replace('content',{
-			filebrowserUploadUrl:"<c:url value=''/>"
+			filebrowserUploadUrl:"<c:url value='/admin/insertImage.do'/>"
 		});
 	});
 </script>

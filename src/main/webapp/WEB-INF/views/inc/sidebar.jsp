@@ -31,7 +31,7 @@
 		  <li><div>이력서 상태설정</div></li>
 		  <li><div>입사요청 현황</div></li>		  
 		  <li class="ui-widget-header"><div>고객센터</div></li>
-		  <li><div>공지사항</div></li>
+		  <li><div><a href = "<c:url value = '/notice/memberNotice.do'/>">공지사항</a></div></li>
 		  <li><div><a href = "<c:url value = '/gogak/personal/faqList.do'/>">자주 찾는 질문</a></div></li>
 		  <li><div><a href = "<c:url value = '/gogak/qnaP/qnaWrite.do'/>">1:1 문의</a></div></li>
 		  <li><div><a href = "<c:url value = '/gogak/qnaP/qnaList.do'/>">나의 1:1 문의</a></div></li>

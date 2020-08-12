@@ -5,7 +5,7 @@
 <script type="text/javascript">
 	$(function() {
 		CKEDITOR.replace('content',{
-			filebrowserUploadUrl:"<c:url value=''/>"
+			filebrowserUploadUrl:"<c:url value='/admin/insertImage.do'/>"
 		});
 		
 		$('form[name=frm]').submit(function() {
@@ -29,6 +29,7 @@
 		});
 	})
 </script>
+
 <style>
 	input[type=button], input[type=submit]{
 		width: 90px;
