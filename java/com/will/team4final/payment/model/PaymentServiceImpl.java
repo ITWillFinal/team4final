@@ -66,4 +66,13 @@ public class PaymentServiceImpl implements PaymentService {
 	public String selectBefore(String month) {
 		return paymentDao.selectBefore(month);
 	}
+	
+	public PaymentVO selectByrecruitmentCode(String recruitmentCode) {
+		return paymentDao.selectByrecruitmentCode(recruitmentCode);
+	}
+
+	@Override
+	public int updatePrice(PaymentVO paymentVo) {
+		return paymentDao.updatePrice(paymentVo);
+	}
 }

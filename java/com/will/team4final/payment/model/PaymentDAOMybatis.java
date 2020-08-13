@@ -69,4 +69,13 @@ public class PaymentDAOMybatis implements PaymentDAO {
 	public String selectBefore(String month) {
 		return sqlSession.selectOne(namespace+"selectBefore", month);
 	}
+	
+	public PaymentVO selectByrecruitmentCode(String recruitmentCode) {
+		return sqlSession.selectOne(namespace+"selectByrecruitmentCode",recruitmentCode );
+	}
+
+	@Override
+	public int updatePrice(PaymentVO paymentVo) {
+		return sqlSession.update(namespace+"updatePrice", paymentVo);
+	}
 }
