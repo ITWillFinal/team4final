@@ -83,6 +83,17 @@
 			and regdate < to_date(#{endDay})+1 ]]>
 		</if>
 	</select>
+	
+	<select id="selectByrecruitmentCode" parameterType="string" resultType="paymentVo">
+		select * from payment
+		where RECRUITMENT_CODE = #{recruitmentCode}
+	</select>
+	
+	<update id="updatePrice" parameterType="paymentVo">
+		update payment
+		set PRICE = #{price}
+		where RECRUITMENT_CODE = #{recruitmentCode}
+	</update>
 </mapper>
 
 

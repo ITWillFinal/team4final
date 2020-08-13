@@ -16,6 +16,12 @@
 		where RECRUITMENT_CODE = #{recruitmentCode}
 	</select>
 	
+	<update id="updateEndDate" parameterType="termsOfServiceVo">
+		update tos
+		set END_DATE = #{endDate}
+		where RECRUITMENT_CODE = #{recruitmentCode}
+	</update>
+	
 </mapper>
 
 

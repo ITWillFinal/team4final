@@ -19,5 +19,10 @@ public class TermsOfServiceDAOMybatis implements TermsOfServiceDAO {
 	public TermsOfServiceVO selectByrecruitmentCode(String recruitmentCode) {
 		return sqlSession.selectOne(namespace+"selectByrecruitmentCode",recruitmentCode);
 	}
+
+	@Override
+	public int updateEndDate(TermsOfServiceVO tosVo) {
+		return sqlSession.update(namespace+"updateEndDate", tosVo);
+	}
 	
 }

@@ -51,4 +51,14 @@ public class PaymentServiceImpl implements PaymentService {
 	public List<Map<String, Object>> selectPamentForView() {
 		return paymentDao.selectPamentForView();
 	}
+
+	@Override
+	public PaymentVO selectByrecruitmentCode(String recruitmentCode) {
+		return paymentDao.selectByrecruitmentCode(recruitmentCode);
+	}
+
+	@Override
+	public int updatePrice(PaymentVO paymentVo) {
+		return paymentDao.updatePrice(paymentVo);
+	}
 }

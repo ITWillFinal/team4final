@@ -15,4 +15,6 @@ public interface PaymentDAO {
 	public int selectTotalRecordC(SearchVO searchvo);
 	public int selectTotalPrice(DateSearchVO dateSearchVo);
 	List<Map<String, Object>> selectPamentForView();
+	PaymentVO selectByrecruitmentCode(String recruitmentCode);
+	int updatePrice(PaymentVO paymentVo);
 }
