@@ -11,10 +11,7 @@
 			location.href 
 				= "<c:url value='/gogak/admin/company/faqList.do'/>";	
 		});
-		
-		
 	})
-	
 </script>
 
 
@@ -39,6 +36,32 @@ input#rrr {
 a{
 	color: black;
 }
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+
+body > div.wrapper > div > div > div.span9 > div > main > div {
+    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+}
 </style>
 
 
@@ -47,7 +70,7 @@ a{
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
 		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
-		<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문 등록하기(기업)</h2>
+		<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문 수정하기(기업)</h2>
 		</div>
 		<div style="margin:5px; /* border:1px solid lightgray; */">
 

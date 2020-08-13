@@ -174,6 +174,32 @@ li.select {
 	border-bottom: 1px solid lightgray;
 	border-right: 1px solid lightgray;
 }
+body > div.wrapper > div > div > div.span9 > div > main > div {
+    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+}
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+
 </style>
 	<!-- Id에 따라 top, sidebar, bottom 변경 -->
 	<%@ include file="../../inc/adminTop.jsp"%>

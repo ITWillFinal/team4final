@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="../../../inc/top.jsp"%>
+<%@ include file="../../../inc/adminTop.jsp"%>
 <script type="text/javascript" 
 	src = "<c:url value = '/resources/js/jquery-3.5.1.min.js'/>"></script>
 <script type="text/javascript">
@@ -38,6 +38,32 @@ input#rrr {
 }
 a{
 	color: black;
+}
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+
+body > div.wrapper > div > div > div.span9 > div > main > div {
+    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
 }
 </style>
 
@@ -98,4 +124,4 @@ a{
 	</div>
 </main>
 
-<%@ include file="../../../inc/bottom.jsp"%>
+<%@ include file="../../../inc/adminBottom.jsp"%>

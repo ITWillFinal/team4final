@@ -24,13 +24,13 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectPayment(SearchVO searchvo) {
-		return paymentDao.selectPayment(searchvo);
+	public List<Map<String, Object>> selectPaymentAdmin(DateSearchVO dateSearchVo) {
+		return paymentDao.selectPaymentAdmin(dateSearchVo);
 	}
 
 	@Override
-	public int selectTotalRecord(SearchVO searchvo) {
-		return paymentDao.selectTotalRecord(searchvo);
+	public int selectTotalRecordAdmin(DateSearchVO dateSearchVo) {
+		return paymentDao.selectTotalRecordAdmin(dateSearchVo);
 	}
 
 	@Override
@@ -43,12 +43,27 @@ public class PaymentServiceImpl implements PaymentService {
 		return paymentDao.selectTotalRecordC(searchvo);
 	}
 	
-	@Override
-	public int selectTotalPrice(DateSearchVO dateSearchV) {
-		return paymentDao.selectTotalPrice(dateSearchV);
-	}
-	
 	public List<Map<String, Object>> selectPamentForView() {
 		return paymentDao.selectPamentForView();
+	}
+
+	@Override
+	public String selectTotalPriceAdmin(DateSearchVO dateSearchVo) {
+		return paymentDao.selectTotalPriceAdmin(dateSearchVo);
+	}
+
+	@Override
+	public String selectTotalPriceC(DateSearchVO dateSearchVo) {
+		return paymentDao.selectTotalPriceC(dateSearchVo);
+	}
+
+	@Override
+	public String selectThis(String month) {
+		return paymentDao.selectThis(month);
+	}
+
+	@Override
+	public String selectBefore(String month) {
+		return paymentDao.selectBefore(month);
 	}
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import com.will.team4final.common.SearchVO;
+import com.will.team4final.common.DateSearchVO;
 import com.will.team4final.qnare.model.QnareDAO;
 
 @Service
@@ -17,7 +17,7 @@ public class QnaServiceImpl implements QnaService{
 	@Autowired private QnareDAO qnareDao;
 
 	@Override
-	public List<QnaVO> selectQna(SearchVO searchVo) {
+	public List<QnaVO> selectQna(DateSearchVO searchVo) {
 		return qnaDao.selectQna(searchVo);
 	}
 
@@ -27,7 +27,7 @@ public class QnaServiceImpl implements QnaService{
 	}
 
 	@Override
-	public int selectTotalRecord(SearchVO vo) {
+	public int selectTotalRecord(DateSearchVO vo) {
 		return qnaDao.selectTotalRecord(vo);
 	}
 
@@ -85,6 +85,16 @@ public class QnaServiceImpl implements QnaService{
 		int rst = qna-join;
 		
 		return rst;
+	}
+
+	@Override
+	public int selectTotalRecordAdmin(DateSearchVO vo) {
+		return qnaDao.selectTotalRecordAdmin(vo);
+	}
+
+	@Override
+	public List<QnaVO> selectQnaAdmin(DateSearchVO searchVo) {
+		return qnaDao.selectQnaAdmin(searchVo);
 	}
 	
 	

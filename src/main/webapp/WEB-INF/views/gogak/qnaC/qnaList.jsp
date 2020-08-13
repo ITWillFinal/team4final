@@ -73,6 +73,9 @@ li#fst {
     font-weight: bold;
     font-size: 30px;
 }
+a{
+	color: black;
+}
 </style>
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
@@ -150,7 +153,6 @@ li#fst {
 						<c:if test="${!empty list }">
 							<c:set var = "idx" value = "0"/>
 								<c:forEach var = "vo" items="${list }">
-									<c:if test="${vo.userId==userId }">
 										<tr>
 										<td style="text-align: center;">${vo.qnaNo }</td>
 										<td style="text-align: center;">${vo.status }</td>
@@ -183,7 +185,6 @@ li#fst {
 												pattern="yyyy-MM-dd"/>
 										</td>
 									</tr>
-									</c:if>
 									<c:set var = "idx" value = "${idx+1 }"/>
 								</c:forEach>
 						</c:if>
@@ -204,7 +205,9 @@ li#fst {
 					<c:forEach var="i" begin="${pagingInfo.firstPage }" 
 						end="${pagingInfo.lastPage }">		
 						<c:if test="${i!=pagingInfo.currentPage }">
-							<a href="#" onclick="pageProc(${i})">[${i}]</a>
+							<a href="#" onclick="pageProc(${i})" style="color: black;">
+								[${i}]
+							</a>
 						</c:if>
 						<c:if test="${i==pagingInfo.currentPage }">
 							<span style="color:blue;font-weight:bold; font-size: 12px;">${i}</span>			

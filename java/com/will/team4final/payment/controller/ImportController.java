@@ -137,24 +137,26 @@ public class ImportController {
 		
 		
 		//map => orderSheet_get 참고
-		List<Map<String, Object>> list = paymentService.selectPayment(datesearchVo);
+		List<Map<String, Object>> list = paymentService.selectPaymentAdmin(datesearchVo);
 		logger.info("결제내역 결과, list.size()={}", list.size());
 		
-		int totalRecord = paymentService.selectTotalRecord(datesearchVo);
+		int totalRecord = paymentService.selectTotalRecordAdmin(datesearchVo);
 		pagingInfo.setTotalRecord(totalRecord);
 		logger.info("결제내역 개수 조회 결과, totalRecord = {}", totalRecord);
 		
 		
 		
 		//기간내 판매수익 
-		int sumPrice = paymentService.selectTotalPrice(datesearchVo);
-		 
+		String totalPrice = paymentService.selectTotalPriceAdmin(datesearchVo);
+		if(totalPrice == null || totalPrice.isEmpty()) {
+			totalPrice="0";
+		}
 		
 		//model 담기
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("userid",userid);
-		model.addAttribute("sumPrice",sumPrice);
+		model.addAttribute("totalPrice", totalPrice);
 		
 	}
 	
@@ -205,10 +207,17 @@ public class ImportController {
 		logger.info("결제내역 개수 조회 결과, totalRecord = {}", totalRecord);
 		
 		pagingInfo.setTotalRecord(totalRecord);
+
+		//기간내 판매수익 
+		String totalPrice = paymentService.selectTotalPriceC(datesearchVo);
+		if(totalPrice == null || totalPrice.isEmpty()) {
+			totalPrice="0";
+		}
 		
 		//model 담기
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("totalPrice", totalPrice);
 		
 	}
 	
@@ -222,7 +231,6 @@ public class ImportController {
 		model.addAttribute("comRecruitVO", comRecruitVO);
 		
 	}
-	
 		
 }
 

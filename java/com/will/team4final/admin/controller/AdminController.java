@@ -5,8 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +28,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
+import com.google.gson.annotations.SerializedName;
 import com.will.team4final.admin.model.AdminService;
-import com.will.team4final.common.FileUploadUtil;
 import com.will.team4final.common.PaginationInfo;
 import com.will.team4final.common.SearchVO;
 import com.will.team4final.common.Utility;
@@ -74,12 +75,46 @@ public class AdminController {
 		int totalToday = todayMember + todayCMember;
 		String todayPay = paymentServ.selectTodayPayment();
 		
+		//답변 달지 않은 1:1 문의 게시판 게시글 수
 		int cnt = qnaService.noRe();
 	    model.addAttribute("cnt", cnt);
 		
+	    //전월대비 당월 매출 증감율
+	    Date date = new Date();
+	    logger.info("date={}", date);
+	    String today = date.toString();
+	    logger.info("today={}", today);
+	    SimpleDateFormat sdf = new SimpleDateFormat("MM");
+	    String month = sdf.format(date);
+	    logger.info("month={}", month);
+	    
+	    double ind = 0;
+	    String result = "";
+	    
+	    String beforePay = paymentServ.selectBefore(month);
+	    logger.info("전월 매출={}",beforePay);
+	    String thisPay = paymentServ.selectThis(month);
+	    logger.info("당월 매출={}",thisPay);
+	    if(beforePay == null ||beforePay.isEmpty() || thisPay == null ||thisPay.isEmpty()) {
+	    	result = "전월 혹은 당월 결제 내역이 없습니다.";
+	    }else if(thisPay != null && !thisPay.isEmpty() && beforePay != null && !beforePay.isEmpty() ) {
+	    	int tp = Integer.parseInt(thisPay);
+	    	int bp = Integer.parseInt(beforePay);
+	    	ind = Math.round((((double)(tp-bp))/bp)*10000)/100.0;
+	    	
+	    	logger.info("(tp-bp)/100={}",((double)(tp-bp))/bp);
+	    	logger.info("(tp-bp)/100={}",(((double)(tp-bp))/bp)*100);
+	    	logger.info("반올림 (tp-bp)/100={}",ind);
+	    	logger.info("증감율 = {}", ind);
+			result = Double.toString(ind);
+		}
+	    
+	    logger.info("전월대비 당월 증감율={}", result);
+	    
 		model.addAttribute("totalRecordOfAdmin", totalRecordOfAdmin);
 		model.addAttribute("totalToday", totalToday);
 		model.addAttribute("todayPay", todayPay);
+		model.addAttribute("result", result);
 		
 	}
 
