@@ -33,7 +33,7 @@
 			if(con){
 				window.open(
 					"<c:url value='/payment/extendPeriod.do?recruitmentCode="+recruitmentCode+"'/>", 'extendPeriod',
-					'width=800,height=800,location=yes,resizable=no,left=500px,top=100');
+					'width=800,height=612,location=no, scrollbars=1, toolbars=no, menubar=no,left=500px,top=100');
 			}else{
 				return false;
 			}
@@ -47,7 +47,7 @@
 		<c:if test="${!empty list }">
 			<h3 style="margin: 40px;">채용 공고&nbsp;&nbsp; <span class="deleteInfo">(삭제는 수정에서 가능합니다)</span> </h3>
 			<c:forEach var="vo" items="${list }">
-				<fmt:parseDate var="end" value="${vo.endDate }" pattern="yyyy-MM-dd"></fmt:parseDate>
+				<fmt:parseDate var="end" value="${vo.endDate }" pattern="yy/MM/dd"></fmt:parseDate>
 				<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
 				<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
 				
@@ -64,8 +64,8 @@
 					</div>
 					<c:if test="${endDate-startDate+1 > 0}">
 					<div class="items-link f-right">
-						<a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정</a>
-						<a class="extendPeriod" href="<c:url value='#'/>">기간연장</a>
+						<a style="margin-bottom: 3px;" href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정</a>
+						<a class="extendPeriod" href="#">기간연장</a>
 						<input type="hidden" value="${vo.recruitmentCode }" class="extendPeriod_recruitmentCode">
 						<span>채용 공고 마감까지 D - ${endDate-startDate+1 }일</span>
 					</div>

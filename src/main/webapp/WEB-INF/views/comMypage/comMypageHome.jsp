@@ -31,6 +31,19 @@
 			
 		});
 		
+		/* 서비스 연장 */
+		$('.extendPeriod').click(function(){
+			var recruitmentCode = $('.extendPeriod_recruitmentCode').val();
+			var con = confirm("기간 연장하시겠습니까?");
+			if(con){
+				window.open(
+					"<c:url value='/payment/extendPeriod.do?recruitmentCode="+recruitmentCode+"'/>", 'extendPeriod',
+					'width=800,height=612,location=no, scrollbars=1, toolbars=no, menubar=no,left=500px,top=100');
+			}else{
+				return false;
+			}
+		});
+		
 	});
 </script>
 <style>
@@ -166,7 +179,7 @@
 			<div id="scrapListDiv">
 				<h3 style="margin: 40px;">Company Notice</h3>
 				<c:forEach var="vo" items="${comRecuritListVo }">
-					<fmt:parseDate var="end" value="${vo.endDate}" pattern="yyyy-MM-dd" />
+					<fmt:parseDate var="end" value="${vo.endDate}" pattern="yy/MM/dd" />
 					<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
 					<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
 					<div class="single-job-items mb-30" id="listOne">
@@ -183,7 +196,9 @@
 						</div>
 						<c:if test="${endDate-startDate+1 > 0}">
 							<div class="items-link f-right">
-								<a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정 및 삭제</a>
+								<a style="margin-bottom: 3px;" href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정 및 삭제</a>
+								<a class="extendPeriod" href="#">기간연장</a>
+								<input type="hidden" value="${vo.recruitmentCode }" class="extendPeriod_recruitmentCode">
 								<span>지원마감까지 D - ${endDate-startDate+1 }일</span>
 							</div>
 						</c:if>
