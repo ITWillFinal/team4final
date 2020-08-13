@@ -117,8 +117,9 @@
 	
 	}
 	.btSubmit{
-		margin-left: 475px;
+		margin-left: 250px;
 	    margin-top: 5px;
+	    position: fixed;
 	}
 	.price_submit{
 		margin-top: 15px;
@@ -166,8 +167,8 @@
 				
 				<hr>
 				<br>
-				<div class="price_submit">결제 금액 : <div class="priceShow" style="display: inline;"></div> <input class="btSubmit" type="submit" value="결제하기"></div>
-				
+				<div class="price_submit">결제 금액 : <div class="priceShow" style="display: inline;"></div> </div>
+				<input class="btSubmit" type="submit" value="결제하기">
 				
 				<!-- 서비스 종료 일과 총 합계 금액 -->
 				<input type="hidden" name="endDate" class="endDate">
