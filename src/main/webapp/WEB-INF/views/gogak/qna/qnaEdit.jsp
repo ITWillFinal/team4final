@@ -75,8 +75,8 @@ a{
 									<option value="b">B</option>
 									<option value="c">C</option>
 								</select><br> -->
-								<input type="text" name = "categoryNO" class = "tb1"
-									value = "${vo.categoryNO }">
+								<input type="text" name = "category" class = "tb1"
+									value = "${vo.category}">
 							</td>
 						</tr>
 				

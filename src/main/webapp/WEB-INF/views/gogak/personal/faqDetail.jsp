@@ -75,7 +75,38 @@ h3{
 .font-color{
 	color: gray;
 }
-
+div#outer {
+    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-bottom: 8%;
+}
+h2 {
+    font-weight: bold;
+    margin-left: -5%;
+}
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
 
 </style>
 <main>
@@ -84,65 +115,67 @@ h3{
 	<!-- main -->
 	<div
 		style="float: left; width: 49%; margin-left: 30px; font-size: 14px; /* border: 1px solid lightgray; */">
-		<div style="margin: 5px; height: 95px; /* border: 1px solid lightgray; */">
-			<h2 style="padding-left: 50px; padding-top: 30px;">자주찾는 질문 상세보기</h2>
-		</div>
-		<!-- 본문 -->
-		<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */ ">
-			<div id="outDiv">
-				<input type="hidden" value="${vo.faqNo }" name="no">
-				
-				<h4>― 자주 찾으시는 질문 ―</h4>
-				<h3>${vo.question }</h3>
-				<div style="text-align: left;">
-					<div id = "divH4">
-						<h4>질문 답변</h4>
-					</div>
-					<br>
-					<div>
-						<% pageContext.setAttribute("newLine", "\r\n"); %>
-						${fn:replace(vo.answer, newLine, '<br>')}
-					</div>
-				</div>								
+		<div id = "outer">
+			<div style="margin: 5px; height: 95px; /* border: 1px solid lightgray; */">
+				<h2 style="padding-left: 50px; padding-top: 30px;">자주찾는 질문 상세보기</h2>
 			</div>
-			<div style="text-align: center; padding: 20px 0 10px 0;">
-					<!-- <input type="submit" value="글수정" id="ddd"> 
-					<input type="button" value="글삭제" id="delete"> -->
-					<input type="button" value="글목록" id="rrr">
-			</div>
-			<div id = "ab">
-				<div>
-					<span class = "ab1">다음글</span>
-					<c:if test="${empty afterVO.faqNo }">
-						<span class = "font-color">다음 게시글이 없습니다.</span>
-					</c:if>
-					<c:if test="${!empty afterVO.faqNo }">
-						<a href="<c:url value='/gogak/personal/faqDetail.do?no=${afterVO.faqNo}'/>" class = "font-color">
-							<c:if test="${fn:length(afterVO.question )>=10 }">
-								${fn:substring(afterVO.question,0,10)}...
-							</c:if> 
-							<c:if test="${fn:length(afterVO.question)<10 }">
-								${afterVO.question }							
-							</c:if>
-						</a>
-					</c:if>
+			<!-- 본문 -->
+			<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */ ">
+				<div id="outDiv">
+					<input type="hidden" value="${vo.faqNo }" name="no">
+					
+					<h4>― 자주 찾으시는 질문 ―</h4>
+					<h3>${vo.question }</h3>
+					<div style="text-align: left;">
+						<div id = "divH4">
+							<h4>질문 답변</h4>
+						</div>
+						<br>
+						<div>
+							<% pageContext.setAttribute("newLine", "\r\n"); %>
+							${fn:replace(vo.answer, newLine, '<br>')}
+						</div>
+					</div>								
 				</div>
-				<div>
-					<span class = "ab1">이전글</span>
-					<c:if test="${empty beforeVO.faqNo }">
-						<span class = "font-color">이전 게시글이 없습니다.</span>
-					</c:if> 
-					<c:if test="${!empty beforeVO.faqNo }">
-						<a href="<c:url value='/gogak/personal/faqDetail.do?no=${beforeVO.faqNo}'/>" class = "font-color">
-							<c:if test="${fn:length(beforeVO.question )>=10 }">
-									${fn:substring(beforeVO.question,0,10)}...
-							</c:if> 
-							<c:if test="${fn:length(beforeVO.question)<10 }">
-								${beforeVO.question }							
-							</c:if>
-						</a>
-					</c:if>
-				</div>	
+				<div style="text-align: center; padding: 20px 0 10px 0;">
+						<!-- <input type="submit" value="글수정" id="ddd"> 
+						<input type="button" value="글삭제" id="delete"> -->
+						<input type="button" value="글목록" id="rrr">
+				</div>
+				<div id = "ab">
+					<div>
+						<span class = "ab1">다음글</span>
+						<c:if test="${empty afterVO.faqNo }">
+							<span class = "font-color">다음 게시글이 없습니다.</span>
+						</c:if>
+						<c:if test="${!empty afterVO.faqNo }">
+							<a href="<c:url value='/gogak/personal/faqDetail.do?no=${afterVO.faqNo}'/>" class = "font-color">
+								<c:if test="${fn:length(afterVO.question )>=10 }">
+									${fn:substring(afterVO.question,0,10)}...
+								</c:if> 
+								<c:if test="${fn:length(afterVO.question)<10 }">
+									${afterVO.question }							
+								</c:if>
+							</a>
+						</c:if>
+					</div>
+					<div>
+						<span class = "ab1">이전글</span>
+						<c:if test="${empty beforeVO.faqNo }">
+							<span class = "font-color">이전 게시글이 없습니다.</span>
+						</c:if> 
+						<c:if test="${!empty beforeVO.faqNo }">
+							<a href="<c:url value='/gogak/personal/faqDetail.do?no=${beforeVO.faqNo}'/>" class = "font-color">
+								<c:if test="${fn:length(beforeVO.question )>=10 }">
+										${fn:substring(beforeVO.question,0,10)}...
+								</c:if> 
+								<c:if test="${fn:length(beforeVO.question)<10 }">
+									${beforeVO.question }							
+								</c:if>
+							</a>
+						</c:if>
+					</div>	
+				</div>
 			</div>
 		</div>
 	</div>

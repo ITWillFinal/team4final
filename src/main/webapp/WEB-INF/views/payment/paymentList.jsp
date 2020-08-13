@@ -175,7 +175,7 @@ span#totalPrice {
 		action="<c:url value='/payment/paymentList.do'/>">
 		<input type="hidden" name="startDay" value="${param.startDay }">
 		<input type="hidden" name="endDay" value="${param.endDay }">
-		<input type="text" id="currentPage" name = "currentPage">
+		<input type="hidden" id="currentPage" name = "currentPage">
 	</form>
 
 	<form name="frmList" method="post" 
@@ -215,9 +215,7 @@ span#totalPrice {
 			</c:if>
 			<c:if test="${!empty list }">		
 				<!-- 반복 시작 -->
-				<c:set var = "totalPrice" value = "0"/>
 				<c:forEach var="map" items="${list }">
-					<c:set var = "sum" value = "${map['PRICE'] }"/>
 					<tr class="align_center">
 						<td>${map['RECRUITMENT_CODE']}</td>
 						<td>${map['C_USERID']}</td>
@@ -234,7 +232,6 @@ span#totalPrice {
 								value="${map['PRICE']}"/>
 						</td>
 					</tr>
-					<c:set var = "totalPrice" value = "${totalPrice + sum}"/>
 				</c:forEach>
 				<!-- 반복 끝 -->
 			</c:if>
@@ -276,7 +273,7 @@ span#totalPrice {
 					기간 내 총 판매금액은 
 					<span id = "totalPrice">
 						<fmt:formatNumber type="number" maxFractionDigits="3"
-							value="${sumPrice}"/>
+							value="${totalPrice}"/>
 					</span>원 입니다.
 				</p>
 			</c:if>

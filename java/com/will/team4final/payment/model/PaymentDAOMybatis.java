@@ -27,13 +27,13 @@ public class PaymentDAOMybatis implements PaymentDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectPayment(SearchVO searchvo) {
-		return sqlSession.selectList(namespace+"selectPayment", searchvo);
+	public List<Map<String, Object>> selectPaymentAdmin(DateSearchVO dateSearchVo) {
+		return sqlSession.selectList(namespace+"selectPaymentAdmin", dateSearchVo);
 	}
 
 	@Override
-	public int selectTotalRecord(SearchVO searchvo) {
-		return sqlSession.selectOne(namespace+"selectTotalRecord", searchvo);
+	public int selectTotalRecordAdmin(DateSearchVO dateSearchVo) {
+		return sqlSession.selectOne(namespace+"selectTotalRecordAdmin", dateSearchVo);
 	}
 
 	@Override
@@ -46,22 +46,27 @@ public class PaymentDAOMybatis implements PaymentDAO {
 		return sqlSession.selectOne(namespace+"selectTotalRecordC", searchvo);
 	}
 	
-	@Override
-	public int selectTotalPrice(DateSearchVO dateSearchVo) {
-		return sqlSession.selectOne(namespace+"selectTotalPrice", dateSearchVo);
-	}
-	
 	public List<Map<String, Object>> selectPamentForView() {
 		return sqlSession.selectList(namespace + "selectPamentForView");
 	}
 
 	@Override
-	public PaymentVO selectByrecruitmentCode(String recruitmentCode) {
-		return sqlSession.selectOne(namespace+"selectByrecruitmentCode",recruitmentCode );
+	public String selectTotalPriceAdmin(DateSearchVO dateSearchVo) {
+		return sqlSession.selectOne(namespace+"selectTotalPriceAdmin", dateSearchVo);
 	}
 
 	@Override
-	public int updatePrice(PaymentVO paymentVo) {
-		return sqlSession.update(namespace+"updatePrice", paymentVo);
+	public String selectTotalPriceC(DateSearchVO dateSearchVo) {
+		return sqlSession.selectOne(namespace+"selectTotalPriceC", dateSearchVo);
+	}
+
+	@Override
+	public String selectThis(String month) {
+		return sqlSession.selectOne(namespace+"selectThis", month);
+	}
+
+	@Override
+	public String selectBefore(String month) {
+		return sqlSession.selectOne(namespace+"selectBefore", month);
 	}
 }

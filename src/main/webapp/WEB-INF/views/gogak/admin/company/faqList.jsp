@@ -44,8 +44,8 @@ a{
 .divList{height: 250px;}
 
 /* 등록삭제 버튼 */
-#bt{    
-	margin-top: 20px;
+#bt {
+    margin-top: -1%;
 }
 
 /* 리스트 상단 탭 */
@@ -68,12 +68,6 @@ li.select {
 #btm{
 	border-bottom: 1px solid lightgray;
 }
-input[type="submit"] {
-    width: 63px;
-    height: 30px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-}
 input[type="text"] {
     margin-left: 10px;
     height: 17px;
@@ -81,7 +75,36 @@ input[type="text"] {
 input#btMultiDel {
     margin-left: 5px;
 }
+input[type=button] {
+    width: 130px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 63px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 3%;
+}
 
+body > div.wrapper > div > div > div.span9 > div > main > div {
+    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+}
+table.box2 {
+    margin-left: 2%;
+    margin-right: 2%;
+}
 </style>
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
@@ -150,7 +173,7 @@ input#btMultiDel {
 		<form name="frmList" method="post"
 			action="<c:url value = '/gogak/admin/company/faqList.do'/>">
 			<div class = "divList">
-				<table class = "box2" style="width: 700px; margin-top: 45px;">
+				<table class = "box2" style="    width: 100%; margin-top: 10%;">
 					<colgroup>
 					   <col style="width:10%;" />
 					   <col style="width:10%;" />
