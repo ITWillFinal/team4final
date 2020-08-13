@@ -125,7 +125,7 @@
 								<span>주소 : ${memberVo.zipcode } ${memberVo.address } ${memberVo.addressDetail }</span><br>
 							</div>
 						</div>
-						<div>
+						<div style="margin-left: 130px;">
 							<input class="editA" type="button" value="수정하기">
 							<input class="outBtn" type="button" value="회원탈퇴">
 						</div>
