@@ -115,7 +115,7 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 				<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
 				<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
 				<!-- resumeNo 값 -->
-				<input type="text" value="${applyVo.resumeNo }" name="resumeNo" class="resumeNo">
+				<input type="hidden" value="${applyVo.resumeNo }" name="resumeNo" class="resumeNo">
 				
 				<div class="single-job-items mb-30" id="listOne">
 					<div class="job-items">

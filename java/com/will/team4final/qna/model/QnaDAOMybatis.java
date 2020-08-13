@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.will.team4final.common.SearchVO;
+import com.will.team4final.common.DateSearchVO;
 
 @Repository
 public class QnaDAOMybatis implements QnaDAO{
@@ -16,7 +16,7 @@ public class QnaDAOMybatis implements QnaDAO{
 	private String namespace = "com.mybatis.mapper.oracle.qna.";
 
 	@Override
-	public List<QnaVO> selectQna(SearchVO searchVo) {
+	public List<QnaVO> selectQna(DateSearchVO searchVo) {
 		return sqlsession.selectList(namespace+"selectQna", searchVo);
 	}
 
@@ -26,7 +26,7 @@ public class QnaDAOMybatis implements QnaDAO{
 	}
 
 	@Override
-	public int selectTotalRecord(SearchVO vo) {
+	public int selectTotalRecord(DateSearchVO vo) {
 		return sqlsession.selectOne(namespace+"selectTotalRecord", vo);
 	}
 
@@ -63,6 +63,16 @@ public class QnaDAOMybatis implements QnaDAO{
 	@Override
 	public int countQna() {
 		return sqlsession.selectOne(namespace+"countQna");
+	}
+
+	@Override
+	public int selectTotalRecordAdmin(DateSearchVO vo) {
+		return sqlsession.selectOne(namespace+"selectTotalRecordAdmin", vo);
+	}
+
+	@Override
+	public List<QnaVO> selectQnaAdmin(DateSearchVO searchVo) {
+		return sqlsession.selectList(namespace+"selectQnaAdmin",searchVo);
 	}
 	
 	

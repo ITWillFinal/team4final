@@ -119,7 +119,7 @@
       /* 현재 날짜 전은 못 구하게 하기 */
       $('#datePick').change(function(){
          
-         var startDate = $('input[name=startDay]').val();
+      	  var startDate = $('input[name=startDay]').val();
            var startDateArr = startDate.split('-');
            var endDate = $('input[name=endPickDay]').val(); 
            //alert(endDate);
@@ -215,12 +215,12 @@
          <div id="radioResumeDiv"></div>         
          <hr>
          <span style="font-size: 18px; font-weight: bold;">◎모집기간</span><br><br>
-         <input type="radio" name="period" id="radioPeriodMonth" value="month">
+         <input type="radio" name="period" id="radioPeriodMonth" value="월간 이용 상품">
          <label for="radioPeriodMonth" class="labpay" id="labPeriodMonth">상시채용</label><br>결제일로 부터 30일 이용가능
          <input type="date" name="monthEnd" id="monthEnd" style="display: none;"><br><br>
          
          <br>
-         <input type="radio" name="period" id="radioPeriodDate" value="date">
+         <input type="radio" name="period" id="radioPeriodDate" value="기간 지정 상품">
          <label for="radioPeriodDate" class="labpay" id="labPerioddDate">날짜지정</label>
          <div style="display: inline;margin-left: 50px;" id="dateDiv">
             <input type="date" name="startDay" class="startDay" readonly> ~ 
@@ -235,10 +235,10 @@
          <div style="text-align: center; margin: 50px; clear: both;">
             <input type="submit" id="btn" class="btn" value="결제하기" >
          </div>
-         <input type="text" name="productName" id="productName">
-         <input type="text" name="resumeType" id="resumeType">
-         <input type="text" name="endDay" id="endDay" >
-         <input type="text" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode }">
+         <input type="hidden" name="productName" id="productName">
+         <input type="hidden" name="resumeType" id="resumeType">
+         <input type="hidden" name="endDay" id="endDay" >
+         <input type="hidden" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode }">
          
 
       </form>

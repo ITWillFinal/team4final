@@ -486,7 +486,7 @@
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frmWrite" style="padding-left: 370px;" method="post" action="<c:url value='/companypage/companyReWrite.do'/>">
-			<span style="font-size: 25px; font-weight: bold;">채용정보재등록</span>
+			<span style="font-size: 25px; font-weight: bold;">채용공고재등록</span>
 			<hr>
 			<div style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span>&nbsp&nbsp<span class="stress"> *은 다시 선택해주세요</span><br><br>

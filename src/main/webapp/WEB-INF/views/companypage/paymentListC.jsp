@@ -112,35 +112,6 @@ span#totalPrice {
 </style>	
 <script type="text/javascript">
 
-	$(function () {
-		$('#startDay').datepicker({
-			dateFormat:'yy-mm-dd',
-			changeYear:true,
-			dayNamesMin:['일', '월', '화', '수', '목', '금', '토'],
-			monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월',]
-		});
-	});	
-	
-	$(function () {
-		$('#endDay').datepicker({
-			dateFormat:'yy-mm-dd',
-			changeYear:true,
-			dayNamesMin:['일', '월', '화', '수', '목', '금', '토'],
-			monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월',]
-		});
-		
-		$('.btWeek').click(function(){
-			$.setDate(7, 'd'); //1주일전
-		})
-		$('.btMonth1').click(function(){
-			$.setDate(1, 'm'); //1개월전
-		})
-		$('.btMonth3').click(function(){
-			$.setDate(3, 'm'); //3개월전
-		})
-		
-	});
-	
 	$.setDate = function(term, type){
 		var arr = $('#endDay').val().split("-");  //2020-07-20
 		var d = new Date(arr[0], arr[1]-1, arr[2]);
@@ -228,9 +199,7 @@ span#totalPrice {
 			</c:if>
 			<c:if test="${!empty list }">		
 				<!-- 반복 시작 -->
-				<c:set var = "totalPrice" value = "0"/>
 				<c:forEach var="map" items="${list }">
-					<c:set var = "sum" value = "${map['PRICE'] }"/>
 						<tr class="align_center">
 							<td>${map['RECRUITMENT_CODE']}</td>
 							<td>${map['C_USERID']}</td>
@@ -247,7 +216,6 @@ span#totalPrice {
 									value="${map['PRICE']}"/>
 							</td>
 						</tr>
-					<c:set var = "totalPrice" value = "${totalPrice + sum}"/>
 				</c:forEach>
 				<!-- 반복 끝 -->
 			</c:if>
