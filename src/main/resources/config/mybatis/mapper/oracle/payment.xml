@@ -120,11 +120,6 @@
 		where substr(regdate, 4,2)=#{date}-1
 	</select>
 	
-	<select id="selectByrecruitmentCode" parameterType="string" resultType="paymentVo">
-		select * from payment
-		where RECRUITMENT_CODE = #{recruitmentCode}
-	</select>
-	
 	<update id="updatePrice" parameterType="paymentVo">
 		update payment
 		set PRICE = #{price}
