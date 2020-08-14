@@ -56,7 +56,7 @@
 	 	<input type="hidden" id="cMemberCode" name="cMemberCode" value="${cMemberCode }" id="cMemberCode">
 	 	<input type="hidden" id="price" name="price" value="${paymentVo.price }">
 	 	<input type="hidden" id="recruitmentCode" name="recruitmentCode" value="${recruitmentCode }"><br><br>
-	 	<input type="text" id="endDay" name="endDay" value="${endDay }">
+	 	<input type="hidden" id="endDay" name="endDay" value="${endDay }">
     </form>
 </body>
 </html>
