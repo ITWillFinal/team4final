@@ -130,8 +130,11 @@ public class ImportController {
 			Date today = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			String str = sdf.format(today);
-			datesearchVo.setStartDay(str);
 			datesearchVo.setEndDay(str);
+			
+			//초기접속, 시작날짜 설정
+			String str2 = "2020-01-01";
+			datesearchVo.setStartDay(str2);
 		}
 		
 		
@@ -195,8 +198,11 @@ public class ImportController {
 			Date today = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			String str = sdf.format(today);
-			datesearchVo.setStartDay(str);
 			datesearchVo.setEndDay(str);
+
+			//초기접속, 시작날짜 설정
+			String str2 = "2020-01-01";
+			datesearchVo.setStartDay(str2);
 		}
 		
 		//map => orderSheet_get 참고
