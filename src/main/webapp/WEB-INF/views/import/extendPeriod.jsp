@@ -55,10 +55,10 @@
     });
     </script>
     <form id="frmPayment" name="frmPayment">
-	 	<input type="hidden" id="price" name="price" value="${paymentVo.price }">
-	 	<input type="hidden" id="extraPrice" name="extraPrice" value="${extraPrice }">
-	 	<input type="hidden" id="recruitmentCode" name="recruitmentCode" value="${paymentVo.recruitmentCode }"><br><br>
-	 	<input type="hidden" id="endDate" name="endDate" value="${tosVo.endDate }">
+	 	<input type="text" id="price" name="price" value="${paymentVo.price }">
+	 	<input type="text" id="extraPrice" name="extraPrice" value="${extraPrice }">
+	 	<input type="text" id="recruitmentCode" name="recruitmentCode" value="${paymentVo.recruitmentCode }"><br><br>
+	 	<input type="text" id="endDate" name="endDate" value="${tosVo.endDate }">
     </form>
 </body>
 </html>
