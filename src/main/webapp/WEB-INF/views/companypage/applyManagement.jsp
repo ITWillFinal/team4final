@@ -93,6 +93,11 @@
 				'RESUME','width=980,height=auto,left=0,top=0,location=yes,resizable=false')
 	}
 
+	function open_applyList(recruitmentCode){
+		window.open("<c:url value='/companypage/applyList.do?recruitmentCode=$"+recruitmentCode+"'/>",
+				'applyList','width=300,height=auto,left=0,top=0,location=yes,resizable=false')
+	}
+
 </script>
 <style type="text/css">
 	a{
@@ -135,7 +140,7 @@
 							
 							<div class="job-items">
 								<div class="job-tittle">
-									<h4><a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.title }</a></h4>
+									<h4><a onclick="open_applyList(${vo.recruitmentCode})" style="cursor: pointer;">${vo.title }</a></h4>
 									<ul>
 										<li>${vo.comName }</li>
 										<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>

@@ -728,12 +728,16 @@ public class CompanyHomeController {
 		return "companypage/applyManagement";
 	}
 	
-	@ResponseBody
-	@RequestMapping("")
-	public List<Map<String, Object>> applyList(@RequestParam String recruitmentCode) {
-		logger
-		List<Map<String, Object>> applyList = applyService.selectApplyForCompany(recruitmentCode);
+	@RequestMapping("/applyList.do")
+	public String applyList(@RequestParam String recruitmentCode,
+			Model model) {
+		logger.info("지원자 목록 recruitmentCode={}",recruitmentCode);
 		
-		return applyList;
+		List<Map<String, Object>> applyList = applyService.selectApplyForCompany(recruitmentCode);
+		logger.info("지원자 목록 recruitmentCode={}",recruitmentCode);
+		
+		model.addAttribute("applyList",applyList);
+		
+		return "companypage/applyList";
 	}
 }
