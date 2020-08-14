@@ -23,6 +23,16 @@
 		font-size: x-small;
 		color: red;
 	}
+	.noList{
+		text-align: center;
+		height: 220px;
+		margin-top: 140px;
+	}
+	.items-link{
+		float: left;
+		padding-right: 0px;
+	
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -42,6 +52,19 @@
 	});
 
 </script>
+<!-- list 값이 없으면 -->
+<c:if test="${empty list }">
+	<div class="noList">
+		<span> 현재 채용공고가 없습니다.</span>
+		<br><br>
+		<a href="<c:url value='/companypage/companyWrite.do'/> " >채용 공고 등록하러 가시겠습니까?</a>
+	</div>
+
+</c:if>
+
+
+
+<!-- list 값이 있으면 -->
 <div id="upDiv">
 	<div id="scrapListDiv">
 		<c:if test="${!empty list }">
@@ -63,23 +86,44 @@
 						</div>
 					</div>
 					<c:if test="${endDate-startDate+1 > 0}">
-					<div class="items-link f-right">
+					<div class="items-link ">
 						<a style="margin-bottom: 3px;" href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정</a>
-						<a class="extendPeriod" href="#">기간연장</a>
-						<input type="hidden" value="${vo.recruitmentCode }" class="extendPeriod_recruitmentCode">
-						<span>채용 공고 마감까지 D - ${endDate-startDate+1 }일</span>
+						<c:if test="${empty vo.endDate }">
+							<a href="<c:url value='/companypage/companyWritePeriod.do?recruitmentCode=${vo.recruitmentCode }'/>">서비스 결제</a>
+						</c:if>
+						<c:if test="${!empty vo.endDate }">
+							<a class="extendPeriod" href="#">기간연장</a>
+							<input type="hidden" value="${vo.recruitmentCode }" class="extendPeriod_recruitmentCode">
+							<span>채용 공고 마감까지 D - ${endDate-startDate+1 }일</span>
+						</c:if>
+						
 					</div>
 					</c:if>
 					<c:if test="${endDate-startDate+1 == 0}">
-						<div class="items-link f-right">
-							<a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정</a>
-							<span>오늘 채용 공고 마감!</span>
+						<div class="items-link ">
+							<a style="margin-bottom: 3px;" href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정</a>
+							<c:if test="${empty vo.endDate }">
+								<a href="<c:url value='/companypage/companyWritePeriod.do?recruitmentCode=${vo.recruitmentCode }'/>">서비스 결제</a>
+							</c:if>
+							<c:if test="${!empty vo.endDate }">
+								<a class="extendPeriod" href="#">기간연장</a>
+								<span>오늘 채용 공고 마감!</span>
+							</c:if>
+							
 						</div>
 					</c:if>
 					<c:if test="${endDate-startDate+1 < 0}">
-						<div class="items-link f-right">
-							<a style="background: #7b7b7bbf;border: 1px solid #7b7b7bbf;">채용 공고 마감</a>
-							<span>채용 공고가 마감되었습니다.</span>
+						<div class="items-link ">
+							<c:if test="${empty vo.endDate }">
+								<a style="margin-bottom: 3px;" href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정</a>
+								<a href="<c:url value='/companypage/companyWritePeriod.do?recruitmentCode=${vo.recruitmentCode }'/>">서비스 결제</a>
+							</c:if>
+							<c:if test="${!empty vo.endDate }">
+								<a style="margin-bottom: 3px;" href="#" class="" >공고마감</a>
+								<a style="margin-bottom: 3px;" href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정</a>
+								<a class="extendPeriod" href="#">기간연장</a>
+								<span>채용 공고가 마감되었습니다.</span>
+							</c:if>
 						</div>
 					</c:if>
 				</div>

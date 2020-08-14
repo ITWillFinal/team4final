@@ -280,7 +280,7 @@
 		});
 		
 		
-		CKEDITOR.replace('content',{
+		CKEDITOR.replace('recDetail',{
 			filebrowserUploadUrl:"<c:url value='/admin/insertImage.do'/>"
 		});
 		
@@ -468,7 +468,7 @@
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frmWrite" method="post" action="<c:url value='/companypage/companyWrite.do'/>">
-			<span style="font-size: 25px; font-weight: bold;">채용정보등록</span>
+			<span style="font-size: 25px; font-weight: bold;">채용공고등록</span>
 			<hr>
 			<div style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span><br><br>
