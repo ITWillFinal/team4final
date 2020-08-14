@@ -36,6 +36,11 @@
 		where user_no=#{userNo}
 	</select>
 	
+	<update id="updateReadcheck" parameterType="string">
+		update apply
+		set read_check = 'Y'
+		where apply_code = #{applyCode}
+	</update>
 </mapper>
 
 

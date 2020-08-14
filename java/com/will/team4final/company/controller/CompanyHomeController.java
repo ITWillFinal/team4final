@@ -733,11 +733,23 @@ public class CompanyHomeController {
 			Model model) {
 		logger.info("지원자 목록 recruitmentCode={}",recruitmentCode);
 		
+		ComRecruitVO reVo= comRecruitServ.selectOneByRecruitmentCode(recruitmentCode);
 		List<Map<String, Object>> applyList = applyService.selectApplyForCompany(recruitmentCode);
 		logger.info("지원자 수 ={}",applyList.size());
 		
 		model.addAttribute("applyList",applyList);
+		model.addAttribute("reVo",reVo);
 		
 		return "companypage/applyList";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/readcheck.do")
+	public int readcheck(@RequestParam String applyCode) {
+		int result = applyService.updateReadcheck(applyCode);
+		logger.info("readcheck 결과 result={}",result);
+		
+		
+		return result;
 	}
 }
