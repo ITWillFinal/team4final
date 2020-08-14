@@ -20,59 +20,7 @@
 	textarea {
     resize:none; /*크기고정 */ 
 	}	
-	
-	/* 체크박스 => 토글 슬라이더 */
-	.switch {
-	position: relative;
-	display: inline-block;
-	width: 30px;
-	height: 17px;
-	}
-	.switch input {
-		opacity: 0;
-		width: 0;
-		height: 0;	
-	}
-	.slider {
-		position: absolute;
-		cursor: pointer;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: #ccc;
-		-webkit-transition: .4s;
-		transition: .4s;
-	}
-	.slider:before {
-		position: absolute;
-		content: "";
-		height: 13px;
-		width: 13px;
-		left:2px;
-		bottom: 2px;
-		background-color: white;
-		-webkit-transition: .4s;
-		transition: .4s;	
-	}
-	input:checked + .slider {
-		background-color: #2196F3;
-	}
-	input:focus + .slider {
-		box-shadow: 0 0 1px #2196F3;
-	}
-	input:checked + .slider:before {
-		-webkit-transform: translateX(13px);
-		-ms-transform: translateX(13px);
-		transform: translate(13px);
-	}
-	.slider.round {
-		border-radius: 17px;
-	}
-	.slider.round:before {
-		border-radius: 50%;
-	}
-	
+		
 	.awardsTr {
 		display: none;
 	}
@@ -136,6 +84,7 @@
 <script type="text/javascript">
 	
 	$(function(){
+		
 		//DB값 처리 시작
 		var n1 = $("#schoolVal").val();
 		if(n1=="n"){
@@ -178,11 +127,7 @@
 		}
 		//DB값 처리 끝
 		
-		
-		
-		
-		//필수값 처리
-		
+		//필수값 처리		
 		$("#address").val();
 		$("#addressDetail").val();
 		
@@ -240,11 +185,14 @@
 				$('#self5area').focus();
 				event.preventDefault();
 			}		
-			
-			
 		});
 		
 		//성별
+		$("#genderSelect").val("${memberVo.gender}").prop('selected', true);
+		
+		var genderData = $("#genderSelect").val();
+		$("#gender").val(genderData);
+		
 		$("#genderSelect").change(function(){
 			var genderSel = $("#genderSelect option:selected").val();
 			$("#gender").val(genderSel);
@@ -273,8 +221,6 @@
 			
 			$("#edu").val(eduData);
 		});
-		
-		
 		
 		//경력
 		var careerTr1Td1 = "";
@@ -396,8 +342,7 @@
 			}
 			
 			careerTotal = careerResult1 + careerResult2 + careerResult3 + careerResult4 + careerResult5;
-			$("#career").val(careerTotal);
-										
+			$("#career").val(careerTotal);										
 		});
 		
 		$("#careerAddBtn").click(function(){
@@ -1330,8 +1275,8 @@
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frm" method="post" action="<c:url value='/companypage/companyResumeUse.do'/>">
 		
-		채용공고코드 : <input type="text" name="recruitmentCode" id="recruitmentCode" value="${param.recruitmentCode}">
-		일반회원아이디 : <input type="text" name="userId" value="${userId}">
+		채용공고코드 : <input type="hidden" name="recruitmentCode" id="recruitmentCode" value="${param.recruitmentCode}">
+		일반회원아이디 : <input type="hidden" name="userId" value="${userId}">
 			<!-- 
 			<div style="margin:5px; height:95px; border:1px solid lightgray">
 			위쪽 가로 긴 구역
@@ -1349,11 +1294,11 @@
 					</colgroup>
 					<tr>
 						<td>이름</td>
-						<td><input type="text" name="name" id="name"></td>
+						<td><input type="text" name="name" id="name" value="${memberVo.userName}"></td>
 					</tr>
 					<tr>
 						<td>성별</td>
-						<td><input type="text" name="gender" id="gender" value="남자" readonly></td>
+						<td><input type="text" name="gender" id="gender" readonly></td>
 						<td>
 							<select id="genderSelect" name="genderSelect">
 								<option value="남자">남자</option>
@@ -1363,28 +1308,28 @@
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td><input type="text" name="email" id="email"></td>
+						<td><input type="text" name="email" id="email" value="${memberVo.email}"></td>
 					</tr>
 					<tr>
 						<td>전화번호</td>
-						<td><input type="text" name="hp" id="hp"></td>
+						<td><input type="text" name="hp" id="hp" value="${memberVo.hp}"></td>
 					</tr>
 					<tr>
 						<td>생년월일</td>
-						<td><input type="date" name="birth" id="birth"></td>
+						<td><input type="date" name="birth" id="birth" value="${memberVo.birth}"></td>
 					</tr>
 					<tr>
 						<td>우편번호</td>
-						<td><input type="text" name="zipcode" id="zipcode" readonly></td>
+						<td><input type="text" name="zipcode" id="zipcode" readonly value="${memberVo.zipcode}"></td>
 						<td><input type="button" onclick="sample4_execDaumPostcode()" value="찾기"></td>
 					</tr>
 					<tr>
 						<td>주소</td>
-						<td><input type="text" name="address" id="address" readonly></td>
+						<td><input type="text" name="address" id="address" readonly value="${memberVo.address}"></td>
 					</tr>
 					<tr>
 						<td>상세주소</td>
-						<td><input type="text" name="addressDetail" id="addressDetail"></td>
+						<td><input type="text" name="addressDetail" id="addressDetail" value="${memberVo.addressDetail}"></td>
 					</tr>
 				</table>
 			<hr>
@@ -1393,7 +1338,7 @@
 			
 			<div id="schoolDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">학력사항</span>
-				<input type="text" name="schoolVal" id="schoolVal" value="${vo.schoolVal}">
+				<input type="hidden" name="schoolVal" id="schoolVal" value="${vo.schoolVal}">
 				<%-- 체크박스를 토글로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="schoolChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -1416,7 +1361,7 @@
 							<td>졸업일 : <input type="date" id="schoolDate"></td>		
 						</tr>
 					</table>
-					<input type="text" name="edu" id="edu">
+					<input type="hidden" name="edu" id="edu">
 					<input type="hidden" name="edu1" id="edu1">
 					<input type="hidden" name="edu2" id="edu2">
 					<input type="hidden" name="edu3" id="edu3">
@@ -1427,7 +1372,7 @@
 			
 			<div id="careerDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">경력사항</span>
-				<input type="text" name="careerVal" id="careerVal" value="${vo.careerVal}">
+				<input type="hidden" name="careerVal" id="careerVal" value="${vo.careerVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="careerChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -1491,7 +1436,7 @@
 							<td><input type='date' id="careerTr5Td5"></td>
 						</tr>
 					</table>
-					<input type="text" name="career" id="career">
+					<input type="hidden" name="career" id="career">
 					<input type="hidden" id="careerResult1" class="careerResult">
 					<input type="hidden" id="careerResult2" class="careerResult">
 					<input type="hidden" id="careerResult3" class="careerResult">
@@ -1504,7 +1449,7 @@
 			
 			<div id="certificateDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">자격증</span>
-				<input type="text" name="certificateVal" id="certificateVal" value="${vo.certificateVal}">
+				<input type="hidden" name="certificateVal" id="certificateVal" value="${vo.certificateVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="certificateChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -1554,7 +1499,7 @@
 							<td><input type='date' id="certificateTr5Td3"></td>
 						</tr>
 					</table>
-					자격증<input type="text" name="certificate" id="certificate">
+					<input type="hidden" name="certificate" id="certificate">
 					<input type="hidden" id="certificateResult1" class="certificateResult">
 					<input type="hidden" id="certificateResult2" class="certificateResult">
 					<input type="hidden" id="certificateResult3" class="certificateResult">
@@ -1567,7 +1512,7 @@
 			
 			<div id="languageDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">외국어능력</span>
-				<input type="text" name="languageVal" id="languageVal" value="${vo.languageVal}">
+				<input type="hidden" name="languageVal" id="languageVal" value="${vo.languageVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="languageChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -1617,7 +1562,7 @@
 							<td><input type='date' id="languageTr5Td3"></td>
 						</tr>
 					</table>
-					어학능력<input type="text" name="language" id="language">
+					<input type="hidden" name="language" id="language">
 					<input type="hidden" id="languageResult1" class="languageResult">
 					<input type="hidden" id="languageResult2" class="languageResult">
 					<input type="hidden" id="languageResult3" class="languageResult">
@@ -1630,7 +1575,7 @@
 			
 			<div id="awardsDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">수상내역</span>
-				<input type="text" name="awardsVal" id="awardsVal" value="${vo.awardsVal}">
+				<input type="hidden" name="awardsVal" id="awardsVal" value="${vo.awardsVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="awardsChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -1680,7 +1625,7 @@
 							<td><input type='date' id="awardsTr5Td3"></td>
 						</tr>
 					</table>
-					수상기록<input type="text" name="award" id="award">
+					<input type="hidden" name="award" id="award">
 					<input type="hidden" id="awardsResult1" class="awardsResult">
 					<input type="hidden" id="awardsResult2" class="awardsResult">
 					<input type="hidden" id="awardsResult3" class="awardsResult">
@@ -1692,7 +1637,7 @@
 						
 			<div id="specialDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">우대사항</span>
-				<input type="text" name="specialVal" id="specialVal" value="${vo.specialVal}">
+				<input type="hidden" name="specialVal" id="specialVal" value="${vo.specialVal}">
 				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
 				<label class="switch">
 					<input type="checkbox" id="specialChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -1715,21 +1660,15 @@
 							<td><input type="checkbox" class="specialChk" value="고용지원금대상">&nbsp;고용지원금대상</td>
 						</tr>
 					</table>
-					<input type="text" name="special" id="special">
+					<input type="hidden" name="special" id="special">
 				</div>
 			<hr>
-			</div>
-			
+			</div>			
 			
 			<div id="activityDiv" style="margin:5px;">
 				<span style="font-size: 18px; font-weight: bold;">대외활동</span>
-				<input type="text" name="activityVal" id="activityVal" value="${vo.activityVal}">
-				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
-				<label class="switch">
-					<input type="checkbox" id="activityChk" checked> <!-- 체크 시 테이블 등장 -->
-					<span class="slider round"></span>
-				</label>
-				체크박스를 토글스위치로 바꾼 부분 끝 --%>
+				<input type="hidden" name="activityVal" id="activityVal" value="${vo.activityVal}">
+				
 				<br><br>
 				<div id="activityDivChk">	
 					<input type="button" value="추가" id="activityAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
@@ -1780,7 +1719,7 @@
 							<td><input type='date' id="activityTr5Td4"></td>
 						</tr>
 					</table>
-					대외활동<input type="text" name="activity" id="activity">
+					<input type="hidden" name="activity" id="activity">
 					<input type="hidden" id="activityResult1" class="activityResult">
 					<input type="hidden" id="activityResult2" class="activityResult">
 					<input type="hidden" id="activityResult3" class="activityResult">
@@ -1792,15 +1731,10 @@
 			
 						
 			<div id="selfDiv" style="margin:5px;">
-			<input type="text" name="selfVal" id="selfVal" value="${vo.selfVal}">
+			<input type="hidden" name="selfVal" id="selfVal" value="${vo.selfVal}">
 				<span style="font-size: 18px; font-weight: bold;">자기소개서</span>	
 				<br><br>		
-				<%-- 체크박스를 토글스위치로 바꾼 부분 시작
-				<label class="switch">
-					<input type="checkbox" id="selfChk" checked> <!-- 체크 시 테이블 등장 -->
-					<span class="slider round"></span>
-				</label>
-				체크박스를 토글스위치로 바꾼 부분 끝 --%>
+				
 				<div id="selfDivChk">
 					<table id="selfTable">
 						<tr class="selfTitleTr1">						
@@ -1834,12 +1768,12 @@
 							<td><textarea id="self5area" class="self" name="self5area" rows="8" cols="80"></textarea></td>						
 						</tr>
 					</table>
-					5가지 자기소개
-					<input type="text" name="self1" id="self1">
-					<input type="text" name="self2" id="self2">
-					<input type="text" name="self3" id="self3">
-					<input type="text" name="self4" id="self4">
-					<input type="text" name="self5" id="self5">
+					
+					<input type="hidden" name="self1" id="self1">
+					<input type="hidden" name="self2" id="self2">
+					<input type="hidden" name="self3" id="self3">
+					<input type="hidden" name="self4" id="self4">
+					<input type="hidden" name="self5" id="self5">
 				</div>
 			<hr>
 			</div>			
