@@ -1,5 +1,8 @@
 package com.will.team4final.apply.model;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,4 +27,11 @@ public class ApplyServiceImpl implements ApplyService{
 	public int deleteApply(String applyCode) {
 		return applyDao.deleteApply(applyCode);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectRecruitmentApply(String userNo ) {
+		return applyDao.selectRecruitmentApply(userNo);
+	}
+
+
 }

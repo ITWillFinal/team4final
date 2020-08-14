@@ -180,7 +180,7 @@
 							window
 									.open("<c:url value='/member/email.do'/>",
 											'emailchk',
-											'width=460,height=400,left=0,top=0,location=yes,resizable=yes');
+											'width=500,height=500,left=550,top=250,location=yes,resizable=yes');
 						});
 
 		$('.checkAll').change(function() {
@@ -188,28 +188,35 @@
 				$(".registerList").slideDown();
 				$(".labelCh1").prop('checked',true);
 				$(".labelCh2").prop('checked',true);
+				/*  */
+				$('.footdiv').removeClass('foot');
 			} else {
 				$(".registerList").slideUp();
 				$(".labelCh1").prop('checked',false);
 				$(".labelCh2").prop('checked',false);
+				$('.footdiv').addClass('foot');
 			}
 		});
 		$('.labelCh1').click(function() {
 			if ($(".labelCh2").is(":checked") && $(".labelCh1").is(":checked")) {
 				$(".registerList").slideDown();
 				$('.checkAll').prop('checked',true);
+				$('.footdiv').removeClass('foot');
 			} else {
 				$(".registerList").slideUp();
 				$('.checkAll').prop('checked',false);
+				$('.footdiv').addClass('foot');
 			}
 		});
 		$('.labelCh2').click(function() {
 			if ($(".labelCh2").is(":checked") && $(".labelCh1").is(":checked")) {
 				$(".registerList").slideDown();
 				$('.checkAll').prop('checked',true);
+				$('.footdiv').removeClass('foot');
 			} else {
 				$(".registerList").slideUp();
 				$('.checkAll').prop('checked',false);
+				$('.footdiv').addClass('foot');
 			}
 		});
 		
@@ -257,8 +264,12 @@
 .divForm {
 	margin: 0 auto;
 	width: 800px;
+	position:relative;
 }
+.foot{
+   position: fixed; bottom: 0; width: 100%;
 
+}
 #join {
 	margin-right: auto;
 	margin-left: auto;
@@ -507,10 +518,8 @@ hr {
 					</div>
 					<div class="form-group" id="address">
 						<div class="col-lg-10">
-							<label for="zipcode" class="col-lg-2 control-label">주소</label> <input
-								type="button" onclick="sample4_execDaumPostcode()"
-								value="우편번호 찾기"><br> <input type="text"
-								class="form-control" id="zipcode" name="zipcode"
+							<label for="zipcode" class="col-lg-2 control-label">주소</label><br> 
+							<input type="text" class="form-control" id="zipcode" name="zipcode" onclick="sample4_execDaumPostcode()"
 								placeholder="우편번호" ReadOnly>
 						</div>
 						<div class="col-lg-10">
@@ -532,8 +541,8 @@ hr {
 					</div>
 
 					<div class="form-group">
-						<div class="col-lg-offset-2 col-lg-10">
-							<button type="submit" class="btn btn-primary">Sign in</button>
+						<div class="col-lg-offset-2 col-lg-10" style="text-align: center;">
+							<button type="submit" class="btn btn-primary">회원가입</button>
 						</div>
 					</div>
 					<input type="hidden" name="chkId" id="chkId"> <input
@@ -543,4 +552,6 @@ hr {
 		</form>
 	</div>
 </body>
-<%@ include file="../inc/bottom.jsp"%>
+<div class="foot footdiv">
+	<%@ include file="../inc/bottom.jsp"%>
+</div>

@@ -1,5 +1,8 @@
 package com.will.team4final.apply.model;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +27,12 @@ public class ApplyDAOMybatis implements ApplyDAO{
 	public int deleteApply(String applyCode) {
 		return sqlSession.delete(namespace+"deleteApply", applyCode);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectRecruitmentApply( String userNo) {
+		return sqlSession.selectList(namespace+"selectRecruitmentApply", userNo);
+	}
+
+
 
 }
