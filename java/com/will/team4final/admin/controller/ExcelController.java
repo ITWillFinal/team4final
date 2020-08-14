@@ -137,7 +137,7 @@ public class ExcelController {
 			
 			//data 출력
 			cell = row.createCell(cellIdx++);
-			cell.setCellValue((String)map.get("C_MEMBER_CODE"));
+			cell.setCellValue((String)map.get("RECRUITMENT_CODE"));
 			cell.setCellStyle(cellStyle(wb, "data"));
 			
 			cell = row.createCell(cellIdx++);
