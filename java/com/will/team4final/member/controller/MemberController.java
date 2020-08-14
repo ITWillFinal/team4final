@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.will.team4final.apply.model.ApplyService;
 import com.will.team4final.apply.model.ApplyVO;
 import com.will.team4final.common.FileUploadUtil;
 import com.will.team4final.company.model.ComRecruitService;
@@ -345,7 +346,8 @@ public class MemberController {
 		logger.info("일반 회원 지원 현황, userNo={}", userNo);	
 		
 		List<Map<String, Object>> list = applyServ.selectRecruitmentApply(userNo);
-		logger.info("일반회우너 지원 현황 페이지, list.size()={}", list.size());
+		logger.info("일반회원 지원 현황 페이지, list.size()={}", list.size());
+		
 		
 		model.addAttribute("list", list);
 		

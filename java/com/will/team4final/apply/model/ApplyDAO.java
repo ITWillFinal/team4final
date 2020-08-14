@@ -8,4 +8,5 @@ public interface ApplyDAO {
 	public int selectApply(ApplyVO applyVo);
 	int deleteApply(String applyCode);
 	List<Map<String, Object>> selectApplyForCompany(String recruitmentCode);
+	List<Map<String, Object>> selectRecruitmentApply(String userNo);
 }

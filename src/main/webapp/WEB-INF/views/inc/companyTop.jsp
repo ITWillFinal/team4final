@@ -311,15 +311,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 										<ul id="navigation">
 											<li><a href="<c:url value='/companypage/serviceInfo.do'/>">서비스안내</a></li>
 											<li><a href="<c:url value='/companypage/paymentListC.do' />"> 유료이용내역 </a></li>
-											<li><a
-												href="<c:url value='/companypage/companyHome.do'/>">해드헌팅
-													의뢰</a>
-												<ul class="submenu">
-													<li><a href="blog.html">헤드헌팅</a></li>
-													<li><a href="single-blog.html">Blog Details</a></li>
-													<li><a href="elements.html">Elements</a></li>
-													<li><a href="job_details.html">job Details</a></li>
-												</ul></li>
+											<li><a href="<c:url value='/companypage/companyHome.do'/>">해드헌팅의뢰</a>
 											<li><a href="<c:url value = '/gogak/company/faqList.do'/>">고객센터</a></li>
 										</ul>
 									</nav>

@@ -35,7 +35,7 @@
 		<h1>입사 지원이 완료되었습니다!</h1>
 		
 		<div class="apply-bt">
-			<a href="<c:url value='#'/>" class="btn head-btn2">입사 지원 확인하기</a>
+			<a href="<c:url value='/member/currentApply.do'/>" class="btn head-btn2">입사 지원 확인하기</a>
 		</div>
 		<div class="apply-bt">
 			<a href="<c:url value='#'/>" class="btn head-btn2">목록으로</a>

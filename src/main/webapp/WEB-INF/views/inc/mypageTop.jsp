@@ -43,7 +43,7 @@
 		</div>
 		<div class="header-area header-transparrent">
 			<div class="headder-top header-sticky">
-				<div class="container">
+				<div class="container" style="max-width: 1400px;">
 					<div class="row align-items-center" style="margin-left: 100px;">
 							<div class="menu-wrapper" style="position: relative;margin: 0 auto;">
 								<!-- Main-menu -->
@@ -52,7 +52,8 @@
 										<ul id="navigation">
 											<li><a href="<c:url value='/mypage/mypageHome.do?status=${sessionScope.status }'/>">MY 홈</a></li>
 											<li><a href="<c:url value='/resume/resumeMain.do'/>">이력서관리</a></li>
-											<li><a href="contact.html">입사지원/요청관리</a></li>
+											<li><a href="<c:url value='/member/currentApply.do'/>">입사지원현황</a></li>
+											<li><a href="<c:url value='/mypage/requestEmployment.do'/>">입사요청</a></li>
 											<li><a href="<c:url value='/mypage/mypageScrap.do'/>">스크랩</a></li>
 										</ul>
 									</nav>

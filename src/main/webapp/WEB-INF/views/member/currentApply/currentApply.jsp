@@ -107,7 +107,7 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 </style>
 <div id="upDiv">
 	<div id="scrapListDiv">
-		<c:if test="${!empty tosVo }">
+		<c:if test="${!empty list }">
 			<h3 style="margin: 40px;">지원 현황</h3>
 			<c:forEach var="map" items="${list }">
 			
@@ -120,10 +120,10 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 				<div class="single-job-items mb-30" id="listOne">
 					<div class="job-items">
 						<div class="job-tittle">
-							<a href="#" id="resumeNo"><h4>${vo.title }(${map['APPLY_STATUS'] })</h4></a>
+							<a href="#" id="resumeNo"><h4>${map['TITLE'] }(${map['APPLY_STATUS'] })</h4></a>
 							<input type="hidden" id="applyCode" value="${map['APPLY_CODE'] }">
 							<ul>
-								<li>${vo.comName }</li>
+								<li>${map['COM_NAME'] }</li>
 								<li><i class="fa fa-briefcase" aria-hidden="true"></i>${map['JOB_TYPE2'] }</li>
 								<li>${map['PAY'] }</li>
 							</ul>
@@ -172,6 +172,5 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 			</c:if>
 	</div>
 </div>
-
 
 <%@ include file="../../inc/bottom.jsp" %>

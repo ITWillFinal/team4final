@@ -44,12 +44,12 @@ function open_resume(resumeNo){
 								<tr>
 									<td>${no }</td>
 									<td>${map['USER_NAME'] }</td>
-									<td>${map['REGDATE_1'] }</td>
+									<td>${map['REGDATE'] }</td>
 									<c:if test="${map['RESUME_TYPE'] =='0' }">
-										<td><a onclick="open_resume(${map['RESUME_NO']})">이력서 보기</a></td>
+										<td><a style="cursor: pointer;" onclick="open_resume(${map['RESUME_NO']})">이력서 보기</a></td>
 									</c:if>
 									<c:if test="${map['RESUME_TYPE'] =='1' }">
-										<td><a onclick="">이력서 보기</a></td>
+										<td><a style="cursor: pointer;" onclick="">이력서 보기</a></td>
 									</c:if>
 								</tr>
 								<c:set var="no" value="${no+1 }"/>								

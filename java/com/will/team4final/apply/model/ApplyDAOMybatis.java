@@ -32,5 +32,8 @@ public class ApplyDAOMybatis implements ApplyDAO{
 	public List<Map<String, Object>> selectApplyForCompany(String recruitmentCode) {
 		return sqlSession.selectList(namespace+"selectApplyForCompany",recruitmentCode);
 	}
-
+	
+	public List<Map<String, Object>> selectRecruitmentApply( String userNo) {
+		return sqlSession.selectList(namespace+"selectRecruitmentApply", userNo);
+	}
 }

@@ -722,7 +722,7 @@ public class CompanyHomeController {
 		//기업회원 공고 정보 구하기
 		List<Recruitment_TosVO> comRecuritTosListVo = comRecruitServ.selectList_tosByComcode(comInfoVo.getComCode());
 		logger.info("기업회원 notice, comRecuritVo={}", comRecuritTosListVo);
-		
+				
 		model.addAttribute("comRecuritListVo", comRecuritTosListVo);
 		
 		return "companypage/applyManagement";
@@ -734,7 +734,7 @@ public class CompanyHomeController {
 		logger.info("지원자 목록 recruitmentCode={}",recruitmentCode);
 		
 		List<Map<String, Object>> applyList = applyService.selectApplyForCompany(recruitmentCode);
-		logger.info("지원자 목록 recruitmentCode={}",recruitmentCode);
+		logger.info("지원자 수 ={}",applyList.size());
 		
 		model.addAttribute("applyList",applyList);
 		

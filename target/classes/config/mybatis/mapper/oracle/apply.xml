@@ -22,13 +22,18 @@
 		where APPLY_CODE=#{applyCode}
 	</delete>
 	
-	<select id="selectApplyForCompany" resultType="map" parameterType="string">
-		select * from 
+	<select id="selectApplyForCompany" resultType="map" parameterType="String">
+		select a.*, m.user_name, r.resume_type from 
 		member m join apply a
 		on m.user_no=a.user_no
 		join RECRUITMENT r
 		on r.RECRUITMENT_code = a.RECRUITMENT_code
 		where a.recruitment_code=#{recruitmentCode}
+	</select>
+	
+	<select id="selectRecruitmentApply" resultType="map" parameterType="string">
+		select * from recruitment_apply
+		where user_no=#{userNo}
 	</select>
 	
 </mapper>
