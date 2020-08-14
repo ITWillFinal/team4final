@@ -70,6 +70,28 @@ th {
 div#o {
     box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
 }
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 9%;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 3%;
+}
 </style>
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
@@ -111,7 +133,7 @@ div#o {
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	
 	<!-- main -->
-	<div style="text-align: center; width:850px; border:1px solid lightgray;">
+	<div style="text-align: center; width:850px;">
 		<div id = "o" style="margin-top: -11.5px;">
 			<ul class = "tabList" style="width: 857px; margin-left: 0px;">
 				<li class = "select" style="width: 33%;" id = "fst">

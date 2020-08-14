@@ -56,7 +56,7 @@ tr {
 <script type="text/javascript">
 	$(function(){
 		$('#rrr').click(function() {
-			location.href = "<c:url value = '/gogak/qnaC/qnaList.do'/>";
+			location.href = "<c:url value = '/gogak/qnaP/qnaList.do'/>";
 		});
 		CKEDITOR.replace('content',{
 			filebrowserUploadUrl:"<c:url value=''/>"
@@ -72,7 +72,7 @@ tr {
 	<div style=" margin:5px; width:850px;  float: left;">
 		<div style="margin:5px;">
 			<div id="outDiv">
-				<form name = "frmWrite" method="post"  action="<c:url value = '/gogak/qnaC/qnaEdit.do'/>">
+				<form name = "frmWrite" method="post"  action="<c:url value = '/gogak/qnaP/qnaEdit.do'/>">
 					<div id = "idx" style="border: 1px solid lightgray">
 						<h4 style="text-align:center; font-size: 24px; margin-top: 10%; margin-bottom: 10%;">― 1:1 문의 글 수정 ―</h4>
 						<div class = "notice" >

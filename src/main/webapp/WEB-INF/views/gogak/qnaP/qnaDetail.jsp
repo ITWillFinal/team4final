@@ -8,11 +8,11 @@
 <script type="text/javascript">
 	$(function() {
 		$('#rrr').click(function() {
-			location.href = "<c:url value='/gogak/qnaC/qnaList.do'/>";
+			location.href = "<c:url value='/gogak/qnaP/qnaList.do'/>";
 		});
 
 		$('#ddd').click(function() {
-			location.href = "<c:url value='/gogak/qnaC/qnaEdit.do?no=${vo.qnaNo}'/>";
+			location.href = "<c:url value='/gogak/qnaP/qnaEdit.do?no=${vo.qnaNo}'/>";
 		});
 
 		$('#delete').click(function() {
@@ -20,10 +20,10 @@
 
 			if (str) {
 				//true
-				location.href = "<c:url value = '/gogak/qnaC/qnaDelete.do?no=${vo.qnaNo}'/>";
+				location.href = "<c:url value = '/gogak/qnaP/qnaDelete.do?no=${vo.qnaNo}'/>";
 			} else {
 				event.preventDefault;
-				location.href = "<c:url value='/gogak/qnaC/qnaDetail.do?no=${vo.qnaNo}'/>";
+				location.href = "<c:url value='/gogak/qnaP/qnaDetail.do?no=${vo.qnaNo}'/>";
 			}
 		});
 		
@@ -192,11 +192,38 @@ li.select {
 						<% pageContext.setAttribute("newLine", "\r\n"); %>
 						${fn:replace(vo.content, newLine, '<br>')}
 					</div>
-				</div>								
+				</div>			
+				<div style="padding: 20px; margin-top: 54px;">
+					<c:if test="${rst==1}">
+						<div id = "reli" style=" text-align: left; background-color: whitesmoke;">
+							<input type="hidden" name = "qnaNo" value = "${vo.qnaNo }">
+							<p id = "rea1" class = "rea" style="text-align: left">등록된 답변입니다.</p>
+							<table style="margin-left: 20px; margin-top: 15px;">
+								<tr>
+								<td class = "t">작성자</td>
+								<td class = "c">${revo.name}</td>
+								</tr>
+								<tr>
+									<td class = "t">등록일</td>
+									<td class = "c"><fmt:formatDate value="${revo.regDate}"
+										pattern="yyyy-MM-dd HH:mm"/></td>
+								</tr>
+								<tr>
+									<td class = "t">내용</td>
+									<td class = "c"><% pageContext.setAttribute("newLine", "\r\n"); %>
+										${fn:replace(revo.content, newLine, '<br>')}
+									</td>
+								</tr>
+							</table>
+						</div>
+					</c:if>
+				</div>					
 				<div style="text-align: center; padding: 35px 0 25px 0;">
+					<c:if test="${rst!=1}">
 						<input type="submit" value="글수정" id="ddd"> 
-						<input type="button" value="글삭제" id="delete">
-						<input type="button" value="글목록" id="rrr">
+					</c:if>
+					<input type="button" value="글삭제" id="delete">
+					<input type="button" value="글목록" id="rrr">
 				</div>
 				<div id = "ab">
 					<div>
@@ -205,7 +232,7 @@ li.select {
 							<span class = "font-color">다음 게시글이 없습니다.</span>
 						</c:if>
 						<c:if test="${!empty afterVO.qnaNo }">
-							<a href="<c:url value='/gogak/qnaC/qnaDetail.do?no=${afterVO.qnaNo}'/>" class = "font-color">
+							<a href="<c:url value='/gogak/qnaP/qnaDetail.do?no=${afterVO.qnaNo}'/>" class = "font-color">
 								<c:if test="${fn:length(afterVO.title )>=10 }">
 									${fn:substring(afterVO.title,0,10)}...
 								</c:if> 
@@ -221,7 +248,7 @@ li.select {
 							<span class = "font-color">이전 게시글이 없습니다.</span>
 						</c:if> 
 						<c:if test="${!empty beforeVO.qnaNo }">
-							<a href="<c:url value='/gogak/qnaC/qnaDetail.do?no=${beforeVO.qnaNo}'/>" class = "font-color">
+							<a href="<c:url value='/gogak/qnaP/qnaDetail.do?no=${beforeVO.qnaNo}'/>" class = "font-color">
 								<c:if test="${fn:length(beforeVO.title )>=10 }">
 										${fn:substring(beforeVO.title,0,10)}...
 								</c:if> 

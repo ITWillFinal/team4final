@@ -169,7 +169,7 @@ div#o {
 	<h2 style="margin-left: 20px">기업회원 결제 내역</h2>
 	<!-- main -->
 	<div id = "o">
-		<div style="text-align: center; margin:5px; width:850px;">
+		<div style="text-align: center; margin:5px; width:100%;">
 			<ul class = "tabList" style="width: 857px;">
 				<li class = "select" style="width: 100%;" id = "fst">
 				</li>

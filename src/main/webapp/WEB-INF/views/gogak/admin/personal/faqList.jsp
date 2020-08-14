@@ -18,9 +18,7 @@ a{
 	color: black;
 }
 
-#upList{
-	 padding-left: 300px;
-}
+
 /* 페이징 */
 .divPage {
 	text-align:center;     
@@ -105,6 +103,9 @@ div#o {
 th {
     padding-top: 5%;
 }
+ul {
+    margin-left: 0%;
+}
 </style>
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
@@ -141,7 +142,7 @@ th {
 <main>
 	
 	<!-- main -->
-	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
+	<div style="text-align: center; margin:5px; width:850px;">
 		<div id = "o" style="margin-top: -11.5px;">
 			<ul class = "tabList" style="width: 857px;">
 				<li class = "select" style="width: 33%;" id = "fst">
@@ -155,8 +156,6 @@ th {
 				</li>
 				
 			</ul>
-			<div style="text-align: center; margin:5px; /* border:1px solid lightgray; */">
-			
 				<div id = "list">
 					<div id = "upList">
 						<c:if test="${!empty param.searchKeyword }">
@@ -292,7 +291,6 @@ th {
 				</div>
 			</div>
 		</div>
-	</div>
 </main>
 
 <%@ include file="../../../inc/adminBottom.jsp"%>

@@ -131,9 +131,9 @@ th {
 </script>
 <main>
 	<!-- main -->
-	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
+	<div style="text-align: center; margin:5px; width:850px;">
 		<div id = "o" style="margin-top: -11.5px;">
-			<ul class = "tabList" style="width: 857px;">
+			<ul class = "tabList" style="width: 857px;margin-left: 0%;">
 				<li class = "select" style="width: 33%;" id = "fst">
 					<a href = <c:url value='/gogak/admin/company/faqList.do'/>>FaQ - 기업</a>
 				</li>
