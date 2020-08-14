@@ -120,7 +120,7 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 				<div class="single-job-items mb-30" id="listOne">
 					<div class="job-items">
 						<div class="job-tittle">
-							<a href="#" id="resumeNo"><h4>${vo.title }(${applyVo.applyStatus })</h4></a>
+							<h4><a href="#" id="resumeNo">${vo.title }(${applyVo.applyStatus })</a></h4>
 							<input type="hidden" id="applyCode" value="${applyVo.applyCode }">
 							<ul>
 								<li>${vo.comName }</li>
