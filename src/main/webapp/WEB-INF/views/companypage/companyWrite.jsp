@@ -496,7 +496,6 @@
 					<td>
 						<select id="comTypeSelect" name="comTypeSelect" class="form-control sel">
 							<option value="0">선택</option>
-							<option value="소기업">소기업</option>
 						   	<option value="중소기업">중소기업</option>
 			                <option value="중견기업">중견기업</option>
 			                <option value="대기업">대기업</option>
