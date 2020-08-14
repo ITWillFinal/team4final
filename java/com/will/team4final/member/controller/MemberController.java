@@ -27,11 +27,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.will.team4final.apply.model.ApplyService;
 import com.will.team4final.apply.model.ApplyVO;
 import com.will.team4final.common.FileUploadUtil;
 import com.will.team4final.company.model.ComRecruitService;
-import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;

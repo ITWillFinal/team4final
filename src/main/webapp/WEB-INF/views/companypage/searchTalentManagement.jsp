@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../inc/companyTop.jsp"%>
+<%@ include file="../inc/comMypageTop.jsp" %>
 <script type="text/javascript">
 	
 	$(function(){

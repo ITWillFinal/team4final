@@ -139,9 +139,10 @@
 	<c:if test="${empty comInfoVo}">
 		<div id="upDiv">
 			<div id="scrapListDiv">
+					<h3 style="margin: 40px;">
 					<a href="<c:url value='/companypage/companyInfoWrite.do'/> ">
-						<h3 style="margin: 40px;">아직 회사 정보를 입력 하지 않으셨습니다. <span style="font-size: small;">(클릭시 자동으로 회사 정보 입력 창으로 이동)</span></h3>
-					</a>
+						아직 회사 정보를 입력 하지 않으셨습니다. <span style="font-size: small;">(클릭시 자동으로 회사 정보 입력 창으로 이동)</span>
+					</a></h3>
 						
 			</div>
 		</div>
@@ -189,7 +190,7 @@
 							
 							<div class="job-items">
 								<div class="job-tittle">
-									<a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>"><h4>${vo.title }</h4></a>
+									<h4><a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.title }</a></h4>
 									<ul>
 										<li>${vo.comName }</li>
 										<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
