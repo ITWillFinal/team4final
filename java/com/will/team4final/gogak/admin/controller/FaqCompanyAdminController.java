@@ -138,8 +138,9 @@ public class FaqCompanyAdminController {
 			@RequestParam (defaultValue = "0")int no,
 			Model model) {
 		logger.info("자주 찾는 질문 수정 post 파라미터 vo = {}", vo);
-		
+		logger.info("파라미터 no = {}", no);
 		vo.setfaqNo(no);
+		
 		
 		String msg = "자주 찾는 질문 수정 실패", url = "/gogak/admin/company/faqEdit.do";
 		int cnt = faqService.editFaq(vo);

@@ -279,7 +279,10 @@ input[type=submit] {
 									</tr>
 									<tr>
 										<td>이름</td>
-										<td class = "c"><input type = "text" name = "name" style="height: 27px;"></td>
+										<td class = "c">
+											<input type = "text" name = "name" style="height: 27px;"
+											value = "${userId}" readonly="readonly">
+										</td>
 									</tr>
 									<tr>
 										<td>답변내용</td>
@@ -293,8 +296,8 @@ input[type=submit] {
 						</div>
 					</c:if>
 				</div>
-				<div style="text-align: center; padding: 35px 0 25px 0;">
-						<input type="submit" value="글수정" id="ddd"> 
+				<div style="text-align: center; padding-bottom: 2%">
+						<!-- <input type="submit" value="글수정" id="ddd">  -->
 						<input type="button" value="글삭제" id="delete">
 						<input type="button" value="글목록" id="rrr">
 				</div>

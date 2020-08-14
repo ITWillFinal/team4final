@@ -5,7 +5,7 @@
 
 <style>
 div#outDiv {
-    padding-left: 30px;
+    padding-left: 11%;
 }
 td {
     padding-top: 10px;
@@ -25,7 +25,7 @@ a{
 	color: black;
 }
 input[type=button] {
-    width: 130px;
+    width: 60px;
     height: 30px;
     background: #f7f7f7;
     border: 0;
@@ -36,7 +36,7 @@ input[type=button] {
     margin-bottom: 2%;
 }
 input[type=submit] {
-    width: 63px;
+    width: 60px;
     height: 30px;
     background: #f7f7f7;
     border: 0;
@@ -44,11 +44,31 @@ input[type=submit] {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
     margin-top: 2%;
     margin-left: 1%;
-    margin-bottom: 3%;
+    margin-bottom: 2%;
 }
 
+#o {
+    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+}
+td.a {
+    padding-left: 8%;
+    padding-right: 10%;
+    width: 100%;
+}
+#outDiv > form > table > tbody > tr:nth-child(3) > td > input[type=text] {
+    width: 85%;
+}
 body > div.wrapper > div > div > div.span9 > div > main > div {
     box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+}
+td.b {
+    padding-left: 8%;
+}
+select#category {
+    margin-left: 38%;
+}
+#tdA > textarea {
+    width: 85%;
 }
 </style>
 <script type="text/javascript" 
@@ -63,41 +83,43 @@ body > div.wrapper > div > div > div.span9 > div > main > div {
 <main>
 	
 	<!-- main -->
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
+	<div style="float: left; margin-left:30px; width: 100%; font-size: 14px; /* border:1px solid lightgray; */">
 		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
 		<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문 등록하기(개인)</h2>
 		</div>
 		<div style="margin:5px; /* border:1px solid lightgray; */">
-
 			<div id="outDiv">
 				<form name = "frmWrite" method="post" 
 					action="<c:url value = '/gogak/admin/personal/faqWrite.do'/>">
-					<table style="width: 700px;">
+					<table style="width: 100%">
 						<colgroup>
 							<col style="width: 20%;" />
 							<col style="width: 80%;" />
 						</colgroup>
 						<tr>
-							<td>카테고리</td>
+							<td class = "b">카테고리</td>
 							<td>
-							<!-- vo에서 읽어와서 for돌리기 -->
-								<input type="text" name = "category">
-								<!-- <select name = "category">
-									<option value="a">A</option>
-									<option value="b">B</option>
-									<option value="c">C</option>
-								</select><br> -->
+								<select name="category" id = "category">
+									<option value="0">선택하세요</option>
+									<option value="채용정보">채용정보</option>
+									<option value="스크랩 관련">스크랩 관련</option>				
+									<option value="공지">공지</option>				
+									<option value="안내">안내</option>				
+									<option value="기타">기타</option>
+								</select>
 							</td>
 						</tr>
-				
 						<tr>
-							<td>질문</td>
-							<td><input type="text" name = "question"></td>
+							<td class = "a" colspan="2">질문</td>
 						</tr>
-				
 						<tr>
-							<td>답변내용</td>
-							<td id = "tdA">
+							<td class = "a" colspan = "2"><input type="text" name = "question"></td>
+						</tr>
+						<tr>
+							<td class = "a" colspan="2">답변내용</td>
+						</tr>						
+						<tr>
+							<td class = "a" id = "tdA" colspan="2">
 								<textarea rows="7px" cols="50px" name = "answer"></textarea>
 							</td>
 						</tr>
