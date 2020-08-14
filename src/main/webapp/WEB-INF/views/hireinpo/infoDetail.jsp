@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
 <jsp:useBean id="today" class="java.util.Date"/>
-<fmt:parseDate var="end" value="${vo.endDate}" pattern="yyyy-MM-dd" />
+<fmt:parseDate var="end" value="${vo.endDate}" pattern="yy/MM/dd" />
 <fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
 <fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
 <input type="hidden" value="${vo.endDate }" id="timerEnd">
@@ -81,8 +81,12 @@
 
 <script type="text/javascript">
 	/* 시간 계산 */
-	const countDownTimer = function (id, date) { 
-		var _vDate = new Date(date); // 전달 받은 일자
+	const countDownTimer = function (id, date) {
+	var a = date.split('/');
+	if (a[1] < 10) a[1] = "0" + a[1];
+	if (a[2] < 10) a[2] = "0" + a[2];
+	var b = 20+a[0] + - +  a[1] + - +a[2];
+		var _vDate = new Date(b); // 전달 받은 일자
 		var _second = 1000; 
 		var _minute = _second * 60; 
 		var _hour = _minute * 60; 
@@ -110,6 +114,7 @@
 		
 		timer = setInterval(showRemaining, 1000); 
 	} 
+	
 	var timerEnd = $('#timerEnd').val();
 	countDownTimer('timer', timerEnd); // 내일까지 
 	

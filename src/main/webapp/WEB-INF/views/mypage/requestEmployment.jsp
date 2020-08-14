@@ -103,6 +103,15 @@
 	 	background: #fb246a;
 	 	padding: 5px;
 	}
+	
+	.resumeTitle{
+		overflow: hidden;
+	    color: #fb246a;
+	    height: 23px;
+	    width: 210px;
+	    display: inline-block;
+	    font-size: large;
+	}
 </style>
 <div style="width: 900px;margin: 0 auto;">
 <h1>입사 요청</h1>
@@ -120,7 +129,7 @@
 			<input type="hidden" class="cmc" value="${perscrap['C_MEMBER_CODE'] }">
 			<input type="hidden" class="rn" value="${perscrap['RESUME_NO'] }">
 			<a style="color: #fb246a;font-size: large;">${perscrap['COM_NAME'] }</a>
-			에서<a style="color: #fb246a;font-size: large;" onclick="open_resume(${perscrap['RESUME_NO']})">
+			에서<a class="resumeTitle" style="color: #fb246a;font-size: large;" onclick="open_resume(${perscrap['RESUME_NO']})">
 			<c:if test="${empty perscrap['SELF_INT_TITLE'] }">
 				no title
 			</c:if>

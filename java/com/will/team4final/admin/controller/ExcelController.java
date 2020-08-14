@@ -123,7 +123,7 @@ public class ExcelController {
 		Row row = null;
 		Cell cell = null;
 		int rowNo = 0;
-		String[] col = {"회원번호", "아이디", "기업이름", "회원이름", "서비스시작일", "서비스종료일", "등록일", "결재금액"};
+		String[] col = {"결제번호", "기업 ID", "기업명", "회원명", "공고시작일", "공고종료일", "결제일", "결제금액"};
 		row = sheet.createRow(rowNo++);
 		for (int i = 0; i < col.length; i++) {
 			cell = row.createCell(i);
@@ -137,7 +137,7 @@ public class ExcelController {
 			
 			//data 출력
 			cell = row.createCell(cellIdx++);
-			cell.setCellValue((String)map.get("C_MEMBER_CODE"));
+			cell.setCellValue((String)map.get("RECRUITMENT_CODE"));
 			cell.setCellStyle(cellStyle(wb, "data"));
 			
 			cell = row.createCell(cellIdx++);

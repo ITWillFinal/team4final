@@ -50,26 +50,18 @@ import com.will.team4final.scrap.model.ComScrapService;
 public class CompanyHomeController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	@Autowired
-	private ComMemberService cMemberSerice;
-	@Autowired
-	private LocationService locaServ;
-	@Autowired
-	private ComRecruitService comRecruitService;
-	@Autowired
-	private JobService jobServ;
-	@Autowired
-	private JavaMailSender mailSender;
-	@Autowired
-	private CompanyInfoService comInfoService;
-	@Autowired
-	private ResumeService resumeService;
-	@Autowired
-	private ComRecruitService comRecruitServ;
-	@Autowired
-	private ComScrapService comScrapServ;
+	@Autowired private ComMemberService cMemberSerice;
+	@Autowired private LocationService locaServ;
+	@Autowired private ComRecruitService comRecruitService;
+	@Autowired private JobService jobServ;
+	@Autowired private JavaMailSender mailSender;
+	@Autowired private CompanyInfoService comInfoService;
+	@Autowired private ResumeService resumeService;
+	@Autowired private ComRecruitService comRecruitServ;
 	@Autowired private BCryptPasswordEncoder pwdEncoder;
-	
+	@Autowired private ComMemberService comMemberServ;
+	@Autowired private CompanyInfoService comInfoServ;
+
 	@RequestMapping("/companyHome.do")
 	public String companyHome() {
 		logger.info("기업페이지 홈");
@@ -711,5 +703,26 @@ public class CompanyHomeController {
 
 		return "common/message";
 		
+	}
+	
+	@RequestMapping("/applyManagement.do")
+	public String applyManagement(HttpSession session, Model model) {
+		logger.info("기업페이지 - 지원자 관리");
+		
+		//기업회원 정보 구하기
+		String cUserid = (String)session.getAttribute("userid");
+		CompanyMemberVO comMemberVo = comMemberServ.selectCMemberInfoByUserid(cUserid);
+		logger.info("comMemberVo={}", comMemberVo);
+
+		CompanyInfoVO comInfoVo = comInfoServ.selectComInfoBycMemberCode(comMemberVo.getcMemberCode());
+		logger.info("기업회원 기업 정보, comInfoVo={}", comInfoVo);
+		
+		//기업회원 공고 정보 구하기
+		List<Recruitment_TosVO> comRecuritTosListVo = comRecruitServ.selectList_tosByComcode(comInfoVo.getComCode());
+		logger.info("기업회원 notice, comRecuritVo={}", comRecuritTosListVo);
+		
+		model.addAttribute("comRecuritListVo", comRecuritTosListVo);
+		
+		return "companypage/applyManagement";
 	}
 }
