@@ -15,7 +15,7 @@
 		});
 		function open_resume(resumeNo){
 			window.open("<c:url value='/companypage/talentResumeDetail.do?resumeNo="+resumeNo+"'/>",
-					'RESUME','width=980,height=auto,left=0,top=0,location=yes,resizable=false')
+					'RESUME','width=980,height=auto,left=550,top=250,location=yes,resizable=false')
 		}
 		$('#resumeNo').click(function(){
 			var resumeNo = $('.resumeNo').val();
@@ -109,23 +109,23 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 	<div id="scrapListDiv">
 		<c:if test="${!empty tosVo }">
 			<h3 style="margin: 40px;">지원 현황</h3>
-			<c:forEach var="vo" items="${tosVo }">
-			<c:forEach var="applyVo" items="${applyListVo }">
-				<fmt:parseDate var="end" value="${vo.endDate}" pattern="yy/MM/dd" />
+			<c:forEach var="map" items="${list }">
+			
+				<fmt:parseDate var="end" value="${map['END_DATE']}" pattern="yy/MM/dd" />
 				<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
 				<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
 				<!-- resumeNo 값 -->
-				<input type="hidden" value="${applyVo.resumeNo }" name="resumeNo" class="resumeNo">
+				<input type="hidden" value="${map['RESUME_NO']}" name="resumeNo" class="resumeNo">
 				
 				<div class="single-job-items mb-30" id="listOne">
 					<div class="job-items">
 						<div class="job-tittle">
-							<h4><a href="#" id="resumeNo">${vo.title }(${applyVo.applyStatus })</a></h4>
-							<input type="hidden" id="applyCode" value="${applyVo.applyCode }">
+							<a href="#" id="resumeNo"><h4>${vo.title }(${map['APPLY_STATUS'] })</h4></a>
+							<input type="hidden" id="applyCode" value="${map['APPLY_CODE'] }">
 							<ul>
 								<li>${vo.comName }</li>
-								<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
-								<li>${vo.pay }</li>
+								<li><i class="fa fa-briefcase" aria-hidden="true"></i>${map['JOB_TYPE2'] }</li>
+								<li>${map['PAY'] }</li>
 							</ul>
 						</div>
 					</div>
@@ -149,13 +149,12 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 					</c:if>
 				</div>
 			</c:forEach>
-			</c:forEach>
 		</c:if>
 		
 		
 		<!--  -->
 		
-			<c:if test="${empty tosVo }">
+			<c:if test="${empty list }">
 				<div class="applyEmpty">
 					<h3 style="margin: 40px; padding-bottom: 67px;">현재 지원하신게 없습니다.</h3>
 					<a href="<c:url value='/hireinpo/hot100.do' />">

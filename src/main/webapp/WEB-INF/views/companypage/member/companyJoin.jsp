@@ -124,7 +124,7 @@
 
 		$(".onlyNumber").keyup(function(event) {
 			if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
-				var inputVal = $(this).val();
+				var inputVal = $(this).val();	
 				$(this).val(inputVal.replace(/[^0-9]/gi, ''));
 			}
 		});
@@ -133,7 +133,7 @@
 		$('input[name=cEmail]').click(function(){
 			window.open(
 			"<c:url value='/companypage/member/email.do'/> ", 'emailchk',
-			'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
+			'width=500,height=500,left=550,top=250,location=yes,resizable=yes');
 		});
 
 	});
