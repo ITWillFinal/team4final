@@ -60,6 +60,18 @@
    
 <script type="text/javascript">
    $(function(){
+	   /* 다음에 하기 */
+	   $('.btNextTime').click(function(){
+		  var con = confirm('정말 다음에 하시겠습니까?');
+		  if(con){
+			  location.href="<c:url value='/index.do' />";
+		  }else{
+			  return false;
+		  }
+		   
+	   });
+	   
+	   
       /* 시작날짜 보여주기 */   
       function getToday(){
          var date = new Date();
@@ -241,6 +253,7 @@
          </div>
          
          <div style="text-align: center; margin: 50px; clear: both;">
+         	<input type="button" class="btNextTime btn" value="다음에하기" >
             <input type="submit" id="btn" class="btn" value="결제하기" >
          </div>
          <input type="hidden" name="productName" id="productName">
