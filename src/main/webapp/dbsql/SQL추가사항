@@ -279,3 +279,6 @@ join recruitment r
 on p.recruitment_code=r.recruitment_code
 join tos t
 on r.recruitment_code = t.RECRUITMENT_CODE;
+
+alter table COMPANY_INFO
+modify(COM_NAME varchar2(150));
