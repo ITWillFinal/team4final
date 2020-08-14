@@ -103,7 +103,7 @@ div#idx {
 						<h4 style="text-align:center; padding-top: 8%; font-weight: bold; font-size: 28px; margin-top: 10%; margin-bottom: 10%;">― 1:1 문의 ―</h4>
 						<div class = "notice" >
 							<p style="text-align:center;" >1:1 문의 게시판 운영 원칙</p>
-							<ul>
+							<ul><!--  -->
 								<li class = "lis">1:1 문의 게시판은 표현의 자유와 표현의 다양성을 존중합니다.</li>
 								<li class = "lis">동시에 타인의 권리를 침해하거나 명예를 훼손하는 내용은 제한합니다.</li>
 								<li class = "lis">방송통신심의위원회의 '정보통신에 관한 심의 규정', 한국인터넷자율정책기구의 '정책규정' 등을 기반으로 문제 게시물은 삭제될 수 있습니다.</li>
