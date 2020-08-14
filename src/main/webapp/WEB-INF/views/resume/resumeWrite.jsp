@@ -60,7 +60,7 @@
 	}
 	
 	.photo{
-		background-image:url("<c:url value='/resources/images/${memberVo.imageURL}'/>");
+		background-image:url("<c:url value='/personalMemberProfile/${memberVo.imageURL}'/>");
 		background-repeat:no-repeat;
 		background-size:100% 100%;
 		width: 130px;

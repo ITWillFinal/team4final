@@ -100,20 +100,27 @@
 		font-weight: bold;
 	}
 
-	.ST-main{
+	.AM-main{
 		width: 1000px;
 		height: auto;
 		padding: 15px;
 	}
 
+	.AM-top{
+		border-bottom: 3px solid #fd5a77;
+    	margin-bottom: 20px;
+	}
 </style>
 <main>
 	<%@ include file="../inc/companySidebar.jsp"%>
 	<div
 		style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
 		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->		
-		<div class="ST-main">
-				<c:set var="check" value="0"/>
+		<div class="AM-main">
+		<div class="AM-top">
+			<h1 style="font-weight: bold;">지원자 관리</h1>
+		</div>
+	<c:set var="check" value="0"/>
 	<div id="upDiv">
 		<div id="scrapListDiv">
 			<h3 style="margin: 40px;">현재 진행중인 채용공고</h3>

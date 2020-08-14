@@ -20,6 +20,8 @@ import com.will.team4final.company.resume.model.CompanyResumeSetVO;
 import com.will.team4final.company.resume.model.CompanyResumeUseService;
 import com.will.team4final.company.resume.model.CompanyResumeUseVO;
 import com.will.team4final.login.controller.LoginController;
+import com.will.team4final.member.model.MemberService;
+import com.will.team4final.member.model.MemberVO;
 
 @Controller
 public class CompanyResumeController {
@@ -27,6 +29,7 @@ public class CompanyResumeController {
 	
 	@Autowired private CompanyResumeSetService companyResumeSetService;
 	@Autowired private CompanyResumeUseService companyResumeUseService;
+	@Autowired private MemberService memberService;
 	
 	@RequestMapping(value = "/companypage/companyResumeSet.do", method = RequestMethod.GET)
 	public String companyResumeSet_get(@RequestParam String recruitmentCode, Model model) {
@@ -54,17 +57,22 @@ public class CompanyResumeController {
 	}
 	
 	@RequestMapping(value = "/companypage/companyResumeUse.do", method = RequestMethod.GET)
-	public String resumeUse_get(@RequestParam String recruitmentCode, HttpSession session, Model model) {
+	public String resumeUse_get(@RequestParam String recruitmentCode,
+			HttpSession session, Model model) {
 		logger.info("기업 자사 이력서 사용 페이지");
 		logger.info("파라미터 recruitmentCode={}", recruitmentCode);
 		
 		String userid = (String)session.getAttribute("userid");
 		logger.info("userid={}", userid);
 		
+		MemberVO memberVo = memberService.selectByUserid(userid);
+		logger.info("memberVo={}", memberVo);
+		
 		CompanyResumeSetVO vo = companyResumeSetService.selectCompanyResumeSet(recruitmentCode);
 		logger.info("companyResumeUseVo={}", vo);
 		
 		model.addAttribute("userId", userid);
+		model.addAttribute("memberVo", memberVo);
 		model.addAttribute("vo", vo);
 		return "companypage/companyResumeUse";
 	}

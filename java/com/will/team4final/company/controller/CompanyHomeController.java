@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.will.team4final.apply.model.ApplyService;
 import com.will.team4final.common.Utility;
 import com.will.team4final.company.info.model.CompanyInfoService;
 import com.will.team4final.company.info.model.CompanyInfoVO;
@@ -61,6 +62,7 @@ public class CompanyHomeController {
 	@Autowired private BCryptPasswordEncoder pwdEncoder;
 	@Autowired private ComMemberService comMemberServ;
 	@Autowired private CompanyInfoService comInfoServ;
+	@Autowired private ApplyService applyService;
 
 	@RequestMapping("/companyHome.do")
 	public String companyHome() {
@@ -724,5 +726,14 @@ public class CompanyHomeController {
 		model.addAttribute("comRecuritListVo", comRecuritTosListVo);
 		
 		return "companypage/applyManagement";
+	}
+	
+	@ResponseBody
+	@RequestMapping("")
+	public List<Map<String, Object>> applyList(@RequestParam String recruitmentCode) {
+		logger
+		List<Map<String, Object>> applyList = applyService.selectApplyForCompany(recruitmentCode);
+		
+		return applyList;
 	}
 }
