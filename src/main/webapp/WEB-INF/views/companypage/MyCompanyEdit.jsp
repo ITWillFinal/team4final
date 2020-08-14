@@ -269,11 +269,11 @@ label.col-sm-3.control-label {
 	            	<div class="col-sm-9 form-input">
 	                <select name="comType" id="comType" class="form-control">
 	                	<option value="0">회사 형태를 선택하세요</option>
-               			<option value="소기업"
+               			<option value="중소기업"
                				<c:if test="${'중소기업' eq vo.comType}">
                					selected
                				</c:if>
-               			>소기업</option>
+               			>중소기업</option>
                			<option value="중견기업"
                				<c:if test="${'중견기업' eq vo.comType}">
                					selected

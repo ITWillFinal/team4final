@@ -259,11 +259,11 @@ public class MemberController {
 		
 		String msg="비밀번호가 일치하지 않습니다.", url="/member/memberOut.do";
 		if (pwdMatch == true) {
-			msg="일반회원 탈퇴 실패했습니다.";
+			msg="탈퇴 실패했습니다.";
 			int cnt = memberService.deleteUser(userNo);
 			logger.info("처리결과 cnt={}", cnt);
 			if(cnt>0) {
-				msg="일반회원 탈퇴 성공했습니다.";
+				msg="탈퇴 성공했습니다.";
 				url="/";
 				session.invalidate();
 			}

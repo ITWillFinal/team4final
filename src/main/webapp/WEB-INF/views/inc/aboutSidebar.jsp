@@ -18,7 +18,7 @@
 		<ul id="menu">
 		  <li class="ui-widget-header"><div>THE JOB+</div></li>
 		  <li><div>회사소개</div></li>
-		  <li><div>회사CI</div></li>
+		  <li><div><a href="<c:url value='/info/ciPage.do'/>">회사CI</a></div></li>
 		  <li><div>회사위치</div></li>
 		  <li><div>인재채용</div></li>
 		</ul>		

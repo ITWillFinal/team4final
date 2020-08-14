@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -142,24 +141,25 @@ public class ImportController {
 		//map => orderSheet_get 참고
 		List<Map<String, Object>> list = paymentService.selectPaymentAdmin(datesearchVo);
 		logger.info("결제내역 결과, list.size()={}", list.size());
-		
+		  
 		int totalRecord = paymentService.selectTotalRecordAdmin(datesearchVo);
 		pagingInfo.setTotalRecord(totalRecord);
 		logger.info("결제내역 개수 조회 결과, totalRecord = {}", totalRecord);
-		
-		
-		
+		  
+		  
+		  
 		//기간내 판매수익 
 		String totalPrice = paymentService.selectTotalPriceAdmin(datesearchVo);
 		if(totalPrice == null || totalPrice.isEmpty()) {
 			totalPrice="0";
 		}
+		 
 		
 		//model 담기
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("userid",userid);
-		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("totalPrice",totalPrice);
 		
 	}
 	
@@ -213,29 +213,66 @@ public class ImportController {
 		logger.info("결제내역 개수 조회 결과, totalRecord = {}", totalRecord);
 		
 		pagingInfo.setTotalRecord(totalRecord);
-
-		//기간내 판매수익 
-		String totalPrice = paymentService.selectTotalPriceC(datesearchVo);
-		if(totalPrice == null || totalPrice.isEmpty()) {
-			totalPrice="0";
-		}
 		
 		//model 담기
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
-		model.addAttribute("totalPrice", totalPrice);
 		
 	}
 	
-	@RequestMapping("/payment/extendPeriod.do")
+	@RequestMapping(value = "/payment/extendPeriod.do", method = RequestMethod.GET)
 	public void extendPeriod(HttpSession session, Model model, @RequestParam(required = false) String recruitmentCode) {
 		TermsOfServiceVO tosVo = tosService.selectByrecruitmentCode(recruitmentCode);
 		ComRecruitVO comRecruitVO = comRecruitService.selectOneByRecruitmentCode(recruitmentCode);
 		logger.info("서비스 기간 연장 창, tosVo={}, comRecruitVO={} ", tosVo,comRecruitVO );
+		PaymentVO paymentVo = paymentService.selectByrecruitmentCode(recruitmentCode);
+		logger.info("서비스 기간 연장 창, paymentVo={}", paymentVo);
+		
 		
 		model.addAttribute("tosVo", tosVo);
 		model.addAttribute("comRecruitVO", comRecruitVO);
+		model.addAttribute("paymentVo", paymentVo);
 		
+	}
+	
+	
+	@RequestMapping(value = "/payment/extendPeriod.do", method = RequestMethod.POST)
+	public String extendPeriod(HttpSession session, Model model,
+			@ModelAttribute TermsOfServiceVO tosVo, @ModelAttribute PaymentVO paymentVo,
+			@RequestParam(defaultValue = "0")int extraPrice) {
+		logger.info("서비스 연장 페이지, 파라미터 tosVo={} ",tosVo);
+		logger.info("서비스 연장 페이지, 파라미터 paymentVo={}",paymentVo );
+		logger.info("서비스 연장 페이지, 파라미터 extraPrice={}",extraPrice );
+		
+		model.addAttribute("tosVo", tosVo);
+		model.addAttribute("paymentVo", paymentVo);
+		model.addAttribute("extraPrice", extraPrice);
+		return "import/extendPeriod";
+	}
+	
+	@RequestMapping("/import/extendPeriod.do")
+	@ResponseBody
+	public int extendPeriodPayment(@RequestParam String endDate, @RequestParam int price,
+			@RequestParam String recruitmentCode,
+			@RequestParam String extraPrice,
+			Model model) {
+		logger.info("서비스 연장 결제창, 파라미터 endDate={}, price={} ", endDate, price);
+		logger.info("서비스 연장 결제창, 파라미터 recruitmentCode={},extraPrice={} ", recruitmentCode,extraPrice);
+		//tos 변경 
+		TermsOfServiceVO tosVo = new TermsOfServiceVO();
+		tosVo.setEndDate(endDate);
+		tosVo.setRecruitmentCode(recruitmentCode);
+		int cnt = tosService.updateEndDate(tosVo);
+		logger.info("tos 업데이트 결과, cnt={}", cnt);
+		
+		//payment price 변경
+		PaymentVO paymentVo = new PaymentVO();
+		paymentVo.setRecruitmentCode(recruitmentCode);
+		paymentVo.setPrice(price);
+		cnt = paymentService.updatePrice(paymentVo);
+		logger.info("payment 업데이트 결과, cnt={}", cnt);
+		
+		return cnt;
 	}
 		
 }

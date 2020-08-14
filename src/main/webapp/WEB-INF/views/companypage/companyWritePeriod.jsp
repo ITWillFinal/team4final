@@ -101,29 +101,37 @@
           if (month < 10) month = "0" + month;
           if (day < 10) day = "0" + day;
 
-          var month = year + "-" + month + "-" + day;      
+          var month = year + "/" + month + "/" + day;      
           $('#monthEnd').attr("value", month);
          $('#endDay').attr("value", month);
          
          var priceForMonth =45000;
          $("#price").val(priceForMonth);
       }); 
+      
+      
       $("#radioPeriodDate").click(function(){
          $('#price').val("");
          $('#endDay').attr("value", "");
          var productName = $("#radioPeriodDate").val()
          $("#productName").val(productName);
+         
          $("#datePick").attr('disabled', false);
       });
       
+      
+      
+      
       /* 현재 날짜 전은 못 구하게 하기 */
       $('#datePick').change(function(){
-         
-         var startDate = $('input[name=startDay]').val();
+      	  var startDate = $('input[name=startDay]').val();
            var startDateArr = startDate.split('-');
+           
+           
            var endDate = $('input[name=endPickDay]').val(); 
            //alert(endDate);
            var endDateArr = endDate.split('-');
+           var startDateVal = startDateArr[0].substring(2,4) + "/" + startDateArr[1] + "/" + startDateArr[2];
            var startDateCompare = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
            //alert(startDateCompare);
            var endDateCompare = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
@@ -180,12 +188,12 @@
       });
       $('#dateDiv').hide();
       $('input[type=radio]').change(function() {
-         if($(this).val() == 'month'){
+         if($(this).val() == '월간 이용 상품'){
             $('#labPeriodMonth').css('background', '#2e3752');
             $('#labPerioddDate').css('background', '#b4c5d2');
             $('#dateDiv').hide();
             $('#endDay').val(getMonth());
-         }else if($(this).val() == 'date'){
+         }else if($(this).val() == '기간 지정 상품'){
             $('#labPeriodMonth').css('background', '#b4c5d2');
             $('#labPerioddDate').css('background', '#2e3752');
             $('#dateDiv').show();
@@ -215,12 +223,12 @@
          <div id="radioResumeDiv"></div>         
          <hr>
          <span style="font-size: 18px; font-weight: bold;">◎모집기간</span><br><br>
-         <input type="radio" name="period" id="radioPeriodMonth" value="month">
+         <input type="radio" name="period" id="radioPeriodMonth" value="월간 이용 상품">
          <label for="radioPeriodMonth" class="labpay" id="labPeriodMonth">상시채용</label><br>결제일로 부터 30일 이용가능
          <input type="date" name="monthEnd" id="monthEnd" style="display: none;"><br><br>
          
          <br>
-         <input type="radio" name="period" id="radioPeriodDate" value="date">
+         <input type="radio" name="period" id="radioPeriodDate" value="기간 지정 상품">
          <label for="radioPeriodDate" class="labpay" id="labPerioddDate">날짜지정</label>
          <div style="display: inline;margin-left: 50px;" id="dateDiv">
             <input type="date" name="startDay" class="startDay" readonly> ~ 
@@ -235,10 +243,10 @@
          <div style="text-align: center; margin: 50px; clear: both;">
             <input type="submit" id="btn" class="btn" value="결제하기" >
          </div>
-         <input type="text" name="productName" id="productName">
-         <input type="text" name="resumeType" id="resumeType">
-         <input type="text" name="endDay" id="endDay" >
-         <input type="text" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode }">
+         <input type="hidden" name="productName" id="productName">
+         <input type="hidden" name="resumeType" id="resumeType">
+         <input type="hidden" name="endDay" id="endDay" >
+         <input type="hidden" name="recruitmentCode" id="recruitmentCode" value="${recruitmentCode }">
          
 
       </form>

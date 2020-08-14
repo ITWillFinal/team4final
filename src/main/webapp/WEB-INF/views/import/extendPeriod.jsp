@@ -18,7 +18,7 @@
         var IMP = window.IMP; // 생략가능
         IMP.init('imp31064420'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
         var msg;
-        var price = $('#price').val();
+        var price = $('#extraPrice').val();
         IMP.request_pay({
             pg : 'kakaopay',
             pay_method : 'card',
@@ -28,17 +28,20 @@
         }, function(rsp) {
 			//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 			$.ajax({
-				url: "<c:url value='/import/payment.do' />",
+				url: "<c:url value='/import/extendPeriod.do' />",
 				type: "post",
 				data: $('#frmPayment').serialize(),
 				success: function(result){
-					if(result >0){
+					if(result > 0){
 						alert("결제 성공했습니다");
-						location.href = "<c:url value='/companypage/employmentNotice/employmentNoticeList.do' />";
+						window.opener.location = "<c:url value='/companypage/employmentNotice/employmentNoticeList.do' />";
+						window.close();
 					}else{
-						alert("결제 실패했습니다");
-						location.href="<c:url value='/companypage/companyHome.do' />";
+						alert("입력 실패했습니다");
+						window.opener.location = "<c:url value='/companypage/employmentNotice/employmentNoticeList.do' />";
+						window.close();
 					}
+					
 				},
 				error : function(xhr, status, error) {
 					alert(status + ", " + error);
@@ -52,11 +55,10 @@
     });
     </script>
     <form id="frmPayment" name="frmPayment">
-	 	<input type="hidden" id="productName" name="productName" value="${paymentVo.productName }">
-	 	<input type="hidden" id="cMemberCode" name="cMemberCode" value="${cMemberCode }" id="cMemberCode">
-	 	<input type="hidden" id="price" name="price" value="${paymentVo.price }">
-	 	<input type="hidden" id="recruitmentCode" name="recruitmentCode" value="${recruitmentCode }"><br><br>
-	 	<input type="hidden" id="endDay" name="endDay" value="${endDay }">
+	 	<input type="text" id="price" name="price" value="${paymentVo.price }">
+	 	<input type="text" id="extraPrice" name="extraPrice" value="${extraPrice }">
+	 	<input type="text" id="recruitmentCode" name="recruitmentCode" value="${paymentVo.recruitmentCode }"><br><br>
+	 	<input type="text" id="endDate" name="endDate" value="${tosVo.endDate }">
     </form>
 </body>
 </html>

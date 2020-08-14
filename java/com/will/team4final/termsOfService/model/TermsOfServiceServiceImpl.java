@@ -16,6 +16,11 @@ public class TermsOfServiceServiceImpl implements TermsOfServiceService {
 	public TermsOfServiceVO selectByrecruitmentCode(String recruitmentCode) {
 		return tosDao.selectByrecruitmentCode(recruitmentCode);
 	}
+
+	@Override
+	public int updateEndDate(TermsOfServiceVO tosVo) {
+		return tosDao.updateEndDate(tosVo);
+	}
 	
 	
 }

@@ -178,8 +178,8 @@ nocache;
 
 create or replace view recruitment_tos
 as
-select r.*, t.start_date, t.end_date
-from RECRUITMENT r join tos t
+select r.*, t.end_date
+from RECRUITMENT r left join tos t
 on r.RECRUITMENT_CODE = t.RECRUITMENT_CODE;
 
 alter table member

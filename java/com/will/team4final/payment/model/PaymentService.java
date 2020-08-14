@@ -18,4 +18,6 @@ public interface PaymentService {
 	public String selectTotalPriceC(DateSearchVO dateSearchVo);
 	public String selectThis(String month);
 	public String selectBefore(String month);
+	PaymentVO selectByrecruitmentCode(String recruitmentCode);
+	int updatePrice(PaymentVO paymentVo);
 }
