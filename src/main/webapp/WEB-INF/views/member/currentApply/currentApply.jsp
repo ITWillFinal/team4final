@@ -111,7 +111,7 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 			<h3 style="margin: 40px;">지원 현황</h3>
 			<c:forEach var="vo" items="${tosVo }">
 			<c:forEach var="applyVo" items="${applyListVo }">
-				<fmt:parseDate var="end" value="${vo.endDate}" pattern="yyyy-MM-dd" />
+				<fmt:parseDate var="end" value="${vo.endDate}" pattern="yy/MM/dd" />
 				<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
 				<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
 				<!-- resumeNo 값 -->
