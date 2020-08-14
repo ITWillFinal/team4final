@@ -17,17 +17,13 @@
 </style>
 
 <!-- CSS here -->
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/bootstrap.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
 <!-- 아이콘 태그 -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/flaticon.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/nice-select.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/flaticon.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/nice-select.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>">
-<script type="text/javascript"
-	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
 
 </head>
 <body>

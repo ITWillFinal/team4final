@@ -138,5 +138,23 @@ public class CompanyResumeController {
 		return "companypage/companyResumeView";
 	}
 	
+	@RequestMapping(value = "/companypage/companyResumeDetail.do", method = RequestMethod.GET)
+	public String companyResumeDetail_get(@RequestParam String recruitmentCode, 
+			@RequestParam String userid,
+			@ModelAttribute CompanyResumeUseVO companyResumeUseVo,
+			Model model) {
+		logger.info("기업 자사 이력서 디테일 뷰페이지");
+		logger.info("파라미터 recruitmentCode={}", recruitmentCode);
+		logger.info("userid={}", userid);
+				
+		companyResumeUseVo.setUserId(userid);
+		companyResumeUseVo.setRecruitmentCode(recruitmentCode);
+				
+		CompanyResumeUseVO vo = companyResumeUseService.selectCompanyResumeUse(companyResumeUseVo);
+		logger.info("companyResumeUseVo={}", vo);
+				
+		model.addAttribute("vo", vo);
 		
+		return "companypage/companyResumeDetail";
+	}	
 }

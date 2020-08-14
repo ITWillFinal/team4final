@@ -1316,7 +1316,7 @@
 					</tr>
 					<tr>
 						<td>생년월일</td>
-						<td><input type="date" name="birth" id="birth" value="${memberVo.birth}"></td>
+						<td><input type="text" name="birth" id="birth" value="${memberVo.birth}"></td>
 					</tr>
 					<tr>
 						<td>우편번호</td>

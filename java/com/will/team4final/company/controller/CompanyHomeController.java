@@ -36,9 +36,14 @@ import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.company.model.ComrRecruitListVO;
 import com.will.team4final.company.model.Recruitment_TosVO;
+import com.will.team4final.company.resume.model.CompanyResumeSetService;
+import com.will.team4final.company.resume.model.CompanyResumeSetVO;
+import com.will.team4final.company.resume.model.CompanyResumeUseService;
+import com.will.team4final.company.resume.model.CompanyResumeUseVO;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.login.controller.LoginController;
+import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.resume.model.ResumeAllVO;
 import com.will.team4final.resume.model.ResumeService;
@@ -69,6 +74,12 @@ public class CompanyHomeController {
 	@Autowired
 	private ComScrapService comScrapServ;
 	@Autowired private BCryptPasswordEncoder pwdEncoder;
+	
+	@Autowired
+	private MemberService memberService; 
+	@Autowired
+	private CompanyResumeUseService companyResumeUseService;
+	
 	
 	@RequestMapping("/companyHome.do")
 	public String companyHome() {
@@ -439,6 +450,8 @@ public class CompanyHomeController {
 		return resumeTalentVoList;
 	}
 	
+	
+		
 	@RequestMapping("/talentResumeDetail.do")
 	   public String talentResumeDetail(@RequestParam int resumeNo,Model model) {
 	      logger.info("기업 - 인재검색 - 이력서 상세 페이지, 파라미터 resumeNo={}",resumeNo);

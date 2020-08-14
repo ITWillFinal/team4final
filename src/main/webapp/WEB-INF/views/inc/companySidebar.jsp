@@ -30,6 +30,10 @@
 		.MenuHoverDiv a {
 			color: black;
 		}
+		
+		#aTag{
+			
+		}
 				
 		.MenuHoverDiv:hover{
 			background: lightgray;
@@ -46,8 +50,9 @@
 			<div class="MenuHoverDiv">채용정보등록</div>
 			<div class="MenuHoverDiv">진행중인채용정보</div>
 			<div class="MenuHoverDiv">마감된채용정보</div>
-			<div class="MenuHoverDiv"><a href="<c:url value='/companypage/companyResumeUse.do'/>">임시)자사이력서양식사용</a></div>
-			<div class="MenuHoverDiv"><a href="<c:url value='/companypage/companyResumeSet.do'/>">임시)자사이력서양식설정</a></div>
+			
+			<!-- <div class="MenuHoverDiv"><a href="<c:url value='/companypage/companyResumeUse.do'/>">임시)자사이력서양식사용</a></div> -->
+			<!-- <div class="MenuHoverDiv"><a href="<c:url value='/companypage/companyResumeSet.do'/>">임시)자사이력서양식설정</a></div> -->
 			
 			<div class="MenuHeadDiv">인재정보</div>
 			<div class="MenuHoverDiv">입사지원요청관리</div>
