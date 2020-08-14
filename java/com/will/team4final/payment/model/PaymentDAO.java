@@ -9,12 +9,15 @@ import com.will.team4final.common.SearchVO;
 public interface PaymentDAO {
 	int insertPayment(PaymentVO paymentVo);
 	String selectTodayPayment();
-	List<Map<String, Object>>selectPayment(SearchVO searchvo);
-	public int selectTotalRecord(SearchVO searchvo);
+	List<Map<String, Object>>selectPaymentAdmin(DateSearchVO dateSearchVo);
+	public int selectTotalRecordAdmin(DateSearchVO dateSearchVo);
 	List<Map<String, Object>>selectPaymentC(SearchVO searchvo);
 	public int selectTotalRecordC(SearchVO searchvo);
-	public int selectTotalPrice(DateSearchVO dateSearchVo);
 	List<Map<String, Object>> selectPamentForView();
+	public String selectTotalPriceAdmin(DateSearchVO dateSearchVo);
+	public String selectTotalPriceC(DateSearchVO dateSearchVo);
+	public String selectThis(String month);
+	public String selectBefore(String month);
 	PaymentVO selectByrecruitmentCode(String recruitmentCode);
 	int updatePrice(PaymentVO paymentVo);
 }

@@ -4,8 +4,8 @@
 
 <div class="btn-controls">
 	<div class="btn-box-row row-fluid">
-		<a href="#" class="btn-box big span4"><i class=" icon-random"></i><b>65%</b>
-			<p class="text-muted">Growth</p> </a><a href="#"
+		<a href="#" class="btn-box big span4"><i class=" icon-random"></i><b>${result }%</b>
+			<p class="text-muted">월간 매출 증감율</p> </a><a href="#"
 			class="btn-box big span4"><i class="icon-user"></i><b>${totalToday }</b>
 			<p class="text-muted">New Users</p> </a><a href="#"
 			class="btn-box big span4"><i class="icon-money"></i><b>￦<fmt:formatNumber value="${todayPay }" pattern="#,###"/></b>

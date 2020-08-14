@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -138,24 +136,27 @@ public class ImportController {
 		
 		
 		//map => orderSheet_get 참고
-		List<Map<String, Object>> list = paymentService.selectPayment(datesearchVo);
+		List<Map<String, Object>> list = paymentService.selectPaymentAdmin(datesearchVo);
 		logger.info("결제내역 결과, list.size()={}", list.size());
-		
-		int totalRecord = paymentService.selectTotalRecord(datesearchVo);
+		  
+		int totalRecord = paymentService.selectTotalRecordAdmin(datesearchVo);
 		pagingInfo.setTotalRecord(totalRecord);
 		logger.info("결제내역 개수 조회 결과, totalRecord = {}", totalRecord);
-		
-		
-		
+		  
+		  
+		  
 		//기간내 판매수익 
-		int sumPrice = paymentService.selectTotalPrice(datesearchVo);
+		String totalPrice = paymentService.selectTotalPriceAdmin(datesearchVo);
+		if(totalPrice == null || totalPrice.isEmpty()) {
+			totalPrice="0";
+		}
 		 
 		
 		//model 담기
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("userid",userid);
-		model.addAttribute("sumPrice",sumPrice);
+		model.addAttribute("totalPrice",totalPrice);
 		
 	}
 	

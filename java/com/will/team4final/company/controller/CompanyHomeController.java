@@ -666,11 +666,11 @@ public class CompanyHomeController {
 		String msg="비밀번호가 일치하지 않습니다.", url="/companypage/member/companyOut.do";
 		
 		if (pwdMatch == true) {
-			msg="기업회원 탈퇴 실패했습니다.";
+			msg="탈퇴 실패했습니다.";
 			int cnt = cMemberSerice.deleteCMember(cMemberCode);
 			logger.info("처리결과 cnt={}", cnt);
 			if(cnt>0) {
-				msg="기업회원 탈퇴 성공했습니다.";
+				msg="탈퇴 성공했습니다.";
 				url="/";
 				
 				session.invalidate();

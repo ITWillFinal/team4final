@@ -4,40 +4,45 @@
 
 <mapper namespace="com.will.team4final.payment">
 
-	<insert id="insertPayment" parameterType="paymentVo" >
-		<selectKey keyProperty="paymentCode" resultType="String" order="BEFORE">
+	<insert id="insertPayment" parameterType="paymentVo">
+		<selectKey keyProperty="paymentCode" resultType="String"
+			order="BEFORE">
 			select payment_seq.nextval from dual
 		</selectKey>
-			insert into payment(PAYMENT_CODE, PRODUCT_NAME, PRICE, C_MEMBER_CODE, RECRUITMENT_CODE  )
-			values(#{paymentCode}, #{productName}, #{price}, #{cMemberCode}, #{recruitmentCode})
+		insert into payment(PAYMENT_CODE, PRODUCT_NAME, PRICE, C_MEMBER_CODE,
+		RECRUITMENT_CODE )
+		values(#{paymentCode}, #{productName}, #{price}, #{cMemberCode}, #{recruitmentCode})
 	</insert>
-	
+
 	<select id="selectTodayPayment" resultType="String">
-		select sum(price) from payment where regdate = to_char(sysdate)
+		select sum(price)
+		from payment where regdate = to_char(sysdate)
 	</select>
-	
-	<select id="selectPayment" resultType="map" parameterType="datesearchVo">
-		select * 
+
+	<select id="selectPaymentAdmin" resultType="map"
+		parameterType="datesearchVo">
+		select *
 		from
 		(
-			select rownum as RNUM, A.*
-			from(
-				select *
-				from v_A
-				<if test="startDay != null and startDay !=''">
+		select rownum as RNUM, A.*
+		from(
+		select *
+		from v_A
+		<if test="startDay != null and startDay !=''">
 					<![CDATA[
 					where regdate>=to_date(#{startDay})
 						and regdate < to_date(#{endDay})+1 ]]>
-				</if>
-				order by regdate desc
-			)A
+		</if>
+		order by regdate desc
+		)A
 		)
 		<![CDATA[ 
 		where RNUM>#{firstRecordIndex}
 		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
-	
-	<select id="selectTotalRecord" parameterType="datesearchVo" resultType="int">
+
+	<select id="selectTotalRecordAdmin" parameterType="datesearchVo"
+		resultType="int">
 		select count(*) from v_A
 		<if test="startDay != null and startDay !=''">
 			<![CDATA[
@@ -45,37 +50,40 @@
 			and regdate < to_date(#{endDay})+1 ]]>
 		</if>
 	</select>
-	
+
 	<!-- 기업 회원용 -->
-	<select id="selectPaymentC" resultType="map" parameterType="datesearchVo">
-		select * 
+	<select id="selectPaymentC" resultType="map"
+		parameterType="datesearchVo">
+		select *
 		from
 		(
-			select rownum as RNUM, A.*
-			from(
-				select *
-				from v_A
+		select rownum as RNUM, A.*
+		from(
+		select *
+		from v_A
 				<![CDATA[
 				where c_userid=#{customerId}
 					and regdate>=to_date(#{startDay})
 					and regdate < to_date(#{endDay})+1 ]]>
-				order by regdate desc
-			)A
+		order by regdate desc
+		)A
 		)
 		<![CDATA[ 
 		where RNUM>#{firstRecordIndex}
 		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
 	</select>
-	
-	<select id="selectTotalRecordC" parameterType="datesearchVo" resultType="int">
+
+	<select id="selectTotalRecordC" parameterType="datesearchVo"
+		resultType="int">
 		select count(*) from v_A
 		<![CDATA[
 		where c_userid=#{customerId}
 			and regdate>=to_date(#{startDay})
 			and regdate < to_date(#{endDay})+1 ]]>
 	</select>
-	
- 	<select id="selectTotalPrice" parameterType="datesearchVo" resultType="int">
+
+	<select id="selectTotalPriceAdmin" parameterType="datesearchVo"
+		resultType="string">
 		select sum(price)as sumPrice from v_A
 		<if test="startDay != null and startDay !=''">
 			<![CDATA[
@@ -83,10 +91,33 @@
 			and regdate < to_date(#{endDay})+1 ]]>
 		</if>
 	</select>
-	
-	<select id="selectByrecruitmentCode" parameterType="string" resultType="paymentVo">
+
+	<select id="selectTotalPriceC" parameterType="datesearchVo"
+		resultType="string">
+		select sum(price)as sumPrice from v_A
+		<if test="startDay != null and startDay !=''">
+			<![CDATA[
+			where c_userid = #{customerId}
+			and regdate>=to_date(#{startDay})
+			and regdate < to_date(#{endDay})+1 ]]>
+		</if>
+	</select>
+
+	<select id="selectByrecruitmentCode" parameterType="string"
+		resultType="paymentVo">
 		select * from payment
 		where RECRUITMENT_CODE = #{recruitmentCode}
+	</select>
+
+	<select id="selectThis" parameterType="String" resultType="String">
+		select sum(price) as this
+		from payment
+		where substr(regdate, 4,2)=#{date}
+	</select>
+	<select id="selectBefore" parameterType="String" resultType="String">
+		select sum(price) as this
+		from payment
+		where substr(regdate, 4,2)=#{date}-1
 	</select>
 	
 	<update id="updatePrice" parameterType="paymentVo">
@@ -95,6 +126,24 @@
 		where RECRUITMENT_CODE = #{recruitmentCode}
 	</update>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

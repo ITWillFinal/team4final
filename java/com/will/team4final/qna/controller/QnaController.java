@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.will.team4final.common.DateSearchVO;
 import com.will.team4final.common.PaginationInfo;
 import com.will.team4final.common.SearchVO;
 import com.will.team4final.common.Utility;
@@ -34,7 +35,7 @@ public class QnaController {
 	@Autowired private QnareService qnareService;
 	
 	@RequestMapping("/qna/qnaList.do")
-	public String qnaList(@ModelAttribute SearchVO searchVo,
+	public String qnaList(@ModelAttribute DateSearchVO searchVo,
 				Model model) {
 		//1
 		logger.info("1:1 문의게시판 목록 searchVo={}", searchVo);
@@ -51,10 +52,10 @@ public class QnaController {
 		logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
 		
 		//2
-		List<QnaVO>list = qnaService.selectQna(searchVo);
+		List<QnaVO>list = qnaService.selectQnaAdmin(searchVo);
 		logger.info("1:1 문의게시판 목록 개수 list.size={}", list.size());
 		
-		int totalRecord = qnaService.selectTotalRecord(searchVo);
+		int totalRecord = qnaService.selectTotalRecordAdmin(searchVo);
 		logger.info("1:1 문의게시판, 전체 레코드 개수 totalRecord = {}",totalRecord);
 		
 		pagingInfo.setTotalRecord(totalRecord);
@@ -129,7 +130,7 @@ public class QnaController {
 	@RequestMapping(value = "/qna/qnaEdit.do", method = RequestMethod.GET)
 	public String editQna_get(@RequestParam int no,
 			Model model) {
-		logger.info("1:1 문의게시판 수정 get 파라미터 vo = {}", no);
+		logger.info("1:1 문의게시판 수정 get 파라미터 no = {}", no);
 		
 		QnaVO vo = qnaService.selectByNo(no);
 		model.addAttribute("vo", vo);
@@ -219,12 +220,13 @@ public class QnaController {
 	
 	
 	@RequestMapping("/qnaC/qnaList.do")
-	public String qnaCList(@ModelAttribute SearchVO searchVo,
+	public String qnaCList(@ModelAttribute DateSearchVO  searchVo,
 				Model model, HttpSession session) {
-		String userId = (String)session.getAttribute("userid");
-		logger.info("접속한 유저 아이디 userId = {}", userId);
-		
-		model.addAttribute("userId", userId);
+		String customerId = (String) session.getAttribute("userid");
+		logger.info("접속한 유저 아이디 userId = {}", customerId);
+
+		searchVo.setCustomerId(customerId);
+		model.addAttribute("customerId", customerId);
 		
 		//1
 		logger.info("1:1 문의게시판 목록 searchVo={}", searchVo);
@@ -421,12 +423,13 @@ public class QnaController {
 	
 	
 	@RequestMapping("/qnaP/qnaList.do")
-	public String qnaPCList(@ModelAttribute SearchVO searchVo,
+	public String qnaPCList(@ModelAttribute DateSearchVO searchVo,
 				Model model, HttpSession session) {
-		String userId = (String)session.getAttribute("userid");
-		logger.info("접속한 유저 아이디 userId = {}", userId);
-		
-		model.addAttribute("userId", userId);
+		String customerId = (String) session.getAttribute("userid");
+		logger.info("접속한 유저 아이디 userId = {}", customerId);
+
+		searchVo.setCustomerId(customerId);
+		model.addAttribute("customerId", customerId);
 		
 		//1
 		logger.info("1:1 문의게시판 목록 searchVo={}", searchVo);

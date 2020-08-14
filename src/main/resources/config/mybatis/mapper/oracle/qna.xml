@@ -3,7 +3,27 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mybatis.mapper.oracle.qna">
-	<select id="selectQna" resultType="QnaVo" parameterType="searchvo">
+	<select id="selectQna" resultType="QnaVo" parameterType="DateSearchVO">
+		select * 
+		from
+		(
+			select rownum as RNUM, A.*
+			from(
+				select qna_no, user_id, title, category, content, fileName, fileSize, originFileName, status, regDate, no
+				from qnarere
+				where user_id = #{customerId}
+				<if test="searchKeyword!=null and searchKeyword != ''">
+					and ${searchCondition} like '%' || #{searchKeyword} || '%'
+				</if>
+				order by qna_No desc
+			)A
+		)
+		<![CDATA[ 
+		where RNUM>#{firstRecordIndex}
+		  and RNUM<=#{firstRecordIndex }+ #{recordCountPerPage}]]>
+	</select>
+	
+	<select id="selectQnaAdmin" resultType="QnaVo" parameterType="DateSearchVO">
 		select * 
 		from
 		(
@@ -12,8 +32,7 @@
 				select qna_no, user_id, title, category, content, fileName, fileSize, originFileName, status, regDate, no
 				from qnarere
 				<if test="searchKeyword!=null and searchKeyword != ''">
-					where ${searchCondition} like '%'
-							|| #{searchKeyword} || '%'
+				where ${searchCondition} like '%' || #{searchKeyword} || '%'
 				</if>
 				order by qna_No desc
 			)A
@@ -31,12 +50,20 @@
 		values(#{qnaNo}, #{userId}, #{title}, #{category}, #{content}, #{status})
 	</insert>
 
-	<select id="selectTotalRecord" parameterType="searchVo"
+	<select id="selectTotalRecord" parameterType="DateSearchVO"
+		resultType="int">
+		select count(*) from qna
+		where user_id = #{customerId}
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			 and ${searchCondition} like '%'|| #{searchKeyword} || '%'
+		</if>
+	</select>
+	
+	<select id="selectTotalRecordAdmin" parameterType="DateSearchVO"
 		resultType="int">
 		select count(*) from qna
 		<if test="searchKeyword!=null and searchKeyword != ''">
-			where ${searchCondition} like '%'
-				|| #{searchKeyword} || '%'
+			 where and ${searchCondition} like '%'|| #{searchKeyword} || '%'
 		</if>
 	</select>
 	
