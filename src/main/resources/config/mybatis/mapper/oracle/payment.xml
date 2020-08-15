@@ -50,6 +50,10 @@
 			and regdate < to_date(#{endDay})+1 ]]>
 		</if>
 	</select>
+	
+	<select id="selectPamentForView" resultType="map">
+		select * from v_A order by regdate desc
+	</select>
 
 	<!-- 기업 회원용 -->
 	<select id="selectPaymentC" resultType="map"

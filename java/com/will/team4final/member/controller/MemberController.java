@@ -31,7 +31,6 @@ import com.will.team4final.apply.model.ApplyService;
 import com.will.team4final.apply.model.ApplyVO;
 import com.will.team4final.common.FileUploadUtil;
 import com.will.team4final.company.model.ComRecruitService;
-import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.company.model.Recruitment_TosVO;
 import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;
@@ -45,6 +44,7 @@ public class MemberController {
 	@Autowired private JavaMailSender mailSender;
 	@Autowired private BCryptPasswordEncoder pwdEncoder;
 	@Autowired private ComRecruitService comRecruitServ;
+	@Autowired private ApplyService applyServ;
 	
 	
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
@@ -343,24 +343,13 @@ public class MemberController {
 	@RequestMapping("/currentApply.do")
 	public String currentApply(HttpSession session, Model model) {
 		String userNo = (String)session.getAttribute("userNo");
-		logger.info("일반 회원 지원 현황, userNo={}", userNo);
+		logger.info("일반 회원 지원 현황, userNo={}", userNo);	
 		
-		//지원 정보 가져오기(여러개면 여러개)
-		List<ApplyVO> applyListVo = memberService.selectApplyByuserNo(userNo);
-		logger.info("지원 정보, applyListVo={}", applyListVo);
-		
-		//여러개 있는 것을 _tos에 담기
-		List<Recruitment_TosVO> tosVo = new ArrayList<Recruitment_TosVO>();
-		for(ApplyVO list : applyListVo ) {
-			//하나씩 가져와서 담기
-			Recruitment_TosVO vo = comRecruitServ.selectOneCom(list.getRecruitmentCode());
-			 tosVo.add(vo);
-		}
-		logger.info("tosVo={}", tosVo);
+		List<Map<String, Object>> list = applyServ.selectRecruitmentApply(userNo);
+		logger.info("일반회원 지원 현황 페이지, list.size()={}", list.size());
 		
 		
-		model.addAttribute("tosVo", tosVo);
-		model.addAttribute("applyListVo", applyListVo);
+		model.addAttribute("list", list);
 		
 		return "member/currentApply/currentApply";
 	}

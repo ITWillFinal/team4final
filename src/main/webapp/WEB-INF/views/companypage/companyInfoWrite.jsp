@@ -255,7 +255,6 @@ hr{
 	            	<div class="col-sm-9 form-input">
 	                <select name="comType" id="comType" class="form-control">
 	                	<option value="0">회사 형태를 선택하세요</option>
-                 			<option value="소기업" >소기업</option>
 						   	<option value="중소기업" >중소기업</option>
 			                <option value="중견기업" >중견기업</option>
 			                <option value="대기업" >대기업</option>

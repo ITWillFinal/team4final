@@ -265,7 +265,7 @@
 		</div>
 		<c:if test="${empty resumeList }">
 			<div class="resume-add">
-					<a href="<c:url value='/resume/resumeWrite.do'/>" class="btn head-btn2">새로운 이력서 등록하기</a>
+					<a href="<c:url value='/resume/resumeWrite.do'/>" class="btn head-btn2" style="color: #fb246a;">새로운 이력서 등록하기</a>
 			</div>
 		</c:if>
 		<c:if test="${!empty resumeList }">

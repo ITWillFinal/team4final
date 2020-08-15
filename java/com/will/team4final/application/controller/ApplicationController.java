@@ -109,9 +109,9 @@ public class ApplicationController {
 		}
 		
 		int cnt = applyService.deleteApply(applyCode);
-		String msg="삭제 실패했습니다.", url="/member/currentApply.do";
+		String msg="입사 지원 취소 실패했습니다.", url="/member/currentApply.do";
 		if(cnt>0) {
-			msg="삭제 성공했습니다";
+			msg="입사 지원 취소 되었습니다.";
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);

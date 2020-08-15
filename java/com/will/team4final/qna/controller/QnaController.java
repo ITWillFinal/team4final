@@ -95,10 +95,13 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "/qna/qnaDetail.do")
-	public String selectByNo(@RequestParam(defaultValue = "0") int no,
+	public String selectByNo(@RequestParam(defaultValue = "0") int no, HttpSession session,
 			Model model) {
 		logger.info("1:1 문의게시판 상세보기");
-
+		
+		String userId = (String)session.getAttribute("userId");
+		logger.info("관리자 아이디 userId={}", userId);
+		
 		//상세보기
 		QnaVO vo = qnaService.selectByNo(no);
 		logger.info("1:1 문의게시판 파라미터 = {}",vo);
@@ -121,6 +124,7 @@ public class QnaController {
 		model.addAttribute("beforeVO", beforeVO);
 		model.addAttribute("rst", rst);
 		model.addAttribute("revo", revo);
+		model.addAttribute("userId", userId);
 		
 		
 		return "gogak/qna/qnaDetail";

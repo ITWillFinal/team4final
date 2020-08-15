@@ -87,7 +87,7 @@
 </script>
 <div style="overflow: hidden; width: 1055px; padding-left: 25px; font-size: 14px; margin-top: 10px;">
 <!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
-	<h2>직무별 채용정보</h2>
+	<h2>산업별 채용정보</h2>
 	<div id="induTypeDiv">
 		<c:forEach var="map" items="${induList }">
 			<button value="${map['LARGE_NO'] }" id="induType" class="btn head-btn2">${map['LARGE_GROUP'] }</button>

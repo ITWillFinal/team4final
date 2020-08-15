@@ -60,6 +60,18 @@
    
 <script type="text/javascript">
    $(function(){
+	   /* 다음에 하기 */
+	   $('.btNextTime').click(function(){
+		  var con = confirm('정말 다음에 하시겠습니까?');
+		  if(con){
+			  location.href="<c:url value='/index.do' />";
+		  }else{
+			  return false;
+		  }
+		   
+	   });
+	   
+	   
       /* 시작날짜 보여주기 */   
       function getToday(){
          var date = new Date();
@@ -101,29 +113,37 @@
           if (month < 10) month = "0" + month;
           if (day < 10) day = "0" + day;
 
-          var month = year + "-" + month + "-" + day;      
+          var month = year + "/" + month + "/" + day;      
           $('#monthEnd').attr("value", month);
          $('#endDay').attr("value", month);
          
          var priceForMonth =45000;
          $("#price").val(priceForMonth);
       }); 
+      
+      
       $("#radioPeriodDate").click(function(){
          $('#price').val("");
          $('#endDay').attr("value", "");
          var productName = $("#radioPeriodDate").val()
          $("#productName").val(productName);
+         
          $("#datePick").attr('disabled', false);
       });
       
+      
+      
+      
       /* 현재 날짜 전은 못 구하게 하기 */
       $('#datePick').change(function(){
-         
       	  var startDate = $('input[name=startDay]').val();
            var startDateArr = startDate.split('-');
+           
+           
            var endDate = $('input[name=endPickDay]').val(); 
            //alert(endDate);
            var endDateArr = endDate.split('-');
+           var startDateVal = startDateArr[0].substring(2,4) + "/" + startDateArr[1] + "/" + startDateArr[2];
            var startDateCompare = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
            //alert(startDateCompare);
            var endDateCompare = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
@@ -180,12 +200,12 @@
       });
       $('#dateDiv').hide();
       $('input[type=radio]').change(function() {
-         if($(this).val() == 'month'){
+         if($(this).val() == '월간 이용 상품'){
             $('#labPeriodMonth').css('background', '#2e3752');
             $('#labPerioddDate').css('background', '#b4c5d2');
             $('#dateDiv').hide();
             $('#endDay').val(getMonth());
-         }else if($(this).val() == 'date'){
+         }else if($(this).val() == '기간 지정 상품'){
             $('#labPeriodMonth').css('background', '#b4c5d2');
             $('#labPerioddDate').css('background', '#2e3752');
             $('#dateDiv').show();
@@ -233,6 +253,7 @@
          </div>
          
          <div style="text-align: center; margin: 50px; clear: both;">
+         	<input type="button" class="btNextTime btn" value="다음에하기" >
             <input type="submit" id="btn" class="btn" value="결제하기" >
          </div>
          <input type="hidden" name="productName" id="productName">
