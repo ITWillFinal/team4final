@@ -567,7 +567,7 @@
 			$('.switch:eq(7) input[type=checkbox]').prop("checked",true);		
 			$('.self-int').find(".nullOk-top").slideDown();
 			$('.self-int').find("input[name=selfIntTitle]").val("${resumeAllVo.resumeVo.selfIntTitle}");
-			$('.self-int').find("textarea[name=selfInt]").val("${resumeAllVo.resumeVo.selfInt}".replace('\n\r','<br>'));
+			$('.self-int').find("textarea[name=selfInt]").val("${resumeAllVo.resumeVo.selfInt}");
 		}
 		
 		if(${resumeAllVo.activeVoList.size()}!=0){
