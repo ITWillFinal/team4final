@@ -4,18 +4,19 @@
 <script>
 $(function(){
 	$( "#hireTabs" ).tabs();
-	$('#sido').click(function() {
-		$('#tdLocation1').val($('#sido option:selected').text());
+	$('.sido #op').click(function() {
+		$('#tdLocation1').val($(this).val());
 	});
-	$('#sigugun').click(function() {
-		$('#tdLocation2').val($('#sigugun').val());
+	$(document).on('click','#sigugunDiv button', function() {
+		$('#tdLocation2').val($(this).val());
 	});
-	$('#jobLarge').click(function() {
-		$('#tdJob1').val($('#jobLarge option:selected').text());
+	$('.jobLarge #op').click(function() {
+		$('#tdJob1').val($(this).text());
 	});
-	$('#jobMiddle').click(function() {
-		$('#tdJob2').val($('#jobMiddle option:selected').text());
+	$(document).on('click','#jobMiddleDiv button', function() {
+		$('#tdJob2').val($(this).text());
 	});
+	
 	$('#induLarge').click(function() {
 		$('#tdIndu1').val($('#induLarge option:selected').text());
 	});
@@ -38,20 +39,22 @@ $(function(){
 });
 
 $(function() {
-	$('#sido').click(function() {
+	$('#locationLi #op').click(function() {
 		$('#tdLocation2').val('');
-		var sido = $('#sido').val();
-		$('#sigugun').empty();
+		var sido = $(this).val();
+		$('.sigungu').empty();
 		$.ajax({
 			url:"<c:url value='/sigugun.do'/>",
 			type:"get",
 			dataType:"json",
 			data:"sido="+sido,
 			success:function(res){
+				var option = "<div style='width: 224px; overflow-y: scroll; height: 320px;' id='sigugunDiv'>"
 				for(var i = 0; i< res.length; i++){
-					var option ="<option value='"+res[i]+"'>"+res[i]+"</option>";
-					$('#sigugun').append(option);
+					option += "<button value='"+res[i]+"' class='btn head-btn1' style='width:200px; border: 1px solid white; padding: 22px;'>"+res[i]+"</button>";
 				}
+				option+="</div>";
+				$('.sigungu').append(option);
 			},
 			error:function(xhr, status, error){
 				alert(status + ", " + error);
@@ -59,20 +62,23 @@ $(function() {
 		});
 	});
 	
-	$('#jobLarge').click(function() {
+	$('.jobLarge #op').click(function() {
 		$('#tdJob2').val('');
-		var num = $('#jobLarge').val();
-		$('#jobMiddle').empty();
+		var num = $(this).val();
+		$('.jobMiddle').empty();
 		$.ajax({
 			url:"<c:url value='/job/jobMiddle.do'/>",
 			type:"get",
 			dataType:"json",
 			data:"no="+num,
 			success:function(res){
+				var option = "<div style='width: 224px; overflow-y: scroll; height: 320px;' id='jobMiddleDiv'>"
 				for(var i = 0; i< res.length; i++){
-					var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
-					$('#jobMiddle').append(option);
+					option += "<button value='"+res[i].MIDDLE_NO+"' class='btn head-btn1' style='width:200px; border: 1px solid white; padding: 22px;'>"+res[i].MIDDLE_GROUP+"</button>";
 				}
+				option+="</div>";
+				$('.jobMiddle').append(option);
+				
 			},
 			error:function(xhr, status, error){
 				alert(status + ", " + error);
@@ -155,7 +161,7 @@ function makeListJson(res){
 	#hireTabs{
 		float: left;
 		width: 55%;
-		height: 424px;
+		height: 377px;
 	}
 	#hireSearch{
 		float: right;
@@ -176,10 +182,14 @@ function makeListJson(res){
 	    background: #f3f3f3;
 	}
 	
+	button#op {
+    	width: 200px;
+    	padding: 22px;
+	}
 	#locationLi{
-		width: 200px;
-	    margin-left: 10px;
-	    padding: 25px;
+		width: 224px;
+	    overflow-y: scroll;
+    	height: 322px;
 	}
 	#locationLi2{
 		width: 161px;
@@ -235,6 +245,9 @@ function makeListJson(res){
 	    height: 30px;
 	    margin-bottom: 2px;
 	}
+	.ui-tabs .ui-tabs-panel {
+		padding: 5px;
+	}
 </style>
 <%@ include file="../inc/sidebar.jsp"%>
 <div style="overflow: hidden; width: 1055px; padding-left: 25px; font-size: 14px; margin-top: 10px;">
@@ -250,32 +263,24 @@ function makeListJson(res){
 	</ul>
 	
 	<div id="hireTabs-1">
-		<div id="locationLi" style="display: inline-block">
-			<select size="10" id="sido">
-				<c:forEach var="location" items="${locationList }">
-					<option id="op" value="${location }">${location }</option>
-				</c:forEach>
-			</select>
+		<div id="locationLi" style="display: inline-block" class="sido">
+			<c:forEach var="location" items="${locationList }">
+				<button id="op" class="btn head-btn2" value="${location }">${location }</button>
+			</c:forEach>
 		</div>
-		<div style="display: inline" id="locationLi">
-			<select id="sigugun" size="10">
-				
-			</select>			
+		<div style="display: inline-block" class="sigungu">
+			
 		</div>
 	</div>
 	
 	<div id="hireTabs-2">
-		<div id="locationLi" style="display: inline-block">
-			<select size="10" id="jobLarge">
-				<c:forEach var="map" items="${jobList }">
-               		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
-                </c:forEach>
-			</select>
+		<div id="locationLi" style="display: inline-block" class="jobLarge">
+			<c:forEach var="map" items="${jobList }">
+           		<button value="${map['LARGE_NO'] }" id="op" class="btn head-btn2">${map['LARGE_GROUP'] }</button>
+            </c:forEach>
 		</div>
-		<div style="display: inline" id="locationLi">
-			<select id="jobMiddle" size="10">
-				
-			</select>			
+		<div style="display: inline-block" class="jobMiddle">
+					
 		</div>
 	</div>
 	
@@ -287,7 +292,7 @@ function makeListJson(res){
                 </c:forEach>
 			</select>
 		</div>
-		<div style="display: inline" id="locationLi">
+		<div style="display: inline-block" id="locationLi">
 			<select id="induMiddle" size="10">
 				
 			</select>			

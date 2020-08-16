@@ -282,3 +282,5 @@ on r.recruitment_code = t.RECRUITMENT_CODE;
 
 alter table COMPANY_INFO
 modify(COM_NAME varchar2(150));
+
+ALTER TABLE recruitment MODIFY education_lv number;
