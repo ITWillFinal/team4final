@@ -24,11 +24,33 @@ td{
 	margin: 20px;
 }
 
-input[type="text"] {
+input[name="searchKeyword"] {
     margin-left: 10px;
 }
 input#btMultiDel {
     margin-left: 5px;
+}
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
 }
 
 
@@ -68,7 +90,7 @@ th {
     padding-top: 5%;
 }
 div#o {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+	border: 1px solid lightgray;
 }
 input[type=button] {
     width: 60px;
@@ -133,8 +155,8 @@ input[type=submit] {
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	
 	<!-- main -->
-	<div style="text-align: center; width:850px;">
-		<div id = "o" style="margin-top: -11.5px;">
+	<div style="text-align: center; width:850px; margin-top: 1.3%;">
+		<div id = "o" style="margin-top: -11.5px;margin-left: 0.5%;">
 			<ul class = "tabList" style="width: 857px; margin-left: 0px;">
 				<li class = "select" style="width: 33%;" id = "fst">
 					<a href = <c:url value='/gogak/admin/company/faqList.do'/> style="color: black;">FaQ - 기업</a>

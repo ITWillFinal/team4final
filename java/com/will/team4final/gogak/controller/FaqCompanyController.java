@@ -53,6 +53,7 @@ public class FaqCompanyController {
 	public String faqWrite_post(@ModelAttribute FaqCompanyVO vo,
 			Model model) {
 		logger.info("faq insert 화면");
+		logger.info("vo={}", vo);
 		
 		int cnt = faqService.WriteFaq(vo);
 		String msg = "자주찾는 질문 등록 실패", url = "/gogak/company/faqWrite";

@@ -166,6 +166,28 @@ li.select {
     padding-bottom: 15px;
     font-size: 15pt;
 }
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
 </style>
 	<%@ include file="../../inc/companyTop.jsp"%>
 <main>
@@ -173,7 +195,7 @@ li.select {
 
 	<!-- main -->
 	<!-- main -->
-	<div id = "mainDiv" style="text-align: center; margin:5px; margin-left:3%; width:933px; border:1px solid lightgray; float: left;">
+	<div id = "mainDiv" style="text-align: center; margin:5px; width:850px; margin-top: 2.5%; margin-left: 2.5%; border:1px solid lightgray; float: left;">
 		<!-- 본문 -->
 		<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */">
 			<div id="outDiv">

@@ -76,6 +76,28 @@ li#fst {
 a{
 	color: black;
 }
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
 </style>
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
@@ -99,7 +121,7 @@ a{
 	<%@ include file="../../inc/companySidebar.jsp"%>
 	
 	<!-- main -->
-	<div id = "mainDiv" style="text-align: center; margin:5px; width:850px; border:1px solid lightgray; float: left;">
+	<div id = "mainDiv" style="text-align: center; margin:5px; width:864px; margin-top: 2.5%; margin-left: 2.5%; border:1px solid lightgray; float: left;">
 		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
 			<li class = "select" style="width: 33%;" id = "fst">
 				<a href = <c:url value='/gogak/qnaC/qnaList.do'/> style="color: black;">1:1 문의</a>

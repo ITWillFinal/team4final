@@ -72,7 +72,10 @@ input[type=submit] {
     margin-bottom: 5%;
 }
 div#idx {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+    border: 1px solid lightgray;
+    margin-top: 3.5%;
+    margin-left: -1%;
+    width: 107%;
 }
 </style>
 <script type="text/javascript" 
@@ -100,7 +103,7 @@ div#idx {
 				<form name = "frmWrite" method="post" 
 					action="<c:url value = '/gogak/qnaP/qnaWrite.do'/>">
 					<div id = "idx">
-						<h4 style="text-align:center; padding-top: 8%; font-weight: bold; font-size: 28px; margin-top: 10%; margin-bottom: 10%;">― 1:1 문의 ―</h4>
+						<h4 style="text-align:center; padding-top: 8%; font-weight: bold; font-size: 28px; margin-top: 5%; margin-bottom: 10%;">― 1:1 문의 ―</h4>
 						<div class = "notice" >
 							<p style="text-align:center;" >1:1 문의 게시판 운영 원칙</p>
 							<ul><!--  -->

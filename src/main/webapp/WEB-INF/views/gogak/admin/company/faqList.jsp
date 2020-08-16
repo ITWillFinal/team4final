@@ -87,7 +87,7 @@ input[type=submit] {
 }
 
 div#o {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+    border: 1px solid lightgray;
 }
 .divList {
     margin-left: 2%;
@@ -131,7 +131,7 @@ th {
 </script>
 <main>
 	<!-- main -->
-	<div style="text-align: center; margin:5px; width:850px;">
+	<div style="text-align: center; margin:5px; width:850px; margin-top: 1.3%;">
 		<div id = "o" style="margin-top: -11.5px;">
 			<ul class = "tabList" style="width: 857px;margin-left: 0%;">
 				<li class = "select" style="width: 33%;" id = "fst">
