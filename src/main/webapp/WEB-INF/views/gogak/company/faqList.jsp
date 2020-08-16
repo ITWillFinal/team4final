@@ -5,51 +5,73 @@
 <%@ include file="../../inc/companyTop.jsp"%>
 
 <style>
-.divList {
-    margin-left: 2%;
-    margin-right: 2%;
+.divList{
+    padding-bottom: 5%;
+    padding-right: 80px;
 }
-
 th{
 	border-bottom: 3px solid #FB246A;;
 	text-align: center;
+    padding: 14px;
 }
 td{
 	border-bottom: 1px solid #FB246A;
-	padding: 5px;
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+	padding: 13px;
+}
+
 a{
 	color: black;
 }
 
-
-#upList{
-	 padding-left: 300px;
+#list{
+	width:100%
+}
+#o > div > div {
+    border: 1px solid lightgray;
+}
+/* 페이징 */
+.divPage {
+    text-align: center;
+    margin-top: 3%;
 }
 
-.divPage{
-	text-align:center;
-    padding-top: 40px;
-    padding-bottom: 10px;
+/* 목록 */
+
+/* 등록삭제 버튼 */
+#bt{    
+	margin-top: 20px;
 }
 
-.divList{
-	height: 250px;
-}
+/* 리스트 상단 탭 */
+ul, li{list-style: none;}
+.tabList>li .inTab:hover,
+.tabList>li .inTab:focus {text-decoration:underline}
 
-#bt{
-	margin: 10px;
+li.select {
+    float: left;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 15pt;
 }
-input[type=button] {
-    width: 60px;
-    height: 30px;
-    background: #f7f7f7;
-    border: 0;
-    color: black;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
-    margin-top: 2%;
-    margin-left: 1%;
-    margin-bottom: 2%;
+#mid{
+	border-left: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+}
+#btm{
+	border-bottom: 1px solid lightgray;
+}
+input[type="text"] {
+    margin-left: 10px;
+    height: 27px;
+}
+input#btMultiDel {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+li#fst {
+    padding-top: 5%;
 }
 input[type=submit] {
     width: 60px;
@@ -62,12 +84,30 @@ input[type=submit] {
     margin-left: 1%;
     margin-bottom: 2%;
 }
-
+input#startDay {
+    width: 18%;
+}
+input#endDay {
+    width: 18%;
+}
+p.rst {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.divList {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+h2#h2Title {
+    margin-left: 31%;
+    margin-bottom: 1%;
+    font-weight: bold;
+}
+span#totalPrice {
+    color: #FB246A;
+}
 div#o {
-    border: 1px solid lightgray;
-    padding-bottom: 2%;
-    margin-top: 4.5%;
-    width: 117.5%;
+    padding-top: 2%;
 }
 </style>
 
@@ -103,12 +143,13 @@ div#o {
 </script>
 <main>
 	<%@ include file="../../inc/companySidebar.jsp" %>
-	
+	<div id = "o">
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
-		<div id = "o">
+		<h2 style="margin-left: 20px; font-weight: bold; margin-bottom: 2%;">고객센터</h2>
+		<div>
 			<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
-			<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문</h2>
+			<h2 style = "padding-left: 50px; padding-top: 30px; padding-left: 14px; adding-top: 25px; font-size: 1.8em;">자주찾는 질문</h2>
 			</div>
 			<div style="text-align: center; margin:5px; /* border:1px solid lightgray; */">
 			
@@ -237,6 +278,7 @@ div#o {
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </main>

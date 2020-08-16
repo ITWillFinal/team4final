@@ -97,8 +97,8 @@ div#idx {
 	<%@ include file="../../inc/sidebar.jsp"%>
 	
 	<!-- main -->
-	<div style=" margin:5px; width:850px;  float: left;">
-		<div style="margin:5px;">
+	<div style="width:850px; float: left; margin-left: 0.5%; margin-top: 0.3%;">
+		<div style="">
 			<div id="outDiv">
 				<form name = "frmWrite" method="post" 
 					action="<c:url value = '/gogak/qnaP/qnaWrite.do'/>">

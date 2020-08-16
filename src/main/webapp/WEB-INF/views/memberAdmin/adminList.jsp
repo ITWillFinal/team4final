@@ -95,14 +95,15 @@ input[type=submit] {
     background: #f7f7f7;
     border: 0;
     color: black;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
     margin-top: 2%;
     margin-left: 1%;
     margin-bottom: 2%;
 }
 div#o {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
     padding-bottom: 2%;
+}
+table {
+    margin-top: 5%;
 }
 </style>
 <script type="text/javascript">
@@ -169,13 +170,9 @@ div#o {
 </script>
 <main>
 	<!-- main -->
+	<h2 style="margin-left: 20px">관리자 관리</h2>
 	<div style="text-align: center; width:850px; border:1px solid lightgray;">
 		<div id = "o" style="margin-top: -11.5px;">
-			<ul class = "tabList" style="width: 857px; margin-left: 0px;">
-				<li class = "select" style="width: 100%;" id = "fst">
-					<h2>관리자 관리</h2>
-				</li>
-			</ul>
 			<form name="frmPage" method="post" 
 				action="<c:url value='/memberAdmin/adminInfo.do'/>">
 				<input type="hidden" name="levelName" 	value="${param.levelName}">

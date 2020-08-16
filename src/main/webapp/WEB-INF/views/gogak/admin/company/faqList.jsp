@@ -131,7 +131,8 @@ th {
 </script>
 <main>
 	<!-- main -->
-	<div style="text-align: center; margin:5px; width:850px; margin-top: 1.3%;">
+	<h2 style="margin-left: 20px">고객센터</h2>
+	<div style="text-align: center;width:850px; margin-top: 2.3%;">
 		<div id = "o" style="margin-top: -11.5px;">
 			<ul class = "tabList" style="width: 857px;margin-left: 0%;">
 				<li class = "select" style="width: 33%;" id = "fst">
