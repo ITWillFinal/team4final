@@ -242,7 +242,7 @@ height: 3px;
 
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
-					<button type="submit" class="btn btn-primary">Sign in</button>
+					<button type="submit" class="btn btn-primary">회원가입</button>
 				</div>
 			</div>
 			<input type="hidden" name="chkId" id="chkId">
