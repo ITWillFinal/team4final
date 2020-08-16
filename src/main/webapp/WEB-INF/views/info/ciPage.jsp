@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../inc/top.jsp" %>
 <%@ include file="../inc/aboutSidebar.jsp" %>
 <style type="text/css">
@@ -41,7 +42,12 @@
 	  height: auto;
 	}
 	
+	a {
+		color: black;
+	}
+	
 </style>
+
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<div style="margin:5px;">
 			<span style="font-size: 25px; font-weight: bold;">CI소개</span>
@@ -53,23 +59,36 @@
 					<img src="<c:url value='/resources/images/ci/ci1.png'/>">
 					</div>
 					<div style="margin-top: 30px;">
-						<input type="button" id="btn1" value="다운로드 (.png)">
+						<br>
+						<a href="<c:url value='/resources/images/ci/ci1.png'/>" download>
+							<input type="button" id="btn1" value="다운로드1 (.png)">
+						</a>						
+						
 					</div>
 				</div>		
 				<div class="div2">
-					<div style="margin-top: 60px;">
-					<img class="img" src="<c:url value='/resources/images/ci/ci2.png'/>">
+					<div style="margin-top: 44px;">
+						<div>
+							<img class="img" src="<c:url value='/resources/images/ci/ci2.png'/>">
+							<br>
+							<a href="<c:url value='/resources/images/ci/ci2.png'/>" download>
+								<input type="button" id="btn2" value="다운로드2 (.png)">
+							</a>
+						</div>
 					<br>
-					<img class="img" src="<c:url value='/resources/images/ci/c4.png'/>" >
-					</div>
-					<div style="margin-top: 29px;">
-						<input type="button" id="btn2" value="다운로드 (.png)">
+						<div>
+							<img class="img" src="<c:url value='/resources/images/ci/ci3.png'/>" >
+							<br>
+							<a href="<c:url value='/resources/images/ci/ci3.png'/>" download>
+								<input type="button" id="btn3" value="다운로드3 (.png)">
+							</a>
+						</div>
 					</div>
 				</div>		
 			</div>
 			<div class="div3">			
 			</div>
-			<br><br><br>
+			<br>
 		</div>
 		
 		
