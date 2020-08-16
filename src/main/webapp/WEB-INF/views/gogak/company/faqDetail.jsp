@@ -98,10 +98,12 @@ input[type=submit] {
 }
 
 div#outer {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+    border: 1px solid lightgray;
     padding-left: 1%;
     padding-right: 1%;
     margin-bottom: 8%;
+    margin-top: 4.5%;
+    width: 117.5%;
 }
 h2 {
     font-weight: bold;

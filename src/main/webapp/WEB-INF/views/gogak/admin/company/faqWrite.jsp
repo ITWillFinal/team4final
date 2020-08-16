@@ -58,7 +58,7 @@ td.a {
     width: 85%;
 }
 body > div.wrapper > div > div > div.span9 > div > main > div {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+	border: 1px solid lightgray;
 }
 td.b {
     padding-left: 8%;

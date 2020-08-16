@@ -62,8 +62,10 @@ input[type=submit] {
 }
 
 div#o {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+    border: 1px solid lightgray;
     padding-bottom: 2%;
+    margin-top: 4.5%;
+    width: 117.5%;
 }
 </style>
 <script type="text/javascript">	

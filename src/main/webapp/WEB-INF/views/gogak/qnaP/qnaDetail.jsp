@@ -166,13 +166,40 @@ li.select {
     padding-bottom: 15px;
     font-size: 15pt;
 }
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+div#mainDiv {
+    margin-left: 2%;
+    margin-top: 2.4%;
+    width: 871px;
+}
 </style>
 	<%@ include file="../../inc/top.jsp"%>
 <main>
 	<%@ include file="../../inc/sidebar.jsp"%>
 	<!-- main -->
 	<!-- main -->
-	<div id = "mainDiv" style="text-align: center; margin:5px; margin-left:3%; width:933px; border:1px solid lightgray; float: left;">
+	<div id = "mainDiv" style="text-align: center; border:1px solid lightgray; float: left;">
 		<!-- 본문 -->
 		<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */">
 			<div id="outDiv">
