@@ -119,6 +119,9 @@
 							</div>
 	                    </c:forEach>
                     </c:if>
+                    <c:if test="${empty reVo }">
+                    	<h4 style='width: 90%;margin: 0 auto; border: 1px solid #e0e0e08f; margin-top:20px; padding: 50px;'>오늘 등록된 신규 채용공고가 없습니다.</h4>
+                    </c:if>
                 </div>
             </div>
         </div>
