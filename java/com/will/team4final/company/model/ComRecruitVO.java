@@ -21,7 +21,7 @@ public class ComRecruitVO {
 	String welfare;
 	String gender;
 	String age;
-	String educationLv;
+	int educationLv;
 	String career;
 	String preference;
 	String recNumber;
@@ -39,8 +39,6 @@ public class ComRecruitVO {
 	String comCode;
 	String companyType;
 	String comType;
-	
-	
 	public String getRecruitmentCode() {
 		return recruitmentCode;
 	}
@@ -149,10 +147,10 @@ public class ComRecruitVO {
 	public void setAge(String age) {
 		this.age = age;
 	}
-	public String getEducationLv() {
+	public int getEducationLv() {
 		return educationLv;
 	}
-	public void setEducationLv(String educationLv) {
+	public void setEducationLv(int educationLv) {
 		this.educationLv = educationLv;
 	}
 	public String getCareer() {
@@ -271,6 +269,7 @@ public class ComRecruitVO {
 				+ ", resumeType=" + resumeType + ", comCode=" + comCode + ", companyType=" + companyType + ", comType="
 				+ comType + "]";
 	}
+	
 	
 	
 	

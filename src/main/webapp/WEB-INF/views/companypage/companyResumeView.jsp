@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../inc/top.jsp" %>
 
 <style>
@@ -22,7 +23,16 @@
 	$(function(){
 		
 		$("#okBtn").click(function(){
-			alert("더 이상 수정 불가능합니다");
+			
+			if(confirm("입력확인을 완료하시겠습니까? 확인 시 내용을 수정할 수 없습니다")){
+				alert('입력확인완료');
+				location.href="<c:url value='/index.do'/>";
+			}else{
+				alert('취소되었습니다');
+				event.preventDefault();
+			
+			}
+						
 		});
 		
 		var eduView = $("#edu").val();
@@ -124,8 +134,8 @@
 
 <main>
 	<%@ include file="../inc/sidebar.jsp" %>
-	채용공고코드<input type="text" name="recruitmentCode" id="recruitmentCode" value="${vo.recruitmentCode}"><br>
-	유저아이디<input type="text" name="userid" id="userid" value="${vo.userId}"><br>
+	<!-- 채용공고코드 --><input type="hidden" name="recruitmentCode" id="recruitmentCode" value="${vo.recruitmentCode}"><br>
+	<!-- 유저아이디 --><input type="hidden" name="userid" id="userid" value="${vo.userId}"><br>
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<span style="font-size: 25px; font-weight: bold;">자사 이력서 양식 작성</span>
@@ -246,7 +256,7 @@
 		</div>
 		<div style="text-align: center;">
 			<input type="button" name="modifyBtn" id="modifyBtn" value="수정하기" onclick="history.back();"/>
-			<input type="button" name="okBtn" id="okBtn" value="확인완료" onclick="location.href='<c:url value='/index.do'/>'"><br><br>
+			<input type="button" name="okBtn" id="okBtn" value="확인완료"><br><br>
 			<br>
 		</div>
 	</div>
