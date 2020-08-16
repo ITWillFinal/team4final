@@ -150,6 +150,7 @@ function makeListJson(res){
 		clear: both;
     	padding-top: 25px;
     	margin-bottom: 50px;
+    	padding: 0;
 	}
 	#hireTabs{
 		float: left;
