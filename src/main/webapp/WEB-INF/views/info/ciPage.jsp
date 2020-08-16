@@ -42,6 +42,7 @@
 	}
 	
 </style>
+<main>
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<div style="margin:5px;">
 			<span style="font-size: 25px; font-weight: bold;">CI소개</span>
@@ -72,6 +73,6 @@
 			<br><br><br>
 		</div>
 		
-		
 	</div>
+</main>
 <%@ include file="../inc/bottom.jsp" %>
