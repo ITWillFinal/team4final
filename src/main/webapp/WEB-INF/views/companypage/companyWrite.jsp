@@ -760,14 +760,14 @@
 					<td>학력</td>
 					<td> 
 						<select id="eduSelect" name="eduSelect" class="form-control sel">
-							<option value="무관">무관</option>
-							<option value="초등학교">초등학교</option>
-							<option value="중학교">중학교</option>
-							<option value="고등학교">고등학교</option>
-							<option value="대학(2~3년) 졸업">대학(2~3년) 졸업</option>
-							<option value="대학(4년) 졸업">대학(4년) 졸업</option>
-							<option value="대학원(석사) 졸업">대학원(석사) 졸업</option>
-							<option value="대학원(박사) 졸업">대학원(박사) 졸업</option>
+							<option value="0">무관</option>
+							<option value="1">초등학교</option>
+							<option value="2">중학교</option>
+							<option value="3">고등학교</option>
+							<option value="4">대학(2~3년)</option>
+							<option value="5">대학(4년)</option>
+							<option value="6">대학원(석사)</option>
+							<option value="7">대학원(박사)</option>
 						</select> 
 						<input type="hidden" id="educationLv" name="educationLv" value="무관">
 					</td>
