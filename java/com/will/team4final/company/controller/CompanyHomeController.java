@@ -241,7 +241,7 @@ public class CompanyHomeController {
 			model.addAttribute("url", url);
 			return "common/message";
 		}
-
+		
 		// 회사정보 불러와서 출력할 값 받아오기
 		String comCode = comInfoVo.getComCode();
 		String comName = comInfoVo.getComName();

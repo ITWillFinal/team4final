@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/about")
+@RequestMapping("/aboutThejob")
 public class AboutController {
 	private static final Logger logger = LoggerFactory.getLogger(AboutController.class);
 	

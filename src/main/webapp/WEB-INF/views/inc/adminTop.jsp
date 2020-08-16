@@ -71,10 +71,6 @@
 									class="menu-icon icon-user"></i>관리자 관리 </a></li>
 							<li><a href="<c:url value = '/chart/AllChart.do'/>"><i
 									class="menu-icon icon-bar-chart"></i>THE JOB+ 사용현황</a></li>
-							<li><a href="table.html"><i class="menu-icon icon-table"></i>Tables
-							</a></li>
-							<li><a href="charts.html"><i 
-									class="menu-icon icon-paste"></i>Charts </a></li>
 						</ul>
 						<!--/.widget-nav-->
 						<ul class="widget widget-menu unstyled">
@@ -90,7 +86,7 @@
 									<li><a href="other-user-listing.html"><i
 											class="icon-inbox"></i>All Users </a></li>
 								</ul></li>
-							<li><a href="#"><i class="menu-icon icon-signout"></i>Logout
+							<li><a href="<c:url value='/login/logout.do'/>"><i class="menu-icon icon-signout"></i>Logout
 							</a></li>
 						</ul>
 					</div>

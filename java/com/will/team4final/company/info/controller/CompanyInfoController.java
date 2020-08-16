@@ -103,7 +103,7 @@ public class CompanyInfoController {
 	
 	//기업정보 수정하기 - GET
 	@RequestMapping(value = "/MyCompanyEdit.do", method = RequestMethod.GET)
-	public void EditMyComInfo(@RequestParam (defaultValue = "0") String comCode,
+	public String EditMyComInfo(@RequestParam (defaultValue = "0") String comCode,
 			HttpSession session, Model model) {
 		logger.info("수정(GET)할 기업 정보 comCode = {}", comCode);
 		
@@ -114,10 +114,18 @@ public class CompanyInfoController {
 		
 		CompanyInfoVO vo = companyInfoService.selectComInfoBycMemberCode(cnt);
 		logger.info("수정(GET)할 기업 정보 조회 vo={}", vo);
-		
+		String msg="", url="";
+		if(vo ==null) {
+			msg="회사 정보를 먼저 입력해주세요";
+			url="/companypage/companyInfoWrite.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "common/message";
+		}
 		model.addAttribute("comCode", comCode);
 		model.addAttribute("vo", vo);
 		
+		return "companypage/MyCompanyEdit";
 	}
 	
 	//기업정보 수정하기 - POST

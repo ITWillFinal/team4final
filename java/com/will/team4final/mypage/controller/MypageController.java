@@ -46,8 +46,6 @@ public class MypageController {
 	
 	@RequestMapping("/mypageHome.do")
 	public String mypage(@RequestParam String status, HttpSession session, Model model) {
-		logger.info("어느 마이페이지를 가야할까!?");
-		
 		if(status.equals("U")) {
 			logger.info("일반회원 마이페이지로 가자!");
 			String userNo = (String)session.getAttribute("userNo");
