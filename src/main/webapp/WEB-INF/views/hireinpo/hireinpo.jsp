@@ -116,7 +116,11 @@ function hireInfo(){
 			$('#tdComType').val().length < 1 && $('#tdHireType').val().length < 1 && $('#tdEdu').val().length < 1 && $('#tdRecDetail').val().length < 1){
 		alert('최소 1개 이상의 조건을 등록해주세요.');
 		return
+	}else if($('#tdEdu').val() == ''){
+		$('#tdEdu').val(0);
 	}
+	
+	
 	$.ajax({
 		 url :"<c:url value='/hireinpo/searchHireInfo.do'/>"
 		,type:"post"
@@ -131,7 +135,7 @@ function hireInfo(){
 			}
 		}
 	    ,error: function(xhr,status, error){
-	    	alert("에러발생");
+	    	alert(status+"에러발생"+error);
 	    }
 	});
 }
@@ -171,6 +175,7 @@ function makeListJson(res){
 		width: 47%;
 		border: 1px solid #c5c5c5;
 		border-radius: 3px;
+		height: 377px;
 	}
 	
 	select option{
@@ -202,11 +207,11 @@ function makeListJson(res){
 	}
 	
 	#searchTable th{
-		padding-top: 20px;
+		padding-top: 18px;
 	    font-size: 1.1em;
 	}
 	#searchTable td{
-		padding-top: 20px;
+		padding-top: 18px;
 		padding-left: 20px;
 	}
 	#searchTable input{
@@ -374,8 +379,8 @@ function makeListJson(res){
 			</tr>
 			<tr>
 				<th>학력</th>
-				<td><input type="text" id="tdEdu1" name="educationLv" readonly="readonly"></td>
-				<td><input type="hidden" id="tdEdu" name="education" readonly="readonly"></td>
+				<td><input type="text" id="tdEdu1" readonly="readonly"></td>
+				<td><input type="hidden" id="tdEdu" name="educationLv" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th>키워드</th>
