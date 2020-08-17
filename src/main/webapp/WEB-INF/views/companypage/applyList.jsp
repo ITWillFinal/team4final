@@ -25,6 +25,26 @@ $(function(){
 			}
 		});
 	});
+	
+	$('.choiceStatus').change(function(){
+		if(confirm($(this).parent().next().text()+" 지원자를 "+$(this).prop("selected").val()+" 처리 하시겠습니까?\n처리 결과는 지원자에게 통보됩니다.")){
+			$.ajax({
+				url:"<c:url value='/companypage/updateStatus.do'/>",
+				type:"get",
+				data: "applyStatue="+$(this).prop("selected").val()+"&applyCode="+$(this).parent().next().next().next().find('input[type=hidden]').val(),
+				success:function(res){
+					if(res>0){
+						alert("처리 완료 되었습니다.");						
+					}else{
+						alert("처리에 실패하였습니다. 관리자에게 문의해주세요.");												
+					}
+				},
+				error:function(xhr, status, error){
+					alert(status+","+error );
+				}
+			});
+		}
+	});
 })
 
 function open_resume(resumeNo){
@@ -55,14 +75,16 @@ td{
 				<div style="height:290px; overflow-y: auto;">
 					<table>
 						<caption style="display: none;">지원자 현황 테이블</caption>
-							<col width=25%>
-							<col width=25%>
-							<col width=25%>
-							<col width=25%>							
+							<col width=8%>
+							<col width=23%>
+							<col width=23%>
+							<col width=23%>
+							<col width=23%>							
 						<colgroup>
 						<thead>
 							<tr>
 								<th scope="col">순번</th>
+								<th scope="col">상태</th>
 								<th scope="col">이름</th>
 								<th scope="col">지원일</th>
 								<th scope="col"><a>이력서 보기</a></th>
@@ -83,6 +105,18 @@ td{
 								</c:if>
 								>
 									<td>${no }</td>
+									<td>
+										<c:if test="${map['APPLY_STATUS']=='지원중' }">
+										<select class="choiceStatus">
+											<option disabled>지원중</option>
+											<option value="합격">합격</option>
+											<option value="불합격">불합격</option>										
+										</select>
+										</c:if>
+									<c:if test="${map['APPLY_STATUS']!='지원중' }">
+										${map['APPLY_STATUS'] }																				
+									</c:if>									
+									</td>
 									<td>${map['USER_NAME'] }</td>
 									<td>${map['REGDATE'] }</td>
 									<c:if test="${map['RESUME_TYPE'] =='0' }">

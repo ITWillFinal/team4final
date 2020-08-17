@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.will.team4final.apply.model.ApplyService;
+import com.will.team4final.apply.model.ApplyVO;
 import com.will.team4final.common.Utility;
 import com.will.team4final.company.info.model.CompanyInfoService;
 import com.will.team4final.company.info.model.CompanyInfoVO;
@@ -757,6 +758,20 @@ public class CompanyHomeController {
 		logger.info("readcheck 결과 result={}",result);
 
 
+		return result;
+	}
+
+	@ResponseBody
+	@RequestMapping("/updateStatus.do")
+	public int updateStatus(@RequestParam String applyCode, @RequestParam String applyStatus) {
+		ApplyVO applyVo = new ApplyVO();
+		applyVo.setApplyCode(applyCode);
+		applyVo.setApplyStatus(applyStatus);
+		logger.info("updateStatus 파라미터 applyVo={}",applyVo);
+
+		int result = applyService.updateApplyStatus(applyVo);
+		logger.info("updateStatus 결과 result={}",result);
+		
 		return result;
 	}
 }

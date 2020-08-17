@@ -41,6 +41,12 @@
 		set read_check = 'Y'
 		where apply_code = #{applyCode}
 	</update>
+	
+	<update id="updateApplyStatus" parameterType="applyVo">
+		update apply
+		set apply_status = #{applyStatus}
+		where apply_code = #{applyCode}
+	</update>
 </mapper>
 
 
