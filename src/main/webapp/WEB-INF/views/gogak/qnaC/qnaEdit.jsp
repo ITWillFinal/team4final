@@ -97,10 +97,10 @@ div#idx {
 	
 	<!-- main -->
 	<div style=" width:850px;  float: left;">
-		<div style="margin:5px;">
+		<div style="">
 			<div id="outDiv">
 				<form name = "frmWrite" method="post"  action="<c:url value = '/gogak/qnaC/qnaEdit.do'/>">
-					<div id = "idx" style="border: 1px solid lightgray">
+					<div id = "idx" style="border: 1px solid lightgray;margin-left: 0.2%; margin-top: 4.2%;">
 						<h4 style="text-align:center; font-size: 24px; margin-top: 10%; margin-bottom: 10%;">― 1:1 문의 글 수정 ―</h4>
 						<div class = "notice" >
 							<p style="text-align:center;" >1:1 문의 게시판 운영 원칙</p>

@@ -155,8 +155,9 @@ input[type=submit] {
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	
 	<!-- main -->
-	<div style="text-align: center; width:850px; margin-top: 1.3%;">
-		<div id = "o" style="margin-top: -11.5px;margin-left: 0.5%;">
+	<h2 style="margin-left: 20px">고객센터</h2>
+	<div style="text-align: center; width:850px;">
+		<div id = "o">
 			<ul class = "tabList" style="width: 857px; margin-left: 0px;">
 				<li class = "select" style="width: 33%;" id = "fst">
 					<a href = <c:url value='/gogak/admin/company/faqList.do'/> style="color: black;">FaQ - 기업</a>
@@ -318,7 +319,7 @@ input[type=submit] {
 						        <input type="text" name="searchKeyword" title="검색어 입력"
 						        	value="${param.searchKeyword}"style="height: 27px;">   
 								<input type="submit" value="검색"><br>
-								<input type="button" id = "qnaWrite" value = "게시글 등록">
+								<!-- <input type="button" id = "qnaWrite" value = "게시글 등록"> -->
 								<input type="button" id = "btMultiDel" value="선택한 게시글 삭제"><br><br>
 					    </form>
 					</div>

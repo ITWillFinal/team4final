@@ -194,8 +194,7 @@ input[type=submit] {
 	<%@ include file="../../inc/companySidebar.jsp"%>
 
 	<!-- main -->
-	<!-- main -->
-	<div id = "mainDiv" style="text-align: center; margin:5px; width:850px; margin-top: 2.5%; margin-left: 2.5%; border:1px solid lightgray; float: left;">
+	<div id = "mainDiv" style="margin-left: 1.6%; margin-top: 1.8%;text-align: center; width:850px; border:1px solid lightgray; float: left;">
 		<!-- 본문 -->
 		<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */">
 			<div id="outDiv">

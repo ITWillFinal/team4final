@@ -198,8 +198,7 @@ div#mainDiv {
 <main>
 	<%@ include file="../../inc/sidebar.jsp"%>
 	<!-- main -->
-	<!-- main -->
-	<div id = "mainDiv" style="text-align: center; border:1px solid lightgray; float: left;">
+	<div id = "mainDiv" style="text-align: center; border:1px solid lightgray; float: left; margin-left: 1.7%; margin-top: 1.9%;">
 		<!-- 본문 -->
 		<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */">
 			<div id="outDiv">

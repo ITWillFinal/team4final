@@ -99,7 +99,7 @@ span#totalPrice {
     color: #FB246A;
 }
 div#o {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+    border: 1px solid lightgray;
 }
 </style>	
 <script type="text/javascript">
@@ -166,7 +166,7 @@ div#o {
 
 <!-- 본문 시작 -->
 <main>
-	<h2 style="margin-left: 20px">기업회원 결제 내역</h2>
+	<h2 style="margin-left: 20px">매출현황</h2>
 	<!-- main -->
 	<div id = "o">
 		<div style="text-align: center; margin:5px; width:100%;">

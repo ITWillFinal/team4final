@@ -121,6 +121,7 @@ input[type=submit] {
 <main>
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	<!-- main -->
+	<h2 style="margin-left: 20px">고객센터</h2>
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
 		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
 		<h2 style = "padding-left: 50px; padding-top: 30px; ">1:1 문의 수정하기</h2>

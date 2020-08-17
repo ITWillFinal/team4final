@@ -121,7 +121,7 @@ input[type=submit] {
 	
 	<!-- main -->
 	<div style=" margin:5px; width:850px;  float: left;">
-		<div style="margin:5px;">
+		<div style="margin-left: 0.5%;">
 			<div id="outDiv">
 				<form name = "frmWrite" method="post" 
 					action="<c:url value = '/gogak/qnaC/qnaWrite.do'/>">

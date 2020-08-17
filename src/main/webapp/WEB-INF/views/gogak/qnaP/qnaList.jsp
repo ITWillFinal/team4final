@@ -118,7 +118,7 @@ input[type=submit] {
 	<%@ include file="../../inc/sidebar.jsp"%>
 	
 	<!-- main -->
-	<div id = "mainDiv" style="text-align: center;width:871px; margin-left: 2%; margin-top: 2.3%; border:1px solid lightgray; float: left;">
+	<div id = "mainDiv" style="text-align: center;width:871px;border:1px solid lightgray; float: left; margin-left: 1.7%; margin-top: 1.9%;">
 		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
 			<li class = "select" style="width: 33%;" id = "fst">
 				<a href = <c:url value='/gogak/qnaP/qnaList.do'/> style="color: black;">1:1 문의</a>

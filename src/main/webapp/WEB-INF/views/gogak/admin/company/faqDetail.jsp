@@ -133,8 +133,9 @@ body > div.wrapper > div > div > div.span9 > div > main > div {
 <main>
 
 	<!-- main -->
-	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
-		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
+	<h2 style="margin-left: 20px">고객센터</h2>
+	<div style="text-align: center; width:850px;margin-left: 1%; border:1px solid lightgray;">
+		<ul class = "tabList" style="width: 857px; margin-left: 0px; ">
 			<li class = "select" style="width: 33%;" id = "fst">
 				<a href = <c:url value='/gogak/admin/company/faqList.do'/> style="color: black;">FaQ - 기업</a>
 			</li>

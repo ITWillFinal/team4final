@@ -83,8 +83,9 @@ select#category {
 </style>
 
 <main>
+	<h2 style="margin-left: 20px">고객센터</h2>
 	<!-- main -->
-	<div style="float: left;margin-left:30px; width: 100%; font-size: 14px; /* border:1px solid lightgray; */">
+	<div style="float: left;width: 100%; font-size: 14px; /* border:1px solid lightgray; */">
 		<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
 		<h2 style = "padding-left: 50px; padding-top: 30px; ">자주찾는 질문 수정하기(일반)</h2>
 		</div>
