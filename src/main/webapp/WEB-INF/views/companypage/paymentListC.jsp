@@ -219,31 +219,7 @@ div#o {
 					</c:if>
 			</tbody>
 			</table>
-			<div>
-					<c:if test="${pagingInfo.totalRecord > 0 }">
-						<p class = "rst" style="font-size: 1.0em">
-							${param.startDay } ~ ${dateSearchVO.endDay } 까지의 결제내역은
-							${pagingInfo.totalRecord } 건입니다.<br>
-							기간 내 총 판매금액은 
-							<span id = "totalPrice">
-								<fmt:formatNumber type="number" maxFractionDigits="3"
-									value="${totalPrice}"/>
-							</span>원 입니다.
-						</p>
-					</c:if>
-					<c:if test="${pagingInfo.totalRecord == 0 }">
-						<p class = "rst"  style="font-size: 1.0em">
-							${param.startDay } ~ ${dateSearchVO.endDay } 까지의 결제내역이 없습니다.
-						</p>
-					</c:if>
-					<%@include file = "../inc/dateTerm.jsp" %>
-					<input type="submit" class = "bts" value="조회" >
-					<br>
-					
-				</div>
-			</div>
-		
-				<div class="divPage">		
+			<div class="divPage">		
 					<!-- 페이지 번호 추가 -->		
 					<c:if test="${pagingInfo.firstPage>1 }">
 						<a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">			
@@ -270,6 +246,31 @@ div#o {
 					</c:if>
 					<!--  페이지 번호 끝 -->
 				</div>
+			<div>
+					<c:if test="${pagingInfo.totalRecord > 0 }">
+						<p class = "rst" style="font-size: 1.0em">
+							${param.startDay } ~ ${dateSearchVO.endDay } 까지의 결제내역은
+							${pagingInfo.totalRecord } 건입니다.<br>
+							기간 내 총 판매금액은 
+							<span id = "totalPrice">
+								<fmt:formatNumber type="number" maxFractionDigits="3"
+									value="${totalPrice}"/>
+							</span>원 입니다.
+						</p>
+					</c:if>
+					<c:if test="${pagingInfo.totalRecord == 0 }">
+						<p class = "rst"  style="font-size: 1.0em">
+							${param.startDay } ~ ${dateSearchVO.endDay } 까지의 결제내역이 없습니다.
+						</p>
+					</c:if>
+					<%@include file = "../inc/dateTerm.jsp" %>
+					<input type="submit" class = "bts" value="조회" >
+					<br>
+					
+				</div>
+			</div>
+		
+				
 			</form>
 		</div>
 	</div>

@@ -82,13 +82,6 @@ div#outer {
     margin-top: 4.5%;
     width: 117.5%;
 }
-h2 {
-    font-weight: bold;
-    margin-left: 0%;
-    border-bottom: 3px solid #FB246A;
-    width: 98%;
-    padding-bottom: 2%;
-}
 input[type=button] {
     width: 60px;
     height: 30px;
@@ -115,17 +108,13 @@ input[type=submit] {
 </style>
 <main>
 	<%@ include file="../../inc/sidebar.jsp"%>
-	<h2 style="margin-left: 20px">고객센터</h2>
-
 	<!-- main -->
-	<div
-		style="float: left; width: 49%; margin-left: 30px; font-size: 14px; /* border: 1px solid lightgray; */">
-		<div id = "outer">
-			<div style="margin: 5px; height: 95px; /* border: 1px solid lightgray; */">
-				<h2 style="padding-left: 7px; padding-top: 30px;">자주찾는 질문 상세보기</h2>
-			</div>
+	<div id = "o">
+	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
+		<h2 style="margin-left: 18px; font-weight: bold;  margin-bottom: 2%; padding-top: 30px;">고객센터</h2>
+		<div>
 			<!-- 본문 -->
-			<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */ ">
+			<div style="text-align: center; width: 1000px; margin: 5px; border: 1px solid lightgray;">
 				<div id="outDiv">
 					<input type="hidden" value="${vo.faqNo }" name="no">
 					
@@ -183,6 +172,7 @@ input[type=submit] {
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </main>
 

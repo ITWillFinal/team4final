@@ -28,6 +28,8 @@ a{
 }
 #o > div > div {
     border: 1px solid lightgray;
+    
+    width: 1000px;
 }
 /* 페이징 */
 .divPage {
@@ -97,11 +99,6 @@ p.rst {
 .divList {
     padding-left: 2%;
     padding-right: 2%;
-}
-h2#h2Title {
-    margin-left: 31%;
-    margin-bottom: 1%;
-    font-weight: bold;
 }
 span#totalPrice {
     color: #FB246A;

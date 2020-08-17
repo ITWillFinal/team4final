@@ -38,8 +38,8 @@ div#bts {
     font-weight: bold;
 }
 table {
-    margin-left: 7%;
-    width: 687px;
+    margin: 0 auto;
+    width: 800px;
     margin-top: 6%;
     margin-bottom: 6%;
 }
@@ -74,9 +74,9 @@ input[type=submit] {
 }
 div#idx {
     border: 1px solid lightgray;
-    margin-top: 3.5%;
+	margin-top: 2%;
     margin-left: -1%;
-    width: 107%;
+    width: 1000px;
 }
 input[type=button] {
     width: 60px;
@@ -123,6 +123,7 @@ input[type=submit] {
 	<div style=" margin:5px; width:850px;  float: left;">
 		<div style="margin-left: 0.5%;">
 			<div id="outDiv">
+				<h2 style="font-weight: bold; padding-top: 33px; padding-left: 10px;">고객센터</h2>
 				<form name = "frmWrite" method="post" 
 					action="<c:url value = '/gogak/qnaC/qnaWrite.do'/>">
 					<div id = "idx">

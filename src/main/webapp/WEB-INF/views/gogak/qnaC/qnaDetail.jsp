@@ -58,11 +58,6 @@ h3{
 	padding-bottom: 60px;
 }
 
-#outDiv{
-    padding: 75px 35px 90px 35px;
-	width: 100%;
-}
-
 /* 글내용 */
 #divAnswer{
     word-break: break-all;
@@ -194,9 +189,11 @@ input[type=submit] {
 	<%@ include file="../../inc/companySidebar.jsp"%>
 
 	<!-- main -->
-	<div id = "mainDiv" style="margin-left: 1.6%; margin-top: 1.8%;text-align: center; width:850px; border:1px solid lightgray; float: left;">
-		<!-- 본문 -->
-		<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */">
+		<div style=" margin:5px; width:850px;  float: left;">
+		<div style="margin-left: 0.5%;">
+			<div id="outDiv">
+				<h2 style="font-weight: bold;padding-left: 40px; padding-top: 33px;">고객센터</h2>
+		<div style="text-align: center; margin: 5px; border: 1px solid lightgray;margin-left: 22px;margin-top: 1.9%;width: 1000px;padding-top: 8%;padding-left: 8%; padding-right: 8%; padding-bottom: 10%;">
 			<div id="outDiv">
 				<input type="hidden" value="${vo.qnaNo }" name="no">
 				
@@ -282,6 +279,7 @@ input[type=submit] {
 						</c:if>
 					</div>	
 				</div>
+			</div>
 			</div>
 		</div>
 	</div>

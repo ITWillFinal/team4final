@@ -148,13 +148,13 @@ input[type=submit] {
     margin-bottom: 2%;
 }
 div#mainDiv {
-    margin-left: 2%;
-    margin-top: 0.4%;
+    margin-left: 1.8%;
+    margin-top: 0.35%;
     width: 871px;
 }
 body > h2 {
-    margin-left: 31%;
-    margin-top: 1.5%;
+    margin-left: 31.7%;
+    margin-top: 1.7%;
     font-weight: bold;
 }
 #outDiv > div:nth-child(3) > div:nth-child(3) {
