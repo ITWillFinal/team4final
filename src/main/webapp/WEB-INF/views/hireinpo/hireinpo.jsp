@@ -277,7 +277,8 @@ function makeListJson(res){
 <%@ include file="../inc/sidebar.jsp"%>
 <div style="overflow: hidden; width: 1055px; padding-left: 25px; font-size: 14px; margin-top: 10px;">
 <!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
-<h2 style="margin-bottom: 22px;">채용정보 상세검색</h2>
+<p style="font-weight: bold;font-size: xx-large;color: #010b1d; margin-top: 26px;">채용정보 상세검색</p>
+<hr style="border: 1px solid #fb246a;">
 <div id="hireTabs">
 	<ul style="border: 1px solid #dddddd; background: #e9e9e9; color: #333333; font-weight: bold;">
 		<li><a href="#hireTabs-1"><i class="fa fa-map-marker" aria-hidden="true"></i>　지역</a></li>

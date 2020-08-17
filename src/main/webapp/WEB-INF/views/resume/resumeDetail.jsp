@@ -28,6 +28,7 @@
 		border-bottom: 2px solid #9E9E9E;
 		margin-bottom: 25px;
     	font-weight: bold;
+    	padding-bottom: 15px;
 	}
 	
 	.member-info{

@@ -4,8 +4,8 @@
 <jsp:useBean id="today" class="java.util.Date"/>
 <style>
 	#hot100Div{
-		width: 90%;
-	    margin: 0 auto;
+		width: 1055px;
+	    /* margin: 0 auto; */
 	}
 	#totalDiv{
 		margin-bottom: 60px;
@@ -16,7 +16,9 @@
 <!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
 	<div id="totalDiv">
 		<div id="hot100Div">
-			<h2 style="margin-bottom: 50px; padding: 20px; display: inline-block; color: #fb246a; font-weight: bold; margin-left: 49px;">현재 이 시간 HOT100</h2><span style="color: #939596; font-size: 0.8em;">조회수 기준으로 직무와 관계없이 조회됩니다.</span>
+			<p style="font-weight: bold;font-size: xx-large;color: #010b1d; margin-top: 26px;display: inline-block;">실시간 HOT100&nbsp;</p>
+			<span style="color: #939596; font-size: 0.8em;">&nbsp;&nbsp;&nbsp; *조회수 기준으로 직무와 관계없이 조회됩니다.</span>
+			<hr style="border: 1px solid #fb246a;margin: 15px 0 30px 0;">
 			<c:if test="${!empty list }">
 				<c:set var="num" value="1" property="int"/>
 				<c:forEach var="vo" items="${list }">

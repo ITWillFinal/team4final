@@ -386,6 +386,14 @@
 			
 		});
 		
+		$('#sigugun').hide();
+		$('#sido').change(function(){
+			if($(this).val()==""){
+				$('#sigugun').hide();
+			}else{
+				$('#sigugun').show();				
+			}
+		});
 	});
 	
 	
@@ -465,6 +473,12 @@ input[type=text] {
 		margin-top: -3.5px;
 	}
 
+	.bttn1:hover{
+		background: #ced4da;
+		border:	1px solid #ced4da;
+		color: white;
+		cursor: pointer;
+	}
 
 </style>
 
@@ -474,8 +488,8 @@ input[type=text] {
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frmWrite" method="post" action="<c:url value='/companypage/companyWrite.do'/>">
-			<span style="font-size: 25px; font-weight: bold;">채용공고등록</span>
-			<hr>
+		<p style="font-weight: bold;font-size: xx-large;color: #010b1d; margin-top: 35px;">채용공고등록</p>
+			<hr style="border: 1px solid #fb246a;">
 			<div style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">모집내용</span><br><br>
 
@@ -548,6 +562,7 @@ input[type=text] {
 
 						<select id="sido" class="form-control sel">
 							<c:if test="${!empty list}">
+								<option value="">지역선택</option>
 								<c:forEach var="location" items="${list}">
 									<option value="${location}">${location}</option>
 								</c:forEach>
@@ -565,7 +580,7 @@ input[type=text] {
 					<td>우편번호</td>
 					<td>
 						<input type="text" id="zipcode" name="zipcode" readonly value="${zipcode}">
-					 	<input type="button" onclick="sample4_execDaumPostcode()" value="찾기" class="form-control bttn"> 
+					 	<input type="button" onclick="sample4_execDaumPostcode()" value="찾기" class="form-control bttn bttn1"> 
 					</td>
 				</tr>
 
@@ -871,7 +886,7 @@ input[type=text] {
 			</div>
 			<br>
 			<div style="width: 900px; text-align: center;">
-				<input type="submit" value="채용공고 등록하기" class="form-control btn3"/>
+				<input type="submit" value="채용공고 등록하기" class="form-control btn3 bttn1"/>
 			</div><br>
 			
 			<input type="hidden" id="jobType1" name="jobType1">
