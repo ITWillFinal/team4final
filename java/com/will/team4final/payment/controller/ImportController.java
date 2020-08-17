@@ -59,8 +59,8 @@ public class ImportController {
 		logger.info("기업회원 채용공고 기간 저장 이력서 입력 성공");
 		
 		//이력서 종류 값 구하기
-		String recType = comRecruitVo.getRecType();
-		
+		int resumeType = comRecruitVo.getResumeType();
+		logger.info("resumeType={}",resumeType);
 		
 		String cUserid = (String)session.getAttribute("userid");
 		CompanyMemberVO comMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
@@ -75,7 +75,7 @@ public class ImportController {
 		model.addAttribute("cMemberCode", cMemberCode);
 		model.addAttribute("paymentVo", paymentVo);
 		model.addAttribute("recruitmentCode", recruitmentCode);
-		model.addAttribute("recType", recType);
+		model.addAttribute("resumeType", resumeType);
 		return "import/import";
 	}
 	

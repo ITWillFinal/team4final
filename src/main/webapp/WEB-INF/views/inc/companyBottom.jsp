@@ -6,7 +6,7 @@
 	}
 </style>
 <%@ include file="chatbot.jsp" %>
-<footer>
+<footer class="foot">
     <!-- Footer Start-->
     <div class="footer-area footer-bg footer-padding" style="clear:both;">
         <div class="container">

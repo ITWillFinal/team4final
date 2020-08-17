@@ -19,7 +19,8 @@
         IMP.init('imp31064420'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
         var msg;
         var price = $('#price').val();
-        var recType = $('#recType').val();
+        var resumeType = $('#resumeType').val();
+        var recruitmentCode = $('#recruitmentCode').val();
         IMP.request_pay({
             pg : 'kakaopay',
             pay_method : 'card',
@@ -33,13 +34,12 @@
 				type: "post",
 				data: $('#frmPayment').serialize(),
 				success: function(result){
-					
-					if(result >0){
+					if(result >0){	
 						alert("결제 성공했습니다");
-						if(recType > 0){
+						if(resumeType == 0){
 							location.href = "<c:url value='/resume/resumeMain.do' />";
 						}else{
-							location.href = "<c:url value='/companypage/companyResumeView.do' />";
+							location.href = "<c:url value='/companypage/companyResumeView.do?recruitmentCode="+recruitmentCode+"' />";
 						}
 						
 					}else{
@@ -64,7 +64,7 @@
 	 	<input type="hidden" id="price" name="price" value="${paymentVo.price }">
 	 	<input type="hidden" id="recruitmentCode" name="recruitmentCode" value="${recruitmentCode }"><br><br>
 	 	<input type="hidden" id="endDay" name="endDay" value="${endDay }">
-	 	<input type="hidden" id="recType" name="recType" value="${recType }">
+	 	<input type="hidden" id="resumeType" name="resumeType" value="${resumeType }">
     </form>
 </body>
 </html>
