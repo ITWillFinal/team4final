@@ -76,7 +76,7 @@ input#edit {
     margin-left: 22px;
 }
 div#divH2 {
-    border-bottom: 4px solid gray;
+    border-bottom: 4px solid #FB246A;
     margin: 0 auto;
     width: 73%;
 }
@@ -103,7 +103,6 @@ input[type=submit] {
     margin-bottom: 2%;
 }
 body > div.wrapper > div > div > div.span9 > div > main > div {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
     padding-bottom: 2%;
 }
 </style>

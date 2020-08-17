@@ -215,7 +215,7 @@
 	<div class="chatbot-screen">
 		<div class='balloon1'>
 		안녕하세요!<br>
-		THE JOB 챗봇 잡잡이 입니다!<br>
+		THE JOB 길라잡이 잡잡이 입니다!<br>
 		무엇을 도와드릴까요?
 		<span class='autoBr'></span></div>
 	</div>

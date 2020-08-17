@@ -30,6 +30,10 @@
 		.MenuHoverDiv a {
 			color: black;
 		}
+		
+		#aTag{
+			
+		}
 				
 		.MenuHoverDiv:hover{
 			background: lightgray;
@@ -39,24 +43,23 @@
 	<div style="float: left; min-height:900px; width:250px; margin-left:16%; word-break:break-all; font-size: 14px; margin-top: 35px;">
 		<div id="sideMenuDiv">
 			<div class="MenuHeadDiv">기업정보관리</div>
-			<div class="MenuHoverDiv">기업정보수정</div>
+			<div class="MenuHoverDiv"><a href = "<c:url value ='/companypage/cMemberEdit.do'/>">회원정보수정</a></div>
+			<div class="MenuHoverDiv"><a href = "<c:url value ='/companypage/MyCompanyEdit.do'/>">회사정보수정</a></div>
 			<div class="MenuHoverDiv">기업로고 / 사진관리</div>
 	
 			<div class="MenuHeadDiv">채용관리</div>
-			<div class="MenuHoverDiv">채용정보등록</div>
-			<div class="MenuHoverDiv">진행중인채용정보</div>
-			<div class="MenuHoverDiv">마감된채용정보</div>
-			<div class="MenuHoverDiv"><a href="<c:url value='/companypage/companyResumeUse.do'/>">임시)자사이력서양식사용</a></div>
-			<div class="MenuHoverDiv"><a href="<c:url value='/companypage/companyResumeSet.do'/>">임시)자사이력서양식설정</a></div>
+			<div class="MenuHoverDiv"><a href = "<c:url value ='/companypage/companyWrite.do'/>">채용정보등록</a></div>
+			<div class="MenuHoverDiv"><a href = "<c:url value ='/companypage/employmentNotice/employmentNoticeList.do'/>">진행/마감인채용정보</a></div>
+			
+			<!-- <div class="MenuHoverDiv"><a href="<c:url value='/companypage/companyResumeUse.do'/>">임시)자사이력서양식사용</a></div> -->
+			<!-- <div class="MenuHoverDiv"><a href="<c:url value='/companypage/companyResumeSet.do'/>">임시)자사이력서양식설정</a></div> -->
 			
 			<div class="MenuHeadDiv">인재정보</div>
-			<div class="MenuHoverDiv">입사지원요청관리</div>
-			<div class="MenuHoverDiv">면접제의요청관리</div>
-			<div class="MenuHoverDiv">맞춤인재정보</div>
+			<div class="MenuHoverDiv"><a href = "<c:url value ='/companypage/applyManagement.do'/>">면접제의요청관리</a></div>
+			<div class="MenuHoverDiv"><a href = "<c:url value ='/companypage/searchTalent.do'/>">맞춤인재정보</a></div>
 			
 			<div class="MenuHeadDiv">결제관리</div>
-			<div class="MenuHoverDiv">결제내역조회</div>
-			<div class="MenuHoverDiv">세금계산서발행</div>
+			<div class="MenuHoverDiv"><a href = "<c:url value ='/companypage/paymentListC.do'/>">결제내역조회</a></div>
 			
 			<div class="MenuHeadDiv">고객센터</div>
 			<div class="MenuHoverDiv"><a href = "<c:url value = '/notice/comNotice.do'/>">공지사항</a></div>

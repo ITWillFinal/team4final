@@ -10,8 +10,6 @@
 			location.href 
 				= "<c:url value='/gogak/qna/qnaList.do'/>";	
 		});
-		
-		
 	})
 	
 </script>
@@ -39,6 +37,29 @@ input#rrr {
 a{
 	color: black;
 }
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+
 </style>
 
 
@@ -46,6 +67,7 @@ a{
 	<%@ include file="../../inc/adminTop.jsp"%>
 
 <main>
+	<h2 style="margin-left: 20px">고객센터</h2>
 	<%-- <%@ include file="../side_inc/company_Sidebar.jsp"%> --%>
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">

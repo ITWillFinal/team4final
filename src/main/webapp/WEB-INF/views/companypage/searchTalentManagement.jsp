@@ -107,7 +107,8 @@
 	    padding: 0;
 	}
 	.ST-main{
-		width: 1000px;
+		margin:0 auto;
+		width: 1001px;
 		height: auto;
 		padding: 15px;
 	}
@@ -186,11 +187,7 @@
 		font-weight: bold;
 	}
 </style>
-<main>
-	<%@ include file="../inc/companySidebar.jsp"%>
-	<div
-		style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
-		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->		
+<main>	
 		<div class="ST-main">
 			<div class="ST-main-top">
 				<h1>입사지원 요청 관리</h1>
@@ -286,7 +283,5 @@
 				</div>
 				</div>
 			</div>
-		<!-- 사이드바이용에필요함 맨밑에 div -->
-		</div>
 </main>
 <%@ include file="../inc/companyBottom.jsp"%>

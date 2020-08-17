@@ -267,7 +267,7 @@
 			careerTr1Td3 = $("#careerTr1Td3").val();
 			careerTr1Td4 = $("#careerTr1Td4").val();
 			careerTr1Td5 = $("#careerTr1Td5").val();
-			
+							
 			careerTr2Td1 = $("#careerTr2Td1").val();
 			careerTr2Td2 = $("#careerTr2Td2").val();
 			careerTr2Td3 = $("#careerTr2Td3").val();
@@ -291,6 +291,12 @@
 			careerTr5Td3 = $("#careerTr5Td3").val();
 			careerTr5Td4 = $("#careerTr5Td4").val();
 			careerTr5Td5 = $("#careerTr5Td5").val();
+			
+			$("#careerTr1Td5").attr("min", careerTr1Td4);
+			$("#careerTr2Td5").attr("min", careerTr2Td4);
+			$("#careerTr3Td5").attr("min", careerTr3Td4);
+			$("#careerTr4Td5").attr("min", careerTr4Td4);
+			$("#careerTr5Td5").attr("min", careerTr5Td4);
 			
 			if(careerTr1Td1=="" || careerTr1Td2=="" || careerTr1Td3=="" || careerTr1Td4=="" || careerTr1Td5==""){
 				careerResult1 = "";				
@@ -1042,6 +1048,12 @@
 			activityTr5Td3 = $("#activityTr5Td3").val();
 			activityTr5Td4 = $("#activityTr5Td4").val();
 			
+			$("#activityTr1Td4").attr("min", activityTr1Td3);
+			$("#activityTr2Td4").attr("min", activityTr2Td3);
+			$("#activityTr3Td4").attr("min", activityTr3Td3);
+			$("#activityTr4Td4").attr("min", activityTr4Td3);
+			$("#activityTr5Td4").attr("min", activityTr5Td3);
+			
 			if(activityTr1Td1=="" || activityTr1Td2=="" || activityTr1Td3=="" || activityTr1Td4==""){
 				activityResult1 = "";				
 			}else{
@@ -1275,8 +1287,8 @@
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frm" method="post" action="<c:url value='/companypage/companyResumeUse.do'/>">
 		
-		채용공고코드 : <input type="hidden" name="recruitmentCode" id="recruitmentCode" value="${param.recruitmentCode}">
-		일반회원아이디 : <input type="hidden" name="userId" value="${userId}">
+		<!-- 채용공고코드 :  --><input type="hidden" name="recruitmentCode" id="recruitmentCode" value="${param.recruitmentCode}">
+		<!-- 일반회원아이디 :  --><input type="hidden" name="userId" value="${userId}">
 			<!-- 
 			<div style="margin:5px; height:95px; border:1px solid lightgray">
 			위쪽 가로 긴 구역
@@ -1316,7 +1328,7 @@
 					</tr>
 					<tr>
 						<td>생년월일</td>
-						<td><input type="date" name="birth" id="birth" value="${memberVo.birth}"></td>
+						<td><input type="text" name="birth" id="birth" value="${memberVo.birth}"></td>
 					</tr>
 					<tr>
 						<td>우편번호</td>

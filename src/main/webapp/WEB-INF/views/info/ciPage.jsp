@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../inc/top.jsp" %>
 <%@ include file="../inc/aboutSidebar.jsp" %>
 <style type="text/css">
@@ -7,7 +8,7 @@
 		border:1px solid #FB246A;
 		width:100%;
 	}
-	
+
 	.div1 {
 		float: left;
 		margin-left: 3%;
@@ -17,7 +18,7 @@
 		text-align: center;
 		background: whitesmoke;
 	}
-	
+
 	.div2 {
 		float: right;
 		margin-right: 3%;
@@ -32,7 +33,7 @@
 	.div3 {
 		clear: both;
 	}
-	
+
 	.img {
 	  display: block;
 	  max-width:400px;
@@ -40,38 +41,56 @@
 	  width: auto;
 	  height: auto;
 	}
-	
+
+	a {
+		color: black;
+	}
+
 </style>
+<main>
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<div style="margin:5px;">
 			<span style="font-size: 25px; font-weight: bold;">CI소개</span>
 			<hr>
-		
+
 			<div>
 				<div class="div1">
 					<div style="margin-top: 60px;">
 					<img src="<c:url value='/resources/images/ci/ci1.png'/>">
 					</div>
 					<div style="margin-top: 30px;">
-						<input type="button" id="btn1" value="다운로드 (.png)">
+						<br>
+						<a href="<c:url value='/resources/images/ci/ci1.png'/>" download>
+							<input type="button" id="btn1" value="다운로드1 (.png)">
+						</a>
+
 					</div>
-				</div>		
+				</div>
 				<div class="div2">
-					<div style="margin-top: 60px;">
-					<img class="img" src="<c:url value='/resources/images/ci/ci2.png'/>">
+					<div style="margin-top: 44px;">
+						<div>
+							<img class="img" src="<c:url value='/resources/images/ci/ci2.png'/>">
+							<br>
+							<a href="<c:url value='/resources/images/ci/ci2.png'/>" download>
+								<input type="button" id="btn2" value="다운로드2 (.png)">
+							</a>
+						</div>
 					<br>
-					<img class="img" src="<c:url value='/resources/images/ci/c4.png'/>" >
+						<div>
+							<img class="img" src="<c:url value='/resources/images/ci/ci3.png'/>" >
+							<br>
+							<a href="<c:url value='/resources/images/ci/ci3.png'/>" download>
+								<input type="button" id="btn3" value="다운로드3 (.png)">
+							</a>
+						</div>
 					</div>
-					<div style="margin-top: 29px;">
-						<input type="button" id="btn2" value="다운로드 (.png)">
-					</div>
-				</div>		
+				</div>
 			</div>
-			<div class="div3">			
+			<div class="div3">
 			</div>
-			<br><br><br>
+			<br>
 		</div>
-		
-		
+
 	</div>
+</main>
 <%@ include file="../inc/bottom.jsp" %>

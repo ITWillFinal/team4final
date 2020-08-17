@@ -22,7 +22,7 @@
 		<c:if test="${!empty list }">
 			<h3 style="margin: 40px;">내가 스크랩한 공고</h3>
 			<c:forEach var="vo" items="${list }">
-				<fmt:parseDate var="end" value="${vo.endDate}" pattern="yyyy-MM-dd" />
+				<fmt:parseDate var="end" value="${vo.endDate}" pattern="yy/MM/dd" />
 				<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
 				<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
 

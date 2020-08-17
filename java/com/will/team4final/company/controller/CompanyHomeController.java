@@ -37,9 +37,14 @@ import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
 import com.will.team4final.company.model.ComrRecruitListVO;
 import com.will.team4final.company.model.Recruitment_TosVO;
+import com.will.team4final.company.resume.model.CompanyResumeSetService;
+import com.will.team4final.company.resume.model.CompanyResumeSetVO;
+import com.will.team4final.company.resume.model.CompanyResumeUseService;
+import com.will.team4final.company.resume.model.CompanyResumeUseVO;
 import com.will.team4final.jobkinds.model.JobService;
 import com.will.team4final.location.model.LocationService;
 import com.will.team4final.login.controller.LoginController;
+import com.will.team4final.member.model.MemberService;
 import com.will.team4final.member.model.MemberVO;
 import com.will.team4final.resume.model.ResumeAllVO;
 import com.will.team4final.resume.model.ResumeService;
@@ -75,7 +80,7 @@ public class CompanyHomeController {
 	public void companyJoin() {
 		logger.info("기업회원가입 페이지");
 	}
-	
+
 	@RequestMapping("/serviceInfo.do")
 	public void serviceInfo() {
 		logger.info("기업회원 서비스안내");
@@ -201,7 +206,7 @@ public class CompanyHomeController {
 		String inputPass = vo.getcPwd();
 		String pwd = pwdEncoder.encode(inputPass);
 		vo.setcPwd(pwd);
-		
+
 		int cnt = cMemberSerice.insertCMember(vo);
 		logger.info("기업 회원 입력 결과 cnt={}", cnt);
 
@@ -216,8 +221,8 @@ public class CompanyHomeController {
 		return "common/message";
 
 	}
-	
-	
+
+
 	@RequestMapping(value = "/companyWrite.do", method = RequestMethod.GET)
 	public String companyWrite_get(Model model, HttpSession session) {
 		logger.info("기업페이지 채용공고 등록 페이지");
@@ -236,7 +241,7 @@ public class CompanyHomeController {
 			model.addAttribute("url", url);
 			return "common/message";
 		}
-
+		
 		// 회사정보 불러와서 출력할 값 받아오기
 		String comCode = comInfoVo.getComCode();
 		String comName = comInfoVo.getComName();
@@ -347,7 +352,7 @@ public class CompanyHomeController {
 
 	@RequestMapping("/employmentNotice/employmentNoticeList.do")
 	public String employmentNoticeList(HttpSession session, Model model) {
-		
+
 		// 회원 아이디로 회원 코드 가져와소 => company_info를 조회
 		String cUserid = (String) session.getAttribute("userid");
 		CompanyMemberVO companyMemberVo = cMemberSerice.selectCMemberInfoByUserid(cUserid);
@@ -359,7 +364,7 @@ public class CompanyHomeController {
 		logger.info("comCode={}", comCode);
 		List<Recruitment_TosVO> list = comRecruitService.selectList_tosByComcode(comCode);
 		logger.info("list={}", list);
-		
+
 		model.addAttribute("list", list);
 		return "companypage/employmentNotice/employmentNoticeList";
 	}
@@ -432,12 +437,14 @@ public class CompanyHomeController {
 		}
 		return resumeTalentVoList;
 	}
-	
+
+
+
 	@RequestMapping("/talentResumeDetail.do")
 	   public String talentResumeDetail(@RequestParam int resumeNo,Model model) {
 	      logger.info("기업 - 인재검색 - 이력서 상세 페이지, 파라미터 resumeNo={}",resumeNo);
 
-	      
+
 	      ResumeAllVO resumeAllVo = resumeService.selectResumeByResumNo(resumeNo);
 	      logger.info("이력서 조회결과 resumeAllVo={}",resumeAllVo);
 	      resumeAllVo.getResumeVo().getResumeNo();
@@ -446,19 +453,19 @@ public class CompanyHomeController {
 
 	      model.addAttribute("memberVo", memberVo);
 	      model.addAttribute("resumeAllVo",resumeAllVo);
-	      
+
 	      return "companypage/talentResumeDetail";
 	   }
-	   
+
 	   @ResponseBody
 	   @RequestMapping(value = "/requestToJoin.do", produces = "application/text; charset=utf8")
 	   public String requestToJoin(@RequestParam List<Integer> resumeNoList,
 	         HttpSession session) {
 	      logger.info("입사요청 resumeNoList.size={}",resumeNoList.size());
-	      
+
 	      String cMemberCode=(String)session.getAttribute("cMemberCode");
 	      logger.info("기업 회원 코드 = {}",cMemberCode);
-	      
+
 	      String result = resumeService.requestToJoinMulti(resumeNoList, cMemberCode);
 	      return result;
 	   }
@@ -467,11 +474,11 @@ public class CompanyHomeController {
 	   @RequestMapping(value = "/requestHope.do", produces = "application/text; charset=utf8")
 	   public String requestHope(@RequestParam int resumeNo,@RequestParam String cMemberCode) {
 		   logger.info("입사요청희망 cMemberCode={}, resumeNo={}",cMemberCode,resumeNo);
-		   
+
 		   List<Integer> list = new ArrayList<Integer>();
 		   list.add(resumeNo);
 		   String result=resumeService.updatePerscrapStatusMulti(list, cMemberCode, "Y");
-		   
+
 		   return result;
 	   }
 
@@ -479,11 +486,11 @@ public class CompanyHomeController {
 	   @RequestMapping(value = "/requestNo.do", produces = "application/text; charset=utf8")
 	   public String requestNo(@RequestParam int resumeNo,@RequestParam String cMemberCode) {
 		   logger.info("입사요청거절 cMemberCode={}, resumeNo={}",cMemberCode,resumeNo);
-		   
+
 		   List<Integer> list = new ArrayList<Integer>();
 		   list.add(resumeNo);
 		   String result=resumeService.updatePerscrapStatusMulti(list, cMemberCode, "N");
-		   
+
 		   return result;
 	   }
 
@@ -586,28 +593,28 @@ public class CompanyHomeController {
 	@RequestMapping("/searchTalentManagement.do")
 	public String searchTalentManagement(HttpSession session, Model model) {
 		 logger.info("기업 - 입사요청 관리페이지");
-	      
+
 	      String cMemberCode=(String)session.getAttribute("cMemberCode");
 	      logger.info("기업 회원 코드 = {}",cMemberCode);
-	      
+
 	      List<List<ResumeTalentVO>> list = resumeService.perscrapList(cMemberCode);
-	      
+
 	      model.addAttribute("list",list);
-	      
+
 	      return "companypage/searchTalentManagement";
 	}
-	
+
 	@ResponseBody
 	   @RequestMapping(value = "/requestDelete.do", produces = "application/text; charset=utf8")
 	   public String requestDelete(@RequestParam List<Integer> resumeNoListforDel,
 	         HttpSession session) {
 	      logger.info("입사요청 취소 resumeNoListforDel.size={}",resumeNoListforDel.size());
-	      
+
 	      String cMemberCode=(String)session.getAttribute("cMemberCode");
 	      logger.info("기업 회원 코드 = {}",cMemberCode);
-	      
+
 	      String result = resumeService.deletePerscrapMulti(resumeNoListforDel, cMemberCode);
-	      
+
 	      return result;
 	   }
 
@@ -616,49 +623,49 @@ public class CompanyHomeController {
 	public String yesToJoin(@RequestParam List<Integer> resumeNoListforJoin,
 			HttpSession session) {
 		logger.info("입사 희망요청 처리 resumeNoListforJoin.size={}",resumeNoListforJoin.size());
-		
+
 		String cMemberCode=(String)session.getAttribute("cMemberCode");
 		logger.info("기업 회원 코드 = {}",cMemberCode);
-		
+
 		String result = resumeService.updatePerscrapStatusMulti(resumeNoListforJoin, cMemberCode,"JOIN");
-		
+
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/cMemberEdit.do", method = RequestMethod.GET)
 	public void cMemberEdit_get(HttpSession session, Model model) {
 		String cUserid = (String)session.getAttribute("userid");
 		CompanyMemberVO cMemberVo=cMemberSerice.selectCMemberInfoByUserid(cUserid);
 		logger.info("회사 회원 정보 수정 화면, cMemberVo={}", cMemberVo );
-		
+
 		model.addAttribute("cMemberVo", cMemberVo);
 	}
-	
+
 	@RequestMapping(value = "/member/companyOut.do", method = RequestMethod.GET)
 	public void companyOut_get(HttpSession session, Model model) {
 		logger.info("기업회원 탈퇴 페이지");
 		String cUserid = (String)session.getAttribute("userid");
 		CompanyMemberVO vo = cMemberSerice.selectCMemberInfoByUserid(cUserid);
 		logger.info("기업회원 탈퇴 vo cMemberVo={}", vo);
-		
+
 		model.addAttribute("vo", vo);
 	}
-	
+
 	@RequestMapping(value = "/member/companyOut.do", method = RequestMethod.POST)
 	public String companyOut_post(@RequestParam String cMemberCode, @RequestParam String password, HttpSession session, Model model) {
 		logger.info("기업회원 탈퇴 처리");
-				
+
 		logger.info("기업회원코드 cMemberCode={}", cMemberCode);
-		
-		
+
+
 		String cUserid = (String)session.getAttribute("userid");
-		CompanyMemberVO vo = cMemberSerice.selectCMemberInfoByUserid(cUserid);		
-		
+		CompanyMemberVO vo = cMemberSerice.selectCMemberInfoByUserid(cUserid);
+
 		boolean pwdMatch = pwdEncoder.matches(password, vo.getcPwd());
 		logger.info("pwdMatch={}", pwdMatch);
-		
+
 		String msg="비밀번호가 일치하지 않습니다.", url="/companypage/member/companyOut.do";
-		
+
 		if (pwdMatch == true) {
 			msg="탈퇴 실패했습니다.";
 			int cnt = cMemberSerice.deleteCMember(cMemberCode);
@@ -666,30 +673,30 @@ public class CompanyHomeController {
 			if(cnt>0) {
 				msg="탈퇴 성공했습니다.";
 				url="/";
-				
+
 				session.invalidate();
 			}
 		}
-		
+
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
 		return "common/message";
-		
+
 	}
-	
+
 	@RequestMapping("/checkPwd.do")
 	@ResponseBody
 	public boolean checkPwd(@RequestParam String cPwd, HttpSession session) {
 		String cUserid = (String)session.getAttribute("userid");
 		CompanyMemberVO cMemberVo = cMemberSerice.selectCMemberInfoByUserid(cUserid);
-		
+
 		boolean pwdMatch = pwdEncoder.matches(cPwd, cMemberVo.getcPwd());
 		logger.info("pwdMatch={}", pwdMatch);
-		
+
 		return pwdMatch;
 	}
-	
+
 	@RequestMapping(value = "/cMemberEdit.do", method = RequestMethod.POST)
 	public String cMemberEdit_post(@ModelAttribute CompanyMemberVO companyMemberVo,@RequestParam String cMemberCode, Model model) {
 		logger.info("기업 회원 정보 수정, 파라미터 cMemberCode={}, comMemberVo={}", cMemberCode, companyMemberVo);
@@ -704,13 +711,13 @@ public class CompanyHomeController {
 		model.addAttribute("url", url);
 
 		return "common/message";
-		
+
 	}
-	
+
 	@RequestMapping("/applyManagement.do")
 	public String applyManagement(HttpSession session, Model model) {
 		logger.info("기업페이지 - 지원자 관리");
-		
+
 		//기업회원 정보 구하기
 		String cUserid = (String)session.getAttribute("userid");
 		CompanyMemberVO comMemberVo = comMemberServ.selectCMemberInfoByUserid(cUserid);
@@ -718,22 +725,38 @@ public class CompanyHomeController {
 
 		CompanyInfoVO comInfoVo = comInfoServ.selectComInfoBycMemberCode(comMemberVo.getcMemberCode());
 		logger.info("기업회원 기업 정보, comInfoVo={}", comInfoVo);
-		
+
 		//기업회원 공고 정보 구하기
 		List<Recruitment_TosVO> comRecuritTosListVo = comRecruitServ.selectList_tosByComcode(comInfoVo.getComCode());
 		logger.info("기업회원 notice, comRecuritVo={}", comRecuritTosListVo);
-		
+
 		model.addAttribute("comRecuritListVo", comRecuritTosListVo);
-		
+
 		return "companypage/applyManagement";
 	}
-	
-	@ResponseBody
-	@RequestMapping("")
-	public List<Map<String, Object>> applyList(@RequestParam String recruitmentCode) {
-		logger
+
+	@RequestMapping("/applyList.do")
+	public String applyList(@RequestParam String recruitmentCode,
+			Model model) {
+		logger.info("지원자 목록 recruitmentCode={}",recruitmentCode);
+
+		ComRecruitVO reVo= comRecruitServ.selectOneByRecruitmentCode(recruitmentCode);
 		List<Map<String, Object>> applyList = applyService.selectApplyForCompany(recruitmentCode);
-		
-		return applyList;
+		logger.info("지원자 수 ={}",applyList.size());
+
+		model.addAttribute("applyList",applyList);
+		model.addAttribute("reVo",reVo);
+
+		return "companypage/applyList";
+	}
+
+	@ResponseBody
+	@RequestMapping("/readcheck.do")
+	public int readcheck(@RequestParam String applyCode) {
+		int result = applyService.updateReadcheck(applyCode);
+		logger.info("readcheck 결과 result={}",result);
+
+
+		return result;
 	}
 }

@@ -5,7 +5,7 @@
 <%@ include file="../../../inc/adminTop.jsp"%>
 <style>
 th{
-	border-bottom: 3px solid #FB246A;;
+	border-bottom: 3px solid #FB246A;
 	text-align: center;
     padding: 14px;
 }
@@ -94,7 +94,7 @@ input[type=submit] {
 }
 
 div#o {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+    border: 1px solid lightgray;
 }
 .divList {
     margin-left: 2%;
@@ -142,8 +142,9 @@ ul {
 <main>
 	
 	<!-- main -->
-	<div style="text-align: center; margin:5px; width:850px;">
-		<div id = "o" style="margin-top: -11.5px;">
+	<h2 style="margin-left: 20px">고객센터</h2>
+	<div style="text-align: center;width:850px;">
+		<div id = "o">
 			<ul class = "tabList" style="width: 857px;">
 				<li class = "select" style="width: 33%;" id = "fst">
 					<a href = <c:url value='/gogak/admin/company/faqList.do'/>>FaQ - 기업</a>

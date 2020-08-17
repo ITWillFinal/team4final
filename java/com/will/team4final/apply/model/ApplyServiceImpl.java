@@ -32,4 +32,13 @@ public class ApplyServiceImpl implements ApplyService{
 	public List<Map<String, Object>> selectApplyForCompany(String recruitmentCode) {
 		return applyDao.selectApplyForCompany(recruitmentCode);
 	}
+	
+	public List<Map<String, Object>> selectRecruitmentApply(String userNo ) {
+		return applyDao.selectRecruitmentApply(userNo);
+	}
+
+	@Override
+	public int updateReadcheck(String applyCode) {
+		return applyDao.updateReadcheck(applyCode);
+	}
 }

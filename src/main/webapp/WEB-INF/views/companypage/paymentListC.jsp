@@ -8,7 +8,6 @@
 <style>
 .divList{
     padding-top: 40px;
-    padding-left: 80px;
     padding-bottom: 5%;
     padding-right: 80px;
 }
@@ -30,9 +29,6 @@ a{
 	width: 800px;
 }
 
-#upList{
-	 padding-left: 300px;
-}
 /* 페이징 */
 .divPage {
     text-align: center;
@@ -103,11 +99,15 @@ p.rst {
     padding-right: 2%;
 }
 h2#h2Title {
-    margin-left: 30%;
+    margin-left: 31%;
     margin-bottom: 1%;
+    font-weight: bold;
 }
 span#totalPrice {
     color: #FB246A;
+}
+div#o {
+    padding-top: 2%;
 }
 </style>	
 <script type="text/javascript">
@@ -148,133 +148,131 @@ span#totalPrice {
 <!-- 본문 시작 -->
 <main>
 	<%@ include file="../inc/companySidebar.jsp"%>
-	<h2 id = "h2Title">기업회원 결제 내역</h2>
-	<!-- main -->
-	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray; margin-left:30%;">
-		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
-			<li class = "select" style="width: 100%;" id = "fst">
-			</li>
-		</ul>
-	<form name="frmPage" method="post" 
-		action="<c:url value='/companypage/paymentListC.do'/>">
-		<input type="hidden" name="startDay" value="${param.startDay }">
-		<input type="hidden" name="endDay" value="${param.endDay }">
-		<input type="hidden" id="currentPage" name = "currentPage">	
-	</form>
-
-	<form name="frmList" method="post" 
-		action="<c:url value='/companypage/paymentListC.do'/>" >
-		<!-- 조회기간 include -->
+	<div id = "o">	
+		<!-- main -->
+		<h2 id = "h2Title">기업회원 결제 내역</h2>
+		<div style="    width: 867px;text-align: center;border: 1px solid lightgray; margin-left: 31%;">
 		
-	<div class="divList">
-	<table class="box2"
-		summary="기업회원의 결제 내역으로 결제한 기업회원의 기본정보와 결제 정보를 제공합니다..">
-		<colgroup>
-			<col style="width:13%" /><!-- 기업 회원번호 -->
-			<col style="width:9%" /><!-- 기업 ID-->
-			<col style="width:17%" /><!-- 기업 이름-->
-			<col style="width:11%" /><!-- 기업 회원이름 -->
-			<col style="width:14%" /><!-- 시작일-->
-			<col style="width:14%" /><!-- 종료일-->
-			<col style="width:10%" /><!-- 결제일-->
-			<col style="width:12%" /><!-- 결제금액-->
-		</colgroup>
-		<thead>
-		  <tr>
-		    <th scope="col">결제번호</th>
-			<th scope="col">기업 ID</th>
-			<th scope="col">기업명</th>
-			<th scope="col">회원명</th>
-			<th scope="col">공고시작일</th>
-			<th scope="col">공고종료일</th>
-			<th scope="col">결제일</th>
-			<th scope="col">결제금액</th>
-		  </tr>
-		</thead> 
-		<tbody>
-			<c:if test="${empty list }">
-				<tr class="align_center">
-					<td colspan="8">결제 내역이 없습니다.</td>
-				</tr>
-			</c:if>
-			<c:if test="${!empty list }">		
-				<!-- 반복 시작 -->
-				<c:forEach var="map" items="${list }">
-						<tr class="align_center">
-							<td>${map['RECRUITMENT_CODE']}</td>
-							<td>${map['C_USERID']}</td>
-							<td>${map['COM_NAME']}</td>
-							<td>${map['C_USERNAME']}</td>
-							<td>${map['START_DATE']}</td>
-							<td>
-								<c:set var = "endDate" value = "${map['END_DATE'] }"/>
-								${fn:substring(endDate,2,4)}/${fn:substring(endDate,5,7)}/${fn:substring(endDate,8,10)}
-							</td>
-							<td>${map['REGDATE']}</td>
-							<td>
-								<fmt:formatNumber type="number" maxFractionDigits="3"
-									value="${map['PRICE']}"/>
-							</td>
-						</tr>
-				</c:forEach>
-				<!-- 반복 끝 -->
-			</c:if>
-	</tbody>
-	</table>
-	</div>
-
-		<div class="divPage">		
-			<!-- 페이지 번호 추가 -->		
-			<c:if test="${pagingInfo.firstPage>1 }">
-				<a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">			
-				    <img src='<c:url value="/resources/images/first.JPG" />'  border="0">	</a>
-			</c:if>
-							
-			<!-- [1][2][3][4][5][6][7][8][9][10] -->
-			<c:forEach var="i" begin="${pagingInfo.firstPage }" 
-			end="${pagingInfo.lastPage }">
-				<c:if test="${i==pagingInfo.currentPage }">
-					<span style="color:blue;font-weight:bold">${i }</span>
-				</c:if>
-				<c:if test="${i!=pagingInfo.currentPage }">						
-					<a href="#" onclick="pageFunc(${i})">
-						[${i }]
-					</a>
-				</c:if>
-			</c:forEach>
+			<form name="frmPage" method="post" 
+				action="<c:url value='/companypage/paymentListC.do'/>">
+				<input type="hidden" name="startDay" value="${param.startDay }">
+				<input type="hidden" name="endDay" value="${param.endDay }">
+				<input type="hidden" id="currentPage" name = "currentPage">	
+			</form>
+		
+			<form name="frmList" method="post" 
+				action="<c:url value='/companypage/paymentListC.do'/>" >
+				<!-- 조회기간 include -->
 				
-			<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
-				<a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">			
-					<img src="<c:url value="/resources/images/last.JPG" />" border="0">
-				</a>
-			</c:if>
-			<!--  페이지 번호 끝 -->
+			<div class="divList">
+			<table class="box2"
+				summary="기업회원의 결제 내역으로 결제한 기업회원의 기본정보와 결제 정보를 제공합니다..">
+				<colgroup>
+					<col style="width:13%" /><!-- 기업 회원번호 -->
+					<col style="width:9%" /><!-- 기업 ID-->
+					<col style="width:17%" /><!-- 기업 이름-->
+					<col style="width:11%" /><!-- 기업 회원이름 -->
+					<col style="width:14%" /><!-- 시작일-->
+					<col style="width:14%" /><!-- 종료일-->
+					<col style="width:10%" /><!-- 결제일-->
+					<col style="width:12%" /><!-- 결제금액-->
+				</colgroup>
+				<thead>
+				  <tr>
+				    <th scope="col">결제번호</th>
+					<th scope="col">기업 ID</th>
+					<th scope="col">기업명</th>
+					<th scope="col">회원명</th>
+					<th scope="col">공고시작일</th>
+					<th scope="col">공고종료일</th>
+					<th scope="col">결제일</th>
+					<th scope="col">결제금액</th>
+				  </tr>
+				</thead> 
+				<tbody>
+					<c:if test="${empty list }">
+						<tr class="align_center">
+							<td colspan="8">결제 내역이 없습니다.</td>
+						</tr>
+					</c:if>
+					<c:if test="${!empty list }">		
+						<!-- 반복 시작 -->
+						<c:forEach var="map" items="${list }">
+								<tr class="align_center">
+									<td>${map['RECRUITMENT_CODE']}</td>
+									<td>${map['C_USERID']}</td>
+									<td>${map['COM_NAME']}</td>
+									<td>${map['C_USERNAME']}</td>
+									<td>${map['START_DATE']}</td>
+									<td>
+										<c:set var = "endDate" value = "${map['END_DATE'] }"/>
+										${fn:substring(endDate,2,4)}/${fn:substring(endDate,5,7)}/${fn:substring(endDate,8,10)}
+									</td>
+									<td>${map['REGDATE']}</td>
+									<td>
+										<fmt:formatNumber type="number" maxFractionDigits="3"
+											value="${map['PRICE']}"/>
+									</td>
+								</tr>
+						</c:forEach>
+						<!-- 반복 끝 -->
+					</c:if>
+			</tbody>
+			</table>
+			<div>
+					<c:if test="${pagingInfo.totalRecord > 0 }">
+						<p class = "rst" style="font-size: 1.0em">
+							${param.startDay } ~ ${dateSearchVO.endDay } 까지의 결제내역은
+							${pagingInfo.totalRecord } 건입니다.<br>
+							기간 내 총 판매금액은 
+							<span id = "totalPrice">
+								<fmt:formatNumber type="number" maxFractionDigits="3"
+									value="${totalPrice}"/>
+							</span>원 입니다.
+						</p>
+					</c:if>
+					<c:if test="${pagingInfo.totalRecord == 0 }">
+						<p class = "rst"  style="font-size: 1.0em">
+							${param.startDay } ~ ${dateSearchVO.endDay } 까지의 결제내역이 없습니다.
+						</p>
+					</c:if>
+					<%@include file = "../inc/dateTerm.jsp" %>
+					<input type="submit" class = "bts" value="조회" >
+					<br>
+					
+				</div>
+			</div>
+		
+				<div class="divPage">		
+					<!-- 페이지 번호 추가 -->		
+					<c:if test="${pagingInfo.firstPage>1 }">
+						<a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">			
+						    <img src='<c:url value="/resources/images/first.JPG" />'  border="0">	</a>
+					</c:if>
+									
+					<!-- [1][2][3][4][5][6][7][8][9][10] -->
+					<c:forEach var="i" begin="${pagingInfo.firstPage }" 
+					end="${pagingInfo.lastPage }">
+						<c:if test="${i==pagingInfo.currentPage }">
+							<span style="color:blue;font-weight:bold">${i }</span>
+						</c:if>
+						<c:if test="${i!=pagingInfo.currentPage }">						
+							<a href="#" onclick="pageFunc(${i})">
+								[${i }]
+							</a>
+						</c:if>
+					</c:forEach>
+						
+					<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
+						<a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">			
+							<img src="<c:url value="/resources/images/last.JPG" />" border="0">
+						</a>
+					</c:if>
+					<!--  페이지 번호 끝 -->
+				</div>
+			</form>
 		</div>
-		<div>
-			<c:if test="${pagingInfo.totalRecord > 0 }">
-				<p class = "rst" style="font-size: 1.0em">
-					${param.startDay } ~ ${dateSearchVO.endDay } 까지의 결제내역은
-					${pagingInfo.totalRecord } 건입니다.<br>
-					기간 내 총 판매금액은 
-					<span id = "totalPrice">
-						<fmt:formatNumber type="number" maxFractionDigits="3"
-							value="${totalPrice}"/>
-					</span>원 입니다.
-				</p>
-			</c:if>
-			<c:if test="${pagingInfo.totalRecord == 0 }">
-				<p class = "rst"  style="font-size: 1.0em">
-					${param.startDay } ~ ${dateSearchVO.endDay } 까지의 결제내역이 없습니다.
-				</p>
-			</c:if>
-			<%@include file = "../inc/dateTerm.jsp" %>
-			<input type="submit" class = "bts" value="조회" >
-			<br>
-			
-		</div>
-	</form>
-
-</div>
+	</div>
 </main>
 
 <%@ include file="../inc/companyBottom.jsp"%>

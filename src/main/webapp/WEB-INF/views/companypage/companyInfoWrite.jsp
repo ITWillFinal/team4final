@@ -215,12 +215,8 @@ hr{
 				<label for="zipcode" class="col-sm-3 control-label">주소<span>*</span>
 				</label>
 				<div class="col-sm-9 form-input">
-					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
-					<br><br>
-				</div>
-				<div class="col-sm-9 form-input">
 					<input type="text" class="form-control" id="zipcode" name="zipcode"
-						placeholder="우편번호" ReadOnly>
+						placeholder="우편번호" ReadOnly onclick="sample4_execDaumPostcode()">
 				</div>
 				<div class="col-sm-9 form-input">
 					<input type="text" class="form-control" id="address" name="address"

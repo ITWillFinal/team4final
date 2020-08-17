@@ -98,12 +98,12 @@
 <div>
 	<div id="addHeadMenu">
 		<div id="headMenu">
-			<a href="#"><i class="fas fa-building fa-4x"></i><br>
+			<a href="<c:url value='/companypage/MyCompany.do'/>"><i class="fas fa-building fa-4x"></i><br>
 			<span></span><br>
 			<span>회사정보</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="#"><i class="fas fa-paste fa-4x"></i><br>
+			<a href="<c:url value='/companypage/employmentNotice/employmentNoticeList.do'/>"><i class="fas fa-paste fa-4x"></i><br>
 			<span></span><br>
 			<span>공고관리</span></a>
 		</div>
@@ -113,7 +113,7 @@
 			<span>입사요청</span></a>
 		</div>
 		<div id="headMenu">
-			<a href="#"><i class="fas fa-user-plus fa-4x"></i><br>
+			<a href="<c:url value='/companypage/applyManagement.do'/>"><i class="fas fa-user-plus fa-4x"></i><br>
 			<span></span><br>
 			<span>지원자관리</span></a>
 		</div>

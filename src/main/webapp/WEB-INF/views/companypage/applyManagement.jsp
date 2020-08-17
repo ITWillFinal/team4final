@@ -93,6 +93,11 @@
 				'RESUME','width=980,height=auto,left=0,top=0,location=yes,resizable=false')
 	}
 
+	function open_applyList(recruitmentCode){
+		window.open("<c:url value='/companypage/applyList.do?recruitmentCode="+recruitmentCode+"'/>",
+				'applyList','width=300,height=auto,left=0,top=0,location=yes,resizable=false')
+	}
+
 </script>
 <style type="text/css">
 	a{
@@ -104,6 +109,7 @@
 		width: 1000px;
 		height: auto;
 		padding: 15px;
+		margin: auto;
 	}
 
 	.AM-top{
@@ -112,10 +118,7 @@
 	}
 </style>
 <main>
-	<%@ include file="../inc/companySidebar.jsp"%>
-	<div
-		style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
-		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->		
+	
 		<div class="AM-main">
 		<div class="AM-top">
 			<h1 style="font-weight: bold;">지원자 관리</h1>
@@ -126,51 +129,26 @@
 			<h3 style="margin: 40px;">현재 진행중인 채용공고</h3>
 			<c:if test="${!empty comRecuritListVo}">
 				<c:forEach var="vo" items="${comRecuritListVo }">
-					<fmt:parseDate var="end" value="${vo.endDate}" pattern="yy/MM/dd" />
-					<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>
-					<fmt:parseNumber value="${today.time / (1000*60*60*24) }" integerOnly="true" var="startDate"/>
-					<c:if test="${endDate-startDate+1 >= 0}">
-						<c:set var="check" value="${check + 1 }"/>
-						<div class="single-job-items mb-30" id="listOne">
-							
-							<div class="job-items">
-								<div class="job-tittle">
-									<h4><a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.title }</a></h4>
-									<ul>
-										<li>${vo.comName }</li>
-										<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
-										<li>${vo.pay }</li>
-									</ul>
-								</div>
+					<c:set var="check" value="${check + 1 }"/>
+					<div class="single-job-items mb-30" id="listOne">
+						
+						<div class="job-items">
+							<div class="job-tittle">
+								<h4><a onclick="open_applyList(${vo.recruitmentCode})" style="cursor: pointer;">${vo.title }</a></h4>
+								<ul>
+									<li>${vo.comName }</li>
+									<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
+									<li>${vo.pay }</li>
+								</ul>
 							</div>
-							<c:if test="${endDate-startDate+1 > 0}">
-								<div class="items-link f-right">
-									<a style="margin-bottom: 3px;" href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정 및 삭제</a>
-									<a class="extendPeriod" href="#">기간연장</a>
-									<input type="hidden" value="${vo.recruitmentCode }" class="extendPeriod_recruitmentCode">
-									<span>지원마감까지 D - ${endDate-startDate+1 }일</span>
-								</div>
-							</c:if>
-							<c:if test="${endDate-startDate+1 == 0}">
-								<div class="items-link f-right">
-									<a href="<c:url value='/companypage/employmentNotice/companyReWrite.do?recruitmentCode=${vo.recruitmentCode }'/>">수정 및 삭제</a>
-									<span>오늘 지원 마감!</span>
-								</div>
-							</c:if>
 						</div>
-					</c:if>
+					</div>
 				</c:forEach>
-			</c:if>
-			<c:if test="${check == 0}">
-				<div class="single-job-items mb-30" id="listOne">
-					<h4>현재 진행중인 채용공고가 없습니다.</h4>
-				</div>
 			</c:if>
 		</div>
 	</div>
 
 		</div>
-		<!-- 사이드바이용에필요함 맨밑에 div -->
-		</div>
+
 </main>
 <%@ include file="../inc/companyBottom.jsp"%>

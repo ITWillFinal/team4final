@@ -45,7 +45,6 @@ h3{
 
 #outDiv{
     padding: 75px 35px 90px 35px;
-    border: 1px solid lightgray;
 }
 
 /* 글내용 */
@@ -98,25 +97,31 @@ input[type=submit] {
 }
 
 div#outer {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+    border: 1px solid lightgray;
     padding-left: 1%;
     padding-right: 1%;
     margin-bottom: 8%;
+    margin-top: 4.5%;
+    width: 117.5%;
 }
 h2 {
     font-weight: bold;
-    margin-left: -5%;
+    margin-left: 1%;
+    width: 97%;
+    padding-bottom: 2%;
+    border-bottom: 3px solid #FB246A;
 }
 </style>
 <main>
 	<%@ include file="../../inc/companySidebar.jsp"%>
+	<h2 style="margin-left: 20px">고객센터</h2>
 
 	<!-- main -->
 	<div
 		style="float: left; width: 49%; margin-left: 30px; font-size: 14px; /* border: 1px solid lightgray; */">
 		<div id = "outer">
 			<div style="margin: 5px; height: 95px; /* border: 1px solid lightgray; */">
-				<h2 style="padding-left: 50px; padding-top: 30px;">자주찾는 질문 상세보기</h2>
+				<h2 style="padding-left: 7px; padding-top: 30px;">자주찾는 질문 상세보기</h2>
 			</div>
 			<!-- 본문 -->
 			<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */">

@@ -49,6 +49,33 @@ table {
 tr {
     text-align: left;
 }
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+div#idx {
+    margin-top: 4%;
+    margin-left: -0.4%;
+    width: 107%;
+}
 </style>
 <script type="text/javascript" 
 	src = "<c:url value = '/resources/js/jquery-3.5.1.min.js'/>"></script>
@@ -69,11 +96,11 @@ tr {
 	<%@ include file="../../inc/companySidebar.jsp"%>
 	
 	<!-- main -->
-	<div style=" margin:5px; width:850px;  float: left;">
-		<div style="margin:5px;">
+	<div style=" width:850px;  float: left;">
+		<div style="">
 			<div id="outDiv">
 				<form name = "frmWrite" method="post"  action="<c:url value = '/gogak/qnaC/qnaEdit.do'/>">
-					<div id = "idx" style="border: 1px solid lightgray">
+					<div id = "idx" style="border: 1px solid lightgray;margin-left: 0.2%; margin-top: 4.2%;">
 						<h4 style="text-align:center; font-size: 24px; margin-top: 10%; margin-bottom: 10%;">― 1:1 문의 글 수정 ―</h4>
 						<div class = "notice" >
 							<p style="text-align:center;" >1:1 문의 게시판 운영 원칙</p>

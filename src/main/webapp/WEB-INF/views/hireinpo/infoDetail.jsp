@@ -8,10 +8,8 @@
 <input type="hidden" value="${vo.endDate }" id="timerEnd">
 <style>
 	#contentDiv{
-		margin-top: 70px;
-		margin-bottom: 100px;
-		margin-left: 290px;
-	    background: #ececec61;
+		margin: 70px auto;
+	    background: #white;
 	    width: 1100px;
 		overflow: hidden;
 		box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
@@ -51,6 +49,10 @@
 	
 	td{
 		padding-left: 30px;
+		padding-top: 3px;
+	}
+	th{
+		padding-top: 3px;
 	}
 	#moreDiv{
 		padding-top: 10px;
@@ -59,7 +61,9 @@
 	}
 	hr{
 		clear: both; 
-		padding-top: 33px;"
+		padding-top: 33px;
+		border-bottom: 2px solid #eceff8;
+	    margin: 30px 15px;
 	}
 	a{
 		color: #0b1c39;
@@ -76,6 +80,9 @@
 	    height: 59px;
 	    margin-top: 50px;
 	    margin-bottom: 100px;
+	}
+	h4 {
+    	color: #fb246a;
 	}
 </style>
 
@@ -171,7 +178,7 @@
 <div id="contentDiv">
 	<div id="headDiv">
 		<p>${vo.comName }</p>
-		<h3 style="font-weight: bold;">${vo.title }</h3>
+		<h2 style="font-weight: bold;">${vo.title }</h2>
 		<p style="margin-bottom: -15px; font-size: 0.8em;">등록일 : ${vo.regdate }</p>
 	</div>
 	<div id="headAdd2">
@@ -208,6 +215,7 @@
 	</c:if>
 	<hr>
 	<div id="infoDiv1">
+		<h4 style="font-weight: bold">지원자격</h4>
 		<table>
 			<tr>
 				<th>경력</th>
@@ -215,19 +223,41 @@
 			<tr>
 			<tr>
 				<th>학력</th>
-				<td>${vo.educationLv }</td>
+				<td><c:if test="${vo.educationLv == 0}">
+					무관
+				</c:if>
+				<c:if test="${vo.educationLv == 1}">
+					초등학교 졸업
+				</c:if>
+				<c:if test="${vo.educationLv == 2}">
+					중학교 졸업
+				</c:if>
+				<c:if test="${vo.educationLv == 3}">
+					고등학교 졸업
+				</c:if>
+				<c:if test="${vo.educationLv == 4}">
+					대학(2~3년) 졸업
+				</c:if>
+				<c:if test="${vo.educationLv == 5}">
+					대학(4년) 졸업
+				</c:if>
+				<c:if test="${vo.educationLv == 6}">
+					대학원(석사)
+				</c:if>
+				<c:if test="${vo.educationLv == 7}">
+					대학원(박사)
+				</c:if>
+				</td>
 			<tr>
 			<tr>
 				<th>성별</th>
 				<td>${vo.gender }</td>
 			<tr>
-			<tr>
-				<th>근무형태</th>
-				<td>${vo.recType }</td>
-			<tr>
+			
 		</table>
 	</div>
 	<div id="infoDiv2">
+		<h4 style="font-weight: bold">근무조건</h4>
 		<table>
 			<tr>
 				<th>급여</th>
@@ -241,6 +271,10 @@
 				<th>근무지역</th>
 				<td>${vo.location1 } ${vo.location2 }</td>
 				
+			<tr>
+			<tr>
+				<th>근무형태</th>
+				<td>${vo.recType }</td>
 			<tr>
 		</table>
 	</div>

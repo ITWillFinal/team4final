@@ -128,6 +128,7 @@
 		width: 1000px;
 		height: auto;
 		padding: 15px;
+		/* margin: 0 auto; */
 	}
 	
 	.ST-main-top{
@@ -219,7 +220,7 @@
 	<%@ include file="../inc/companySidebar.jsp"%>
 	<div
 		style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
-		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->		
+		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->	
 		<div class="ST-main">
 			<div class="ST-main-top">
 				<h1>인재 검색</h1>
@@ -371,7 +372,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- 사이드바이용에필요함 맨밑에 div -->
-	</div>
+		</div>
 </main>
 <%@ include file="../inc/companyBottom.jsp"%>

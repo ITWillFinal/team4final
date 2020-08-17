@@ -26,7 +26,9 @@
 </script>
 <style type="text/css">
 table {
-	border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 th {
@@ -38,10 +40,12 @@ td {
 	border-bottom: 1px solid #FB246A;
 	padding: 5px;
 	text-align: center;
+    height: 50px;
 }
-
 .divPage {
-	text-align: center;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 1%;
 }
 
 
@@ -70,8 +74,34 @@ li.select {
 #btm{
 	 /* border-bottom: 1px solid lightgray */; 
 }
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+a{
+	color: black;
+}
 </style>
 <!-- 페이징 -->
+<h2 style="margin-left: 20px">고객관리</h2>
 <form action="<c:url value='/admin/adminMemberManagement.do'/>"
 	name="frmPage" method="post">
 	<input type="hidden" name="currentPage"> <input type="hidden"
@@ -123,15 +153,15 @@ li.select {
 	<div class="divList" style="margin-top: 100px;">
 		<table class="box2">
 			<colgroup>
-				<col style="width: 8%" />
-				<col style="width: 5%" />
-				<col style="width: 5%" />
-				<col style="width: 15%" />
-				<col style="width: 13%" />
-				<col style="width: 13%" />
-				<col style="width: 13%" />
-				<col style="width: 8%" />
-				<col style="width: %" />
+				<col style="width: 10%" />
+				<col style="width: 10%" />
+				<col style="width: 10%" />
+				<col style="width: 20%" />
+				<col style="width: 10%" />
+				<col style="width: 10%" />
+				<col style="width: 10%" />
+				<col style="width: 10%" />
+				<col style="width: 10%" />
 			</colgroup>
 			<thead>
 				<tr>

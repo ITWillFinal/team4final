@@ -55,7 +55,7 @@
 <!-- list 값이 없으면 -->
 <c:if test="${empty list }">
 	<div class="noList">
-		<span> 현재 채용공고가 없습니다.</span>
+		<span> 현재 진행 중인 채용정보 없습니다.</span>
 		<br><br>
 		<a href="<c:url value='/companypage/companyWrite.do'/> " >채용 공고 등록하러 가시겠습니까?</a>
 	</div>

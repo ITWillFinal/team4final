@@ -23,7 +23,6 @@
 	                    </div>
 	                    <div class="services-cap">
 	                       <h5><a href="<c:url value='/companypage/companyWrite.do'/>">공고등록</a></h5>
-	                        <span>(658)</span>
 	                    </div>
 	                </div>
 	            </div>
@@ -34,7 +33,6 @@
 	                    </div>
 	                    <div class="services-cap">
 	                       <h5><a href="<c:url value='/companypage/searchTalent.do'/>">인재검색</a></h5>
-	                        <span>(653)</span>
 	                    </div>
 	                </div>
 	            </div>
@@ -44,8 +42,7 @@
 	                        <span class="flaticon-content"></span>
 	                    </div>
 	                    <div class="services-cap">
-	                       <h5><a href="job_listing.html">공고-지원자관리</a></h5>
-	                        <span>(658)</span>
+	                       <h5><a href="<c:url value='/companypage/employmentNotice/employmentNoticeList.do'/>">공고-지원자관리</a></h5>
 	                    </div>
 	                </div>
 	            </div>
@@ -56,7 +53,6 @@
 	                    </div>
 	                    <div class="services-cap">
 	                       <h5><a href="<c:url value='/companypage/companyInfoWrite.do' />">회사정보등록</a></h5>
-	                        <span>(658)</span>
 	                    </div>
 	                </div>
 	                
