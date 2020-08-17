@@ -154,6 +154,18 @@
     	border-radius: 5px;
     	margin: 2px;
 	}
+	
+	.choice{
+		width: 100%;
+		height: 40px;
+		background: gray;
+		overflow-x: scroll;
+		-ms-overflow-style: none;
+    	scrollbar-width: none;
+    	scrollbar-height: none;
+    	position: relative;
+    	bottom: 260px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -218,6 +230,7 @@
 		THE JOB 길라잡이 잡잡이 입니다!<br>
 		무엇을 도와드릴까요?
 		<span class='autoBr'></span></div>
+		<div class="choice"></div>
 	</div>
 	<div class="chatbot-bt">
 		<input type="text" class="message"/>
