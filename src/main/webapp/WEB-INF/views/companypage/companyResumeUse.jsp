@@ -267,7 +267,7 @@
 			careerTr1Td3 = $("#careerTr1Td3").val();
 			careerTr1Td4 = $("#careerTr1Td4").val();
 			careerTr1Td5 = $("#careerTr1Td5").val();
-			
+							
 			careerTr2Td1 = $("#careerTr2Td1").val();
 			careerTr2Td2 = $("#careerTr2Td2").val();
 			careerTr2Td3 = $("#careerTr2Td3").val();
@@ -291,6 +291,12 @@
 			careerTr5Td3 = $("#careerTr5Td3").val();
 			careerTr5Td4 = $("#careerTr5Td4").val();
 			careerTr5Td5 = $("#careerTr5Td5").val();
+			
+			$("#careerTr1Td5").attr("min", careerTr1Td4);
+			$("#careerTr2Td5").attr("min", careerTr2Td4);
+			$("#careerTr3Td5").attr("min", careerTr3Td4);
+			$("#careerTr4Td5").attr("min", careerTr4Td4);
+			$("#careerTr5Td5").attr("min", careerTr5Td4);
 			
 			if(careerTr1Td1=="" || careerTr1Td2=="" || careerTr1Td3=="" || careerTr1Td4=="" || careerTr1Td5==""){
 				careerResult1 = "";				
@@ -1041,6 +1047,12 @@
 			activityTr5Td2 = $("#activityTr5Td2").val();
 			activityTr5Td3 = $("#activityTr5Td3").val();
 			activityTr5Td4 = $("#activityTr5Td4").val();
+			
+			$("#activityTr1Td4").attr("min", activityTr1Td3);
+			$("#activityTr2Td4").attr("min", activityTr2Td3);
+			$("#activityTr3Td4").attr("min", activityTr3Td3);
+			$("#activityTr4Td4").attr("min", activityTr4Td3);
+			$("#activityTr5Td4").attr("min", activityTr5Td3);
 			
 			if(activityTr1Td1=="" || activityTr1Td2=="" || activityTr1Td3=="" || activityTr1Td4==""){
 				activityResult1 = "";				

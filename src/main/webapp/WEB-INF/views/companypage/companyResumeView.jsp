@@ -22,46 +22,86 @@
 	
 	$(function(){
 		
-		$("#okBtn").click(function(){
-			
-			if(confirm("입력확인을 완료하시겠습니까? 확인 시 내용을 수정할 수 없습니다")){
-				alert('입력확인완료');
+		$("#okBtn").click(function(){			
+			if(confirm("완료하시겠습니까? 제출하면 내용을 수정할 수 없습니다")){
+				alert('제출완료');
 				location.href="<c:url value='/index.do'/>";
 			}else{
 				alert('취소되었습니다');
-				event.preventDefault();
-			
-			}
-						
+				event.preventDefault();			
+			}						
 		});
 		
+		/*학력*/
 		var eduView = $("#edu").val();
-		$("#eduView").html(eduView);
+			
+		if(eduView!=''){
+			$("#eduView").html(eduView);
+		}else{
+			$("#eduDiv").hide();
+		}
 		
+		/*경력*/
 		var career = $("#career").val();
 		var careerView = career.replace('*', '<br>');
-		$("#careerView").html(careerView);
 		
+		if(careerView!=''){
+			$("#careerView").html(careerView);
+		}else{
+			$("#careerDiv").hide();
+		}
+		
+		/*자격*/
 		var certificate = $("#certificate").val();
 		var certificateView = certificate.replace('*', '<br>');
-		$("#certificateView").html(certificateView);
 		
+		if(certificateView!=''){
+			$("#certificateView").html(certificateView);
+		}else{
+			$("#certificateDiv").hide();
+		}		
+		
+		/*어학*/
 		var language = $("#language").val();
 		var languageView = language.replace('*', '<br>');
-		$("#languageView").html(languageView);
 		
+		if(languageView!=''){
+			$("#languageView").html(languageView);
+		}else{
+			$("#languageDiv").hide();
+		}
+		
+		/*수상*/
 		var award = $("#award").val();
 		var awardView = award.replace('*', '<br>');
-		$("#awardView").html(awardView);
 		
+		if(awardView!=''){
+			$("#awardView").html(awardView);
+		}else{
+			$("#awardDiv").hide();
+		}
+		
+		/*우대*/
 		var special = $("#special").val();
 		var specialView = special.replace('*', '<br>');
-		$("#specialView").html(specialView);
 		
+		if(specialView!=''){
+			$("#specialView").html(specialView);
+		}else{
+			$("#specialDiv").hide();
+		}
+		
+		/*대외활동*/
 		var activity = $("#activity").val();
 		var activityView = activity.replace('*', '<br>');
-		$("#activityView").html(activityView);
 		
+		if(activityView!=''){
+			$("#activityView").html(activityView);
+		}else{
+			$("#activityDiv").hide();
+		}
+		
+		/*자기소개*/		
 		var self1 = $("#self1").val();
 		
 		if(self1==""){
@@ -183,43 +223,43 @@
 			</table>
 			<hr>
 		</div>
-		<div style="margin:5px;">
+		<div id="eduDiv" style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">학력사항</span><br><br>
 			<span id="eduView"></span>
 			<input type="hidden" name="edu" id="edu" value="${vo.edu}">
 			<hr>
 		</div>
-		<div style="margin:5px;">
+		<div id="careerDiv" style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">경력사항</span><br><br>
 			<span id="careerView"></span>
 			<input type="hidden" name="career" id="career" value="${vo.career}">
 			<hr>
 		</div>
-		<div style="margin:5px;">
+		<div id="certificateDiv" style="margin:5px;">
 		<span style="font-size: 18px; font-weight: bold;">자격증</span><br><br>
 			<span id="certificateView"></span>
 			<input type="hidden" name="certificate" id="certificate" value="${vo.certificate}">
 			<hr>
 		</div>
-		<div style="margin:5px;">
+		<div id="languageDiv" style="margin:5px;">
 		<span style="font-size: 18px; font-weight: bold;">어학능력</span><br><br>
 			<span id="languageView"></span>
 			<input type="hidden" name="language" id="language" value="${vo.language}">
 			<hr>			
 		</div>
-		<div style="margin:5px;">
+		<div id="awardDiv" style="margin:5px;">
 		<span style="font-size: 18px; font-weight: bold;">수상이력</span><br><br>
 			<span id="awardView"></span>
 			<input type="hidden" name="award" id="award" value="${vo.award}">
 			<hr>
 		</div>
-		<div style="margin:5px;">
+		<div id="specialDiv" style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">우대사항</span><br><br>
 			<span id="specialView"></span>
 			<input type="hidden" name="special" id="special" value="${vo.special}">
 			<hr>
 		</div>
-		<div style="margin:5px;">
+		<div id="activityDiv" style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">대외활동</span><br><br>
 			<span id="activityView"></span>
 			<input type="hidden" name="activity" id="activity" value="${vo.activity}">

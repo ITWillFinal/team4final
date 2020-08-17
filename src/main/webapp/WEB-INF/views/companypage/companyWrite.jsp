@@ -769,7 +769,7 @@
 							<option value="6">대학원(석사)</option>
 							<option value="7">대학원(박사)</option>
 						</select> 
-						<input type="hidden" id="educationLv" name="educationLv" value="무관">
+						<input type="hidden" id="educationLv" name="educationLv" value="0">
 					</td>
 				</tr>
 
