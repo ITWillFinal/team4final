@@ -49,9 +49,8 @@
 <style>
 	#addHeadMenu{
 		overflow: hidden;
-		margin-top: 50px;
-		margin-left: 340px;
-		margin-bottom: 100px;
+		width:1120px;
+		margin: 50px auto;
 	}
 	#headMenu{
 		float: left;
@@ -66,7 +65,6 @@
 		color: #010b1d;
 	}
 	#upDiv{
-		margin: 90px 0;
 	}
 	#scrapListDiv{
 		margin: 0 auto;
@@ -84,20 +82,28 @@
 	.title{
 		font-size: xxx-large
 	}
-	.editA{
-		margin-left: 120px;
-		color: black;
-		border-style: none;
+	
+	#scrapListDiv h3{
+		margin: 30px 0;
 	}
-	.editComInfo{
-		margin-left: 120px;
-		color: black;
-		border-style: none;
+	
+	.bttn1{
+		width:100px;
+		display: inline-block;
+		margin-top: -0.5px;
+		cursor: pointer;
+		float: right;
+	}
+	
+	.bttn1:hover{
+		background: #ced4da;
+		border:	1px solid #ced4da;
+		color: white;
 	}
 </style>
 <div>
 	<div id="addHeadMenu">
-		<div id="headMenu">
+		<div id="headMenu" style="margin-left: 120px">
 			<a href="<c:url value='/companypage/MyCompany.do'/>"><i class="fas fa-building fa-4x"></i><br>
 			<span></span><br>
 			<span>회사정보</span></a>
@@ -120,18 +126,20 @@
 	</div>
 	<div id="upDiv">
 		<div id="scrapListDiv">
-				<h3 style="margin: 40px;">회원 정보</h3>
+				<h3>회원 정보</h3>
 					<div class="single-job-items mb-30" id="listOne">
-						<div class="job-items">
+						<div class="job-items" style="width: 100%">
 							<div class="job-tittle">
 							</div>
 							<div class="memberInfo">
 								<span class="userName">${comMemberVo.cUsername }</span><span>님</span><span>(${comMemberVo.cGender } ${birth }년생)</span>
-									<input class="editA" type="button" value="수정하기">
 								<br>
 								<span>이메일 : ${comMemberVo.cEmail }</span><br>
 								<span>전화번호 : ${comMemberVo.cHp }</span><br>
 							</div>
+						</div>
+						<div style="text-align: right;width: 100%">
+									<input class="editA form-control bttn1" type="button" value="수정하기">
 						</div>
 					</div>
 		</div>
@@ -150,15 +158,15 @@
 	<c:if test="${!empty comInfoVo}">
 		<div id="upDiv">
 			<div id="scrapListDiv">
-				<h3 style="margin: 40px;">회사 정보</h3>
+				<h3>회사 정보</h3>
 				<div class="single-job-items mb-30" id="listOne">
-					<div class="job-items">
+					<div class="job-items" style="width: 100%">
 						<div class="job-tittle">
 							<img src="<c:url value='/companyInfoImage/${comInfoVo.imageURL }'/>" alt="" width="230" align="absmiddle">
 						</div>
 						<div class="memberInfo">
 							<span class="userName">${comInfoVo.comName }</span><span>님</span><span>(${comInfoVo.ceo } 대표님)</span>
-								<input class="editComInfo" type="button" value="수정하기">
+								
 							<br>
 							<c:if test="${!empty comInfoVo.homepage }">
 								<span>홈페이지 : ${comInfoVo.homepage }</span><br>
@@ -170,6 +178,9 @@
 							<span>주소 : ${comInfoVo.zipcode } ${comInfoVo.address } ${comInfoVo.addressDetail }</span><br>
 						</div>
 					</div>
+					<div style="text-align: right;width: 100%">
+							<input class="editComInfo form-control bttn1" type="button" value="수정하기">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -178,7 +189,7 @@
 	<c:set var="check" value="0"/>
 	<div id="upDiv">
 		<div id="scrapListDiv">
-			<h3 style="margin: 40px;">현재 진행중인 채용공고</h3>
+			<h3>현재 진행중인 채용공고</h3>
 			<c:if test="${!empty comRecuritListVo}">
 				<c:forEach var="vo" items="${comRecuritListVo }">
 					<fmt:parseDate var="end" value="${vo.endDate}" pattern="yy/MM/dd" />

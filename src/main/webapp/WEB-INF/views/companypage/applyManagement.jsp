@@ -100,33 +100,36 @@
 
 </script>
 <style type="text/css">
-	a{
+	job-tittle a{
 		color:black;
 		font-weight: bold;
+		
 	}
 
 	.AM-main{
-		width: 1000px;
-		height: auto;
-		padding: 15px;
-		margin: auto;
+	min-height:800px;
+		width: 1055px;
+    height: auto;
+    /* padding: 15px; */
+    margin: 0 auto;
 	}
 
-	.AM-top{
-		border-bottom: 3px solid #fd5a77;
-    	margin-bottom: 20px;
+	#listOne {
+	height: 194px;
+    	border: 1px solid #e0e0e08f;
+    	box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 	}
 </style>
 <main>
 	
 		<div class="AM-main">
 		<div class="AM-top">
-			<h1 style="font-weight: bold;">지원자 관리</h1>
+			<h1 style="background: white;font-weight: bold;">지원자관리</h1>
+				<hr style="border: 1px solid #fb246a;margin: 30px 0;">
 		</div>
 	<c:set var="check" value="0"/>
 	<div id="upDiv">
 		<div id="scrapListDiv">
-			<h3 style="margin: 40px;">현재 진행중인 채용공고</h3>
 			<c:if test="${!empty comRecuritListVo}">
 				<c:forEach var="vo" items="${comRecuritListVo }">
 					<c:set var="check" value="${check + 1 }"/>
@@ -144,6 +147,9 @@
 						</div>
 					</div>
 				</c:forEach>
+			</c:if>
+			<c:if test="${empty comRecuritListVo}">
+				<h3 style="padding: 5px">등록된 채용공고가 없습니다.</h3>
 			</c:if>
 		</div>
 	</div>
