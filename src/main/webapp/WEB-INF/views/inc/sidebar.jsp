@@ -51,7 +51,7 @@
 			<div class="MenuHoverDiv"><a href="<c:url value='/resume/resumeMain.do'/>">이력서현황</a></div>
 			<div class="MenuHoverDiv"><a href="<c:url value='.do'/>">입사요청현황</a></div>
 			<div class="MenuHeadDiv">고객센터</div>
-			<div class="MenuHoverDiv"><a href="<c:url value = '/notice/comNotice.do'/>">공지사항</a></div>
+			<div class="MenuHoverDiv"><a href="<c:url value = '/notice/memberNotice.do'/>">공지사항</a></div>
 			<div class="MenuHoverDiv"><a href="<c:url value = '/gogak/personal/faqList.do'/>">자주 찾는 질문</a></div>
 			<div class="MenuHoverDiv"><a href="<c:url value = '/gogak/qnaP/qnaWrite.do'/>">1:1 문의</a></div>
 			<div class="MenuHoverDiv"><a href="<c:url value = '/gogak/qnaP/qnaList.do'/>">나의 1:1 문의</a></div>
