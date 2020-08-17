@@ -56,7 +56,7 @@
 								<!-- Header-btn -->
 								<div class="header-btn d-none f-right d-lg-block" style="margin-left: 100px;">
                                 	<a href="<c:url value='/login/logout.do'/>" style="margin-right: 20px; font-size: .8em; color:#252b60; ">로그아웃</a>
-                                    <a href="<c:url value='/mypage/mypageHome.do?status=${sessionScope.status }'/>" class="btn head-btn2" style="font-weight: bold;">고객센터</a>
+                                    <a href="<c:url value='/gogak/qnaC/qnaWrite.do'/>" class="btn head-btn2" style="font-weight: bold;">1:1 문의</a>
 								</div>
 							</div>
 						<!-- Mobile Menu -->

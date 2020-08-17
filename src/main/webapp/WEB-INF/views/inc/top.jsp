@@ -134,7 +134,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 	float: left;
 	border-collapse: collapse;
 	padding: 40px;
-    padding-left: 80px;
+    padding-left: 120px;
 	height: 220px;
 }
 
@@ -368,17 +368,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 												<a href="<c:url value='/hireinpo/hireInfoByInduType.do'/>">산업별</a>
 
 											</div>
-											<div>
-												<span>취업성공 툴 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
-												<br><br> 
-												<a href="about.html">이력서 작성</a> 
-												<br>
-												<a href="about.html">학격자소서</a> 
-												<br>
-												<a href="about.html">합격 스팩</a> 
-												<br>
-												<a href="about.html">취업후기</a>
-											</div>
+											
 											<div>
 												<span>직업탐색 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
 												<br><br>
