@@ -152,13 +152,10 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 							<c:if test="${endDate-startDate+1 == 0}">
 									<span>마감까지 하루 남았습니다!</span>
 							</c:if>
+							<c:if test="${endDate-startDate+1 < 0}">
+									<span>지원이 마감되었습니다.</span>
+							</c:if>
 						</div>
-					<c:if test="${endDate-startDate+1 < 0}">
-						<div class="items-link f-right">
-							<a style="background: #7b7b7bbf;border: 1px solid #7b7b7bbf;">지원마감</a>
-							<span>지원이 마감되었습니다.</span>
-						</div>
-					</c:if>
 				</div>
 			</c:forEach>
 		</c:if>
