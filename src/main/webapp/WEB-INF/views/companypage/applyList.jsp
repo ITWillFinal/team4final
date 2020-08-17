@@ -100,7 +100,7 @@ td{
 						<tbody>
 							<c:if test="${empty applyList }">
 								<tr>
-									<td colspan="4">지원자가 없습니다.</td>
+									<td colspan="5">지원자가 없습니다.</td>
 								</tr>
 							</c:if>
 							<c:if test="${!empty applyList }">

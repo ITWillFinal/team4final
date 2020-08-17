@@ -125,17 +125,10 @@
 	    padding: 0;
 	}
 	.ST-main{
-		width: 1000px;
+		width: 1055px;
 		height: auto;
-		padding: 15px;
 		/* margin: 0 auto; */
 	}
-	
-	.ST-main-top{
-		border-bottom: 3px solid #fd5a77;
-		margin-bottom: 20px;
-	}
-	
 	.ST-main-top h1{
 		font-weight: bold;
 	}
@@ -148,7 +141,7 @@
 	}
 	
 	.selectWidth-250px{
-		width: 250px;
+		width: 340px;
 	}
 	
 	.search-result{
@@ -223,7 +216,8 @@
 		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->	
 		<div class="ST-main">
 			<div class="ST-main-top">
-				<h1>인재 검색</h1>
+				<h1 style="background: white;font-weight: bold;margin-top: 35px;">인재검색</h1>
+				<hr style="border: 1px solid #fb246a;margin: 30px 0;">
 			</div>
 			<div class="ST-main-content">
 				<div class="select-condition">

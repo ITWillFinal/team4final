@@ -124,7 +124,7 @@
    		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 		padding: 10px;
 		height: 680px;
-		width:505px;
+		width:525px;
 	}
 	
 	.add-condition{

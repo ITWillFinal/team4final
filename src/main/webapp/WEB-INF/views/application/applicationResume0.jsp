@@ -180,6 +180,10 @@
 	    position: relative;
     	top: -11px;
 	}
+
+	.btn:hover{
+		color: white;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -270,7 +274,7 @@
 		</c:if>
 		<c:if test="${!empty resumeList }">
 			<div class="resume-add">
-					<a class="btn head-btn2 apply" style="cursor: pointer;">지원하기</a>
+					<a class="btn head-btn2 apply" style="cursor: pointer;color: #fb246a;">지원하기</a>
 			</div>
 		</c:if>
 	</div>
