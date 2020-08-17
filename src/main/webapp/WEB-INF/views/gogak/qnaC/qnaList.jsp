@@ -5,13 +5,6 @@
 <%@ taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
-.divList{
-/*     padding-left: 300px; */
-    padding-top: 40px;
-    padding-left: 80px;
-    padding-bottom: 50px;
-    padding-right: 80px;
-}
 th{
 	border-bottom: 3px solid #FB246A;;
 	text-align: center;
@@ -21,11 +14,9 @@ td{
 	border-bottom: 1px solid #FB246A;
 	padding: 13px;
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-#list{
-	width: 800px;
-	height: 700px;
+div#list {
+    width: 1000px;
 }
-
 #upList{
 	 padding-left: 300px;
 }
@@ -121,17 +112,11 @@ input[type=submit] {
 	<%@ include file="../../inc/companySidebar.jsp"%>
 	
 	<!-- main -->
-	<div id = "mainDiv" style="text-align: center; margin:5px; width:864px; margin-top: 1.8%; margin-left: 1.6%; border:1px solid lightgray; float: left;">
-		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
-			<li class = "select" style="width: 33%;" id = "fst">
-				<a href = <c:url value='/gogak/qnaC/qnaList.do'/> style="color: black;">1:1 문의</a>
-			</li>
-			<li class = "select" style="width: 33%;" id = "mid">
-			</li>
-			<li class = "select" style="width: 33%;" id = "btm">
-			</li>
-		</ul>
-		<div style="text-align: center; margin:5px; /* border:1px solid lightgray; */">
+	<div style=" margin:5px;float: left;">
+		<div style="margin-left: 0.5%;">
+			<div id="outDiv">
+				<h2 style="font-weight: bold;padding-top: 33px; padding-left: 39px;">고객센터</h2>
+		<div style="text-align: center; margin:5px; border:1px solid lightgray; margin-left: 21px; margin-top: 16px;">
 			<div id = "list">
 				<div id = "upList">
 					<c:if test="${!empty param.searchKeyword }">
@@ -152,7 +137,7 @@ input[type=submit] {
 			<form name="frmList" method="post"
 				action="<c:url value = '/gogak/qnaC/qnaList.do'/>">
 				<div class = "divList">
-					<table class = "box2" style="width: 700px; margin-top: 45px;">
+					<table class = "box2" style="margin-top: 45px;margin-left: 2%;width: 96%;">
 						<colgroup>
 						   <col style="width:10%;" />
 						   <col style="width:15%;" />
@@ -175,7 +160,7 @@ input[type=submit] {
 						<c:if test="${!empty list }">
 							<c:set var = "idx" value = "0"/>
 								<c:forEach var = "vo" items="${list }">
-										<tr>
+									<tr>
 										<td style="text-align: center;">${vo.qnaNo }</td>
 										<td style="text-align: center;">${vo.status }</td>
 										<td style="text-align: center;">${vo.category }</td>
@@ -273,6 +258,8 @@ input[type=submit] {
 				    </form>
 				</div>
 			</div><!-- divList -->
+		</div>
+		</div>
 		</div>
 	</div>
 </main>

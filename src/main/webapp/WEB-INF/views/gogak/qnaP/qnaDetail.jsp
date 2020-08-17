@@ -58,11 +58,6 @@ h3{
 	padding-bottom: 60px;
 }
 
-#outDiv{
-    padding: 75px 35px 90px 35px;
-	width: 100%;
-}
-
 /* 글내용 */
 #divAnswer{
     word-break: break-all;
@@ -188,22 +183,18 @@ input[type=submit] {
     margin-left: 1%;
     margin-bottom: 2%;
 }
-div#mainDiv {
-    margin-left: 2%;
-    margin-top: 2.4%;
-    width: 871px;
-}
 </style>
 	<%@ include file="../../inc/top.jsp"%>
 <main>
 	<%@ include file="../../inc/sidebar.jsp"%>
 	<!-- main -->
-	<div id = "mainDiv" style="text-align: center; border:1px solid lightgray; float: left; margin-left: 1.7%; margin-top: 1.9%;">
-		<!-- 본문 -->
-		<div style="text-align: center; margin: 5px; /* border: 1px solid lightgray; */">
+	<div style=" margin:5px; width:850px;  float: left;">
+		<div style="margin-left: 0.5%;">
+			<div id="outDiv">
+				<h2 style="font-weight: bold;padding-left: 40px; padding-top: 33px;">고객센터</h2>
+		<div style="text-align: center; margin: 5px; border: 1px solid lightgray;margin-left: 22px;margin-top: 1.9%;width: 1000px;padding-top: 8%;padding-left: 8%; padding-right: 8%; padding-bottom: 10%;">
 			<div id="outDiv">
 				<input type="hidden" value="${vo.qnaNo }" name="no">
-				
 				<h4>― 1:1 문의게시판 ―</h4>
 				<h3>${vo.title}</h3>
 				<div id = "idx">
@@ -287,6 +278,8 @@ div#mainDiv {
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
 	</div>
 </main>
 

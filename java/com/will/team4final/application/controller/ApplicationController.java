@@ -41,6 +41,18 @@ public class ApplicationController {
 		
 		logger.info("회사 지원 페이지 userid={}, recruitmentCode={}",userid,recruitmentCode);
 		
+		ApplyVO applyVo = new ApplyVO();
+		applyVo.setRecruitmentCode(recruitmentCode);
+		applyVo.setUserNo(memberVo.getUserNo());
+		int checkDup = applyService.selectApply(applyVo);
+		
+		if(checkDup > 0) {
+			String url = "/member/currentApply.do", msg = "이미 지원하셨습니다.";
+			model.addAttribute("url",url);
+			model.addAttribute("msg",msg);
+			return "common/message";
+		}
+		
 		Recruitment_TosVO vo = comRecuritService.selectTosOneCom(recruitmentCode);
 		logger.info("회사 지원 페이지 vo={}",vo);
 				

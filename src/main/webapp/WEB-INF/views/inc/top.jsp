@@ -349,11 +349,9 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 												<br><br> 
 												<a href="<c:url value='/info/info.do'/>">회사소개</a> 
 												<br>
-												<a href="<c:url value=''/>">회사 CI</a>
+												<a href="<c:url value='/info/ciPage.do'/>">회사 CI</a>
 												<br>
-												<a href="<c:url value='/about/thejobLocation.do'/>">회사위치</a> 
-												<br>
-												<a href="<c:url value=''/>">인재채용</a>
+												<a href="<c:url value='/aboutThejob/thejobLocation.do'/>">회사위치</a> 
 
 											</div>
 											<div>
