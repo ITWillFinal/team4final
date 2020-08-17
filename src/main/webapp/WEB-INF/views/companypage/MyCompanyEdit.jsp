@@ -110,18 +110,14 @@
 	});//function
 </script>
 <style type="text/css">
-hr{
-	height: 3px;
-    background: #da2461;
-
-}
 .btSubmit{
+	width:100%;
+	padding:0;
 	text-align: center;
-	padding: 30px;
 }
-img {
+/* img {
     width: 100%;
-}
+} */
 input#imageUpload {
     margin-top: 3%;
 }
@@ -130,15 +126,56 @@ label.col-sm-3.control-label {
     font-size: 10pt;
     color: gray;
 }
-input[type="text"] {
-    font-weight: bold;
-}
+
 label.col-sm-3.control-label {
     margin-top: 2%;
 }
 #bbk > form > div.form-horizontal > div:nth-child(2) {
     margin-top: -3%;
 }
+#bbk{
+	width: 1055px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+.fileLabel {
+	width:170px;
+	text-align:center;
+	  display: inline-block;
+	  padding: .5em .75em;
+	  color: #fff;
+	  font-size: inherit;
+	  line-height: normal;
+	  vertical-align: middle;
+	  background-color: #fb246a;
+	  cursor: pointer;
+	  border: 1px solid #fb246a;
+	  border-radius: .25em;
+	  -webkit-transition: background-color 0.2s;
+	  transition: background-color 0.2s;
+	}
+	
+	.fileLabel:hover {
+	  background-color: #ffc0d3;
+	  border: 1px solid #ffc0d3;
+	}
+	
+	.fileLabel:active {
+	  background-color: white;
+	  border: 1px solid #fb246a;
+	  color: #fb246a;
+	}
+	
+	.fileInput {
+	  position: absolute;
+	  width: 1px;
+	  height: 1px;
+	  padding: 0;
+	  margin: -1px;
+	  overflow: hidden;
+	  clip: rect(0, 0, 0, 0);
+	  border: 0;
+	}
 </style>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -180,21 +217,13 @@ label.col-sm-3.control-label {
 	}
 </script>
 <main>
-	<div id = "bbk"
-		style="float: left; width: 49%; margin-left: 29%; font-size: 14px;">
+	<div id = "bbk">
 		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
 		
 		<!-- main -->
-		<div style="margin: 5px; height: 95px;"><br>
-			<h1 style="background: white; padding: 20px; font-weight: bold;">
-				회사 정보 수정 <span
-					style="font-size: 14px; color: red; padding-left: 30px;">*
-					필수가 아닌항목은 체크해제시 적용되지 않습니다.</span>
-			</h1>
-		</div>
-		<br>
-		<hr style="margin: 5px 0px;">
-		<form name="frm" method="post" style="margin-top: 50px;"
+		<h1 style="background: white;font-weight: bold;">회사정보수정<span class="deleteInfo" style="margin-left: 10px;font-size: small;">(필수가 아닌항목은 체크해제시 적용되지 않습니다)</span></h1>
+				<hr style="border: 1px solid #fb246a;margin: 30px 0;">
+		<form name="frm" method="post" style="margin-top: 50px;width: 100%;"
 			action="<c:url value='/companypage/MyCompanyEdit.do' /> "
 			enctype="multipart/form-data" >
 			<input type="hidden" name = "comCode" value = ${param.comCode }>
@@ -240,24 +269,26 @@ label.col-sm-3.control-label {
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputUser" class="col-sm-3 control-label">회사 사진 
-				</label>
 				<div class="col-sm-9 form-input">
+					<img id="image" width="100px" height="100px" alt="Image Preview" style="display: none;">
+					<br>
+					<br>
 					<c:if test="${empty vo.imageURL }">
+						<label for="imageUpload" class="col-lg-3 control-label fileLabel">회사 사진 업로드 </label>
 						<input type="hidden" name = "imageURL" value = "${vo.imageURL }">
-						<input type="file" name="imageUpload" id="imageUpload" class="infobox"
+						<input type="file" name="imageUpload" id="imageUpload" class="infobox fileInput" accept="image/*"
 						placeholder="회사 사진 재업로드"> 
 					</c:if>
 					<c:if test="${!empty vo.imageURL }">
-						<img src = "<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
-					<input type="file" name="imageUpload" id="imageUpload" class="infobox"
+						<img src = "<c:url value = '/companyInfoImage/${vo.imageURL }'/>"><br><br>
+						<label for="imageUpload" class="col-lg-3 control-label fileLabel">회사 사진 업로드 </label>
+						<input type="file" name="imageUpload" id="imageUpload" class="infobox fileInput" accept="image/*"
 						placeholder="회사 사진 재업로드"> 
 					</c:if>
 					<input type="hidden" name = "imageURL" value = "${vo.imageURL }">
 				</div>
-				<div class="col-sm-9 form-input">
-					<img id="image" width="100" height="100" alt="Image Preview" style="display: none;">
-				</div>
+				<!-- <div class="col-sm-9 form-input">
+				</div> -->
 			</div>
 			<div class="form-group">
 					<label for="inputUser" class="col-sm-4 control-label">회사 내부 전화 번호 <span>*</span>
@@ -550,8 +581,8 @@ label.col-sm-3.control-label {
 				<label for="inputUser" class="col-sm-3 control-label">주요 사업 내용 <span>*</span>
 				</label>
 				<div class="col-sm-9 form-input">
-					<textarea rows="8" cols="20" name = "content"
-						style="width: 570px;">${fn:replace(vo.content , newLine, '<br>')}</textarea>
+					<span name="content">${fn:replace(vo.content , newLine, '<br>')}</span>
+					
 				</div>
 			</div>	
 			<div class="form-group">
@@ -565,9 +596,8 @@ label.col-sm-3.control-label {
 		<!-- main end -->
 		</div>
 		<div class="btSubmit">
-			<div class="col-lg-offset-2 col-lg-10">
-				<button type="submit" class="btn btn-primary">수정하기</button>
-			</div>
+				<button type="submit" class="btn btn-primary">수정</button>
+				<button type="button" onclick="history.back()" class="btn btn-primary">취소</button>
 		</div>
 		</form>
 		<!-- submit button -->
