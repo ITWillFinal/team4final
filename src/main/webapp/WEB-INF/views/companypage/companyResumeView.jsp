@@ -13,8 +13,25 @@
 	}
 	
 	textarea {
-    resize:none; /*크기고정 */ 
-	}	
+    	resize:none; /*크기고정 */ 
+	}
+	
+	.photo{
+		margin-top:20px;
+		background-image: url(/team4final/personalMemberProfile/);
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		width: 156px;
+		height: 216px;
+		position: absolute;
+		left: 1300px;
+	}
+	
+	.btn2{
+		width:90px;
+		display: inline-block;
+		margin-top: -3.5px;
+	}
 	
 
 </style>
@@ -181,6 +198,8 @@
 		<span style="font-size: 25px; font-weight: bold;">자사 이력서 양식 작성</span>
 		<hr>
 		<div style="margin:5px;">
+			<div class="photo">
+			</div>
 			<span style="font-size: 18px; font-weight: bold;">기본정보</span>
 			<br><br>
 			<table>
@@ -265,27 +284,34 @@
 			<input type="hidden" name="activity" id="activity" value="${vo.activity}">
 			<hr>
 		</div>
-		<div style="margin:5px;">	
+		<div style="margin:5px;">
 		<span style="font-size: 18px; font-weight: bold;">자기소개</span><br><br>
 			<div id="self1Div">
 				<span id="self1Title"></span><br>
-				<textarea id="self1Content" rows="8" cols="80"></textarea><br>
+				<span id="self1Content"></span><br>				
 			</div>
+							
 			<div id="self2Div">
+				<br>
 				<span id="self2Title"></span><br>
-				<textarea id="self2Content" rows="8" cols="80"></textarea><br>
+				<span id="self2Content"></span><br>				
 			</div>
+				
 			<div id="self3Div">
+				<br>
 				<span id="self3Title"></span><br>
-				<textarea id="self3Content" rows="8" cols="80"></textarea><br>
+				<span id="self3Content"></span><br>				
 			</div>
+			
 			<div id="self4Div">
+				<br>
 				<span id="self4Title"></span><br>
-				<textarea id="self4Content" rows="8" cols="80"></textarea><br>
+				<span id="self4Content"></span><br>				
 			</div>
-			<div id="self5Div">
+			
+			<div id="self5Div"><br>
 				<span id="self5Title"></span><br>
-				<textarea id="self5Content" rows="8" cols="80"></textarea><br>
+				<span id="self5Content"></span><br>				
 			</div>
 			<input type="hidden" name="self1" id="self1" value="${vo.self1}">
 			<input type="hidden" name="self2" id="self2" value="${vo.self2}">
@@ -295,8 +321,8 @@
 			<hr>
 		</div>
 		<div style="text-align: center;">
-			<input type="button" name="modifyBtn" id="modifyBtn" value="수정하기" onclick="history.back();"/>
-			<input type="button" name="okBtn" id="okBtn" value="확인완료"><br><br>
+			<input type="button" name="modifyBtn" id="modifyBtn" class="form-control btn2" value="수정하기" onclick="history.back();"/>
+			<input type="button" name="okBtn" id="okBtn" class="form-control btn2" value="확인완료"><br><br>
 			<br>
 		</div>
 	</div>

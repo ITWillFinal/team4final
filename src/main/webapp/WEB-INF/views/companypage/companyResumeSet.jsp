@@ -26,8 +26,8 @@
 		background : whitesmoke;
 		width:200px;
 		height:35px;
-		border:none;
-		border-radius: 10px;
+		border:1px lightgray solid;
+		border-radius: 5px;
 	}
 	
 	tr {
@@ -75,11 +75,11 @@
 		-webkit-transition: .4s;
 		transition: .4s;	
 	}
-	input:checked + .slider {
-		background-color: #2196F3;
+		input:checked + .slider {
+		background-color: #fb246a;
 	}
 	input:focus + .slider {
-		box-shadow: 0 0 1px #2196F3;
+		box-shadow: 0 0 1px #fb246a;
 	}
 	input:checked + .slider:before {
 		-webkit-transform: translateX(13px);
@@ -131,11 +131,9 @@
 		$("#schoolVal").val("y");
 		$("#schoolChk").change(function(){
 	        if($("#schoolChk").is(":checked")){
-	            alert("학력 사용설정");
 	            $("#schoolDivChk").show();
 	            $("#schoolVal").val("y");
 	        }else{
-	            alert("학력 사용해제");
 	            $("#schoolDivChk").hide();
 	            $("#schoolVal").val("n");
 	        }
@@ -144,11 +142,9 @@
 		$("#careerVal").val("y");
 		$("#careerChk").change(function(){
 	        if($("#careerChk").is(":checked")){
-	            alert("경력 사용설정");
 	            $("#careerDivChk").show();
 	            $("#careerVal").val("y");
 	        }else{
-	            alert("경력 사용해제");
 	            $("#careerDivChk").hide();
 	            $("#careerVal").val("n");
 	        }
@@ -157,11 +153,9 @@
 		$("#certificateVal").val("y");
 		$("#certificateChk").change(function(){
 	        if($("#certificateChk").is(":checked")){
-	            alert("자격증 사용설정");
 	            $("#certificateDivChk").show();
 	            $("#certificateVal").val("y");
 	        }else{
-	            alert("자격증 사용해제");
 	            $("#certificateDivChk").hide();
 	            $("#certificateVal").val("n");
 	        }
@@ -170,11 +164,9 @@
 		$("#languageVal").val("y");
 		$("#languageChk").change(function(){
 	        if($("#languageChk").is(":checked")){
-	            alert("외국어능력 사용설정");
 	            $("#languageDivChk").show();
 	            $("#languageVal").val("y");
 	        }else{
-	            alert("외국어능력 사용해제");
 	            $("#languageDivChk").hide();
 	            $("#languageVal").val("n");
 	        }
@@ -183,11 +175,9 @@
 		$("#awardsVal").val("y");
 		$("#awardsChk").change(function(){
 	        if($("#awardsChk").is(":checked")){
-	            alert("수상내역 사용설정");
 	            $("#awardsDivChk").show();
 	            $("#awardsVal").val("y");
 	        }else{
-	            alert("수상내역 사용해제");
 	            $("#awardsDivChk").hide();
 	            $("#awardsVal").val("n");
 	        }
@@ -196,11 +186,9 @@
 		$("#activityVal").val("y");
 		$("#activityChk").change(function(){
 	        if($("#activityChk").is(":checked")){
-	            alert("대외활동 사용설정");
 	            $("#activityDivChk").show();
 	            $("#activityVal").val("y");
 	        }else{
-	            alert("대외활동 사용해제");
 	            $("#activityDivChk").hide();
 	            $("#activityVal").val("n");
 	        }
@@ -209,11 +197,9 @@
 		$("#specialVal").val("y");
 		$("#specialChk").change(function(){
 	        if($("#specialChk").is(":checked")){
-	            alert("우대사항 사용설정");
 	            $("#specialDivChk").show();
 	            $("#specialVal").val("y");
 	        }else{
-	            alert("우대사항 사용해제");
 	            $("#specialDivChk").hide();
 	            $("#specialVal").val("n");
 	        }
@@ -224,11 +210,9 @@
 		$("#selfVal").val("y");
 		$("#selfChk").change(function(){
 	        if($("#selfChk").is(":checked")){
-	            alert("자기소개서 사용설정");
 	            $("#selfDivChk").show();
 	            $("#selfVal").val("y");
 	        }else{
-	            alert("자기소개서 사용해제");
 	            $("#selfDivChk").hide();
 	            $("#selfVal").val("n");
 	            $('#selfTable').find('input[type=text]').val('');
@@ -259,7 +243,7 @@
 		<span style="font-size: 25px; font-weight: bold;">자사 이력서 양식 설정</span>
 		<hr>
 		<div style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎기본정보</span>
+			<span style="font-size: 18px; font-weight: bold;">기본정보</span>
 			<br><br>
 			<table>
 				<colgroup>
@@ -303,7 +287,7 @@
 		<hr>
 		
 		<div id="schoolDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎학력사항</span>
+			<span style="font-size: 18px; font-weight: bold;">학력사항</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="schoolChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -334,7 +318,7 @@
 		<hr>		
 		
 		<div id="careerDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎경력사항</span>
+			<span style="font-size: 18px; font-weight: bold;">경력사항</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="careerChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -368,7 +352,7 @@
 		<hr>
 		
 		<div id="certificateDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎자격증</span>
+			<span style="font-size: 18px; font-weight: bold;">자격증</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="certificateChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -399,7 +383,7 @@
 		<hr>
 		
 		<div id="languageDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎외국어능력</span>
+			<span style="font-size: 18px; font-weight: bold;">외국어능력</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="languageChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -430,7 +414,7 @@
 		<hr>
 		
 		<div id="awardsDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎수상내역</span>
+			<span style="font-size: 18px; font-weight: bold;">수상내역</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="awardsChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -461,7 +445,7 @@
 		<hr>
 		
 		<div id="specialDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎우대사항</span>
+			<span style="font-size: 18px; font-weight: bold;">우대사항</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="specialChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -490,7 +474,7 @@
 		<hr>
 		
 		<div id="activityDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎대외활동</span>
+			<span style="font-size: 18px; font-weight: bold;">대외활동</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="activityChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -521,7 +505,7 @@
 		<hr>
 		
 		<div id="selfDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎자기소개서</span>
+			<span style="font-size: 18px; font-weight: bold;">자기소개서</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="selfChk" checked> <!-- 체크 시 테이블 등장 -->
