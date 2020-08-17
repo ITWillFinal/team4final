@@ -19,6 +19,7 @@ div#bts {
     margin-left: 40%;
     margin-bottom: 7%;
 }
+
 .notice {
     width: 96%;
     margin: 0 auto;
@@ -37,8 +38,8 @@ div#bts {
     font-weight: bold;
 }
 table {
-    margin-left: 7%;
-    width: 687px;
+    margin: 0 auto;
+    width: 800px;
     margin-top: 6%;
     margin-bottom: 6%;
 }
@@ -73,9 +74,31 @@ input[type=submit] {
 }
 div#idx {
     border: 1px solid lightgray;
-    margin-top: 3.5%;
+	margin-top: 2%;
     margin-left: -1%;
-    width: 107%;
+    width: 1000px;
+}
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
 }
 </style>
 <script type="text/javascript" 
@@ -97,16 +120,17 @@ div#idx {
 	<%@ include file="../../inc/sidebar.jsp"%>
 	
 	<!-- main -->
-	<div style="width:850px; float: left; margin-left: 0.5%; margin-top: 0.3%;">
-		<div style="">
+<div style=" margin:5px; width:850px;  float: left;">
+		<div style="margin-left: 0.5%;">
 			<div id="outDiv">
+				<h2 style="font-weight: bold; padding-top: 33px; padding-left: 10px;">고객센터</h2>
 				<form name = "frmWrite" method="post" 
 					action="<c:url value = '/gogak/qnaP/qnaWrite.do'/>">
 					<div id = "idx">
 						<h4 style="text-align:center; padding-top: 8%; font-weight: bold; font-size: 28px; margin-top: 5%; margin-bottom: 10%;">― 1:1 문의 ―</h4>
 						<div class = "notice" >
 							<p style="text-align:center;" >1:1 문의 게시판 운영 원칙</p>
-							<ul><!--  -->
+							<ul>
 								<li class = "lis">1:1 문의 게시판은 표현의 자유와 표현의 다양성을 존중합니다.</li>
 								<li class = "lis">동시에 타인의 권리를 침해하거나 명예를 훼손하는 내용은 제한합니다.</li>
 								<li class = "lis">방송통신심의위원회의 '정보통신에 관한 심의 규정', 한국인터넷자율정책기구의 '정책규정' 등을 기반으로 문제 게시물은 삭제될 수 있습니다.</li>
