@@ -154,6 +154,15 @@
     	border-radius: 5px;
     	margin: 2px;
 	}
+	.goTop{
+		bottom: 20px;
+	    right: 50px;
+	    position: fixed;
+	    width: 70px;
+	    background: #fb246a;
+	    text-align: center;
+	    border-radius: 20px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -223,4 +232,7 @@
 		<input type="text" class="message"/>
 		<input type="button" value="▲" class="messageSend"/>
 	</div>
+</div>
+<div class="goTop">
+	<a href="#">　TOP　</a>
 </div>

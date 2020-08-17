@@ -96,5 +96,11 @@
 			<beans:ref bean="mypageUseInterceptors"/>
 		</interceptor>
 	</interceptors>
+	<interceptors>
+		<interceptor>
+			<mapping path="/application/**"/>
+			<beans:ref bean="applicationUseInterceptors"/>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

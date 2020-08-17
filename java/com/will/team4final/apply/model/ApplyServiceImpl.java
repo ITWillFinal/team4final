@@ -46,4 +46,9 @@ public class ApplyServiceImpl implements ApplyService{
 	public int updateApplyStatus(ApplyVO applyVo) {
 		return applyDao.updateApplyStatus(applyVo);
 	}
+
+	@Override
+	public int selectApply(ApplyVO applyVo) {
+		return applyDao.selectApply(applyVo);
+	}
 }

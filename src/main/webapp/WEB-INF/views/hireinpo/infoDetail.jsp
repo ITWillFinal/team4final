@@ -183,7 +183,7 @@
 	</div>
 	<div id="headAdd2">
 		<c:if test="${endDate-startDate+1 > 0}">
-			<c:if test="${sessionScope.status == 'U' }">
+			<c:if test="${sessionScope.status != 'C' }">
 				<a href="<c:url value='/application/applicationResume.do?recruitmentCode=${vo.recruitmentCode }'/>" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
 			</c:if>
 		</c:if>
@@ -317,7 +317,7 @@
 		
 		<div>
 			<c:if test="${endDate-startDate+1 > 0}">
-				<c:if test="${sessionScope.status == 'U' }">
+				<c:if test="${sessionScope.status != 'C' }">
 					<a href="<c:url value='/application/applicationResume.do?recruitmentCode=${vo.recruitmentCode }'/>" class="btn head-btn2" id="bottomApply">지원</a>
 				</c:if>
 			</c:if>
