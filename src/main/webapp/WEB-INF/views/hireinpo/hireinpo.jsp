@@ -4,32 +4,34 @@
 <script>
 $(function(){
 	$( "#hireTabs" ).tabs();
-	$('#sido').click(function() {
-		$('#tdLocation1').val($('#sido option:selected').text());
+	$('.sido #op').click(function() {
+		$('#tdLocation1').val($(this).val());
 	});
-	$('#sigugun').click(function() {
-		$('#tdLocation2').val($('#sigugun').val());
+	$(document).on('click','#sigugunDiv button', function() {
+		$('#tdLocation2').val($(this).val());
 	});
-	$('#jobLarge').click(function() {
-		$('#tdJob1').val($('#jobLarge option:selected').text());
+	$('.jobLarge #op').click(function() {
+		$('#tdJob1').val($(this).text());
 	});
-	$('#jobMiddle').click(function() {
-		$('#tdJob2').val($('#jobMiddle option:selected').text());
+	$(document).on('click','#jobMiddleDiv button', function() {
+		$('#tdJob2').val($(this).text());
 	});
-	$('#induLarge').click(function() {
-		$('#tdIndu1').val($('#induLarge option:selected').text());
+	
+	$('.induLarge #op').click(function() {
+		$('#tdIndu1').val($(this).text());
 	});
-	$('#induMiddle').click(function() {
-		$('#tdIndu2').val($('#induMiddle option:selected').text());
+	$(document).on('click','#induMiddleDiv button', function() {
+		$('#tdIndu2').val($(this).text());
 	});
-	$('#recType').click(function() {
-		$('#tdHireType').val($('#recType').val());
+	$('#locationLi2 #recType').click(function() {
+		$('#tdHireType').val($(this).val());
 	});
-	$('#comty').click(function() {
-		$('#tdComType').val($('#comty').val());
+	$('#locationLi2 #comTy').click(function() {
+		$('#tdComType').val($(this).val());
 	});
-	$('#eduLv').click(function() {
-		$('#tdEdu').val($('#eduLv').val());
+	$('#locationLi2 #eduLv').click(function() {
+		$('#tdEdu').val($(this).val());
+		$('#tdEdu1').val($(this).text());
 	});
 	
 	$('#reset').click(function() {
@@ -38,20 +40,22 @@ $(function(){
 });
 
 $(function() {
-	$('#sido').click(function() {
+	$('#locationLi #op').click(function() {
 		$('#tdLocation2').val('');
-		var sido = $('#sido').val();
-		$('#sigugun').empty();
+		var sido = $(this).val();
+		$('.sigungu').empty();
 		$.ajax({
 			url:"<c:url value='/sigugun.do'/>",
 			type:"get",
 			dataType:"json",
 			data:"sido="+sido,
 			success:function(res){
+				var option = "<div style='width: 224px; overflow-y: scroll; height: 320px;' id='sigugunDiv'>"
 				for(var i = 0; i< res.length; i++){
-					var option ="<option value='"+res[i]+"'>"+res[i]+"</option>";
-					$('#sigugun').append(option);
+					option += "<button value='"+res[i]+"' class='btn head-btn1' style='width:200px; border: 1px solid white; padding: 22px;'>"+res[i]+"</button>";
 				}
+				option+="</div>";
+				$('.sigungu').append(option);
 			},
 			error:function(xhr, status, error){
 				alert(status + ", " + error);
@@ -59,20 +63,23 @@ $(function() {
 		});
 	});
 	
-	$('#jobLarge').click(function() {
+	$('.jobLarge #op').click(function() {
 		$('#tdJob2').val('');
-		var num = $('#jobLarge').val();
-		$('#jobMiddle').empty();
+		var num = $(this).val();
+		$('.jobMiddle').empty();
 		$.ajax({
 			url:"<c:url value='/job/jobMiddle.do'/>",
 			type:"get",
 			dataType:"json",
 			data:"no="+num,
 			success:function(res){
+				var option = "<div style='width: 274px; overflow-y: scroll; height: 320px;' id='jobMiddleDiv'>"
 				for(var i = 0; i< res.length; i++){
-					var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
-					$('#jobMiddle').append(option);
+					option += "<button value='"+res[i].MIDDLE_NO+"' class='btn head-btn1' style='width:250px; border: 1px solid white; padding: 22px;'>"+res[i].MIDDLE_GROUP+"</button>";
 				}
+				option+="</div>";
+				$('.jobMiddle').append(option);
+				
 			},
 			error:function(xhr, status, error){
 				alert(status + ", " + error);
@@ -80,20 +87,22 @@ $(function() {
 		});
 	});
 	
-	$('#induLarge').click(function() {
+	$('.induLarge #op').click(function() {
 		$('#tdIndu2').val('');
-		var num = $('#induLarge').val();
-		$('#induMiddle').empty();
+		var num = $(this).val();
+		$('.induMiddle').empty();
 		$.ajax({
 			url:"<c:url value='/job/induMiddle.do'/>",
 			type:"get",
 			dataType:"json",
 			data:"no="+num,
 			success:function(res){
+				var option = "<div style='width: 274px; overflow-y: scroll; height: 320px;' id='induMiddleDiv'>"
 				for(var i = 0; i< res.length; i++){
-					var option ="<option value='"+res[i].MIDDLE_NO+"'>"+res[i].MIDDLE_GROUP+"</option>";
-					$('#induMiddle').append(option);
+					option += "<button value='"+res[i].MIDDLE_NO+"' class='btn head-btn1' style='width:250px; border: 1px solid white; padding: 22px;'>"+res[i].MIDDLE_GROUP+"</button>";
 				}
+				option+="</div>";
+				$('.induMiddle').append(option);
 			},
 			error:function(xhr, status, error){
 				alert(status + ", " + error);
@@ -107,7 +116,11 @@ function hireInfo(){
 			$('#tdComType').val().length < 1 && $('#tdHireType').val().length < 1 && $('#tdEdu').val().length < 1 && $('#tdRecDetail').val().length < 1){
 		alert('최소 1개 이상의 조건을 등록해주세요.');
 		return
+	}else if($('#tdEdu').val() == ''){
+		$('#tdEdu').val(0);
 	}
+	
+	
 	$.ajax({
 		 url :"<c:url value='/hireinpo/searchHireInfo.do'/>"
 		,type:"post"
@@ -122,7 +135,7 @@ function hireInfo(){
 			}
 		}
 	    ,error: function(xhr,status, error){
-	    	alert("에러발생");
+	    	alert(status+"에러발생"+error);
 	    }
 	});
 }
@@ -153,14 +166,16 @@ function makeListJson(res){
 	}
 	#hireTabs{
 		float: left;
-		width: 55%;
-		height: 424px;
+		width: 52%;
+		height: 377px;
+		padding: 0;
 	}
 	#hireSearch{
 		float: right;
-		width: 43%;
-		border: 1.4px solid #c5c5c5;
+		width: 47%;
+		border: 1px solid #c5c5c5;
 		border-radius: 3px;
+		height: 377px;
 	}
 	
 	select option{
@@ -175,25 +190,28 @@ function makeListJson(res){
 	    background: #f3f3f3;
 	}
 	
+	button#op {
+    	width: 200px;
+    	padding: 22px;
+	}
 	#locationLi{
-		width: 200px;
-	    margin-left: 10px;
-	    padding: 25px;
+		width: 224px;
+	    overflow-y: scroll;
+    	height: 322px;
 	}
 	#locationLi2{
-		width: 161px;
-    	margin-left: 6px;
+		width: 160px;
+    	margin-top: 5px;
     	text-align: center;
     	float: left;
-    	ma
 	}
 	
 	#searchTable th{
-		padding-top: 20px;
+		padding-top: 18px;
 	    font-size: 1.1em;
 	}
 	#searchTable td{
-		padding-top: 20px;
+		padding-top: 18px;
 		padding-left: 20px;
 	}
 	#searchTable input{
@@ -234,6 +252,27 @@ function makeListJson(res){
 	    height: 30px;
 	    margin-bottom: 2px;
 	}
+	.ui-tabs .ui-tabs-panel {
+		padding: 5px;
+	}
+	
+	button#eduLv {
+	    width: 120px;
+	    padding: 20px;
+	    margin: 2px;
+	}
+
+	button#recType {
+	    width: 120px;
+	    padding: 20px;
+	    margin: 2px;
+	}
+	
+	button#comTy {
+	    width: 120px;
+	    padding: 20px;
+	    margin: 2px;
+	}
 </style>
 <%@ include file="../inc/sidebar.jsp"%>
 <div style="overflow: hidden; width: 1055px; padding-left: 25px; font-size: 14px; margin-top: 10px;">
@@ -249,83 +288,69 @@ function makeListJson(res){
 	</ul>
 	
 	<div id="hireTabs-1">
-		<div id="locationLi" style="display: inline-block">
-			<select size="10" id="sido">
-				<c:forEach var="location" items="${locationList }">
-					<option id="op" value="${location }">${location }</option>
-				</c:forEach>
-			</select>
+		<div id="locationLi" style="display: inline-block" class="sido">
+			<c:forEach var="location" items="${locationList }">
+				<button id="op" class="btn head-btn2" value="${location }">${location }</button>
+			</c:forEach>
 		</div>
-		<div style="display: inline" id="locationLi">
-			<select id="sigugun" size="10">
-				
-			</select>			
+		<div style="display: inline-block" class="sigungu">
+			
 		</div>
 	</div>
 	
 	<div id="hireTabs-2">
-		<div id="locationLi" style="display: inline-block">
-			<select size="10" id="jobLarge">
-				<c:forEach var="map" items="${jobList }">
-               		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
-                </c:forEach>
-			</select>
+		<div id="locationLi" style="display: inline-block" class="jobLarge">
+			<c:forEach var="map" items="${jobList }">
+           		<button value="${map['LARGE_NO'] }" id="op" class="btn head-btn2">${map['LARGE_GROUP'] }</button>
+            </c:forEach>
 		</div>
-		<div style="display: inline" id="locationLi">
-			<select id="jobMiddle" size="10">
-				
-			</select>			
+		<div style="display: inline-block" class="jobMiddle">
+		
 		</div>
 	</div>
 	
 	<div id="hireTabs-3">
-		<div id="locationLi" style="display: inline-block">
-			<select size="10" id="induLarge">
-				<c:forEach var="map" items="${induList }">
-               		<option value="${map['LARGE_NO'] }">${map['LARGE_GROUP'] }</option>
-                </c:forEach>
-			</select>
+		<div id="locationLi" style="display: inline-block" class="induLarge">
+			<c:forEach var="map" items="${induList }">
+           		<button value="${map['LARGE_NO'] }" id="op" class="btn head-btn2">${map['LARGE_GROUP'] }</button>
+            </c:forEach>
 		</div>
-		<div style="display: inline" id="locationLi">
-			<select id="induMiddle" size="10">
-				
-			</select>			
+		<div style="display: inline-block" class="induMiddle">
+		
 		</div>
 	</div>
 	
 	<div id="hireTabs-4">
 		<div id="locationLi2" style="display: inline-block">
 			<h5>고용형태</h5>
-			<select id="recType" name="recType" size="7" style="width: 160px">
-				<option value="추후협의">추후협의</option>
-				<option value="인턴직">인턴직</option>
-				<option value="정규직">정규직</option>
-				<option value="계약직">계약직</option>
-				<option value="프리랜서">프리랜서</option>
-			</select>
+			<button id="recType" class="btn head-btn2" value="추후협의">추후협의</button>
+			<button id="recType" class="btn head-btn2" value="인턴직">인턴직</button>
+			<button id="recType" class="btn head-btn2" value="정규직">정규직</button>
+			<button id="recType" class="btn head-btn2" value="계약직">계약직</button>
+			<button id="recType" class="btn head-btn2" value="프리랜서">프리랜서</button>
+			
 		</div>
 		<div style="display: inline" id="locationLi2">
 			<h5>기업형태</h5>
-			<select id="comty" name="comty" size="7" style="width: 160px">
-				<option value="대기업">대기업</option>
-				<option value="공기업">공사/공기업</option>
-				<option value="중견기업">중견기업</option>
-				<option value="중소기업">중소기업</option>
-				<option value="스타트업">스타트업</option>
-				<option value="외국계기업">외국계기업</option>
-			</select> 
+			<button id="comTy" class="btn head-btn2" value="대기업">대기업</button>
+			<button id="comTy" class="btn head-btn2" value="공기업">공사/공기업</button>
+			<button id="comTy" class="btn head-btn2" value="중견기업">중견기업</button>
+			<button id="comTy" class="btn head-btn2" value="중소기업">중소기업</button>
+			<button id="comTy" class="btn head-btn2" value="스타트업">스타트업</button>
+			<button id="comTy" class="btn head-btn2" value="외국계기업">외국계기업</button>
 		</div>
-		<div style="display: inline" id="locationLi2">
+		<div style="display: inline;" id="locationLi2">
 			<h5>학력</h5>
-			<select id="eduLv" name="eduLv" size="7" style="width: 160px">
-				<option value="무관">무관</option>
-				<option value="초등학교">초등학교</option>
-				<option value="중학교">중학교</option>
-				<option value="고등학교">고등학교</option>
-				<option value="대학(2~3년) 졸업">대학(2~3년) 졸업</option>
-				<option value="대학(4년) 졸업">대학(4년) 졸업</option>
-				<option value="대학원(박사) 졸업">대학원(박사) 졸업</option>
-			</select> 
+			<div style="overflow-y: scroll; height: 275px;">
+				<button id="eduLv" class="btn head-btn2" value="0">무관</button>
+				<button id="eduLv" class="btn head-btn2" value="1">초등학교</button>
+				<button id="eduLv" class="btn head-btn2" value="2">중학교</button>
+				<button id="eduLv" class="btn head-btn2" value="3">고등학교</button>
+				<button id="eduLv" class="btn head-btn2" value="4">대학(2~3년)</button>
+				<button id="eduLv" class="btn head-btn2" value="5">대학(4년)</button>
+				<button id="eduLv" class="btn head-btn2" value="6">대학원(석사)</button>
+				<button id="eduLv" class="btn head-btn2" value="7">대학원(박사)</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -354,14 +379,15 @@ function makeListJson(res){
 			</tr>
 			<tr>
 				<th>학력</th>
-				<td><input type="text" id="tdEdu" name="educationLv" readonly="readonly"></td>
+				<td><input type="text" id="tdEdu1" readonly="readonly"></td>
+				<td><input type="hidden" id="tdEdu" name="educationLv" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th>키워드</th>
 				<td><input type="text" id="tdRecDetail" name="recDetail" value="${keyword }" placeholder="　키워드 입력"></td>
 			</tr>
-		</table><br><br>
-		<div style="text-align: center;">
+		</table>
+		<div style="text-align: center; margin-top: 6px;">
 			<input type="button" value="초기화" id="reset">
 			<input type="button" onClick="hireInfo();" value="상세검색">
 		</div>

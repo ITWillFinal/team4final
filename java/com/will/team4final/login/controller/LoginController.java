@@ -126,12 +126,16 @@ public class LoginController {
 
 	// 로그아웃
 	@RequestMapping(value = "/logout.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String logout(HttpSession session) throws IOException {
+	public String logout(HttpSession session, Model model) throws IOException {
 		logger.info("여기는 logout");
+		String userid = (String)session.getAttribute("userid");
 		
+		String msg=userid + "님 로그아웃되었습니다.", url="/index.do";
 		session.invalidate();
 		
-		return "redirect:/index.do";
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
 	}
 	@RequestMapping(value = "/companyLogout.do")
 	public String companyLogout(HttpSession session) throws IOException {

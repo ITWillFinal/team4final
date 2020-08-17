@@ -227,16 +227,12 @@ label.col-sm-3.control-label {
 				<label for="zipcode" class="col-sm-3 control-label">주소<span>*</span>
 				</label>
 				<div class="col-sm-9 form-input">
-					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
-					<br><br>
-				</div>
-				<div class="col-sm-9 form-input">
 					<input type="text" class="form-control" id="zipcode" name="zipcode"
-						placeholder="우편번호" value = "${vo.zipcode }">
+						placeholder="우편번호" value = "${vo.zipcode }" onclick="sample4_execDaumPostcode()" readonly="readonly">
 				</div>
 				<div class="col-sm-9 form-input">
 					<input type="text" class="form-control" id="address" name="address"
-						placeholder="도로명주소" value = "${vo.address }">
+						placeholder="도로명주소" value = "${vo.address }" >
 				</div>
 				<div class="col-sm-9 form-input">
 					<input type="text" class="form-control" id="addressDetail"
@@ -247,10 +243,17 @@ label.col-sm-3.control-label {
 				<label for="inputUser" class="col-sm-3 control-label">회사 사진 
 				</label>
 				<div class="col-sm-9 form-input">
-					<input type="hidden" name = "imageURL" value = "${vo.imageURL }">
-					<img src = "<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
+					<c:if test="${empty vo.imageURL }">
+						<input type="hidden" name = "imageURL" value = "${vo.imageURL }">
+						<input type="file" name="imageUpload" id="imageUpload" class="infobox"
+						placeholder="회사 사진 재업로드"> 
+					</c:if>
+					<c:if test="${!empty vo.imageURL }">
+						<img src = "<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
 					<input type="file" name="imageUpload" id="imageUpload" class="infobox"
-						placeholder="회사 사진 업로드"> 
+						placeholder="회사 사진 재업로드"> 
+					</c:if>
+					<input type="hidden" name = "imageURL" value = "${vo.imageURL }">
 				</div>
 				<div class="col-sm-9 form-input">
 					<img id="image" width="100" height="100" alt="Image Preview" style="display: none;">

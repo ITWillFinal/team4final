@@ -131,13 +131,14 @@ input[type=submit] {
 }
 
 body > div.wrapper > div > div > div.span9 > div > main > div {
-    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.30);
+    border: 1px solid lightgray;
 }
 </style>
 <main>
 
 	<!-- main -->
-	<div style="text-align: center; margin:5px; width:850px; border:1px solid lightgray;">
+	<h2 style="margin-left: 20px">고객센터</h2>
+	<div style="text-align: center;width:850px; border:1px solid lightgray;margin-left: 1%;">
 		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
 			<li class = "select" style="width: 33%;" id = "fst">
 				<a href = <c:url value='/gogak/admin/company/faqList.do'/>>FaQ - 기업</a>

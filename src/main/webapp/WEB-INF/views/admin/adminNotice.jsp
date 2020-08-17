@@ -29,23 +29,29 @@ function pageProc(curPage){
 }
 </script>
 <style>
-	table {
-		border-bottom: 1px solid lightgray;
+	#chkAll {
+    margin-bottom: 3%;
 	}
-	
 	th {
-		border-bottom: 3px solid #FB246A;
-		text-align: center;
-		padding: 8px;
-
+    border-bottom: 3px solid #FB246A;
+    text-align: center;
+    font-size: 13pt;
+    padding: 2px;
+    padding-bottom: 13px;
 	}
-	
-	td {
+	td{
 		border-bottom: 1px solid #FB246A;
-		padding: 11px;
-		text-align: center;
+		padding: 5px;
+	}     
+	a{
+	color: black;
 	}
-	
+	table {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 10%;
+    margin-bottom: 5%;
+	}
 	.divPage {
 		text-align: center;
 	}
@@ -64,19 +70,24 @@ function pageProc(curPage){
 	    font-size: 15pt;
 	}
 	#fst{
-		border-bottom: 1px solid lightgray;
-		border-left: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;
 	}
 	#mid{
 		border-left: 1px solid lightgray;
 		border-bottom: 1px solid lightgray;
 		border-right: 1px solid lightgray;
 	}
+	#btm{
+		 /* border-bottom: 1px solid lightgray */; 
+	}
 	
 	#pagingDiv{
 	    text-align: center;
 	    margin: 20px 0px;
 	    font-size: 1.1em;
+        margin-bottom: 11%;
 	}
 	#pagingDiv span{
 		border: 1px solid;
@@ -94,6 +105,7 @@ function pageProc(curPage){
 	    font-weight: bold;
 	    color: black;
 	    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+  		margin-bottom: 5%;
 	}
 	
 	form[name=frmList]{
@@ -118,7 +130,7 @@ function pageProc(curPage){
 			
 			<table>
 				<colgroup>
-					<col style="width:3%;">
+					<col style="width:5%;">
 					<col style="width:10%;">
 					<col style="width:60%;">
 					<col style="width:20%;">

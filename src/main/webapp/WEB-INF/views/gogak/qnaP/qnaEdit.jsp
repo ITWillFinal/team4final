@@ -49,6 +49,33 @@ table {
 tr {
     text-align: left;
 }
+input[type=button] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+input[type=submit] {
+    width: 60px;
+    height: 30px;
+    background: #f7f7f7;
+    border: 0;
+    color: black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+div#idx {
+    margin-top: 4%;
+    margin-left: -0.4%;
+    width: 107%;
+}
 </style>
 <script type="text/javascript" 
 	src = "<c:url value = '/resources/js/jquery-3.5.1.min.js'/>"></script>
@@ -69,7 +96,7 @@ tr {
 	<%@ include file="../../inc/sidebar.jsp"%>
 	
 	<!-- main -->
-	<div style=" margin:5px; width:850px;  float: left;">
+		<div style=" width:850px;  float: left;">
 		<div style="margin:5px;">
 			<div id="outDiv">
 				<form name = "frmWrite" method="post"  action="<c:url value = '/gogak/qnaP/qnaEdit.do'/>">

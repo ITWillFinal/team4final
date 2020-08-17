@@ -44,13 +44,12 @@
 			<div class="MenuHoverDiv"><a href="<c:url value='/hireinpo/hireInfoByInduType.do'/>">산업별 채용정보</a></div>
 			<div class="MenuHoverDiv"><a href="<c:url value='/hireinpo/infoSearchByLocation.do'/>">지역별 채용정보</a></div>
 			<div class="MenuHeadDiv">회원정보</div>
-			<div class="MenuHoverDiv">회원정보수정</div>
-			<div class="MenuHoverDiv">나의프로필</div>
+			<div class="MenuHoverDiv"><a href="<c:url value='/member/memberEdit.do'/>">회원정보수정</a></div>
+			<div class="MenuHoverDiv"><a href="<c:url value='/mypage/mypageHome.do?status=U'/>">나의프로필</a></div>
 			<div class="MenuHeadDiv">이력서관리</div>
-			<div class="MenuHoverDiv">이력서등록</div>
-			<div class="MenuHoverDiv">이력서현황</div>
-			<div class="MenuHoverDiv">이력서상태설정</div>
-			<div class="MenuHoverDiv">입사요청현황</div>
+			<div class="MenuHoverDiv"><a href="<c:url value='/resume/resumeWrite.do'/>">이력서등록</a></div>
+			<div class="MenuHoverDiv"><a href="<c:url value='/resume/resumeMain.do'/>">이력서현황</a></div>
+			<div class="MenuHoverDiv"><a href="<c:url value='.do'/>">입사요청현황</a></div>
 			<div class="MenuHeadDiv">고객센터</div>
 			<div class="MenuHoverDiv"><a href="<c:url value = '/notice/memberNotice.do'/>">공지사항</a></div>
 			<div class="MenuHoverDiv"><a href="<c:url value = '/gogak/personal/faqList.do'/>">자주 찾는 질문</a></div>

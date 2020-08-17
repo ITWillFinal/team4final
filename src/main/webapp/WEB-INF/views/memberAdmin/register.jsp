@@ -333,11 +333,11 @@ hr {
 					</div>
 
 					<div class="form-group">
-						<div class="col-lg-offset-2 col-lg-10">
-							<button type="submit" class="btn btn-primary">Sign in</button>
+						<div class="col-lg-offset-2 col-lg-10" style="text-align: center;">
+							<button type="submit" class="btn btn-primary">회원가입</button>
 						</div>
 					</div>
-					<input type="TEXT" name="chkId" id="chkId">
+					<input type="hidden" name="chkId" id="chkId">
 				</div>
 			</div>
 		</form>

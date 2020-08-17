@@ -84,7 +84,7 @@
 				and REC_TYPE like '%' || #{recType} || '%'
 			</if>
 			<if test="educationLv!=null and educationLv!=''">
-				and EDUCATION_LV like '%' || #{educationLv} || '%'
+				<![CDATA[and EDUCATION_LV <= #{educationLv} ]]>
 			</if>
 			<if test="recDetail!=null and recDetail!=''">
 				and TITLE like '%' || #{recDetail} || '%'

@@ -179,13 +179,16 @@
     	margin-bottom: 10px;
     	
 	}
+	
 	.remoteContent p{
 		font-weight: bold;
     	font-size: large;
 	}
+	
 	.pdf-down, .resume-edit{
 		background: #fb236a;
 		border:1px solid #fb236a; 
+		height: 220px;
 	}
 	
 	.pdf-down p, .resume-edit p{
