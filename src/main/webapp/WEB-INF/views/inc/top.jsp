@@ -379,9 +379,9 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 												<br><br>
 												<a href="<c:url value='/notice/memberNotice.do'/>">공지사항</a>
 												<br>
-												<a href="about.html">자주찾는질문</a> 
+												<a href="<c:url value='/gogak/personal/faqList.do'/>">자주찾는질문</a> 
 												<br>
-												<a href="about.html">1:1문의사항</a> 
+												<a href="<c:url value='/gogak/qnaP/qnaWrite.do'/>">1:1문의사항</a> 
 											</div>
 											<div>
 												<span>기업서비스 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
