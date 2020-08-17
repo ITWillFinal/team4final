@@ -26,8 +26,8 @@
 		background : whitesmoke;
 		width:200px;
 		height:35px;
-		border:none;
-		border-radius: 10px;
+		border:1px lightgray solid;
+		border-radius: 5px;
 	}
 	
 	tr {
@@ -259,7 +259,7 @@
 		<span style="font-size: 25px; font-weight: bold;">자사 이력서 양식 설정</span>
 		<hr>
 		<div style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎기본정보</span>
+			<span style="font-size: 18px; font-weight: bold;">기본정보</span>
 			<br><br>
 			<table>
 				<colgroup>
@@ -303,7 +303,7 @@
 		<hr>
 		
 		<div id="schoolDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎학력사항</span>
+			<span style="font-size: 18px; font-weight: bold;">학력사항</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="schoolChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -334,7 +334,7 @@
 		<hr>		
 		
 		<div id="careerDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎경력사항</span>
+			<span style="font-size: 18px; font-weight: bold;">경력사항</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="careerChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -368,7 +368,7 @@
 		<hr>
 		
 		<div id="certificateDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎자격증</span>
+			<span style="font-size: 18px; font-weight: bold;">자격증</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="certificateChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -399,7 +399,7 @@
 		<hr>
 		
 		<div id="languageDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎외국어능력</span>
+			<span style="font-size: 18px; font-weight: bold;">외국어능력</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="languageChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -430,7 +430,7 @@
 		<hr>
 		
 		<div id="awardsDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎수상내역</span>
+			<span style="font-size: 18px; font-weight: bold;">수상내역</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="awardsChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -461,7 +461,7 @@
 		<hr>
 		
 		<div id="specialDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎우대사항</span>
+			<span style="font-size: 18px; font-weight: bold;">우대사항</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="specialChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -490,7 +490,7 @@
 		<hr>
 		
 		<div id="activityDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎대외활동</span>
+			<span style="font-size: 18px; font-weight: bold;">대외활동</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="activityChk" checked> <!-- 체크 시 테이블 등장 -->
@@ -521,7 +521,7 @@
 		<hr>
 		
 		<div id="selfDiv" style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎자기소개서</span>
+			<span style="font-size: 18px; font-weight: bold;">자기소개서</span>
 			<%-- 체크박스를 토글스위치로 바꾼 부분 시작 --%>
 			<label class="switch">
 				<input type="checkbox" id="selfChk" checked> <!-- 체크 시 테이블 등장 -->

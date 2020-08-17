@@ -411,14 +411,14 @@
 	    background : #dcdcdc;
 	}
 	
-	input[type=text] {
+input[type=text] {
 		padding-left: 15px;
 		padding-right: 15px;
 		background : whitesmoke;
-		width:350px;
+		width:305px;
 		height:35px;
-		border:none;
-		border-radius: 10px;
+		border:1px lightgray solid;
+		border-radius: 5px;
 	}
 	
 	label {
@@ -458,6 +458,12 @@
 		width:200px;
 		display: inline-block;
 	}
+	
+	.btn3{
+		width:180px;
+		display: inline-block;
+		margin-top: -3.5px;
+	}
 
 
 </style>
@@ -471,7 +477,7 @@
 			<span style="font-size: 25px; font-weight: bold;">채용공고등록</span>
 			<hr>
 			<div style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span><br><br>
+			<span style="font-size: 18px; font-weight: bold;">모집내용</span><br><br>
 
 			<table style="width: 900px;">
 				<colgroup>
@@ -704,7 +710,7 @@
 			<hr>
 			
 			<div>
-				<span style="font-size: 18px; font-weight: bold;">◎자격요건</span><br><br>
+				<span style="font-size: 18px; font-weight: bold;">자격요건</span><br><br>
 			<table style="width: 900px;">
 				<colgroup>
 					<col style="width:20%;" />
@@ -860,12 +866,12 @@
 			</div>
 			<hr>
 			<div>
-				<span style="font-size: 18px; font-weight: bold;">◎상세모집내용</span><br><br>
+				<span style="font-size: 18px; font-weight: bold;">상세모집내용</span><br><br>
 				<textarea id="recDetail" name="recDetail" rows="20" cols="93"></textarea>
 			</div>
 			<br>
 			<div style="width: 900px; text-align: center;">
-				<input type="submit" value="채용공고 등록하기"/>
+				<input type="submit" value="채용공고 등록하기" class="form-control btn3"/>
 			</div><br>
 			
 			<input type="hidden" id="jobType1" name="jobType1">
