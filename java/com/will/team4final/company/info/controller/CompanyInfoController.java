@@ -181,6 +181,28 @@ public class CompanyInfoController {
 		return "common/message";
 		
 	}
-
+	
+	@RequestMapping("/showCompanyInfo.do")
+	public String showCompanyInfo(@RequestParam String recruitmentCode, Model model) {
+		String msg="", url="";
+		if(recruitmentCode ==null || recruitmentCode.isEmpty()) {
+			msg="잘못된 경로입니다. 다시 이용해주세요";
+			url="/hireinpo/hot100.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("msg", msg);
+			return "common/message";
+		}
+		
+		//recruitmentCode로 회사 정보 가져오기
+		Recruitment_TosVO tosVo = comRecruitServ.selectOneCom(recruitmentCode);
+		logger.info("tosVo={}", tosVo);
+		String comCode = tosVo.getComCode();
+		
+		CompanyInfoVO comInfoVo = companyInfoService.selectCompanyInfoByComCode(comCode);
+		logger.info("comInfoVo={}", comInfoVo);
+		
+		model.addAttribute("comInfoVo", comInfoVo);
+		return "companypage/showCompanyInfo";
+	}
 
 }

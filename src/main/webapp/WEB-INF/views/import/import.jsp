@@ -39,7 +39,7 @@
 						if(resumeType == 0){
 							location.href = "<c:url value='/resume/resumeMain.do' />";
 						}else{
-							location.href = "<c:url value='/companypage/companyResumeView.do?recruitmentCode="+recruitmentCode+"' />";
+							location.href = "<c:url value='/companypage/companyResumeSet.do?recruitmentCode="+recruitmentCode+"' />";
 						}
 						
 					}else{

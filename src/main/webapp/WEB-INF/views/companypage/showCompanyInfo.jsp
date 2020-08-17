@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<%@ include file="../inc/top.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../inc/comMypageTop.jsp" %>
-<script type="text/javascript">
-$(function(){
-	
-	$('#edit').click(function() {
-		location.href = "<c:url value = '/companypage/MyCompanyEdit.do?comCode=${vo.comCode}'/>";
-	});
-	
-});//function
-</script>
+<jsp:useBean id="today" class="java.util.Date"/>
 <style type="text/css">
 	hr{
 		height: 3px;
@@ -212,4 +204,4 @@ $(function(){
 		</div>
 	</div>
 </main>
-<%@ include file="../inc/companyBottom.jsp"%>
+<%@ include file="../inc/bottom.jsp" %>

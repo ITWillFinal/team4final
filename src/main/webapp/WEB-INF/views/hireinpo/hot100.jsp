@@ -29,7 +29,7 @@
 							<div class="job-tittle">
 								<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h4>${num}　 ${vo.title }</h4></a>
 								<ul>
-									<li>${vo.comName }</li>
+									<li><a style="color: black" href="<c:url value='/companypage/showCompanyInfo.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.comName }</a></li>
 									<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
 									<li>${vo.pay }</li>
 								</ul>
