@@ -4,9 +4,9 @@
 <jsp:useBean id="today" class="java.util.Date"/>
 <script type="text/javascript">
 	$(function(){
-		$('.applyDelete').click(function(){
+		$('#applyDiv .applyDelete').click(function(){
 			var con = confirm("정말 지원 취소 하시겠습니까?");
-			var code = $('#applyCode').val();
+			var code = $(this).next().val();
 			if(con){
 				location.href="<c:url value='/application/applicationDelete.do?applyCode="+ code +"' />";
 			}else{
@@ -17,8 +17,8 @@
 			window.open("<c:url value='/companypage/talentResumeDetail.do?resumeNo="+resumeNo+"'/>",
 					'RESUME','width=980,height=auto,left=850,top=250,location=yes,resizable=false')
 		}
-		$('#resumeNo').click(function(){
-			var resumeNo = $('.resumeNo').val();
+		$('#applyDiv .resumeNo').click(function(){
+			var resumeNo = $(this).next().val();
 			open_resume(resumeNo);
 			
 		});
@@ -126,7 +126,6 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 						<div class="job-tittle">
 							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>"><h4>${map['TITLE'] }</h4></a>
 							<span><c:if test="${map['READ_CHECK'] == 'Y'}">[ 이력서 열람여부 : Y ]</c:if><c:if test="${empty map['READ_CHECK']}">[ 이력서 열람여부 : N ]</c:if></span>
-							<input type="hidden" id="applyCode" value="${map['APPLY_CODE'] }">
 							<ul>
 								<li>${map['COM_NAME'] }</li>
 								<li><i class="fa fa-briefcase" aria-hidden="true"></i>${map['JOB_TYPE2'] }</li>
@@ -134,10 +133,12 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 							</ul>
 						</div>
 					</div>
-						<div class="items-link f-right">
+						<div class="items-link f-right" id="applyDiv">
 							<c:if test="${map['APPLY_STATUS'] == '지원중' }">
-								<a id="resumeNo" href="<c:url value='#'/>">${map['APPLY_STATUS'] }</a>
+								<a class="resumeNo" href="<c:url value='#'/>">${map['APPLY_STATUS'] }</a>
+								<input type="hidden" value="${map['RESUME_NO'] }">
 								<a class="applyDelete" href="<c:url value='#'/>" style="border: 0; margin: 0; padding: 0; color: #206ef9; background: white;">지원 취소</a>
+								<input type="hidden" value="${map['APPLY_CODE'] }">
 							</c:if>
 							<c:if test="${map['APPLY_STATUS'] == '합격' }">
 								<a id="passOrNot" style="background: #1a76ff; border: 1px solid #1a76ff;">합격</a>
