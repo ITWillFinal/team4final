@@ -15,7 +15,7 @@
 		});
 		function open_resume(resumeNo){
 			window.open("<c:url value='/companypage/talentResumeDetail.do?resumeNo="+resumeNo+"'/>",
-					'RESUME','width=980,height=auto,left=550,top=250,location=yes,resizable=false')
+					'RESUME','width=980,height=auto,left=850,top=250,location=yes,resizable=false')
 		}
 		$('#resumeNo').click(function(){
 			var resumeNo = $('.resumeNo').val();
@@ -57,7 +57,11 @@
 		height: 336px;
 	
 	}
-
+	
+	#passOrNot{
+		color: white;
+	    font-weight: bold;
+	}
 h1 {
   height: 100px;
 }
@@ -120,7 +124,8 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 				<div class="single-job-items mb-30" id="listOne">
 					<div class="job-items">
 						<div class="job-tittle">
-							<a href="#" id="resumeNo"><h4>${map['TITLE'] }(${map['APPLY_STATUS'] })</h4></a>
+							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>"><h4>${map['TITLE'] }</h4></a>
+							<span><c:if test="${map['READ_CHECK'] == 'Y'}">[ 이력서 열람여부 : Y ]</c:if><c:if test="${empty map['READ_CHECK']}">[ 이력서 열람여부 : N ]</c:if></span>
 							<input type="hidden" id="applyCode" value="${map['APPLY_CODE'] }">
 							<ul>
 								<li>${map['COM_NAME'] }</li>
@@ -129,24 +134,28 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 							</ul>
 						</div>
 					</div>
-					<c:if test="${endDate-startDate+1 > 0}">
 						<div class="items-link f-right">
-							<a class="applyDelete" href="<c:url value='#'/>">지원 취소</a>
-							<span>지원마감까지 D - ${endDate-startDate+1 }일</span>
+							<c:if test="${map['APPLY_STATUS'] == '지원중' }">
+								<a id="resumeNo" href="<c:url value='#'/>">${map['APPLY_STATUS'] }</a>
+								<a class="applyDelete" href="<c:url value='#'/>" style="border: 0; margin: 0; padding: 0; color: #206ef9; background: white;">지원 취소</a>
+							</c:if>
+							<c:if test="${map['APPLY_STATUS'] == '합격' }">
+								<a id="passOrNot" style="background: #1a76ff; border: 1px solid #1a76ff;">합격</a>
+							</c:if>
+							<c:if test="${map['APPLY_STATUS'] == '불합격' }">
+								<a id="passOrNot" style="background: #ff1f1f; border: 1px solid #ff1f1f;">불합격</a>
+							</c:if>
+							
+							<c:if test="${endDate-startDate+1 > 0}">
+									<span>지원마감까지 D - ${endDate-startDate+1 }일</span>
+							</c:if>
+							<c:if test="${endDate-startDate+1 == 0}">
+									<span>마감까지 하루 남았습니다!</span>
+							</c:if>
+							<c:if test="${endDate-startDate+1 < 0}">
+									<span>지원이 마감되었습니다.</span>
+							</c:if>
 						</div>
-					</c:if>
-					<c:if test="${endDate-startDate+1 == 0}">
-						<div class="items-link f-right">
-							<a class="applyDelete" href="<c:url value='#'/>">지원 취소</a>
-							<span>마감까지 하루 남았습니다!</span>
-						</div>
-					</c:if>
-					<c:if test="${endDate-startDate+1 < 0}">
-						<div class="items-link f-right">
-							<a style="background: #7b7b7bbf;border: 1px solid #7b7b7bbf;">지원마감</a>
-							<span>지원이 마감되었습니다.</span>
-						</div>
-					</c:if>
 				</div>
 			</c:forEach>
 		</c:if>

@@ -24,6 +24,8 @@ import com.will.team4final.qna.model.QnaVO;
 import com.will.team4final.qnare.model.QnareService;
 import com.will.team4final.qnare.model.QnareVO;
 
+import oracle.net.aso.c;
+
 @Controller
 @RequestMapping("/gogak")
 public class QnaController {
@@ -228,45 +230,69 @@ public class QnaController {
 				Model model, HttpSession session) {
 		String customerId = (String) session.getAttribute("userid");
 		logger.info("접속한 유저 아이디 userId = {}", customerId);
-
-		searchVo.setCustomerId(customerId);
-		model.addAttribute("customerId", customerId);
 		
-		//1
-		logger.info("1:1 문의게시판 목록 searchVo={}", searchVo);
+		String userid = (String)session.getAttribute("userid");
+		String msg = "로그인을 해주세요!", url = "/index.do";
+		if(userid==null || userid.isEmpty()) {
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			
+			return "common/message";
+		}else{
+			searchVo.setCustomerId(customerId);
+			model.addAttribute("customerId", customerId);
+			
+			//1
+			logger.info("1:1 문의게시판 목록 searchVo={}", searchVo);
+			
+			//[1] PaginationInfo 생성
+			PaginationInfo pagingInfo = new PaginationInfo();
+			pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+			pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+			
+			//[2] SearchVo 에 값 셋팅
+			searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+			searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
+			
+			//2
+			List<QnaVO>list = qnaService.selectQna(searchVo);
+			logger.info("1:1 문의게시판 목록 개수 list.size={}", list.size());
+			
+			int totalRecord = qnaService.selectTotalRecord(searchVo);
+			logger.info("1:1 문의게시판, 전체 레코드 개수 totalRecord = {}",totalRecord);
+			
+			pagingInfo.setTotalRecord(totalRecord);
+			
+			model.addAttribute("list", list);
+			model.addAttribute("pagingInfo", pagingInfo);
+			
+			return "gogak/qnaC/qnaList";
+		}
 		
-		//[1] PaginationInfo 생성
-		PaginationInfo pagingInfo = new PaginationInfo();
-		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
-		
-		//[2] SearchVo 에 값 셋팅
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
-		
-		//2
-		List<QnaVO>list = qnaService.selectQna(searchVo);
-		logger.info("1:1 문의게시판 목록 개수 list.size={}", list.size());
-		
-		int totalRecord = qnaService.selectTotalRecord(searchVo);
-		logger.info("1:1 문의게시판, 전체 레코드 개수 totalRecord = {}",totalRecord);
-		
-		pagingInfo.setTotalRecord(totalRecord);
-		
-		model.addAttribute("list", list);
-		model.addAttribute("pagingInfo", pagingInfo);
-		
-		return "gogak/qnaC/qnaList";
+	
 	}
 	
 	@RequestMapping(value = "/qnaC/qnaWrite.do", method = RequestMethod.GET)
-	public void qnaCWrite_get(HttpSession session, Model model) {
+	public String qnaCWrite_get(HttpSession session, Model model) {
+		String customerId = (String) session.getAttribute("userid");
+		logger.info("접속한 유저 아이디 userId = {}", customerId);
 		logger.info("1:1 문의게시판 글쓰기 보여주기");
-		String userid = (String)session.getAttribute("userid");
 		
-		model.addAttribute("userid", userid);
+		String userid = (String)session.getAttribute("userid");
+		String msg = "로그인을 해주세요!", url = "/index.do";
+		if(userid==null || userid.isEmpty()) {
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			
+			return "common/message";
+		}else{
+			model.addAttribute("userid", userid);
+			return "gogak/qnaC/qnaWrite";
+		}
+		
+		
 	}
 
 	@RequestMapping(value = "/qnaC/qnaWrite.do", method = RequestMethod.POST)
@@ -431,45 +457,66 @@ public class QnaController {
 				Model model, HttpSession session) {
 		String customerId = (String) session.getAttribute("userid");
 		logger.info("접속한 유저 아이디 userId = {}", customerId);
-
-		searchVo.setCustomerId(customerId);
-		model.addAttribute("customerId", customerId);
 		
-		//1
-		logger.info("1:1 문의게시판 목록 searchVo={}", searchVo);
+		String msg = "로그인을 해주세요!", url = "/index.do";
+		if(customerId==null || customerId.isEmpty()) {
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			
+			return "common/message";
+		}else{
+			searchVo.setCustomerId(customerId);
+			model.addAttribute("customerId", customerId);
+			
+			//1
+			logger.info("1:1 문의게시판 목록 searchVo={}", searchVo);
+			
+			//[1] PaginationInfo 생성
+			PaginationInfo pagingInfo = new PaginationInfo();
+			pagingInfo.setBlockSize(Utility.BLOCKSIZE);
+			pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+			
+			//[2] SearchVo 에 값 셋팅
+			searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+			searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
+			logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
+			
+			//2
+			List<QnaVO>list = qnaService.selectQna(searchVo);
+			logger.info("1:1 문의게시판 목록 개수 list.size={}", list.size());
+			
+			int totalRecord = qnaService.selectTotalRecord(searchVo);
+			logger.info("1:1 문의게시판, 전체 레코드 개수 totalRecord = {}",totalRecord);
+			
+			pagingInfo.setTotalRecord(totalRecord);
+			
+			model.addAttribute("list", list);
+			model.addAttribute("pagingInfo", pagingInfo);
+			
+			return "gogak/qnaP/qnaList";
+		}
 		
-		//[1] PaginationInfo 생성
-		PaginationInfo pagingInfo = new PaginationInfo();
-		pagingInfo.setBlockSize(Utility.BLOCKSIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
-		
-		//[2] SearchVo 에 값 셋팅
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT);
-		logger.info("레코드 개수={}", searchVo.getRecordCountPerPage());
-		
-		//2
-		List<QnaVO>list = qnaService.selectQna(searchVo);
-		logger.info("1:1 문의게시판 목록 개수 list.size={}", list.size());
-		
-		int totalRecord = qnaService.selectTotalRecord(searchVo);
-		logger.info("1:1 문의게시판, 전체 레코드 개수 totalRecord = {}",totalRecord);
-		
-		pagingInfo.setTotalRecord(totalRecord);
-		
-		model.addAttribute("list", list);
-		model.addAttribute("pagingInfo", pagingInfo);
-		
-		return "gogak/qnaP/qnaList";
 	}
 	
 	@RequestMapping(value = "/qnaP/qnaWrite.do", method = RequestMethod.GET)
-	public void qnaPWrite_get(HttpSession session, Model model) {
+	public String qnaPWrite_get(HttpSession session, Model model) {
 		logger.info("1:1 문의게시판 글쓰기 보여주기");
-		String userid = (String)session.getAttribute("userid");
 		
-		model.addAttribute("userid", userid);
+		String userid = (String)session.getAttribute("userid");
+		String msg = "로그인을 해주세요!", url = "/index.do";
+		if(userid==null || userid.isEmpty()) {
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			
+			return "common/message";
+		}else{
+			model.addAttribute("userid", userid);
+			return "/gogak/qnaP/qnaWrite";
+		}
+		
+		
+		
 	}
 
 	@RequestMapping(value = "/qnaP/qnaWrite.do", method = RequestMethod.POST)

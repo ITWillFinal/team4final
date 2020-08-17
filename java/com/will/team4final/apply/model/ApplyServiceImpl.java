@@ -41,4 +41,14 @@ public class ApplyServiceImpl implements ApplyService{
 	public int updateReadcheck(String applyCode) {
 		return applyDao.updateReadcheck(applyCode);
 	}
+
+	@Override
+	public int updateApplyStatus(ApplyVO applyVo) {
+		return applyDao.updateApplyStatus(applyVo);
+	}
+
+	@Override
+	public int selectApply(ApplyVO applyVo) {
+		return applyDao.selectApply(applyVo);
+	}
 }

@@ -29,7 +29,7 @@
 	            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 	                <div class="single-services text-center mb-30">
 	                    <div class="services-ion">
-	                        <span class="flaticon-tour"></span>
+	                        <a href="<c:url value='/companypage/searchTalent.do'/>"><span class="flaticon-tour"></span></a>
 	                    </div>
 	                    <div class="services-cap">
 	                       <h5><a href="<c:url value='/companypage/searchTalent.do'/>">인재검색</a></h5>
@@ -39,10 +39,20 @@
 	            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 	                <div class="single-services text-center mb-30">
 	                    <div class="services-ion">
-	                        <span class="flaticon-content"></span>
+	                        <a href="<c:url value='/companypage/employmentNotice/employmentNoticeList.do'/>"><span class="flaticon-content"></span></a>
 	                    </div>
 	                    <div class="services-cap">
-	                       <h5><a href="<c:url value='/companypage/employmentNotice/employmentNoticeList.do'/>">공고-지원자관리</a></h5>
+	                       <h5><a href="<c:url value='/companypage/employmentNotice/employmentNoticeList.do'/>">채용공고관리</a></h5>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+	                <div class="single-services text-center mb-30">
+	                    <div class="services-ion">
+	                        <a href="<c:url value='/companypage/applyManagement.do'/>"><span class="flaticon-search"></span></a>
+	                    </div>
+	                    <div class="services-cap">
+	                       <h5><a href="<c:url value='/companypage/applyManagement.do'/>">지원자관리</a></h5>
 	                    </div>
 	                </div>
 	            </div>
