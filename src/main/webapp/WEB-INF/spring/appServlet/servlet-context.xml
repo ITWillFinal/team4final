@@ -87,6 +87,7 @@
 			<exclude-mapping path="/companypage/requestNo.do"/>		
 			<exclude-mapping path="/companypage/talentResumeDetail.do"/>	
 			<exclude-mapping path="/companypage/serviceInfo.do"/>		
+			<exclude-mapping path="/companypage/showCompanyInfo.do"/>		
 			<beans:ref bean="companyUseInterceptors"/>
 		</interceptor>
 	</interceptors>
