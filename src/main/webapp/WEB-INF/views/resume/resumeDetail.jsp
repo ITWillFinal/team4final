@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
+<%
+     //치환 변수 선언합니다.
+      pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
+      pageContext.setAttribute("br", "<br/>"); //br 태그
+%> 
 <script src="<c:url value='/resources/js/html2canvas.js'/>"></script>
 <script src="<c:url value='/resources/js/jspdf.min.js'/>"></script>
 <jsp:useBean id="currTime" class="java.util.Date" />
@@ -189,7 +194,7 @@
 	.pdf-down, .resume-edit{
 		background: #fb236a;
 		border:1px solid #fb236a; 
-		height: 220px;
+		height: 100px;
 	}
 	
 	.pdf-down p, .resume-edit p{
@@ -676,7 +681,7 @@
 				</div>
 				<div class="self-int">
 					<c:if test="${resumeAllVo.resumeVo.selfInt != ''}">
-						${resumeAllVo.resumeVo.selfInt }
+						 ${fn:replace(resumeAllVo.resumeVo.selfInt, crcn, br)}
 					</c:if>
 					<c:if test="${resumeAllVo.resumeVo.selfInt == ''}">
 						내용이 없습니다.

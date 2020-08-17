@@ -10,4 +10,5 @@ public interface ApplyService {
 	List<Map<String, Object>> selectApplyForCompany(String recruitmentCode);
 	List<Map<String, Object>> selectRecruitmentApply( String userNo);
 	int updateReadcheck(String applyCode);
+	int updateApplyStatus(ApplyVO applyVo);
 }

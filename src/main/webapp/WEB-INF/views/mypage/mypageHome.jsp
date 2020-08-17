@@ -97,7 +97,7 @@
 		color: white;
 	}
 </style>
-<div>
+<div style="min-height: 800px;">
 	<div id="addHeadMenu">
 		<div id="headMenu">
 			<a href="<c:url value='/resume/resumeMain.do'/>"><i class="far fa-address-card fa-4x"></i><br>

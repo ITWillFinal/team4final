@@ -22,7 +22,10 @@ import com.will.team4final.common.FileUploadUtil;
 import com.will.team4final.company.info.model.CompanyInfoService;
 import com.will.team4final.company.info.model.CompanyInfoVO;
 import com.will.team4final.company.model.ComMemberService;
+import com.will.team4final.company.model.ComRecruitService;
+import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
+import com.will.team4final.company.model.Recruitment_TosVO;
 
 @Controller
 @RequestMapping("/companypage")
@@ -32,6 +35,7 @@ public class CompanyInfoController {
 	@Autowired private ComMemberService comMemberService;
 	@Autowired private FileUploadUtil fileUploadUtil;
 	@Autowired private CompanyInfoService companyInfoService;
+	@Autowired private ComRecruitService comRecruitServ;
 
 	@RequestMapping(value = "/companyInfoWrite.do", method = RequestMethod.GET)
 	public String comInfoView(HttpSession session, Model model) {
@@ -97,6 +101,14 @@ public class CompanyInfoController {
 		
 		CompanyInfoVO vo = companyInfoService.selectComInfoBycMemberCode(cnt);
 		
+		//만약 컴페니가 회사 공고 올렸으면 거기서 값 가져오기
+		List<Recruitment_TosVO> comRecruitListVo = comRecruitServ.selectList_tosByComcode(vo.getComCode());
+		logger.info("comRecruitListVo={}", comRecruitListVo);
+		Recruitment_TosVO comRecruitVo = comRecruitListVo.get(0);
+		if(comRecruitVo != null) {
+			model.addAttribute("comRecruitVo", comRecruitVo);
+			logger.info("comRecruitVo={}", comRecruitVo);
+		}
 		model.addAttribute("vo", vo);
 		
 	}

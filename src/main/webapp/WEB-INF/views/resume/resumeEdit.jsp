@@ -566,8 +566,7 @@
 		if("${resumeAllVo.resumeVo.selfIntTitle}"!=""){
 			$('.switch:eq(7) input[type=checkbox]').prop("checked",true);		
 			$('.self-int').find(".nullOk-top").slideDown();
-			$('.self-int').find("input[name=selfIntTitle]").val("${resumeAllVo.resumeVo.selfIntTitle}");
-			$('.self-int').find("textarea[name=selfInt]").val("${resumeAllVo.resumeVo.selfInt}");
+			$('.self-int').find("input[name=selfIntTitle]").val("${resumeAllVo.resumeVo.selfIntTitle}");	
 		}
 		
 		if(${resumeAllVo.activeVoList.size()}!=0){
@@ -2141,7 +2140,7 @@
 				</div>
 				<div class="col-lg-10">
 							<textarea rows="1" cols="50" class="form-control" 
-							placeholder="자기소개서 내용" style="height: 300px" name="selfInt"></textarea>
+							placeholder="자기소개서 내용" style="height: 300px" name="selfInt">${resumeAllVo.resumeVo.selfInt }</textarea>
 				</div>
 			</div>
 		</div>
