@@ -40,4 +40,9 @@ public class ApplyDAOMybatis implements ApplyDAO{
 	public int updateReadcheck(String applyCode) {
 		return sqlSession.update(namespace+"updateReadcheck",applyCode);
 	}
+
+	@Override
+	public int updateApplyStatus(ApplyVO applyVo) {
+		return sqlSession.update(namespace+"updateApplyStatus",applyVo);
+	}
 }
