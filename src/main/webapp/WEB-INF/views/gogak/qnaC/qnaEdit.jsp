@@ -3,51 +3,122 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
-div#outDiv {
-    padding-left: 30px;
+a {
+	color: black;
+}
+
+h4{
+	margin-top: 5px; 
+	font-weight: 800;
+}
+
+h3{
+	margin-top: 40px;
+	padding-bottom: 60px;
+}
+
+/* 글내용 */
+#divAnswer{
+    word-break: break-all;
+    /* border: 1px solid blue; */
+    margin: 30px;
+}
+
+#divH4{
+	border-bottom: 2px solid #d1d1d1;
+	padding-bottom: 20px;
+}
+
+#ab{
+	text-align: left;
+	margin: 10px 10px 10px 30px;
+	color: gray;
+    font-size: 1.11em;
+}
+.ab1{
+	padding-right: 10px;
+	color: black;
+}
+.font-color{
+	color: gray;
+}
+/* 버튼 */
+input#delete {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+div.bts {
+    margin-top: 50px;
+}
+input#reEdit {
+    margin-right: 5px;
+}
+input#reDel {
+    margin-right: 5px;
+}
+
+/* 답변 테이블 */
+td.c {
+    padding-left: 55px;
 }
 td {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
+    padding-top: 20px;
 }
-
-input#rrr {
-    margin-left: 20px;
-}
-div#bts {
-    margin-left: 40%;
-    margin-bottom: 7%;
-}
-
-ul{
-	list-style: none;
-}
-.notice {
-    width: 80%;
-    margin: 0 auto;
+#idx{
+	width: 66%;
+    margin-left: 18%;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    border-radius: 14px;
     background-color: whitesmoke;
-    padding: 15px;
+    border: none;
+    margin-bottom: 70px;
 }
-#idx > div:nth-child(2) {
-    margin-bottom: 3%;
+
+p#re {
+    margin-left: 22px;
 }
-#idx > div:nth-child(2) > p {
-    font-size: 16px;
-    font-weight: bold;
+div#reli {
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-bottom: 50px;
 }
-#idx > div:nth-child(3) > p {
-    font-size: 16px;
-    font-weight: bold;
+p#rea1 {
+    padding-left: 22px;
+    padding-top: 15px;
 }
-table {
-    margin-left: 7%;
-    width: 687px;
-    margin-top: 6%;
-    margin-bottom: 6%;
+
+/* 답변달기 */
+div#resu {
+    padding-top: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 30px;
 }
-tr {
-    text-align: left;
+
+#cs {
+    width: 500px;
+    height: 200px;
+}
+p.rea {
+    font-size: 12pt;
+    font-weight: 800;
+}
+div#bts2 {
+    margin-left: 44%;
+}
+
+/* 리스트 상단 탭 */
+ul, li{list-style: none;}
+.tabList>li .inTab:hover,
+.tabList>li .inTab:focus {text-decoration:underline}
+
+li.select {
+    float: left;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 15pt;
 }
 input[type=button] {
     width: 60px;
@@ -71,10 +142,27 @@ input[type=submit] {
     margin-left: 1%;
     margin-bottom: 2%;
 }
-div#idx {
-    margin-top: 4%;
-    margin-left: -0.4%;
-    width: 107%;
+.lis {
+    list-style: circle;
+    margin-left: 2%;
+    text-align: left;
+}
+.notice {
+    width: 96%;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    padding: 3%;
+}
+#outDiv > form > div:nth-child(2) {
+    margin-bottom: 3%;
+}
+#outDiv > form > div:nth-child(2) > p{
+    font-size: 16px;
+    font-weight: bold;
+}
+#outDiv > form > div:nth-child(3) > p{
+    font-size: 16px;
+    font-weight: bold;
 }
 </style>
 <script type="text/javascript" 
@@ -96,25 +184,31 @@ div#idx {
 	<%@ include file="../../inc/companySidebar.jsp"%>
 	
 	<!-- main -->
-	<div style=" width:850px;  float: left;">
-		<div style="">
+	<div style=" margin:5px; width:850px;  float: left;">
+		<div style="margin-left: 0.5%;">
+			<div id="outDiv">
+				<h2 style="font-weight: bold;padding-left: 40px; padding-top: 33px;">고객센터</h2>
+		<div style="text-align: center; margin: 5px; border: 1px solid lightgray;margin-left: 22px;margin-top: 1.9%;width: 1000px;padding-top: 8%;padding-left: 8%; padding-right: 8%; padding-bottom: 10%;">
 			<div id="outDiv">
 				<form name = "frmWrite" method="post"  action="<c:url value = '/gogak/qnaC/qnaEdit.do'/>">
-					<div id = "idx" style="border: 1px solid lightgray;margin-left: 0.2%; margin-top: 4.2%;">
-						<h4 style="text-align:center; font-size: 24px; margin-top: 10%; margin-bottom: 10%;">― 1:1 문의 글 수정 ―</h4>
+						<h4 style="text-align:center; font-size: 24px; margin-top: 10%; margin-bottom: 10%; font-weight: bold">― 1:1 문의 글 수정 ―</h4>
 						<div class = "notice" >
 							<p style="text-align:center;" >1:1 문의 게시판 운영 원칙</p>
 							<ul>
-								<li>1:1 문의 게시판은 표현의 자유와 표현의 다양성을 존중합니다. 동시에 타인의 권리를 침해하거나 명예를 훼손하는 내용은 제한합니다. 방송통신심의위원회의 '정보통신에 관한 심의 규정', 한국인터넷자율정책기구의 '정책규정' 등을 기반으로 문제 게시물은 삭제될 수 있습니다. 자극적이고 혐오스러운 내용, 비속어, 폭력적 내용, 특정 대상을 비하하거나 차별을 조장하는 내용, 개인정보 유출을 비롯해 타인의 권리를 침해하는 내용, 반복되는 내용, 허위사실 등은 삭제나 숨김 처리될 수 있습니다.</li>
-								<li>문의글 게시 후 법정공휴일을 제외한 운영업일 기준 1~3일 내에 관리자의 답변이 등록됩니다.</li>
-								<li>답변이 완료된 문의는  수정 및 삭제가 불가능합니다. 최초 문의 취지와 다른 내용으로 변경되는 것을 방지하여 작성자의 의견을 보호하기 위한 조치이니 신중하게 작성하여 주시기 바랍니다.</li>
+								<li class = "lis">1:1 문의 게시판은 표현의 자유와 표현의 다양성을 존중합니다.</li>
+								<li class = "lis">동시에 타인의 권리를 침해하거나 명예를 훼손하는 내용은 제한합니다.</li>
+								<li class = "lis">방송통신심의위원회의 '정보통신에 관한 심의 규정', 한국인터넷자율정책기구의 '정책규정' 등을 기반으로 문제 게시물은 삭제될 수 있습니다.</li>
+								<li class = "lis">자극적이고 혐오스러운 내용, 비속어, 폭력적 내용, 특정 대상을 비하하거나 차별을 조장하는 내용, 개인정보 유출을 비롯해 타인의 권리를 침해하는 내용, 반복되는 내용, 허위사실 등은 삭제나 숨김 처리될 수 있습니다.</li>
+								<li class = "lis">문의글 게시 후 법정공휴일을 제외한 운영업일 기준 1~3일 내에 관리자의 답변이 등록됩니다.</li>
+								<li class = "lis">답변이 완료된 문의는  수정 및 삭제가 불가능합니다.</li>
+								<li class = "lis">최초 문의 취지와 다른 내용으로 변경되는 것을 방지하여 작성자의 의견을 보호하기 위한 조치이니 신중하게 작성하여 주시기 바랍니다.</li>
 							</ul>
 						</div>
 						<div class = "notice" >
 							<p style="text-align:center;" >1:1 문의 게시판 작성 요령 안내</p>
 							<ul>
-								<li>새 문의글 작성 시, 내용을 대표하는 제목 및 관련 분야를 선택하신 후 내용을 입력해주시면 됩니다.</li>
-								<li>문의 내용의 주요 키워드가 포함된 카테고리를 선택하시면 정확한 답변을 드리는데에 도움이 됩니다.</li>
+								<li class = "lis">새 문의글 작성 시, 내용을 대표하는 제목 및 관련 분야를 선택하신 후 내용을 입력해주시면 됩니다.</li>
+								<li class = "lis">문의 내용의 주요 키워드가 포함된 카테고리를 선택하시면 정확한 답변을 드리는데에 도움이 됩니다.</li>
 							</ul>
 						</div>
 						<div>
@@ -156,9 +250,9 @@ div#idx {
 							<input type = "submit" value = "글수정" id = "ddd">
 							<input type = "button" value = "글목록" id = "rrr">
 						</div>
-					</div>
-					
 				</form>
+			</div>
+			</div>
 			</div>
 		</div>
 	</div>

@@ -27,6 +27,8 @@ a{
 }
 #o > div > div {
     border: 1px solid lightgray;
+    margin-left: 5px;
+    width: 1000px;
 }
 /* 페이징 */
 .divPage {
@@ -97,16 +99,8 @@ p.rst {
     padding-left: 2%;
     padding-right: 2%;
 }
-h2#h2Title {
-    margin-left: 31%;
-    margin-bottom: 1%;
-    font-weight: bold;
-}
 span#totalPrice {
     color: #FB246A;
-}
-div#o {
-    padding-top: 2%;
 }
 </style>
 <script type="text/javascript">	
@@ -141,14 +135,14 @@ div#o {
 </script>
 <main>
 	<%@ include file="../../inc/sidebar.jsp"%>
-	<div id = "o">
 	
 	<!-- main -->
+	<div id = "o">
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
-		<h2 style="margin-left: 18px; font-weight: bold; margin-bottom: 2%;">고객센터</h2>
+		<h2 style="margin-left: 18px; font-weight: bold;  margin-bottom: 2%; padding-top: 30px;">고객센터</h2>
 		<div>
 			<div style="margin:5px; height:95px; /* border:1px solid lightgray; */">
-			<h2 style = "padding-left: 50px; padding-top: 30px; padding-left: 14px; adding-top: 25px; font-size: 1.8em;">자주찾는 질문</h2>
+			<h2 style = "padding-left: 50px; padding-top: 30px; padding-left: 14px; adding-top: 25px; font-size: 1.8em;"><!-- 자주찾는 질문 --></h2>
 			</div>
 			<div style="text-align: center; margin:5px; /* border:1px solid lightgray; */">
 				<div id = "list">

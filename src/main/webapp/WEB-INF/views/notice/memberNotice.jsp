@@ -85,12 +85,13 @@ div#o {
     border: 1px solid lightgray;
     padding-bottom: 2%;
     margin-top: 2%;
-    width: 117.5%;
+    width: 1000px;
+    margin-left: 0.5%;
 }
-body > div:nth-child(12) > div > h2{
+body > div:nth-child(12) > div > h2 {
     font-weight: bold;
-    padding-left: 2.3%;
-    padding-top: 4.1%;
+    padding-left: 2%;
+    padding-top: 3.2%;
 }
 </style>
 <div style="overflow: hidden;">
@@ -133,7 +134,7 @@ body > div:nth-child(12) > div > h2{
 							<c:forEach var="vo" items="${list }">
 								<tr>
 									<td style="color:#3b38ff; font-weight: bold;">${vo.type }</td>
-									<td style="text-align: left;"><a href="<c:url value='/notice/noticeDetail.do?noticeNo=${vo.noticeNo }'/>" style="color: black">${vo.title }</a></td>
+									<td style="text-align: center;"><a href="<c:url value='/notice/noticeDetail.do?noticeNo=${vo.noticeNo }'/>" style="color: black">${vo.title }</a></td>
 									<td style="color:#777777"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
 								</tr>
 								<c:set var = "idx" value = "${idx+1 }"/>
