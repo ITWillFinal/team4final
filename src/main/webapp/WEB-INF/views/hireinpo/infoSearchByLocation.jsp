@@ -56,7 +56,7 @@ $(function() {
 						<div class="job-tittle">
 							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h6 style="font-weight: bold;">${vo.title }</h6></a>
 							<ul>
-								<li>${vo.comName }</li>
+								<li><a style="color: black" href="<c:url value='/companypage/showCompanyInfo.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.comName }</a></li>
 								<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
 							</ul>
 						</div>

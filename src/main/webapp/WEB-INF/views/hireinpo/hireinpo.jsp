@@ -146,7 +146,7 @@ function makeListJson(res){
 		htmlStr += "<div class='single-job-items mb-30' style='width: 90%;margin: 0 auto; border: 1px solid #e0e0e08f; margin-top:20px;'><div class='job-items'><div class='job-tittle'>";
 		htmlStr += "<a href='<c:url value='/hireinpo/infoDetail.do?recruitmentCode="+this.recruitmentCode+"'/>'><h4>"+this.title+"</h4></a>";
 		htmlStr += "<ul>";
-		htmlStr += "<li>"+this.comName+"</li>";
+		htmlStr += "<li><a href='<c:url style='background:black;' value='/companypage/showCompanyInfo.do?recruitmentCode="+this.recruitmentCode+"'/>'>"+this.comName+"</a></li>";
 		htmlStr += "<li><i class='fa fa-briefcase' aria-hidden='true'></i>"+this.jobType2+"</li>";
 		htmlStr += "<li>"+this.pay+"</li>";
 		htmlStr += "<ul>";

@@ -100,16 +100,20 @@ public class CompanyInfoController {
 		logger.info("{}의 c_member_code = {}", cUserid, cnt);
 		
 		CompanyInfoVO vo = companyInfoService.selectComInfoBycMemberCode(cnt);
-		
+		logger.info("vo={}", vo);
 		//만약 컴페니가 회사 공고 올렸으면 거기서 값 가져오기
 		List<Recruitment_TosVO> comRecruitListVo = comRecruitServ.selectList_tosByComcode(vo.getComCode());
 		logger.info("comRecruitListVo={}", comRecruitListVo);
-		Recruitment_TosVO comRecruitVo = comRecruitListVo.get(0);
-		if(comRecruitVo != null) {
+		if(comRecruitListVo==null) {
+			
+		}else {
+			Recruitment_TosVO comRecruitVo = comRecruitListVo.get(0);
+			model.addAttribute("vo", vo);
 			model.addAttribute("comRecruitVo", comRecruitVo);
 			logger.info("comRecruitVo={}", comRecruitVo);
 		}
-		model.addAttribute("vo", vo);
+		
+		
 		
 	}
 	
@@ -198,10 +202,10 @@ public class CompanyInfoController {
 		logger.info("tosVo={}", tosVo);
 		String comCode = tosVo.getComCode();
 		
-		CompanyInfoVO comInfoVo = companyInfoService.selectCompanyInfoByComCode(comCode);
-		logger.info("comInfoVo={}", comInfoVo);
+		CompanyInfoVO vo = companyInfoService.selectCompanyInfoByComCode(comCode);
+		logger.info("vo={}", vo);
 		
-		model.addAttribute("comInfoVo", comInfoVo);
+		model.addAttribute("vo", vo);
 		return "companypage/showCompanyInfo";
 	}
 

@@ -23,7 +23,9 @@
 		width: 93%;
 		margin: 50px 0;
 	}
-	
+	a, button {
+		
+    }
 </style>
 <%@ include file="../inc/top.jsp" %>
 <%@ include file="../inc/sidebar.jsp"%>
@@ -63,8 +65,9 @@
 					for(var i = 0; i< res.length; i++){
 						var option = '<div id="'+res[i].jobType2+'">'
 						option += '<div class="single-job-items mb-30" id="listOne"><div class="job-items"><div class="job-tittle">';
-						option += '<a href="<c:url value="/hireinpo/infoDetail.do?recruitmentCode='+res[i].recruitmentCode+'"/>"><h4>'+res[i].title+'</h4></a>';
-						option += '<ul><li>'+res[i].comName+'</li><li><i class="fa fa-briefcase" aria-hidden="true"></i>'+res[i].jobType2+'</li><li>'+res[i].pay+'</li>';
+						option += '<a style="color:black;" href="<c:url value="/hireinpo/infoDetail.do?recruitmentCode='+res[i].recruitmentCode+'"/>"><h4>'+res[i].title+'</h4></a>';
+						option += '<ul><li><a href="<c:url value="/companypage/showCompanyInfo.do?recruitmentCode='+res[i].recruitmentCode+'"/>" style="color:black;"> '
+						option += res[i].comName+'</li><li><i class="fa fa-briefcase" aria-hidden="true"></i>'+res[i].jobType2+'</li><li>'+res[i].pay+'</li>';
 						option += '</div></div>';
 						option += '<div class="items-link f-right"><a href="<c:url value="/hireinpo/infoDetail.do?recruitmentCode='+res[i].recruitmentCode+'"/>">'+res[i].recType+'</a>';
 						option += '</div></div></div>';

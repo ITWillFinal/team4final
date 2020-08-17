@@ -10,47 +10,28 @@ $(function(){
 	});
 	
 });//function
+
 </script>
 <style type="text/css">
-	hr{
-		height: 3px;
-	    background: #da2461;
-	
+	img {
+	    width: 100%;
 	}
 	.btSubmit{
 		text-align: center;
 		padding: 30px;
 	}
-	img {
-	    width: 100%;
-	    margin-left: 2%;
-	}
 	.form-control {
 	    border: none;
 	}
-	
-	/* 라벨 */
-	label.col-sm-3.control-label {
-	    font-size: 10pt;
-	    color: gray;
-	}
-	input[type="text"] {
-	    font-weight: bold;
-	}
-	label.col-sm-3.control-label {
-	    margin-top: 2%;
-	}
-	#bbk > form > div.form-horizontal > div:nth-child(2) {
-	    margin-top: -3%;
-	}
-	input[type="text"] {
-	    border-style: none;
-	}
+
 	.infoBox{
 		border: 1px solid black;
-		height: 850px;
+		height: 1080px;
 		margin-bottom: 10px;
 		padding: 0 70px;
+		border-radius: 80px / 80px;
+		border: 1px solid #e0e0e08f;
+		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 	}
 	.info_company_ceo{
 	    width: 170px;
@@ -105,8 +86,16 @@ $(function(){
 		font-weight: normal;
 	}
 	.fontBoldA{
-		margin-left: 31px;
+		font-weight: bolder;
 		margin-right: 31px;
+	}
+	.hr_c{
+		height: 1px;
+		background: #b3b3b3;
+	}
+	.hr_c_title{
+		height: 3px;
+		background: #b3b3b3;
 	}
 </style>
 <main>
@@ -157,35 +146,36 @@ $(function(){
 					<section class="info_body">
 						<div class="info_company_body">
 							<span class="info_body_title">기업 정보</span>
-							<br><br>
+							<hr class="hr_c_title">
 							<div class="company_register_number">
 								<span class="fontBoldA">사업자등록번호 : <span class="fontNormal">${vo.comNum}</span></span>
 							</div>
-							<br>
+							<hr class="hr_c">
 							<div class="company_addr">
 								<span class="fontBoldA">우편번호 : <span class="fontNormal">(${vo.zipcode}) ${vo.address} ${vo.addressDetail}</span></span>
 							</div>
-							<br>
+							<hr class="hr_c">
 							<div class="company_hp">
 								<span class="fontBoldA">내부전화번호 : <span class="fontNormal">${vo.comHp}</span></span>						
 							</div>
-							<br>
+							<hr class="hr_c">
 							<div class="company_comType">
 								<span class="fontBoldA">기업형태 : <span class="fontNormal">${vo.comType}</span></span>						
 							</div>
-							<br>
+							<hr class="hr_c">
 							<div class="company_comIndustry">
 								<span class="fontBoldA">기업업종 : <span class="fontNormal">${vo.comIndustry}</span></span>						
 							</div>
-							<br>
+							<hr class="hr_c">
 							<div class="company_content">
 								<span class="fontBoldA" >사업내용 : </span>
 								<div class="company_content_write">
-									<textarea rows="8" cols="20" name = "content" readonly="readonly" class="fontBoldA"
-									style="width: 700px;">${fn:replace(vo.content , newLine, '<br>')}</textarea>			
+									<span>
+										${fn:replace(vo.content , newLine, '<br>')}
+									</span>
 								</div>
 							</div>
-							<br>
+							<hr class="hr_c">
 							<div class="company_homepage">
 								<c:if test="${empty vo.homepage }">
 									<span class="fontBoldA">등록된 홈페이지가 없습니다</span>
@@ -194,7 +184,7 @@ $(function(){
 									<span class="fontBoldA">홈페이지 : <span class="fontNormal">${vo.homepage}</span></span>
 								</c:if>
 							</div>
-							<br>
+							<hr class="hr_c">
 							<div class="company_image">
 								<span class="fontBoldA">기업사진</span></span><br>
 								<img class="fontBoldA" src="<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
