@@ -124,7 +124,7 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 				<div class="single-job-items mb-30" id="listOne">
 					<div class="job-items">
 						<div class="job-tittle">
-							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>"><h4>${map['TITLE'] }</h4></a>
+							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>"><h4>${map['TITLE'] }　　[ 기업열람 여부 : ${map['READ_CHECK'] } ]</h4></a>
 							<input type="hidden" id="applyCode" value="${map['APPLY_CODE'] }">
 							<ul>
 								<li>${map['COM_NAME'] }</li>
