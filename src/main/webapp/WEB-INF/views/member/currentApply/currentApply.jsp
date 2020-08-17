@@ -124,7 +124,8 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 				<div class="single-job-items mb-30" id="listOne">
 					<div class="job-items">
 						<div class="job-tittle">
-							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>"><h4>${map['TITLE'] }　　[ 기업열람 여부 : ${map['READ_CHECK'] } ]</h4></a>
+							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${map["RECRUITMENT_CODE"] }'/>"><h4>${map['TITLE'] }</h4></a>
+							<span><c:if test="${map['READ_CHECK'] == 'Y'}">[ 이력서 열람여부 : Y ]</c:if><c:if test="${empty map['READ_CHECK']}">[ 이력서 열람여부 : N ]</c:if></span>
 							<input type="hidden" id="applyCode" value="${map['APPLY_CODE'] }">
 							<ul>
 								<li>${map['COM_NAME'] }</li>
@@ -139,7 +140,7 @@ h1 span:nth-child(7) { animation-delay: .6s; }
 								<a class="applyDelete" href="<c:url value='#'/>" style="border: 0; margin: 0; padding: 0; color: #206ef9; background: white;">지원 취소</a>
 							</c:if>
 							<c:if test="${map['APPLY_STATUS'] == '합격' }">
-								<a id="passOrNot" style="background: #1a76ff; border: 1px solid #1a76ff;;">합격</a>
+								<a id="passOrNot" style="background: #1a76ff; border: 1px solid #1a76ff;">합격</a>
 							</c:if>
 							<c:if test="${map['APPLY_STATUS'] == '불합격' }">
 								<a id="passOrNot" style="background: #ff1f1f; border: 1px solid #ff1f1f;">불합격</a>
