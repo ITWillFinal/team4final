@@ -289,3 +289,9 @@ ALTER TABLE recruitment MODIFY education_lv number;
 ALTER TABLE RECRUITMENT MODIFY(INDU_TYPE1 varchar2(60));
 ALTER TABLE RECRUITMENT MODIFY(INDU_TYPE2 varchar2(60));
 drop index T4FINAL.PK_COMPANY_RESUMEUSE;
+
+create or replace view recruitment_apply
+as
+select r.* ,a.APPLY_CODE, a.APPLY_STATUS, a.RESUME_NO, a.USER_NO, a.READ_CHECK
+from apply a right join recruitment_tos r
+on a.RECRUITMENT_CODE = r.RECRUITMENT_CODE;
