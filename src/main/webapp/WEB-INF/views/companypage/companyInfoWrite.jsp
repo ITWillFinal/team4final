@@ -108,11 +108,7 @@
 	});//function
 </script>
 <style type="text/css">
-hr{
-height: 3px;
-    background: #da2461;
 
-}
 .btSubmit{
 	text-align: center;
 	padding: 30px;
@@ -160,29 +156,54 @@ height: 3px;
 	}
 </script>
 <style>
-hr{
-	height: 3px;
-    background: #da2461;
-}
-
+.fileLabel {
+	width:170px;
+	text-align:center;
+	  display: inline-block;
+	  padding: .5em .75em;
+	  color: #fff;
+	  font-size: inherit;
+	  line-height: normal;
+	  vertical-align: middle;
+	  background-color: #fb246a;
+	  cursor: pointer;
+	  border: 1px solid #fb246a;
+	  border-radius: .25em;
+	  -webkit-transition: background-color 0.2s;
+	  transition: background-color 0.2s;
+	}
+	
+	.fileLabel:hover {
+	  background-color: #ffc0d3;
+	  border: 1px solid #ffc0d3;
+	}
+	
+	.fileLabel:active {
+	  background-color: white;
+	  border: 1px solid #fb246a;
+	  color: #fb246a;
+	}
+	
+	.fileInput {
+	  position: absolute;
+	  width: 1px;
+	  height: 1px;
+	  padding: 0;
+	  margin: -1px;
+	  overflow: hidden;
+	  clip: rect(0, 0, 0, 0);
+	  border: 0;
+	}
 </style>
 <main>
-	<%@ include file="../inc/companySidebar.jsp"%>
 	<div
-		style="float: left; width: 49%; margin-left: 30px; font-size: 14px;">
+		style="width: 1055px; margin:0 auto; font-size: 14px;">
 		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
-		
-		<!-- main -->
-		<div style="margin: 5px; height: 95px;"><br>
-			<h1 style="background: white; padding: 20px; font-weight: bold;">
-				회사 정보 입력 <span
-					style="font-size: 14px; color: red; padding-left: 30px;">*
-					필수가 아닌항목은 체크해제시 적용되지 않습니다.</span>
-			</h1>
-		</div>
-		<br>
-		<hr>
-		<form name="frm" method="post" style="margin-top: 50px;"
+			<h1 style="background: white;font-weight: bold;">회사 정보 입력 <span
+					style="font-size: 14px; color: red;">*
+					필수가 아닌항목은 체크해제시 적용되지 않습니다.</span></h1>
+			<hr style="border: 1px solid #fb246a;">
+		<form name="frm" method="post"
 			action="<c:url value='/companypage/companyInfoWrite.do' /> "
 			enctype="multipart/form-data" >
 		<div class="form-horizontal">
@@ -228,14 +249,13 @@ hr{
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputUser" class="col-sm-3 control-label">회사 사진 
-				</label>
-				<div class="col-sm-9 form-input">
-					<input type="file" name="imageUpload" id="imageUpload" class="infobox"
-						placeholder="회사 사진 업로드"> 
-				</div>
 				<div class="col-sm-9 form-input">
 					<img id="image" width="100" height="100" alt="Image Preview" style="display: none;">
+					<br><br>
+				<label class="col-sm-3 control-label fileLabel" for="imageUpload">회사 사진 업로드
+				</label>
+					<input type="file" accept="image/*" name="imageUpload" id="imageUpload" class="fileInput infobox"
+						placeholder="회사 사진 업로드"> 
 				</div>
 			</div>
 			<div class="form-group">

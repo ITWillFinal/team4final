@@ -11,7 +11,12 @@ h4{
 	margin-top: 5px; 
 	font-weight: 800;
 }
-
+select.ind {
+    width: 37%;
+}
+#idx > div:nth-child(5) > table > tbody > tr:nth-child(3) > td:nth-child(2) > input{
+    width: 100%;
+}
 h3{
 	margin-top: 40px;
 	padding-bottom: 60px;
@@ -215,34 +220,31 @@ input[type=submit] {
 							<input type="hidden" id = "qnaNo" name = "qnaNo" value = "${vo.qnaNo}">
 							<table>
 								<colgroup>
-								   <col style="width:15%;" />
 								   <col style="width:30%;" />
-								   <col style="width:40%;" />
-								   <col style="width:15%;" />
+								   <col style="width:70%;" />
 								</colgroup>
 								<tr>
-									<td></td>
-									<td><p>작성자</p></td>
-									<td><input type = "text" id = "userId" name = "userId" value = "${userid}" disabled  /></td>
-									<td></td>
+									<td class = "in"><p>작성자</p></td>
+									<td><input type = "text" class = "ind" id = "userId" name = "userId" value = "${userid}" disabled  /></td>
 								</tr>
 								<tr>
-									<td></td>
-									<td><p>문의제목</p></td>
-									<td><input type="text" name = "title" value = "${vo.title}"></td>
-									<td></td>
+									<td class = "in" style="width: 130px;"><p>카테고리</p></td>
+									<td>
+										<select name = "category" class = "ind">
+											<option value = "채용">채용</option>
+											<option value = "사이트 이용">사이트 이용</option>
+											<option value = "로그인 문제">로그인 문제</option>
+											<option value = "기타문의">기타문의</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
-									<td></td>
-									<td><p>카테고리</p></td>
-									<td><input type="text" name = "category" value = "${vo.category }"></td>
-									<td></td>
+									<td class = "in"><p>문의제목</p></td>
+									<td><input type="text" class = "ind" name = "title" value = "${vo.title}"></td>
 								</tr>
+								
 								<tr>
-									<td colspan="4"><p style="text-align: center;">문의내용</p></td>
-								</tr>
-								<tr>
-									<td colspan="4"><textarea rows="7px" cols="50px" name = "content">${vo.content }</textarea></td>
+									<td class = "in" colspan="4"><textarea rows="7px" cols="50px" name = "content">${vo.content }</textarea></td>
 								</tr>
 							</table>
 						</div>

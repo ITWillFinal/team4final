@@ -88,6 +88,11 @@ public class ComMemberServiceImpl implements ComMemberService{
 	public String selectMemberCode(String cUserid) {
 		return comMemberDao.selectMemberCode(cUserid);
 	}
+
+	@Override
+	public String selectCMemberPwd(String cUserid) {
+		return comMemberDao.selectCMemberPwd(cUserid);
+	}
 	
 	
 

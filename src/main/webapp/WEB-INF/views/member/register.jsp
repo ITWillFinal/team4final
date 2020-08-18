@@ -263,7 +263,7 @@
 <style type="text/css">
 .divForm {
 	margin: 0 auto;
-	width: 800px;
+	width: 1055px;
 	position:relative;
 }
 .foot{
@@ -279,10 +279,6 @@ legend {
 	text-align: center;
 }
 
-hr {
-	height: 3px;
-	background: #da2461;
-}
 .registerList{
 	display: none;
 }
@@ -388,15 +384,54 @@ hr {
   }
 }
 
+.fileLabel {
+	width:170px;
+	text-align:center;
+	  display: inline-block;
+	  padding: .5em .75em;
+	  color: #fff;
+	  font-size: inherit;
+	  line-height: normal;
+	  vertical-align: middle;
+	  background-color: #fb246a;
+	  cursor: pointer;
+	  border: 1px solid #fb246a;
+	  border-radius: .25em;
+	  -webkit-transition: background-color 0.2s;
+	  transition: background-color 0.2s;
+	}
+	
+	.fileLabel:hover {
+	  background-color: #ffc0d3;
+	  border: 1px solid #ffc0d3;
+	}
+	
+	.fileLabel:active {
+	  background-color: white;
+	  border: 1px solid #fb246a;
+	  color: #fb246a;
+	}
+	
+	.fileInput {
+	  position: absolute;
+	  width: 1px;
+	  height: 1px;
+	  padding: 0;
+	  margin: -1px;
+	  overflow: hidden;
+	  clip: rect(0, 0, 0, 0);
+	  border: 0;
+	}
 </style>
 <body>
+
 	<div class="divForm">
-		<form name="frm" method="post" style="margin-top: 100px;"
-			action="<c:url value='/member/register.do' /> "
-			enctype="multipart/form-data">
+		<form name="frm" method="post" action="<c:url value='/member/register.do'/>"	enctype="multipart/form-data">
 			<div class="form-group" id="divId">
-				<legend>회원 가입</legend>
-				<hr>
+			
+				<h1 style="background: white; font-weight: bold;">일반회원가입</h1>
+				<hr style="border: 1px solid #fb246a;">
+				
 				<!-- 약관 동의 시작 -->
 				<div class="form-group" id="div_agree_article">
 					<div class="col-lg-10">
@@ -483,10 +518,11 @@ hr {
 					</div>
 					<div class="form-group" id="divProfile">
 						<div class="col-lg-10">
-							<label class="col-lg-3 control-label">프로필 사진</label> <input
-								type="file" accept="image/*" name="imageUpload" id="imageUpload" class="infobox"
-								placeholder="프로필 사진 업로드"> <img id="image" width="100"
-								height="100" alt="Image Preview" style="display: none;">
+							<img id="image" width="100"	height="100" alt="Image Preview" style="display: none;">
+							<br><br>
+							<label class="col-lg-3 control-label fileLabel" for="imageUpload">프로필 사진 업로드</label>
+							<input type="file" accept="image/*" name="imageUpload" id="imageUpload" class="infobox fileInput"
+								placeholder="프로필 사진 업로드"> 
 						</div>
 					</div>
 					<div class="form-group" id="divNickname">

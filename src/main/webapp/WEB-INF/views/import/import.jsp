@@ -37,7 +37,7 @@
 					if(result >0){	
 						alert("결제 성공했습니다");
 						if(resumeType == 0){
-							location.href = "<c:url value='/resume/resumeMain.do' />";
+							location.href = "<c:url value='/companypage/employmentNotice/employmentNoticeList.do' />";
 						}else{
 							location.href = "<c:url value='/companypage/companyResumeSet.do?recruitmentCode="+recruitmentCode+"' />";
 						}

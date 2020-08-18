@@ -53,14 +53,7 @@
 
 </script>
 <!-- list 값이 없으면 -->
-<c:if test="${empty list }">
-	<div class="noList">
-		<span> 현재 진행 중인 채용정보 없습니다.</span>
-		<br><br>
-		<a href="<c:url value='/companypage/companyWrite.do'/> " >채용 공고 등록하러 가시겠습니까?</a>
-	</div>
 
-</c:if>
 
 
 
@@ -69,6 +62,14 @@
 	<div id="scrapListDiv">
 			<h1 style="background: white;font-weight: bold;">채용공고<span class="deleteInfo" style="margin-left: 10px;font-size: small;">(삭제는 수정에서 가능합니다)</span></h1>
 				<hr style="border: 1px solid #fb246a;margin: 30px 0;">
+	<c:if test="${empty list }">
+	<div class="noList">
+		<span style="font-size: 17px"> 현재 진행 중인 채용정보 없습니다.</span>
+		<br><br>
+		<a href="<c:url value='/companypage/companyWrite.do'/> "><b style="color: #fb246a;" >채용공고 등록하기</b></a>
+	</div>
+
+</c:if>
 		<c:if test="${!empty list }">
 			<c:forEach var="vo" items="${list }">
 				<fmt:parseDate var="end" value="${vo.endDate }" pattern="yy/MM/dd"></fmt:parseDate>
@@ -129,6 +130,7 @@
 					</c:if>
 				</div>
 			</c:forEach>
+			<a href="<c:url value='/companypage/companyWrite.do'/> "><b style="color: #fb246a;float: right;" >채용공고 등록하기</b></a>
 		</c:if>
 	</div>
 </div>

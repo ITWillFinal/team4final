@@ -45,7 +45,6 @@
 			<div class="MenuHeadDiv">기업정보관리</div>
 			<div class="MenuHoverDiv"><a href = "<c:url value ='/companypage/cMemberEdit.do'/>">회원정보수정</a></div>
 			<div class="MenuHoverDiv"><a href = "<c:url value ='/companypage/MyCompanyEdit.do'/>">회사정보수정</a></div>
-			<div class="MenuHoverDiv">기업로고 / 사진관리</div>
 	
 			<div class="MenuHeadDiv">채용관리</div>
 			<div class="MenuHoverDiv"><a href = "<c:url value ='/companypage/companyWrite.do'/>">채용정보등록</a></div>

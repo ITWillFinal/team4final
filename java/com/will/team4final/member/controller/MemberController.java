@@ -354,4 +354,22 @@ public class MemberController {
 		return "member/currentApply/currentApply";
 	}
 	
+	@ResponseBody
+	@RequestMapping("/outPwdChk.do")
+	public int outPwdChk(@RequestParam String pwd, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		String password = memberService.selectMemberPwd(userid);
+		
+		boolean pwdMatch = pwdEncoder.matches(pwd, password);
+		logger.info("pwdMatch={}", pwdMatch);
+		// 같으면 트루 다르면 false
+		int result=0;
+		
+		if(pwdMatch) {
+			result=1;
+		}
+		
+		return result;		
+	}
+	
 }

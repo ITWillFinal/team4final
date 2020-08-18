@@ -20,7 +20,8 @@ $(function(){
 		float: right;
 	}
 	img {
-	   /*  width: 100%; */
+	   width: 100%;
+	   height:100%;
 	    margin-left: 2%;
 	}
 	.form-control {
@@ -208,7 +209,7 @@ $(function(){
 							<hr style="clear: both;">
 						<div>
 							<span class="info_body_title">기업사진</span>
-							<div class="company_image">
+							<div class="company_image" style="width: 225px;height: 200px;">
 								<img class="fontBoldA" src="<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
 							</div>
 						</div>

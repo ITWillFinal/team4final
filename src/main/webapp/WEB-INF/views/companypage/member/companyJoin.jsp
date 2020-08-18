@@ -141,7 +141,7 @@
 <style type="text/css">
 .divForm {
 	margin: 0 auto;
-	width: 800px;
+	width: 1055px;
 }
 
 #join {
@@ -151,20 +151,15 @@
 legend{
 	text-align: center;
 }
-hr{
-height: 3px;
-    background: #da2461;
-
-}
 </style>
 <body>
 	<div class="divForm">
-		<form name="frmCom" method="post" style="margin-top: 100px;"
-			action="<c:url value='/companypage/member/register.do' /> "
-			enctype="multipart/form-data" >
+		<form name="frmCom" method="post" action="<c:url value='/companypage/member/register.do' /> ">
 			<div class="form-group" id="divId">
-				<legend>기업 회원 가입</legend>
-				<hr>
+						
+			<h1 style="background: white; font-weight: bold;">기업회원가입</h1>
+			<hr style="border: 1px solid #fb246a;">
+				
 				<div class="form-group" id="divEmail">
 				<div class="col-lg-10">
 					<label for="inputEmail" class="col-lg-2 control-label">*이메일</label>
@@ -241,7 +236,7 @@ height: 3px;
 			</div>
 
 			<div class="form-group">
-				<div class="col-lg-offset-2 col-lg-10">
+				<div class="col-lg-offset-2 col-lg-10" style="text-align: center;">
 					<button type="submit" class="btn btn-primary">회원가입</button>
 				</div>
 			</div>

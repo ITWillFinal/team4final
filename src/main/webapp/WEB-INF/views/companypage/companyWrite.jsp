@@ -389,11 +389,13 @@
 		$('#sigugun').hide();
 		$('#sido').change(function(){
 			if($(this).val()==""){
-				$('#sigugun').hide();
+				$('#sigugun').hide();				
 			}else{
-				$('#sigugun').show();				
+				$('#sigugun').show();
 			}
 		});
+		
+		
 	});
 	
 	
