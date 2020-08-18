@@ -176,6 +176,12 @@ label.col-sm-3.control-label {
 	  clip: rect(0, 0, 0, 0);
 	  border: 0;
 	}
+	
+	textarea{
+		border: 1px solid lightgray;
+    	resize: none;
+    	border-radius: 5px;
+	}
 </style>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -284,8 +290,8 @@ label.col-sm-3.control-label {
 						<label for="imageUpload" class="col-lg-3 control-label fileLabel">회사 사진 업로드 </label>
 						<input type="file" name="imageUpload" id="imageUpload" class="infobox fileInput" accept="image/*"
 						placeholder="회사 사진 재업로드"> 
+						<input type="hidden" name = "imageURL" value = "${vo.imageURL }">
 					</c:if>
-					<input type="hidden" name = "imageURL" value = "${vo.imageURL }">
 				</div>
 				<!-- <div class="col-sm-9 form-input">
 				</div> -->
@@ -581,8 +587,8 @@ label.col-sm-3.control-label {
 				<label for="inputUser" class="col-sm-3 control-label">주요 사업 내용 <span>*</span>
 				</label>
 				<div class="col-sm-9 form-input">
-					<span name="content">${fn:replace(vo.content , newLine, '<br>')}</span>
-					
+					<%-- <input name="content" value="${fn:replace(vo.content , newLine, '<br>')}"> --%>
+					<textarea name="content" rows="5" cols="82">${vo.content} </textarea>
 				</div>
 			</div>	
 			<div class="form-group">

@@ -92,9 +92,18 @@ public class MypageController {
 			
 			//기업 회원 기업 정보 구하기
 			CompanyInfoVO comInfoVo = comInfoServ.selectComInfoBycMemberCode(comMemberVo.getcMemberCode());
+			
+			if(comInfoVo==null) {
+				String msg = "회사정보를 입력해 주세요.", url="/companypage/companyHome.do";
+				model.addAttribute("msg", msg);
+				model.addAttribute("url", url);
+				return "common/message";
+			}
+			
 			logger.info("기업회원 기업 정보, comInfoVo={}", comInfoVo);
 			
 			//기업회원 공고 정보 구하기
+		
 			List<Recruitment_TosVO> comRecuritTosListVo = comRecruitServ.selectList_tosByComcode(comInfoVo.getComCode());
 			logger.info("기업회원 notice, comRecuritVo={}", comRecuritTosListVo);
 			

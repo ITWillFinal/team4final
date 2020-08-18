@@ -23,7 +23,7 @@
 	</delete>
 	
 	<select id="selectApplyForCompany" resultType="map" parameterType="String">
-		select a.*, m.user_name, r.resume_type from 
+		select a.*, m.user_name,m.user_id, r.resume_type from 
 		member m join apply a
 		on m.user_no=a.user_no
 		join RECRUITMENT r
