@@ -229,7 +229,7 @@ label.col-sm-3.control-label {
 		<!-- main -->
 		<h1 style="background: white;font-weight: bold;">회사정보수정<span class="deleteInfo" style="margin-left: 10px;font-size: small;">(필수가 아닌항목은 체크해제시 적용되지 않습니다)</span></h1>
 				<hr style="border: 1px solid #fb246a;margin: 30px 0;">
-		<form name="frm" method="post" style="margin-top: 50px;width: 100%;"
+		<form name="frm" method="post" style="width: 100%;"
 			action="<c:url value='/companypage/MyCompanyEdit.do' /> "
 			enctype="multipart/form-data" >
 			<input type="hidden" name = "comCode" value = ${param.comCode }>

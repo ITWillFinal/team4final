@@ -896,7 +896,7 @@ input[type=text] {
 			<input type="hidden" id="induType1" name="induType1">
 			<input type="hidden" id="induType2" name="induType2">			
 			<input type="hidden" id="location1" name="location1">
-			<input type="text" id="location2" name="location2">			
+			<input type="hidden" id="location2" name="location2">			
 			<input type="hidden" id="comCode" name="comCode" value="${comCode }">
 			
 		</form>

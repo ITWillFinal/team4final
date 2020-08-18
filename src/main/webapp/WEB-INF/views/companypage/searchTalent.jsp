@@ -113,10 +113,7 @@
 
 </script>
 <style type="text/css">
-	a{
-		color:black;
-		font-weight: bold;
-	}
+
 
 	hr{
 		border-bottom: 2px dotted#88898c;
@@ -207,6 +204,20 @@
 	    line-height: 20px;
 	    word-break: break-all;
 	    font-family: "Malgun Gothic",dotum,gulim,sans-serif;
+	}
+	
+	.bttn1{
+		width:100px;
+		display: inline-block;
+		margin-top: -0.5px;
+		cursor: pointer;
+		float: right;
+	}
+	
+	.bttn1:hover{
+		background: #ced4da;
+		border:	1px solid #ced4da;
+		color: white;
 	}
 </style>
 <main>
@@ -361,7 +372,7 @@
 					</table>
 				</div>
 				<div>
-					<input type="button" value="입사요청" id='button1' style="float: right;"/>
+					<input type="button" value="입사요청" class="form-control bttn1" id='button1' style="float: right;"/>
 				</div>
 				</div>
 			</div>

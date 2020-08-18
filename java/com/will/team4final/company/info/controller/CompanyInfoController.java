@@ -105,7 +105,7 @@ public class CompanyInfoController {
 		List<Recruitment_TosVO> comRecruitListVo = comRecruitServ.selectList_tosByComcode(vo.getComCode());
 		logger.info("comRecruitListVo={}", comRecruitListVo);
 		if(comRecruitListVo==null || comRecruitListVo.isEmpty()) {
-			
+			model.addAttribute("vo", vo);
 		}else {
 			Recruitment_TosVO comRecruitVo = comRecruitListVo.get(0);
 			model.addAttribute("vo", vo);

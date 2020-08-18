@@ -23,7 +23,7 @@
 
 		/* 수정하기 창으로 이동 */
 		$('.cMemOut').click(function(){
-			var result = confirm("삭제하시겠습니까?");
+			var result = confirm("탈퇴하시겠습니까?");
 			if(result){
 				location.href="<c:url value='/companypage/member/companyOut.do'/> "
 			}else{

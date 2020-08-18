@@ -311,7 +311,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 										<ul id="navigation">
 											<li><a href="<c:url value='/companypage/serviceInfo.do'/>">서비스안내</a></li>
 											<li><a href="<c:url value='/companypage/paymentListC.do' />"> 유료이용내역 </a></li>
-											<li><a href="<c:url value='/companypage/companyHome.do'/>">해드헌팅의뢰</a>
+											<li><a href="<c:url value='/companypage/searchTalent.do'/>">인재검색</a>
 											<li><a href="<c:url value = '/gogak/company/faqList.do'/>">고객센터</a></li>
 										</ul>
 									</nav>

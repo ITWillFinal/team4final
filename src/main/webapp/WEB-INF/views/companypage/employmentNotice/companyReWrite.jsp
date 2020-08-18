@@ -413,11 +413,6 @@
 	}
 
 	
-	hr {
-		border:1px solid #FB246A;
-		width:900px;
-	}
-	
 	input[type=text]:hover {
 	    background : #dcdcdc;
 	}
@@ -459,6 +454,13 @@
 		display: inline-block;
 	}
 	
+		.bttn1{
+		width:180px;
+		display: inline-block;
+		margin-top: -0.5px;
+		cursor: pointer;
+	} 
+	
 	.bttn{
 		width:75px;
 		display: inline-block;
@@ -479,17 +481,25 @@
  	  	width: 800px;
 	
 	}
+	
+	
+	
+	.bttn1:hover{
+		background: #ced4da;
+		border:	1px solid #ced4da;
+		color: white;
+	}
 </style>
 
 <main>
 
 	<!-- main -->
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
-		<form name="frmWrite" style="padding-left: 370px;" method="post" action="<c:url value='/companypage/companyReWrite.do'/>">
-			<span style="font-size: 25px; font-weight: bold;">채용공고재등록</span>
-			<hr>
+	<div style="width:1055px; margin:0 auto; font-size: 14px;">
+		<form name="frmWrite" method="post" action="<c:url value='/companypage/companyReWrite.do'/>">
 			<div style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span>&nbsp&nbsp<span class="stress"> *은 다시 선택해주세요</span><br><br>
+			<h1 style="background: white;font-weight: bold;margin-top: 35px;">채용공고 재등록</h1>
+				<hr style="border: 1px solid #fb246a;margin: 30px 0;">
+			<span style="font-size: 18px; font-weight: bold;">모집내용</span><span class="stress">&nbsp;&nbsp; *은 다시 선택해주세요</span><br><br>
 			
 			<table style="width: 900px;">
 				<colgroup>
@@ -560,7 +570,7 @@
 				</tr>	
 
 				<tr>
-					<td>직무&nbsp&nbsp<span class="stress">*</span><br></td>
+					<td>직무&nbsp;&nbsp;<span class="stress">*</span><br></td>
 					<td>
 						<select size="5" id="jobLarge" class="form-control cat">
 							<c:forEach var="map" items="${jobList }">
@@ -574,7 +584,7 @@
 				</tr>
 				
 				<tr>
-					<td>산업&nbsp&nbsp<span class="stress">*</span></td>
+					<td>산업&nbsp;&nbsp;<span class="stress">*</span></td>
 					<td>
 						<select size="5" id="induLarge" class="form-control cat">
 							<c:forEach var="map" items="${induList }">
@@ -610,7 +620,7 @@
 					<td>우편번호</td>
 					<td>
 						<input type="text" id="zipcode" name="zipcode" readonly value="${zipcode}">
-					 	<input type="button" onclick="sample4_execDaumPostcode()" value="찾기" class="form-control bttn"> 
+					 	<input type="button" onclick="sample4_execDaumPostcode()" value="찾기" class="form-control bttn bttn1"> 
 					</td>
 				</tr>
 
@@ -630,7 +640,7 @@
 
 
 				<tr>
-					<td>근무시간&nbsp&nbsp<span class="stress">*</span></td>
+					<td>근무시간&nbsp;&nbsp;<span class="stress">*</span></td>
 					<td>
 						<select id="timeSelect1" name="timeSelect1" class="form-control sel">
 							<option value="">선택</option>
@@ -695,7 +705,7 @@
 				</tr>
 				
 				<tr>
-					<td>급여사항&nbsp&nbsp<span class="stress">*</span></td>
+					<td>급여사항&nbsp;&nbsp;<span class="stress">*</span></td>
 					<td>
 						<select id="paySelect" name="paySelect" class="form-control cat">
 							<option value="추후협의">추후협의</option>
@@ -736,7 +746,7 @@
 				</tr>
 				
 				<tr>
-					<td>복리후생&nbsp&nbsp<span class="stress">*</span></td>
+					<td>복리후생&nbsp;&nbsp;<span class="stress">*</span></td>
 					<td>
 						<label><input type="checkbox" class="welfareChk" value="4대보험">4대보험</label>
 						<label><input type="checkbox" class="welfareChk" value="격주휴무">격주휴무</label>
@@ -798,7 +808,7 @@
 			<hr>
 			
 			<div>
-				<span style="font-size: 18px; font-weight: bold;">◎자격요건</span><br><br>
+				<span style="font-size: 18px; font-weight: bold;">자격요건</span><br><br>
 			<table style="width: 900px;">
 				<colgroup>
 					<col style="width:20%;" />
@@ -831,7 +841,7 @@
 				</tr>
 
 				<tr>
-					<td>나이&nbsp&nbsp<span class="stress">*</span></td>
+					<td>나이&nbsp;&nbsp;<span class="stress">*</span></td>
 					<td>
 						<select id="ageSelect" name="ageSelect" class="form-control sel">
 							<option value="제한없음">제한없음</option>
@@ -863,7 +873,7 @@
 				</tr>
 
 				<tr>
-					<td>학력&nbsp&nbsp<span class="stress">*</span></td>
+					<td>학력&nbsp;&nbsp;<span class="stress">*</span></td>
 					<td> 
 						<select id="eduSelect" name="eduSelect" class="form-control sel">
 							<option value="무관">무관</option>
@@ -880,7 +890,7 @@
 				</tr>
 
 				<tr>
-					<td>경력&nbsp&nbsp<span class="stress">*</span></td>
+					<td>경력&nbsp;&nbsp;<span class="stress">*</span></td>
 					<td> 
 						<select id="careerSelect" name="careerSelect" class="form-control sel">
 							<option value="무관">무관</option>
@@ -921,7 +931,7 @@
 				</tr>
 
 				<tr>
-					<td>우대조건&nbsp&nbsp<span class="stress">*</span></td>
+					<td>우대조건&nbsp;&nbsp;<span class="stress">*</span></td>
 					<td> 
 						<label><input type="checkbox" class="preferChk" value="국가유공자">국가유공자</label>
 						<label><input type="checkbox" class="preferChk" value="보훈대상자">보훈대상자</label>
@@ -951,7 +961,7 @@
 				</tr>
 				
 				<tr>
-					<td>제출서류&nbsp&nbsp<span class="stress">*</span></td>
+					<td>제출서류&nbsp;&nbsp;<span class="stress">*</span></td>
 					<td>	 
 						<label><input type="checkbox" class="docChk" value="이력서">이력서</label>
 						<label><input type="checkbox" class="docChk" value="자기소개서">자기소개서</label>
@@ -966,13 +976,13 @@
 			</div>
 			<hr>
 			<div>
-				<span style="font-size: 18px; font-weight: bold;">◎상세모집내용</span>&nbsp&nbsp<span class="stress">*</span><br><br>
+				<span style="font-size: 18px; font-weight: bold;">상세모집내용</span>&nbsp;&nbsp;<span class="stress">*</span><br><br>
 				<textarea id="recDetail" name="recDetail" rows="20" cols="93"></textarea>
 			</div>
 			<br>
 			<div style="width: 900px; text-align: center;">
-				<input type="submit" value="채용공고 등록하기"/>
-				<input type="button" value="채용공고 삭제하기" id="ReWriteDelte"/>
+				<input type="submit" class="form-control bttn1" value="채용공고 등록하기"/>
+				<input type="button" class="form-control bttn1" value="채용공고 삭제하기" id="ReWriteDelte"/>
 				
 			</div><br>
 			
@@ -983,7 +993,7 @@
 			<input type="hidden" id="location1" name="location1">
 			<input type="hidden" id="location2" name="location2">			
 			<input type="hidden" id="comCode" name="comCode" value="${comCode }">
-			<input type="hidden"" id="comRecruitVo" name="recruitmentCode" value="${comRecruitVo.recruitmentCode }">
+			<input type="hidden" id="comRecruitVo" name="recruitmentCode" value="${comRecruitVo.recruitmentCode }">
 		</form>
 	</div>
 </main>

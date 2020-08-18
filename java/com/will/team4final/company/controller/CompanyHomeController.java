@@ -360,6 +360,12 @@ public class CompanyHomeController {
 		String cMemberCode = companyMemberVo.getcMemberCode();
 		logger.info("cMemberCode={}", cMemberCode);
 		CompanyInfoVO companyInfoVO = comInfoService.selectComInfoBycMemberCode(cMemberCode);
+		String msg="등록된 회사정보가 없습니다. 회사정보를 등록해 주세요.",url="/companypage/companyInfoWrite.do";
+		if(companyInfoVO==null) {
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+		}
 		// companyInfoVO에서 comCode 조회 해서 recruitment 데이터 가져오기
 		String comCode = companyInfoVO.getComCode();
 		logger.info("comCode={}", comCode);
