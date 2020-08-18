@@ -49,7 +49,7 @@
 			<div class="MenuHeadDiv">이력서관리</div>
 			<div class="MenuHoverDiv"><a href="<c:url value='/resume/resumeWrite.do'/>">이력서등록</a></div>
 			<div class="MenuHoverDiv"><a href="<c:url value='/resume/resumeMain.do'/>">이력서현황</a></div>
-			<div class="MenuHoverDiv"><a href="<c:url value='.do'/>">입사요청현황</a></div>
+			<div class="MenuHoverDiv"><a href="<c:url value='/mypage/requestEmployment.do'/>">입사요청현황</a></div>
 			<div class="MenuHeadDiv">고객센터</div>
 			<div class="MenuHoverDiv"><a href="<c:url value = '/notice/memberNotice.do'/>">공지사항</a></div>
 			<div class="MenuHoverDiv"><a href="<c:url value = '/gogak/personal/faqList.do'/>">자주 찾는 질문</a></div>

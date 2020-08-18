@@ -46,6 +46,19 @@
 		color: black;
 	}
 
+.bttn1{
+		width:150px;
+		margin-left:130px;
+		margin-top: -0.5px;
+		cursor: pointer;
+		
+	}
+	
+	.bttn1:hover{
+		background: #ced4da;
+		border:	1px solid #ced4da;
+		color: white;
+	}
 </style>
 <main>
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
@@ -58,10 +71,10 @@
 					<div style="margin-top: 60px;">
 					<img src="<c:url value='/resources/images/ci/ci1.png'/>">
 					</div>
-					<div style="margin-top: 30px;">
+					<div style="margin-top: 30px;" >
 						<br>
 						<a href="<c:url value='/resources/images/ci/ci1.png'/>" download>
-							<input type="button" id="btn1" value="다운로드1 (.png)">
+							<input type="button" id="btn1" class="form-control bttn1" value="다운로드1 (.png)">
 						</a>
 
 					</div>
@@ -72,7 +85,7 @@
 							<img class="img" src="<c:url value='/resources/images/ci/ci2.png'/>">
 							<br>
 							<a href="<c:url value='/resources/images/ci/ci2.png'/>" download>
-								<input type="button" id="btn2" value="다운로드2 (.png)">
+								<input type="button" id="btn2" class="form-control bttn1" value="다운로드2 (.png)">
 							</a>
 						</div>
 					<br>
@@ -80,7 +93,7 @@
 							<img class="img" src="<c:url value='/resources/images/ci/ci3.png'/>" >
 							<br>
 							<a href="<c:url value='/resources/images/ci/ci3.png'/>" download>
-								<input type="button" id="btn3" value="다운로드3 (.png)">
+								<input type="button" id="btn3" class="form-control bttn1" value="다운로드3 (.png)">
 							</a>
 						</div>
 					</div>

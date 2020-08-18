@@ -104,8 +104,8 @@ public class CompanyInfoController {
 		//만약 컴페니가 회사 공고 올렸으면 거기서 값 가져오기
 		List<Recruitment_TosVO> comRecruitListVo = comRecruitServ.selectList_tosByComcode(vo.getComCode());
 		logger.info("comRecruitListVo={}", comRecruitListVo);
-		if(comRecruitListVo==null) {
-			
+		if(comRecruitListVo==null || comRecruitListVo.isEmpty()) {
+			model.addAttribute("vo", vo);
 		}else {
 			Recruitment_TosVO comRecruitVo = comRecruitListVo.get(0);
 			model.addAttribute("vo", vo);

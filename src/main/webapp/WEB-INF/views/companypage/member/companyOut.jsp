@@ -33,15 +33,37 @@
 			}
 		});
 		
+		$(".password").keyup(function(){
+			
+			if($(this).val()!=''){
+				
+				$.ajax({
+					url : "<c:url value='/companypage/cOutPwdChk.do' />",
+					type : "get",
+					data : "pwd=" + $("input[type=password]").val(),
+					dataType : "json",
+					success : function(res) {
+						if (res > 0) {
+							$(".pwdSpan").html("&nbsp;&nbsp; *비밀번호가 일치합니다").css('color','green');
+						} else {
+							$(".pwdSpan").html("&nbsp;&nbsp; *비밀번호가 일치하지 않습니다").css('color','red');
+						}
+
+					},
+					error : function(xhr, status, error) {
+						alert(status + ", " + error);
+					}
+				});
+			}else{
+				$(".pwdSpan").html("&nbsp;&nbsp; *비밀번호를 입력하세요").css('color','red');
+			}
+		});
+		
 	});
 	
 </script>
 <style>
-	hr {
-		height: 3px;
-	    background: #da2461;
-	}
-	
+
 	.btSubmit {
 		text-align: center;
 		padding: 30px;
@@ -52,46 +74,44 @@
 	}
 	
 </style>
-<main>
-
-	<div style="float: left; width: 49%; margin-left: 29%; font-size: 14px;">
-		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
+<main style="min-height: 600px">
+	<div style="width: 1055px; font-size: 14px; margin:0 auto;">
 		
+		<h1 style="background: white;font-weight: bold;">기업회원탈퇴</h1>
+			<hr style="border: 1px solid #fb246a;">
 		
-		<div style="margin: 5px; height: 95px;"><br>
-			<h1 style="background: white; padding: 20px; font-weight: bold;">회원 탈퇴</h1>
-		</div>
-		<br>
-		<hr style="margin: 5px 0px;">
-		<form name="frmCom" method="post" action="<c:url value='/companypage/member/companyOut.do' />">
+		<form name="frmMember" method="post" action="<c:url value='/companypage/member/companyOut.do' />">
 			
 			<div id="infoDiv">
-			회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요.<br>
-			◎사용하고 계신 아이디 (아이디)는 탈퇴할 경우 재사용 및 복구가 불가능합니다.<br>
-			◎탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.<br>
-			◎탈퇴 후에는 아이디 (아이디)로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.<br>
-			◎서비스에 남아 있는 게시글 등은 탈퇴 후 삭제할 수 없습니다.<br>
-			<input type="checkbox" id="infoChk"> 안내사항을 모두 확인하였으며 이에 동의합니다.<br>
+			<span style="font-size: 20px;">회원탈퇴를 신청하기 전에 아래 안내 사항을 꼭 확인해주세요.</span><br><br>
+			
+			<span>1. 사용하고 계신 아이디 (아이디)는 탈퇴할 경우 재사용 및 복구가 불가능합니다.</span><br><br>
+			<span>2. 탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.</span><br><br>
+			<span>3. 탈퇴 후에는 아이디 (아이디)로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.</span><br><br>
+			<span>4. 서비스에 남아 있는 게시글 등은 탈퇴 후 삭제할 수 없습니다.</span><br><br>
+			<input type="checkbox" id="infoChk"> 안내사항을 모두 확인하였으며 이에 동의합니다.<br><br>
 			</div>
-			<br><br>
+			<br>
 			<div id="addDiv" class="divHide">
+				<span>정보를 입력하세요</span><br><br>
 				<table>
 					<tr>
 						<td>아이디 :</td>
-						<td><input type="text" readonly value="${vo.cUserid}"></td>
+						<td><input type="text" class="form-control" readonly value="${vo.cUserid}"></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>비밀번호 :</td>
-						<td><input type="password" name="password"></td>
+						<td><input type="password" class="form-control password" placeholder="비밀번호" name="password"></td>
+						<td><span class="pwdSpan" style="font-size: small; color:red;">&nbsp;&nbsp; *비밀번호를 입력하세요</span></td>
 					</tr>
 					<tr>
 						<td>이메일인증 :</td>
-						<td><input type="email" class="form-control" id="email" name="cEmail"
-						data-rule-required="true" placeholder="이메일" maxlength="40" value="${vo.cEmail}"></td>
-						
+						<td><input type="email" style="" class="form-control" id="email" name="cEmail"
+						data-rule-required="true" readonly maxlength="40" value="${vo.cEmail}"></td>
+						<td></td>
 					</tr>
 				</table>
-				
 			
 			</div>
 			
@@ -103,9 +123,8 @@
 			</div>
 			<input type="hidden" name="cMemberCode" id="cMemberCode" value="${vo.cMemberCode}">
 		</form>
-		
-	</div>
-	
 	<input type="hidden" name="chkEmail" id="chkEmail">
+	</div>
+</main>
 </main>
 <%@ include file="../../inc/bottom.jsp" %>

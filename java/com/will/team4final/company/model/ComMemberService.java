@@ -26,5 +26,6 @@ public interface ComMemberService {
 	int deleteCMember(String cMemberCode);
 	int updateCMember(CompanyMemberVO companyMemberVo);
 	String selectMemberCode(String cUserid);
-
+	String selectCMemberPwd(String cUserid);
+	
 }

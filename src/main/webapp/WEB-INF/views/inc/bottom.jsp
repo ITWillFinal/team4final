@@ -21,21 +21,21 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5" id="txtDiv">
                 <div class="footer-tittle-bottom">
-                    <span>5000+</span>
-                    <p>Talented Hunter</p>
+                    <span>Best</span>
+                    <p>Job Info Place</p>
                 </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5" id="txtDiv">
                     <div class="footer-tittle-bottom">
-                        <span>451</span>
+                        <span>Many</span>
                         <p>Talented Hunter</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5" id="txtDiv">
                     <!-- Footer Bottom Tittle -->
                     <div class="footer-tittle-bottom">
-                        <span>568</span>
-                        <p>Talented Hunter</p>
+                        <span>Special</span>
+                        <p>Human Resources</p>
                     </div>
                 </div>
            </div>
