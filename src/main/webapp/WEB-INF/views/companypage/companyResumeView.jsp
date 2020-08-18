@@ -321,10 +321,10 @@
 			<hr>
 		</div>
 		<div style="text-align: center;">
-			<input type="button" name="modifyBtn" id="modifyBtn" class="form-control btn2" value="수정하기" onclick="history.back();"/>
 			<form name="frm" method="post" action="<c:url value='/application/applyComResume.do'/>">
-				<input type="hidden" value="${vo.recruitmentCode}" name="recruitmentCode">
+				<input type="button" name="modifyBtn" id="modifyBtn" class="form-control btn2" value="수정하기" onclick="history.back();"/>
 				<input type="submit" name="okBtn" id="okBtn" class="form-control btn2" value="확인완료"><br><br>
+				<input type="hidden" value="${vo.recruitmentCode}" name="recruitmentCode">
 			</form>
 			<br>
 		</div>

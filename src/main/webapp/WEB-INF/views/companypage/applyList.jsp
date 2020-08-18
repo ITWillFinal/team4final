@@ -16,7 +16,7 @@ $(function(){
 		$.ajax({
 			url:"<c:url value='/companypage/readcheck.do'/>",
 			type:"get",
-			data: "applyCode="+$(this).next().val(),
+			data: "applyCode="+$readOk.find('input[type=hidden]').val(),
 			success:function(res){
 				$readOk.css("background","#cbe7ff");
 			},
@@ -27,10 +27,10 @@ $(function(){
 	});
 	
 	$('.choiceStatus').change(function(){
-		if(!$(this).val()!="지원중"){	
+		if($(this).val()!="선택"){	
 			if(confirm($(this).parent().next().text()+" 지원자를 "+$(this).val()+" 처리 하시겠습니까?\n처리 결과는 지원자에게 통보됩니다.")){
 				var applyStatus = $(this).val();
-				var applyCode = $(this).parent().next().next().next().find('input[type=hidden]').val();
+				var applyCode = $(this).parent().parent().find('input[type=hidden]').val();
 				var $resultOk = $(this).parent();
 				
 				$.ajax({
@@ -56,6 +56,11 @@ $(function(){
 
 function open_resume(resumeNo){
 	window.open("<c:url value='/companypage/talentResumeDetail.do?resumeNo="+resumeNo+"'/>",
+			'RESUME','width=980,height=auto,left=0,top=0,location=yes,resizable=false')
+}
+
+function open_resume2(userid, recruitmentCode){
+	window.open("<c:url value='/companypage/companyResumeDetail.do?userid="+userid+"&recruitmentCode="+recruitmentCode+"'/>",
 			'RESUME','width=980,height=auto,left=0,top=0,location=yes,resizable=false')
 }
 </script>
@@ -129,11 +134,12 @@ td{
 									<c:if test="${map['RESUME_TYPE'] =='0' }">
 										<td>
 										<a style="cursor: pointer;" class="readResume" onclick="open_resume(${map['RESUME_NO']})">이력서 보기</a>
-										<input type="hidden" value="${map['APPLY_CODE'] }">
+										<input type="hidden" value="${map['APPLY_CODE'] }"/>
 										</td>
 									</c:if>
 									<c:if test="${map['RESUME_TYPE'] =='1' }">
-										<td><a style="cursor: pointer;" class="readResume" onclick="">이력서 보기</a></td>
+										<td><a style="cursor: pointer;" class="readResume" onclick="open_resume2('${map['USER_ID']}', ${map['RECRUITMENT_CODE']})">이력서 보기</a></td>
+										<input type="hidden" value="${map['APPLY_CODE'] }"/>
 									</c:if>
 								</tr>
 								<c:set var="no" value="${no+1 }"/>								
