@@ -20,7 +20,7 @@
 			var email = $("#email").val();
 			window.open(
 			"<c:url value='/companypage/member/email.do?email="+email+"'/> ", 'emailchk',
-			'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
+			'width=500,height=500,left=650,top=250,location=yes,resizable=yes');
 		});
 		
 		$("#infoChk").click(function(){
@@ -54,7 +54,7 @@
 </style>
 <main>
 
-	<div style="float: left; width: 49%; margin-left: 29%; font-size: 14px;">
+	<div style="float: left; width: 49%; margin-left: 29%; font-size: 14px; min-height: 800px;">
 		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
 		
 		

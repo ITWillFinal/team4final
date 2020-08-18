@@ -161,6 +161,14 @@ public class LoginController {
 			return "common/message";
 		}
 		
+		//회원탈퇴 아이디 확인
+		if(vo.getOutdate()!=null) {
+			msg="회원탈퇴한 아이디입니다. 다시 회원가입해주세요.";
+			model.addAttribute("url", url);
+			model.addAttribute("msg", msg);
+			return "common/message";
+		}
+		
 		boolean pwdMatch = pwdEncoder.matches(pwd, vo.getPwd());
 		logger.info("pwdMatch={}", pwdMatch);
 		
@@ -194,6 +202,14 @@ public class LoginController {
 		vo = comServ.selectCMemberInfoByUserid(userid);
 		if(vo ==null) {
 			msg="아이디가 없습니다.";
+			model.addAttribute("url", url);
+			model.addAttribute("msg", msg);
+			return "common/message";
+		}
+		
+		//회원탈퇴 아이디 확인
+		if(vo.getcOutdate()!=null) {
+			msg="회원탈퇴한 아이디입니다. 다시 회원가입해주세요.";
 			model.addAttribute("url", url);
 			model.addAttribute("msg", msg);
 			return "common/message";
