@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../inc/comMypageTop.jsp" %>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f5a970707d8d0e271a8262251139638&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript">
 $(function(){
 	
@@ -12,53 +13,77 @@ $(function(){
 });//function
 
 </script>
+
 <style type="text/css">
-	img {
-	    width: 100%;
-	}
+
 	.btSubmit{
-		text-align: center;
-		padding: 30px;
+		float: right;
+	}
+	img {
+	   /*  width: 100%; */
+	    margin-left: 2%;
 	}
 	.form-control {
 	    border: none;
 	}
-
-	.infoBox{
-		border: 1px solid black;
-		height: 1080px;
-		margin-bottom: 10px;
-		padding: 0 70px;
-		border-radius: 80px / 80px;
-		border: 1px solid #e0e0e08f;
-		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
+	
+	/* 라벨 */
+	label.col-sm-3.control-label {
+	    font-size: 10pt;
+	    color: gray;
 	}
+	input[type="text"] {
+	    font-weight: bold;
+	}
+	label.col-sm-3.control-label {
+	    margin-top: 2%;
+	}
+	#bbk > form > div.form-horizontal > div:nth-child(2) {
+	    margin-top: -3%;
+	}
+	input[type="text"] {
+	    border-style: none;
+	}
+	
+	img{
+		width: 100%;
+	}
+	
+	#edit{
+		margin-top: 23px;
+	}
+	
+	.infoBox{
+		height: 850px;
+		margin-bottom: 10px;
+	}
+	
 	.info_company_ceo{
 	    width: 170px;
 		height: 65px;
-	    background-color: #d63461;
+	    background-color: #fb246a;
 	    border-radius: 0 0 8px 8px;
-		padding: 0 16px;
 		font-size: 20px;
 		color: white;
 		text-align: center;
 		padding-top: 16px;
 	}
 	.info_company_name{
-		margin-top: 15px;
-		font-size: 25px;
+		margin-top: 7px;
+		font-size: 35px;
 		width:465px; 
 		height: 56px;
 		
 	}
+	
+	.salary{		
+		
+	}
+	
 	.info_company_address{
 		margin-top: 7px;
 	}
-	.company_adrees{
-		border-right: 2px solid #d63461;
-		margin-left: 5px;
-		margin-right: 5px;
-	}
+	
 	.fontBold{
 		font-size: 15px;
 	    font-weight: bolder;
@@ -69,15 +94,14 @@ $(function(){
 	}
 	.pay_salary{
 		margin-top: 15px;
-		font-size: 25px;
+		font-size: 28px;
 		width:465px; 
 		height: 56px;
 	}
 	.info_top{
-		height: 230px;
+		height: 100px;
 	}
 	.info_body_title{
-		margin-top: 15px;
 		font-size: 25px;
 		width:465px; 
 		height: 56px;
@@ -85,40 +109,24 @@ $(function(){
 	.fontNormal{
 		font-weight: normal;
 	}
-	.fontBoldA{
-		font-weight: bolder;
-		margin-right: 31px;
-	}
-	.hr_c{
-		height: 1px;
-		background: #b3b3b3;
-	}
-	.hr_c_title{
-		height: 3px;
-		background: #b3b3b3;
-	}
+
 </style>
 <main>
-	<div id = "bbk"
-		style="float: left; width: 49%; margin-left: 29%; font-size: 14px;">
-		<!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
-		
-		<!-- main -->
-		<div style="margin: 5px; height: 95px;"><br>
-			<h1 style="background: white; padding: 20px; font-weight: bold;">
-				${vo.comName } 정보 조회 
-			</h1>
+	<div id = "bbk"	style="width: 1055px; margin: 0 auto; font-size: 15px;margin-bottom: 30px;">
+
+		<h1 style="background: white;font-weight: bold;">회사정보조회 <span class="deleteInfo" style="margin-left: 10px;font-size: small;color: red">(필수가 아닌항목은 체크해제시 적용되지 않습니다)</span></h1>
+				<hr style="border: 1px solid #fb246a;margin: 30px 0;">
+		<div class="btSubmit">
+			<div class="col-lg-offset-2 col-lg-10">
+				<button type="button" id ="edit" class="btn btn-primary">기업정보수정</button>
+			</div>
 		</div>
-		<br>
-		<hr>
+
 		<form name="frm" method="post" style="margin-top: 50px;" enctype="multipart/form-data" >
 			<input type="hidden" name = "comCode" value = ${vo.comCode }>
 			<!-- 회사 정보 조회 -->
 				<div class="infoBox">
 					<section class="info_top">
-						<div class="info_company_ceo">
-							${vo.ceo}
-						</div>
 						<div class="info_company_name"  style="float: left">
 							<span>${vo.comName}</span>
 						</div>
@@ -143,39 +151,42 @@ $(function(){
 						</div>
 					</section>
 					
+					<hr>
 					<section class="info_body">
-						<div class="info_company_body">
-							<span class="info_body_title">기업 정보</span>
-							<hr class="hr_c_title">
+						<div class="info_company_body" style="width: 50%;float: left;">
+							<span class="info_body_title">기업정보</span>
+							<br><br>
 							<div class="company_register_number">
 								<span class="fontBoldA">사업자등록번호 : <span class="fontNormal">${vo.comNum}</span></span>
 							</div>
-							<hr class="hr_c">
+							<br>
+							<div class="company_ceeor">
+								<span class="fontBoldA">대표자 : <span class="fontNormal">${vo.ceo}</span></span>
+							</div>
+							<br>
 							<div class="company_addr">
 								<span class="fontBoldA">우편번호 : <span class="fontNormal">(${vo.zipcode}) ${vo.address} ${vo.addressDetail}</span></span>
 							</div>
-							<hr class="hr_c">
+							<br>
 							<div class="company_hp">
 								<span class="fontBoldA">내부전화번호 : <span class="fontNormal">${vo.comHp}</span></span>						
 							</div>
-							<hr class="hr_c">
+							<br>
 							<div class="company_comType">
 								<span class="fontBoldA">기업형태 : <span class="fontNormal">${vo.comType}</span></span>						
 							</div>
-							<hr class="hr_c">
+							<br>
 							<div class="company_comIndustry">
 								<span class="fontBoldA">기업업종 : <span class="fontNormal">${vo.comIndustry}</span></span>						
 							</div>
-							<hr class="hr_c">
+							<br>
 							<div class="company_content">
 								<span class="fontBoldA" >사업내용 : </span>
 								<div class="company_content_write">
-									<span>
-										${fn:replace(vo.content , newLine, '<br>')}
-									</span>
+									<span name="content" class="fontBoldA">${fn:replace(vo.content , newLine, '<br>')}</span>
 								</div>
 							</div>
-							<hr class="hr_c">
+							<br>
 							<div class="company_homepage">
 								<c:if test="${empty vo.homepage }">
 									<span class="fontBoldA">등록된 홈페이지가 없습니다</span>
@@ -184,9 +195,20 @@ $(function(){
 									<span class="fontBoldA">홈페이지 : <span class="fontNormal">${vo.homepage}</span></span>
 								</c:if>
 							</div>
-							<hr class="hr_c">
+							<br>
+						</div>
+						<div id="moreDiv" style="width: 49%;float: right;">
+								<span class="info_body_title">회사위치</span>
+								<p>
+								<i class="fa fa-map-marker" aria-hidden="true"></i>
+								 (${vo.zipcode }) ${vo.address } ${vo.addressDetail }
+								</p>
+								<div id="map" style="width:450px;height:313px;"></div>
+						</div>
+							<hr style="clear: both;">
+						<div>
+							<span class="info_body_title">기업사진</span>
 							<div class="company_image">
-								<span class="fontBoldA">기업사진</span></span><br>
 								<img class="fontBoldA" src="<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
 							</div>
 						</div>
@@ -194,12 +216,45 @@ $(function(){
 				</div>
 			<!-- 회사 정보 조회 끝 -->
 		</form>
-		<!-- submit button -->
-		<div class="btSubmit">
-			<div class="col-lg-offset-2 col-lg-10">
-				<button type="button" id = "edit" class="btn btn-primary">수정</button>
-			</div>
-		</div>
+		
 	</div>
 </main>
+<script type="text/javascript">
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = {
+    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    level: 3 // 지도의 확대 레벨
+};  
+
+//지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+//주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+//주소로 좌표를 검색합니다
+geocoder.addressSearch('${vo.address }', function(result, status) {
+
+	// 정상적으로 검색이 완료됐으면 
+	 if (status === kakao.maps.services.Status.OK) {
+	
+	    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	    // 결과값으로 받은 위치를 마커로 표시합니다
+	    var marker = new kakao.maps.Marker({
+	        map: map,
+	        position: coords
+	    });
+	
+	    // 인포윈도우로 장소에 대한 설명을 표시합니다
+	    var infowindow = new kakao.maps.InfoWindow({
+	        content: '<div style="width:150px;text-align:center;padding:6px 0;">${vo.comName}</div>'
+	    });
+	    infowindow.open(map, marker);
+	
+	    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	    map.setCenter(coords);
+	} 
+});  
+</script>
 <%@ include file="../inc/companyBottom.jsp"%>

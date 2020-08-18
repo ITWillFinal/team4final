@@ -129,4 +129,37 @@ public class ApplicationController {
 		model.addAttribute("url", url);
 		return "common/message";
 	}
+	
+	@RequestMapping("/applyComResume.do")
+	public String apply(@RequestParam String recruitmentCode, HttpSession session,Model model) {
+		String userid = (String)session.getAttribute("userid");
+		MemberVO memberVo = memberService.selectByUserid(userid);
+		
+		String userNo = memberVo.getUserNo();
+		logger.info("회사 지원 페이지 userNo={}, recruitmentCode={}", userNo, recruitmentCode);
+		
+		
+		ApplyVO applyVo = new ApplyVO();
+		applyVo.setUserNo(userNo);
+		applyVo.setRecruitmentCode(recruitmentCode);
+		applyVo.setApplyStatus("지원중");
+		applyVo.setResumeNo("0");
+		
+		int cnt = applyService.insertApply(applyVo);
+		logger.info("입사 지원 결과 cnt = {}",cnt);
+		
+		if(cnt>0) {
+			String msg="지원성공", url="/hireinpo/infoDetailGo.do?recruitmentCode="+recruitmentCode;
+			model.addAttribute("url",url);
+			model.addAttribute("msg",msg);
+			
+			return "common/message";			
+		}else {
+			String msg="error:입사 지원에 실패했습니다.", url="/hireinpo/infoDetailGo.do?recruitmentCode="+recruitmentCode;
+			model.addAttribute("url",url);
+			model.addAttribute("msg",msg);
+			
+			return "common/message";
+		}
+	}
 }
