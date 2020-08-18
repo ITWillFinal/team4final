@@ -8,7 +8,7 @@
 		border:1px solid #FB246A;
 		width:100%;
 	}
-	
+
 	.div1 {
 		float: left;
 		margin-left: 3%;
@@ -18,7 +18,7 @@
 		text-align: center;
 		background: whitesmoke;
 	}
-	
+
 	.div2 {
 		float: right;
 		margin-right: 3%;
@@ -33,7 +33,7 @@
 	.div3 {
 		clear: both;
 	}
-	
+
 	.img {
 	  display: block;
 	  max-width:400px;
@@ -41,18 +41,18 @@
 	  width: auto;
 	  height: auto;
 	}
-	
+
 	a {
 		color: black;
 	}
-	
-</style>
 
+</style>
+<main>
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<div style="margin:5px;">
 			<span style="font-size: 25px; font-weight: bold;">CI소개</span>
 			<hr>
-		
+
 			<div>
 				<div class="div1">
 					<div style="margin-top: 60px;">
@@ -62,10 +62,10 @@
 						<br>
 						<a href="<c:url value='/resources/images/ci/ci1.png'/>" download>
 							<input type="button" id="btn1" value="다운로드1 (.png)">
-						</a>						
-						
+						</a>
+
 					</div>
-				</div>		
+				</div>
 				<div class="div2">
 					<div style="margin-top: 44px;">
 						<div>
@@ -84,13 +84,13 @@
 							</a>
 						</div>
 					</div>
-				</div>		
+				</div>
 			</div>
-			<div class="div3">			
+			<div class="div3">
 			</div>
 			<br>
 		</div>
-		
-		
+
 	</div>
+</main>
 <%@ include file="../inc/bottom.jsp" %>

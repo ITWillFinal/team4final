@@ -108,14 +108,10 @@
 	}
 	.ST-main{
 		margin:0 auto;
-		width: 1001px;
+		width: 1055px;
 		height: auto;
-		padding: 15px;
-	}
-	
-	.ST-main-top{
-		border-bottom: 3px solid #fd5a77;
-		margin-bottom: 20px;
+		min-height: 800px;
+		margin-bottom: 30px;
 	}
 	
 	.ST-main-top h1{
@@ -127,8 +123,8 @@
 		background: #dedede9e;
    		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 		padding: 10px;
-		height: 460px;
-		width:483px;
+		height: 680px;
+		width:525px;
 	}
 	
 	.add-condition{
@@ -158,7 +154,7 @@
 	}
 	
 	tbody{
-		height: 330px;
+		height: 580px;
 	}
 	
 	table th{
@@ -186,14 +182,28 @@
 	.search-result span{
 		font-weight: bold;
 	}
+	
+	.bttn1{
+		width:100px;
+		display: inline-block;
+		margin-top: -0.5px;
+		cursor: pointer;
+	}
+	
+	.bttn1:hover{
+		background: #ced4da;
+		border:	1px solid #ced4da;
+		color: white;
+	}
 </style>
 <main>	
 		<div class="ST-main">
 			<div class="ST-main-top">
-				<h1>입사지원 요청 관리</h1>
+					<h1 style="background: white;font-weight: bold;">입사지원 요청관리</h1>
+				<hr style="border: 1px solid #fb246a;margin: 30px 0;">
 			</div>
 				<div class="search-result">
-				<div style="height:415px;overflow-y: auto;">
+				<div style="height:610px;overflow-y: auto;">
 					<span>입사지원 요청 현황 ▼</span>
 					<table>
 						<caption style="display: none;">인재 검색 결과 테이블</caption>
@@ -239,11 +249,11 @@
 					</table>
 				</div>
 				<div>
-					<input type="button" value="요청취소" id='button1' style="float: right;"/>
+					<input type="button" class="form-control bttn1" value="요청취소" id='button1' style="float: right;"/>
 				</div>
 				</div>
 				<div class="search-result">
-				<div style="height:415px;overflow-y: auto;">
+				<div style="height:610px;overflow-y: auto;">
 					<span>입사지원 희망 현황 ▼</span>
 					<table>
 						<caption style="display: none;">인재 검색 결과 테이블</caption>
@@ -279,7 +289,7 @@
 					</table>
 				</div>
 				<div>
-					<input type="button" value="처리완료" id='button2' style="float: right;"/>
+					<input type="button" class="form-control bttn1" value="처리완료" id='button2' style="float: right;"/>
 				</div>
 				</div>
 			</div>

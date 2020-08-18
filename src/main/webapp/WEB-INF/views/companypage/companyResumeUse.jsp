@@ -4,14 +4,30 @@
 
 <style>
 	td {
-		border:solid 1px lightgray;
+		border-bottom:solid 1px lightgray;
+		border-top:solid 1px lightgray;
+		padding-top: 5px;
+		padding-bottom: 5px;
 	}
-	input[type=text] {
-		width:100%;
-	}
+	
 	input[type=date] {
 		width:100%;
 	}
+	
+	input[type=text]:hover {
+	    background : #dcdcdc;
+	}
+	
+	input[type=text] {
+		padding-left: 15px;
+		padding-right: 15px;
+		background : whitesmoke;
+		width:100%;
+		height:35px;
+		border:1px lightgray solid;
+		border-radius: 5px;
+	}
+	
 	hr {
 		border:1px solid #FB246A;
 		width:100%;
@@ -35,6 +51,20 @@
 	}
 	.certificateTr {
 		display: none;
+	}
+	.sel{
+		width:150px;
+		display: inline-block;
+	}
+	.bttn{
+		width:100px;
+		display: inline-block;
+		margin-top: -3.5px;
+	}
+	.bttn1{
+		width:75px;
+		display: inline-block;
+		margin-top: -0.5px;
 	}
 	
 </style>
@@ -267,7 +297,7 @@
 			careerTr1Td3 = $("#careerTr1Td3").val();
 			careerTr1Td4 = $("#careerTr1Td4").val();
 			careerTr1Td5 = $("#careerTr1Td5").val();
-			
+							
 			careerTr2Td1 = $("#careerTr2Td1").val();
 			careerTr2Td2 = $("#careerTr2Td2").val();
 			careerTr2Td3 = $("#careerTr2Td3").val();
@@ -291,6 +321,12 @@
 			careerTr5Td3 = $("#careerTr5Td3").val();
 			careerTr5Td4 = $("#careerTr5Td4").val();
 			careerTr5Td5 = $("#careerTr5Td5").val();
+			
+			$("#careerTr1Td5").attr("min", careerTr1Td4);
+			$("#careerTr2Td5").attr("min", careerTr2Td4);
+			$("#careerTr3Td5").attr("min", careerTr3Td4);
+			$("#careerTr4Td5").attr("min", careerTr4Td4);
+			$("#careerTr5Td5").attr("min", careerTr5Td4);
 			
 			if(careerTr1Td1=="" || careerTr1Td2=="" || careerTr1Td3=="" || careerTr1Td4=="" || careerTr1Td5==""){
 				careerResult1 = "";				
@@ -1042,6 +1078,12 @@
 			activityTr5Td3 = $("#activityTr5Td3").val();
 			activityTr5Td4 = $("#activityTr5Td4").val();
 			
+			$("#activityTr1Td4").attr("min", activityTr1Td3);
+			$("#activityTr2Td4").attr("min", activityTr2Td3);
+			$("#activityTr3Td4").attr("min", activityTr3Td3);
+			$("#activityTr4Td4").attr("min", activityTr4Td3);
+			$("#activityTr5Td4").attr("min", activityTr5Td3);
+			
 			if(activityTr1Td1=="" || activityTr1Td2=="" || activityTr1Td3=="" || activityTr1Td4==""){
 				activityResult1 = "";				
 			}else{
@@ -1287,7 +1329,7 @@
 			<div style="margin:5px;">
 			<span style="font-size: 18px; font-weight: bold;">기본정보</span>
 			<br><br>
-				<table>
+				<table id="basic">
 					<colgroup>
 						<col style="width:300px;">
 						<col style="width:300px;">
@@ -1300,7 +1342,7 @@
 						<td>성별</td>
 						<td><input type="text" name="gender" id="gender" readonly></td>
 						<td>
-							<select id="genderSelect" name="genderSelect">
+							<select id="genderSelect" name="genderSelect" class="form-control sel">
 								<option value="남자">남자</option>
 						   		<option value="여자">여자</option>
 			                </select>
@@ -1321,7 +1363,7 @@
 					<tr>
 						<td>우편번호</td>
 						<td><input type="text" name="zipcode" id="zipcode" readonly value="${memberVo.zipcode}"></td>
-						<td><input type="button" onclick="sample4_execDaumPostcode()" value="찾기"></td>
+						<td><input type="button" onclick="sample4_execDaumPostcode()" value="찾기" class="form-control bttn1"></td>
 					</tr>
 					<tr>
 						<td>주소</td>
@@ -1358,7 +1400,7 @@
 						<tr>
 							<td>학교 : <input type="text" id="schoolName"></td>
 							<td>전공 : <input type="text" id="schoolMajor"></td>
-							<td>졸업일 : <input type="date" id="schoolDate"></td>		
+							<td>졸업일 : <input type="date" id="schoolDate" class="form-control sel"></td>		
 						</tr>
 					</table>
 					<input type="hidden" name="edu" id="edu">
@@ -1381,8 +1423,8 @@
 				체크박스를 토글스위치로 바꾼 부분 끝 --%>
 				<br><br>
 				<div id="careerDivChk">				
-					<input type="button" value="추가" id="careerAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
-					<input type="button" value="삭제" id="careerDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
+					<input type="button" value="추가" id="careerAddBtn" class="form-control bttn"> <!-- 추가 클릭시 작성공간 생성 -->
+					<input type="button" value="삭제" id="careerDelBtn" class="form-control bttn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
 					<span>(최대 5건)</span>
 					<br><br>
 					<table id="careerTable">
@@ -1404,36 +1446,36 @@
 							<td><input type='text' id="careerTr1Td1"></td>
 							<td><input type='text' id="careerTr1Td2"></td>	
 							<td><input type='text' id="careerTr1Td3"></td>
-							<td><input type='date' id="careerTr1Td4"></td>
-							<td><input type='date' id="careerTr1Td5"></td>
+							<td><input type='date' id="careerTr1Td4" class="form-control sel"></td>
+							<td><input type='date' id="careerTr1Td5" class="form-control sel"></td>
 						</tr>
 						<tr id="careerTr2" class="careerTr careerDel">
 							<td><input type='text' id="careerTr2Td1"></td>
 							<td><input type='text' id="careerTr2Td2"></td>	
 							<td><input type='text' id="careerTr2Td3"></td>
-							<td><input type='date' id="careerTr2Td4"></td>
-							<td><input type='date' id="careerTr2Td5"></td>
+							<td><input type='date' id="careerTr2Td4" class="form-control sel"></td>
+							<td><input type='date' id="careerTr2Td5" class="form-control sel"></td>
 						</tr>
 						<tr id="careerTr3" class="careerTr careerDel">
 							<td><input type='text' id="careerTr3Td1"></td>
 							<td><input type='text' id="careerTr3Td2"></td>	
 							<td><input type='text' id="careerTr3Td3"></td>
-							<td><input type='date' id="careerTr3Td4"></td>
-							<td><input type='date' id="careerTr3Td5"></td>
+							<td><input type='date' id="careerTr3Td4" class="form-control sel"></td>
+							<td><input type='date' id="careerTr3Td5" class="form-control sel"></td>
 						</tr>
 						<tr id="careerTr4" class="careerTr careerDel">
 							<td><input type='text' id="careerTr4Td1"></td>
 							<td><input type='text' id="careerTr4Td2"></td>	
 							<td><input type='text' id="careerTr4Td3"></td>
-							<td><input type='date' id="careerTr4Td4"></td>
-							<td><input type='date' id="careerTr4Td5"></td>
+							<td><input type='date' id="careerTr4Td4" class="form-control sel"></td>
+							<td><input type='date' id="careerTr4Td5" class="form-control sel"></td>
 						</tr>
 						<tr id="careerTr5" class="careerTr careerDel">
 							<td><input type='text' id="careerTr5Td1"></td>
 							<td><input type='text' id="careerTr5Td2"></td>	
 							<td><input type='text' id="careerTr5Td3"></td>
-							<td><input type='date' id="careerTr5Td4"></td>
-							<td><input type='date' id="careerTr5Td5"></td>
+							<td><input type='date' id="careerTr5Td4" class="form-control sel"></td>
+							<td><input type='date' id="careerTr5Td5" class="form-control sel"></td>
 						</tr>
 					</table>
 					<input type="hidden" name="career" id="career">
@@ -1458,8 +1500,8 @@
 				체크박스를 토글스위치로 바꾼 부분 끝 --%>
 				<br><br>
 				<div id="certificateDivChk">	
-					<input type="button" value="추가" id="certificateAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
-					<input type="button" value="삭제" id="certificateDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
+					<input type="button" value="추가" id="certificateAddBtn" class="form-control bttn"> <!-- 추가 클릭시 작성공간 생성 -->
+					<input type="button" value="삭제" id="certificateDelBtn" class="form-control bttn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
 					<span>(최대 5건)</span>
 					<br><br>
 					<table id="certificateTable">
@@ -1476,27 +1518,27 @@
 						<tr id="certificateTr1" class="certificateTr certificateDel">
 							<td><input type='text' id="certificateTr1Td1"></td>
 							<td><input type='text' id="certificateTr1Td2"></td>	
-							<td><input type='date' id="certificateTr1Td3"></td>
+							<td><input type='date' id="certificateTr1Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="certificateTr2" class="certificateTr certificateDel">
 							<td><input type='text' id="certificateTr2Td1"></td>
 							<td><input type='text' id="certificateTr2Td2"></td>	
-							<td><input type='date' id="certificateTr2Td3"></td>
+							<td><input type='date' id="certificateTr2Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="certificateTr3" class="certificateTr certificateDel">
 							<td><input type='text' id="certificateTr3Td1"></td>
 							<td><input type='text' id="certificateTr3Td2"></td>	
-							<td><input type='date' id="certificateTr3Td3"></td>
+							<td><input type='date' id="certificateTr3Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="certificateTr4" class="certificateTr certificateDel">
 							<td><input type='text' id="certificateTr4Td1"></td>
 							<td><input type='text' id="certificateTr4Td2"></td>	
-							<td><input type='date' id="certificateTr4Td3"></td>
+							<td><input type='date' id="certificateTr4Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="certificateTr5" class="certificateTr certificateDel">
 							<td><input type='text' id="certificateTr5Td1"></td>
 							<td><input type='text' id="certificateTr5Td2"></td>	
-							<td><input type='date' id="certificateTr5Td3"></td>
+							<td><input type='date' id="certificateTr5Td3" class="form-control sel"></td>
 						</tr>
 					</table>
 					<input type="hidden" name="certificate" id="certificate">
@@ -1521,8 +1563,8 @@
 				체크박스를 토글스위치로 바꾼 부분 끝 --%>
 				<br><br>
 				<div id="languageDivChk">	
-					<input type="button" value="추가" id="languageAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
-					<input type="button" value="삭제" id="languageDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
+					<input type="button" value="추가" id="languageAddBtn" class="form-control bttn"> <!-- 추가 클릭시 작성공간 생성 -->
+					<input type="button" value="삭제" id="languageDelBtn" class="form-control bttn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
 					<span>(최대 5건)</span>
 				 	<br><br>
 					<table id="languageTable">
@@ -1539,27 +1581,27 @@
 						<tr id="languageTr1" class="languageTr languageDel">
 							<td><input type='text' id="languageTr1Td1"></td>
 							<td><input type='text' id="languageTr1Td2"></td>	
-							<td><input type='date' id="languageTr1Td3"></td>
+							<td><input type='date' id="languageTr1Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="languageTr2" class="languageTr languageDel">
 							<td><input type='text' id="languageTr2Td1"></td>
 							<td><input type='text' id="languageTr2Td2"></td>	
-							<td><input type='date' id="languageTr2Td3"></td>
+							<td><input type='date' id="languageTr2Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="languageTr3" class="languageTr languageDel">
 							<td><input type='text' id="languageTr3Td1"></td>
 							<td><input type='text' id="languageTr3Td2"></td>	
-							<td><input type='date' id="languageTr3Td3"></td>
+							<td><input type='date' id="languageTr3Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="languageTr4" class="languageTr languageDel">
 							<td><input type='text' id="languageTr4Td1"></td>
 							<td><input type='text' id="languageTr4Td2"></td>	
-							<td><input type='date' id="languageTr4Td3"></td>
+							<td><input type='date' id="languageTr4Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="languageTr5" class="languageTr languageDel">
 							<td><input type='text' id="languageTr5Td1"></td>
 							<td><input type='text' id="languageTr5Td2"></td>	
-							<td><input type='date' id="languageTr5Td3"></td>
+							<td><input type='date' id="languageTr5Td3" class="form-control sel"></td>
 						</tr>
 					</table>
 					<input type="hidden" name="language" id="language">
@@ -1584,8 +1626,8 @@
 				체크박스를 토글스위치로 바꾼 부분 끝 --%>
 				<br><br>
 				<div id="awardsDivChk">	
-					<input type="button" value="추가" id="awardsAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
-					<input type="button" value="삭제" id="awardsDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
+					<input type="button" value="추가" id="awardsAddBtn" class="form-control bttn"> <!-- 추가 클릭시 작성공간 생성 -->
+					<input type="button" value="삭제" id="awardsDelBtn" class="form-control bttn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
 					<span>(최대 5건)</span>
 					<br><br>
 					<table id="awardsTable">
@@ -1602,27 +1644,27 @@
 						<tr id="awardsTr1" class="awardsTr awardsDel">
 							<td><input type='text' id="awardsTr1Td1"></td>
 							<td><input type='text' id="awardsTr1Td2"></td>	
-							<td><input type='date' id="awardsTr1Td3"></td>
+							<td><input type='date' id="awardsTr1Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="awardsTr2" class="awardsTr awardsDel">
 							<td><input type='text' id="awardsTr2Td1"></td>
 							<td><input type='text' id="awardsTr2Td2"></td>	
-							<td><input type='date' id="awardsTr2Td3"></td>
+							<td><input type='date' id="awardsTr2Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="awardsTr3" class="awardsTr awardsDel">
 							<td><input type='text' id="awardsTr3Td1"></td>
 							<td><input type='text' id="awardsTr3Td2"></td>	
-							<td><input type='date' id="awardsTr3Td3"></td>
+							<td><input type='date' id="awardsTr3Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="awardsTr4" class="awardsTr awardsDel">
 							<td><input type='text' id="awardsTr4Td1"></td>
 							<td><input type='text' id="awardsTr4Td2"></td>	
-							<td><input type='date' id="awardsTr4Td3"></td>
+							<td><input type='date' id="awardsTr4Td3" class="form-control sel"></td>
 						</tr>
 						<tr id="awardsTr5" class="awardsTr awardsDel">
 							<td><input type='text' id="awardsTr5Td1"></td>
 							<td><input type='text' id="awardsTr5Td2"></td>	
-							<td><input type='date' id="awardsTr5Td3"></td>
+							<td><input type='date' id="awardsTr5Td3" class="form-control sel"></td>
 						</tr>
 					</table>
 					<input type="hidden" name="award" id="award">
@@ -1671,8 +1713,8 @@
 				
 				<br><br>
 				<div id="activityDivChk">	
-					<input type="button" value="추가" id="activityAddBtn"> <!-- 추가 클릭시 작성공간 생성 -->
-					<input type="button" value="삭제" id="activityDelBtn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
+					<input type="button" value="추가" id="activityAddBtn" class="form-control bttn"> <!-- 추가 클릭시 작성공간 생성 -->
+					<input type="button" value="삭제" id="activityDelBtn" class="form-control bttn"> <!-- 삭제 클릭시 마지막 작성공간 삭제 -->
 					<span>(최대 5건)</span>
 					<br><br>
 					<table id="activityTable">
@@ -1691,32 +1733,32 @@
 						<tr id="activityTr1" class="activityTr activityDel">
 							<td><input type='text' id="activityTr1Td1"></td>
 							<td><input type='text' id="activityTr1Td2"></td>	
-							<td><input type='date' id="activityTr1Td3"></td>
-							<td><input type='date' id="activityTr1Td4"></td>
+							<td><input type='date' id="activityTr1Td3" class="form-control sel"></td>
+							<td><input type='date' id="activityTr1Td4" class="form-control sel"></td>
 						</tr>
 						<tr id="activityTr2" class="activityTr activityDel">
 							<td><input type='text' id="activityTr2Td1"></td>
 							<td><input type='text' id="activityTr2Td2"></td>	
-							<td><input type='date' id="activityTr2Td3"></td>
-							<td><input type='date' id="activityTr2Td4"></td>
+							<td><input type='date' id="activityTr2Td3" class="form-control sel"></td>
+							<td><input type='date' id="activityTr2Td4" class="form-control sel"></td>
 						</tr>
 						<tr id="activityTr3" class="activityTr activityDel">
 							<td><input type='text' id="activityTr3Td1"></td>
 							<td><input type='text' id="activityTr3Td2"></td>	
-							<td><input type='date' id="activityTr3Td3"></td>
-							<td><input type='date' id="activityTr3Td4"></td>
+							<td><input type='date' id="activityTr3Td3" class="form-control sel"></td>
+							<td><input type='date' id="activityTr3Td4" class="form-control sel"></td>
 						</tr>
 						<tr id="activityTr4" class="activityTr activityDel">
 							<td><input type='text' id="activityTr4Td1"></td>
 							<td><input type='text' id="activityTr4Td2"></td>	
-							<td><input type='date' id="activityTr4Td3"></td>
-							<td><input type='date' id="activityTr4Td4"></td>
+							<td><input type='date' id="activityTr4Td3" class="form-control sel"></td>
+							<td><input type='date' id="activityTr4Td4" class="form-control sel"></td>
 						</tr>
 						<tr id="activityTr5" class="activityTr activityDel">
 							<td><input type='text' id="activityTr5Td1"></td>
 							<td><input type='text' id="activityTr5Td2"></td>	
-							<td><input type='date' id="activityTr5Td3"></td>
-							<td><input type='date' id="activityTr5Td4"></td>
+							<td><input type='date' id="activityTr5Td3" class="form-control sel"></td>
+							<td><input type='date' id="activityTr5Td4" class="form-control sel"></td>
 						</tr>
 					</table>
 					<input type="hidden" name="activity" id="activity">
@@ -1778,8 +1820,8 @@
 			<hr>
 			</div>			
 			<div style="text-align: center;">
-				<input type="submit" value="작성완료">
-				<input type="button" value="뒤로가기">
+				<input type="submit" value="작성완료" class="form-control bttn">
+				<input type="button" value="뒤로가기" class="form-control bttn">
 			</div>
 			<br><br>
 		</form>

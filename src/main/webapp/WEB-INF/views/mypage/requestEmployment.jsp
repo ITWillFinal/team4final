@@ -113,7 +113,7 @@
 	    font-size: large;
 	}
 </style>
-<div style="width: 900px;margin: 0 auto;">
+<div style="width: 900px;margin: 50px auto; min-height: 800px;">
 <h1>입사 요청</h1>
 <div class="re-main">
 	<c:if test="${empty perList }">

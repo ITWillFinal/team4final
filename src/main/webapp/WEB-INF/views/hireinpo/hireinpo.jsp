@@ -4,17 +4,17 @@
 <script>
 $(function(){
 	$( "#hireTabs" ).tabs();
-	$('.sido #op').click(function() {
-		$('#tdLocation1').val($(this).val());
-	});
-	$(document).on('click','#sigugunDiv button', function() {
-		$('#tdLocation2').val($(this).val());
-	});
 	$('.jobLarge #op').click(function() {
 		$('#tdJob1').val($(this).text());
 	});
 	$(document).on('click','#jobMiddleDiv button', function() {
 		$('#tdJob2').val($(this).text());
+	});
+	$('.sido #op').click(function() {
+		$('#tdLocation1').val($(this).val());
+	});
+	$(document).on('click','#sigugunDiv button', function() {
+		$('#tdLocation2').val($(this).val());
 	});
 	
 	$('.induLarge #op').click(function() {
@@ -40,7 +40,7 @@ $(function(){
 });
 
 $(function() {
-	$('#locationLi #op').click(function() {
+	$('.sido #op').click(function() {
 		$('#tdLocation2').val('');
 		var sido = $(this).val();
 		$('.sigungu').empty();
@@ -146,7 +146,7 @@ function makeListJson(res){
 		htmlStr += "<div class='single-job-items mb-30' style='width: 90%;margin: 0 auto; border: 1px solid #e0e0e08f; margin-top:20px;'><div class='job-items'><div class='job-tittle'>";
 		htmlStr += "<a href='<c:url value='/hireinpo/infoDetail.do?recruitmentCode="+this.recruitmentCode+"'/>'><h4>"+this.title+"</h4></a>";
 		htmlStr += "<ul>";
-		htmlStr += "<li>"+this.comName+"</li>";
+		htmlStr += "<li><a style='color:black;' href='<c:url value='/companypage/showCompanyInfo.do?recruitmentCode="+this.recruitmentCode+"'/>'>"+this.comName+"</a></li>";
 		htmlStr += "<li><i class='fa fa-briefcase' aria-hidden='true'></i>"+this.jobType2+"</li>";
 		htmlStr += "<li>"+this.pay+"</li>";
 		htmlStr += "<ul>";
@@ -277,7 +277,8 @@ function makeListJson(res){
 <%@ include file="../inc/sidebar.jsp"%>
 <div style="overflow: hidden; width: 1055px; padding-left: 25px; font-size: 14px; margin-top: 10px;">
 <!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
-<h2 style="margin-bottom: 22px;">채용정보 상세검색</h2>
+<p style="font-weight: bold;font-size: xx-large;color: #010b1d; margin-top: 26px;">채용정보 상세검색</p>
+<hr style="border: 1px solid #fb246a;">
 <div id="hireTabs">
 	<ul style="border: 1px solid #dddddd; background: #e9e9e9; color: #333333; font-weight: bold;">
 		<li><a href="#hireTabs-1"><i class="fa fa-map-marker" aria-hidden="true"></i>　지역</a></li>

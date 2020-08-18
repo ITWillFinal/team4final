@@ -42,7 +42,8 @@ $(function() {
 <%@ include file="../inc/sidebar.jsp"%>
 <div style="overflow: hidden; width: 1055px; padding-left: 25px; font-size: 14px; margin-top: 10px;">
 <!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
-	<h2 style="margin-bottom: 22px;">지역별 채용정보</h2>
+	<p style="font-weight: bold;font-size: xx-large;color: #010b1d; margin-top: 26px;">지역별 채용정보</p>
+	<hr style="border: 1px solid #fb246a;">
 	<div id="locationDiv">
 		<c:forEach var="location" items="${locationList }">
 			<button value="${location }" id="sido" class="btn head-btn2">${location }</button>
@@ -56,7 +57,7 @@ $(function() {
 						<div class="job-tittle">
 							<a href="<c:url value='/hireinpo/infoDetail.do?recruitmentCode=${vo.recruitmentCode }'/>"><h6 style="font-weight: bold;">${vo.title }</h6></a>
 							<ul>
-								<li>${vo.comName }</li>
+								<li><a style="color: black" href="<c:url value='/companypage/showCompanyInfo.do?recruitmentCode=${vo.recruitmentCode }'/>">${vo.comName }</a></li>
 								<li><i class="fa fa-briefcase" aria-hidden="true"></i>${vo.jobType2 }</li>
 							</ul>
 						</div>

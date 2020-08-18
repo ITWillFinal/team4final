@@ -43,11 +43,50 @@
 <style type="text/css">
 	.divForm {
 		margin: 0 auto;
-		width: 800px;
+		width: 1055px;
 	}
 	.spanClass{
 		font-size: x-small;
     	color: red;
+	}
+	
+	.fileLabel {
+	width:170px;
+	text-align:center;
+	  display: inline-block;
+	  padding: .5em .75em;
+	  color: #fff;
+	  font-size: inherit;
+	  line-height: normal;
+	  vertical-align: middle;
+	  background-color: #fb246a;
+	  cursor: pointer;
+	  border: 1px solid #fb246a;
+	  border-radius: .25em;
+	  -webkit-transition: background-color 0.2s;
+	  transition: background-color 0.2s;
+	}
+	
+	.fileLabel:hover {
+	  background-color: #ffc0d3;
+	  border: 1px solid #ffc0d3;
+	}
+	
+	.fileLabel:active {
+	  background-color: white;
+	  border: 1px solid #fb246a;
+	  color: #fb246a;
+	}
+	
+	.fileInput {
+	  position: absolute;
+	  width: 1px;
+	  height: 1px;
+	  padding: 0;
+	  margin: -1px;
+	  overflow: hidden;
+	  clip: rect(0, 0, 0, 0);
+	  border: 0;
 	}
 </style>
 <script type="text/javascript">
@@ -117,18 +156,39 @@
 			
 		});
 		
+		/* 이미지 업로드 쿼리 */
+		document.getElementById('imageUpload').onchange = function() {
+			readImage();
+		};
+
+		function readImage() {
+			var file = document.getElementById('imageUpload');
+			if (file.files && file.files[0]) {
+				var reader = new FileReader();
+
+				//이미지 읽기
+				reader.readAsDataURL(file.files[0]);
+
+				//이미지 전부 읽어들였으면 호출
+				reader.onload = function() {
+					var image = document.getElementById('image');
+					image.src = reader.result;
+					//img 태그 노출
+					image.style.display = '';
+				};
+			}
+		}
 		
 	});
 </script>
 
 <body>
 	<div class="divForm">
-		<form name="frm" method="post" style="margin-top: 100px;"
-			action="<c:url value='/member/memberEdit.do' /> "
+		<form name="frm" method="post" action="<c:url value='/member/memberEdit.do' />"
 			enctype="multipart/form-data">
 			<div class="form-group" id="divId">
-				<legend>회원정보 수정</legend>
-				<hr>
+				<h1 style="background: white;font-weight: bold;">회원정보수정</h1>
+				<hr style="border: 1px solid #fb246a;">
 				<div class="registerList">
 					<div class="form-group" id="divEmail">
 						<div class="col-lg-10">
@@ -165,10 +225,12 @@
 					</div>
 					<div class="form-group" id="divProfile">
 						<div class="col-lg-10">
-							<label class="col-lg-3 control-label">프로필 사진</label> <input
-								type="file" accept="image/*" name="imageUpload" id="imageUpload" class="infobox"
-								placeholder="프로필 사진 업로드"> <img id="image" width="100"
-								height="100" alt="Image Preview" style="display: none;">
+								 <img id="image" width="100" height="100" alt="Image Preview" style="display: none;">
+								<br>
+								<br>
+							<label class="col-lg-3 control-label fileLabel" for="imageUpload">프로필 사진 업로드</label>
+							<input type="file" accept="image/*" name="imageUpload" id="imageUpload" class="infobox fileInput"
+								placeholder="프로필 사진 업로드">
 						</div>
 					</div>
 					<div class="form-group" id="divNickname">
@@ -208,10 +270,9 @@
 					</div>
 					<div class="form-group" id="address">
 						<div class="col-lg-10">
-							<label for="zipcode" class="col-lg-2 control-label">주소</label> <input
-								type="button" onclick="sample4_execDaumPostcode()"
-								value="우편번호 찾기"><br> <input type="text"
-								class="form-control" id="zipcode" name="zipcode"
+							<label for="zipcode" class="col-lg-2 control-label">주소</label>
+							<input type="text"
+								class="form-control" id="zipcode" name="zipcode" onclick="sample4_execDaumPostcode()"
 								placeholder="우편번호" ReadOnly value="${memberVo.zipcode }">
 						</div>
 						<div class="col-lg-10">
@@ -231,10 +292,10 @@
 								placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11" value="${memberVo.hp }">
 						</div>
 					</div>
-
 					<div class="form-group">
-						<div class="col-lg-offset-2 col-lg-10">
+						<div style="text-align: center; margin-bottom: 30px">
 							<button type="submit" class="btn btn-primary">수정</button>
+							<button type="button" onclick="history.back()" class="btn btn-primary">취소</button>
 						</div>
 					</div>
 					<input type="hidden" name="chPwd" id="chPwd">

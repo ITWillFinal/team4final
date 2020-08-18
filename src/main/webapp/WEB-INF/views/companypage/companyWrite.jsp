@@ -386,6 +386,14 @@
 			
 		});
 		
+		$('#sigugun').hide();
+		$('#sido').change(function(){
+			if($(this).val()==""){
+				$('#sigugun').hide();
+			}else{
+				$('#sigugun').show();				
+			}
+		});
 	});
 	
 	
@@ -411,14 +419,14 @@
 	    background : #dcdcdc;
 	}
 	
-	input[type=text] {
+input[type=text] {
 		padding-left: 15px;
 		padding-right: 15px;
 		background : whitesmoke;
-		width:350px;
+		width:305px;
 		height:35px;
-		border:none;
-		border-radius: 10px;
+		border:1px lightgray solid;
+		border-radius: 5px;
 	}
 	
 	label {
@@ -458,7 +466,19 @@
 		width:200px;
 		display: inline-block;
 	}
+	
+	.btn3{
+		width:180px;
+		display: inline-block;
+		margin-top: -3.5px;
+	}
 
+	.bttn1:hover{
+		background: #ced4da;
+		border:	1px solid #ced4da;
+		color: white;
+		cursor: pointer;
+	}
 
 </style>
 
@@ -468,10 +488,10 @@
 	<!-- main -->
 	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
 		<form name="frmWrite" method="post" action="<c:url value='/companypage/companyWrite.do'/>">
-			<span style="font-size: 25px; font-weight: bold;">채용공고등록</span>
-			<hr>
+		<p style="font-weight: bold;font-size: xx-large;color: #010b1d; margin-top: 35px;">채용공고등록</p>
+			<hr style="border: 1px solid #fb246a;">
 			<div style="margin:5px;">
-			<span style="font-size: 18px; font-weight: bold;">◎모집내용</span><br><br>
+			<span style="font-size: 18px; font-weight: bold;">모집내용</span><br><br>
 
 			<table style="width: 900px;">
 				<colgroup>
@@ -542,6 +562,7 @@
 
 						<select id="sido" class="form-control sel">
 							<c:if test="${!empty list}">
+								<option value="">지역선택</option>
 								<c:forEach var="location" items="${list}">
 									<option value="${location}">${location}</option>
 								</c:forEach>
@@ -559,7 +580,7 @@
 					<td>우편번호</td>
 					<td>
 						<input type="text" id="zipcode" name="zipcode" readonly value="${zipcode}">
-					 	<input type="button" onclick="sample4_execDaumPostcode()" value="찾기" class="form-control bttn"> 
+					 	<input type="button" onclick="sample4_execDaumPostcode()" value="찾기" class="form-control bttn bttn1"> 
 					</td>
 				</tr>
 
@@ -704,7 +725,7 @@
 			<hr>
 			
 			<div>
-				<span style="font-size: 18px; font-weight: bold;">◎자격요건</span><br><br>
+				<span style="font-size: 18px; font-weight: bold;">자격요건</span><br><br>
 			<table style="width: 900px;">
 				<colgroup>
 					<col style="width:20%;" />
@@ -769,7 +790,7 @@
 							<option value="6">대학원(석사)</option>
 							<option value="7">대학원(박사)</option>
 						</select> 
-						<input type="hidden" id="educationLv" name="educationLv" value="무관">
+						<input type="hidden" id="educationLv" name="educationLv" value="0">
 					</td>
 				</tr>
 
@@ -860,12 +881,12 @@
 			</div>
 			<hr>
 			<div>
-				<span style="font-size: 18px; font-weight: bold;">◎상세모집내용</span><br><br>
+				<span style="font-size: 18px; font-weight: bold;">상세모집내용</span><br><br>
 				<textarea id="recDetail" name="recDetail" rows="20" cols="93"></textarea>
 			</div>
 			<br>
 			<div style="width: 900px; text-align: center;">
-				<input type="submit" value="채용공고 등록하기"/>
+				<input type="submit" value="채용공고 등록하기" class="form-control btn3 bttn1"/>
 			</div><br>
 			
 			<input type="hidden" id="jobType1" name="jobType1">

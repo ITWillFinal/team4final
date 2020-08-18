@@ -134,7 +134,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 	float: left;
 	border-collapse: collapse;
 	padding: 40px;
-    padding-left: 80px;
+    padding-left: 120px;
 	height: 220px;
 }
 
@@ -349,11 +349,9 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 												<br><br> 
 												<a href="<c:url value='/info/info.do'/>">회사소개</a> 
 												<br>
-												<a href="<c:url value=''/>">회사 CI</a>
+												<a href="<c:url value='/info/ciPage.do'/>">회사 CI</a>
 												<br>
-												<a href="<c:url value='/about/thejobLocation.do'/>">회사위치</a> 
-												<br>
-												<a href="<c:url value=''/>">인재채용</a>
+												<a href="<c:url value='/aboutThejob/thejobLocation.do'/>">회사위치</a> 
 
 											</div>
 											<div>
@@ -368,17 +366,7 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 												<a href="<c:url value='/hireinpo/hireInfoByInduType.do'/>">산업별</a>
 
 											</div>
-											<div>
-												<span>취업성공 툴 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
-												<br><br> 
-												<a href="about.html">이력서 작성</a> 
-												<br>
-												<a href="about.html">학격자소서</a> 
-												<br>
-												<a href="about.html">합격 스팩</a> 
-												<br>
-												<a href="about.html">취업후기</a>
-											</div>
+											
 											<div>
 												<span>직업탐색 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 
 												<br><br>
@@ -391,9 +379,9 @@ li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-act
 												<br><br>
 												<a href="<c:url value='/notice/memberNotice.do'/>">공지사항</a>
 												<br>
-												<a href="about.html">자주찾는질문</a> 
+												<a href="<c:url value='/gogak/personal/faqList.do'/>">자주찾는질문</a> 
 												<br>
-												<a href="about.html">1:1문의사항</a> 
+												<a href="<c:url value='/gogak/qnaP/qnaWrite.do'/>">1:1문의사항</a> 
 											</div>
 											<div>
 												<span>기업서비스 <i class="fa fa-chevron-right" aria-hidden="true"></i></span> 

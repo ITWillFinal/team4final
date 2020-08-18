@@ -1,24 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<%@ include file="../inc/top.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../inc/comMypageTop.jsp" %>
-<script type="text/javascript">
-$(function(){
-	
-	$('#edit').click(function() {
-		location.href = "<c:url value = '/companypage/MyCompanyEdit.do?comCode=${vo.comCode}'/>";
-	});
-	
-});//function
-
-</script>
+<jsp:useBean id="today" class="java.util.Date"/>
 <style type="text/css">
 	img {
 	    width: 100%;
-	}
-	.btSubmit{
-		text-align: center;
-		padding: 30px;
 	}
 	.form-control {
 	    border: none;
@@ -167,15 +154,6 @@ $(function(){
 								<span class="fontBoldA">기업업종 : <span class="fontNormal">${vo.comIndustry}</span></span>						
 							</div>
 							<hr class="hr_c">
-							<div class="company_content">
-								<span class="fontBoldA" >사업내용 : </span>
-								<div class="company_content_write">
-									<span>
-										${fn:replace(vo.content , newLine, '<br>')}
-									</span>
-								</div>
-							</div>
-							<hr class="hr_c">
 							<div class="company_homepage">
 								<c:if test="${empty vo.homepage }">
 									<span class="fontBoldA">등록된 홈페이지가 없습니다</span>
@@ -185,6 +163,16 @@ $(function(){
 								</c:if>
 							</div>
 							<hr class="hr_c">
+							<div class="company_content">
+								<span class="fontBoldA" >사업내용 : </span>
+								<div class="company_content_write">
+									<span>
+										${fn:replace(vo.content , newLine, '<br>')}
+									</span>
+								</div>
+							</div>
+							<hr class="hr_c">
+														
 							<div class="company_image">
 								<span class="fontBoldA">기업사진</span></span><br>
 								<img class="fontBoldA" src="<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
@@ -194,12 +182,6 @@ $(function(){
 				</div>
 			<!-- 회사 정보 조회 끝 -->
 		</form>
-		<!-- submit button -->
-		<div class="btSubmit">
-			<div class="col-lg-offset-2 col-lg-10">
-				<button type="button" id = "edit" class="btn btn-primary">수정</button>
-			</div>
-		</div>
 	</div>
 </main>
-<%@ include file="../inc/companyBottom.jsp"%>
+<%@ include file="../inc/bottom.jsp" %>

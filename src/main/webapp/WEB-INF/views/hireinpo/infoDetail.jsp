@@ -183,7 +183,9 @@
 	</div>
 	<div id="headAdd2">
 		<c:if test="${endDate-startDate+1 > 0}">
-			<a href="<c:url value='/application/applicationResume.do?recruitmentCode=${vo.recruitmentCode }'/>" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
+			<c:if test="${sessionScope.status != 'C' }">
+				<a href="<c:url value='/application/applicationResume.do?recruitmentCode=${vo.recruitmentCode }'/>" class="btn head-btn2" style="font-weight: bold; width: 120px; height: 59px;">지원</a>
+			</c:if>
 		</c:if>
 		<c:if test="${endDate-startDate+1 < 0}">
 			<div style="font-weight: bold; width: 120px; height: 59px; background: #585858e0; padding: 20px 30px; color: white;">지원마감</div>
@@ -315,7 +317,9 @@
 		
 		<div>
 			<c:if test="${endDate-startDate+1 > 0}">
-				<a href="<c:url value='/application/applicationResume.do?recruitmentCode=${vo.recruitmentCode }'/>" class="btn head-btn2" id="bottomApply">지원</a>
+				<c:if test="${sessionScope.status != 'C' }">
+					<a href="<c:url value='/application/applicationResume.do?recruitmentCode=${vo.recruitmentCode }'/>" class="btn head-btn2" id="bottomApply">지원</a>
+				</c:if>
 			</c:if>
 			<c:if test="${endDate-startDate+1 < 0}">
 				<div style="margin-bottom: 100px; margin-top: 50px; font-weight: bold; width: 602px; height: 59px; background: #585858e0; padding: 20px; text-align: center; color: white;">지원마감</div>

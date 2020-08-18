@@ -63,8 +63,9 @@
 					for(var i = 0; i< res.length; i++){
 						var option = '<div id="'+res[i].induType2+'">'
 						option += '<div class="single-job-items mb-30" id="listOne"><div class="job-items"><div class="job-tittle">';
-						option += '<a href="<c:url value="/hireinpo/infoDetail.do?recruitmentCode='+res[i].recruitmentCode+'"/>"><h4>'+res[i].title+'</h4></a>';
-						option += '<ul><li>'+res[i].comName+'</li><li><i class="fa fa-briefcase" aria-hidden="true"></i>'+res[i].jobType2+'</li><li>'+res[i].pay+'</li>';
+						option += '<a style="color:black;" href="<c:url value="/hireinpo/infoDetail.do?recruitmentCode='+res[i].recruitmentCode+'"/>"><h4>'+res[i].title+'</h4></a>';
+						option += '<ul><li><a href="<c:url value="/companypage/showCompanyInfo.do?recruitmentCode='+res[i].recruitmentCode+'"/>" style="color:black;"> '
+						option += res[i].comName+'</li><li><i class="fa fa-briefcase" aria-hidden="true"></i>'+res[i].jobType2+'</li><li>'+res[i].pay+'</li>';
 						option += '</div></div>';
 						option += '<div class="items-link f-right"><a href="<c:url value="/hireinpo/infoDetail.do?recruitmentCode='+res[i].recruitmentCode+'"/>">'+res[i].recType+'</a>';
 						option += '</div></div></div>';
@@ -87,7 +88,8 @@
 </script>
 <div style="overflow: hidden; width: 1055px; padding-left: 25px; font-size: 14px; margin-top: 10px;">
 <!-- 사이드바이용에필요함 맨밑에 div 닫을것 -->
-	<h2>산업별 채용정보</h2>
+	<p style="font-weight: bold;font-size: xx-large;color: #010b1d; margin-top: 26px;">산업별 채용정보</p>
+	<hr style="border: 1px solid #fb246a;">
 	<div id="induTypeDiv">
 		<c:forEach var="map" items="${induList }">
 			<button value="${map['LARGE_NO'] }" id="induType" class="btn head-btn2">${map['LARGE_GROUP'] }</button>

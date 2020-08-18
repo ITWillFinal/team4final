@@ -4,7 +4,8 @@
 <style type="text/css">
 	.divForm {
 		margin: 0 auto;
-		width: 800px;
+		width: 1055px;
+		margin-bottom: 30px;
 	}
 	.spanClass{
 		font-size: x-small;
@@ -14,6 +15,8 @@
 		text-align: center;
 		padding: 30px;
 	}
+	
+	
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -117,12 +120,12 @@
 
 <body>
 	<div class="divForm">
-		<form name="frmCom" method="post" style="margin-top: 100px;"
+		<h1 style="background: white;font-weight: bold;">기업회원 정보수정<span class="deleteInfo" style="margin-left: 10px;font-size: small;">(필수가 아닌항목은 체크해제시 적용되지 않습니다)</span></h1>
+		<hr style="border: 1px solid #fb246a;margin: 30px 0;">
+		<form name="frmCom" method="post" style="margin-top: 50px;"
 			action="<c:url value='/companypage/cMemberEdit.do' /> "
 			enctype="multipart/form-data" >
 			<div class="form-group" id="divId">
-				<legend>기업 회원 정보 수정</legend>
-				<hr>
 				<div class="form-group" id="divEmail">
 				<div class="col-lg-10">
 					<label for="inputEmail" class="col-lg-2 control-label">이메일</label>
@@ -198,11 +201,10 @@
 				</div>
 			</div>
 
-			<div class="form-group">
-				<div class="col-lg-offset-2 col-lg-10">
-					<button type="submit" class="btn btn-primary">Sign in</button>
+				<div style="width: 100%;text-align: center;">
+					<button type="submit" class="btn btn-primary">수정</button>
+					<button type="button" onclick="history.back();" class="btn btn-primary">취소</button>
 				</div>
-			</div>
 			<input type="hidden" name="chPwd" id="chPwd">
 			<input type="hidden" name="cMemberCode" id="cMemberCode" value="${cMemberVo.cMemberCode }">
 		</form>

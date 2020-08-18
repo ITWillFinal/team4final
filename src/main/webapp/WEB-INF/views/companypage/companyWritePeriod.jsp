@@ -31,30 +31,37 @@
    
    .labpay{
       text-align: center;
-       width: 40%;
+       width: 48%;
        font-size: 16px;
        line-height: 49px;
        background: #b4c5d2;
        color: #fff;
        cursor: pointer;
+       margin-left: 9px;
        font-weight: bold;
    }
    
    input[type=date]{
       text-align: center;
        font-size: large;
-       width: 200px;
+       width: 195px;
        height: 46px;
    }
    
    #priceDiv{
        float: right;
-       margin: 18px;
-       margin-right: 4%;
        font-size: 20px;
        font-weight: bold;
-       padding: 40px;
+       padding: 30px;
        border: 1px solid #cacaca;
+   }
+   
+   .btn4{
+       width: 130px;
+    height: 94px;
+    font-size: x-large;
+    padding: 8px;
+    font-weight: bold;
    }
 </style>
    
@@ -222,9 +229,9 @@
    <div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
       <form name="frmPeriod" method="post" action="<c:url value='/companyWritePeriod/payment.do'/>">
 
-         <span style="font-size: 25px; font-weight: bold;">채용정보등록 - 기간설정</span>
-         <hr>
-         <span style="font-size: 18px; font-weight: bold;">◎지원방법</span><br><br>
+         <p style="font-weight: bold;font-size: xx-large;color: #010b1d; margin-top: 35px;">채용정보등록 - 기간설정</p>
+			<hr style="border: 1px solid #fb246a;">
+         <span style="font-size: 18px; font-weight: bold;">지원방법</span><br><br>
 
          <input type="radio" name="radioResumeType" id="radioResumeTheJob" value="0"> 
          <label for="radioResumeTheJob" class="lab" id="labTheJob">더잡 이력서</label>
@@ -234,28 +241,27 @@
          
          <div id="radioResumeDiv"></div>         
          <hr>
-         <span style="font-size: 18px; font-weight: bold;">◎모집기간</span><br><br>
+         <span style="font-size: 18px; font-weight: bold;">모집기간</span><br><br>
          <input type="radio" name="period" id="radioPeriodMonth" value="월간 이용 상품">
-         <label for="radioPeriodMonth" class="labpay" id="labPeriodMonth">상시채용</label><br>결제일로 부터 30일 이용가능
+         <label for="radioPeriodMonth" class="labpay" id="labPeriodMonth">상시채용</label><span style="font-size: medium; margin-left: 30px;font-weight: bold;">결제일로 부터 <b style="color: #fb246a">30일</b> 이용가능</span>
          <input type="date" name="monthEnd" id="monthEnd" style="display: none;"><br><br>
-         
-         <br>
          <input type="radio" name="period" id="radioPeriodDate" value="기간 지정 상품">
          <label for="radioPeriodDate" class="labpay" id="labPerioddDate">날짜지정</label>
-         <div style="display: inline;margin-left: 50px;" id="dateDiv">
-            <input type="date" name="startDay" class="startDay" readonly> ~ 
+         <div style="display: inline;margin-left: 11px;" id="dateDiv">
+            <input type="date" name="startDay" class="startDay" readonly> &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp; 
             <input type="date" name="endPickDay" id="datePick" >
          </div>
          <br>
+         <hr>
+	         <div style="text-align: center;">
+	         	<input type="button" class="btNextTime btn4 btn" value="보류" style="float: right;">
+	            <input type="submit" id="btn" class="btn4 btn" value="결제" style="float: right;margin:0 8px 0 10px;">
+	         </div>
          <div id="priceDiv">
             <span style="color: #f73f22">결재 금액</span>
             <input type="text" name="price" id="price" readonly style="text-align: right; width: 100px; padding-right: 10px; border: 0">원   
          </div>
          
-         <div style="text-align: center; margin: 50px; clear: both;">
-         	<input type="button" class="btNextTime btn" value="다음에하기" >
-            <input type="submit" id="btn" class="btn" value="결제하기" >
-         </div>
          <input type="hidden" name="productName" id="productName">
          <input type="hidden" name="resumeType" id="resumeType">
          <input type="hidden" name="endDay" id="endDay" >

@@ -96,7 +96,7 @@ public class AdminController {
 	    String thisPay = paymentServ.selectThis(month);
 	    logger.info("당월 매출={}",thisPay);
 	    if(beforePay == null ||beforePay.isEmpty() || thisPay == null ||thisPay.isEmpty()) {
-	    	result = "전월 혹은 당월 결제 내역이 없습니다.";
+	    	result = "0";
 	    }else if(thisPay != null && !thisPay.isEmpty() && beforePay != null && !beforePay.isEmpty() ) {
 	    	int tp = Integer.parseInt(thisPay);
 	    	int bp = Integer.parseInt(beforePay);

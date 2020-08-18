@@ -22,7 +22,10 @@ import com.will.team4final.common.FileUploadUtil;
 import com.will.team4final.company.info.model.CompanyInfoService;
 import com.will.team4final.company.info.model.CompanyInfoVO;
 import com.will.team4final.company.model.ComMemberService;
+import com.will.team4final.company.model.ComRecruitService;
+import com.will.team4final.company.model.ComRecruitVO;
 import com.will.team4final.company.model.CompanyMemberVO;
+import com.will.team4final.company.model.Recruitment_TosVO;
 
 @Controller
 @RequestMapping("/companypage")
@@ -32,6 +35,7 @@ public class CompanyInfoController {
 	@Autowired private ComMemberService comMemberService;
 	@Autowired private FileUploadUtil fileUploadUtil;
 	@Autowired private CompanyInfoService companyInfoService;
+	@Autowired private ComRecruitService comRecruitServ;
 
 	@RequestMapping(value = "/companyInfoWrite.do", method = RequestMethod.GET)
 	public String comInfoView(HttpSession session, Model model) {
@@ -96,8 +100,20 @@ public class CompanyInfoController {
 		logger.info("{}의 c_member_code = {}", cUserid, cnt);
 		
 		CompanyInfoVO vo = companyInfoService.selectComInfoBycMemberCode(cnt);
+		logger.info("vo={}", vo);
+		//만약 컴페니가 회사 공고 올렸으면 거기서 값 가져오기
+		List<Recruitment_TosVO> comRecruitListVo = comRecruitServ.selectList_tosByComcode(vo.getComCode());
+		logger.info("comRecruitListVo={}", comRecruitListVo);
+		if(comRecruitListVo==null) {
+			
+		}else {
+			Recruitment_TosVO comRecruitVo = comRecruitListVo.get(0);
+			model.addAttribute("vo", vo);
+			model.addAttribute("comRecruitVo", comRecruitVo);
+			logger.info("comRecruitVo={}", comRecruitVo);
+		}
 		
-		model.addAttribute("vo", vo);
+		
 		
 	}
 	
@@ -169,6 +185,28 @@ public class CompanyInfoController {
 		return "common/message";
 		
 	}
-
+	
+	@RequestMapping("/showCompanyInfo.do")
+	public String showCompanyInfo(@RequestParam String recruitmentCode, Model model) {
+		String msg="", url="";
+		if(recruitmentCode ==null || recruitmentCode.isEmpty()) {
+			msg="잘못된 경로입니다. 다시 이용해주세요";
+			url="/hireinpo/hot100.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("msg", msg);
+			return "common/message";
+		}
+		
+		//recruitmentCode로 회사 정보 가져오기
+		Recruitment_TosVO tosVo = comRecruitServ.selectOneCom(recruitmentCode);
+		logger.info("tosVo={}", tosVo);
+		String comCode = tosVo.getComCode();
+		
+		CompanyInfoVO vo = companyInfoService.selectCompanyInfoByComCode(comCode);
+		logger.info("vo={}", vo);
+		
+		model.addAttribute("vo", vo);
+		return "companypage/showCompanyInfo";
+	}
 
 }

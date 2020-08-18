@@ -3,15 +3,15 @@
 <%@ include file="../../inc/comMypageTop.jsp"%>
 <jsp:useBean id="today" class="java.util.Date"/>
 <!-- CSS here -->
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/bootstrap.min.css'/>">
+
 <style>
 	#upDiv{
-		margin: 90px 0;
+		margin-bottom: 30px;
 	}
 	#scrapListDiv{
 		margin: 0 auto;
-		width: 52%;
+		width: 1055px;
+		min-height: 800px;
 		
 	}
 	
@@ -67,8 +67,9 @@
 <!-- list 값이 있으면 -->
 <div id="upDiv">
 	<div id="scrapListDiv">
+			<h1 style="background: white;font-weight: bold;">채용공고<span class="deleteInfo" style="margin-left: 10px;font-size: small;">(삭제는 수정에서 가능합니다)</span></h1>
+				<hr style="border: 1px solid #fb246a;margin: 30px 0;">
 		<c:if test="${!empty list }">
-			<h3 style="margin: 40px;">채용 공고&nbsp;&nbsp; <span class="deleteInfo">(삭제는 수정에서 가능합니다)</span> </h3>
 			<c:forEach var="vo" items="${list }">
 				<fmt:parseDate var="end" value="${vo.endDate }" pattern="yy/MM/dd"></fmt:parseDate>
 				<fmt:parseNumber value="${end.time / (1000*60*60*24) }" integerOnly="true" var="endDate"/>

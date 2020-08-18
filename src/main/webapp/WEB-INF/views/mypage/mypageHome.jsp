@@ -37,7 +37,7 @@
 		overflow: hidden;
 		margin-top: 50px;
 		margin-left: 340px;
-		margin-bottom: 100px;
+		margin-bottom: 50px;
 	}
 	#headMenu{
 		float: left;
@@ -52,7 +52,7 @@
 		color: #010b1d;
 	}
 	#upDiv{
-		margin: 90px 0;
+		margin: 50px 0;
 	}
 	#scrapListDiv{
 		margin: 0 auto;
@@ -70,21 +70,34 @@
 	.userName{
 		font-size: xxx-large
 	}
-	.editA{
+	/* .editA{
 		margin-left: 120px;
 		color: black;
 		border-style: none;
-	}
+	} */
 	.new{
 		background: red;
 		bo
 	}
-	.outBtn{
+	/* .outBtn{
 		color: black;
 		border-style: none;
+	} */
+	
+	.bttn1{
+		width:100px;
+		display: inline-block;
+		margin-top: -0.5px;
+		cursor: pointer;
+	}
+	
+	.bttn1:hover{
+		background: #ced4da;
+		border:	1px solid #ced4da;
+		color: white;
 	}
 </style>
-<div>
+<div style="min-height: 800px;">
 	<div id="addHeadMenu">
 		<div id="headMenu">
 			<a href="<c:url value='/resume/resumeMain.do'/>"><i class="far fa-address-card fa-4x"></i><br>
@@ -110,7 +123,7 @@
 	</div>
 	<div id="upDiv">
 		<div id="scrapListDiv">
-				<h3 style="margin: 40px;">MyProfile</h3>
+				<h3 style="margin: 20px;">MyProfile</h3>
 					<div class="single-job-items mb-30" id="listOne">
 						<div class="job-items">
 							<div class="job-tittle">
@@ -125,9 +138,9 @@
 								<span>주소 : ${memberVo.zipcode } ${memberVo.address } ${memberVo.addressDetail }</span><br>
 							</div>
 						</div>
-						<div style="margin-left: 130px;">
-							<input class="editA" type="button" value="수정하기">
-							<input class="outBtn" type="button" value="회원탈퇴">
+						<div style="text-align: right;width: 100%">
+							<input class="form-control bttn1 editA" type="button" value="수정하기">
+							<input class="form-control bttn1 outBtn" type="button" value="회원탈퇴">
 						</div>
 					</div>
 		</div>

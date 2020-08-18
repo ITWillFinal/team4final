@@ -5,12 +5,10 @@
 <%@ taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
-.divList{
-/*     padding-left: 300px; */
-    padding-top: 40px;
-    padding-left: 80px;
-    padding-bottom: 50px;
-    padding-right: 80px;
+table {
+    border-collapse: collapse;
+    width: 96%;
+    margin-left: 2%;
 }
 th{
 	border-bottom: 3px solid #FB246A;;
@@ -21,11 +19,6 @@ td{
 	border-bottom: 1px solid #FB246A;
 	padding: 13px;
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-#list{
-	width: 800px;
-	height: 700px;
-}
-
 #upList{
 	 padding-left: 300px;
 }
@@ -95,6 +88,9 @@ input[type=submit] {
     margin-left: 1%;
     margin-bottom: 2%;
 }
+.divList {
+    margin-top: 5%;
+}
 </style>
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
@@ -118,16 +114,9 @@ input[type=submit] {
 	<%@ include file="../../inc/sidebar.jsp"%>
 	
 	<!-- main -->
-	<div id = "mainDiv" style="text-align: center;width:871px;border:1px solid lightgray; float: left; margin-left: 1.7%; margin-top: 1.9%;">
-		<ul class = "tabList" style="width: 857px; margin-left: 0px;">
-			<li class = "select" style="width: 33%;" id = "fst">
-				<a href = <c:url value='/gogak/qnaP/qnaList.do'/> style="color: black;">1:1 문의</a>
-			</li>
-			<li class = "select" style="width: 33%;" id = "mid">
-			</li>
-			<li class = "select" style="width: 33%;" id = "btm">
-			</li>
-		</ul>
+	<div style="float: left; width:49%; margin-left:30px; font-size: 14px; /* border:1px solid lightgray; */">
+		<h2 style="margin-left: 18px; font-weight: bold; margin-bottom: 2%; padding-top: 30px;">고객센터</h2>
+		<div style="border: 1px solid lightgray">
 		<div style="text-align: center; margin:5px; /* border:1px solid lightgray; */">
 			<div id = "list">
 				<div id = "upList">
@@ -149,7 +138,7 @@ input[type=submit] {
 			<form name="frmList" method="post"
 				action="<c:url value = '/gogak/qnaP/qnaList.do'/>">
 				<div class = "divList">
-					<table class = "box2" style="width: 700px; margin-top: 45px;">
+					<table class = "box2">
 						<colgroup>
 						   <col style="width:10%;" />
 						   <col style="width:15%;" />
@@ -271,6 +260,7 @@ input[type=submit] {
 				</div>
 			</div><!-- divList -->
 		</div>
+	</div>
 	</div>
 </main>
 
