@@ -774,4 +774,23 @@ public class CompanyHomeController {
 		
 		return result;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/cOutPwdChk.do")
+	public int cOutPwdChk(@RequestParam String pwd, HttpSession session) {
+		String cUserid = (String)session.getAttribute("userid");
+		String password = comMemberServ.selectCMemberPwd(cUserid);
+		
+		boolean pwdMatch = pwdEncoder.matches(pwd, password);
+		logger.info("pwdMatch={}", pwdMatch);
+		// 같으면 트루 다르면 false
+		int result=0;
+		
+		if(pwdMatch) {
+			result=1;
+		}
+		
+		return result;		
+	}
+	
 }

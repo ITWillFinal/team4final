@@ -20,6 +20,17 @@
 			}
 			
 		});
+
+		/* 수정하기 창으로 이동 */
+		$('.cMemOut').click(function(){
+			var result = confirm("삭제하시겠습니까?");
+			if(result){
+				location.href="<c:url value='/companypage/member/companyOut.do'/> "
+			}else{
+				return false;
+			}
+			
+		});
 		
 		$('.editComInfo').click(function(){
 			var result = confirm("수정하시겠습니까?");
@@ -139,7 +150,8 @@
 							</div>
 						</div>
 						<div style="text-align: right;width: 100%">
-									<input class="editA form-control bttn1" type="button" value="수정하기">
+									<input class="cMemOut form-control bttn1" type="button" value="탈퇴하기">
+									<input class="editA form-control bttn1" style="margin-right: 5px;" type="button" value="수정하기">
 						</div>
 					</div>
 		</div>

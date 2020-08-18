@@ -30,4 +30,5 @@ public interface MemberService {
 	int updateMember(MemberVO memberVo);
 	List<MemberVO> showMemberForExcel();
 	List<ApplyVO> selectApplyByuserNo(String userNo);
+	String selectMemberPwd(String userid);
 }

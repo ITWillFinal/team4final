@@ -82,7 +82,7 @@
 						인증번호 입력 : <input type="text" name="email_injeung" class="onlyNumber"
 							placeholder="  인증번호를 입력하세요. ">
 					</div>
-					<span style="color: red;">(인증번호가 맞아야 다음 단계로 넘어가실 수 있습니다.)</span> <br>
+					<span style="color: red;">(인증번호 일치 시 다음 단계로 진행됩니다.)</span> <br>
 					<br>
 					<button type="submit" name="submit" id="btSubtmit" class="button gray">인증번호 확인</button>
 				</form>

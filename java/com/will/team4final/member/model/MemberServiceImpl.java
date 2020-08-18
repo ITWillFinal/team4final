@@ -99,4 +99,9 @@ public class MemberServiceImpl implements MemberService{
 	public List<ApplyVO> selectApplyByuserNo(String userNo) {
 		return memberDao.selectApplyByuserNo(userNo);
 	}
+
+	@Override
+	public String selectMemberPwd(String userid) {
+		return memberDao.selectMemberPwd(userid);
+	}
 }
