@@ -119,12 +119,13 @@
 	}
 
 	.search-result{
-	 	display:inline-block;
+	 	/* display:inline-block; */
 		background: white;
    		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 		padding: 10px;
-		height: 680px;
-		width:525px;
+		height: 400px;
+		width:100%;
+		margin-bottom: 15px;
 	}
 	
 	.add-condition{
@@ -145,8 +146,8 @@
 	    table-layout: fixed;
 	    background-color: #fff;
 	    text-align: center;
-    	border-top: 2px solid #666;
-    	
+    	border-top: 2px solid #fb246a;
+    	margin-top: 10px;
 	}
 	
 	.tableRow{
@@ -167,8 +168,10 @@
 	    font-weight: bold;
 	    vertical-align: middle;
 	    line-height: 14px;
+	    height: 40px;
 	}
 	table td{
+	    height: 40px;
 	    border-right: 1px solid #eaeaea;
 	    border-bottom: 1px solid #eaeaea;
 	    color: #444;
@@ -195,6 +198,10 @@
 		border:	1px solid #ced4da;
 		color: white;
 	}
+	#titleSpan{
+		margin: 2%;
+    	font-size: 1.1em;
+	}
 </style>
 <main>	
 		<div class="ST-main">
@@ -203,10 +210,10 @@
 				<hr style="border: 1px solid #fb246a;margin: 30px 0;">
 			</div>
 				<div class="search-result">
-				<div style="height:610px;overflow-y: auto;">
-					<span>입사지원 요청 현황 ▼</span>
+				<div style="height:330px;overflow-y: auto;">
+					<span id="titleSpan">입사지원 요청 현황</span>
 					<table>
-						<caption style="display: none;">인재 검색 결과 테이블</caption>
+						<caption style="display: none;">입사지원 요청관리 테이블</caption>
 							<col width=7%>
 							<col width="15%">
 							<col width="25%">
@@ -225,6 +232,12 @@
 							</tr>
 						</thead>
 						<tbody>
+							<c:if test="${empty list[0] and empty list[1] }">
+								<tr>
+									<td colspan="6">관리할 입사요청이 없습니다.</td>
+								</tr>
+							</c:if>
+							<c:if test="${!empty list[0] or !empty list[1] }">
 							<c:forEach var="waiting" items="${list[0] }">
 								<tr>
 									<td><input type='checkbox' class='checkMember' value='${waiting.resumeNo }'></td>
@@ -245,6 +258,7 @@
 									<td class='tableRow' onclick='open_resume(${no.resumeNo})'>입사거절</td>
 								<tr>
 							</c:forEach>
+							</c:if>
 						</tbody>
 					</table>
 				</div>
@@ -253,10 +267,10 @@
 				</div>
 				</div>
 				<div class="search-result">
-				<div style="height:610px;overflow-y: auto;">
-					<span>입사지원 희망 현황 ▼</span>
+				<div style="height:330px;overflow-y: auto;">
+					<span id="titleSpan">입사지원 희망 현황</span>
 					<table>
-						<caption style="display: none;">인재 검색 결과 테이블</caption>
+						<caption style="display: none;">입사지원 희망 현황 테이블</caption>
 							<col width=7%>
 							<col width="15%">
 							<col width="25%">
@@ -275,6 +289,12 @@
 							</tr>
 						</thead>
 						<tbody>
+							<c:if test="${empty list[2] }">
+								<tr>
+									<td colspan="6">관리할 입사희망 요청이 없습니다.</td>
+								</tr>
+							</c:if>
+							<c:if test="${!empty list[2] }">
 							<c:forEach var="yes" items="${list[2] }">
 								<tr>
 									<td><input type='checkbox' class='checkMember' value='${yes.resumeNo }'></td>
@@ -285,6 +305,7 @@
 									<td class='tableRow' onclick='open_resume(${yes.resumeNo})'>입사희망</td>
 								<tr>
 							</c:forEach>
+							</c:if>
 						</tbody>
 					</table>
 				</div>

@@ -37,6 +37,9 @@
 	</script>
 	<!-- 사이드바 제이쿼리 끝 -->
 <style>
+.header-area .main-menu ul li a {
+	padding: 37px 42px;
+}
 li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-active{
 	border: 1px solid #ff002f;
     background: #fb246a;
