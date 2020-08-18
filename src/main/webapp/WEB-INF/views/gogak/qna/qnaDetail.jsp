@@ -104,7 +104,8 @@ input#reDel {
 
 /* 답변 테이블 */
 td.c {
-    padding-left: 55px;
+    padding-left: 40px;
+    padding-right: 50px;
 }
 td {
     padding-top: 20px;
@@ -151,6 +152,10 @@ p.rea {
 }
 div#bts2 {
     margin-left: 44%;
+}
+
+.t{
+	    width: 50px;
 }
 
 /* 리스트 상단 탭 */

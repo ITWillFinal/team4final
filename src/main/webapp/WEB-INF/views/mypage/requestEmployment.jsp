@@ -113,8 +113,9 @@
 	    font-size: large;
 	}
 </style>
-<div style="width: 900px;margin: 50px auto; min-height: 800px;">
-<h1>입사 요청</h1>
+<div style="width: 1055px;margin: 50px auto; min-height: 800px;">
+<h1 style="background: white;font-weight: bold;">입사요청</h1>
+				<hr style="border: 1px solid #fb246a;">
 <div class="re-main">
 	<c:if test="${empty perList }">
 		<h3 style="color: #8490a5;">입사 요청사항이 없습니다.</h3>
