@@ -15,7 +15,8 @@
 				$(".add-condition").slideUp();
 				$('tbody').html("");
 			}else{
-				$(".add-condition").slideDown();			
+				$(".add-condition").slideDown();	
+				$('.search-result').slideDown();
 				searchResume();				
 			}
 		});
@@ -70,6 +71,8 @@
 						table+=item.location1+"</td><td class='tableRow' onclick='open_resume("+item.resumeNo+")'>"
 						table+=item.location2+"</td></tr>"
 					});
+				}else{
+					table+="<tr><td colspan='10'>등록된 인재 정보가 없습니다.</td></tr>"
 				}
 				$('tbody').html(table);
 				$("td:contains('null')").text("-");
@@ -131,10 +134,10 @@
 	}
 	
 	.select-condition{
-		background: #dedede9e;
+		background: white;
    		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 		padding: 10px;
-		margin-bottom: 30px
+		margin-bottom: -1px
 	}
 	
 	.selectWidth-250px{
@@ -142,15 +145,13 @@
 	}
 	
 	.search-result{
-		background: #dedede9e;
+		background: white;
    		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
-		padding: 10px;
+		padding: 5px;
 		height: 350px;
 		margin-bottom: 30px;
-		background-image:url("<c:url value='/resources/images/logo/logo.png'/>");
-		background-repeat:no-repeat;
-		background-size:70% 55%;
-		background-position: center center; 
+
+		display: none;
 	}
 	
 	.add-condition{
@@ -171,8 +172,7 @@
 	    table-layout: fixed;
 	    background-color: #fff;
 	    text-align: center;
-	    margin-top: 15px;
-    	border-top: 2px solid #666;
+    	border-top:2px solid #fb246a;
     	
 	}
 	
@@ -194,6 +194,7 @@
 	    font-weight: bold;
 	    vertical-align: middle;
 	    line-height: 14px;
+	    height: 40px;
 	}
 	table td{
 	    border-right: 1px solid #eaeaea;
@@ -204,6 +205,7 @@
 	    line-height: 20px;
 	    word-break: break-all;
 	    font-family: "Malgun Gothic",dotum,gulim,sans-serif;
+	    height: 40px;
 	}
 	
 	.bttn1{

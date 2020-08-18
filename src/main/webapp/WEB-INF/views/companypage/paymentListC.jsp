@@ -204,10 +204,7 @@ div#o {
 									<td>${map['COM_NAME']}</td>
 									<td>${map['C_USERNAME']}</td>
 									<td>${map['START_DATE']}</td>
-									<td>
-										<c:set var = "endDate" value = "${map['END_DATE'] }"/>
-										${fn:substring(endDate,2,4)}/${fn:substring(endDate,5,7)}/${fn:substring(endDate,8,10)}
-									</td>
+									<td>${map['END_DATE'] }</td>
 									<td>${map['REGDATE']}</td>
 									<td>
 										<fmt:formatNumber type="number" maxFractionDigits="3"

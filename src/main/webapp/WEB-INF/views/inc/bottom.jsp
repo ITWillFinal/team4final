@@ -21,20 +21,20 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5" id="txtDiv">
                 <div class="footer-tittle-bottom">
-                    <span>Best</span>
+                    <span>Best</span><br>
                     <p>Job Info Place</p>
                 </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5" id="txtDiv">
                     <div class="footer-tittle-bottom">
-                        <span>Many</span>
+                        <span>Many</span><br>
                         <p>Talented Hunter</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5" id="txtDiv">
                     <!-- Footer Bottom Tittle -->
                     <div class="footer-tittle-bottom">
-                        <span>Special</span>
+                        <span>Special</span><br>
                         <p>Human Resources</p>
                     </div>
                 </div>

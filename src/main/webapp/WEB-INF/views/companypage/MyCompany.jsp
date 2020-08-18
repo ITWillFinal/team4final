@@ -209,9 +209,16 @@ $(function(){
 							<hr style="clear: both;">
 						<div>
 							<span class="info_body_title">기업사진</span>
-							<div class="company_image" style="width: 225px;height: 200px;">
-								<img class="fontBoldA" src="<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
-							</div>
+							<c:if test="${!empty vo.imageURL }">
+								<div class="company_image" style="width: 225px;height: 200px;">
+									<img class="fontBoldA" src="<c:url value = '/companyInfoImage/${vo.imageURL }'/>">
+								</div>							
+							</c:if>
+							<c:if test="${empty vo.imageURL }">
+								<br>
+								<br>
+								<div>등록된 사진이 없습니다.</div>
+							</c:if>
 						</div>
 					</section>
 				</div>

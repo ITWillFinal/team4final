@@ -120,7 +120,7 @@
 
 	.search-result{
 	 	display:inline-block;
-		background: #dedede9e;
+		background: white;
    		box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.28);
 		padding: 10px;
 		height: 680px;
