@@ -18,6 +18,7 @@
 		padding: 50px; 
 		margin-bottom: 70px;
 		margin-top: 50px;
+		min-height: 450px;
 	}
 	
 	.resume-desc{
