@@ -184,6 +184,10 @@
 		$("#self5Title").html(self5Title);
 		$("#self5Content").html(self5Content);
 		
+		if(self1=='' && self2=='' && self3=='' && self4=='' && self5==''){
+			$("#selfIntroDiv").hide();
+		}
+		
 	});
 
 	
@@ -284,7 +288,7 @@
 			<input type="hidden" name="activity" id="activity" value="${vo.activity}">
 			<hr>
 		</div>
-		<div style="margin:5px;">
+		<div style="margin:5px;" id="selfIntroDiv">
 		<span style="font-size: 18px; font-weight: bold;">자기소개</span><br><br>
 			<div id="self1Div">
 				<span id="self1Title"></span><br>
