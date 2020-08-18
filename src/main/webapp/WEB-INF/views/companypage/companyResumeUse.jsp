@@ -53,7 +53,7 @@
 		display: none;
 	}
 	.sel{
-		width:150px;
+		width:300px;
 		display: inline-block;
 	}
 	.bttn{
@@ -67,6 +67,12 @@
 		margin-top: -0.5px;
 	}
 	
+		.bttn:hover{
+		cursor:pointer;
+		background: #ced4da;
+		border:	1px solid #ced4da;
+		color: white;
+	}
 </style>
 
 <script
@@ -1340,7 +1346,7 @@
 					</tr>
 					<tr>
 						<td>성별</td>
-						<td><input type="text" name="gender" id="gender" readonly></td>
+						<td  style="display: none;"><input type="text" name="gender" id="gender" readonly></td>
 						<td>
 							<select id="genderSelect" name="genderSelect" class="form-control sel">
 								<option value="남자">남자</option>
@@ -1362,8 +1368,7 @@
 					</tr>
 					<tr>
 						<td>우편번호</td>
-						<td><input type="text" name="zipcode" id="zipcode" readonly value="${memberVo.zipcode}"></td>
-						<td><input type="button" onclick="sample4_execDaumPostcode()" value="찾기" class="form-control bttn1"></td>
+						<td><input type="text" name="zipcode" id="zipcode" readonly value="${memberVo.zipcode}"  onclick="sample4_execDaumPostcode()"></td>
 					</tr>
 					<tr>
 						<td>주소</td>
