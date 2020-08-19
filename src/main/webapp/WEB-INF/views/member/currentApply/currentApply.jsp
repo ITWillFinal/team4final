@@ -29,9 +29,7 @@
 </script>
 
 <style>
-	#upDiv{
-		margin: 90px 0;
-	}
+
 	#scrapListDiv{
 		margin: 0 auto;
 		width: 48%;
@@ -109,10 +107,12 @@ h1 span:nth-child(7) { animation-delay: .6s; }
   }
 }
 </style>
+
 <div id="upDiv">
 	<div id="scrapListDiv">
 		<c:if test="${!empty list }">
-			<h3 style="margin: 40px;">지원 현황</h3>
+			<span style="background: white;font-weight: bold; color:black; font-size:38px;">지원현황</span>
+			<hr style="border: 1px solid #fb246a;">
 			<c:forEach var="map" items="${list }">
 			
 				<fmt:parseDate var="end" value="${map['END_DATE']}" pattern="yy/MM/dd" />

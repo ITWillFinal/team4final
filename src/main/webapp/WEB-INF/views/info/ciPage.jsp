@@ -61,11 +61,9 @@
 	}
 </style>
 <main>
-	<div style="float: left; width:49%; margin-left:30px; font-size: 14px;">
-		<div style="margin:5px;">
-			<span style="font-size: 25px; font-weight: bold;">CI소개</span>
-			<hr>
-
+	<div style="overflow: hidden; width: 1055px; padding-left: 25px; font-size: 14px; margin-top: 10px;">
+	<p style="font-weight: bold;font-size: xx-large;color: #010b1d; margin-top: 26px;">THE JOB+ CI</p>
+	<hr style="border: 1px solid #fb246a;">
 			<div>
 				<div class="div1">
 					<div style="margin-top: 60px;">
@@ -80,7 +78,7 @@
 					</div>
 				</div>
 				<div class="div2">
-					<div style="margin-top: 44px;">
+					<div style="margin-top: 32px;">
 						<div>
 							<img class="img" src="<c:url value='/resources/images/ci/ci2.png'/>">
 							<br>

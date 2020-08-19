@@ -19,11 +19,13 @@ $(function(){
 	.btSubmit{
 		float: right;
 	}
+	
 	img {
 	   width: 100%;
 	   height:100%;
-	    margin-left: 2%;
+	   margin-left: 2%;
 	}
+	
 	.form-control {
 	    border: none;
 	}
@@ -36,12 +38,14 @@ $(function(){
 	input[type="text"] {
 	    font-weight: bold;
 	}
+	
 	label.col-sm-3.control-label {
 	    margin-top: 2%;
 	}
 	#bbk > form > div.form-horizontal > div:nth-child(2) {
 	    margin-top: -3%;
 	}
+	
 	input[type="text"] {
 	    border-style: none;
 	}
@@ -69,16 +73,12 @@ $(function(){
 		text-align: center;
 		padding-top: 16px;
 	}
+	
 	.info_company_name{
 		margin-top: 7px;
 		font-size: 35px;
 		width:465px; 
-		height: 56px;
-		
-	}
-	
-	.salary{		
-		
+		height: 56px;		
 	}
 	
 	.info_company_address{
@@ -89,16 +89,18 @@ $(function(){
 		font-size: 15px;
 	    font-weight: bolder;
 	}
+	
 	.space{
 		margin-left: 30px;
-	
 	}
+	
 	.pay_salary{
 		margin-top: 15px;
 		font-size: 28px;
 		width:465px; 
 		height: 56px;
 	}
+	
 	.info_top{
 		height: 100px;
 	}
@@ -116,7 +118,7 @@ $(function(){
 	<div id = "bbk"	style="width: 1055px; margin: 0 auto; font-size: 15px;margin-bottom: 30px;">
 
 		<h1 style="background: white;font-weight: bold;">회사정보조회 <span class="deleteInfo" style="margin-left: 10px;font-size: small;color: red">(필수가 아닌항목은 체크해제시 적용되지 않습니다)</span></h1>
-				<hr style="border: 1px solid #fb246a;margin: 30px 0;">
+		<hr style="border: 1px solid #fb246a;margin: 30px 0;">
 		<div class="btSubmit">
 			<div class="col-lg-offset-2 col-lg-10">
 				<button type="button" id ="edit" class="btn btn-primary">기업정보수정</button>
@@ -131,7 +133,7 @@ $(function(){
 						<div class="info_company_name"  style="float: left">
 							<span>${vo.comName}</span>
 						</div>
-						<div class="salary" >
+						<div class="salary">
 							<span style="font-size: x-small;">예상평균금액</span><br>
 							<c:if test="${!empty comRecruitVo }">
 								<span class="pay_salary">${comRecruitVo.pay }</span>
@@ -142,7 +144,7 @@ $(function(){
 						</div>
 						<div class="info_company_address" style="clear: both;">
 							<c:set var="addressArr" value="${fn:split(vo.address,' ') }" />
-							<span class="fontBold">소재지</span><span class="company_adrees"></span>
+							<span class="fontBold">소재지 </span><span class="company_adrees"></span>
 							<span>${addressArr[0] }</span>
 							
 							<c:if test="${!empty comRecruitVo }">
@@ -150,9 +152,9 @@ $(function(){
 								<span>${comRecruitVo.induType1 }</span>
 							</c:if>
 						</div>
-					</section>
-					
+					</section>					
 					<hr>
+					
 					<section class="info_body">
 						<div class="info_company_body" style="width: 50%;float: left;">
 							<span class="info_body_title">기업정보</span>
@@ -202,7 +204,7 @@ $(function(){
 								<span class="info_body_title">회사위치</span>
 								<p>
 								<i class="fa fa-map-marker" aria-hidden="true"></i>
-								 (${vo.zipcode }) ${vo.address } ${vo.addressDetail }
+								 (${vo.zipcode}) ${vo.address} ${vo.addressDetail}
 								</p>
 								<div id="map" style="width:450px;height:313px;"></div>
 						</div>

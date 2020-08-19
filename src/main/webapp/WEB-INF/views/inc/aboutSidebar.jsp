@@ -39,7 +39,7 @@
 		<div id="sideMenuDiv">
 			<div class="MenuHeadDiv">THE JOB+</div>
 			<div class="MenuHoverDiv"><a href="<c:url value='/info/info.do'/>">회사소개</a></div>
-			<div class="MenuHoverDiv"><a href="<c:url value='/info/ciPage.do'/>">회사CI</a></div>
+			<div class="MenuHoverDiv"><a href="<c:url value='/info/ciPage.do'/>">회사 CI</a></div>
 			<div class="MenuHoverDiv"><a href="<c:url value='/aboutThejob/thejobLocation.do'/>">회사위치</a></div>
 		</div>		
 	</div>
