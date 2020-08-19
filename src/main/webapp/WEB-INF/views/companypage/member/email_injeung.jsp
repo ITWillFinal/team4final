@@ -26,6 +26,7 @@
 				$(this).val(inputVal.replace(/[^0-9]/gi, ''));
 			}
 		});
+		console.log($('#dice').val());
 	});
 </script>
 <style type="text/css">
