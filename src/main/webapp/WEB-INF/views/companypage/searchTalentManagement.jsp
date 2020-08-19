@@ -243,7 +243,10 @@
 									<td><input type='checkbox' class='checkMember' value='${waiting.resumeNo }'></td>
 									<td class='tableRow' onclick='open_resume(${waiting.resumeNo})'>${waiting.userName }</td>
 									<td class='tableRow' onclick='open_resume(${waiting.resumeNo})'>${waiting.finalEdu }</td>
-									<td class='tableRow' onclick='open_resume(${waiting.resumeNo})'>${waiting.careerYear }</td>
+									<td class='tableRow' onclick='open_resume(${waiting.resumeNo})'>
+									<c:if test="${waiting.careerYear == '0'}">신입</c:if>
+									<c:if test="${waiting.careerYear != '0'}">${waiting.careerYear }년</c:if>
+									</td>
 									<td class='tableRow' onclick='open_resume(${waiting.resumeNo})'>${waiting.sal }</td>
 									<td class='tableRow' onclick='open_resume(${waiting.resumeNo})'>대기중</td>
 								<tr>
