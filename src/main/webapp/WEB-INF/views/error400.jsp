@@ -11,7 +11,7 @@
  }
 </style>
 	<div style="margin: 4% auto; width: 1000px;">
-		<h1 style="margin-left: 30px;">error-code:400</h1>
+		<h1 style="margin-left: 30px;">ERROR-CODE:400</h1>
 		<img alt="" src="<c:url value='/resources/images/error.png'/>">
 		<div>
 		<div style="margin: 30px;">

@@ -96,7 +96,7 @@
 	<update id="updateMember" parameterType="memberVo">
 		update member
 		set user_name=#{userName}, email=#{email}, nickname=#{nickname}, birth=#{birth},
-			zipcode=#{zipcode}, address=#{address}, address_Detail=#{addressDetail}, hp=#{hp}
+			zipcode=#{zipcode}, address=#{address}, address_Detail=#{addressDetail}, hp=#{hp}, IMAGEURL = #{imageURL}
 		where user_no=#{userNo}
 	</update>
 	

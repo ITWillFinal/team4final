@@ -4,6 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+     //치환 변수 선언합니다.
+      pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
+      pageContext.setAttribute("br", "<br/>"); //br 태그
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -635,7 +640,7 @@
 				</div>
 				<div class="self-int">
 					<c:if test="${resumeAllVo.resumeVo.selfInt != ''}">
-						${resumeAllVo.resumeVo.selfInt }
+						 ${fn:replace(resumeAllVo.resumeVo.selfInt, crcn, br)}
 					</c:if>
 					<c:if test="${resumeAllVo.resumeVo.selfInt == ''}">
 						내용이 없습니다.

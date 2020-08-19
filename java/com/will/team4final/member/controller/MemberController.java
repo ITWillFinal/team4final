@@ -313,7 +313,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/memberEdit.do", method = RequestMethod.POST)
-	public String memberEdit_post(@ModelAttribute MemberVO memberVo, Model model, HttpSession session) {
+	public String memberEdit_post(@ModelAttribute MemberVO memberVo, Model model, HttpSession session, HttpServletRequest request) {
 		logger.info("회원 정보 수정, 파라미터 memberVo={}", memberVo);
 		
 		String userNo = (String)session.getAttribute("userNo");
@@ -325,6 +325,17 @@ public class MemberController {
 			model.addAttribute("url", url);
 			return "common/message";
 		}
+		
+		//파일 업로드 처리
+		List<Map<String, Object>> fileList
+		=fileUploadUtil.fileUpload(request, FileUploadUtil.PATH_PERSONAL_IMAGE);
+
+		String imageURL="";
+		for(Map<String, Object> map : fileList) {
+			imageURL=(String) map.get("fileName");
+		}
+		memberVo.setImageURL(imageURL);
+		
 		memberVo.setUserNo(userNo);
 		int cnt = memberService.updateMember(memberVo);
 		logger.info("회원 정보 수정 결과, cnt={}", cnt);
