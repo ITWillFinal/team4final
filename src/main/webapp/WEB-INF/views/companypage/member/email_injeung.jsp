@@ -75,7 +75,7 @@
 			<div style="text-align: center;">
 				<form action="<c:url value='/companypage/member/join_injeung.do' /> "
 					method="post">
-					<input type="text" id="dice" name="dice" value="${dice }">
+					<input type="hidden" id="dice" name="dice" value="${dice }">
 					<input type="hidden" id="e_mail" name="e_mail" value="${e_mail }">
 					<br>
 					<div>
