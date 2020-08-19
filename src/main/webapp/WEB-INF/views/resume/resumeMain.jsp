@@ -207,7 +207,7 @@
 	});
 </script>
 	<div class="resumeMain">
-		<h1>이력서 현황</h1>
+		<h1>나의 이력서</h1>
 		<div class="resume-desc">
 		<ul>
 			<li>이력서는 <b>최대 10건</b>까지 등록 가능합니다.</li>

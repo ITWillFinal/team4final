@@ -115,6 +115,9 @@
 	}
 </style>
 <div style="overflow: hidden; width: 1055px; padding-left: 25px; font-size: 14px; margin-top: 10px;">
+	<p style="font-weight: bold;font-size: xx-large;color: #010b1d; margin-top: 26px;">회사위치</p>
+	<hr style="border: 1px solid #fb246a;">
+	
 	<div id="map" style="width:98%;height:600px;"></div>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f5a970707d8d0e271a8262251139638&libraries=services,clusterer"></script>
@@ -151,6 +154,7 @@
 		infowindow.open(map, marker); 
 	</script>
 
+	
 	<div class="way_info">
 		<div class="top_box">
 			<div class="inner_box">

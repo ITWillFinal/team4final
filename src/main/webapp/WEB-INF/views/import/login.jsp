@@ -15,7 +15,7 @@
 				<form action="<c:url value='/login/userLogin.do'/>">
 					<input type="text" placeholder="아이디" name="userid"><br>
 					<br> <input type="password" placeholder="비밀번호" name="pwd"><br>
-					<br><br>
+					<br>
 					<a href="<c:url value='#popId' /> ">
 						아이디
 					</a>
@@ -27,7 +27,10 @@
 					<br>
 					<br> <input type="submit" value="로그인"> <br>
 					<br>
-					<p>ㅡㅡㅡㅡㅡㅡㅡ다른 계정으로 로그인ㅡㅡㅡㅡㅡㅡㅡ</p>
+					<span style="text-decoration:line-through">　　　</span>
+					<span> 다른 계정으로 로그인 </span>
+					<span style="text-decoration:line-through">　　　</span>
+					<br><br>
 					<!-- 네이버 -->
 					<div id="naver_id_login" style="text-align: center">
 						<a href="${url}"> <img width="223"
@@ -46,13 +49,13 @@
 				<form action="<c:url value='/login/companyLogin.do'/>">
 					<input type="text" placeholder="아이디" name="userid"><br>
 					<br> <input type="password" placeholder="비밀번호" name="pwd"><br>
-					<br><br>
+					<br>
 					<a href="<c:url value='#popId2' /> ">
 						아이디
 					</a>
 					/
 					<a href="<c:url value='#popPwd2' /> ">
-						비밀번호
+						비밀번호 찾기
 					</a>
 					<br>
 					<br> <input type="submit" value="로그인"><br>
