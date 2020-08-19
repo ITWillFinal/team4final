@@ -17,4 +17,5 @@ public interface ComMemberDAO {
 	int deleteCMember(String cMemberCode);
 	int updateCMember(CompanyMemberVO companyMemberVo);
 	String selectMemberCode(String cUserid);
+	int emailComDupCh(String cEmail);
 }

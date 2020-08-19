@@ -87,6 +87,11 @@
 		where c_userid = #{cUserid}
 	</select>
 	
+	 <select id="emailComDupCh" parameterType="string" resultType="int">
+	   	select count(*) from company_member
+	   	where C_EMAIL = #{cEmail}
+  	 </select>
+	
 </mapper>
 
 

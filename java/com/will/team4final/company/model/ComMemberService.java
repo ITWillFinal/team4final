@@ -27,5 +27,6 @@ public interface ComMemberService {
 	int updateCMember(CompanyMemberVO companyMemberVo);
 	String selectMemberCode(String cUserid);
 	String selectCMemberPwd(String cUserid);
+	int emailComDupCh(String cEmail);
 	
 }

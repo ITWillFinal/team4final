@@ -93,6 +93,11 @@ public class ComMemberServiceImpl implements ComMemberService{
 	public String selectCMemberPwd(String cUserid) {
 		return comMemberDao.selectCMemberPwd(cUserid);
 	}
+
+	@Override
+	public int emailComDupCh(String cEmail) {
+		return comMemberDao.emailComDupCh(cEmail);
+	}
 	
 	
 

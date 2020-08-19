@@ -113,5 +113,10 @@
    		from apply
    		where user_no = #{userNo}
    </select>
+   
+   <select id="emailDupCh" parameterType="string" resultType="int">
+	   	select count(*) from member
+	   	where email = #{email}
+   </select>
 </mapper>
 

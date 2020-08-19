@@ -104,4 +104,9 @@ public class MemberServiceImpl implements MemberService{
 	public String selectMemberPwd(String userid) {
 		return memberDao.selectMemberPwd(userid);
 	}
+
+	@Override
+	public int emailDupCh(String email) {
+		return memberDao.emailDupCh(email);
+	}
 }

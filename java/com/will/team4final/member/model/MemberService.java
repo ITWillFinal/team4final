@@ -31,4 +31,5 @@ public interface MemberService {
 	List<MemberVO> showMemberForExcel();
 	List<ApplyVO> selectApplyByuserNo(String userNo);
 	String selectMemberPwd(String userid);
+	int emailDupCh(String email);
 }
