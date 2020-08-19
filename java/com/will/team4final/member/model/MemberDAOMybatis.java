@@ -90,4 +90,9 @@ public class MemberDAOMybatis implements MemberDAO {
 		return sqlSession.selectList(namespace+"selectApplyByuserNo", userNo);
 	}
 
+	@Override
+	public int emailDupCh(String email) {
+		return sqlSession.selectOne(namespace+"emailDupCh", email);
+	}
+
 }

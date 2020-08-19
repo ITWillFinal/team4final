@@ -12,13 +12,41 @@
 <script type="text/javascript">
 	$(function(){
 		$('#btSubtmit').click(function() {
-			if($('#email_id').val().length<1){
+			if($('#email_id').val().length<2){
 				alert('이메일을 입력하세요');
 				$('#email_id').focus();
 				event.preventDefault();
 				return false;
+			}else{
+				var emailCh = $('#email_id').val();
+				$.ajax({
+					url : "<c:url value='/email/company/emailDupCh.do' />",
+					type : "get",
+					data : "emailCh=" + emailCh,
+					dataType : "json",
+					async : false,
+					success : function(data) {
+						if (data > 0) {
+							alert('중복된 이메일이 있습니다');
+							$('#dupEmail').val("N");
+						} else {
+							alert('사용 가능한 이메일입니다');
+							$('#dupEmail').val("Y");
+						}
+
+					},
+					error : function(xhr, status, error) {
+						alert(status + ", " + error);
+
+					}
+				});
+				if($('#dupEmail').val() =="N"){
+					event.preventDefault();
+					return false;
+				}
 			}
 		});
+		
 	});
 
 </script>
@@ -69,7 +97,8 @@
 				이메일 : <input type="email" name="e_mail" value="${param.email }" id="email_id"
 					placeholder="  이메일주소를 입력하세요. " style="width: 200px;">
 			</div>
-
+			<div class="emailDupChLine"></div>
+			<input type="hidden" name="dupEmail" id="dupEmail">
 			<button type="submit" name="submit" id="btSubtmit" class="button gray">이메일 인증받기 (이메일 보내기)
 			</button>
 		</form>

@@ -9,19 +9,7 @@
 </head>
 <script type="text/javascript" 
 	src="<c:url value='/resources/js/jquery-3.5.1.min.js'/>"></script>
-<script type="text/javascript">
-	$(function(){
-		$('#btSubtmit').click(function() {
-			if($('#email_id').val().length<1){
-				alert('이메일을 입력하세요');
-				$('#email_id').focus();
-				event.preventDefault();
-				return false;
-			}
-		});
-	});
 
-</script>
 <style type="text/css">
 .button {
     display: inline-block;
@@ -60,6 +48,51 @@
 }
 
 </style>
+<script type="text/javascript">
+	$(function(){
+		$('form[name=frm]').submit(function() {
+			if($('#email_id').val().length < 2 ){
+				alert('이메일을 입력하세요!');
+				$('#email_id').focus();
+				event.preventDefault();
+				return false;
+			}else{
+				var emailCh = $('#email_id').val();
+				$.ajax({
+					url : "<c:url value='/email/emailDupCh.do' />",
+					type : "get",
+					data : "emailCh=" + emailCh,
+					dataType : "json",
+					async : false,
+					success : function(data) {
+						if (data > 0) {
+							alert('중복된 이메일이 있습니다');
+							$('#dupEmail').val("N");
+						} else {
+							alert('사용 가능한 이메일입니다');
+							$('#dupEmail').val("Y");
+						}
+
+					},
+					error : function(xhr, status, error) {
+						alert(status + ", " + error);
+
+					}
+				});
+				if($('#dupEmail').val() =="N"){
+					event.preventDefault();
+					return false;
+				}
+				
+				
+			}
+			
+		});//submit
+		
+		
+	});
+
+</script>
 <body>
 	<div style="text-align: center;">
 		<form name="frm" action="<c:url value='/member/auth.do' /> " method="post">
@@ -69,7 +102,8 @@
 				이메일 : <input type="email" name="e_mail" value="${param.email }" id="email_id"
 					placeholder="  이메일주소를 입력하세요. " style="width: 200px;">
 			</div>
-
+			<div class="emailDupChLine"></div>
+			<input type="hidden" name="dupEmail" id="dupEmail">
 			<button type="submit" name="submit" id="btSubtmit" class="button gray">이메일 인증받기 (이메일 보내기)
 			</button>
 		</form>

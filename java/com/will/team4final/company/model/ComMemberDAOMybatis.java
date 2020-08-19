@@ -73,4 +73,9 @@ public class ComMemberDAOMybatis implements ComMemberDAO {
 	public String selectMemberCode(String cUserid) {
 		return sqlSession.selectOne(namespace+"selectMemberCode",cUserid);
 	}
+
+	@Override
+	public int emailComDupCh(String cEmail) {
+		return sqlSession.selectOne(namespace+"emailComDupCh", cEmail );
+	}
 }

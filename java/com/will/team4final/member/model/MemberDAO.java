@@ -22,5 +22,6 @@ public interface MemberDAO {
 	int updateMember(MemberVO memberVo);
 	List<MemberVO> showMemberForExcel();
 	List<ApplyVO> selectApplyByuserNo(String userNo);
+	int emailDupCh(String email);
 	
 }
